@@ -1,0 +1,42 @@
+baseURL = 'http://example.org/'
+title = 'zweitstimme.org'
+theme = "PaperMod"
+
+
+copyright = 'zweitstimme.org 2021'
+defaultContentLanguage = 'de'
+[languages]
+[languages.de]
+title = 'zweitstimme.org'
+weight = 1
+
+[languages.en]
+title = 'zweitstimme.org'
+weight = 2
+
+[params]
+
+  [params.profileMode]
+  enabled = true
+  title = "<Title>"
+  subtitle = "This is subtitle"
+  imageUrl = "http://zweitstimme.org/img/logo_orange.png"
+  imageTitle = "<title of image as alt>"
+  imageWidth = 120.0
+  imageHeight = 120.0
+
+    [[params.profileMode.buttons]]
+    name = "Archive"
+    url = "/archive"
+
+    [[params.profileMode.buttons]]
+    name = "Github"
+    url = "https://github.com/"
+
+  [[params.socialIcons]]
+  name = "<platform>"
+  url = "<link>"
+
+  [[params.socialIcons]]
+  name = "<platform 2>"
+  url = "<link2>"
