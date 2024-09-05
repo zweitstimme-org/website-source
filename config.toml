@@ -1,6 +1,6 @@
 baseURL = "https://zweitstimme.org"
 title = "zweitstimme.org"
-paginate = 5.0
+pagination.pagerSize = 5
 theme = ["PaperMod", "hugo-cite"]
 enableInlineShortcodes = true
 enableRobotsTXT = true
@@ -19,25 +19,25 @@ disableXML = true
   [languages.en]
   languageName = "English"
   contentDir = "content/en"
-  weight = 2.0
+  weight = 2
 
     [languages.en.menu]
 
       [[languages.en.menu.main]]
       name = "2017"
       url = "http://2017.zweitstimme.org/index_en.html"
-      weight = 5.0
+      weight = 5
 
       [[languages.en.menu.main]]
       name = "Team"
       url = "posts/team"
-      weight = 10.0
+      weight = 10
 
 
   [languages.de]
   languageName = "Deutsch"
   contentDir = "content/de"
-  weight = 1.0
+  weight = 1
   title = "zweitstimme.org"
 
 
@@ -46,12 +46,12 @@ disableXML = true
       [[languages.de.menu.main]]
       name = "2017"
       url = "http://2017.zweitstimme.org/index.html"
-      weight = 5.0
+      weight = 5
 
       [[languages.de.menu.main]]
       name = "Team"
       url = "posts/team"
-      weight = 10.0
+      weight = 10
 
 
 [outputs]
@@ -61,6 +61,7 @@ home = [
 ]
 
 [params]
+hugoVersion = "0.129.0"  # Document the Hugo version required for this site
 env = "production"
 description = "zweitstimme.org: Die wissenschaftliche Vorhersage zur Bundestagswahl"
 author = "zweitstimme.org"
@@ -92,8 +93,6 @@ images = [
   [[params.socialIcons]]
   name = "github"
   url = "https://github.com/zweitstimme-org"
-
-
 
 
 [taxonomies]
