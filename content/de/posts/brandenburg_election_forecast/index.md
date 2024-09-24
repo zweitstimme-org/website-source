@@ -28,7 +28,7 @@ Wie gut funktioniert unser Modell? Wir haben das Modell anhand der Landtagswahle
 
 ## Modell nur auf Basis von Umfragen
 
-![Wahlprognose Thüringen](./fig/fig_fcstpoll_bb_2weekslead_de.png)
+![Wahlprognose Brandenburg](./fig/fig_fcstpoll_bb_2weekslead_de.png)
 
 In vorherigen Blogposts hatten wir unsere Vorhersagen für die Landtagswahlen in Sachsen und Thüringen am 01.09.2024 veröffentlicht. Unser volles Modell hat dabei auch berücksichtigt, dass das BSW als neue Partei angetreten ist, und eine entsprechende Vorhersage gemacht. Im Vergleich zum Endergebnis hat das dazu geführt, dass der Stimmenanteil des BSW überschätzt wurde. Deswegen präsentieren wir für die Brandenburger Landtagswahl auch Vorhersagen eines Modells, dass nur auf Informationen aus Umfragen basiert und neue Parteien nicht besonders berücksichtigt. Sollte das BSW auch in Brandenburg nicht die Umfragen deutlich übertreffen, wird diese Vorhersage möglicherweise näher am Endergebnis liegen.
 
