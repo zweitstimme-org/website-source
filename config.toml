@@ -17,9 +17,16 @@ disableXML = true
 [languages]
 
   [languages.en]
-  languageName = "English"
-  contentDir = "content/en"
-  weight = 2
+    languageName = "English"
+    contentDir = "content/en"
+    weight = 2
+    title = "zweitstimme.org"
+
+    [languages.en.params]
+      [languages.en.params.homeInfoParams]
+
+        Title = "The scientific forecast of the Bundestagswahl"
+        Content = "We are a [team](posts/team) of political scientists from the University of Mannheim, Witten/Herdecke University and Hertie School Berlin.\n- Our goal is to use our statistical model to provide a broad audience with information and forecasts about the federal election that go beyond the snapshots of political sentiment provided by opinion polls (e.g., “Sunday polls“).\n- Predictions of future events, in this case the outcome of the federal election, are always fraught with uncertainty. Therefore, it is particularly important to us to communicate the uncertainty of prediction models such as that of zweitstimme.org clearly and in a way that is easy to understand.\n- This information can help journalists, experts and citizens to better assess and communicate actual party support and ultimately make better-informed voting decisions.\n"
 
     [languages.en.menu]
 
@@ -34,11 +41,19 @@ disableXML = true
       weight = 10
 
 
+
+
   [languages.de]
-  languageName = "Deutsch"
-  contentDir = "content/de"
-  weight = 1
-  title = "zweitstimme.org"
+    languageName = "Deutsch"
+    contentDir = "content/de"
+    weight = 1
+    title = "zweitstimme.org"
+
+    [languages.de.params]
+      [languages.de.params.homeInfoParams]
+
+        Title = "Die wissenschaftliche Vorhersage zur Bundestagswahl"
+        Content = "Wir sind ein [Team](posts/team) von Wahlforscher:innen der Universität Mannheim, der Universität Witten/Herdecke und der Hertie School Berlin.\n- Unser Ziel ist es, einem breiten Publikum mithilfe unseres statistischen Modells Informationen und Prognosen zur Bundestagswahl an die Hand zu geben, die über die Momentaufnahmen der politischen Stimmung durch Meinungsumfragen (bspw. „Sonntagsfragen“) hinausgehen.\n- Vorhersagen von zukünftigen Ereignissen, in diesem Fall dem Ausgang der Bundestagswahl, sind immer mit Unsicherheit behaftet. Daher ist es uns besonders wichtig, die Unsicherheit von Vorhersagemodellen wie dem von zweitstimme.org eindeutig und gut verständlich zu kommunizieren.\n- Diese Informationen können Journalist:innen, Expert:innen und Bürger:innen helfen, die tatsächliche Parteienunterstützung besser einzuschätzen, zu kommunizieren und letztlich besser informierte Wahlentscheidungen zu treffen.\n-"
 
 
     [languages.de.menu]
@@ -54,6 +69,8 @@ disableXML = true
       weight = 10
 
 
+
+
 [outputs]
 home = [
   "HTML",
@@ -61,7 +78,7 @@ home = [
 ]
 
 [params]
-hugoVersion = "0.129.0"  # Document the Hugo version required for this site
+hugoVersion = "0.135.0"  # Document the Hugo version required for this site
 env = "production"
 description = "zweitstimme.org: Die wissenschaftliche Vorhersage zur Bundestagswahl"
 author = "zweitstimme.org"
@@ -77,14 +94,7 @@ images = [
   "papermod-cover.png"
 ]
 
-  [languages.de.homeInfoParams]
-  Title = "Die wissenschaftliche Vorhersage zur Bundestagswahl"
-  Content = "Wir sind ein [Team](posts/team) von Wahlforscher:innen der Universität Mannheim, der Universität Witten/Herdecke und der Hertie School Berlin.\n- Unser Ziel ist es, einem breiten Publikum mithilfe unseres statistischen Modells Informationen und Prognosen zur Bundestagswahl an die Hand zu geben, die über die Momentaufnahmen der politischen Stimmung durch Meinungsumfragen (bspw. „Sonntagsfragen“) hinausgehen.\n- Vorhersagen von zukünftigen Ereignissen, in diesem Fall dem Ausgang der Bundestagswahl, sind immer mit Unsicherheit behaftet. Daher ist es uns besonders wichtig, die Unsicherheit von Vorhersagemodellen wie dem von zweitstimme.org eindeutig und gut verständlich zu kommunizieren.\n- Diese Informationen können Journalist:innen, Expert:innen und Bürger:innen helfen, die tatsächliche Parteienunterstützung besser einzuschätzen, zu kommunizieren und letztlich besser informierte Wahlentscheidungen zu treffen.\n-"
-
-[languages.en.homeInfoParams]
-  Title = "The scientific forecast of the Bundestagswahl"
-  Content = "We are a [team](posts/team) of political scientists from the University of Mannheim, University WItten/Herdecke and Hertie School Berlin.\n- Our goal is to use our statistical model to provide a broad audience with information and forecasts about the federal election that go beyond the snapshots of political sentiment provided by opinion polls (e.g., “Sunday polls“).\n- Predictions of future events, in this case the outcome of the federal election, are always fraught with uncertainty. Therefore, it is particularly important to us to communicate the uncertainty of prediction models such as that of zweitstimme.org clearly and in a way that is easy to understand.\n- This information can help journalists, experts and citizens to better assess and communicate actual party support and ultimately make better-informed voting decisions.\n"
-
+  
 
   [[params.socialIcons]]
   name = "twitter"

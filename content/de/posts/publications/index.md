@@ -2,7 +2,7 @@
 title: "Über die Prognosemodelle"
 date: 2021-08-18T22:33:16+02:00
 draft: false
-bibFile: "static/bibliography.json"
+bibFile: "data/bibliography.json"
 ---
 
 Für uns als Wissenschaftler:innen ist es wichtig, dass unsere Prognosen transparent und nachvollziehbar sind. 

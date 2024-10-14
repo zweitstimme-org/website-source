@@ -2,7 +2,7 @@
 title: "About our forecast models"
 date: 2021-08-18T22:33:16+02:00
 draft: false
-bibFile: "static/bibliography.json"
+bibFile: "data/bibliography.json"
 ---
 
 For us as scientists, it is important that our forecasts are transparent and comprehensible. 
