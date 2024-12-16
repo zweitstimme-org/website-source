@@ -6,7 +6,19 @@
     margin-inline-start: auto;
     margin-inline-end: auto;
     line-height: var(--header-height);
+    background-color: var(--theme);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
 }
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: var(--theme);
+    width: 100%;
+}
+
 
 .nav a {
     display: block;
@@ -90,4 +102,109 @@ body:not(.dark) #sun {
 
 .logo-switches {
     flex-wrap: inherit;
+}
+
+/* Add hamburger menu button styles */
+.menu-trigger {
+    display: none;  /* Hidden by default on desktop */
+    padding: 0 var(--gap);
+    cursor: pointer;
+    margin-left: auto; /* Push to the right */
+}
+
+/* Show hamburger on mobile */
+@media screen and (max-width: 768px) {
+    .menu-trigger {
+        display: block;
+    }
+
+    #menu {
+        display: none;
+        position: absolute;
+        top: var(--header-height);
+        right: 0;
+        min-width: 160px;
+        max-width: max-content;
+        padding: 0.5rem 0;
+        background-color: var(--theme);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 4px;
+        margin: 0.5rem;
+        z-index: 1000;
+    }
+
+    #menu.show {
+        display: flex;
+    }
+
+    #menu li {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #menu li a {
+        padding: 0.5rem 1rem;
+        display: block;
+        text-align: left;
+    }
+
+    #menu li + li {
+        margin-inline-start: 0;
+    }
+
+    #menu span {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.entry-content a {
+    text-decoration: underline;
+}
+
+/* Add this to ensure content stays below header */
+main {
+    position: relative;
+    z-index: 1;
+}
+
+/* Add this to ensure page titles scroll normally */
+.post-title,
+.page-title,
+.entry-header {
+    position: static !important; /* Override any fixed/sticky positioning */
+    z-index: auto !important;
+}
+
+/* Add these rules to force normal page flow */
+.post-header,
+.page-header,
+.entry-header,
+.post-title,
+.page-title,
+h1, h2, h3, h4, h5, h6,
+article,
+.post-content,
+.page-content {
+    position: static !important;
+    z-index: auto !important;
+    transform: none !important;
+    top: auto !important;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure header stays on top */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: var(--theme);
+    width: 100%;
 }

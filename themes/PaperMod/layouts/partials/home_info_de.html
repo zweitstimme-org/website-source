@@ -1,0 +1,475 @@
+{{- with site.Params.homeInfoParams }}
+<script>
+  // Function to fetch the forecast data and update the HTML
+function fetchForecast() {
+  // Fetch forecast data from the Plumber API
+  fetch("http://polsci.uni-wh.de:8073/forecast")
+    .then(response => response.json())
+    .then(data => {
+      // Get the last updated timestamp
+      fetch("http://polsci.uni-wh.de:8073/last_updated")
+        .then(response => response.json())
+        .then(lastUpdatedData => {
+          const lastUpdated = new Date(lastUpdatedData.last_updated);
+          const formattedDate = formatDateToGerman(lastUpdated);
+          
+          document.getElementById('forecast-last-updated').textContent = formattedDate;
+
+          const forecastValues = data.map(party => {
+            const formattedValue = formatNumberWithComma(party.value);
+            return `${party.name} ${formattedValue}%`;
+          }).join(', ');
+          document.getElementById('forecast-values').textContent = forecastValues;
+        })
+        .catch(err => console.error('Fehler beim Laden der Daten:', err));
+    })
+    .catch(err => console.error('Fehler beim Laden der Daten:', err));
+}
+
+// Function to fetch the probabilities data and update the HTML
+function fetchProbabilities() {
+  // Get the last updated timestamp for probabilities
+  fetch("http://polsci.uni-wh.de:8073/last_updated")
+    .then(response => response.json())
+    .then(lastUpdatedData => {
+      const lastUpdated = new Date(lastUpdatedData.last_updated);
+      const formattedDate = formatDateToGerman(lastUpdated);
+      
+      // Update the 'probabilities' section last-updated time
+      document.getElementById('probabilities-last-updated').textContent = formattedDate;
+    })
+    .catch(err => console.error('Fehler beim Laden der Daten:', err));
+}
+
+// Function to format date to German format (e.g. 9. Dezember 2024)
+function formatDateToGerman(date) {
+  const months = [
+    "Januar", "Februar", "März", "April", "Mai", "Juni", 
+    "Juli", "August", "September", "Oktober", "November", "Dezember"
+  ];
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  return `${day}. ${month} ${year}`;
+}
+
+// Function to format number with a comma as the decimal separator
+function formatNumberWithComma(number) {
+  return number.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).replace('.', ',');
+}
+
+// Combined window.onload function
+window.onload = function() {
+    console.log('Page loaded');
+    fetchForecast();
+    fetchProbabilities();
+    updateIframeSrc();
+};
+
+function updateIframeSrc() {
+    const iframe = document.getElementById('forecast-iframe');
+    console.log('Current width:', window.innerWidth);
+    if (window.innerWidth <= 500) {
+        console.log('Switching to mobile view');
+        iframe.src = 'http://polsci.uni-wh.de:8073/interactive_mobile';
+    } else {
+        console.log('Switching to desktop view');
+        iframe.src = 'http://polsci.uni-wh.de:8073/interactive';
+    }
+}
+
+// Run when window is resized
+window.addEventListener('resize', updateIframeSrc);
+</script>
+
+<article class="first-entry home-info">
+
+  <section class="section-alt">
+    <div class="content-wrapper">
+          <div class="entry-content">
+            <h1 style="color: var(--secondary);"><a style="color: var(--secondary);">zweitstimme.org</a></h1>
+            <h2 style="color: var(--primary); text-align: left;">Die wissenschaftliche Vorhersage zur Bundestagswahl</h2>
+            <p>Hier finden Sie wissenschaftlich fundierte Prognosen für Bundes- und Landtagswahlen in Deutschland. Mit unseren interaktiven Visualisierungen und detaillierten Analysen machen wir Wahlvorhersagen transparent und verständlich.</p>    </div>
+        
+  </section>
+
+<section>
+  <div>
+  <h3 style="color: var(--primary); text-align: center;">Wahlprognose vom <span id="forecast-last-updated">lädt...</span></h3>
+
+  <div class="iframe-section">
+    <div class="iframe-wrapper">
+        <iframe
+          id="forecast-iframe"
+          src="http://polsci.uni-wh.de:8073/interactive"
+          frameborder="0"
+          allowfullscreen
+          aria-label="Interactive content from API">
+        </iframe>
+    </div>
+  </div>
+
+  <div class="text-section entry-content">
+
+
+
+    <p>Für die kommende Bundestagswahl am 23. Februar 2025 liefert unser Modell die aktuelle Prognose: <strong><span id="forecast-values">lädt...</span></strong>.</p>
+      <br>
+  <p>Wie Sie in der Grafik der Wahlprognose oben sehen können, sind diese Werte jedoch keineswegs sicher. Die Bänder für jede Partei geben an in welchem Bereich wir den tatsächlichen Wert mit 83% Wahrscheinlichkeit vermuten. Das heißt, dass das tatsächliche Wahlergebnis nicht in diesem Bereich liegt, ist so wahrscheinlich wie eine 6 zu würfeln - nicht sehr wahrscheinlich, aber doch möglich (mehr <a href="/modell">hier</a>).</p>
+</div>
+</div>
+
+</section>
+
+
+
+
+
+<section class="section-alt">
+  <div class="content-wrapper">
+    <div class="two-column-grid">
+      <div class="column">
+        <div class="entry-content">
+          <div class="image-wrapper">
+
+            <h2 style="color: var(--primary);">Erststimme</h2>
+
+            <img 
+              src="/images/erststimme.png" 
+              alt="Pfeil Erststimme" 
+              loading="lazy"
+              class="germany-map"
+              width="60%"
+            >
+          </div>
+
+
+          <div class="bullet-list">
+            <ul>
+              <li><a href="/erststimme">Vorhersage für alle 299 Wahlkreise</a></li>
+              <li><a href="/erststimme">Welche Wahlkreise bleiben verwaist?</a></li>
+              <li><a href="/erststimme">In welchen Wahlkreisen wird es knapp?</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="entry-content">
+          <div class="image-wrapper">
+            <h2 style="color: var(--primary);">Zweitstimme</h2>
+
+            <img 
+              src="/images/zweitstimme.png" 
+              alt="Pfeil Zweitstimme" 
+              loading="lazy"
+              class="germany-map"
+              width="60%"
+            >
+          </div>
+
+          <div class="bullet-list">
+            <ul>
+              <li><a href="/zweitstimme">Wer schafft die 5%-Hürde?</a></li>
+              <li><a href="/zweitstimme">Welche Koalitionen können Mehrheiten bilden?</a></li>
+              <li><a href="/zweitstimme">Wie haben sich die Vorhersagen verändert?</a></li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section >
+  <div class="content-wrapper">
+        <div class="entry-content">
+          <h2 style="color: var(--primary);">Das Projekt <a style="color: var(--secondary);">zweitstimme.org</a></h2>
+          
+
+          
+
+          Seit 2017 entwickeln wir wissenschaftliche Wahlprognosen für Deutschland. Neben der Bundestagswahl erstellen wir auch Vorhersagen für Landtagswahlen. Unser <a href="/team">sechsköpfiges Team</a> aus Politikwissenschaftler*innen wird durch die Deutsche Forschungsgemeinschaft (DFG) gefördert. Wir arbeiten eng mit <a href="/medien">führenden Medien</a> zusammen und publizieren regelmäßig in <a href="/publikationen">wissenschaftlichen Fachzeitschriften</a> (mehr <a href="/publikationen">hier</a>).
+
+
+        <div class="logo-container">
+          <a href="https://gepris.dfg.de/gepris/projekt/529544178?language=en" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+            <div class="skeleton"></div>
+            <img src="/images/logo_dfg.gif" alt="Logo DFG" loading="lazy">
+          </a>
+          <a href="https://www.hertie-school.org/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+            <div class="skeleton"></div>
+            <img src="/images/logo_hertie.svg" alt="Logo Hertie" loading="lazy">
+          </a>
+          <a href="https://www.uni-mannheim.de/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+            <div class="skeleton"></div>
+            <img src="/images/logo_mannheim.svg" alt="Logo Mannheim" loading="lazy">
+          </a>
+          <a href="https://www.uni-wh.de/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+            <div class="skeleton"></div>
+            <img src="/images/logo_witten.svg" alt="Logo Witten" loading="lazy">
+          </a>
+          <a href="https://www.sueddeutsche.de/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+            <div class="skeleton"></div>
+            <img src="/images/logo_sz.svg" alt="Logo SZ" loading="lazy">
+          </a>
+          <a href="https://www.zeit.de/thema/bundestagswahl" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+            <div class="skeleton"></div>
+            <img src="/images/logo_zeit.svg" alt="Logo Zeit" loading="lazy">
+          </a>
+        </div>
+
+      </div>
+
+        
+</section>
+
+
+
+
+</section>
+
+
+
+
+<!---
+<section id="probabilities">
+  <h2>Wahrscheinlichkeiten für verschiedene Ereignisse</h2>
+  <div class="entry-content" id="probabilities-info">
+    Hier sind die Diagramme für die Wahrscheinlichkeiten verschiedener Ereignisse, die unser Modell für die kommende Bundestagswahl berechnet hat (Stand: <span id="probabilities-last-updated">lädt...</span>):
+  </div>
+  <br>
+  <h3>1. Mehrheiten von Koalitionen</h3>
+
+  <img
+    src="http://polsci.uni-wh.de:8073/majorities"
+    alt="Wahrscheinlichkeit für Mehrheiten von Koalitionen"
+    width="80%"
+    height="auto"
+    aria-label="Wahrscheinlichkeit für Mehrheiten von Koalitionen">
+  </img>
+  <br>
+  <h3>2. Stärkste Kraft</h3>
+
+  <img
+    src="http://polsci.uni-wh.de:8073/winner"
+    alt="Wahrscheinlichkeit, dass eine Partei die größte wird"
+    width="80%"
+    height="auto"
+    aria-label="Wahrscheinlichkeit, dass eine Partei die größte wird">
+  </img>
+  <br>
+  <h3>3. Überschreiten der 5%-Hürde</h3>
+
+  <img
+    src="http://polsci.uni-wh.de:8073/hurdle"
+    alt="Wahrscheinlichkeit, dass eine Partei die 5%-Hürde überschreitet"
+    width="80%"
+    height="auto"
+    aria-label="Wahrscheinlichkeit, dass eine Partei die 5%-Hürde überschreitet">
+  </img>
+</section>
+
+  
+  <div class="entry-content">
+      {{ .Content | markdownify }}
+  </div>
+-->
+
+  </article>
+
+  <!---<div class="social-icons">
+    <a href="https://twitter.com/zweitstimme_org" target="_blank" rel="noopener noreferrer me" title="Twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+  </svg>
+    </a>
+    <a href="https://github.com/zweitstimme-org" target="_blank" rel="noopener noreferrer me" title="Github">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+  </svg>
+    </a>
+  </div>-->
+    
+{{- end -}}
+
+<style>
+  .entry-content h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+  .first-entry {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+
+.iframe-section {
+    margin-bottom: -2rem; /* No bottom margin */
+
+}
+
+.iframe-wrapper iframe {
+    width: 100%;
+    height: 400px;  /* Default height */
+    margin-bottom: 0; /* No bottom margin */
+
+}
+
+@media screen and (max-width: 500px) {
+    .iframe-wrapper iframe {
+        height: 300px !important;  /* Force the height */
+    }
+}
+
+.iframe-wrapper iframe {
+    width: 100%;
+    height: 400px;
+    display: block;
+}
+
+.text-section {
+    margin-top: 0; /* No top margin */
+    margin-bottom: 2rem; /* Space below the text */
+}
+
+@media screen and (max-width: 500px) {
+    .iframe-wrapper iframe {
+      margin-top: 0; /* No top margin */
+        height: 300px !important; /* Adjust height for mobile */
+    }
+}
+
+section {
+    padding: 2rem 0; /* Vertical padding for sections */
+    width: 100%; /* Full width for sections */
+    margin: 0; /* No margin */
+}
+
+.section-alt {
+    background-color: rgb(245, 245, 245); /* Light gray background for alternate sections */
+    width: 100vw; /* Full viewport width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw; /* Center the section */
+    margin-right: -50vw; /* Center the section */
+}
+
+.content-wrapper {
+    max-width: var(--main-width); /* Set your desired max width */
+    margin: 0 auto; /* Center the content */
+    padding: 0 var(--gap); /* Add consistent horizontal padding */
+}
+
+/* Ensure consistent padding for all sections */
+.entry-content {
+    padding: 0; /* Remove padding since it's handled by content-wrapper */
+}
+
+.logo-container {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 0 0 0;
+}
+
+/* For mobile screens, switch to two columns */
+@media screen and (max-width: 768px) {
+    .logo-container {
+        grid-template-columns: repeat(2, 120px);
+    }
+}
+
+/* For very small screens, switch to one column */
+@media screen and (max-width: 400px) {
+    .logo-container {
+        grid-template-columns: repeat(1, 120px);
+    }
+}
+
+  .logo-wrapper {
+    position: relative;
+    width: 120px;
+    height: 60px;
+  }
+
+  .logo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+  }
+
+  .skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 200% 100%;
+    z-index: 1;
+  }
+
+.two-column-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* For mobile screens, switch to one column */
+@media screen and (max-width: 768px) {
+    .two-column-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+.column {
+    min-width: 0; /* Prevents content from breaking the grid */
+}
+
+.image-wrapper {
+  width: 100%;
+  margin: 0rem auto;
+  text-align: center;
+}
+
+.germany-map {
+  width: 70%;
+  height: auto;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.bullet-list {
+  width: 100%;
+  margin: 1rem auto;
+  text-align: left;
+  padding: 0 15%;
+  color: var(--primary);
+
+}
+
+.bullet-list ul {
+  list-style-type: disc;
+  margin: 0;
+  padding: 0 0 0 1.2em;
+
+}
+
+.bullet-list li {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+</style>
+

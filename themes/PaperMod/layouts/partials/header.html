@@ -37,12 +37,15 @@
     }
 
 </script>
+
+
+
 {{- end }}
 
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            {{- $label_text := (site.Params.label.text | default site.Title) }}
+            {{- $label_text := (site.Params.label.text) }}
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
                 {{- if site.Params.label.icon }}
@@ -64,7 +67,7 @@
                         height="{{- site.Params.label.iconHeight | default "30" -}}">
                 {{- else }}
                 <img src="{{- site.Params.label.icon | absURL -}}" alt="" aria-label="logo"
-                    height="{{- site.Params.label.iconHeight | default "30" -}}">
+                    height="{{- site.Params.label.iconHeight | default "50" -}}">
                 {{- end -}}
                 {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
                     {{ site.Params.label.iconSVG | safeHTML }}
@@ -117,7 +120,14 @@
                     {{- end}}
                 </ul>
                 {{- end }}
+
+                
             </div>
+
+
+
+
+
         </div>
         {{- $currentPage := . }}
         <ul id="menu">
@@ -145,5 +155,34 @@
             </li>
             {{- end }}
         </ul>
+
+            <!-- Move the button here, outside of the logo div -->
+    <button class="menu-trigger" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
     </nav>
 </header>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuTrigger = document.querySelector('.menu-trigger');
+        const menu = document.getElementById('menu');
+    
+        menuTrigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            menu.classList.toggle('show');
+        });
+    
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!menu.contains(e.target) && !menuTrigger.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+    });
+    </script>

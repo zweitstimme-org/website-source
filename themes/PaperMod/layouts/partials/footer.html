@@ -1,24 +1,39 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer">
-    {{- if not site.Params.footer.hideCopyright }}
-        {{- if site.Copyright }}
-        <span>{{ site.Copyright | markdownify }}</span>
-        {{- else }}
-        <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
-        {{- end }}
-        {{- print " · "}}
-    {{- end }}
+    <div class="footer-content">
+        <div class="footer-column">
+            <span class="footer-items">
+                {{/* Footer Menu Items */}}
+                {{ range $index, $item := site.Menus.footer }}
+                    {{ if $index }} · {{ end }}
+                    <a href="{{ .URL }}" {{ if strings.HasPrefix .URL "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>
+                        {{ .Name }}
+                    </a>
+                {{ end }}
+            </span>
+        </div>
 
-    {{- with site.Params.footer.text }}
-        {{ . | markdownify }}
-        {{- print " · "}}
-    {{- end }}
+        <div class="footer-column">
+            <span>
+                {{/* Copyright */}}
+                {{- if not site.Params.footer.hideCopyright }}
+                    {{- if site.Copyright }}
+                        {{ site.Copyright | markdownify }}
+                    {{- else }}
+                        &copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a>
+                    {{- end }}
+                {{- end }}
+            </span>
+        </div>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
+        <div class="footer-column">
+            <span>
+                Powered by
+                <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+                <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+            </span>
+        </div>
+    </div>
 </footer>
 {{- end }}
 

@@ -16,36 +16,9 @@ disableXML = true
 
 [languages]
 
-  [languages.en]
-    languageName = "English"
-    contentDir = "content/en"
-    weight = 2
-    title = "zweitstimme.org"
-
-    [languages.en.params]
-      [languages.en.params.homeInfoParams]
-
-        Title = "The scientific forecast of the Bundestagswahl"
-        Content = "We are a [team](posts/team) of political scientists from the University of Mannheim, Witten/Herdecke University and Hertie School Berlin.\n- Our goal is to use our statistical model to provide a broad audience with information and forecasts about the federal election that go beyond the snapshots of political sentiment provided by opinion polls (e.g., “Sunday polls“).\n- Predictions of future events, in this case the outcome of the federal election, are always fraught with uncertainty. Therefore, it is particularly important to us to communicate the uncertainty of prediction models such as that of zweitstimme.org clearly and in a way that is easy to understand.\n- This information can help journalists, experts and citizens to better assess and communicate actual party support and ultimately make better-informed voting decisions.\n"
-
-    [languages.en.menu]
-
-      [[languages.en.menu.main]]
-      name = "2017"
-      url = "http://2017.zweitstimme.org/index_en.html"
-      weight = 5
-
-      [[languages.en.menu.main]]
-      name = "Team"
-      url = "posts/team"
-      weight = 10
-
-
-
-
   [languages.de]
     languageName = "Deutsch"
-    contentDir = "content/de"
+    contentDir = "content"
     weight = 1
     title = "zweitstimme.org"
 
@@ -53,21 +26,56 @@ disableXML = true
       [languages.de.params.homeInfoParams]
 
         Title = "Die wissenschaftliche Vorhersage zur Bundestagswahl"
-        Content = "Wir sind ein [Team](posts/team) von Wahlforscher:innen der Universität Mannheim, der Universität Witten/Herdecke und der Hertie School Berlin.\n- Unser Ziel ist es, einem breiten Publikum mithilfe unseres statistischen Modells Informationen und Prognosen zur Bundestagswahl an die Hand zu geben, die über die Momentaufnahmen der politischen Stimmung durch Meinungsumfragen (bspw. „Sonntagsfragen“) hinausgehen.\n- Vorhersagen von zukünftigen Ereignissen, in diesem Fall dem Ausgang der Bundestagswahl, sind immer mit Unsicherheit behaftet. Daher ist es uns besonders wichtig, die Unsicherheit von Vorhersagemodellen wie dem von zweitstimme.org eindeutig und gut verständlich zu kommunizieren.\n- Diese Informationen können Journalist:innen, Expert:innen und Bürger:innen helfen, die tatsächliche Parteienunterstützung besser einzuschätzen, zu kommunizieren und letztlich besser informierte Wahlentscheidungen zu treffen.\n-"
 
 
     [languages.de.menu]
 
       [[languages.de.menu.main]]
-      name = "2017"
-      url = "http://2017.zweitstimme.org/index.html"
-      weight = 5
+      name = "Erststimme"
+      url = "erststimme"
+      weight = 10
+
+      [[languages.de.menu.main]]
+      name = "Zweitstimme"
+      url = "zweitstimme"
+      weight = 11
 
       [[languages.de.menu.main]]
       name = "Team"
-      url = "posts/team"
+      url = "team"
+      weight = 12
+
+      [[languages.de.menu.main]]
+      name = "Blog"
+      url = "posts/blog"
+      weight = 15
+
+      [[languages.de.menu.footer]]
+      name = "Datenschutz"
+      url = "/datenschutz"
       weight = 10
 
+      [[languages.de.menu.footer]]
+      name = "Impressum"
+      url = "/impressum"
+      weight = 20
+
+      [[languages.de.menu.footer]]
+      name = "API"
+      url = "/api"
+      weight = 30
+
+      [[languages.de.menu.footer]]
+      name = "Twitter"
+      url = "https://twitter.com/zweitstimme_org"
+      weight = 40
+
+      [[languages.de.menu.footer]]
+      name = "Github"
+      url = "https://github.com/zweitstimme-org"
+      weight = 50
+
+      
 
 
 
@@ -82,7 +90,8 @@ hugoVersion = "0.135.0"  # Document the Hugo version required for this site
 env = "production"
 description = "zweitstimme.org: Die wissenschaftliche Vorhersage zur Bundestagswahl"
 author = "zweitstimme.org"
-defaultTheme = "auto"
+disableThemeToggle = true
+defaultTheme = "light"
 ShowShareButtons = false
 ShowReadingTime = false
 displayFullLangName = true
@@ -93,8 +102,8 @@ ShowToc = false
 images = [
   "papermod-cover.png"
 ]
-
-  
+mainSections = ["posts/blog"]
+label.icon = "/images/logo_orange.png"
 
   [[params.socialIcons]]
   name = "twitter"
@@ -104,6 +113,10 @@ images = [
   name = "github"
   url = "https://github.com/zweitstimme-org"
 
+
+  [params.assets]
+  favicon16x16 = "/images/favicon-16x16.png"
+  favicon32x32 = "/images/favicon-32x32.png"
 
 [taxonomies]
 category = "categories"

@@ -4,6 +4,10 @@
 {{- partial "index_profile.html" . }}
 {{- else }} {{/* if not profileMode */}}
 
+<head>
+  {{- partial "head.html" . }}
+</head>
+
 {{- if not .IsHome | and .Title }}
 <header class="page-header">
   {{- partial "breadcrumbs.html" . }}
@@ -48,7 +52,7 @@
 {{- $paginator := .Paginate $pages }}
 
 {{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
-{{- partial "home_info.html" . }}
+    {{- partial (printf "home_info_%s.html" .Lang) . }}
 {{- end }}
 
 {{- $term := .Data.Term }}

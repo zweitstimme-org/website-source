@@ -5,11 +5,18 @@
 }
 
 .footer {
-    max-width: calc(var(--main-width) + var(--gap) * 2);
     margin: auto;
     padding: calc((var(--footer-height) - var(--gap)) / 2) var(--gap);
     text-align: center;
     line-height: 24px;
+    background-color: rgb(245, 245, 245);
+    width: 100vw; /* Full viewport width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw; /* Center the section */
+    margin-right: -50vw; /* Center the section */
+
 }
 
 .footer span {
@@ -57,4 +64,38 @@
 .top-link:focus,
 #theme-toggle:focus {
     outline: 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: calc(var(--main-width) + var(--gap) * 2);
+    margin: 0 auto;
+    padding: 0 var(--gap);
+}
+
+.footer-column {
+    flex: 1;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-items {
+    margin: 0;
+    padding: 0;
+}
+
+/* For mobile screens */
+@media screen and (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-column {
+        width: 100%;
+        padding: 0.5rem 0;
+    }
 }
