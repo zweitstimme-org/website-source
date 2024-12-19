@@ -5,10 +5,6 @@ url: "/api"
 summary: "API Dokumentation"
 ---
 
-*Seite in Bearbeitung*
-
-
-# API-Dokumentation
 
 Die zweitstimme.org API ermöglicht den Zugriff auf unsere Wahlprognosen und zugehörige Visualisierungen. Alle Endpunkte sind über HTTP GET-Anfragen erreichbar.
 
@@ -42,6 +38,30 @@ json
     "_row": "cdu"
   },
 ...
+]
+```
+
+### Wahlkreisprognosen
+**Endpunkt:** <a href="http://polsci.uni-wh.de:8073/forecast_districts" target="_blank">`/forecast_districts`</a>  
+**Methode:** GET  
+**Beschreibung:** Liefert Prognosen für alle 299 Bundestagswahlkreise inklusive der 83% Konfidenzintervalle.
+
+**Beispielantwort:**
+
+```json
+[
+  {
+    "wkr": 1,
+    "wkr_name": "Flensburg – Schleswig",
+    "party": "afd",
+    "partei": "AFD",
+    "winner": 0,
+    "probability": 0,
+    "value": 8.7,
+    "low": 7.1,
+    "high": 10.2
+  },
+  ...
 ]
 ```
 

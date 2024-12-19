@@ -31,6 +31,11 @@ disableXML = true
     [languages.de.menu]
 
       [[languages.de.menu.main]]
+      name = "Home"
+      url = "/"
+      weight = 5
+
+      [[languages.de.menu.main]]
       name = "Erststimme"
       url = "erststimme"
       weight = 10
