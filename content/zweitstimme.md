@@ -5,11 +5,11 @@ summary: "Zweitstimme Prognosen"
 url: "/zweitstimme"
 ---
 *Seite im Aufbau*
-
+<!---
   <h3 style="color: var(--primary); text-align: center;">Vorhersagetrend <span id="forecast-values">lädt...</span></h3>
 
 <div style="position: relative; padding-bottom: 50%; height: 0; margin-top: -10px;">
-    <iframe src="http://polsci.uni-wh.de:8073/interactive_trend"
+    <iframe src="https://polsci.uni-wh.de:8073/interactive_trend"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
             allowfullscreen>
     </iframe>
@@ -24,14 +24,16 @@ Hier finden Sie detaillierte Analysen zu:
 - Prognosen für alle Parteien
 - Koalitionsoptionen  
 
+
+--->
 <script>
     function fetchForecast() {
         // Fetch forecast data from the Plumber API
-        fetch("http://polsci.uni-wh.de:8073/forecast")
+        fetch("https://polsci.uni-wh.de:8073/forecast")
             .then(response => response.json())
             .then(data => {
                 // Get the last updated timestamp
-                fetch("http://polsci.uni-wh.de:8073/last_updated")
+                fetch("https://polsci.uni-wh.de:8073/last_updated")
                     .then(response => response.json())
                     .then(lastUpdatedData => {
                         const lastUpdated = new Date(lastUpdatedData.last_updated);

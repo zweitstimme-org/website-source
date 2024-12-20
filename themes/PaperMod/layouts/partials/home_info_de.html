@@ -1,11 +1,6 @@
 {{- with site.Params.homeInfoParams }}
 <script>
 
-if (window.location.protocol === "https:") {
-    var apiUrl = "https://polsci.uni-wh.de:8073";  // Change to your HTTPS URL
-} else {
-    var apiUrl = "http://polsci.uni-wh.de:8073";  // Use HTTP fallback for local testing
-}
   // Function to fetch the forecast data and update the HTML
 function fetchForecast() {
   // Fetch forecast data from the Plumber API
@@ -101,10 +96,16 @@ window.addEventListener('resize', updateIframeSrc);
 
 <section>
   <div>
-  <h3 style="color: var(--primary); text-align: center;">Wahlprognose vom <span id="forecast-last-updated">lädt...</span></h3>
+  <h3 style="color: var(--primary); text-align: center;">Wahlprognose vom 20. Dezember 2024<!---
+    <span id="forecast-last-updated">lädt...</span>---></h3>
 
   <div class="iframe-section">
     <div class="iframe-wrapper">
+
+      <div style="margin-bottom: 30px; text-align: center;">
+        <img src="/images/figure.png" alt="Wahlprognose" style="max-width: 100%; height: auto;">
+    </div>
+    <!---
         <iframe
           id="forecast-iframe"
           src="http://polsci.uni-wh.de:8073/interactive"
@@ -112,6 +113,7 @@ window.addEventListener('resize', updateIframeSrc);
           allowfullscreen
           aria-label="Interactive content from API">
         </iframe>
+        --->
     </div>
   </div>
 
@@ -119,7 +121,8 @@ window.addEventListener('resize', updateIframeSrc);
 
 
 
-    <p>Für die kommende Bundestagswahl am 23. Februar 2025 liefert unser Modell die aktuelle Prognose: <strong><span id="forecast-values">lädt...</span></strong>.</p>
+    <p>Für die kommende Bundestagswahl am 23. Februar 2025 liefert unser Modell die aktuelle Prognose<!---
+      <span id="forecast-last-updated">lädt...</span>--->.</p>
       <br>
   <p>Wie Sie in der Grafik der Wahlprognose oben sehen können, sind diese Werte jedoch keineswegs sicher. Die Bänder für jede Partei geben an in welchem Bereich wir den tatsächlichen Wert mit 83% Wahrscheinlichkeit vermuten. Das heißt, dass das tatsächliche Wahlergebnis nicht in diesem Bereich liegt, ist so wahrscheinlich wie eine 6 zu würfeln - nicht sehr wahrscheinlich, aber doch möglich (mehr <a href="/posts/blog/">hier</a>).</p>
 </div>
