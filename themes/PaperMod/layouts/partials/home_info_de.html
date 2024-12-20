@@ -1,5 +1,11 @@
 {{- with site.Params.homeInfoParams }}
 <script>
+
+if (window.location.protocol === "https:") {
+    var apiUrl = "https://polsci.uni-wh.de:8073";  // Change to your HTTPS URL
+} else {
+    var apiUrl = "http://polsci.uni-wh.de:8073";  // Use HTTP fallback for local testing
+}
   // Function to fetch the forecast data and update the HTML
 function fetchForecast() {
   // Fetch forecast data from the Plumber API
@@ -115,7 +121,7 @@ window.addEventListener('resize', updateIframeSrc);
 
     <p>Für die kommende Bundestagswahl am 23. Februar 2025 liefert unser Modell die aktuelle Prognose: <strong><span id="forecast-values">lädt...</span></strong>.</p>
       <br>
-  <p>Wie Sie in der Grafik der Wahlprognose oben sehen können, sind diese Werte jedoch keineswegs sicher. Die Bänder für jede Partei geben an in welchem Bereich wir den tatsächlichen Wert mit 83% Wahrscheinlichkeit vermuten. Das heißt, dass das tatsächliche Wahlergebnis nicht in diesem Bereich liegt, ist so wahrscheinlich wie eine 6 zu würfeln - nicht sehr wahrscheinlich, aber doch möglich (mehr <a href="/modell">hier</a>).</p>
+  <p>Wie Sie in der Grafik der Wahlprognose oben sehen können, sind diese Werte jedoch keineswegs sicher. Die Bänder für jede Partei geben an in welchem Bereich wir den tatsächlichen Wert mit 83% Wahrscheinlichkeit vermuten. Das heißt, dass das tatsächliche Wahlergebnis nicht in diesem Bereich liegt, ist so wahrscheinlich wie eine 6 zu würfeln - nicht sehr wahrscheinlich, aber doch möglich (mehr <a href="/posts/blog/">hier</a>).</p>
 </div>
 </div>
 
@@ -190,7 +196,7 @@ window.addEventListener('resize', updateIframeSrc);
 
           
 
-          Seit 2017 entwickeln wir wissenschaftliche Wahlprognosen für Deutschland. Neben der Bundestagswahl erstellen wir auch Vorhersagen für Landtagswahlen. Unser <a href="/team">sechsköpfiges Team</a> aus Politikwissenschaftler*innen wird durch die Deutsche Forschungsgemeinschaft (DFG) gefördert. Wir arbeiten eng mit <a href="/medien">führenden Medien</a> zusammen und publizieren regelmäßig in <a href="/publikationen">wissenschaftlichen Fachzeitschriften</a> (mehr <a href="/publikationen">hier</a>).
+          Seit 2017 entwickeln wir wissenschaftliche Wahlprognosen für Deutschland. Neben der Bundestagswahl erstellen wir auch Vorhersagen für Landtagswahlen. Unser <a href="/team">sechsköpfiges Team</a> aus Politikwissenschaftler*innen wird durch die Deutsche Forschungsgemeinschaft (DFG) gefördert. Wir arbeiten eng mit <a href="/posts/blog/">führenden Medien</a> zusammen und publizieren regelmäßig in <a href="/posts/blog/">wissenschaftlichen Fachzeitschriften</a> (mehr <a href="/posts/blog/">hier</a>).
 
 
         <div class="logo-container">
@@ -210,14 +216,7 @@ window.addEventListener('resize', updateIframeSrc);
             <div class="skeleton"></div>
             <img src="/images/logo_witten.svg" alt="Logo Witten" loading="lazy">
           </a>
-          <a href="https://www.sueddeutsche.de/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
-            <div class="skeleton"></div>
-            <img src="/images/logo_sz.svg" alt="Logo SZ" loading="lazy">
-          </a>
-          <a href="https://www.zeit.de/thema/bundestagswahl" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
-            <div class="skeleton"></div>
-            <img src="/images/logo_zeit.svg" alt="Logo Zeit" loading="lazy">
-          </a>
+        
         </div>
 
       </div>
@@ -374,7 +373,7 @@ section {
 
 .logo-container {
     display: grid;
-    grid-template-columns: repeat(3, 120px);
+    grid-template-columns: repeat(5, 120px);
     justify-content: center;
     gap: 1rem;
     padding: 2rem 0 0 0;

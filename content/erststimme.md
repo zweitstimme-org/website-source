@@ -8,8 +8,10 @@ url: "/erststimme"
 
 ## Wahlkreisprognosen
 
+*Seite im Aufbau*
+
 <div style="margin-bottom: 30px; text-align: center;">
-    <img id="districtMap" src="http://polsci.uni-wh.de:8073/figure_districts" alt="Wahlkreiskarte" style="max-width: 70%; height: auto;">
+    <img id="districtMap" src="https://polsci.uni-wh.de:8073/figure_districts" alt="Wahlkreiskarte" style="max-width: 100%; height: auto;">
 </div>
 
 Hier finden Sie für alle Wahlkreise und Parteien die vorhergesagten Erststimmenanteile sowie die Wahrscheinlichkeit, dass diese Partei den Wahlkreis gewinnt. Vorhergesagte Gewinner sind fett gedruckt. Stand: <span id="forecast-values">lädt...</span>.
@@ -101,15 +103,15 @@ Hier finden Sie für alle Wahlkreise und Parteien die vorhergesagten Erststimmen
 <script>
     function refreshMap() {
         const map = document.getElementById('districtMap');
-        map.src = 'http://polsci.uni-wh.de:8073/figure_districts?' + new Date().getTime();
+        map.src = 'https://polsci.uni-wh.de:8073/figure_districts?' + new Date().getTime();
     }
 
     // Add map refresh to the existing fetchForecast function
     function fetchForecast() {
-        fetch("http://polsci.uni-wh.de:8073/forecast")
+        fetch("https://polsci.uni-wh.de:8073/forecast")
             .then(response => response.json())
             .then(data => {
-                fetch("http://polsci.uni-wh.de:8073/last_updated")
+                fetch("https://polsci.uni-wh.de:8073/last_updated")
                     .then(response => response.json())
                     .then(lastUpdatedData => {
                         const lastUpdated = new Date(lastUpdatedData.last_updated);
@@ -141,7 +143,7 @@ Hier finden Sie für alle Wahlkreise und Parteien die vorhergesagten Erststimmen
     };
 
     // Fetch data from the API
-    fetch("http://polsci.uni-wh.de:8073/forecast_districts")
+    fetch("https://polsci.uni-wh.de:8073/forecast_districts")
         .then(response => response.json())
         .then(data => {
             // Insert rows into the table
