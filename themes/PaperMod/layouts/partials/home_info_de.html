@@ -4,11 +4,11 @@
   // Function to fetch the forecast data and update the HTML
 function fetchForecast() {
   // Fetch forecast data from the Plumber API
-  fetch("http://polsci.uni-wh.de:8073/forecast")
+  fetch("https://polsci.uni-wh.de/forecast")
     .then(response => response.json())
     .then(data => {
       // Get the last updated timestamp
-      fetch("http://polsci.uni-wh.de:8073/last_updated")
+      fetch("https://polsci.uni-wh.de/last_updated")
         .then(response => response.json())
         .then(lastUpdatedData => {
           const lastUpdated = new Date(lastUpdatedData.last_updated);
@@ -16,11 +16,6 @@ function fetchForecast() {
           
           document.getElementById('forecast-last-updated').textContent = formattedDate;
 
-          const forecastValues = data.map(party => {
-            const formattedValue = formatNumberWithComma(party.value);
-            return `${party.name} ${formattedValue}%`;
-          }).join(', ');
-          document.getElementById('forecast-values').textContent = forecastValues;
         })
         .catch(err => console.error('Fehler beim Laden der Daten:', err));
     })
@@ -30,14 +25,13 @@ function fetchForecast() {
 // Function to fetch the probabilities data and update the HTML
 function fetchProbabilities() {
   // Get the last updated timestamp for probabilities
-  fetch("http://polsci.uni-wh.de:8073/last_updated")
+  fetch("https://polsci.uni-wh.de/last_updated")
     .then(response => response.json())
     .then(lastUpdatedData => {
       const lastUpdated = new Date(lastUpdatedData.last_updated);
       const formattedDate = formatDateToGerman(lastUpdated);
       
       // Update the 'probabilities' section last-updated time
-      document.getElementById('probabilities-last-updated').textContent = formattedDate;
     })
     .catch(err => console.error('Fehler beim Laden der Daten:', err));
 }
@@ -51,7 +45,7 @@ function formatDateToGerman(date) {
   const day = date.getDate();
   const month = months[date.getMonth()];
   const year = date.getFullYear();
-  return `${day}. ${month} ${year}`;
+  return `vom ${day}. ${month} ${year}`;
 }
 
 // Function to format number with a comma as the decimal separator
@@ -72,10 +66,10 @@ function updateIframeSrc() {
     console.log('Current width:', window.innerWidth);
     if (window.innerWidth <= 500) {
         console.log('Switching to mobile view');
-        iframe.src = 'http://polsci.uni-wh.de:8073/interactive_mobile';
+        iframe.src = 'https://polsci.uni-wh.de/interactive_mobile';
     } else {
         console.log('Switching to desktop view');
-        iframe.src = 'http://polsci.uni-wh.de:8073/interactive';
+        iframe.src = 'https://polsci.uni-wh.de/interactive';
     }
 }
 
@@ -96,24 +90,22 @@ window.addEventListener('resize', updateIframeSrc);
 
 <section>
   <div>
-  <h3 style="color: var(--primary); text-align: center;">Wahlprognose vom 20. Dezember 2024<!---
-    <span id="forecast-last-updated">lädt...</span>---></h3>
+  <h3 style="color: var(--primary); text-align: center;">Wahlprognose <span id="forecast-last-updated">lädt...</span></h3>
 
   <div class="iframe-section">
     <div class="iframe-wrapper">
 
-      <div style="margin-bottom: 30px; text-align: center;">
-        <img src="/images/figure.png" alt="Wahlprognose" style="max-width: 100%; height: auto;">
-    </div>
-    <!---
+    
         <iframe
           id="forecast-iframe"
-          src="http://polsci.uni-wh.de:8073/interactive"
+          src="https://polsci.uni-wh.de/interactive"
           frameborder="0"
           allowfullscreen
           aria-label="Interactive content from API">
         </iframe>
-        --->
+
+         
+  
     </div>
   </div>
 
@@ -121,8 +113,7 @@ window.addEventListener('resize', updateIframeSrc);
 
 
 
-    <p>Für die kommende Bundestagswahl am 23. Februar 2025 liefert unser Modell die aktuelle Prognose<!---
-      <span id="forecast-last-updated">lädt...</span>--->.</p>
+    <p>Für die kommende Bundestagswahl am 23. Februar 2025 liefert unser Modell die aktuelle Prognose.</p>
       <br>
   <p>Wie Sie in der Grafik der Wahlprognose oben sehen können, sind diese Werte jedoch keineswegs sicher. Die Bänder für jede Partei geben an in welchem Bereich wir den tatsächlichen Wert mit 83% Wahrscheinlichkeit vermuten. Das heißt, dass das tatsächliche Wahlergebnis nicht in diesem Bereich liegt, ist so wahrscheinlich wie eine 6 zu würfeln - nicht sehr wahrscheinlich, aber doch möglich (mehr <a href="/posts/blog/">hier</a>).</p>
 </div>
@@ -156,8 +147,8 @@ window.addEventListener('resize', updateIframeSrc);
           <div class="bullet-list">
             <ul>
               <li><a href="/erststimme">Vorhersage für alle 299 Wahlkreise</a></li>
-              <li><a href="/erststimme">Welche Wahlkreise bleiben verwaist?</a></li>
-              <li><a href="/erststimme">In welchen Wahlkreisen wird es knapp?</a></li>
+              <li><a href="/erststimme">Wahrscheinlichkeiten</a></li>
+              <li><a href="/erststimme">Wahlkreise ohne Direktmandat</a></li>
             </ul>
           </div>
         </div>
@@ -179,9 +170,9 @@ window.addEventListener('resize', updateIframeSrc);
 
           <div class="bullet-list">
             <ul>
-              <li><a href="/zweitstimme">Wer schafft die 5%-Hürde?</a></li>
-              <li><a href="/zweitstimme">Welche Koalitionen können Mehrheiten bilden?</a></li>
-              <li><a href="/zweitstimme">Wie haben sich die Vorhersagen verändert?</a></li>
+              <li><a href="/zweitstimme">Vorhersagetrend</a></li>
+              <li><a href="/zweitstimme">Mehrheiten</a></li>
+              <li><a href="/zweitstimme">Einzug ins Parlament</a></li>
             </ul>
           </div>
           
@@ -245,7 +236,7 @@ window.addEventListener('resize', updateIframeSrc);
   <h3>1. Mehrheiten von Koalitionen</h3>
 
   <img
-    src="http://polsci.uni-wh.de:8073/majorities"
+    src="https://polsci.uni-wh.de/majorities"
     alt="Wahrscheinlichkeit für Mehrheiten von Koalitionen"
     width="80%"
     height="auto"
@@ -255,7 +246,7 @@ window.addEventListener('resize', updateIframeSrc);
   <h3>2. Stärkste Kraft</h3>
 
   <img
-    src="http://polsci.uni-wh.de:8073/winner"
+    src="https://polsci.uni-wh.de/winner"
     alt="Wahrscheinlichkeit, dass eine Partei die größte wird"
     width="80%"
     height="auto"
@@ -265,7 +256,7 @@ window.addEventListener('resize', updateIframeSrc);
   <h3>3. Überschreiten der 5%-Hürde</h3>
 
   <img
-    src="http://polsci.uni-wh.de:8073/hurdle"
+    src="https://polsci.uni-wh.de/hurdle"
     alt="Wahrscheinlichkeit, dass eine Partei die 5%-Hürde überschreitet"
     width="80%"
     height="auto"

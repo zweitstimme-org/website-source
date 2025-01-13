@@ -1,0 +1,85 @@
+/* Hide the original entry-link */
+.entry-link {
+    display: none !important;
+}
+
+/* Style the post entry */
+.post-entry {
+    position: relative;
+    cursor: default;
+}
+
+/* Make the header clickable */
+.entry-header {
+    cursor: pointer;
+}
+
+.entry-header h2 {
+    margin: 0;
+}
+
+/* Style all links except headers and navigation */
+a:not(.entry-header h2 a):not(.post-title a):not(.footer a):not(.post-content a):not(.nav a):not(.menu a):not(.logo a) {
+    text-decoration: underline;
+}
+
+/* Style the title link */
+.entry-header h2 a,
+.post-title a,
+.nav a,
+.menu a,
+.logo a {
+    display: block;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.entry-header h2 a:hover,
+.post-title a:hover {
+    opacity: 0.8;
+}
+
+/* Ensure content is clickable */
+.entry-content,
+.entry-footer {
+    pointer-events: auto;
+}
+
+/* Logo styling */
+.logo img {
+    height: 50px;
+    width: auto;  /* This maintains aspect ratio */
+    max-width: none;  /* Prevents distortion */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .logo img {
+        height: 40px;  /* Slightly smaller on mobile */
+        width: auto;
+    }
+}
+
+/* Adjust heading sizes */
+h1 {
+    font-size: 1.8rem !important;
+    margin-bottom: 1rem !important;
+}
+
+h2 {
+    font-size: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 1.6rem !important;
+    }
+    
+    h2 {
+        font-size: 1.3rem !important;
+    }
+}
+

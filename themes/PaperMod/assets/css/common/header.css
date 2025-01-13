@@ -161,39 +161,7 @@ body:not(.dark) #sun {
     }
 }
 
-.entry-content a {
-    text-decoration: underline;
-}
 
-/* Add this to ensure content stays below header */
-main {
-    position: relative;
-    z-index: 1;
-}
-
-/* Add this to ensure page titles scroll normally */
-.post-title,
-.page-title,
-.entry-header {
-    position: static !important; /* Override any fixed/sticky positioning */
-    z-index: auto !important;
-}
-
-/* Add these rules to force normal page flow */
-.post-header,
-.page-header,
-.entry-header,
-.post-title,
-.page-title,
-h1, h2, h3, h4, h5, h6,
-article,
-.post-content,
-.page-content {
-    position: static !important;
-    z-index: auto !important;
-    transform: none !important;
-    top: auto !important;
-}
 
 main {
     position: relative;
@@ -207,4 +175,8 @@ header {
     z-index: 999;
     background-color: var(--theme);
     width: 100%;
+}
+/* Reset post header position */
+.post-header {
+    position: static !important;
 }
