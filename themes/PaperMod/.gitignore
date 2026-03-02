@@ -1,2 +1,13 @@
 
-*.DS_Store
+
+# System/personal junk
+.DS_Store
+._*
+.Rhistory
+.RHistory
+.Ruserdata
+.Rapp.history
+.Rproj.user/
+/.RData
+Rplots.pdf
+*.Rproj
