@@ -1,0 +1,1221 @@
+---
+title: "Stimmzettel-Simulation"
+date: 2025-02-14T10:00:00+02:00
+layout: single
+---
+
+<style>
+    .ballot {
+        max-width: 800px;
+        width: 95vw;
+        margin: 0 auto;
+        background-color: #f8f6ef;
+        padding: 2vw;
+        border: 1px solid #ccc;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    /* Add MUSTER watermark */
+    .ballot::before {
+        content: 'NICHT OFFIZIELL';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        font-size: min(100px, 25vw);
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.12);
+        white-space: nowrap;
+        z-index: 2;
+        pointer-events: none;
+        width: 80%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ballot-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .ballot-header h1 {
+        font-size: min(24px, 3vw);
+        margin: 10px 0;
+    }
+    .ballot-header p {
+        font-size: min(16px, 2.5vw);
+        line-height: 1.3;
+    }
+    .large-text {
+        font-size: min(32px, 4vw);
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .large-text .number {
+        font-size: min(48px, 6vw);
+    }
+    .arrows {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        margin-top: 0;
+        height: 90px;
+        gap: 30px;
+    }
+    .arrow {
+        height: 90px;
+        width: auto;
+    }
+    @media screen and (max-width: 768px) {
+        .arrows {
+            height: 60px;
+            gap: 20px;
+        }
+        .arrow {
+            height: 60px;
+        }
+        .ballot-header p {
+            font-size: 11px;
+            line-height: 1.2;
+        }
+        .ballot-header h1 {
+            font-size: 16px;
+            margin: 6px 0;
+        }
+    }
+    .ballot-section {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0px;
+    }
+    .first-vote, .second-vote {
+        width: 48%;
+    }
+    .first-vote {
+        text-align: right;
+    }
+    .second-vote {
+        color: #2596be;
+    }
+    .vote-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .vote-item input {
+        margin-right: 10px;
+    }
+    .vote-description {
+        font-size: min(14px, 1.8vw);
+        margin-bottom: 20px;
+    }
+    .vote-description b {
+        font-weight: bold;
+    }
+    .candidate-row, .party-row {
+        display: flex;
+        align-items: stretch;
+        padding: min(8px, 1vw);
+        height: min(90px, 13vw);
+        position: relative;
+        box-sizing: border-box;
+    }
+    .candidate-row {
+        display: flex;
+        align-items: stretch;
+        border: 1px solid black;
+        border-bottom: none;
+        padding: 0;
+        height: min(90px, 13vw);
+        position: relative;
+        box-sizing: border-box;
+        background-color: #f8f6ef;
+    }
+    .candidate-row:last-child {
+        border-bottom: 1px solid black;
+    }
+    .party-row {
+        display: flex;
+        align-items: stretch;
+        border: 1px solid #2596be;
+        border-bottom: none;
+        border-right: none;
+        padding: 8px;
+        position: relative;
+        background-color: #f8f6ef;
+    }
+    .party-row:last-child {
+        border-bottom: 1px solid #2596be;
+    }
+    .candidate-number, .party-number {
+        width: 15px;
+        font-weight: bold;
+        text-align: center !important;
+        align-self: stretch;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 8px;
+        justify-content: center !important;
+        box-sizing: border-box;
+        font-size: min(14px, 1.8vw);
+    }
+    .candidate-number {
+        color: black;
+        border-right: 1px solid black;
+    }
+    .party-number {
+        color: #2596be;
+        border-right: 1px solid #2596be;
+    }
+    .candidate-info {
+        flex-grow: 1;
+        padding: 0px 10px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid black;
+        align-self: stretch;
+        margin: 0;
+        min-height: min(80px, 10vw);
+    }
+    .party-info {
+        width: 60%;
+        font-size: min(14px, 1.8vw);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .party-info b {
+        margin-bottom: 2px;
+    }
+
+    .party-info-main {
+        flex-grow: 1;
+        display: flex;
+        align-items: stretch;
+        border-right: 1px solid #2596be;
+        margin: -8px 0;
+        padding: 8px 0;
+    }
+    .party-short-name {
+        width: 35%;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        font-weight: bold;
+        font-size: min(14px, 1.7vw);
+        white-space: normal;
+        word-wrap: normal;
+        overflow: hidden;
+        line-height: 1.2;
+    }
+    .party-details-column {
+        width: 75%;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .party-long-name {
+        font-weight: bold;
+        font-size: min(12px, 1.5vw);
+    }
+    /* Update font size for long party names */
+    .party-long-name.long {
+        font-size: min(10px, 1.3vw);
+        line-height: 1.1;
+    }
+    .party-long-name.very-long {
+        font-size: min(9px, 1.1vw);
+        line-height: 1.1;
+    }
+    .party-long-name.extra-long {
+        font-size: min(8.5px, 0.9vw);
+        line-height: 1;
+    }
+    .party-long-name.super-long {
+        font-size: min(8px, 0.8vw);
+        line-height: 1;
+    }
+    .party-candidates {
+        font-size: min(10px, 1.3vw);
+        line-height: 1.2;
+    }
+    .vote-circle-container {
+        width: min(35px, 4.2vw);
+        min-width: min(35px, 4.2vw);
+        max-width: min(35px, 4.2vw);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        border-right: 1px solid black;
+        box-sizing: border-box;
+    }
+    .vote-circle-container-left {
+        width: min(35px, 4.2vw);
+        min-width: min(35px, 4.2vw);
+        max-width: min(35px, 4.2vw);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .vote-circle-container {
+        width: min(35px, 4.2vw);
+        min-width: min(35px, 4.2vw);
+        max-width: min(35px, 4.2vw);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        border-right: 1px solid black;
+        box-sizing: border-box;
+    }
+    .vote-circle-container.blue-border {
+        border-right: 1px solid #2596be;
+        margin: -8px 8px -8px -8px;
+        width: min(45px, 5.4vw);
+    }
+    .vote-circle, .vote-circle-left {
+        width: min(25px, 3vw);
+        height: min(25px, 3vw);
+        border: min(2px, 0.25vw) solid black;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin: 0;
+        background-color: #f5f2e9;
+    }
+    .vote-circle-left {
+        border-color: #2596be;
+    }
+    .vote-circle-container > div {
+        position: static;
+    }
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: auto;
+        padding-top: 5px;
+        flex-shrink: 0;
+    }
+    .candidate-details, .party-details {
+        font-size: min(10px, 1.3vw);
+        width: 70%;
+        padding-right: min(10px, 1.2vw);
+    }
+    .party-short {
+        width: 50%;
+        text-align: left;
+        padding-left: 10px;
+    }
+    .party-short b {
+        display: block;
+        font-size: min(14px, 1.8vw);
+    }
+    .party-long {
+        font-size: min(10px, 1.3vw);
+        line-height: 1.1;
+    }
+    /* Add font size scaling for long party names */
+    .party-long.long {
+        font-size: min(10px, 1.3vw);
+        line-height: 1.1;
+    }
+    .party-long.very-long {
+        font-size: min(8.5px, 1.1vw);
+        line-height: 1.1;
+    }
+    .party-long.extra-long {
+        font-size: min(7.5px, 0.9vw);
+        line-height: 1;
+    }
+    .party-long.super-long {
+        font-size: min(6.5px, 0.8vw);
+        line-height: 1;
+    }
+    .candidate-name {
+        font-size: min(14px, 1.8vw);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: min(5px, 0.6vw);
+        flex-shrink: 0;
+    }
+    .vote-section {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .vote-column {
+        width: 48%;
+    }
+    .vote-header {
+        margin-bottom: 10px;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+    .vote-header h2 {
+        margin: 0 0 10px 0;
+    }
+    .vote-explanation {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .vote-table {
+        width: 100%;
+    }
+    .ballot-content {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .first-vote h2, .second-vote h2 {
+        margin: 0;
+        padding-top: 5px;
+        font-size: min(18px, 2.2vw);
+    }
+    .second-vote h2 {
+        color: #2596be;
+    }
+    .candidate-row.empty {
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-bottom: none;
+        background-color: transparent;
+    }
+    .candidate-row.empty:last-child {
+        border-bottom: 1px solid black;
+    }
+    .candidate-row.empty + .candidate-row.empty {
+        border-top: none;
+    }
+    /* Remove all internal borders in empty rows */
+    .candidate-row.empty .candidate-number,
+    .candidate-row.empty .candidate-info,
+    .candidate-row.empty .vote-circle-container-left {
+        border-right: none;
+        background-color: transparent;
+    }
+    .search-result-item {
+        padding: 10px 15px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+    }
+
+    .search-result-item:last-child {
+        border-bottom: none;
+    }
+
+    .search-result-item:hover {
+        background-color: #f5f5f5;
+    }
+
+    .search-result-type {
+        color: #666;
+        font-size: 0.8em;
+        margin-left: 8px;
+    }
+
+    .ballot::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
+            linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px),
+            linear-gradient(0deg, rgba(0,0,0,.03) 1px, transparent 1px);
+        background-size: auto,
+            calc(100% / 20) 100%,
+            100% calc(100% / 30);
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    /* Update the search container styles */
+    .search-container-wrapper {
+        max-width: 500px;
+        width: 70%;
+        margin: 0 auto 20px auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .search-container {
+        flex-grow: 1;
+        position: relative;
+    }
+
+    /* Update the warning box */
+    .warning-box {
+        max-width: 600px;
+        width: 85vw;
+        margin: 0 auto 20px auto;
+        background-color: #fff3cd;
+        color: #856404;
+        padding: 10px;
+        border: 1px solid #ffeeba;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .nav-buttons {
+        display: flex;
+        gap: 5px;
+    }
+
+    /* Update mobile styles */
+    @media screen and (max-width: 600px) {
+        .search-container-wrapper {
+            width: calc(100% - 20px);  /* Take up almost full width */
+            min-width: 200px;
+            margin: 0 auto 20px auto;
+        }
+
+        /* Ensure the input text is readable */
+        .search-input {
+            font-size: 16px !important;  /* Prevent iOS zoom on focus */
+            padding: 8px 12px 8px 36px;
+        }
+
+        .party-number {
+            min-width: 12px;
+            color: #2596be;
+            border-right: 1px solid #2596be;
+        }
+
+        .candidate-number {
+            min-width: 12px;
+            font-size: min(12px, 1.5vw);
+            padding-top: 5px;
+        }
+
+        .party-candidates {
+            font-size: min(7px, 1.3vw);
+            line-height: 1;
+        }
+
+        .party-short-name {
+            width: 30%;
+            display: flex;
+            align-items: center;
+            padding: 0 0px;
+            font-weight: bold;
+            font-size: min(14px, 1.7vw);
+            word-wrap: break-word;
+            white-space: normal;
+            line-height: 1.2;
+        }
+
+        body {
+            margin: 5px;
+        }
+        
+        .ballot {
+            width: calc(100vw - 10px);
+            padding: 10px;
+            margin: 0 auto;
+        }
+
+        .warning-box {
+            width: calc(100vw - 20px);
+            margin: 0 auto 10px auto;
+            padding: 8px;
+        }
+
+        /* Update ballot header styles */
+        .ballot-header {
+            margin-bottom: 15px;
+        }
+
+        .ballot-header h1 {
+            font-size: 16px;
+            margin: 6px 0;
+        }
+
+        .ballot-header p {
+            font-size: 11px;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        /* Also adjust the district text that gets dynamically added */
+        #ballot-header p {
+            font-size: 11px;
+            line-height: 1.2;
+            margin: 0;
+            padding: 0 10px;
+        }
+
+        /* Adjust the arrows section spacing */
+        .arrows {
+            margin-bottom: 15px;
+            margin-top: 0;
+            height: 50px;
+        }
+
+        /* Reduce vote description spacing */
+        .vote-description {
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        /* Adjust ballot section spacing */
+        .ballot-section {
+            margin-bottom: 0;
+        }
+
+        /* Adjust the large text spacing */
+        .large-text {
+            font-size: 16px;
+            margin-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .large-text .number {
+            font-size: 24px;
+        }
+
+        /* Adjust search input placeholder for mobile */
+        .search-input::placeholder {
+            content: "Wahlkreis, PLZ oder Kandidat:in...";
+        }
+
+        /* Adjust number columns width for mobile */
+        .candidate-number {
+            width: 3px;
+            width-max: 3px;
+            font-size: min(12px, 1.5vw);
+            padding-top: 5px;
+        }
+
+        /* Adjust number columns width for mobile */
+        .party-number {
+            width: 5px;
+            font-size: min(12px, 1.5vw);
+            padding-top: 5px;
+        }
+
+        /* Keep circle containers the same size */
+        .vote-circle-container {
+            width: min(35px, 4.2vw);
+        }
+
+        .vote-circle-container.blue-border {
+            width: min(35px, 4.2vw);
+        }
+
+        /* Adjust info columns to use the extra space */
+        .candidate-info {
+            width: calc(100% - 45px);  /* 35px for circle + 10px for number */
+        }
+
+        .party-info-main {
+            width: calc(100% - 45px);
+        }
+    }
+
+    /* Update the empty party row styles */
+    .party-row.empty {
+        border-left: 1px solid #2596be;
+        border-right: 1px solid #2596be;
+        border-bottom: none;
+        height: min(90px, 13vw);
+        background-color: transparent;
+    }
+
+    .party-row.empty:last-child {
+        border-bottom: 1px solid #2596be;
+    }
+
+    .party-row.empty + .party-row.empty {
+        border-top: none;
+    }
+
+    /* Hide circle in empty rows */
+    .party-row.empty .vote-circle-left {
+        display: none;
+    }
+
+    /* Remove all internal borders in empty party rows */
+    .party-row.empty .party-number,
+    .party-row.empty .party-info-main,
+    .party-row.empty .vote-circle-container {
+        border-right: none;
+        background-color: transparent;
+    }
+
+    /* Only allow wrapping on mobile screens */
+    @media screen and (max-width: 768px) {
+        .party-short-name {
+            word-wrap: break-word;
+            white-space: normal;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="warning-box">
+    <strong>Hinweis:</strong> Dies ist eine inoffizielle Simulation eines Stimmzettels. Die dargestellten Informationen dienen nur zu Demonstrationszwecken und erheben keinen Anspruch auf Vollständigkeit oder Richtigkeit. Für offizielle Wahlinformationen wenden Sie sich bitte an die zuständigen Wahlbehörden.
+</div>
+
+<div style="text-align: right; font-size: 0.9em; color: #666; margin-bottom: 20px;">
+    Daten: <a href="https://www.bundeswahlleiterin.de" style="color: #2196f3; text-decoration: none;">bundeswahlleiterin.de</a>
+</div>
+
+<div class="search-container-wrapper">
+    <div class="nav-buttons">
+        <button onclick="navigateDistrict(-1)" class="nav-button" style="background: #333; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">&larr;</button>
+        <button onclick="navigateDistrict(1)" class="nav-button" style="background: #333; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">&rarr;</button>
+    </div>
+    <div class="search-container">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #666;">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" 
+               id="searchInput" 
+               class="search-input" 
+               placeholder="Suche nach Wahlkreis, PLZ oder Kandidat:in..."
+               style="width: 100%; padding: 8px 12px 8px 36px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+        <div id="searchResults" class="search-results" style="display: none; position: absolute; width: 100%; background: white; border: 1px solid #ddd; border-radius: 4px; margin-top: 4px; max-height: 300px; overflow-y: auto; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></div>
+    </div>
+</div>
+
+<div class="ballot">
+   
+
+    <div class="ballot-header" id="ballot-header">
+        <h1>Stimmzettel</h1>
+        <p>für die Wahl zum Deutschen Bundestag am 23. Februar 2025<br>im Wahlkreis</p>
+    </div>
+
+    <div class="large-text">
+        Sie haben <span class="number">2</span> Stimmen
+    </div>
+    <div class="arrows">
+        <img src="/images/blackarrow.png" alt="Black Arrow" class="arrow">
+        <img src="/images/bluearrow.png" alt="Blue Arrow" class="arrow">
+    </div>
+
+    <div class="ballot-section">
+        <div class="first-vote">
+            <div class="vote-description">
+                <b>hier 1 Stimme</b><br>
+                für die Wahl<br>
+                <b>einer Wahlkreisbewerberin/<br>eines Wahlkreisbewerbers</b>
+            </div>
+        </div>
+        <div class="second-vote">
+            <div class="vote-description">
+                <b>hier 1 Stimme</b><br>
+                für die Wahl<br>
+                <b>einer Landesliste (Partei)</b><br>
+                – maßgebene Stimme für die Verteilung der<br>
+                Sitze insgesamt auf die einzelnen Parteien –
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ballot-section">
+        <div class="first-vote">
+            
+            <h2>Erststimme</h2>
+            <div id="candidates-list">
+                <!-- Candidates will be loaded here -->
+            </div>
+        </div>
+        <div class="second-vote">
+            
+            <h2>Zweitstimme</h2>
+            <div id="parties-list">
+                <!-- Parties will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+    let currentDistrict = null;  // Initialize as null instead of 1
+    let districts = [];       // Store all districts
+
+    // Update the initialization code
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check for district in URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const wkr = urlParams.get('wkr');
+        if (wkr) {
+            currentDistrict = parseInt(wkr);
+        }
+
+        // Load initial data
+        fetch('btw25_bewerb_utf8.json')
+            .then(response => response.json())
+            .then(data => {
+                // Store sorted district numbers
+                districts = [...new Set(data
+                    .filter(entry => entry.Gebietsart === "Wahlkreis")
+                    .map(entry => entry.Gebietsnummer)
+                )].sort((a, b) => a - b);
+                
+                // If no district is selected yet, choose a random one
+                if (currentDistrict === null || !districts.includes(currentDistrict)) {
+                    const randomIndex = Math.floor(Math.random() * districts.length);
+                    currentDistrict = districts[randomIndex];
+                }
+                
+                // Load the current district data
+                updateCurrentDistrict(currentDistrict);
+            })
+            .catch(error => console.error('Error loading initial data:', error));
+    });
+
+    // Update the navigation function to use the stored districts array
+    function navigateDistrict(direction) {
+        if (!districts.length) return;  // Guard against empty districts array
+        
+        // Find current index
+        const currentIndex = districts.indexOf(currentDistrict);
+        if (currentIndex === -1) return;  // Guard against invalid current district
+        
+        // Calculate new index
+        let newIndex = currentIndex + direction;
+        
+        // Handle wrapping
+        if (newIndex < 0) {
+            newIndex = districts.length - 1;
+        } else if (newIndex >= districts.length) {
+            newIndex = 0;
+        }
+        
+        // Update with new district
+        updateCurrentDistrict(districts[newIndex]);
+    }
+
+    function updateCurrentDistrict(wkr) {
+        currentDistrict = wkr;
+        loadData(wkr);
+        
+        // Update search input if it exists
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.value = '';
+        }
+        
+        // Hide search results if they exist
+        const searchResults = document.getElementById('searchResults');
+        if (searchResults) {
+            searchResults.style.display = 'none';
+        }
+    }
+
+    function loadData(wahlkreisNr) {
+        const candidatesList = document.getElementById('candidates-list');
+        const partiesList = document.getElementById('parties-list');
+        
+        // Clear existing content
+        candidatesList.innerHTML = '';
+        partiesList.innerHTML = '';
+
+        fetch('btw25_bewerb_utf8.json')
+            .then(response => response.json())
+            .then(data => {
+                // Filter for Wahlkreis data and selected district
+                const filteredData = data.filter(entry => 
+                    entry.Gebietsart === "Wahlkreis" && 
+                    entry.Gebietsnummer === wahlkreisNr
+                );
+
+                if (filteredData.length > 0) {
+                    const districtInfo = filteredData[0];
+                    document.getElementById('ballot-header').innerHTML = `
+                        <h1>Stimmzettel</h1>
+                        <p>für die Wahl zum Deutschen Bundestag am 23. Februar 2025<br>im Wahlkreis ${districtInfo.Gebietsnummer} – ${districtInfo.Gebietsname}</p>
+                    `;
+                }
+
+                let displayNumber = 1;
+                const partyOrder = new Map(); // Store party order based on Gruppenreihenfolge
+
+                // First pass: collect party order
+                filteredData.forEach(entry => {
+                    if (entry.GruppennameKurz && !partyOrder.has(entry.GruppennameKurz)) {
+                        partyOrder.set(entry.GruppennameKurz, entry.Gruppenreihenfolge);
+                    }
+                });
+
+                // Sort filtered data by Gruppenreihenfolge
+                const sortedData = [...filteredData].sort((a, b) => {
+                    if (!a.GruppennameKurz) return 1;  // Empty parties at the end
+                    if (!b.GruppennameKurz) return -1;
+                    return a.Gruppenreihenfolge - b.Gruppenreihenfolge;
+                });
+
+                // Get state-level data
+                fetch('btw25_bewerb_utf8.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Get the GebietLandAbk from district data
+                        const districtLand = filteredData[0]?.GebietLandAbk;
+                        
+                        // Filter for state-level data matching the GebietLandAbk from district
+                        const stateData = data.filter(entry => 
+                            entry.Gebietsart === "Land" && 
+                            entry.GebietLandAbk === districtLand
+                        );
+                        
+                        // Get all possible Gruppenreihenfolge numbers from both district and state data
+                        const allReihenfolge = new Set();
+                        sortedData.forEach(entry => {
+                            if (entry.Gruppenreihenfolge) allReihenfolge.add(entry.Gruppenreihenfolge);
+                        });
+                        stateData.forEach(entry => {
+                            if (entry.Gruppenreihenfolge) allReihenfolge.add(entry.Gruppenreihenfolge);
+                        });
+
+                        // Convert to sorted array
+                        const reihenfolgeNumbers = Array.from(allReihenfolge).sort((a, b) => a - b);
+
+                        // Create candidate rows with empty rows for missing numbers
+                        reihenfolgeNumbers.forEach(reihenfolge => {
+                            // Check if this number exists in district data
+                            const entry = sortedData.find(e => e.Gruppenreihenfolge === reihenfolge);
+                            
+                            // Create row even if there's no district candidate
+                            const candidateDiv = document.createElement('div');
+                            
+                            if (entry && entry.Nachname && entry.Rufname) {
+                                // Create normal row with candidate data
+                                candidateDiv.className = 'candidate-row';
+                                const partyLongName = entry.Gruppenname !== entry.GruppennameKurz 
+                                    ? entry.Gruppenname 
+                                    : '';
+                                
+                                // Check party name length and assign appropriate class
+                                let longNameClass = '';
+                                if (partyLongName.length > 70) {
+                                    longNameClass = 'super-long';
+                                } else if (partyLongName.length > 60) {
+                                    longNameClass = 'extra-long';
+                                } else if (partyLongName.length > 50) {
+                                    longNameClass = 'very-long';
+                                } else if (partyLongName.length > 40) {
+                                    longNameClass = 'long';
+                                }
+                                
+                                candidateDiv.innerHTML = `
+                                    <div class="candidate-number">${reihenfolge}</div>
+                                    <div class="candidate-info">
+                                        <div class="candidate-name">${entry.Titel ? '<b>' + entry.Titel + '</b> ' : ''}${entry.Namenszusatz ? '<b>' + entry.Namenszusatz + '</b> ' : ''}<b>${entry.Nachname}</b>, ${entry.Rufname}</div>
+                                        <div class="info-row">
+                                            <div class="candidate-details">
+                                                ${entry.Beruf || 'N/A'}<br>
+                                                ${entry.Wohnort || 'N/A'}
+                                            </div>
+                                            <div class="party-info">
+                                                <b>${entry.GruppennameKurz || ''}</b>
+                                                <div class="party-long ${longNameClass}">${entry.Gruppenname || entry.GruppennameKurz || ''}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vote-circle-container-left">
+                                        <div class="vote-circle"></div>
+                                    </div>`;
+                            } else {
+                                // Create empty row without number
+                                candidateDiv.className = 'candidate-row empty';
+                                candidateDiv.innerHTML = `
+                                    <div class="candidate-number"></div>
+                                    <div class="candidate-info">
+                                    </div>
+                                    <div class="vote-circle-container-left">
+                                    </div>`;
+                            }
+                            candidatesList.appendChild(candidateDiv);
+                        });
+
+                        // Log the raw data for district 1
+                        console.log("Raw data for district 1:", filteredData);
+
+                        // Get state-level data
+                        fetch('btw25_bewerb_utf8.json')
+                            .then(response => response.json())
+                            .then(data => {
+                                // Get the GebietLandAbk from district data
+                                const districtLand = filteredData[0]?.GebietLandAbk;
+                                
+                                // Filter for state-level data matching the GebietLandAbk from district
+                                const stateData = data.filter(entry => 
+                                    entry.Gebietsart === "Land" && 
+                                    entry.GebietLandAbk === districtLand
+                                );
+                                
+                                // Create a map to store candidates by party
+                                const partyCandidates = new Map();
+                                
+                                // First, collect all unique parties from the left side (district candidates)
+                                const leftSideParties = new Set();
+                                filteredData.forEach(entry => {
+                                    if (entry.GruppennameKurz) {
+                                        leftSideParties.add(entry.GruppennameKurz);
+                                    }
+                                });
+                                
+                                // Group candidates by Gruppenreihenfolge instead of GruppennameKurz
+                                stateData.forEach(entry => {
+                                    if (entry.Listenplatz <= 5) {
+                                        // Use Gruppenreihenfolge as the key
+                                        const key = entry.Gruppenreihenfolge?.toString() ?? 'unordered';
+                                        if (!partyCandidates.has(key)) {
+                                            partyCandidates.set(key, {
+                                                shortName: entry.GruppennameKurz || '',
+                                                longName: entry.Gruppenname || '',
+                                                candidates: [],
+                                                hasDistrictCandidate: leftSideParties.has(entry.GruppennameKurz),
+                                                reihenfolge: entry.Gruppenreihenfolge
+                                            });
+                                        }
+                                        partyCandidates.get(key).candidates.push({
+                                            name: `${entry.Titel ? entry.Titel + ' ' : ''}${entry.Rufname}${entry.Namenszusatz ? ' ' + entry.Namenszusatz + ' ' : ' '}${entry.Nachname}`,
+                                            position: entry.Listenplatz
+                                        });
+                                    }
+                                });
+
+                                // Sort parties using Gruppenreihenfolge
+                                const sortedParties = Array.from(partyCandidates.entries())
+                                    .sort(([keyA, partyA], [keyB, partyB]) => 
+                                        (partyA.reihenfolge || 999) - (partyB.reihenfolge || 999)
+                                    );
+
+                                // Add parties in sorted order
+                                sortedParties.forEach(([key, party]) => {
+                                    addPartyRow(party, party.reihenfolge || '');
+                                });
+
+                                function addPartyRow(party, number) {
+                                    const partyDiv = document.createElement('div');
+                                    partyDiv.className = 'party-row';
+                                    
+                                    // Always show long name
+                                    let longName = party.longName || party.shortName;
+                                    
+                                    // Create candidate names string
+                                    const candidatesList = party.candidates
+                                        .sort((a, b) => a.position - b.position)
+                                        .map(c => c.name)
+                                        .join(', ');
+                                    
+                                    // Check if the full party name is long and assign appropriate class
+                                    let longNameClass = '';
+                                    if (longName.length > 70) {
+                                        longNameClass = 'super-long';
+                                    } else if (longName.length > 60) {
+                                        longNameClass = 'extra-long';
+                                    } else if (longName.length > 50) {
+                                        longNameClass = 'very-long';
+                                    } else if (longName.length > 40) {
+                                        longNameClass = 'long';
+                                    }
+                                    
+                                    partyDiv.innerHTML = `
+                                        <div class="vote-circle-container blue-border">
+                                            <div class="vote-circle-left"></div>
+                                        </div>
+                                        <div class="party-info-main">
+                                            <div class="party-short-name">${formatPartyShortName(party.shortName)}</div>
+                                            <div class="party-details-column">
+                                                <div class="party-long-name ${longNameClass}">${longName}</div>
+                                                <div class="party-candidates">
+                                                    ${candidatesList}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="party-number">${number}</div>
+                                    `;
+                                    partiesList.appendChild(partyDiv);
+                                }
+
+                                // After all parties are added, check if we need empty rows
+                                const candidateCount = document.querySelectorAll('.candidate-row').length;
+                                const partyCount = document.querySelectorAll('.party-row').length;
+
+                                // Add empty rows to parties if needed
+                                if (candidateCount > partyCount) {
+                                    const emptyRowsNeeded = candidateCount - partyCount;
+                                    
+                                    for (let i = 0; i < emptyRowsNeeded; i++) {
+                                        const emptyRow = document.createElement('div');
+                                        emptyRow.className = 'party-row empty';
+                                        emptyRow.innerHTML = `
+                                            <div class="vote-circle-container blue-border">
+                                                <div class="vote-circle-left"></div>
+                                            </div>
+                                            <div class="party-info-main">
+                                            </div>
+                                            <div class="party-number"></div>
+                                        `;
+                                        partiesList.appendChild(emptyRow);
+                                    }
+                                }
+                            })
+                            .catch(error => console.error('Error loading state data:', error));
+                    })
+                    .catch(error => console.error('Error loading data:', error));
+            })
+            .catch(error => console.error('Error loading data:', error));
+    }
+
+    function formatPartyShortName(name) {
+        // Add specific wrapping rules
+        const wrappingRules = {
+            'Tierschutzpartei': 'Tierschutz\u00ADpartei',
+            'BÜNDNIS DEUTSCHLAND': 'BÜNDNIS DEUTSCH\u00ADLAND',
+            'MENSCHLICHE WELT': 'MENSCH\u00ADLICHE WELT',
+            'Verjüngungsforschung': 'Verjüngungs\u00ADforschung'
+        };
+        
+        return wrappingRules[name] || name;
+    }
+
+    function initializeSearch() {
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        let searchTimeout;
+
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            const value = e.target.value.trim();
+            
+            if (!value) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            // Add a small delay to prevent too many API calls
+            searchTimeout = setTimeout(() => {
+                fetch(`https://polsci.uni-wh.de/forecast_districts`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const results = [];
+                        
+                        // Search by district number or name
+                        const seenDistricts = new Set(); // Track seen districts
+                        data.forEach(district => {
+                            // Skip if we've already seen this district
+                            if (seenDistricts.has(district.wkr)) return;
+                            
+                            if (district.wkr_name.toLowerCase().includes(value.toLowerCase()) ||
+                                district.wkr.toString() === value) {
+                                results.push({
+                                    type: 'district',
+                                    text: `${district.wkr} - ${district.wkr_name}`,
+                                    wkr: district.wkr
+                                });
+                                seenDistricts.add(district.wkr);
+                            }
+                            
+                            // Search by candidate name
+                            if (district.Vornamen && district.Nachname) {
+                                const fullName = `${district.Vornamen} ${district.Nachname}`;
+                                if (fullName.toLowerCase().includes(value.toLowerCase())) {
+                                    results.push({
+                                        type: 'candidate',
+                                        text: `${fullName} (${district.partei}, WK ${district.wkr})`,
+                                        wkr: district.wkr
+                                    });
+                                }
+                            }
+                        });
+
+                        // Search by PLZ if input is numeric
+                        if (/^\d+$/.test(value)) {
+                            data.forEach(district => {
+                                // Skip if we've already seen this district
+                                if (seenDistricts.has(district.wkr)) return;
+                                
+                                if (district.plz && district.plz.split(',').some(plz => plz.trim().startsWith(value))) {
+                                    results.push({
+                                        type: 'plz',
+                                        text: `PLZ ${value} - WK ${district.wkr} ${district.wkr_name}`,
+                                        wkr: district.wkr
+                                    });
+                                    seenDistricts.add(district.wkr);
+                                }
+                            });
+                        }
+
+                        // Display results
+                        if (results.length > 0) {
+                            searchResults.innerHTML = results
+                                .slice(0, 10) // Limit to 10 results
+                                .map(result => `
+                                    <div class="search-result-item" data-wkr="${result.wkr}">
+                                        ${result.text}
+                                        <span class="search-result-type">${
+                                            result.type === 'district' ? '(Wahlkreis)' :
+                                            result.type === 'candidate' ? '(Kandidat:in)' :
+                                            '(Postleitzahl)'
+                                        }</span>
+                                    </div>
+                                `)
+                                .join('');
+                            searchResults.style.display = 'block';
+                        } else {
+                            searchResults.style.display = 'none';
+                        }
+                    });
+            }, 300); // 300ms delay
+        });
+
+        searchResults.addEventListener('click', (e) => {
+            const item = e.target.closest('.search-result-item');
+            if (item) {
+                const wkr = parseInt(item.dataset.wkr);
+                updateCurrentDistrict(wkr);
+            }
+        });
+
+        // Hide results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+    }
+
+    // Call initializeSearch after the page loads
+    document.addEventListener('DOMContentLoaded', initializeSearch);
+
+    function updatePlaceholder() {
+        const searchInput = document.getElementById('searchInput');
+        if (window.innerWidth <= 600) {
+            searchInput.placeholder = "Wahlkreis, PLZ oder Kandidat:in...";
+        } else {
+            searchInput.placeholder = "Suche nach Wahlkreis, PLZ oder Kandidat:in...";
+        }
+    }
+
+    // Call on load and resize
+    window.addEventListener('load', updatePlaceholder);
+    window.addEventListener('resize', updatePlaceholder);
+</script>

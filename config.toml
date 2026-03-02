@@ -54,6 +54,11 @@ disableXML = true
       name = "Blog"
       url = "posts/blog"
       weight = 15
+      
+      [[languages.de.menu.main]]
+      name = "FAQ"
+      url = "faq"
+      weight = 16
 
       [[languages.de.menu.footer]]
       name = "Datenschutz"
@@ -123,10 +128,6 @@ label.icon = "/images/logo_orange.png"
   favicon16x16 = "/images/favicon-16x16.png"
   favicon32x32 = "/images/favicon-32x32.png"
 
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
 
 [markup]
 

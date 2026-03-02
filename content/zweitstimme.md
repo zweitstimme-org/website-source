@@ -1,28 +1,64 @@
 ---
 title: "Zweitstimme"
 layout: "page"
-summary: "Zweitstimme Prognosen"
 url: "/zweitstimme"
 ---
 
 <section>
+ <div style="background-color: #e8f5e9; border: 1px solid #4caf50; border-radius: 4px; padding: 15px; margin: 20px 0;">
+    <strong>Lesen Sie unsere <a href="/posts/blog/evaluation-2025" style="color: #2196f3; text-decoration: none;">Evaluation der Wahlprognosen zur Bundestagswahl 2025</a>!</strong>
+</div>
   <div class="content-wrapper">
-    <h3 style="color: var(--primary); text-align: center;">Vorhersagetrend</h3>
-    <div style="position: relative; padding-bottom: 50%; height: 0; margin-top: -10px;">
-      <iframe src="https://polsci.uni-wh.de/interactive_trend"
+        <h2>Vorhersagetrend</h2>
+    <div class="info-box">
+      <p>(Stand: <span id="forecast-text">lädt...</span>)</p>
+      <p>Diese Grafik zeigt die zeitliche Entwicklung unserer Wahlprognosen. Die Linien stellen die prognostizierten Stimmenanteile der Parteien dar, basierend auf unserem statistischen Modell zum jeweiligen Zeitpunkt. Da unser Modell auch auf aktuellen Umfragen basiert, verändert sich unsere Vorhersage ständig. Unser Modell für die Zweitstimme 2025 beschreiben wir in unserem <a href="/posts/blog/zweitstimme-model/">Blogpost</a>.</p>
+    </div>
+        <div style="position: relative; padding-bottom: 50%; height: 0; margin-top: -10px;">
+      <iframe src="/interactive_trend.html"
               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
               allowfullscreen>
       </iframe>
-    </div>
-    <p>(Stand: <span id="forecast-text">lädt...</span>)</p>
-    <p>Diese Grafik zeigt die zeitliche Entwicklung unserer Wahlprognosen. Die Linien stellen die prognostizierten Stimmenanteile der Parteien dar, basierend auf unserem statistischen Modell zum jeweiligen Zeitpunkt. Da unser Modell auch auf aktuellen Umfragen basiert, verändert sich unsere Vorhersage ständig. Unser Modell für die Zweitstimme 2025 beschreiben wir in unserem <a href="/posts/blog/zweitstimme-model/">Blogpost</a>.</p>
   </div>
-</section>
+  
+  <!-- Add legend -->
+  <div class="trend-legend">
+    <div class="legend-item">
+      <span class="legend-line" style="background: #000000;"></span>
+      <span class="legend-label">CDU/CSU</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-line" style="background: #009EE0;"></span>
+      <span class="legend-label">AfD</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-line" style="background: #E3000F;"></span>
+      <span class="legend-label">SPD</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-line" style="background: #46962b;"></span>
+      <span class="legend-label">Grüne</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-line" style="background: #FFED00;"></span>
+      <span class="legend-label">FDP</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-line" style="background: #FF8C00;"></span>
+      <span class="legend-label">BSW</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-line" style="background: #800080;"></span>
+      <span class="legend-label">Linke</span>
+    </div>
+  </div>
+  </div>
 
-<section class="section-alt">
   <div class="content-wrapper">
     <h2>Wahrscheinlichkeiten</h2>
-    <p>Basierend auf unseren Modellen für die Erst- und Zweitstimmen, berechnen wir zusätzlich die Wahrscheinlichkeiten für die Eintritt ins Parlament und die Wahrscheinlichkeiten für die verschiedenen Koalitionsoptionen. Diese Wahrscheinlichkeiten berücksichtigen neben der 5%-Hürde auch die Grundmandatsklausel (mind. drei gewonnene Wahlkreise) über unser Erststimme-Modell. Mehr dazu in unserem <a href="/posts/blog/probabilities/">Blogpost</a>.</p>
+    <div class="info-box">
+      <p>Basierend auf unseren Modellen für die Erst- und Zweitstimmen, berechnen wir zusätzlich die Wahrscheinlichkeiten für die Eintritt ins Parlament und die Wahrscheinlichkeiten für die verschiedenen Koalitionsoptionen. Diese Wahrscheinlichkeiten berücksichtigen neben der 5%-Hürde auch die Grundmandatsklausel (mind. drei gewonnene Wahlkreise) über unser Erststimme-Modell. Mehr dazu in unserem <a href="/posts/blog/probabilities/">Blogpost</a>.</p>
+    </div>
     <div class="probability-row">
       <!-- Probability boxes here -->
     </div>
@@ -112,20 +148,28 @@ section {
     margin: 0;
 }
 
-.section-alt {
-    background-color: rgb(245, 245, 245);
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-}
-
 .content-wrapper {
     max-width: var(--main-width);
     margin: 0 auto;
     padding: 0 var(--gap);
+}
+
+.info-box {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border: 1px solid #e0e0e0;
+}
+
+.info-box p {
+    margin: 0;
+    color: #333;
+    line-height: 1.5;
+}
+
+.info-box p:not(:last-child) {
+    margin-bottom: 10px;
 }
 
 /* Probability boxes specific styles */
@@ -256,6 +300,58 @@ section {
 .progress-gru {
   background-color: #46962b;
 }
+
+/* Default height */
+.content-wrapper iframe {
+    width: 100%;
+    height: 400px;  /* Default height */
+}
+
+/* Increase height for narrow screens */
+@media screen and (max-width: 768px) {
+    .content-wrapper iframe {
+        height: 600px;  /* Increased height for mobile */
+    }
+}
+
+/* Legend styles */
+.trend-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-line {
+  display: inline-block;
+  width: 20px;
+  height: 3px;
+  border-radius: 1px;
+}
+
+.legend-label {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+  .trend-legend {
+    gap: 10px;
+  }
+  
+  .legend-label {
+    font-size: 12px;
+  }
+}
 </style>
 
 <script>
@@ -275,12 +371,12 @@ function toggleCollapse(button) {
 
 <script>
     function fetchForecast() {
-        // Fetch forecast data from the Plumber API
-        fetch("https://polsci.uni-wh.de/forecast")
+        // Fetch forecast data from local API
+        fetch("/forecast.json")
             .then(response => response.json())
             .then(data => {
                 // Get the last updated timestamp
-                fetch("https://polsci.uni-wh.de/last_updated")
+                fetch("/last_updated.json")
                     .then(response => response.json())
                     .then(lastUpdatedData => {
                         const lastUpdated = new Date(lastUpdatedData.last_updated);
@@ -311,8 +407,8 @@ function toggleCollapse(button) {
         fetchForecast();
     };
 
-  // Fetch the JSON data from the API
-  fetch('https://polsci.uni-wh.de/pred_probabilities')
+  // Fetch the JSON data from the local API
+  fetch('/pred_probabilities.json')
     .then(response => response.json())
     .then(data => {
       const probabilities = data[0];
@@ -369,7 +465,7 @@ function updateProbability(textId, progressId, value, type) {
 
 // Function to fetch and update the "Stand" information
 function updateStand() {
-  fetch('https://polsci.uni-wh.de/last_updated')
+  fetch('/last_updated.json')
     .then(response => response.json())
     .then(data => {
       const lastUpdated = new Date(data.last_updated);

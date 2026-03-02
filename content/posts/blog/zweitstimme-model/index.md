@@ -22,6 +22,11 @@ Um die aktuelle Stimmung miteinzubeziehen, fließen als zweite Komponente öffen
 
 Die beiden Modelle werden durch einen rückwärts gerichteten Zufallsprozess kombiniert. Die Vorhersagen des Fundamentaldaten-Modells dienen als Grundlage für das Umfragemodell am Wahltag. Beide Modelle werden gemeinsam mit Markov Chain Monte Carlo (MCMC) Methoden geschätzt. Wir ziehen 10.000 Stichproben aus der Verteilung, um die möglichen Wahlergebnisse zu simulieren.
 
+### Berücksichtigung von Parteien
+
+Sowohl unser Zweitstimmen- als auch unser darauf aufbauendes Erststimmen-Modell sind auf die Verfügbarkeit von Umfragedaten angewiesen, die wir derzeit von den großen Umfrage-Instituten über wahlrecht.de beziehen. Werden für eine Partei dort keine Werte (oder nicht kontinuierlich) ausgewiesen, ist es uns im Rahmen der Modelle leider nicht möglich, eine Partei zu berücksichtigen.
+
+
 Für eine detaillierte Beschreibung des Modells verweisen wir auf die Anwendungen dieses Modells bei den Bundestagswahlen 2017 und 2021 und die dazugehörigen Publikationen:
 
 - [Forecasting Elections in Multiparty Systems: A Bayesian Approach Combining Polls and Fundamentals](https://www.cambridge.org/core/journals/political-analysis/article/forecasting-elections-in-multiparty-systems-a-bayesian-approach-combining-polls-and-fundamentals/CA929544F672A09A0E34C5529EBFA482)

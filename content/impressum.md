@@ -15,7 +15,7 @@ Friedrichstraße 180
 10117 Berlin
 
 ## Kontakt
-E-Mail: simon.munzert@hertie-school.org
+E-Mail: wahlen@uni-mannheim.de
 
 ## Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
 

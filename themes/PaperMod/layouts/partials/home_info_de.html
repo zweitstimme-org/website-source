@@ -1,96 +1,100 @@
 {{- with site.Params.homeInfoParams }}
 <script>
-
-  // Function to fetch the forecast data and update the HTML
-function fetchForecast() {
-  // Fetch forecast data from the Plumber API
-  fetch("https://polsci.uni-wh.de/forecast")
-    .then(response => response.json())
-    .then(data => {
-      // Get the last updated timestamp
-      fetch("https://polsci.uni-wh.de/last_updated")
+// Function to fetch and update last updated timestamp
+function fetchLastUpdated() {
+    fetch("/last_updated.json")
         .then(response => response.json())
         .then(lastUpdatedData => {
-          const lastUpdated = new Date(lastUpdatedData.last_updated);
-          const formattedDate = formatDateToGerman(lastUpdated);
-          
-          document.getElementById('forecast-last-updated').textContent = formattedDate;
-
+            const lastUpdated = new Date(lastUpdatedData.last_updated);
+            const formattedDate = formatDateToGerman(lastUpdated);
+            document.getElementById('forecast-last-updated').textContent = formattedDate;
         })
         .catch(err => console.error('Fehler beim Laden der Daten:', err));
-    })
-    .catch(err => console.error('Fehler beim Laden der Daten:', err));
-}
-
-// Function to fetch the probabilities data and update the HTML
-function fetchProbabilities() {
-  // Get the last updated timestamp for probabilities
-  fetch("https://polsci.uni-wh.de/last_updated")
-    .then(response => response.json())
-    .then(lastUpdatedData => {
-      const lastUpdated = new Date(lastUpdatedData.last_updated);
-      const formattedDate = formatDateToGerman(lastUpdated);
-      
-      // Update the 'probabilities' section last-updated time
-    })
-    .catch(err => console.error('Fehler beim Laden der Daten:', err));
 }
 
 // Function to format date to German format (e.g. 9. Dezember 2024)
 function formatDateToGerman(date) {
-  const months = [
-    "Januar", "Februar", "März", "April", "Mai", "Juni", 
-    "Juli", "August", "September", "Oktober", "November", "Dezember"
-  ];
-  const day = date.getDate();
-  const month = months[date.getMonth()];
-  const year = date.getFullYear();
-  return `vom ${day}. ${month} ${year}`;
+    const months = [
+        "Januar", "Februar", "März", "April", "Mai", "Juni", 
+        "Juli", "August", "September", "Oktober", "November", "Dezember"
+    ];
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    return `vom ${day}. ${month} ${year}`;
 }
 
-// Function to format number with a comma as the decimal separator
-function formatNumberWithComma(number) {
-  return number.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).replace('.', ',');
-}
-
-// Combined window.onload function
+// Initialize on page load
 window.onload = function() {
     console.log('Page loaded');
-    fetchForecast();
-    fetchProbabilities();
-    updateIframeSrc();
+    fetchLastUpdated();
 };
 
-function updateIframeSrc() {
-    const iframe = document.getElementById('forecast-iframe');
-    console.log('Current width:', window.innerWidth);
-    if (window.innerWidth <= 500) {
-        console.log('Switching to mobile view');
-        iframe.src = 'https://polsci.uni-wh.de/interactive_mobile';
-    } else {
-        console.log('Switching to desktop view');
-        iframe.src = 'https://polsci.uni-wh.de/interactive';
+// Only keep the coalition probabilities fetch
+fetch('/pred_probabilities.json')
+    .then(response => response.json())
+    .then(data => {
+        const probabilities = data[0];
+        
+        // Update coalition probabilities
+        updateProbability('maj_cdu_csu_gru_spd', 'progress_cdu_csu_gru_spd', probabilities.maj_cdu_csu_gru_spd, 'cdu-gru-spd');
+        updateProbability('maj_cdu_csu_afd', 'progress_cdu_csu_afd', probabilities.maj_cdu_csu_afd, 'cdu-afd');
+        updateProbability('maj_cdu_csu_spd', 'progress_cdu_csu_spd', probabilities.maj_cdu_csu_spd, 'cdu-spd');
+        updateProbability('maj_cdu_csu_gru', 'progress_cdu_csu_gru', probabilities.maj_cdu_csu_gru, 'cdu-gru');
+    })
+    .catch(error => console.error('Error fetching probabilities:', error));
+
+function updateProbability(textId, progressId, value, type) {
+    const percentage = (value * 100).toFixed(0);
+    const textElement = document.getElementById(textId);
+    if (textElement) {
+        textElement.textContent = percentage + '%';
+        textElement.style.display = 'inline'; // Show the percentage
+    }
+    
+    const progressBar = document.getElementById(progressId);
+    if (progressBar) {
+        progressBar.style.width = percentage + '%';
+        
+        // Add appropriate class based on type
+        switch(type) {
+            case 'cdu-gru-spd':
+                progressBar.style.background = 'linear-gradient(90deg, #000000 33%, #46962b 33%, #46962b 66%, #E3000F 66%)';
+                break;
+            case 'cdu-afd':
+                progressBar.style.background = 'linear-gradient(90deg, #000000 50%, #009EE0 50%)';
+                break;
+            case 'cdu-spd':
+                progressBar.style.background = 'linear-gradient(90deg, #000000 50%, #E3000F 50%)';
+                break;
+            case 'cdu-gru':
+                progressBar.style.background = 'linear-gradient(90deg, #000000 50%, #46962b 50%)';
+                break;
+        }
     }
 }
-
-// Run when window is resized
-window.addEventListener('resize', updateIframeSrc);
 </script>
 
 <article class="first-entry home-info">
-
   <section class="section-alt">
     <div class="content-wrapper">
-          <div class="entry-content">
-            <h1 style="color: var(--secondary);"><a style="color: var(--secondary);">zweitstimme.org</a></h1>
-            <h2 style="color: var(--primary); text-align: left;">Die wissenschaftliche Vorhersage zur Bundestagswahl</h2>
-            <p>Hier finden Sie wissenschaftlich fundierte Prognosen für Bundes- und Landtagswahlen in Deutschland. Mit unseren interaktiven Visualisierungen und detaillierten Analysen machen wir Wahlvorhersagen transparent und verständlich.</p>    </div>
-        
+      <div class="entry-content">
+        <h2 style="color: var(--primary); text-align: left; margin: 0 0 1rem 0; padding: 0; ">
+          <a style="color: var(--secondary);">zweitstimme.org</a><br>Die wissenschaftliche Vorhersage zur Bundestagswahl
+        </h2>
+        <p>Hier finden Sie wissenschaftlich fundierte Prognosen für Bundes- und Landtagswahlen in Deutschland. Mit unseren interaktiven Visualisierungen und detaillierten Analysen machen wir Wahlvorhersagen transparent und verständlich.</p>
+      </div>
+    </div>
   </section>
 
 <section>
+  <div style="background-color: #e8f5e9; border: 1px solid #4caf50; border-radius: 4px; padding: 15px; margin: 20px 0;">
+    <strong>Lesen Sie unsere <a href="/posts/blog/evaluation-2025" style="color: #2196f3; text-decoration: none;">Evaluation der Wahlprognosen zur Bundestagswahl 2025</a>!</strong>
+</div>
   <div>
   <h3 style="color: var(--primary); text-align: center;">Wahlprognose <span id="forecast-last-updated">lädt...</span></h3>
+
+
 
   <div class="iframe-section">
     <div class="iframe-wrapper">
@@ -98,7 +102,7 @@ window.addEventListener('resize', updateIframeSrc);
     
         <iframe
           id="forecast-iframe"
-          src="https://polsci.uni-wh.de/interactive"
+          src="/interactive_mobile.html"
           frameborder="0"
           allowfullscreen
           aria-label="Interactive content from API">
@@ -113,7 +117,7 @@ window.addEventListener('resize', updateIframeSrc);
 
 
 
-    <p>Für die kommende Bundestagswahl am 23. Februar 2025 liefert unser Modell die aktuelle Prognose.</p>
+    <p>Für die Bundestagswahl am 23. Februar 2025 lieferte unser Modell diese Prognose am 21. Februar 2025.</p>
       <br>
   <p>Wie Sie in der Grafik der Wahlprognose oben sehen können, sind diese Werte jedoch keineswegs sicher. Die Bänder für jede Partei geben an in welchem Bereich wir den tatsächlichen Wert mit 83% Wahrscheinlichkeit vermuten. Das heißt, dass das tatsächliche Wahlergebnis nicht in diesem Bereich liegt, ist so wahrscheinlich wie eine 6 zu würfeln - nicht sehr wahrscheinlich, aber doch möglich (mehr <a href="/posts/blog/">hier</a>).</p>
 </div>
@@ -121,106 +125,221 @@ window.addEventListener('resize', updateIframeSrc);
 
 </section>
 
-
-
-
-
 <section class="section-alt">
   <div class="content-wrapper">
     <div class="two-column-grid">
       <div class="column">
-        <div class="entry-content">
-          <div class="image-wrapper">
-
-            <h2 style="color: var(--primary);">Erststimme</h2>
-
-            <img 
-              src="/images/erststimme.png" 
-              alt="Pfeil Erststimme" 
-              loading="lazy"
-              class="germany-map"
-              width="60%"
-            >
+        <a href="/erststimme" class="content-link">
+          <h2 style="color: var(--primary); text-align: center;">Erststimme</h2>
+          <div style="position: relative; padding-bottom: 100%; height: 0; margin: 10px 0;">
+            <a href="/erststimme">
+              <img 
+                src="/figure_districts.png" 
+                alt="Wahlkreiskarte Deutschland"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background-color: rgb(245, 245, 245);"
+              >
+            </a>
           </div>
-
-
-          <div class="bullet-list">
-            <ul>
-              <li><a href="/erststimme">Vorhersage für alle 299 Wahlkreise</a></li>
-              <li><a href="/erststimme">Wahrscheinlichkeiten</a></li>
-              <li><a href="/erststimme">Wahlkreise ohne Direktmandat</a></li>
-            </ul>
-          </div>
-        </div>
+        </a>
+        <p style="text-align: center; margin-top: 10px;">
+          Mehr zur Erststimme <a href="/erststimme" style="color: var(--primary);">hier</a>
+        </p>
       </div>
 
       <div class="column">
-        <div class="entry-content">
-          <div class="image-wrapper">
-            <h2 style="color: var(--primary);">Zweitstimme</h2>
-
-            <img 
-              src="/images/zweitstimme.png" 
-              alt="Pfeil Zweitstimme" 
-              loading="lazy"
-              class="germany-map"
-              width="60%"
-            >
+        <a href="/zweitstimme" class="content-link">
+          <h2 style="color: var(--primary); text-align: center;">Zweitstimme</h2>
+          <div style="position: relative; padding-bottom: 100%; height: 0; margin: 10px 0;">
+            <div class="probability-box" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+              <div class="box-header">
+                <h4>Wahrscheinlichkeiten für Mehrheiten</h4>
+              </div>
+              <div class="box-content">
+                <ul style="list-style-type: none; padding-left: 0;">
+                  <li>
+                    CDU/CSU, Grüne und SPD <span id="maj_cdu_csu_gru_spd" style="display: none;">lädt...</span>
+                    <div class="progress-bar">
+                      <div class="progress" id="progress_cdu_csu_gru_spd"></div>
+                    </div>
+                  </li>
+                  <li>
+                    CDU/CSU und AfD <span id="maj_cdu_csu_afd" style="display: none;">lädt...</span>
+                    <div class="progress-bar">
+                      <div class="progress" id="progress_cdu_csu_afd"></div>
+                    </div>
+                  </li>
+                  <li>
+                    CDU/CSU und SPD <span id="maj_cdu_csu_spd" style="display: none;">lädt...</span>
+                    <div class="progress-bar">
+                      <div class="progress" id="progress_cdu_csu_spd"></div>
+                    </div>
+                  </li>
+                  <li>
+                    CDU/CSU und Grüne <span id="maj_cdu_csu_gru" style="display: none;">lädt...</span>
+                    <div class="progress-bar">
+                      <div class="progress" id="progress_cdu_csu_gru"></div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-
-          <div class="bullet-list">
-            <ul>
-              <li><a href="/zweitstimme">Vorhersagetrend</a></li>
-              <li><a href="/zweitstimme">Mehrheiten</a></li>
-              <li><a href="/zweitstimme">Einzug ins Parlament</a></li>
-            </ul>
-          </div>
-          
-        </div>
+        </a>
+        <p style="text-align: center; margin-top: 10px;">
+          Mehr zur Zweitstimme <a href="/zweitstimme" style="color: var(--primary);">hier</a>
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<section >
+<section class="section-alt" style="padding: 0;">
   <div class="content-wrapper">
-        <div class="entry-content">
-          <h2 style="color: var(--primary);">Das Projekt <a style="color: var(--secondary);">zweitstimme.org</a></h2>
-          
+    <h2 style="color: var(--primary); text-align: center; margin: 1rem 0;">Highlights</h2>
+    <div class="two-column-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 1rem;">
+      
+      <div class="column">
+        <a href="/posts/blog/ballot" class="content-link">
+          <div class="highlight-box">
+            <h3>Stimmzettel-Simulator</h3>
+            <p>So könnte der Stimmzettel in Ihrem Wahlkreis aussehen.</p>
+          </div>
+        </a>
+      </div>
 
-          
+      <div class="column">
+        <a href="/posts/blog/citizen-forecast" class="content-link">
+          <div class="highlight-box">
+            <h3>Bürger:innen-Vorhersage</h3>
+            <p>Was denken Wähler:innen, wie die Wahl ausgeht?</p>
+          </div>
+        </a>
+      </div>
 
-          Seit 2017 entwickeln wir wissenschaftliche Wahlprognosen für Deutschland. Neben der Bundestagswahl erstellen wir auch Vorhersagen für Landtagswahlen. Unser <a href="/team">sechsköpfiges Team</a> aus Politikwissenschaftler*innen wird durch die Deutsche Forschungsgemeinschaft (DFG) gefördert. Wir arbeiten eng mit <a href="/posts/blog/">führenden Medien</a> zusammen und publizieren regelmäßig in <a href="/posts/blog/">wissenschaftlichen Fachzeitschriften</a> (mehr <a href="/posts/blog/">hier</a>).
+      <div class="column">
+        <a href="/posts/blog/evaluation-2025" class="content-link">
+          <div class="highlight-box">
+            <h3>Wahlprognosen-Evaluation</h3>
+            <p>Wie gut waren unsere Vorhersagen für die Bundestagswahl 2025?</p>
+          </div>
+        </a>
+      </div>
 
+    </div>
+  </div>
+</section>
 
-        <div class="logo-container">
-          <a href="https://gepris.dfg.de/gepris/projekt/529544178?language=en" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
-            <div class="skeleton"></div>
-            <img src="/images/logo_dfg.gif" alt="Logo DFG" loading="lazy">
-          </a>
-          <a href="https://www.hertie-school.org/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
-            <div class="skeleton"></div>
-            <img src="/images/logo_hertie.svg" alt="Logo Hertie" loading="lazy">
-          </a>
-          <a href="https://www.uni-mannheim.de/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
-            <div class="skeleton"></div>
-            <img src="/images/logo_mannheim.svg" alt="Logo Mannheim" loading="lazy">
-          </a>
-          <a href="https://www.uni-wh.de/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
-            <div class="skeleton"></div>
-            <img src="/images/logo_witten.svg" alt="Logo Witten" loading="lazy">
-          </a>
-        
+<section class="section-alt" style="padding-top: 0;">
+  <div class="content-wrapper">
+    <div class="entry-content" style="margin: 0; padding: 0;">
+      <h2 style="color: var(--primary); text-align: center; margin: 0 0 0.25rem 0;"><a style="color: var(--secondary);">zweitstimme.org</a> in den Medien</h2>
+      
+      <div class="media-grid" id="media-grid">
+        <a href="https://www.economist.com/interactive/2025-german-election-polls-prediction-forecast" class="media-item" target="_blank" rel="noopener noreferrer">
+          <div class="media-content">
+            <h3>The Economist</h3>
+            <p>"Who is ahead in the race for Germany's next parliament?"</p>
+            <span class="media-date">28. Januar 2025</span>
+          </div>
+        </a>
+
+        <a href="https://www.waz.de/politik/article408231092/wahlforscher-darum-staerkt-merzE28098-risikokurs-die-afd.html" class="media-item" target="_blank" rel="noopener noreferrer">
+          <div class="media-content">
+            <h3>WAZ</h3>
+            <p>"Wahlforscher: Darum wird Merz' Kurs nicht funktionieren"</p>
+            <span class="media-date">5. Februar 2025</span>
+          </div>
+        </a>
+
+        <a href="https://www.zeit.de/politik/deutschland/2025-02/bundestagswahl-prognose-fuenf-prozent-huerde-fdp-bsw-linke" class="media-item" target="_blank" rel="noopener noreferrer">
+          <div class="media-content">
+            <h3>ZEIT ONLINE</h3>
+            <p>"Friedrich Merz: Das wären seine Koalitionen"</p>
+            <span class="media-date">4. Februar 2025</span>
+          </div>
+        </a>
+
+        <a href="https://www.abendzeitung-muenchen.de/muenchen/welche-folgen-hat-das-neue-wahlrecht-fuer-muenchen-art-1033918" class="media-item" target="_blank" rel="noopener noreferrer">
+          <div class="media-content">
+            <h3>Abendzeitung München</h3>
+            <p>"Wahlrechtsreform und CSU: Wer in München um das Direktmandat kämpft"</p>
+            <span class="media-date">27. Januar 2025</span>
+          </div>
+        </a>
+
+        <a href="https://www.radioenneperuhr.de/artikel/uni-wh-liefert-wahlprognose-2221344.html" class="media-item" target="_blank" rel="noopener noreferrer">
+          <div class="media-content">
+            <h3>Radio Ennepe Ruhr</h3>
+            <p>"Uni W/H liefert Wahlprognose"</p>
+            <span class="media-date">23. Januar 2025</span>
+          </div>
+        </a>
+
+        <a href="https://www.sueddeutsche.de/politik/wahlrecht-bundestag-parlament-groesse-1.5413822" class="media-item" target="_blank" rel="noopener noreferrer">
+          <div class="media-content">
+            <h3>Süddeutsche Zeitung</h3>
+            <p>"Warum der Bundestag wohl größer wird als je zuvor"</p>
+            <span class="media-date">17. September 2021</span>
+          </div>
+        </a>
+
+        <a href="https://www.washingtonpost.com/news/monkey-cage/wp/2017/09/23/new-german-election-forecast-merkels-party-will-win-but-lose-seats/" class="media-item" target="_blank" rel="noopener noreferrer">
+          <div class="media-content">
+            <h3>The Washington Post</h3>
+            <p>"New German election forecast: Merkel's party will win but lose seats"</p>
+            <span class="media-date">23. September 2017</span>
+          </div>
+        </a>
+
+        <div class="media-item empty-tile">
+          <!-- Empty placeholder -->
         </div>
+
 
       </div>
 
-        
+      <div class="media-nav">
+        <button id="prev-media" class="media-nav-btn" disabled>&larr;</button>
+        <button id="next-media" class="media-nav-btn">&rarr;</button>
+      </div>
+    </div>
+  </div>
 </section>
 
+<section>
+  <div class="content-wrapper">
+    <div class="entry-content">
+      <h2 style="color: var(--primary);">Das Projekt <a style="color: var(--secondary);">zweitstimme.org</a></h2>
+      
+
+      
+
+      Seit 2017 entwickeln wir wissenschaftliche Wahlprognosen für Deutschland. Neben der Bundestagswahl erstellen wir auch Vorhersagen für Landtagswahlen. Unser <a href="/team">sechsköpfiges Team</a> aus Politikwissenschaftler*innen wird durch die Deutsche Forschungsgemeinschaft (DFG) gefördert. Wir arbeiten eng mit <a href="/posts/blog/">führenden Medien</a> zusammen und publizieren regelmäßig in <a href="/posts/blog/">wissenschaftlichen Fachzeitschriften</a> (mehr <a href="/posts/blog/">hier</a>).
 
 
+    <div class="logo-container">
+      <a href="https://gepris.dfg.de/gepris/projekt/529544178?language=en" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+        <div class="skeleton"></div>
+        <img src="/images/logo_dfg.gif" alt="Logo DFG" loading="lazy">
+      </a>
+      <a href="https://www.hertie-school.org/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+        <div class="skeleton"></div>
+        <img src="/images/logo_hertie.svg" alt="Logo Hertie" loading="lazy">
+      </a>
+      <a href="https://www.uni-mannheim.de/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+        <div class="skeleton"></div>
+        <img src="/images/logo_mannheim.svg" alt="Logo Mannheim" loading="lazy">
+      </a>
+      <a href="https://www.uni-wh.de/" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+        <div class="skeleton"></div>
+        <img src="/images/logo_witten.svg" alt="Logo Witten" loading="lazy">
+      </a>
+    
+    </div>
 
+  </div>
+
+    
 </section>
 
 
@@ -290,11 +409,18 @@ window.addEventListener('resize', updateIframeSrc);
 {{- end -}}
 
 <style>
-  .entry-content h2 {
-    margin-bottom: 1rem;
-    text-align: center;
-}
+  .entry-content h1 {
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+    padding-bottom: 0;
+  }
 
+  .entry-content h2 {
+    line-height: 1.2;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 1rem;
+  }
 
   .first-entry {
     margin-top: 0;
@@ -309,20 +435,7 @@ window.addEventListener('resize', updateIframeSrc);
 
 .iframe-wrapper iframe {
     width: 100%;
-    height: 400px;  /* Default height */
-    margin-bottom: 0; /* No bottom margin */
-
-}
-
-@media screen and (max-width: 500px) {
-    .iframe-wrapper iframe {
-        height: 300px !important;  /* Force the height */
-    }
-}
-
-.iframe-wrapper iframe {
-    width: 100%;
-    height: 400px;
+    height: 300px;
     display: block;
 }
 
@@ -331,33 +444,29 @@ window.addEventListener('resize', updateIframeSrc);
     margin-bottom: 2rem; /* Space below the text */
 }
 
-@media screen and (max-width: 500px) {
-    .iframe-wrapper iframe {
-      margin-top: 0; /* No top margin */
-        height: 300px !important; /* Adjust height for mobile */
-    }
-}
-
 section {
-    padding: 2rem 0; /* Vertical padding for sections */
-    width: 100%; /* Full width for sections */
-    margin: 0; /* No margin */
+    padding: 2rem 0; /* Consistent padding for all sections */
+    width: 100%;
+    margin: 0;
 }
 
 .section-alt {
-    background-color: rgb(245, 245, 245); /* Light gray background for alternate sections */
-    width: 100vw; /* Full viewport width */
+    background-color: rgb(245, 245, 245);
+    width: 100vw;
     position: relative;
     left: 50%;
     right: 50%;
-    margin-left: -50vw; /* Center the section */
-    margin-right: -50vw; /* Center the section */
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0 3rem 0; /* Increased bottom padding to 3rem */
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .content-wrapper {
-    max-width: var(--main-width); /* Set your desired max width */
-    margin: 0 auto; /* Center the content */
-    padding: 0 var(--gap); /* Add consistent horizontal padding */
+    max-width: var(--main-width);
+    margin: 0 auto;
+    padding: 0 var(--gap);
 }
 
 /* Ensure consistent padding for all sections */
@@ -418,12 +527,40 @@ section {
     padding: 1rem 0;
 }
 
-/* For mobile screens, switch to one column */
+/* Update responsive adjustments */
 @media screen and (max-width: 768px) {
-    .two-column-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+  .two-column-grid {
+    grid-template-columns: repeat(2, 1fr); /* Keep 2 columns */
+    gap: 1rem; /* Reduced gap for mobile */
+  }
+
+  .two-column-grid h2 {
+    font-size: 1.1rem; /* Smaller heading */
+    margin-bottom: 0.5rem;
+  }
+
+  .two-column-grid p {
+    font-size: 0.85rem; /* Smaller text */
+  }
+
+  .column > a > div {
+    margin: 5px 0; /* Reduced margins */
+  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
+  .two-column-grid {
+    gap: 0.75rem;
+  }
+
+  .two-column-grid h2 {
+    font-size: 1rem;
+  }
+
+  .two-column-grid p {
+    font-size: 0.8rem;
+  }
 }
 
 .column {
@@ -434,6 +571,9 @@ section {
   width: 100%;
   margin: 0rem auto;
   text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .germany-map {
@@ -464,5 +604,529 @@ section {
   color: var(--primary);
 }
 
+.probability-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box-header h4 {
+  margin: 0 0 15px 0;
+  color: var(--primary);
+}
+
+.box-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.box-content ul {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.box-content li {
+  margin-bottom: 15px;
+}
+
+.box-content li:last-child {
+  margin-bottom: 0;
+}
+
+.progress-bar {
+  background: #f0f0f0;
+  border-radius: 4px;
+  height: 8px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+/* Show percentages inline with text */
+.box-content span {
+  float: right;
+  font-weight: bold;
+}
+
+/* Add matching styles for iframe container */
+.iframe-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.click-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.iframe-container:hover .click-overlay {
+  display: none;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: rgb(245, 245, 245);
+}
+
+.content-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+}
+
+.content-link:hover {
+  text-decoration: none;
+}
+
+.content-link:hover h2 {
+  text-decoration: underline;
+}
+
+/* Prevent iframe interaction from triggering link */
+.iframe-container {
+  pointer-events: none;
+}
+
+.iframe-container iframe {
+  pointer-events: auto;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 1rem;
+  margin-top: 0.25rem;
+  width: 100%;
+}
+
+.media-item {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: none;
+  height: 160px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.media-content {
+  width: 100%;
+  overflow: hidden;
+}
+
+.media-content h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary);
+  font-size: 1.1rem;
+  white-space: normal; /* Ensure text wraps */
+  overflow-wrap: break-word; /* Break long words if needed */
+}
+
+.media-content p {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.media-item.active {
+  display: block;
+}
+
+/* Force grid to maintain structure even with fewer items */
+.media-grid::after {
+  content: '';
+  grid-column: auto / span 1;
+  grid-row: auto / span 1;
+  visibility: hidden;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .media-grid {
+    display: block;
+    gap: 0;
+    padding: 0 1rem;
+  }
+  
+  .media-item, .empty-tile {
+    display: none;
+    height: 120px; /* Fixed height for tablets */
+    padding: 1rem;
+    width: 100%;
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0.75rem;
+    background: white;
+  }
+  
+  .media-item.active, .empty-tile.active {
+    display: block;
+  }
+  
+  .media-content h3 {
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--primary);
+  }
+  
+  .media-content p {
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .media-date {
+    font-size: 0.8rem;
+    color: var(--secondary);
+    margin-top: 0.25rem;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .media-grid {
+    padding: 0 0.75rem;
+  }
+  
+  .media-item, .empty-tile {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    height: 100px; /* Fixed height for mobile */
+  }
+  
+  .media-content h3 {
+    font-size: 0.9rem;
+  }
+  
+  .media-content p {
+    font-size: 0.85rem;
+  }
+}
+
+.empty-tile {
+  visibility: hidden;
+  pointer-events: none;
+  height: 160px; /* Match desktop height */
+}
+
+.media-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.media-nav-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.media-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .probability-box {
+    padding: 8px; /* Reduced padding */
+  }
+
+  .box-header h4 {
+    font-size: 0.9rem;
+    margin: 0 0 8px 0;
+  }
+
+  .box-content li {
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+  }
+
+  .progress-bar {
+    height: 6px; /* Slightly smaller progress bar */
+    margin-top: 3px;
+  }
+
+  .box-content span {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
+  .probability-box {
+    padding: 6px;
+  }
+
+  .box-header h4 {
+    font-size: 0.8rem;
+    margin: 0 0 6px 0;
+  }
+
+  .box-content li {
+    margin-bottom: 6px;
+    font-size: 0.7rem;
+  }
+
+  .progress-bar {
+    height: 5px;
+    margin-top: 2px;
+  }
+
+  .box-content span {
+    font-size: 0.7rem;
+  }
+}
+
+.empty-tile {
+  visibility: hidden;
+  pointer-events: none;
+  height: 160px; /* Match desktop height */
+}
+
+@media screen and (max-width: 768px) {
+  .empty-tile {
+    height: 120px; /* Match tablet height */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .empty-tile {
+    height: 100px; /* Match mobile height */
+  }
+}
+
+/* Standard button styling */
+.button-standard {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.button-standard:hover {
+  background-color: #333;
+}
+
+.button-standard:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Toggle button styling */
+.map-toggle-button {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.map-toggle-button:hover {
+  background-color: #f0f0f0;
+}
+
+.map-toggle-button.active {
+  background-color: black;
+  color: white;
+}
+
+/* Navigation arrows styling */
+.nav-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+}
+
+.nav-button:hover {
+  background-color: #333;
+}
+
+.nav-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Media query adjustments */
+@media screen and (max-width: 768px) {
+  .map-toggle-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .nav-button {
+    min-width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+.highlight-box {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.highlight-box h3 {
+  color: var(--primary);
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+}
+
+.highlight-box p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.highlight-badge {
+  background-color: #4caf50;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .two-column-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 1rem;
+  }
+  
+  .highlight-box {
+    padding: 15px;
+  }
+  
+  .highlight-box h3 {
+    font-size: 1rem;
+  }
+  
+  .highlight-box p {
+    font-size: 0.85rem;
+  }
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mediaItems = document.querySelectorAll('.media-item');
+  const prevBtn = document.getElementById('prev-media');
+  const nextBtn = document.getElementById('next-media');
+  const itemsPerPage = 4;
+  let currentPage = 0;
+  const totalPages = Math.ceil(mediaItems.length / itemsPerPage);
+
+  function showPage(page) {
+    mediaItems.forEach((item, index) => {
+      const startIdx = page * itemsPerPage;
+      const endIdx = startIdx + itemsPerPage;
+      item.classList.toggle('active', index >= startIdx && index < endIdx);
+    });
+
+    prevBtn.disabled = page === 0;
+    nextBtn.disabled = page >= totalPages - 1;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 0) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < totalPages - 1) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+
+  // Show initial page
+  showPage(0);
+});
+</script>
 
