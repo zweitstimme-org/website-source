@@ -1,0 +1,43 @@
+{{/*
+
+  This shortcode renders entries from a CSL-JSON file.
+
+  Customized to use site.Data.bibliography (data/bibliography.json) for the
+  full bibliography. Override of hugo-cite theme.
+
+  Examples:
+  {{< bibliography >}} - render all from data/bibliography.json
+  {{< bibliography cited >}} - render only cited works
+
+*/}}
+
+{{- $src := "" }}
+{{- $citedOnly := false }}
+{{- $references := false }}
+
+{{- if .IsNamedParams }}
+  {{- with .Get "src" }}{{ $src = . }}{{ end }}
+  {{- if .Get "cited" }}{{ $citedOnly = true }}{{ end }}
+{{- else }}
+  {{- with .Get 0 }}
+    {{- if eq . "cited" }}
+      {{- $citedOnly = true }}
+    {{- else }}{{/* assume path to bib */}}
+      {{- $src = . }}
+    {{ end }}
+  {{ end }}
+  {{- if eq (.Get 1) "cited" }}{{- $citedOnly = true }}{{ end }}
+{{- end }}
+
+{{- if $citedOnly }}{{/* Render cited references only */}}
+
+  {{ $references = $.Page.Scratch.Get "citedBib" }}
+
+{{- else }}{{/* Render the full bibliography - use site.Data.bibliography */}}
+
+  {{ $references = site.Data.bibliography }}
+
+{{- end }}
+
+{{- $bibParams := dict "references" $references }}
+{{- partial "bibliography/bibliography-list.html" $bibParams }}
