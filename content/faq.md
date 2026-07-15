@@ -5,6 +5,8 @@ summary: "Häufige Fragen"
 url: "/faq"
 ---
 
+# FAQ
+
 ## Wie funktionieren die Wahlkreisvorhersagen?
 
 Unser Modell sagt die Wahrscheinlichkeiten für Direktmandate in den 299 Wahlkreisen voraus. Es basiert auf bundesweiten Zweitstimmenprognosen, die proportional auf Wahlkreise heruntergebrochen werden, sowie einem vereinfachten Regressionsmodell. Dieses berücksichtigt Parteistimmen, Ergebnisse der letzten Wahl und den Amtsinhaberstatus.

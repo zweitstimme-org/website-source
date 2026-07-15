@@ -51,6 +51,11 @@ disableXML = true
       weight = 17
 
       [[languages.de.menu.main]]
+      name = "FAQ"
+      url = "faq"
+      weight = 18
+
+      [[languages.de.menu.main]]
       name = "Team"
       url = "team"
       weight = 20

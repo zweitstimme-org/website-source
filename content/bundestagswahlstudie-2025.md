@@ -1,13 +1,13 @@
 ---
-title: "Bundestagswahlstudie 2025 - Forschungsprojekt"
+title: "Bundestagswahlstudie 2025"
 url: "/bundestagswahlstudie-2025"
 layout: "page"
-summary: "Forschungsprojekt zur Wahlanalyse und -forschung"
+summary: "Bundestagswahlstudie 2025"
 ---
 
 ## Projekt "Wahlprognosen zur Bundestagswahl 2025"
 
-Dieses Projekt beschäftigt sich mit der wissenschaftlichen Analyse von Wahlumfragen und deren Entwicklung für die Bundestagswahl 2025. Das Projekt wird von der Deutschen Forschungsgemeinschaft gefördert und wird von Mitgliedern des [Teams Zweitstimme.org](/team) geleitet. Zu den Projektpartnern gehören Wissenschaftlerinnen und Wissenschaftler der Universitäten Mannheim, Witten/Herdecke und der Hertie School Berlin. Bereits im Sommer 2024 wurde im Rahmen des Projekts eine Pilotstudie zur Landtagswahl in Sachsen durchgeführt.
+Dieses Projekt beschäftigt sich mit Wahlprognosen für die Bundestagswahl 2025. Das Projekt wird von der Deutschen Forschungsgemeinschaft gefördert und wird von Mitgliedern des [Teams Zweitstimme.org](/team) geleitet. Zu den Projektpartnern gehören Wissenschaftlerinnen und Wissenschaftler der Universitäten Mannheim, Witten/Herdecke und der Hertie School Berlin. Bereits im Sommer 2024 wurde im Rahmen des Projekts eine Pilotstudie zur Landtagswahl in Sachsen durchgeführt.
 
 ## Welche Ziele verfolgt das Projekt?
 

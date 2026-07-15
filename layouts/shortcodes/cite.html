@@ -5,23 +5,8 @@
   of cited works, which can then be output as a page-level bibliography using
   the {{< bibliography >}} shortcode.
 
-  Example:
-
-  {{< cite "Faure1909" "304" >}}
-
-  The first positional parameter is a short form citation that should match one
-  ID in the bib.json file (or the file specified on the content page).
-  The second, optional parameter is a page reference. Given there is one author
-  in the work with key "Faure1909", named Faure, with issued year of 1909, the
-  above would output as:
-
-    (Faure 1909, 54)
-
-    with a link to the complete reference.
-
-  The bibliography file must be a CSL-JSON, specified either in page’s front-
-  matter with the `bibFile` parameter, or in a leaf bundle, with "bib" in
-  the file name.
+  Customized to use site.Data.bibliography (data/bibliography.json).
+  Project override - do not modify hugo-cite theme.
 
 */}}
 
@@ -78,27 +63,19 @@
 {{- $partialPath := string (printf "bibliography/%s-style.html" $citationStyle) }}
 {{/* -------------------- END Citation style -------------------- */}}
 
-{{/* -------------------- BEGIN Bibliography path -------------------- */}}
+{{/* -------------------- BEGIN Bibliography - use site.Data.bibliography -------------------- */}}
 {{- $bibliographyPath := "" }}
-
-{{/* Default: check for a JSON file in the leaf bundle. */}}
 {{- $pageResource := $.Page.Resources.GetMatch "*bib*.json" -}}
 {{- if $pageResource }}
 {{- $constructedBibResource := printf "content/%s%s" $.Page.File.Dir $pageResource.Name }}
 {{- $bibliographyPath = $constructedBibResource }}
 {{- end }}
-
-{{- /* If a `bibFile` is specified in the page front-matter, it takes precedence
-  over a page resource. */ -}}
-{{- /* `specifiedBib` must be relative to project root */ -}}
 {{- if $.Page.Params.bibFile }}
 {{- $bibliographyPath = $.Page.Params.bibFile -}}
 {{- end }}
 
-{{- if gt (len $bibliographyPath) 0 -}}{{/* Begin Bibliography Loop */}}
-{{ $bibliography := site.Data.bibliography }} <!-- Access the data/bibliography.json file -->
-
-
+{{- if or (gt (len $bibliographyPath) 0) site.Data.bibliography -}}{{/* Begin Bibliography Loop */}}
+{{- $bibliography := site.Data.bibliography -}}
 {{- /* -------------------- END Bibliography path -------------------- */ -}}
 
   <span class="hugo-cite-intext"
@@ -194,3 +171,4 @@
     {{- end -}}
     {{- /* END loop over keys*/ -}}
     )</span>
+
