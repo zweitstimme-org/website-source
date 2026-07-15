@@ -26,12 +26,24 @@ weight = 2
   imageHeight = 120.0
 
     [[params.profileMode.buttons]]
-    name = "Archive"
-    url = "/archive"
+    name = "Umfragen"
+    url = "/polls/"
 
     [[params.profileMode.buttons]]
-    name = "Github"
-    url = "https://github.com/"
+    name = "Blog"
+    url = "/blog/"
+
+    [[params.profileMode.buttons]]
+    name = "Archiv"
+    url = "/archive/"
+
+    [[params.profileMode.buttons]]
+    name = "Forschung"
+    url = "/forschung/"
+
+    [[params.profileMode.buttons]]
+    name = "Team"
+    url = "/team/"
 
   [[params.socialIcons]]
   name = "<platform>"

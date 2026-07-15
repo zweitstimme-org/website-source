@@ -10,12 +10,12 @@ Die zweitstimme.org API ermöglicht den Zugriff auf unsere Wahlprognosen und zug
 
 ## Basis-URL
 
-`https://polsci.uni-wh.de`
+`https://zweitstimme.org`
 
 ## Endpunkte
 
 ### Letztes Update
-**Endpunkt:** <a href="https://polsci.uni-wh.de/last_updated" target="_blank">`/last_updated`</a>  
+**Endpunkt:** `/last_updated.json`  
 **Methode:** GET  
 **Beschreibung:** Gibt den Zeitstempel der letzten Aktualisierung zurück.
 
@@ -29,7 +29,7 @@ Die zweitstimme.org API ermöglicht den Zugriff auf unsere Wahlprognosen und zug
 
 
 ### Aktuelle Zweitstimmen-Prognose
-**Endpunkt:** <a href="https://polsci.uni-wh.de/forecast" target="_blank">`/forecast`</a>  
+**Endpunkt:** `/forecast.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert die aktuellen Wahlprognosen inklusive der 83% Konfidenzintervalle.
 
@@ -56,7 +56,7 @@ json
 ```
 
 ### Prognosen für bestimmte Ereignisse
-**Endpunkt:** <a href="https://polsci.uni-wh.de/pred_probabilities" target="_blank">`/pred_probabilities`</a>  
+**Endpunkt:** `/pred_probabilities.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert Prognosen für Ereignisse, z.B. dass Partei X mehr als 5% der Stimmen erhält oder das es Mehrheiten für Koalitionen gibt. Hier wird auch die Grundmandatsklausel berücksichtigt.
 
@@ -90,7 +90,7 @@ json
 ```
 
 ### Erststimmen-Prognosen
-**Endpunkt:** <a href="https://polsci.uni-wh.de/forecast_districts" target="_blank">`/forecast_districts`</a>  
+**Endpunkt:** `/forecast_districts.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert Prognosen für alle 299 Bundestagswahlkreise inklusive der 83% Konfidenzintervalle. Außerdem analog Vorhersagen für die Zweitstimmen (zs) in den Wahlkreisen. Außerdem die Werte bei der vergangenen Wahl (l1). abandon_p_party ist die Wahrscheinlichkeit, dass ein Wahlkreis von dieser Partei nicht besetzt wird (für die Gesamtwahrscheinlichkeit müssen die Wahrscheinlichkeiten für alle Parteien addiert werden). 
 
@@ -124,7 +124,7 @@ json
 ```
 
 ### Prognosen für nicht besetzte Wahlkreise
-**Endpunkt:** <a href="https://polsci.uni-wh.de/pred_vacant" target="_blank">`/pred_vacant`</a>  
+**Endpunkt:** `/pred_vacant.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert Prognosen für die Wahrscheinlichkeit, dass ein Wahlkreis unabhangig von der Partei nicht besetzt wird.
 
@@ -145,11 +145,8 @@ json
 
 
 
-
-
-
 ### Prognose-Verteilung
-**Endpunkt:** <a href="https://polsci.uni-wh.de/draws" target="_blank">`/draws`</a>  
+**Endpunkt:** `/draws.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert 10.000 Ziehungen aus der Prognoseverteilung für detaillierte statistische Analysen, je Partei ein Wert.
 
@@ -173,44 +170,25 @@ json
 
 ### Visualisierungen
 
-#### Interaktive Zweitstimmen-Visualisierung
-**Endpunkt:** <a href="https://polsci.uni-wh.de/interactive" target="_blank">`/interactive`</a>  
-**Methode:** GET  
-**Beschreibung:** Liefert eine interaktive HTML-Visualisierung der aktuellen Prognose.
-
 #### Mobile Zweitstimmen-Visualisierung
-**Endpunkt:** <a href="https://polsci.uni-wh.de/interactive_mobile" target="_blank">`/interactive_mobile`</a>  
+**Endpunkt:** `/interactive_mobile.html`  
 **Methode:** GET  
 **Beschreibung:** Optimierte Version der interaktiven Visualisierung für mobile Geräte.
 
 #### Interaktive Erststimmen-Visualisierung
-**Endpunkt:** <a href="https://polsci.uni-wh.de/interactive_districts_share" target="_blank">`/interactive_districts_share`</a>  
+**Endpunkt:** `/interactive_districts_share.html`  
 **Methode:** GET  
 **Beschreibung:** Liefert eine interaktive Karte der aktuellen Prognose.
 
 #### Interaktive Erststimmen-Gewinn-Visualisierung
-**Endpunkt:** <a href="https://polsci.uni-wh.de/interactive_districts_probability" target="_blank">`/interactive_districts_probability`</a>  
+**Endpunkt:** `/interactive_districts_probability.html`  
 **Methode:** GET  
 **Beschreibung:** Liefert eine interaktive Karte der aktuellen Prognose.
 
 #### Interaktive Visualisierung der Wahrscheinlichkeiten für nicht besetzte Wahlkreise
-**Endpunkt:** <a href="https://polsci.uni-wh.de/interactive_vacant" target="_blank">`/interactive_vacant`</a>  
+**Endpunkt:** `/interactive_vacant.html`  
 **Methode:** GET  
 **Beschreibung:** Liefert eine interaktive Karte der Wahrscheinlichkeiten für nicht besetzte Wahlkreise.
-
-### Statische Grafiken
-
-#### Hauptprognose
-**Endpunkt:** <a href="https://polsci.uni-wh.de/figure" target="_blank">`/figure`</a>  
-**Methode:** GET  
-**Format:** PNG  
-**Beschreibung:** Statische Visualisierung der aktuellen Prognose.
-
-#### PDF-Version der Hauptprognose
-**Endpunkt:** <a href="https://polsci.uni-wh.de/pdf" target="_blank">`/pdf`</a>  
-**Methode:** GET  
-**Format:** PDF  
-**Beschreibung:** PDF-Version der Prognose-Visualisierung.
 
 
 ## CORS

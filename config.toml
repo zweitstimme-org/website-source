@@ -25,7 +25,7 @@ disableXML = true
     [languages.de.params]
       [languages.de.params.homeInfoParams]
 
-        Title = "Die wissenschaftliche Vorhersage zur Bundestagswahl"
+        Title = "Die wissenschaftliche Analyse von Wahlumfragen"
 
 
     [languages.de.menu]
@@ -36,24 +36,24 @@ disableXML = true
       weight = 5
 
       [[languages.de.menu.main]]
-      name = "Erststimme"
-      url = "erststimme"
-      weight = 10
+      name = "Blog"
+      url = "blog/posts"
+      weight = 15
 
       [[languages.de.menu.main]]
-      name = "Zweitstimme"
-      url = "zweitstimme"
-      weight = 11
+      name = "Archiv"
+      url = "archive/posts"
+      weight = 16
+
+      [[languages.de.menu.main]]
+      name = "Forschung"
+      url = "research/posts"
+      weight = 17
 
       [[languages.de.menu.main]]
       name = "Team"
       url = "team"
-      weight = 12
-
-      [[languages.de.menu.main]]
-      name = "Blog"
-      url = "posts/blog"
-      weight = 15
+      weight = 20
 
       [[languages.de.menu.footer]]
       name = "Datenschutz"
@@ -92,7 +92,7 @@ home = [
 
 [params]
 hugoVersion = "0.135.0"  # Document the Hugo version required for this site
-env = "production"
+env = "development"
 description = "zweitstimme.org: Die wissenschaftliche Vorhersage zur Bundestagswahl"
 author = "zweitstimme.org"
 disableThemeToggle = true
@@ -107,7 +107,7 @@ ShowToc = false
 images = [
   "papermod-cover.png"
 ]
-mainSections = ["posts/blog"]
+mainSections = ["posts/blog", "posts/archive"]
 label.icon = "/images/logo_orange.png"
 
   [[params.socialIcons]]
@@ -123,10 +123,6 @@ label.icon = "/images/logo_orange.png"
   favicon16x16 = "/images/favicon-16x16.png"
   favicon32x32 = "/images/favicon-32x32.png"
 
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
 
 [markup]
 
