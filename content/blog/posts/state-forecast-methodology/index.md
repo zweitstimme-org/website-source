@@ -380,13 +380,9 @@ Umfragen kurz vor der Wahl sind der stärkste einzelne Prädiktor — aber sie l
 
 ### Das Modell
 
-Unsere Landtagswahl-Vorhersage beruht auf einem **bayesianischen Regressionsmodell**, das auf allen deutschen Landtagswahlen seit den 1990er Jahren trainiert wurde, für die Umfragedaten vorliegen (94 Wahlen von 1991 bis 2022). Modelliert wird der Stimmenanteil jeder Partei (auf der Logit-Skala, damit Anteile zwischen 0 und 100 % bleiben) als Funktion von vier Größen:
+Unsere Landtagswahl-Vorhersage beruht auf einem **bayesianischen Regressionsmodell**, das auf deutschen Landtagswahlen mit Umfragedaten trainiert wurde. Modelliert wird der Stimmenanteil jeder Partei (auf der Logit-Skala, damit Anteile zwischen 0 und 100 % bleiben) aus den **Landesumfragen** zum aktuellen Stichtag („Stand“). Anders als im Paper nutzen wir ein Vorlauf-Modell für die **genaue Zahl der Tage bis zur Wahl** — und das Live-Modell ist **umfragenbasiert** (polls-only): Bundestrend, letztes Wahlergebnis und Regierungsbeteiligung fließen in die Paper-Variante `_all` ein, nicht in die hier gezeigte Vorhersage. **Keine** `new_party`-Variable — neue Wettbewerber stecken bereits in den Umfragen.
 
-1. **Landesumfragen** — der latente Umfragewert im Bundesland zum aktuellen Stichtag („Stand“). Anders als im Paper nutzen wir ein Vorlauf-Modell für die **genaue Zahl der Tage bis zur Wahl**.
-
-Wie bei BW/RP 2026 ist das Live-Modell **umfragenbasiert** (polls-only): Bundestrend, letztes Wahlergebnis und Regierungsbeteiligung fließen in die Paper-Variante `_all` ein, nicht in die hier gezeigte Vorhersage. **Keine** `new_party`-Variable — neue Wettbewerber stecken bereits in den Umfragen.
-
-Das Modell schätzt aus den historischen Wahlen, wie diese Faktoren zusammenwirken — und wie groß der typische Restfehler ist, der auch mit den besten Prädiktoren bleibt. Genau dieser Restfehler bestimmt die Breite der Unsicherheitsintervalle.
+Das Modell schätzt aus den historischen Wahlen, wie stark die Umfragen zu gewichten sind — und wie groß der typische Restfehler ist. Genau dieser Restfehler bestimmt die Breite der Unsicherheitsintervalle.
 
 <div class="meth-fig" aria-label="Prognosefehler nach Vorlauf">
   <p class="meth-fig-title">Je näher die Wahl, desto kleiner der Fehler</p>
@@ -402,9 +398,9 @@ Die Berechnung läuft täglich serverseitig in unserer Datenpipeline:
   <div id="meth-viz-pipeline"></div>
 </div>
 
-1. **Daten sammeln** — Landes- und Bundesumfragen kommen aus derselben Datenbasis wie die Stimmungsanzeige ([DAWUM](https://dawum.de) und [wahlrecht.de](https://www.wahlrecht.de/umfragen/)); dazu die letzten Wahlergebnisse und die aktuelle Regierungskonstellation des Landes.
-2. **Prädiktoren bilden** — Für jede Partei (CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP und Sonstige) werden die vier Modellgrößen berechnet.
-3. **Simulieren** — Das Modell erzeugt für jede Partei **4.000 Simulationen** des Wahlergebnisses. Jede Simulation ist ein plausibles Wahlergebnis, das sowohl die Unsicherheit der Modellparameter als auch den historischen Prognosefehler berücksichtigt; anschließend werden die Anteile in jeder Simulation auf 100 % normalisiert.
+1. **Daten sammeln** — Landesumfragen kommen aus derselben Datenbasis wie die Stimmungsanzeige ([DAWUM](https://dawum.de) und [wahlrecht.de](https://www.wahlrecht.de/umfragen/)).
+2. **Prädiktoren bilden** — Für jede Partei (CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP und Sonstige) den latenten Umfragewert zum Stand-Datum und den Vorlauf bis zur Wahl.
+3. **Simulieren** — Das Modell erzeugt für jede Partei **4.000 Simulationen** des Wahlergebnisses. Jede Simulation ist ein plausibles Wahlergebnis, das sowohl die Unsicherheit der Modellparameter als auch den historischen Prognosefehler berücksichtigt; anschließend werden die Anteile in jeder Simulation auf 100 % normalisiert.
 4. **Zusammenfassen** — Die **Punktschätzung** ist der Mittelwert der Simulationen, das **5/6-Intervall** die entsprechenden Quantile — auch für Sonstige.
 
 ### Wie die Unsicherheit zu lesen ist
@@ -432,7 +428,7 @@ Aus denselben 4.000 Simulationen berechnen wir die Wahrscheinlichkeiten konkrete
 
 Für die Mehrheitsrechnung gilt: Nur Parteien über der 5 %-Hürde ziehen ins Parlament ein, und die Sitze verteilen sich proportional zu den Stimmen dieser Parteien. Eine Koalition hat eine Mehrheit, wenn ihre Parteien zusammen mehr als die Hälfte dieser Sitze stellen — wobei jede beteiligte Partei selbst über der Hürde liegen muss. Angezeigt werden nur Szenarien mit mindestens 1 % Wahrscheinlichkeit.
 
-Direktmandate und Überhang/Ausgleich bilden die Szenarien nicht im Detail ab — und das ändert an den Wahrscheinlichkeiten praktisch nichts: In Berlin und Sachsen-Anhalt stellt der Ausgleich den Proporz (nahezu) wieder her. In Mecklenburg-Vorpommern kann der gesetzliche Deckel (Ausgleich höchstens doppelt so viele Sitze wie Überhangmandate) der Überhangpartei einen kleinen Sitzvorteil lassen; in unseren Simulationen verschiebt das Szenario-Wahrscheinlichkeiten um **deutlich unter einen Prozentpunkt**. Die Absolute Mehrheit der AfD bleibt davon unberührt (Unterschied Deckel vs. voller Ausgleich: 0 pp). Details zur Größenverteilung und zum MV-Deckel stehen in der [Wahlkreis-Vorhersage](/blog/posts/district-forecast-methodology/#parlamentsgroesse).
+Direktmandate und Überhang/Ausgleich bilden die Szenarien nicht im Detail ab — und das ändert an den Wahrscheinlichkeiten praktisch nichts: In Berlin stellt der Ausgleich den Proporz in unseren Simulationen vollständig wieder her; in Sachsen-Anhalt nahezu. In Mecklenburg-Vorpommern kann der gesetzliche Deckel (Ausgleich höchstens doppelt so viele Sitze wie Überhangmandate) der Überhangpartei einen kleinen Sitzvorteil lassen; in unseren Simulationen verschiebt das Szenario-Wahrscheinlichkeiten um **deutlich unter einen Prozentpunkt**. Die Absolute Mehrheit der AfD bleibt davon unberührt (Unterschied Deckel vs. voller Ausgleich: 0 pp). Details zur Größenverteilung und zum MV-Deckel stehen in der [Wahlkreis-Vorhersage](/blog/posts/district-forecast-methodology/#parlamentsgroesse).
 
 <div class="meth-fig" aria-label="Beispiel Szenario-Wahrscheinlichkeiten">
   <p class="meth-fig-title">Aus Simulationen werden Wahrscheinlichkeiten</p>
@@ -447,8 +443,8 @@ Eine Wahrscheinlichkeit von z. B. 69 % für „BSW über 5 %-Hürde“ heißt: I
 | | **Stimmung** (Balken/Linien) | **Vorhersage** |
 |---|---|---|
 | Frage | Wie ist die Stimmung *heute*? | Wie geht die Wahl *am Wahltag* aus? |
-| Methode | [Kalman-Filter](/blog/posts/polling-calculation-methods/) über alle Umfragen | Bayesianisches Modell, trainiert auf 94 Landtagswahlen |
-| Eingangsdaten | Nur Umfragen | Umfragen + Bundestrend + letztes Ergebnis + Regierungsbeteiligung |
+| Methode | [Kalman-Filter](/blog/posts/polling-calculation-methods/) über alle Umfragen | Bayesianisches Modell (polls-only), trainiert auf Landtagswahlen |
+| Eingangsdaten | Nur Umfragen | Landesumfragen (mit Vorlauf bis zur Wahl; anders als im Paper ohne Bundestrend/L1/Regierung) |
 | Unsicherheit | ±1σ-Band der Umfrageglättung | 5/6-Intervall inkl. historischem Prognosefehler |
 | Verfügbar | Immer | Ab 90 Tage vor der Wahl |
 
@@ -456,14 +452,14 @@ Kurz gesagt: Die Stimmung glättet, was Umfragen *messen*; die Vorhersage schät
 
 ### Grenzen des Modells
 
-- **Umfragen dominieren kurz vor der Wahl.** Liegen kaum aktuelle Landesumfragen vor, stützt sich das Modell stärker auf das letzte Wahlergebnis und den Bundestrend — die Intervalle bleiben entsprechend breit.
+- **Ohne aktuelle Landesumfragen wird die Prognose unsicherer.** Das Live-Modell stützt sich auf die Umfragen; fehlen sie, bleiben die Intervalle entsprechend breit.
 - **Kandidaten- und Kampagneneffekte** kennt das Modell nur indirekt (über die Umfragen). Spitzenkandidat*innen, lokale Themen oder Skandale in den letzten Tagen kann es nicht vorhersehen.
 - **Kleinparteien** erscheinen gemeinsam als „Sonstige“ (nicht Partei für Partei).
 - **Wahlrechtliche Sonderregeln** (Grundmandatsklauseln, Direktmandate) sind in den Szenario-Rechnungen nicht Sitz für Sitz abgebildet. Der Effekt auf Mehrheits-Wahrscheinlichkeiten ist vernachlässigbar (siehe oben); die [Wahlkreis-Vorhersage](/blog/posts/district-forecast-methodology/) zeigt Direktmandate und eine indikative Parlamentsgröße.
 
 ### Fazit
 
-Die Landtagswahl-Vorhersage kombiniert aktuelle Umfragen mit strukturellen Faktoren, deren Zusammenwirken aus über 90 vergangenen Landtagswahlen gelernt wurde. Sie liefert keine Gewissheit, sondern **kalibrierte Wahrscheinlichkeiten**: eine Punktschätzung, ein ehrliches Unsicherheitsintervall und Szenario-Wahrscheinlichkeiten, die man beim Wort nehmen darf. Die archivierten Prognosen vergangener Wahlen bleiben unverändert online — so können Sie selbst überprüfen, wie gut das Modell trifft.
+Die Landtagswahl-Vorhersage übersetzt aktuelle Landesumfragen in eine Wahlprognose — gelernt aus vergangenen Landtagswahlen, mit ehrlicher Unsicherheit. Sie liefert keine Gewissheit, sondern **kalibrierte Wahrscheinlichkeiten**: eine Punktschätzung, ein Unsicherheitsintervall und Szenario-Wahrscheinlichkeiten, die man beim Wort nehmen darf. Die archivierten Prognosen vergangener Wahlen bleiben unverändert online — so können Sie selbst überprüfen, wie gut das Modell trifft.
 
 ---
 

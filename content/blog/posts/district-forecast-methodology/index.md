@@ -153,7 +153,7 @@ Das ist bewusst eine transparente Baseline. In einer [Vergleichsstudie in *Elect
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">4</div>
       <div class="meth-pipeline-title">Erststimme</div>
-      <div class="meth-pipeline-text">Zweit + historischer Erst−Zweit-Abstand im Wahlkreis</div>
+      <div class="meth-pipeline-text">Zweit + Abstand Erst−Zweit der letzten Wahl im Wahlkreis</div>
     </li>
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">5</div>
@@ -183,7 +183,7 @@ Dabei ist **Zweit** der Zweitstimmenanteil **im Wahlkreis** und **Land** der Zwe
 Anschließend werden negative Anteile auf null gesetzt und die Anteile wieder auf 100 % normalisiert. So bleibt z. B. ein traditionell starker Wahlkreis relativ stark — er bewegt sich aber mit dem Landestrend.
 
 **4. Von Zweit- zu Erststimme**  
-Direktmandate hängen von der **Erststimme** ab. Viele Wähler:innen geben Erst- und Zweitstimme derselben Partei; Abweichungen (Stimmensplitting, lokale Verankerung) spiegeln sich im Abstand Erst − Zweit bei der letzten Wahl wider. Wir nehmen an, dass dieser Abstand näherungsweise stabil bleibt:
+Direktmandate hängen von der **Erststimme** ab. Viele Wähler:innen geben Erst- und Zweitstimme derselben Partei; Abweichungen (Stimmensplitting, lokale Verankerung) zeigen sich schon in **einer** Wahl als Abstand Erst − Zweit je Partei im Wahlkreis. Wir brauchen dafür keine zweite Wahl — wir lesen Erst und Zweit der letzten Wahl und nehmen an, dass dieser Abstand näherungsweise stabil bleibt:
 
 <div class="meth-formula">
   Erst<sub>neu</sub> = Zweit<sub>neu</sub> + (Erst<sub>letzte Wahl</sub> − Zweit<sub>letzte Wahl</sub>)
@@ -205,7 +205,7 @@ Diesen Ablauf wiederholen wir in **2.000 Simulationen**, jeweils mit einem ander
 - **Keine Effekte der Kandidierenden.** Beliebte oder unbekannte Direktkandidierende, lokale Kampagnen und Skandale stecken nicht im Modell — nur der Landestrend und die historische Struktur.
 - **Kein eigenes Erststimmen-Umfragemodell.** Es gibt kaum flächendeckende Wahlkreisumfragen; der Swing ist die transparente Näherung.
 - **Keine amtliche Sitzzuteilung in den Koalitionsszenarien.** Die landesweite Mehrheitsrechnung der [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) bleibt eine Näherung über Zweitstimmenanteile. Zusätzlich zeigen wir unter der Wahlkreis-Karte eine **indikative Größenverteilung** des Landtags bzw. Abgeordnetenhauses (siehe unten).
-- **Neue Parteien / Grenzverschiebungen.** Wo bei der letzten Wahl keine Partei existierte (z. B. BSW) oder Wahlkreise neu zugeschnitten wurden, ist der historische Abstand Erst−Zweit unsicherer. In Berlin nutzen wir für die Zweitstimmen die offizielle Umschlüsselung der AGH-Ergebnisse 2023 auf die Wahlkreise 2026; wo der Erststimmen-Bezug fehlt, setzen wir den Abstand auf null.
+- **Neue Parteien / Grenzverschiebungen.** Wo bei der letzten Wahl keine Partei existierte (z. B. BSW) oder Wahlkreise neu zugeschnitten wurden, ist der Abstand Erst−Zweit der letzten Wahl unsicherer. In Berlin liefert das Amt für Statistik (AfS BBB) die **Zweitstimmen 2023 bereits auf die Wahlkreise 2026 umgerechnet** (`DL_BE_AGH2026_AGH2023`); wir rechnen nicht selbst um. **Erststimmen** gibt es nur auf den alten Grenzen — dort übernehmen wir sie, wo die lokale Wahlkreisnummer im Bezirk noch existiert; bei neu zugeschnittenen Kreisen setzen wir den Abstand Erst−Zweit auf null.
 
 ### Von Direktmandaten zur Parlamentsgröße {#parlamentsgroesse}
 
@@ -221,7 +221,7 @@ Unter der Wahlkreiskarte zeigen wir die simulierte Größenverteilung (Median, P
 
 #### Mecklenburg-Vorpommern: unvollständiger Ausgleich
 
-Nur in MV kann der Deckel dazu führen, dass Überhangmandate **nicht vollständig** ausgeglichen werden. Typischer Auslöser: eine Partei gewinnt sehr viele Direktmandate bei einem Zweitstimmenanteil deutlich unter etwa einem Drittel der Landtagsparteien. Historisch (1990–2021) ist dieser Deckel nie gegriffen; 2021 lag die SPD mit drei Überhängen und fünf von sechs möglichen Ausgleichssitzen nahe daran.
+Nur in MV kann der Deckel dazu führen, dass Überhangmandate **nicht vollständig** ausgeglichen werden. Typischer Auslöser: eine Partei gewinnt sehr viele Direktmandate bei einem Zweitstimmenanteil deutlich unter etwa einem Drittel der Landtagsparteien. Historisch hat dieser Deckel bereits gegriffen — 2021 etwa bei der SPD mit drei Überhängen und fünf von sechs möglichen Ausgleichssitzen.
 
 Nach dem aktuellen Forecast (Stand der Simulation):
 
@@ -229,17 +229,19 @@ Nach dem aktuellen Forecast (Stand der Simulation):
 - Der verbleibende Vorteil beträgt fast immer **genau einen** Extra-Sitz (ca. 5 %); **zwei oder mehr** Extra-Sitze nur in ca. **0,6 %** der Simulationen.
 - Praktisch betrifft das die **AfD** als Überhangpartei. Andere Parteien erhalten Ausgleichssitze — aber keinen unkompensierten Extra-Sitz zulasten des Proporzes.
 
-**Auswirkung auf Mehrheits-Szenarien:** vernachlässigbar. Vergleicht man Zweitstimmen-Mehrheit, Sitzmehrheit mit vollem Ausgleich und Sitzmehrheit mit MV-Deckel, liegt der Deckel-Effekt bei **unter 0,5 pp**. Die Absolute Mehrheit der AfD ändert sich durch den Deckel **nicht** (0 pp gegenüber vollem Ausgleich; weiterhin unter 1 % in dieser Swing-Simulation, auf der Website gerundet 2 % aus dem Landesmodell). Deshalb bleiben die Koalitionsszenarien der [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) die Zweitstimmen-Näherung — ohne eigene Sitz-Korrektur für Überhang.
+**Auswirkung auf Mehrheits-Szenarien:** vernachlässigbar. Vergleicht man Zweitstimmen-Mehrheit, Sitzmehrheit mit vollem Ausgleich und Sitzmehrheit mit MV-Deckel, liegt der Deckel-Effekt bei **unter 0,5 pp**. Ob der Ausgleich vollständig oder gedeckelt ist, ändert die Wahrscheinlichkeit einer absoluten AfD-Mehrheit praktisch **nicht**. In der Swing-Simulation liegt sie unter 1 %; die [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) weist (gerundet) etwa 2 % aus — beide Werte sind klein, der Unterschied kommt vom Modell, nicht vom Deckel. Deshalb bleiben die Koalitionsszenarien der Landesprognose die Zweitstimmen-Näherung — ohne eigene Sitz-Korrektur für Überhang.
 
-In Berlin bleibt die Proportionalität in unseren Simulationen praktisch immer erhalten. In ST kann nach mehreren Ausgleichsrunden ein kleiner Restüberhang an der Fraktionsstärke-Grenze stehen bleiben (meist ein Sitz) — die Unsicherheit steckt aber vor allem in der **Parlamentsgröße**.
+In Berlin gleichen unsere Simulationen den Überhang **vollständig** aus (unvollständiger Ausgleich: 0 %). In ST kann nach mehreren Ausgleichsrunden ein kleiner Restüberhang an der Fraktionsstärke-Grenze stehen bleiben (meist ein Sitz) — die Unsicherheit steckt aber vor allem in der **Parlamentsgröße**.
 
 ### Aktuell verfügbar
 
 Die Wahlkreis-Karte erscheint zusammen mit der Landesvorhersage (ab 90 Tage vor dem Wahltermin), derzeit für:
 
-- **Mecklenburg-Vorpommern** (Basis: Landtagswahl 2021)
-- **Sachsen-Anhalt** (Basis: Landtagswahl 2021)
-- **Berlin** (Basis: Abgeordnetenhauswahl 2023, umgeschlüsselt auf 2026)
+- **Mecklenburg-Vorpommern** (letzte Wahl als Swing-Anker: LTW 2021)
+- **Sachsen-Anhalt** (letzte Wahl als Swing-Anker: LTW 2021)
+- **Berlin** (letzte Wahl als Swing-Anker: AGH 2023; Zweitstimmen laut AfS auf die Wahlkreise 2026)
+
+Die Wahlkreis-Karte wird **nicht** auf diesen Einzelwahlen „trainiert“ — sie überträgt den aktuellen Landestrend per Swing. Trainiert (bayesianisch, auf vielen Landtagswahlen) ist nur die [landesweite Stimmenprognose](/blog/posts/state-forecast-methodology/).
 
 ### Fazit
 
