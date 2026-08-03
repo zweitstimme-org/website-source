@@ -183,13 +183,13 @@ Wie in der Bundestags-Wahlkreislogik:
 Starke Wahlkreise bleiben relativ stark; der relative Landestrend wird proportional übertragen. Anschließend Normalisierung auf 100 %.
 
 **4. Geschätzte Erststimme**  
-Direktmandate hängen von der Erststimme ab. Statt den Abstand Erst−Zweit fest zu halten, schätzen wir (gepoolt über die Übergänge oben):
+Direktmandate hängen von der Erststimme ab. Die Gleichung wird nur mit **Vorwahl-Information** kalibriert — dieselbe Informationsmenge wie live: Zweit im Wahlkreis ist die **Swing-Projektion** aus der vorigen Wahl (nicht das spätere Ist-Zweit der Zielwahl); dazu Erst der vorigen Wahl. Geschätzt wird (gepoolt über die Übergänge oben):
 
 <div class="meth-formula">
-  Erst = β₀ + β₁·Zweit<sub>neu</sub> + β₂·Erst<sub>letzte Wahl</sub> + β₃·(keine Erststimme zuletzt)
+  Erst = β₀ + β₁·Zweit<sub>projiziert</sub> + β₂·Erst<sub>letzte Wahl</sub> + β₃·(keine Erststimme zuletzt)
 </div>
 
-Aktuell liegen die Koeffizienten grob bei β₁ ≈ 0,84 und β₂ ≈ 0,17 (R² ≈ 0,95; Leave-one-election-out-MAE ≈ 2 pp). Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen Bundestags-Modell. Neue Parteien (z. B. BSW) stecken vor allem über die Zweitstimme und den Restanteil.
+Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen Bundestags-Modell. Neue Parteien (z. B. BSW) stecken vor allem über die Zweitstimme und den Restanteil.
 
 **5. Simulation und Siegchance**  
 2.000 Züge: jeweils ein Landesergebnis **und** ein Zug aus der Koeffizienten-Unsicherheit (+ Restfehler). Sieger im Wahlkreis = höchste Erststimme; P(Sieg) = Anteil der Siege.
@@ -239,15 +239,15 @@ In Berlin gleichen unsere Simulationen den Überhang **vollständig** aus (unvol
 
 Die Wahlkreis-Karte erscheint zusammen mit der Landesvorhersage (ab 90 Tage vor dem Wahltermin), derzeit für:
 
-- **Mecklenburg-Vorpommern** (letzte Wahl als Swing-Anker: LTW 2021)
-- **Sachsen-Anhalt** (letzte Wahl als Swing-Anker: LTW 2021)
-- **Berlin** (letzte Wahl als Swing-Anker: AGH 2023; Zweitstimmen laut AfS auf die Wahlkreise 2026)
+- **Mecklenburg-Vorpommern** (Anker LTW 2021; Training inkl. 2011/2016)
+- **Sachsen-Anhalt** (Anker LTW 2021; Training mit vergleichbaren Anteilen 2016)
+- **Berlin** (Anker AGH 2023→2026; Training 2016→2023)
 
-Die Wahlkreis-Karte wird **nicht** auf diesen Einzelwahlen „trainiert“ — sie überträgt den aktuellen Landestrend per Swing. Trainiert (bayesianisch, auf vielen Landtagswahlen) ist nur die [landesweite Stimmenprognose](/blog/posts/state-forecast-methodology/).
+Die [landesweite Stimmenprognose](/blog/posts/state-forecast-methodology/) bleibt separat bayesianisch auf vielen Landtagswahlen trainiert; die Wahlkreis-Stufe kalibriert zusätzlich den Weg von Zweit- zu Erststimme.
 
 ### Fazit
 
-Die Wahlkreis-Vorhersage ist ein **transparentes Swing-Modell**: letzte Wahl + Landesprognose + stabiler Erst−Zweit-Abstand, ohne Schätzung zu den Kandidierenden. Sie sagt, welche Direktmandate bei dem aktuellen Landestrend plausibel sind — und wo das Rennen eng bleibt. Die Größenverteilung darunter übersetzt das in eine indikative Parlamentsgröße inkl. Überhang/Ausgleich. Für Stimmenanteile und Koalitionsszenarien bleibt die [Landtags-Vorhersage](/blog/posts/state-forecast-methodology/) maßgeblich.
+Die Wahlkreis-Vorhersage ist ein **kalibriertes Swing-Modell** im Stil der Bundestags-Wahlkreise: proportionaler Zweit-Swing + geschätzte Erststimme aus historischen Übergängen — noch ohne Kandidierenden-Effekte. Sie sagt, welche Direktmandate beim aktuellen Landestrend plausibel sind — und wo das Rennen eng bleibt. Die Größenverteilung darunter übersetzt das in eine indikative Parlamentsgröße inkl. Überhang/Ausgleich. Für Stimmenanteile und Koalitionsszenarien bleibt die [Landtags-Vorhersage](/blog/posts/state-forecast-methodology/) maßgeblich.
 
 ---
 
