@@ -3,7 +3,7 @@
     "model": "district_swing + state Hare/Niemeyer size sim",
     "nsim": 4000,
     "seed": 20260730,
-    "last_update": "2026-08-03T09:43:20Z",
+    "last_update": "2026-08-03T09:58:12Z",
     "caveat_de": "Indikative Größenverteilung aus dem Wahlkreis-Swing-Modell (ohne Kandidateneffekte). Keine amtliche Sitzzuteilung."
   },
   "states": {
@@ -77,7 +77,7 @@
         "seats": {
           "SPD": 24,
           "AfD": 29,
-          "CDU/CSU": 8,
+          "CDU": 8,
           "LINKE": 10
         },
         "directs": {
@@ -136,11 +136,11 @@
       "p_advantage_ge2_pct": 0.0,
       "oh_parties": {
         "AfD": 1159,
-        "CDU/CSU": 56
+        "CDU": 56
       },
       "advantage_parties": {
         "AfD": 56,
-        "CDU/CSU": 15
+        "CDU": 15
       },
       "size_mean": 84.9,
       "size_median": 83,
@@ -184,12 +184,12 @@
         "seats": {
           "SPD": 7,
           "AfD": 40,
-          "CDU/CSU": 23,
+          "CDU": 23,
           "LINKE": 14
         },
         "directs": {
           "AfD": 39,
-          "CDU/CSU": 1,
+          "CDU": 1,
           "GRÜNE": 1
         },
         "total_oh": 1,
@@ -221,7 +221,7 @@
       "p_advantage_ge1_pct": 0.0,
       "p_advantage_ge2_pct": 0.0,
       "oh_parties": {
-        "CDU/CSU": 1911,
+        "CDU": 1911,
         "GRÜNE": 161,
         "LINKE": 25,
         "AfD": 11,
@@ -270,13 +270,13 @@
         "seats": {
           "SPD": 22,
           "AfD": 27,
-          "CDU/CSU": 29,
+          "CDU": 29,
           "LINKE": 31,
           "GRÜNE": 26
         },
         "directs": {
           "AfD": 13,
-          "CDU/CSU": 29,
+          "CDU": 29,
           "LINKE": 19,
           "GRÜNE": 17
         },

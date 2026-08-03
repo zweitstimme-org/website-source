@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-03T13:54:59",
+  "last_update": "2026-08-03T15:50:56",
   "forecast_window_days": 90,
   "federal": {
     "mode": "stimmung",
@@ -11,28 +11,28 @@
   },
   "states": {
     "ST": {
-      "mode": "stimmung",
+      "mode": "forecast",
       "election_date": "2026-09-06",
       "days_to_election": 34,
       "election_name": "Landtagswahl Sachsen-Anhalt",
       "date_is_estimated": false,
-      "forecast_available": false
+      "forecast_available": true
     },
     "BE": {
-      "mode": "stimmung",
+      "mode": "forecast",
       "election_date": "2026-09-20",
       "days_to_election": 48,
       "election_name": "Landtagswahl Berlin",
       "date_is_estimated": false,
-      "forecast_available": false
+      "forecast_available": true
     },
     "MV": {
-      "mode": "stimmung",
+      "mode": "forecast",
       "election_date": "2026-09-20",
       "days_to_election": 48,
       "election_name": "Landtagswahl Mecklenburg-Vorpommern",
       "date_is_estimated": false,
-      "forecast_available": false
+      "forecast_available": true
     },
     "SL": {
       "mode": "stimmung",
