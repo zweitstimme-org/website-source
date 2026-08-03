@@ -121,24 +121,22 @@ Dieser Artikel erklärt das Modell hinter der Karte. Kurz gesagt: Wir nehmen die
 
 Die Karte färbt jeden Wahlkreis nach der Partei mit der höchsten Siegchance. Klick öffnet Details: Erststimmen-Band, Vergleich zur letzten Wahl und — soweit bekannt — den Namen der Direktkandidierenden.
 
-### Die Idee: uniformer Swing
+### Die Idee: proportionaler Swing + geschätzte Erststimme
 
 Direktmandats-Umfragen gibt es für die meisten Wahlkreise nicht. Was wir haben:
 
-1. das **Ergebnis der letzten Landtagswahl** (Erst- und Zweitstimme) je Wahlkreis, und
+1. **Wahlergebnisse je Wahlkreis** aus der letzten und der vorletzten Wahl (Erst und Zweit), und
 2. unsere aktuelle **landesweite Zweitstimmen-Prognose**.
 
-Daraus bilden wir einen **uniformen Swing**: Jeder Wahlkreis bewegt sich um denselben landesweiten Veränderungsschritt — die lokalen Stärken und Schwächen der letzten Wahl bleiben relativ erhalten.
-
-Das ist bewusst eine transparente Baseline. In einer [Vergleichsstudie in *Electoral Studies*](https://doi.org/10.1016/j.electstud.2026.103104) haben wir für **Bundestagswahlen** untersucht, wie unterschiedliche Swing-Annahmen (u. a. uniform vs. proportional) Sitzprognosen beeinflussen: Die Unterschiede sind oft moderat, die Wahl der Annahme prägt aber die Präzision. Landtagswahlen haben wir dort nicht separat ausgewertet — der Mechanismus (landesweiter Trend → Wahlkreise) ist aber derselbe, und ohne flächendeckende Erststimmen-Umfragen bleibt der uniforme Swing die nachvollziehbarste Umsetzung.
+Daraus bauen wir — analog zur [Bundestags-Wahlkreisvorhersage](https://doi.org/10.1016/j.electstud.2026.103104) — zwei Stufen: einen **proportionalen Zweitstimmen-Swing** und eine **geschätzte Erststimmen-Gleichung** mit Koeffizienten aus vergangenen Landtags-/AGH-Übergängen.
 
 <div class="meth-fig" aria-label="Ablauf der Wahlkreis-Vorhersage">
   <p class="meth-fig-title">Von der letzten Wahl zum Direktmandat</p>
   <ol class="meth-pipeline">
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">1</div>
-      <div class="meth-pipeline-title">Letzte Wahl</div>
-      <div class="meth-pipeline-text">Erst- und Zweitstimmen je Wahlkreis sowie landesweiter Zweitanteil</div>
+      <div class="meth-pipeline-title">Historische Wahlen</div>
+      <div class="meth-pipeline-text">Erst/Zweit je Wahlkreis — letzte Wahl als Anker, vorletzte für die Schätzung</div>
     </li>
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">2</div>
@@ -148,49 +146,53 @@ Das ist bewusst eine transparente Baseline. In einer [Vergleichsstudie in *Elect
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">3</div>
       <div class="meth-pipeline-title">Zweit-Swing</div>
-      <div class="meth-pipeline-text">Gleichmäßige Verschiebung aller Wahlkreise gegenüber der letzten Wahl</div>
+      <div class="meth-pipeline-text">Proportionaler Swing: lokale Zweit × (1 + relativer Landestrend)</div>
     </li>
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">4</div>
       <div class="meth-pipeline-title">Erststimme</div>
-      <div class="meth-pipeline-text">Zweit + Abstand Erst−Zweit der letzten Wahl im Wahlkreis</div>
+      <div class="meth-pipeline-text">OLS: Erst ≈ β₁·Zweit + β₂·Erst<sub>letzte Wahl</sub> (+ Indikator ohne Kandidatur damals)</div>
     </li>
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">5</div>
       <div class="meth-pipeline-title">Simulation</div>
-      <div class="meth-pipeline-text">Tausende Züge → Siegchance und Unsicherheitsband</div>
+      <div class="meth-pipeline-text">Tausende Züge (Land + Koeffizienten) → Siegchance und Band</div>
     </li>
   </ol>
 </div>
 
 ### Schritt für Schritt
 
-**1. Ausgangspunkt: letzte Wahl**  
-Für jeden Wahlkreis liegen die Erst- und Zweitstimmenanteile der letzten Landtagswahl (bzw. AGH-Wahl) vor. Daraus berechnen wir auch den landesweiten Zweitstimmenanteil von damals.
+**1. Trainingsdaten**  
+Geschätzt wird über gestapelte Wahlkreis×Partei-Beobachtungen aus:
+
+- **MV:** 2011→2016 und 2016→2021 (Absolutstimmen, gleiche 36er-Geographie)
+- **ST:** 2016→2021 (2021 Absolutstimmen; 2016 als amtliche vergleichbare %-Anteile auf 2021er Kreise)
+- **BE:** 2016→2023 (Absolutstimmen im Ergebnisbericht, auf 2023er Wahlkreise)
 
 **2. Landesprognose als Ziel**  
-Die aktuelle [Zweitstimmen-Vorhersage](/blog/posts/state-forecast-methodology/) liefert für jede Partei eine Punktschätzung und ein 5/6-Unsicherheitsintervall. Daraus ziehen wir in jeder Simulation ein plausibles landesweites Ergebnis.
+Die aktuelle [Zweitstimmen-Vorhersage](/blog/posts/state-forecast-methodology/) liefert Punktschätzung und 5/6-Intervall. Daraus ziehen wir in jeder Simulation ein landesweites Ergebnis.
 
-**3. Uniformer Zweitstimmen-Swing**  
-In jedem Wahlkreis gilt näherungsweise:
-
-<div class="meth-formula">
-  Zweit<sub>neu</sub> = Zweit<sub>letzte Wahl</sub> + (Land<sub>neu</sub> − Land<sub>letzte Wahl</sub>)
-</div>
-
-Dabei ist **Zweit** der Zweitstimmenanteil **im Wahlkreis** und **Land** der Zweitstimmenanteil **landesweit** (bei der letzten Wahl bzw. in der aktuellen Landesprognose). Der Term in Klammern ist also der landesweite Stimmungswandel — denselben Schritt addieren wir in jedem Wahlkreis auf das damalige lokale Zweitstimmenergebnis.
-
-Anschließend werden negative Anteile auf null gesetzt und die Anteile wieder auf 100 % normalisiert. So bleibt z. B. ein traditionell starker Wahlkreis relativ stark — er bewegt sich aber mit dem Landestrend.
-
-**4. Von Zweit- zu Erststimme**  
-Direktmandate hängen von der **Erststimme** ab. Viele Wähler:innen geben Erst- und Zweitstimme derselben Partei; Abweichungen (Stimmensplitting, lokale Verankerung) zeigen sich schon in **einer** Wahl als Abstand Erst − Zweit je Partei im Wahlkreis. Wir brauchen dafür keine zweite Wahl — wir lesen Erst und Zweit der letzten Wahl und nehmen an, dass dieser Abstand näherungsweise stabil bleibt:
+**3. Proportionaler Zweitstimmen-Swing**  
+Wie in der Bundestags-Wahlkreislogik:
 
 <div class="meth-formula">
-  Erst<sub>neu</sub> = Zweit<sub>neu</sub> + (Erst<sub>letzte Wahl</sub> − Zweit<sub>letzte Wahl</sub>)
+  Zweit<sub>neu</sub> = Zweit<sub>letzte Wahl</sub> × (1 + (Land<sub>neu</sub> − Land<sub>letzte Wahl</sub>) / Land<sub>letzte Wahl</sub>)
 </div>
+
+Starke Wahlkreise bleiben relativ stark; der relative Landestrend wird proportional übertragen. Anschließend Normalisierung auf 100 %.
+
+**4. Geschätzte Erststimme**  
+Direktmandate hängen von der Erststimme ab. Statt den Abstand Erst−Zweit fest zu halten, schätzen wir (gepoolt über die Übergänge oben):
+
+<div class="meth-formula">
+  Erst = β₀ + β₁·Zweit<sub>neu</sub> + β₂·Erst<sub>letzte Wahl</sub> + β₃·(keine Erststimme zuletzt)
+</div>
+
+Aktuell liegen die Koeffizienten grob bei β₁ ≈ 0,84 und β₂ ≈ 0,17 (R² ≈ 0,95; Leave-one-election-out-MAE ≈ 2 pp). Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen Bundestags-Modell. Neue Parteien (z. B. BSW) stecken vor allem über die Zweitstimme und den Restanteil.
 
 **5. Simulation und Siegchance**  
-Diesen Ablauf wiederholen wir in **2.000 Simulationen**, jeweils mit einem anderen Zug aus der Landesunsicherheit. In jedem Zug gewinnt im Wahlkreis die Partei mit dem höchsten Erststimmenanteil. Der Anteil der Siege einer Partei ist ihre **Siegwahrscheinlichkeit** P(Sieg); die Karte färbt den Wahlkreis nach der Partei mit dem höchsten Wert.
+2.000 Züge: jeweils ein Landesergebnis **und** ein Zug aus der Koeffizienten-Unsicherheit (+ Restfehler). Sieger im Wahlkreis = höchste Erststimme; P(Sieg) = Anteil der Siege.
 
 ### So liest man die Darstellung
 
@@ -202,10 +204,10 @@ Diesen Ablauf wiederholen wir in **2.000 Simulationen**, jeweils mit einem ander
 
 ### Was das Modell bewusst weglässt
 
-- **Keine Effekte der Kandidierenden.** Beliebte oder unbekannte Direktkandidierende, lokale Kampagnen und Skandale stecken nicht im Modell — nur der Landestrend und die historische Struktur.
-- **Kein eigenes Erststimmen-Umfragemodell.** Es gibt kaum flächendeckende Wahlkreisumfragen; der Swing ist die transparente Näherung.
+- **Keine Effekte der Kandidierenden.** Incumbency, Listenplatz, Bekanntheit usw. stecken noch nicht in der Erst-Gleichung (im Bundestags-Modell schon).
+- **Kein eigenes Erststimmen-Umfragemodell.** Es gibt kaum flächendeckende Wahlkreisumfragen; Swing + Regression sind die Näherung.
 - **Keine amtliche Sitzzuteilung in den Koalitionsszenarien.** Die landesweite Mehrheitsrechnung der [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) bleibt eine Näherung über Zweitstimmenanteile. Zusätzlich zeigen wir unter der Wahlkreis-Karte eine **indikative Größenverteilung** des Landtags bzw. Abgeordnetenhauses (siehe unten).
-- **Neue Parteien / Grenzverschiebungen.** Wo bei der letzten Wahl keine Partei existierte (z. B. BSW) oder Wahlkreise neu zugeschnitten wurden, ist der Abstand Erst−Zweit der letzten Wahl unsicherer. In Berlin liefert das Amt für Statistik (AfS BBB) die **Zweitstimmen 2023 bereits auf die Wahlkreise 2026 umgerechnet** (`DL_BE_AGH2026_AGH2023`); wir rechnen nicht selbst um. **Erststimmen** gibt es nur auf den alten Grenzen — dort übernehmen wir sie, wo die lokale Wahlkreisnummer im Bezirk noch existiert; bei neu zugeschnittenen Kreisen setzen wir den Abstand Erst−Zweit auf null.
+- **Grenzen und Umschlüsselung.** In Berlin: Trainingsübergang 2016→2023 auf 2023er Kreisen; Live-Anker **Zweit 2023→2026** laut AfS (`DL_BE_AGH2026_AGH2023`), Erst wo die lokale Nummer passt. In ST: 2016er Anteile auf 2021er Kreisen sind amtliche **Vergleichswerte in %** (Briefwahl-Näherung).
 
 ### Von Direktmandaten zur Parlamentsgröße {#parlamentsgroesse}
 

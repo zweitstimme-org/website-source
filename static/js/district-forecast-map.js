@@ -407,13 +407,14 @@
     } else {
       const majNote = (st.majority_impact && st.majority_impact.note_de)
         ? escapeHtml(st.majority_impact.note_de)
-        : 'Überhang wird praktisch immer vollständig ausgeglichen; Sitzmehrheiten ≈ Zweitstimmenmehrheiten.';
+        : 'Überhang wird vollständig ausgeglichen; Sitzmehrheiten ≈ Zweitstimmenmehrheiten.';
       note = `
         <div class="district-size-note">
           <p><strong>Überhang &amp; Ausgleich in Berlin:</strong> ${escapeHtml(st.note_de)}</p>
           <p>
-            In unseren Simulationen wird der Überhang praktisch immer vollständig ausgeglichen —
-            die Unsicherheit steckt vor allem in der <em>Größe</em> des Abgeordnetenhauses.
+            In unseren Simulationen wird der Überhang vollständig ausgeglichen
+            (unvollständiger Ausgleich: 0 %) — die Unsicherheit steckt vor allem in der
+            <em>Größe</em> des Abgeordnetenhauses.
           </p>
           <p><strong>Mehrheiten:</strong> ${majNote}</p>
           <p style="color:#888;font-size:0.76rem;">
