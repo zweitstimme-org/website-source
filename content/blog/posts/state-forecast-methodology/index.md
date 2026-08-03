@@ -370,7 +370,7 @@ Eine Vorhersage wird **90 Tage vor dem Wahltermin** freigeschaltet und bei neuen
 
 ### Warum nicht einfach die letzten Umfragen nehmen?
 
-Umfragen kurz vor der Wahl sind der stärkste einzelne Prädiktor — aber sie liegen systematisch mal daneben, und zwar nicht für alle Parteien gleich. Historisch werden manche Parteien in Landtagsumfragen tendenziell über-, andere unterschätzt, und Umfragen einige Wochen vor der Wahl verfehlen das Ergebnis im Schnitt um mehrere Prozentpunkte. Ein statistisches Modell kann aus vergangenen Wahlen **lernen**, wie stark Umfragen zu gewichten sind, welche weiteren Faktoren das Ergebnis mitbestimmen — und wie groß die verbleibende Unsicherheit realistischerweise ist.
+Umfragen kurz vor der Wahl sind der stärkste einzelne Prädiktor — aber sie liegen systematisch mal daneben, und zwar nicht für alle Parteien gleich. Historisch werden manche Parteien in Landtagsumfragen tendenziell über-, andere unterschätzt, und Umfragen einige Wochen vor der Wahl verfehlen das Ergebnis im Schnitt um mehrere Prozentpunkte. Ein statistisches Modell kann aus vergangenen Wahlen **lernen**, wie stark Umfragen zu gewichten sind — und wie groß die verbleibende Unsicherheit realistischerweise ist.
 
 <div class="meth-fig" aria-label="Historischer Umfragefehler nach Partei">
   <p class="meth-fig-title">Historischer Umfragefehler nach Partei</p>
@@ -380,9 +380,11 @@ Umfragen kurz vor der Wahl sind der stärkste einzelne Prädiktor — aber sie l
 
 ### Das Modell
 
-Unsere Landtagswahl-Vorhersage beruht auf einem **bayesianischen Regressionsmodell**, das auf deutschen Landtagswahlen mit Umfragedaten trainiert wurde. Modelliert wird der Stimmenanteil jeder Partei (auf der Logit-Skala, damit Anteile zwischen 0 und 100 % bleiben) aus den **Landesumfragen** zum aktuellen Stichtag („Stand“). Anders als im Paper nutzen wir ein Vorlauf-Modell für die **genaue Zahl der Tage bis zur Wahl** — und das Live-Modell ist **umfragenbasiert** (polls-only): Bundestrend, letztes Wahlergebnis und Regierungsbeteiligung fließen in die Paper-Variante `_all` ein, nicht in die hier gezeigte Vorhersage. **Keine** `new_party`-Variable — neue Wettbewerber stecken bereits in den Umfragen.
+Unsere Landtagswahl-Vorhersage beruht auf einem **bayesianischen Regressionsmodell**, trainiert auf deutschen Landtagswahlen mit Umfragedaten. Für jede Partei schätzt es den Stimmenanteil am Wahltag — aus den **aktuellen Landesumfragen** („Stand“) und daraus, **wie viele Tage** es noch bis zur Wahl sind. Je näher der Termin, desto stärker zählen die Umfragen und desto schmaler werden typischerweise die Intervalle.
 
-Das Modell schätzt aus den historischen Wahlen, wie stark die Umfragen zu gewichten sind — und wie groß der typische Restfehler ist. Genau dieser Restfehler bestimmt die Breite der Unsicherheitsintervalle.
+Eingangsdaten sind nur die Landesumfragen (plus der Vorlauf). Bundestrend, letztes Wahlergebnis oder Regierungsbeteiligung fließen **nicht** ein. Auch neue Parteien stecken bereits in den Umfragen — sie brauchen keinen eigenen Extra-Faktor im Modell.
+
+Das Modell lernt aus vergangenen Wahlen, wie stark Umfragen zu gewichten sind und wie groß der typische Restfehler bleibt. Genau dieser Restfehler bestimmt die Breite der Unsicherheitsintervalle.
 
 <div class="meth-fig" aria-label="Prognosefehler nach Vorlauf">
   <p class="meth-fig-title">Je näher die Wahl, desto kleiner der Fehler</p>
@@ -443,8 +445,8 @@ Eine Wahrscheinlichkeit von z. B. 69 % für „BSW über 5 %-Hürde“ heißt: I
 | | **Stimmung** (Balken/Linien) | **Vorhersage** |
 |---|---|---|
 | Frage | Wie ist die Stimmung *heute*? | Wie geht die Wahl *am Wahltag* aus? |
-| Methode | [Kalman-Filter](/blog/posts/polling-calculation-methods/) über alle Umfragen | Bayesianisches Modell (polls-only), trainiert auf Landtagswahlen |
-| Eingangsdaten | Nur Umfragen | Landesumfragen (mit Vorlauf bis zur Wahl; anders als im Paper ohne Bundestrend/L1/Regierung) |
+| Methode | [Kalman-Filter](/blog/posts/polling-calculation-methods/) über alle Umfragen | Bayesianisches Modell, trainiert auf Landtagswahlen |
+| Eingangsdaten | Nur Umfragen | Landesumfragen + Tage bis zur Wahl |
 | Unsicherheit | ±1σ-Band der Umfrageglättung | 5/6-Intervall inkl. historischem Prognosefehler |
 | Verfügbar | Immer | Ab 90 Tage vor der Wahl |
 
