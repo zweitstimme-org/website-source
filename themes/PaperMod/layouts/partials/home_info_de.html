@@ -724,10 +724,53 @@ function dropMatchedDuplicates(polls) {
   return list.filter((poll) => !dropIds.has(Number(poll && poll.id)));
 }
 
+function pollRawPartyPct(poll, partyKeys) {
+  const results = poll && poll.results;
+  if (!Array.isArray(results) || !results.length) return null;
+  const keys = new Set((partyKeys || []).map((k) => String(k).toUpperCase()));
+  for (const row of results) {
+    if (!row) continue;
+    const raw = row.party_key || row.party_short_name || row.party_name;
+    if (!raw || !keys.has(String(raw).toUpperCase())) continue;
+    const val = Number(row.percentage);
+    if (Number.isFinite(val)) return val;
+  }
+  return null;
+}
+
+function pollHasRawParty(poll, partyKeys) {
+  return pollRawPartyPct(poll, partyKeys) != null;
+}
+
+// Federal Sonntagsfrage rows are scraped into Thüringen (BILD/INSA etc.).
+// TH Landtag Grüne have been ≤5% since 2024; federal Grüne stay ~10–16%
+// even when federal SPD is in the low teens. TH-only — western states
+// legitimately have high Grüne.
+function isMisscopedFederalThPoll(poll) {
+  if (!poll || !Array.isArray(poll.results) || !poll.results.length) return false;
+  const date = String(poll.publish_date || poll.published_date || '');
+  if (!date || date < '2024-01-01') return false;
+  const gruene = pollRawPartyPct(poll, ['GRUENE', 'GRÜNE', 'Grüne', 'gruene']);
+  return gruene != null && gruene >= 8;
+}
+
+function dropMisscopedFederalPolls(polls, scope) {
+  const list = Array.isArray(polls) ? polls : [];
+  const scopeL = String(scope || '').toLowerCase();
+  if (scopeL !== 'th' && scopeL !== 'thueringen' && scopeL !== 'thüringen') {
+    return list;
+  }
+  return list.filter((poll) => !isMisscopedFederalThPoll(poll));
+}
+
 async function fetchPollsAll({ scope, dateFrom, dateTo, includeResults = true, maxTotal = 2000 }) {
   const limit = POLLING_API_PAGE_SIZE;
   let offset = 0;
   let items = [];
+  const scopeL = String(scope || '').toLowerCase();
+  const isTh = scopeL === 'th' || scopeL === 'thueringen' || scopeL === 'thüringen';
+  // TH filter needs party results to detect mis-scoped federal rows.
+  const wantResults = includeResults || isTh;
   while (items.length < maxTotal) {
     const page = await apiFetchJson('/v2/polls', {
       limit,
@@ -735,7 +778,7 @@ async function fetchPollsAll({ scope, dateFrom, dateTo, includeResults = true, m
       scope,
       published_from: dateFrom,
       published_to: dateTo,
-      include_results: includeResults,
+      include_results: wantResults,
       sort: '-published_date'
     });
     const pageItems = (page && Array.isArray(page.data)) ? page.data : [];
@@ -746,20 +789,25 @@ async function fetchPollsAll({ scope, dateFrom, dateTo, includeResults = true, m
     if (!pageItems.length) break;
     if (total !== null && offset >= total) break;
   }
-  return dropMatchedDuplicates(items);
+  return dropMisscopedFederalPolls(dropMatchedDuplicates(items), scope);
 }
 
 async function fetchLatestPoll({ scope }) {
   // Fetch a small page so a matched twin pair can be collapsed to the preferred poll.
+  const scopeL = String(scope || '').toLowerCase();
+  const isTh = scopeL === 'th' || scopeL === 'thueringen' || scopeL === 'thüringen';
   const page = await apiFetchJson('/v2/polls', {
     limit: 20,
     offset: 0,
     scope,
-    include_results: false,
+    include_results: isTh,
     sort: '-published_date'
   });
-  const items = dropMatchedDuplicates(
-    (page && Array.isArray(page.data)) ? page.data.map(normalizeV2Poll) : []
+  const items = dropMisscopedFederalPolls(
+    dropMatchedDuplicates(
+      (page && Array.isArray(page.data)) ? page.data.map(normalizeV2Poll) : []
+    ),
+    scope
   );
   return items.length ? items[0] : null;
 }
