@@ -191,7 +191,12 @@
       delete o.Nachname;
       out.push(o);
     }
-    return out.sort((a, b) => (b.probability || 0) - (a.probability || 0) || (b.value || 0) - (a.value || 0));
+    return out.sort((a, b) => {
+      const aOth = districtIsOthers(a) ? 1 : 0;
+      const bOth = districtIsOthers(b) ? 1 : 0;
+      if (aOth !== bOth) return aOth - bOth;
+      return (b.probability || 0) - (a.probability || 0) || (b.value || 0) - (a.value || 0);
+    });
   }
 
   function formatWinProbabilityPct(prob) {
@@ -354,7 +359,6 @@
     let note = '';
     if (code === 'MV') {
       const pInc = st.p_incomplete_pct;
-      const p2 = st.p_advantage_ge2_pct;
       const p1 = (st.advantage_seats_pct && st.advantage_seats_pct['1']) || null;
       const impact = st.majority_impact || {};
       const abs = impact.scenarios && impact.scenarios.abs_maj_afd;
@@ -364,17 +368,19 @@
             vollem Ausgleich ${escapeHtml(String(abs.seats_full_ausgleich_pct))} % —
             Differenz ${escapeHtml(String(abs.cap_minus_full_pp))} pp).`
         : '';
+      const oneSeat = p1 != null
+        ? ` Wenn der Deckel greift, bleibt praktisch immer <strong>genau ein</strong> Extra-Sitz
+            (ca. ${escapeHtml(String(p1))} % der Simulationen).`
+        : '';
       note = `
         <div class="district-size-note">
           <p><strong>Überhang &amp; Ausgleich in MV:</strong> ${escapeHtml(st.note_de)}</p>
           <p>
             In etwa <strong>${escapeHtml(String(pInc))} %</strong> der Simulationen reicht der Ausgleich
             nicht vollständig (Deckel: höchstens doppelt so viele Ausgleichs- wie Überhangmandate).
-            Fast immer betrifft das die <strong>AfD</strong> als Überhangpartei — andere Parteien erhalten
+            ${oneSeat}
+            Betroffen sind vor allem SPD oder AfD als Überhangpartei — andere Parteien erhalten
             dann Ausgleichssitze, aber keinen unkompensierten Extra-Sitz.
-            Ein Vorteil von <strong>genau einem</strong> Extra-Sitz liegt bei ca. ${escapeHtml(String(p1))} %;
-            <strong>zwei oder mehr</strong> Extra-Sitze nur in ca. <strong>${escapeHtml(String(p2))} %</strong>
-            der Züge.
           </p>
           <p>
             <strong>Mehrheiten:</strong> Der Effekt auf Szenario-Wahrscheinlichkeiten liegt unter 0,5 pp.
