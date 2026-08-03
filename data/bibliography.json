@@ -197,5 +197,172 @@
     "title": "Replication Data for: The Zweitstimme Model: A Dynamic Forecast of the 2021 German Federal Election",
     "type": "dataset",
     "version": "V1"
+  },
+  {
+    "DOI": "10.1017/S1049096521000913",
+    "URL": "https://doi.org/10.1017/S1049096521000913",
+    "author": [
+      {
+        "family": "Gschwend",
+        "given": "Thomas"
+      },
+      {
+        "family": "Müller",
+        "given": "Klara"
+      },
+      {
+        "family": "Munzert",
+        "given": "Simon"
+      },
+      {
+        "family": "Neunhoeffer",
+        "given": "Marcel"
+      },
+      {
+        "family": "Stoetzer",
+        "given": "Lukas F."
+      }
+    ],
+    "container-title": "PS: Political Science & Politics",
+    "id": "PS2021",
+    "issue": "1",
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          1
+        ]
+      ]
+    },
+    "page": "85-90",
+    "publisher": "Cambridge University Press",
+    "title": "The Zweitstimme Model: A Dynamic Forecast of the 2021 German Federal Election",
+    "type": "article-journal",
+    "volume": "55"
+  },
+  {
+    "DOI": "10.1017/S1049096525000150",
+    "URL": "https://doi.org/10.1017/S1049096525000150",
+    "author": [
+      {
+        "family": "Erfort",
+        "given": "Cornelius"
+      },
+      {
+        "family": "Stoetzer",
+        "given": "Lukas F."
+      },
+      {
+        "family": "Gschwend",
+        "given": "Thomas"
+      },
+      {
+        "family": "Koch",
+        "given": "Elias"
+      },
+      {
+        "family": "Munzert",
+        "given": "Simon"
+      },
+      {
+        "family": "Rajski",
+        "given": "Hannah"
+      }
+    ],
+    "container-title": "PS: Political Science & Politics",
+    "id": "PS2025",
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          2,
+          20
+        ]
+      ]
+    },
+    "publisher": "Cambridge University Press",
+    "title": "The Zweitstimme Forecast for the German Federal Election 2025: Coalition Majorities and Vacant Districts",
+    "type": "article-journal"
+  },
+  {
+    "DOI": "10.1016/j.electstud.2025.102939",
+    "URL": "https://doi.org/10.1016/j.electstud.2025.102939",
+    "author": [
+      {
+        "family": "Stoetzer",
+        "given": "Lukas F."
+      },
+      {
+        "family": "Erfort",
+        "given": "Cornelius"
+      },
+      {
+        "family": "Rajski",
+        "given": "Hannah"
+      },
+      {
+        "family": "Gschwend",
+        "given": "Thomas"
+      },
+      {
+        "family": "Munzert",
+        "given": "Simon"
+      },
+      {
+        "family": "Koch",
+        "given": "Elias"
+      }
+    ],
+    "container-title": "Electoral Studies",
+    "id": "ES2025",
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          6
+        ]
+      ]
+    },
+    "publisher": "Elsevier",
+    "title": "An election forecasting model for subnational elections",
+    "type": "article-journal",
+    "volume": "95"
+  },
+  {
+    "DOI": "10.1016/j.electstud.2026.103104",
+    "URL": "https://doi.org/10.1016/j.electstud.2026.103104",
+    "author": [
+      {
+        "family": "Erfort",
+        "given": "Cornelius"
+      },
+      {
+        "family": "Gschwend",
+        "given": "Thomas"
+      },
+      {
+        "family": "Stoetzer",
+        "given": "Lukas F."
+      },
+      {
+        "family": "Munzert",
+        "given": "Simon"
+      }
+    ],
+    "container-title": "Electoral Studies",
+    "id": "ES2026",
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          8
+        ]
+      ]
+    },
+    "page": "103104",
+    "publisher": "Elsevier",
+    "title": "How swing model assumptions shape vote-to-seat predictions",
+    "type": "article-journal",
+    "volume": "102"
   }
 ]

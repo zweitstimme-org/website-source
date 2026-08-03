@@ -1,20 +1,29 @@
 ---
-title: "API-Dokumentation"
+title: "Forecast API"
 layout: "page"
 url: "/api"
-summary: "API Dokumentation"
+summary: "Dokumentation der Forecast API für Wahlprognosen"
 ---
 
+Zweitstimme.org betreibt zwei APIs für Wahldaten und -prognosen. Auf dieser Seite dokumentieren wir die **Forecast API** — strukturierter Zugriff auf unsere Modellergebnisse und Visualisierungen.
 
-Die zweitstimme.org API ermöglicht den Zugriff auf unsere Wahlprognosen und zugehörige Visualisierungen. Alle Endpunkte sind über https GET-Anfragen erreichbar.
+## Polling API (demnächst)
 
-## Basis-URL
+Parallel dazu arbeiten wir an einer **Polling API** für Umfragedaten: strukturierte Einzelumfragen, historische Rohdaten und Wahltermine aus unseren Quellen (u. a. DAWUM und wahlrecht.de). Die öffentliche Dokumentation folgt in Kürze.
+
+---
+
+## Forecast API
+
+Die Forecast API ermöglicht den Zugriff auf unsere Wahlprognosen und zugehörige Visualisierungen. Alle Endpunkte sind über https GET-Anfragen erreichbar.
+
+### Basis-URL
 
 `https://zweitstimme.org`
 
-## Endpunkte
+### Endpunkte
 
-### Letztes Update
+#### Letztes Update
 **Endpunkt:** `/last_updated.json`  
 **Methode:** GET  
 **Beschreibung:** Gibt den Zeitstempel der letzten Aktualisierung zurück.
@@ -28,7 +37,7 @@ Die zweitstimme.org API ermöglicht den Zugriff auf unsere Wahlprognosen und zug
 ```
 
 
-### Aktuelle Zweitstimmen-Prognose
+#### Aktuelle Zweitstimmen-Prognose
 **Endpunkt:** `/forecast.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert die aktuellen Wahlprognosen inklusive der 83% Konfidenzintervalle.
@@ -55,7 +64,7 @@ json
 ]
 ```
 
-### Prognosen für bestimmte Ereignisse
+#### Prognosen für bestimmte Ereignisse
 **Endpunkt:** `/pred_probabilities.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert Prognosen für Ereignisse, z.B. dass Partei X mehr als 5% der Stimmen erhält oder das es Mehrheiten für Koalitionen gibt. Hier wird auch die Grundmandatsklausel berücksichtigt.
@@ -89,7 +98,7 @@ json
 ]
 ```
 
-### Erststimmen-Prognosen
+#### Erststimmen-Prognosen
 **Endpunkt:** `/forecast_districts.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert Prognosen für alle 299 Bundestagswahlkreise inklusive der 83% Konfidenzintervalle. Außerdem analog Vorhersagen für die Zweitstimmen (zs) in den Wahlkreisen. Außerdem die Werte bei der vergangenen Wahl (l1). abandon_p_party ist die Wahrscheinlichkeit, dass ein Wahlkreis von dieser Partei nicht besetzt wird (für die Gesamtwahrscheinlichkeit müssen die Wahrscheinlichkeiten für alle Parteien addiert werden). 
@@ -123,7 +132,7 @@ json
 ]
 ```
 
-### Prognosen für nicht besetzte Wahlkreise
+#### Prognosen für nicht besetzte Wahlkreise
 **Endpunkt:** `/pred_vacant.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert Prognosen für die Wahrscheinlichkeit, dass ein Wahlkreis unabhangig von der Partei nicht besetzt wird.
@@ -145,7 +154,7 @@ json
 
 
 
-### Prognose-Verteilung
+#### Prognose-Verteilung
 **Endpunkt:** `/draws.json`  
 **Methode:** GET  
 **Beschreibung:** Liefert 10.000 Ziehungen aus der Prognoseverteilung für detaillierte statistische Analysen, je Partei ein Wert.
@@ -168,34 +177,34 @@ json
 ]
 ```
 
-### Visualisierungen
+#### Visualisierungen
 
-#### Mobile Zweitstimmen-Visualisierung
+##### Mobile Zweitstimmen-Visualisierung
 **Endpunkt:** `/interactive_mobile.html`  
 **Methode:** GET  
 **Beschreibung:** Optimierte Version der interaktiven Visualisierung für mobile Geräte.
 
-#### Interaktive Erststimmen-Visualisierung
+##### Interaktive Erststimmen-Visualisierung
 **Endpunkt:** `/interactive_districts_share.html`  
 **Methode:** GET  
 **Beschreibung:** Liefert eine interaktive Karte der aktuellen Prognose.
 
-#### Interaktive Erststimmen-Gewinn-Visualisierung
+##### Interaktive Erststimmen-Gewinn-Visualisierung
 **Endpunkt:** `/interactive_districts_probability.html`  
 **Methode:** GET  
 **Beschreibung:** Liefert eine interaktive Karte der aktuellen Prognose.
 
-#### Interaktive Visualisierung der Wahrscheinlichkeiten für nicht besetzte Wahlkreise
+##### Interaktive Visualisierung der Wahrscheinlichkeiten für nicht besetzte Wahlkreise
 **Endpunkt:** `/interactive_vacant.html`  
 **Methode:** GET  
 **Beschreibung:** Liefert eine interaktive Karte der Wahrscheinlichkeiten für nicht besetzte Wahlkreise.
 
 
 ## CORS
-Die API unterstützt Cross-Origin Resource Sharing (CORS) und erlaubt Anfragen von allen Domains (*).
+Die Forecast API unterstützt Cross-Origin Resource Sharing (CORS) und erlaubt Anfragen von allen Domains (*).
 
 ## Fehlermeldungen
 Bei nicht verfügbaren Ressourcen wird ein 404-Status zurückgegeben mit einer entsprechenden Fehlermeldung im JSON-Format.
 
 ## Nutzungsbedingungen
-Die API ist für nicht-kommerzielle Nutzung verfügbar. Bei Verwendung der Daten ist zweitstimme.org als Quelle anzugeben. Wir übernehmen keine Gewähr für die Verfügbarkeit und Richtigkeit der Daten.
+Die Forecast API ist für nicht-kommerzielle Nutzung verfügbar. Bei Verwendung der Daten ist zweitstimme.org als Quelle anzugeben. Wir übernehmen keine Gewähr für die Verfügbarkeit und Richtigkeit der Daten.

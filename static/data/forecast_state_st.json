@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "state_code": "ST",
+    "election_date": "2026-09-06",
+    "election_id": "st_2026-09-06",
+    "model": "state-models lr 37_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
+    "lead": "37",
+    "lead_model": "37_polls",
+    "lead_horizon_days": 37,
+    "poll_window_days": null,
+    "last_poll_date": "2026-07-30",
+    "asof_date": "2026-07-31",
+    "last_update": "2026-07-31T15:03:47",
+    "scenario_config_md5": "3a25ecaa8fd1a2e364c0f4e77797cfec",
+    "predictor_encoding": "state_models_exact_lead_v1",
+    "shares_normalized_to_100": true,
+    "source_repo": "zweitstimme-org/state-models"
+  },
+  "parties": [
+    {
+      "party": "CDU",
+      "party_code": "cdu",
+      "fit": 23,
+      "low": 16,
+      "high": 31
+    },
+    {
+      "party": "AfD",
+      "party_code": "afd",
+      "fit": 39,
+      "low": 30,
+      "high": 46
+    },
+    {
+      "party": "LINKE",
+      "party_code": "lin",
+      "fit": 14,
+      "low": 9,
+      "high": 19
+    },
+    {
+      "party": "SPD",
+      "party_code": "spd",
+      "fit": 7,
+      "low": 4,
+      "high": 10
+    },
+    {
+      "party": "FDP",
+      "party_code": "fdp",
+      "fit": 3,
+      "low": 2,
+      "high": 5
+    },
+    {
+      "party": "GRÜNE",
+      "party_code": "gru",
+      "fit": 5,
+      "low": 3,
+      "high": 8
+    },
+    {
+      "party": "BSW",
+      "party_code": "bsw",
+      "fit": 4,
+      "low": 3,
+      "high": 7
+    },
+    {
+      "party": "Sonstige",
+      "party_code": "oth",
+      "fit": 5,
+      "low": 3,
+      "high": 8
+    }
+  ],
+  "scenarios": {
+    "min_probability_pct": 1,
+    "hurdle_pct": 5,
+    "items": [
+      {
+        "id": "largest_party_afd",
+        "category": "largest_party",
+        "label_de": "AfD stärkste Kraft",
+        "probability": 93
+      },
+      {
+        "id": "above_hurdle_spd",
+        "category": "above_hurdle",
+        "label_de": "SPD über 5%-Hürde",
+        "probability": 84
+      },
+      {
+        "id": "above_hurdle_gru",
+        "category": "above_hurdle",
+        "label_de": "Grüne über 5%-Hürde",
+        "probability": 53
+      },
+      {
+        "id": "above_hurdle_bsw",
+        "category": "above_hurdle",
+        "label_de": "BSW über 5%-Hürde",
+        "probability": 40
+      },
+      {
+        "id": "abs_maj_afd",
+        "category": "coalition",
+        "label_de": "Absolute Mehrheit AfD",
+        "probability": 19
+      },
+      {
+        "id": "above_hurdle_fdp",
+        "category": "above_hurdle",
+        "label_de": "FDP über 5%-Hürde",
+        "probability": 10
+      },
+      {
+        "id": "largest_party_cdu",
+        "category": "largest_party",
+        "label_de": "CDU stärkste Kraft",
+        "probability": 7
+      },
+      {
+        "id": "coal_cdu_spd_gru",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
+        "probability": 3
+      },
+      {
+        "id": "coal_cdu_bsw_spd",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit CDU, BSW und SPD",
+        "probability": 2
+      },
+      {
+        "id": "coal_cdu_bsw_gru",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit CDU, BSW und Grüne",
+        "probability": 1
+      },
+      {
+        "id": "coal_cdu_spd_gru_fdp",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit CDU, SPD, Grüne und FDP",
+        "probability": 1
+      }
+    ]
+  }
+}

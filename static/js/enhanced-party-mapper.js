@@ -39,6 +39,8 @@ class EnhancedPartyMapper {
         // Party color mapping
         this.partyColors = {
             'CDU/CSU': '#000000',
+            'CDU': '#000000',
+            'CSU': '#000000',
             'SPD': '#E3000F',
             'GRÜNE': '#46962b',
             'FDP': '#FFED00',

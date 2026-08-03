@@ -1,39 +1,55 @@
-name: Deploy to GitHub Pages
+name: Deploy to zweitstimme.org
 
+# Hugo source lives in website-source; the live GitHub Pages site is the
+# zweitstimme-org/website repo (CNAME zweitstimme.org, branch main).
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-zweitstimme-org
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        submodules: true
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
 
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
-      with:
-        hugo-version: '0.135.0'
-        extended: true
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.135.0"
+          extended: true
 
-    - name: Build
-      run: |
-        cd website-mock
-        hugo --minify
+      - name: Patch hugo-cite deprecations
+        run: |
+          if [[ -d themes/hugo-cite ]]; then
+            while IFS= read -r -d '' f; do
+              sed -i 's/echoParam \. "\([^"]*\)"/index . "\1"/g' "$f"
+            done < <(find themes/hugo-cite -name '*.html' -print0)
+          fi
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./website-mock/public
-        cname: # Leave empty for no custom domain
+      - name: Build
+        run: hugo --minify
 
-
+      - name: Deploy to zweitstimme-org/website
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.WEBSITE_DEPLOY_TOKEN }}
+          external_repository: zweitstimme-org/website
+          publish_branch: main
+          publish_dir: ./public
+          cname: zweitstimme.org
+          force_orphan: true
+          user_name: zweitstimme-pipeline-bot
+          user_email: pipeline@zweitstimme.org
+          commit_message: "deploy: Hugo build from website-source"

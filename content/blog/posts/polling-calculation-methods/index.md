@@ -2,143 +2,145 @@
 title: "Wie werden die Werte für Bundes- und Landesdiagramme berechnet?"
 date: 2025-08-24T10:00:00+02:00
 draft: false
+aliases:
+  - /archive/posts/polling-calculation-methods/
 ---
 
 ## Die Berechnung der Umfragewerte bei Zweitstimme.org
 
-Die Diagramme auf Zweitstimme.org zeigen nicht einfach nur einzelne Umfragen, sondern berechnete Werte, die mit einem mathematischen Verfahren namens **Kalman-Filter** ermittelt werden. In diesem Beitrag erklären wir, wie diese Werte für Bundes- und Landtagswahlen berechnet werden und warum diese Methode aussagekräftiger ist als einzelne Umfragen.
+Die Balken und Linien auf der Startseite zeigen keine einzelne Umfrage, sondern eine **latente Stimmung**: eine geglättete Schätzung der aktuellen Parteienunterstützung. Sie wird in unserer Datenpipeline mit einem **Kalman-Filter** aus allen verfügbaren Umfragen berechnet — und aktualisiert, wenn neue Umfragen verfügbar sind. Die einzelnen Umfragen selbst erscheinen als **Punkte** in den Verlaufsdiagrammen und in der Umfragenliste.
 
 ### Warum Kalman-Filter statt Einzelumfragen?
 
-Einzelne Umfragen können durch verschiedene Faktoren verzerrt werden: unterschiedliche Befragungsmethoden, Stichprobengrößen, oder zeitliche Schwankungen in der Stimmung. Der Kalman-Filter kombiniert alle verfügbaren Umfragen zu einer stabilen und zuverlässigen Schätzung der aktuellen politischen Stimmung.
+Einzelne Umfragen schwanken — wegen Stichprobenfehlern, unterschiedlicher Erhebungsmethoden und kurzfristiger Stimmungsänderungen. Der Kalman-Filter fasst viele Umfragen über die Zeit zu einer stabilen Schätzung zusammen, glättet zufälliges Rauschen und erzeugt eine durchgehende Zeitreihe auch an Tagen ohne neue Umfrage.
+
+<figure class="kalman-demo" style="margin: 1.75rem 0;">
+  <img src="kalman-demo.svg" alt="Wie der Kalman-Filter Umfragen glättet — fiktives Beispiel mit Punkten, geglätteter Linie und Unsicherheitsband" width="720" height="380" style="width: 100%; height: auto; display: block; border-radius: 12px;">
+  <figcaption style="margin-top: 0.65rem; font-size: 0.92rem; color: var(--secondary, #666); line-height: 1.45;">
+    Schematisches Beispiel: Die Punkte sind einzelne Umfragen mit Messrauschen. Die Linie ist die geglättete latente Stimmung (RTS-Smoother). Das Band zeigt die ±1σ-Unsicherheit: bei vielen Umfragen eng, in einer längeren Lücke ohne Umfragen breiter (Linsenform).
+  </figcaption>
+</figure>
 
 ### Die Datenbasis
 
-Unsere Berechnungen basieren auf Umfragedaten von verschiedenen renommierten Instituten, die wir über eine externe API beziehen. Die Daten umfassen:
+- **Quellen**: Umfragen aus [DAWUM](https://dawum.de) und [wahlrecht.de](https://www.wahlrecht.de/umfragen/), bereitgestellt über die [Fasttrack-Polling-API](https://api.fasttrack29.com)
+- **Bund und Länder**: Bundesumfragen sowie Umfragen zu allen 16 Landtagen
+- **Zeitraum**: bis zu 10 Jahre Historie für Verlaufsdiagramme
+- **Parteien**: CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP sowie — je nach Verfügbarkeit — FW, SSW, PIRATEN, REP und Sonstige
 
-- **Bundesumfragen**: Alle Umfragen zur Bundestagswahl
-- **Landesumfragen**: Umfragen zu den 16 deutschen Landesparlamenten
-- **Zeitraum**: Die letzten 10 Jahre für historische Trends
-- **Parteien**: CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP und Sonstige
+### Wo die Berechnung stattfindet
 
-### Die Berechnungsmethode: Dynamische Lineare Modelle mit Kalman-Filterung
+Die Kalman-Schätzung läuft **serverseitig** in unserer R-Pipeline und wird neu berechnet, wenn neue Umfragen verfügbar sind. Die Website lädt die fertigen Zeitreihen als JSON (`stimmung_federal.json`, `stimmung_states.json`). Einzelne Umfragen für Punkte und Tabellen werden im Browser direkt von der Polling-API abgerufen.
 
-#### Was ist der Kalman-Filter?
+### Schritt für Schritt
 
-Der Kalman-Filter ist ein mathematisches Verfahren, das ursprünglich für die Navigation von Raumfahrzeugen entwickelt wurde. Er kombiniert kontinuierlich neue Informationen (Umfragen) mit bisherigen Schätzungen und passt sich automatisch an die Qualität und Menge der verfügbaren Daten an.
+1. **Umfragen sammeln** — Alle Umfragen im gewählten Zeitraum werden aus der API geladen.
+2. **Parteinamen vereinheitlichen** — unterschiedliche Institutsbezeichnungen werden auf ein gemeinsames Schema gebracht (siehe [unten](#parteikonsolidierung)).
+3. **Tägliche Beobachtungen** — Für jeden Tag und jede Partei: Falls an diesem Tag eine oder mehrere Umfragen vorliegen, wird der **einfache Mittelwert** der Tagesumfragen als Beobachtung verwendet. Tage ohne Umfrage bleiben leer.
+4. **Parameter schätzen** — Prozessrauschen <span data-tex="q"></span> und Messrauschen <span data-tex="r"></span> werden aus den Umfragen des jeweiligen Gebiets kalibriert (siehe [unten](#das-mathematische-modell)).
+5. **Kalman-Filter pro Partei** — Für jede Partei wird unabhängig ein eindimensionaler **Random-Walk-Kalman-Filter** über die tägliche Zeitreihe gefahren.
+6. **Glättung (RTS-Smoother)** — Für Verlaufslinien und den aktuellen Balkenwert nutzen wir den **Rauch–Tung–Striebel-Smoother**, der die gesamte Zeitreihe rückwärts glättet und damit auch Lücken zwischen Umfragen sinnvoll überbrückt.
+7. **Aktive Parteien bestimmen** — Für jeden Tag wird geprüft, welche Parteien von den Instituten zu diesem Zeitpunkt überhaupt einzeln ausgewiesen werden ([Details unten](#parteien-kommen-und-gehen)). Nur diese „aktiven“ Parteien erscheinen als Linie bzw. Balken.
+8. **Normalisierung** — Die aktiven Parteien behalten ihre geglätteten Werte; **„Sonstige“ wird als Rest zu 100 %** über die aktiven Parteien berechnet. Parteien, die (noch oder nicht mehr) nicht aktiv erhoben werden, sind damit automatisch in „Sonstige“ enthalten.
 
-#### Wie funktioniert die Berechnung?
+### Das mathematische Modell
 
-1. **Datensammlung**: Wir sammeln alle verfügbaren Umfragen der letzten 10 Jahre
-2. **Tägliche Schätzungen**: Für jeden Tag berechnen wir eine Schätzung der Parteienunterstützung
-3. **Glättung**: Der Kalman-Filter glättet kurzfristige Schwankungen und füllt Lücken zwischen Umfragen
-4. **Aktuelle Werte**: Die aktuell angezeigten Werte sind die neuesten Schätzungen des Kalman-Filters
+Für jede Partei gilt ein einfaches Zustandsraummodell:
 
-#### Mathematische Grundlagen
+- **Zustand** <span data-tex="x_t"></span>: die (unbeobachtete) latente Unterstützung an Tag <span data-tex="t"></span>
+- **Übergang**: <span data-tex="x_t = x_{t-1} + w_t"></span> — die Stimmung darf sich langsam ändern (Random Walk)
+- **Beobachtung**: <span data-tex="y_t = x_t + v_t"></span> — an Umfragetagen messen wir <span data-tex="y_t"></span> als Tagesmittel der Umfragen
 
-Der Kalman-Filter verwendet ein **Dynamisches Lineares Modell (DLM)** mit folgenden Komponenten:
+Zwei Parameter steuern, wie stark geglättet wird — und beide werden **nicht fest vorgegeben**, sondern **bei jedem Pipelinelauf aus den Umfragen des jeweiligen Gebiets geschätzt** (eigene Werte für Bund und jedes Bundesland):
 
-- **Zustandsgleichung**: Beschreibt, wie sich die Unterstützung von Tag zu Tag entwickelt
-- **Beobachtungsgleichung**: Beschreibt, wie Umfragen die wahre Unterstützung messen
-- **Rauschmodell**: Berücksichtigt Unsicherheiten in den Daten
+| Parameter | Bedeutung | Wirkung |
+|-----------|-----------|---------|
+| **q** (Prozessrauschen) | Wie schnell sich die latente Stimmung ändern darf | größeres <span data-tex="q"></span> → reaktivere Linie |
+| **r** (Messrauschen) | Wie stark einzelne Umfragen vom wahren Wert abweichen können | größeres <span data-tex="r"></span> → stärkere Glättung |
 
-#### Beispiel: CDU/CSU in Bundesumfragen
+**So schätzen wir sie** (passend zur Beobachtungsgleichung des Filters):
 
-Angenommen, wir haben folgende Umfragen für die CDU/CSU:
-- 15. August: 28% (Forsa, 1000 Befragte)
-- 18. August: 30% (Infratest, 1200 Befragte)
-- 20. August: 27% (Emnid, 800 Befragte)
+1. **<span data-tex="r"></span>** aus der Streuung mehrerer Umfragen **am selben Tag** (dieselbe Partei, verschiedene Institute) — das ist der typische Messfehler einer einzelnen Umfrage.
+2. **<span data-tex="q"></span>** aus der Restbewegung der **Tagesmittel** zwischen aufeinanderfolgenden Umfragetagen, nachdem dieser Messfehler herausgerechnet wurde:
 
-Der Kalman-Filter:
-1. **Kombiniert** alle drei Umfragen
-2. **Gewichtet** sie nach Qualität und Aktualität
-3. **Glättet** die Schwankungen
-4. **Ergibt** eine stabile Schätzung von etwa 28,5%
+<div class="math-block" data-tex="\mathrm{E}[(\bar{y}_j-\bar{y}_i)^2] = q\cdot\mathrm{gap} + r\cdot\!\left(\frac{1}{n_i}+\frac{1}{n_j}\right)" data-display="true"></div>
 
-### Vorteile der Kalman-Filterung
+Typische Größenordnungen: <span data-tex="r \approx 1\text{–}2"></span> (Messfehler etwa ±1–1,4 Prozentpunkte) und <span data-tex="q \approx 0{,}03\text{–}0{,}1"></span> pro Tag (Drift grob ±3–6 Prozentpunkte pro Jahr). Fehlen genug Beobachtungspaare oder wäre eine Schätzung nicht positiv, greifen Fallback-Werte.
 
-#### 1. Stabilität
-- Kurzfristige Schwankungen werden herausgefiltert
-- Ausreißer haben weniger Einfluss
-- Stetige Entwicklung der Schätzungen
+#### Die Unsicherheitsbänder
 
-#### 2. Lückenfüllung
-- Tage ohne Umfragen werden interpoliert
-- Kontinuierliche Zeitreihen
-- Keine abrupten Sprünge
+Das farbige Band um jede Linie zeigt die **±1σ-Unsicherheit** (ca. 68 %-Intervall) der Kalman-Schätzung. Charakteristisch — und beabsichtigt — ist seine **Linsenform bei dünner Umfragelage**: An Tagen mit einer Umfrage ist die Schätzung am sichersten (das Band schnürt sich zusammen), zwischen zwei weit auseinanderliegenden Umfragen wächst die Unsicherheit und das Band wird breiter. In den Länderdiagrammen mit wenigen Umfragen pro Jahr ist dieser Effekt deutlich sichtbar; im Bundesdiagramm mit fast täglichen Umfragen bleibt das Band gleichmäßig schmal.
 
-#### 3. Unsicherheitsquantifizierung
-- Je mehr Daten, desto sicherer die Schätzung
-- Automatische Anpassung an Datenqualität
-- Berücksichtigung von Messfehlern
+### Wenn Parteien in Umfragen kommen und gehen {#parteien-kommen-und-gehen}
 
-#### 4. Adaptivität
-- Passt sich an neue Daten an
-- Berücksichtigt systematische Unterschiede zwischen Instituten
-- Lernt aus historischen Mustern
+Nicht jede Umfrage weist dieselben Parteien aus — und das ändert sich über die Zeit. Das BSW etwa taucht erst ab Anfang 2024 in Umfragen auf; umgekehrt weisen Institute Parteien wie die FDP in manchen Bundesländern irgendwann nicht mehr einzeln aus, sobald sie dauerhaft unter der Wahrnehmungsschwelle liegen. Dazu kommt: Auch **zum selben Zeitpunkt** unterscheiden sich die Institute — das eine fragt das BSW ab, das andere nicht. Das hat zwei wichtige Konsequenzen für die Berechnung:
 
-### Historische Trends
+**1. Fehlend heißt nicht null.** Wenn ein Institut eine Partei nicht ausweist, heißt das nicht, dass sie dort 0 % hat — ihr Anteil steckt dann in „Sonstige“ dieses Instituts. Für die Kalman-Schätzung einer Partei verwenden wir deshalb an jedem Tag **nur die Umfragen, die diese Partei tatsächlich ausweisen**. Eine Umfrage ohne FDP-Wert zieht die FDP-Linie also weder auf null noch erzeugt sie eine Lücke.
 
-Für die historischen Verläufe verwenden wir denselben Kalman-Filter über einen Zeitraum von 10 Jahren. Dies ermöglicht:
+**2. „Sonstige“ ist nicht direkt vergleichbar.** Meldet Institut A das BSW mit 4 % und „Sonstige“ mit 5 %, während Institut B kein BSW ausweist und „Sonstige“ mit 9 % meldet, dann messen beide etwas anderes: Bei Institut B steckt das BSW **in** den Sonstigen. Deshalb berechnen wir „Sonstige“ in Balken und Linien nie aus den gemeldeten Sonstige-Werten, sondern immer als **Rest zu 100 %** über die angezeigten Parteien.
 
-- **Langfristige Trends**: Entwicklung der Parteien über Jahre
-- **Saisonale Muster**: Wiederkehrende Schwankungen
-- **Strukturelle Brüche**: Erkennung von fundamentalen Änderungen
+#### Welche Parteien werden angezeigt?
+
+Für jeden Tag bestimmen wir, welche Parteien zum **aktuell erhobenen Parteienspektrum** gehören. Als Referenz dienen alle Umfragen der letzten 90 Tage, mindestens aber die letzten 5 Umfragen (wichtig für Bundesländer mit wenigen Umfragen):
+
+- **Aufnahme**: Eine Partei wird angezeigt, sobald mindestens **40 %** der Umfragen im Referenzfenster sie einzeln ausweisen.
+- **Ausschluss**: Sie wird ausgeblendet, wenn ihr Anteil unter **10 %** der Umfragen fällt (bei dünner Umfragelage zusätzlich erst, wenn 30 Tage lang keine Umfrage sie ausgewiesen hat).
+- **Dazwischen** bleibt der bisherige Zustand bestehen — so „flackern“ Linien nicht, wenn einzelne Institute eine Partei vorübergehend weglassen.
+
+Das bedeutet konkret:
+
+- **Verlauf**: Die Linie einer Partei **beginnt**, wenn sie erhoben wird (das BSW hat vor 2024 keine Linie — es existierte schlicht noch nicht), und **endet**, wenn die Institute sie nicht mehr ausweisen (z. B. die FDP in Sachsen ab Ende 2024). Außerhalb dieses Zeitraums ist ihr Anteil im grauen „Sonstige“-Band enthalten.
+- **Aktuell**: In den Balken erscheinen nur aktuell erhobene Parteien. Eine Partei, die nicht mehr abgefragt wird, bleibt nicht mit ihrem letzten (veralteten) Wert stehen, sondern wird in „Sonstige“ überführt.
+- **Punkte**: Die Umfragepunkte zeigen weiterhin die rohen gemeldeten Werte. Einzige Ausnahme: Der **Sonstige-Punkt** einer Umfrage wird an das angezeigte Parteienset angepasst — weist eine Umfrage z. B. das BSW nicht aus, ziehen wir dessen geschätzten Tageswert von ihrem gemeldeten Sonstige-Wert ab, damit der Punkt mit der Sonstige-Linie vergleichbar ist. Der Tooltip zeigt in diesem Fall zusätzlich den ursprünglich gemeldeten Wert.
+
+Diese Regeln lösen ein subtiles Problem: Ohne sie würde der plötzliche Wegfall einer Partei bei einem einzelnen Institut die „Sonstige“-Werte scheinbar um mehrere Prozentpunkte springen lassen — obwohl sich an der tatsächlichen Stimmung nichts geändert hat, nur an der Frage, **welche Parteien einzeln ausgewiesen werden**.
+
+### Was auf der Website angezeigt wird
+
+| Element | Quelle | Methode |
+|---------|--------|---------|
+| **Aktuell**-Balken | Pipeline-JSON | Letzter Wert der geglätteten Kalman-Zeitreihe (nur aktuell erhobene Parteien) |
+| **Verlauf**-Linien | Pipeline-JSON | Geglättete Kalman-Zeitreihe im gewählten Zeitraum; Linien beginnen/enden mit der Erhebung der Partei |
+| **Punkte** | Live-API | Rohe Einzelumfragen (ungeglättet); Sonstige-Punkte an das angezeigte Parteienset angepasst |
+| **Umfragenliste** | Live-API | Rohe Einzelumfragen, wie vom Institut gemeldet |
+
+Der Kalman-Filter **gewichtet Institute nicht unterschiedlich** und **lernt keine Institutseffekte** — jede Umfrage am selben Tag zählt gleich im Tagesmittel. Das unterscheidet unsere Stimmungsanzeige von gewichteten Poll-of-Polls-Aggregatoren.
 
 ### Parteikonsolidierung
 
-Nicht alle Umfrageinstitute verwenden dieselben Parteinamen. Wir konsolidieren die Daten in ein einheitliches Schema:
+Nicht alle Umfrageinstitute verwenden dieselben Parteinamen. Wir fassen sie in ein einheitliches Schema zusammen:
 
-- **CDU/CSU**: Christlich Demokratische Union / Christlich-Soziale Union
-- **SPD**: Sozialdemokratische Partei Deutschlands  
-- **AfD**: Alternative für Deutschland
-- **GRÜNE**: Bündnis 90/Die Grünen
-- **LINKE**: Die Linke (inkl. historische PDS)
-- **BSW**: Bündnis Sahra Wagenknecht
-- **FDP**: Freie Demokratische Partei
-- **Sonstige**: Alle anderen Parteien (als Rest berechnet)
+- **CDU/CSU** — Christlich Demokratische Union / Christlich-Soziale Union
+- **SPD**, **AfD**, **GRÜNE**, **LINKE**, **BSW**, **FDP**
+- Regional zusätzlich z. B. **FW** (Freie Wähler) und **SSW**
+- **Sonstige** — übrige Parteien; in Balken und Linien immer als **Rest zu 100 %** über die angezeigten Parteien berechnet (siehe [oben](#parteien-kommen-und-gehen))
 
-### Qualitätskontrolle
+### Aktualisierung
 
-Unsere Berechnungen unterliegen mehreren Qualitätskontrollen:
-
-1. **Mindestanzahl Umfragen**: Wir zeigen nur Werte an, wenn ausreichend Daten verfügbar sind
-2. **Plausibilitätsprüfung**: Werte werden auf realistische Bereiche überprüft
-3. **Konsistenzprüfung**: Die Summe aller Parteien sollte etwa 100% ergeben
-4. **Stabilitätsprüfung**: Abrupte Änderungen werden auf Plausibilität geprüft
-
-### Aktualisierung der Daten
-
-Die Berechnungen werden automatisch aktualisiert, sobald neue Umfragen verfügbar sind:
-
-- **Täglich**: Überprüfung auf neue Umfragen
-- **Bei neuen Daten**: Sofortige Neuberechnung mit Kalman-Filter
-- **Wöchentlich**: Vollständige Neuberechnung der 10-Jahres-Trends
+- **Bei neuen Umfragen**: Die Pipeline lädt verfügbare Umfragen, schätzt <span data-tex="q"></span> und <span data-tex="r"></span> neu und berechnet die Kalman-Zeitreihen.
+- **Auf der Website**: Balken und Linien kommen aus den aktualisierten JSON-Dateien; Punkte und Tabellen aktualisieren sich beim Seitenaufruf aus der Live-API.
 
 ### Vergleich mit anderen Methoden
 
-Unsere Kalman-Filter-Methode unterscheidet sich von anderen Aggregatoren:
-
-- **Gewichtete Durchschnitte**: Berücksichtigen nur aktuelle Umfragen
-- **Einfache Mittelwerte**: Ignorieren Datenqualität und zeitliche Entwicklung
-- **Moving Averages**: Verwenden feste Zeitfenster
-
-Der Kalman-Filter kombiniert die Vorteile aller Methoden und passt sich automatisch an die verfügbaren Daten an.
-
-### Wissenschaftliche Grundlagen
-
-Die verwendete Methode basiert auf etablierten statistischen Verfahren:
-
-- **Bayesianische Statistik**: Kombination von Vorwissen und neuen Daten
-- **Zeitreihenanalyse**: Berücksichtigung zeitlicher Abhängigkeiten
-- **Optimalfilterung**: Minimierung des Schätzfehlers
+| Methode | Eigenschaft |
+|---------|-------------|
+| **Gewichteter Mittelwert / Poll of Polls** | Fokus auf aktuelle Umfragen, oft mit Institutsgewichten |
+| **Einfacher Durchschnitt** | Ignoriert zeitliche Entwicklung |
+| **Gleitender Mittelwert** | Festes Zeitfenster, harte Kante am Fensterrand |
+| **Kalman-Filter (unsere Methode)** | Nutzt die gesamte Historie, glättet über Zeit, füllt Lücken, liefert eine latente Stimmung |
 
 ### Fazit
 
-Die Berechnung der Umfragewerte bei Zweitstimme.org verwendet den Kalman-Filter, ein hochentwickeltes mathematisches Verfahren, das alle verfügbaren Umfragen optimal kombiniert. Durch die Glättung von Schwankungen und die Berücksichtigung von Unsicherheiten erhalten wir stabilere und zuverlässigere Schätzungen der politischen Stimmung als einfache Durchschnitte oder einzelne Umfragen.
-
-Die verwendeten Methoden basieren auf wissenschaftlichen Standards und werden kontinuierlich überprüft und verbessert. So können wir unseren Nutzern die bestmöglichen Einschätzungen der aktuellen politischen Lage bieten.
+Die Balken und Linien auf Zweitstimme.org zeigen eine **Kalman-geglättete latente Stimmung**, die aus allen verfügbaren Umfragen berechnet und bei neuen Umfragen aktualisiert wird. Einzelne Umfragen bleiben als Punkte sichtbar. So erhalten Sie eine stabilere Einschätzung der politischen Lage als aus einer einzelnen Umfrage oder einem einfachen Durchschnitt — bei voller Transparenz über die zugrunde liegenden Rohdaten.
 
 ---
 
-**Weitere Informationen zur Methodik finden Sie in unserem Beitrag [Wie ist die Berechnung?](/faq#wie-ist-die-berechnung).**
+**Wie aus der Stimmung eine Wahlprognose wird, erklären wir im Artikel [zur Landtagswahl-Vorhersage](/blog/posts/state-forecast-methodology/). Weitere Informationen finden Sie in unserem [FAQ](/faq).**
+
+<style>
+.math-block { margin: 1rem 0 1.25rem; overflow-x: auto; text-align: center; }
+span[data-tex] { white-space: nowrap; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="/js/render-tex.js"></script>
