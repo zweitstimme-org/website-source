@@ -401,9 +401,9 @@ Die Berechnung läuft täglich serverseitig in unserer Datenpipeline:
 </div>
 
 1. **Daten sammeln** — Landesumfragen kommen aus derselben Datenbasis wie die Stimmungsanzeige ([DAWUM](https://dawum.de) und [wahlrecht.de](https://www.wahlrecht.de/umfragen/)).
-2. **Prädiktoren bilden** — Für jede Partei (CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP und Sonstige) den latenten Umfragewert zum Stand-Datum und den Vorlauf bis zur Wahl.
+2. **Prädiktoren bilden** — Für jede Partei (CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP und Sonstige) den latenten Umfragewert zum Stand-Datum und den Vorlauf bis zur Wahl. Weist ein Institut eine kleine Partei nicht einzeln aus (üblich unterhalb von etwa 3 %), halten wir sie für 90 Tage nach ihrem letzten ausgewiesenen Wert bei 2 %; danach entfällt sie, bis wieder ein echter Umfragewert vorliegt.
 3. **Simulieren** — Das Modell erzeugt für jede Partei **4.000 Simulationen** des Wahlergebnisses. Jede Simulation ist ein plausibles Wahlergebnis, das sowohl die Unsicherheit der Modellparameter als auch den historischen Prognosefehler berücksichtigt; anschließend werden die Anteile in jeder Simulation auf 100 % normalisiert.
-4. **Zusammenfassen** — Die **Punktschätzung** ist der Mittelwert der Simulationen, das **5/6-Intervall** die entsprechenden Quantile — auch für Sonstige.
+4. **Zusammenfassen** — Die **Punktschätzung** ist der Median der Simulationen, das **5/6-Intervall** die entsprechenden Quantile — auch für Sonstige.
 
 ### Wie die Unsicherheit zu lesen ist
 
