@@ -3,14 +3,14 @@
     "state_code": "ST",
     "election_date": "2026-09-06",
     "election_id": "st_2026-09-06",
-    "model": "state-models lr 37_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
-    "lead": "37",
-    "lead_model": "37_polls",
-    "lead_horizon_days": 37,
+    "model": "state-models lr 32_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
+    "lead": "32",
+    "lead_model": "32_polls",
+    "lead_horizon_days": 32,
     "poll_window_days": null,
     "last_poll_date": "2026-07-30",
-    "asof_date": "2026-07-31",
-    "last_update": "2026-07-31T15:03:47",
+    "asof_date": "2026-08-05",
+    "last_update": "2026-08-05T13:30:01",
     "scenario_config_md5": "3a25ecaa8fd1a2e364c0f4e77797cfec",
     "predictor_encoding": "state_models_exact_lead_v1",
     "shares_normalized_to_100": true,
@@ -20,7 +20,7 @@
     {
       "party": "CDU",
       "party_code": "cdu",
-      "fit": 23,
+      "fit": 24,
       "low": 16,
       "high": 31
     },
@@ -69,9 +69,9 @@
     {
       "party": "Sonstige",
       "party_code": "oth",
-      "fit": 5,
+      "fit": 4,
       "low": 3,
-      "high": 8
+      "high": 7
     }
   ],
   "scenarios": {
@@ -82,25 +82,25 @@
         "id": "largest_party_afd",
         "category": "largest_party",
         "label_de": "AfD stärkste Kraft",
-        "probability": 93
+        "probability": 92
       },
       {
         "id": "above_hurdle_spd",
         "category": "above_hurdle",
         "label_de": "SPD über 5%-Hürde",
-        "probability": 84
+        "probability": 82
       },
       {
         "id": "above_hurdle_gru",
         "category": "above_hurdle",
         "label_de": "Grüne über 5%-Hürde",
-        "probability": 53
+        "probability": 54
       },
       {
         "id": "above_hurdle_bsw",
         "category": "above_hurdle",
         "label_de": "BSW über 5%-Hürde",
-        "probability": 40
+        "probability": 39
       },
       {
         "id": "abs_maj_afd",
@@ -112,13 +112,13 @@
         "id": "above_hurdle_fdp",
         "category": "above_hurdle",
         "label_de": "FDP über 5%-Hürde",
-        "probability": 10
+        "probability": 16
       },
       {
         "id": "largest_party_cdu",
         "category": "largest_party",
         "label_de": "CDU stärkste Kraft",
-        "probability": 7
+        "probability": 8
       },
       {
         "id": "coal_cdu_spd_gru",
