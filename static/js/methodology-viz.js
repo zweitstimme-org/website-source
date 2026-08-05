@@ -312,8 +312,8 @@
 
   function renderPipeline(root) {
     const steps = [
-      { n: '1', title: 'Daten', text: 'Landesumfragen zum Stand-Datum' },
-      { n: '2', title: 'Prädiktoren', text: 'Umfragewert + Vorlauf bis zur Wahl' },
+      { n: '1', title: 'Daten', text: 'Landes- & Bundesumfragen, letztes Ergebnis, Regierung' },
+      { n: '2', title: 'Prädiktoren', text: 'Vier Modellgrößen je Partei' },
       { n: '3', title: 'Simulation', text: '4.000 plausible Wahlergebnisse' },
       { n: '4', title: 'Ausgabe', text: 'Punkt, Intervall, Szenarien' }
     ];
