@@ -559,8 +559,11 @@ function getApiErrorMessage(err) {
 // Polling API helpers (Fasttrack)
 // ------------------------------
 const POLLING_API_BASE = 'https://api.fasttrack29.com';
-const POLLING_API_TIMEOUT_MS = 8000;
-const POLLING_API_PAGE_SIZE = 10000;
+// 8s was too tight for cold starts / large include_results payloads and aborted
+// the whole federal load (which also hid Vorhersagen). Paginate instead of
+// asking for 10k rows in one shot.
+const POLLING_API_TIMEOUT_MS = 20000;
+const POLLING_API_PAGE_SIZE = 100;
 
 const PARTY_KEY_TO_NAME = {
   AFD: 'AfD',
@@ -5788,8 +5791,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
 <script src="{{ "js/enhanced-party-mapper.js" | relURL }}"></script>
 <script src="{{ "js/polls-mapper-aggregator.js" | relURL }}"></script>
 <script src="{{ "js/kalman-latent-support.js" | relURL }}"></script>
@@ -6208,7 +6211,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   };
-  Chart.register(ChartDataLabels, orderedCategorySpreadPlugin, linkedPollHoverPlugin);
+  // Register plugins defensively: a missing CDN script must not abort the
+  // whole homepage block (that previously hid both Stimmung and Vorhersagen).
+  try {
+    if (typeof ChartDataLabels !== 'undefined') Chart.register(ChartDataLabels);
+  } catch (e) {
+    console.warn('chartjs-plugin-datalabels unavailable:', e);
+  }
+  try {
+    Chart.register(orderedCategorySpreadPlugin, linkedPollHoverPlugin);
+  } catch (e) {
+    console.warn('Custom Chart.js plugins failed to register:', e);
+  }
 
   function getBarChartLabelFonts() {
     const w = window.innerWidth || 1024;
@@ -6294,7 +6308,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const bundestagChartTitle = document.getElementById('bundestag-chart-title');
   const ctx = document.getElementById('bundestag-forecast-chart')?.getContext('2d');
   
-  if (!ctx) return;
+  // Do not abort the whole homepage block if the canvas is missing — Vorhersagen
+  // and Landtage init live in this same listener.
+  if (!ctx) {
+    console.error('bundestag-forecast-chart canvas/context missing; Stimmung chart disabled');
+  }
 
   // Use enhanced party mapper for colors
   const partyColors = window.enhancedPartyMapper ? window.enhancedPartyMapper.partyColors : {
@@ -7037,10 +7055,17 @@ document.addEventListener('DOMContentLoaded', function() {
       parties = [...core, ...optional, 'Sonstige'];
 
       // Fetch live polls for table/dots; Stimmung time series from pipeline JSON.
+      // Live polls must not gate the whole federal + Vorhersage bootstrap.
       const endISO = new Date().toISOString().slice(0, 10);
       let startISO = daysAgoISO(90);
       let rangeEndISO = endISO;
-      const apiPolls = await fetchPollsAll({ scope: 'federal', dateFrom: startISO, dateTo: endISO, includeResults: true, maxTotal: 2000 });
+      let apiPolls = [];
+      try {
+        apiPolls = await fetchPollsAll({ scope: 'federal', dateFrom: startISO, dateTo: endISO, includeResults: true, maxTotal: 2000 });
+      } catch (e) {
+        console.warn('Federal live polls unavailable for bootstrap:', e);
+        apiPolls = [];
+      }
 
       const pipeline = window.pipelineData;
       if (!pipeline) throw new Error('Pipeline data module not available');
@@ -7071,14 +7096,20 @@ document.addEventListener('DOMContentLoaded', function() {
         dateTo: chartEndISO,
         includeResults: true,
         maxTotal: 2000
+      }).catch((e) => {
+        console.warn('Federal poll scatter fetch failed:', e);
+        return [];
       });
 
+      // Poll scatter dots are nice-to-have. Pipeline Stimmung + Vorhersagen must
+      // still render if the live API is empty/slow/unreachable.
       if (!Array.isArray(clippedPolls) || clippedPolls.length === 0) {
-        throw new Error('POLLING_API_EMPTY');
+        console.warn('Federal poll scatter unavailable; rendering Stimmung without dots');
+        pollData = [];
+      } else {
+        // Keep raw polls for historical scatter dots (clipped to Stimmung window).
+        pollData = clippedPolls;
       }
-
-      // Keep raw polls for historical scatter dots (clipped to Stimmung window).
-      pollData = clippedPolls;
 
       // "Letzte Umfrage" / warnings must use live API polls through today — not
       // polls clipped to the Stimmung series end (that JSON can lag the API).
@@ -7210,8 +7241,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       await applyFederalDisplayMode();
-      await initVorhersageSection();
-      await initVorhersageArchiveSection();
       updateHomeSectionBackgrounds();
 
       currentTimePeriod = '3m';
@@ -7241,6 +7270,15 @@ document.addEventListener('DOMContentLoaded', function() {
       pollData = forecastData.map(line => line.map(val => val + (Math.random() - 0.5) * 2));
       federalChartsReady = true;
       await showBundestagChartByToggle();
+    } finally {
+      // Vorhersagen must not depend on federal Stimmung/API succeeding.
+      try {
+        await initVorhersageSection();
+        await initVorhersageArchiveSection();
+        updateHomeSectionBackgrounds();
+      } catch (e) {
+        console.warn('Vorhersage bootstrap failed:', e);
+      }
     }
   }
   
@@ -7281,11 +7319,14 @@ document.addEventListener('DOMContentLoaded', function() {
         dateTo: chartEndISO,
         includeResults: true,
         maxTotal: 5000
+      }).catch((e) => {
+        console.warn('Federal Verlauf poll scatter fetch failed:', e);
+        return [];
       });
       pollData = Array.isArray(apiPolls) ? apiPolls : [];
 
       if (!Array.isArray(apiPolls) || apiPolls.length === 0) {
-        throw new Error('POLLING_API_EMPTY');
+        console.warn('Federal Verlauf poll scatter empty; continuing with Stimmung series only');
       }
 
       // Recency label/warnings: live window to today (Stimmung series end can lag).
