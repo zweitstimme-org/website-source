@@ -2,39 +2,39 @@
   "federal": {
     "current_support": {
       "CDU/CSU": 21.1,
-      "AfD": 27.8,
-      "SPD": 12.2,
-      "GRÜNE": 14.6,
-      "LINKE": 11.5,
-      "BSW": 3.2,
-      "FDP": 4.5,
+      "AfD": 27.9,
+      "SPD": 12.1,
+      "GRÜNE": 14.7,
+      "LINKE": 11.3,
+      "BSW": 2.8,
+      "FDP": 4.3,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 5.1
+      "Sonstige": 5.8
     },
     "trends": {
-      "CDU/CSU": -0.6,
-      "AfD": 0.2,
-      "SPD": -0.1,
+      "CDU/CSU": -0.5,
+      "AfD": 0.3,
+      "SPD": -0.2,
       "GRÜNE": 0.6,
-      "LINKE": 0.4,
-      "BSW": 0.2,
-      "FDP": 0.1,
+      "LINKE": 0.1,
+      "BSW": -0.2,
+      "FDP": -0.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -0.8
+      "Sonstige": 0
     },
     "active_parties": ["CDU/CSU", "AfD", "SPD", "GRÜNE", "LINKE", "BSW", "FDP"],
-    "polls_used": 2547,
+    "polls_used": 2548,
     "date_range": {
       "start": "2016-08-09",
-      "end": "2026-08-04"
+      "end": "2026-08-06"
     },
-    "last_update": "2026-08-06T08:34:06"
+    "last_update": "2026-08-07T06:22:02"
   },
   "states": {
     "BW": {
@@ -72,7 +72,7 @@
         "start": "2016-09-15",
         "end": "2026-04-10"
       },
-      "last_update": "2026-08-06T08:34:08"
+      "last_update": "2026-08-07T06:22:04"
     },
     "BY": {
       "current_support": {
@@ -109,7 +109,7 @@
         "start": "2016-09-15",
         "end": "2026-03-03"
       },
-      "last_update": "2026-08-06T08:34:09"
+      "last_update": "2026-08-07T06:22:05"
     },
     "BE": {
       "current_support": {
@@ -146,7 +146,7 @@
         "start": "2016-08-11",
         "end": "2026-07-23"
       },
-      "last_update": "2026-08-06T08:34:11"
+      "last_update": "2026-08-07T06:22:07"
     },
     "BB": {
       "current_support": {
@@ -183,7 +183,7 @@
         "start": "2016-09-30",
         "end": "2026-06-24"
       },
-      "last_update": "2026-08-06T08:34:13"
+      "last_update": "2026-08-07T06:22:09"
     },
     "HB": {
       "current_support": {
@@ -220,7 +220,7 @@
         "start": "2017-01-19",
         "end": "2026-03-19"
       },
-      "last_update": "2026-08-06T08:34:14"
+      "last_update": "2026-08-07T06:22:10"
     },
     "HH": {
       "current_support": {
@@ -257,7 +257,7 @@
         "start": "2016-11-24",
         "end": "2026-06-20"
       },
-      "last_update": "2026-08-06T08:34:15"
+      "last_update": "2026-08-07T06:22:11"
     },
     "HE": {
       "current_support": {
@@ -294,7 +294,7 @@
         "start": "2016-08-24",
         "end": "2026-04-29"
       },
-      "last_update": "2026-08-06T08:34:17"
+      "last_update": "2026-08-07T06:22:12"
     },
     "MV": {
       "current_support": {
@@ -331,7 +331,7 @@
         "start": "2016-08-12",
         "end": "2026-07-09"
       },
-      "last_update": "2026-08-06T08:34:18"
+      "last_update": "2026-08-07T06:22:14"
     },
     "NI": {
       "current_support": {
@@ -368,7 +368,7 @@
         "start": "2016-10-19",
         "end": "2026-04-22"
       },
-      "last_update": "2026-08-06T08:34:20"
+      "last_update": "2026-08-07T06:22:15"
     },
     "NW": {
       "current_support": {
@@ -405,7 +405,7 @@
         "start": "2016-09-11",
         "end": "2026-06-28"
       },
-      "last_update": "2026-08-06T08:34:22"
+      "last_update": "2026-08-07T06:22:16"
     },
     "RP": {
       "current_support": {
@@ -442,7 +442,7 @@
         "start": "2016-12-15",
         "end": "2026-03-19"
       },
-      "last_update": "2026-08-06T08:34:23"
+      "last_update": "2026-08-07T06:22:18"
     },
     "SL": {
       "current_support": {
@@ -479,7 +479,7 @@
         "start": "2016-11-15",
         "end": "2025-12-03"
       },
-      "last_update": "2026-08-06T08:34:24"
+      "last_update": "2026-08-07T06:22:19"
     },
     "SN": {
       "current_support": {
@@ -516,7 +516,7 @@
         "start": "2016-10-05",
         "end": "2026-05-21"
       },
-      "last_update": "2026-08-06T08:34:26"
+      "last_update": "2026-08-07T06:22:20"
     },
     "ST": {
       "current_support": {
@@ -537,15 +537,15 @@
         "CDU/CSU": 0,
         "AfD": 0,
         "SPD": 0.4,
-        "GRÜNE": 0.3,
-        "LINKE": -0.2,
+        "GRÜNE": 0.2,
+        "LINKE": -0.1,
         "BSW": 0,
-        "FDP": -0.5,
+        "FDP": -0.4,
         "FW": null,
         "SSW": null,
         "PIRATEN": null,
         "REP": null,
-        "Sonstige": 0
+        "Sonstige": -0.1
       },
       "active_parties": ["CDU/CSU", "AfD", "SPD", "GRÜNE", "LINKE", "BSW", "FDP"],
       "polls_used": 33,
@@ -553,7 +553,7 @@
         "start": "2017-06-22",
         "end": "2026-07-30"
       },
-      "last_update": "2026-08-06T08:34:27"
+      "last_update": "2026-08-07T06:22:21"
     },
     "SH": {
       "current_support": {
@@ -590,7 +590,7 @@
         "start": "2016-10-19",
         "end": "2026-07-14"
       },
-      "last_update": "2026-08-06T08:34:29"
+      "last_update": "2026-08-07T06:22:23"
     },
     "TH": {
       "current_support": {
@@ -627,8 +627,8 @@
         "start": "2016-10-19",
         "end": "2026-07-02"
       },
-      "last_update": "2026-08-06T08:34:31"
+      "last_update": "2026-08-07T06:22:24"
     }
   },
-  "last_update": "2026-08-06T08:34:31"
+  "last_update": "2026-08-07T06:22:24"
 }
