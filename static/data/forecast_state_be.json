@@ -3,14 +3,14 @@
     "state_code": "BE",
     "election_date": "2026-09-20",
     "election_id": "be_2026-09-20",
-    "model": "state-models lr 43_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
-    "lead": "43",
-    "lead_model": "43_polls",
-    "lead_horizon_days": 43,
+    "model": "state-models lr 187_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
+    "lead": "187",
+    "lead_model": "187_polls",
+    "lead_horizon_days": 187,
     "poll_window_days": null,
     "last_poll_date": "2026-07-23",
-    "asof_date": "2026-08-08",
-    "last_update": "2026-08-08T07:56:23",
+    "asof_date": "2026-07-23",
+    "last_update": "2026-08-10T10:06:06",
     "scenario_config_md5": "3a25ecaa8fd1a2e364c0f4e77797cfec",
     "predictor_encoding": "state_models_exact_lead_v1",
     "shares_normalized_to_100": true,
@@ -21,57 +21,57 @@
       "party": "CDU",
       "party_code": "cdu",
       "fit": 18,
-      "low": 12,
-      "high": 25
+      "low": 10,
+      "high": 26
     },
     {
       "party": "GRÜNE",
       "party_code": "gru",
       "fit": 16,
-      "low": 10,
-      "high": 23
+      "low": 9,
+      "high": 24
     },
     {
       "party": "SPD",
       "party_code": "spd",
       "fit": 14,
-      "low": 9,
-      "high": 19
+      "low": 7,
+      "high": 21
     },
     {
       "party": "LINKE",
       "party_code": "lin",
-      "fit": 19,
-      "low": 12,
-      "high": 26
+      "fit": 18,
+      "low": 10,
+      "high": 27
     },
     {
       "party": "AfD",
       "party_code": "afd",
       "fit": 17,
-      "low": 11,
-      "high": 24
+      "low": 10,
+      "high": 26
     },
     {
       "party": "FDP",
       "party_code": "fdp",
       "fit": 4,
       "low": 2,
-      "high": 6
+      "high": 8
     },
     {
       "party": "BSW",
       "party_code": "bsw",
-      "fit": 4,
-      "low": 3,
-      "high": 7
+      "fit": 5,
+      "low": 2,
+      "high": 9
     },
     {
       "party": "Sonstige",
       "party_code": "oth",
       "fit": 8,
-      "low": 5,
-      "high": 12
+      "low": 4,
+      "high": 13
     }
   ],
   "scenarios": {
@@ -82,49 +82,43 @@
         "id": "coal_spd_gru_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD, Grüne und Linke",
-        "probability": 78
+        "probability": 67
       },
       {
         "id": "coal_cdu_spd_gru",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
-        "probability": 73
-      },
-      {
-        "id": "coal_spd_gru_lin_lead_lin",
-        "category": "coalition",
-        "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Linken)",
-        "probability": 44
+        "probability": 64
       },
       {
         "id": "above_hurdle_bsw",
         "category": "above_hurdle",
         "label_de": "BSW über 5%-Hürde",
-        "probability": 40
-      },
-      {
-        "id": "largest_party_lin",
-        "category": "largest_party",
-        "label_de": "Linke stärkste Kraft",
-        "probability": 33
+        "probability": 51
       },
       {
         "id": "above_hurdle_fdp",
         "category": "above_hurdle",
         "label_de": "FDP über 5%-Hürde",
+        "probability": 42
+      },
+      {
+        "id": "coal_spd_gru_lin_lead_lin",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Linken)",
+        "probability": 33
+      },
+      {
+        "id": "largest_party_lin",
+        "category": "largest_party",
+        "label_de": "Linke stärkste Kraft",
         "probability": 28
       },
       {
         "id": "largest_party_cdu",
         "category": "largest_party",
         "label_de": "CDU stärkste Kraft",
-        "probability": 26
-      },
-      {
-        "id": "coal_spd_gru_lin_lead_gru",
-        "category": "coalition",
-        "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Grünen)",
-        "probability": 23
+        "probability": 25
       },
       {
         "id": "largest_party_afd",
@@ -133,52 +127,58 @@
         "probability": 22
       },
       {
+        "id": "coal_spd_gru_lin_lead_gru",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Grünen)",
+        "probability": 21
+      },
+      {
         "id": "largest_party_gru",
         "category": "largest_party",
         "label_de": "Grüne stärkste Kraft",
-        "probability": 14
+        "probability": 16
       },
       {
         "id": "coal_spd_gru_lin_lead_spd",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der SPD)",
-        "probability": 11
-      },
-      {
-        "id": "coal_gru_lin",
-        "category": "coalition",
-        "label_de": "Parlamentsmehrheit Grüne und Linke",
-        "probability": 7
+        "probability": 13
       },
       {
         "id": "largest_party_spd",
         "category": "largest_party",
         "label_de": "SPD stärkste Kraft",
-        "probability": 6
+        "probability": 10
       },
       {
         "id": "coal_cdu_gru",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit CDU und Grüne",
-        "probability": 5
+        "probability": 8
+      },
+      {
+        "id": "coal_gru_lin",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit Grüne und Linke",
+        "probability": 8
       },
       {
         "id": "coal_cdu_bsw_spd",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit CDU, BSW und SPD",
-        "probability": 3
+        "probability": 7
       },
       {
         "id": "coal_spd_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD und Linke",
-        "probability": 2
+        "probability": 5
       },
       {
         "id": "coal_gru_spd",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit Grüne und SPD",
-        "probability": 1
+        "probability": 2
       }
     ]
   }
