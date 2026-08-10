@@ -24,10 +24,27 @@
   const SITE_BASE = detectSiteBase().replace(/\/?$/, '/');
   const DATA_BASE = `${SITE_BASE}data`;
 
-  async function fetchJson(path) {
-    const resp = await fetch(path, { cache: 'no-cache' });
-    if (!resp.ok) throw new Error(`Failed to fetch ${path}: ${resp.status}`);
-    return resp.json();
+  async function fetchJson(path, opts) {
+    const timeoutMs = (opts && opts.timeoutMs) || 30000;
+    const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timer = ctrl
+      ? setTimeout(() => ctrl.abort(), timeoutMs)
+      : null;
+    try {
+      const resp = await fetch(path, {
+        cache: 'no-cache',
+        signal: ctrl ? ctrl.signal : undefined,
+      });
+      if (!resp.ok) throw new Error(`Failed to fetch ${path}: ${resp.status}`);
+      return await resp.json();
+    } catch (err) {
+      if (err && err.name === 'AbortError') {
+        throw new Error(`Timeout after ${timeoutMs}ms: ${path}`);
+      }
+      throw err;
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
   }
 
   async function loadDisplayMode() {
@@ -73,6 +90,11 @@
 
   async function loadParliamentSize() {
     return fetchJson(`${DATA_BASE}/forecast_parliament_size.json`);
+  }
+
+  async function loadCandidateEntry() {
+    // ~0.8–1 MB; allow a bit longer than default on slow networks
+    return fetchJson(`${DATA_BASE}/forecast_candidate_entry.json`, { timeoutMs: 60000 });
   }
 
   async function loadWahlkreiseGeo(stateCode) {
@@ -282,6 +304,7 @@
     loadForecastState,
     loadForecastDistricts,
     loadParliamentSize,
+    loadCandidateEntry,
     loadWahlkreiseGeo,
     loadArchivedForecast,
     loadElectionCalendar,
