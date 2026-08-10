@@ -766,6 +766,90 @@ function dropMisscopedFederalPolls(polls, scope) {
   return list.filter((poll) => !isMisscopedFederalThPoll(poll));
 }
 
+// DAWUM Landtag rows missing from FastTrack default /v2/polls (pipeline export).
+let _pollsSupplementPromise = null;
+function pollsSupplementDataUrl() {
+  try {
+    if (window.pipelineData && window.pipelineData.DATA_BASE) {
+      return `${String(window.pipelineData.DATA_BASE).replace(/\/?$/, '/') }polls_supplement.json`;
+    }
+  } catch (_) { /* ignore */ }
+  try {
+    if (typeof detectSiteBase === 'function') {
+      return `${detectSiteBase().replace(/\/?$/, '/') }data/polls_supplement.json`;
+    }
+  } catch (_) { /* ignore */ }
+  if (/\.github\.io$/i.test(location.hostname)) {
+    const parts = location.pathname.split('/').filter(Boolean);
+    if (parts.length) return `/${parts[0]}/data/polls_supplement.json`;
+  }
+  return '/data/polls_supplement.json';
+}
+
+async function loadPollsSupplement() {
+  if (_pollsSupplementPromise) return _pollsSupplementPromise;
+  _pollsSupplementPromise = (async () => {
+    try {
+      const resp = await fetch(pollsSupplementDataUrl(), { cache: 'no-cache' });
+      if (!resp.ok) return { by_scope: {} };
+      const data = await resp.json();
+      return data && typeof data === 'object' ? data : { by_scope: {} };
+    } catch (_) {
+      return { by_scope: {} };
+    }
+  })();
+  return _pollsSupplementPromise;
+}
+
+function canonicalizeInstituteKeyJs(raw) {
+  const s = String(raw || '').trim();
+  if (!s) return '';
+  const lower = s.toLowerCase();
+  if (lower.startsWith('infratest')) return 'INFRATEST';
+  if (lower === 'civey') return 'CIVEY';
+  if (lower === 'insa') return 'INSA';
+  return s.toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '');
+}
+
+function pollDedupeKeyJs(poll) {
+  const inst = canonicalizeInstituteKeyJs(
+    (poll && (poll.institute_key || poll.institute_name)) || ''
+  );
+  const date = String((poll && (poll.publish_date || poll.published_date)) || '');
+  return `${inst}|${date}`;
+}
+
+async function mergePollsSupplement(apiPolls, { scope, dateFrom, dateTo, includeResults = true } = {}) {
+  const scopeL = String(scope || '').toLowerCase();
+  if (!scopeL || scopeL === 'federal' || scopeL === 'bund') return apiPolls;
+  const payload = await loadPollsSupplement();
+  const extrasRaw = (payload && payload.by_scope && payload.by_scope[scopeL]) || [];
+  if (!Array.isArray(extrasRaw) || !extrasRaw.length) return apiPolls;
+
+  const have = new Set((Array.isArray(apiPolls) ? apiPolls : []).map(pollDedupeKeyJs));
+  const extras = [];
+  for (const raw of extrasRaw) {
+    if (!raw) continue;
+    const poll = normalizeV2Poll(raw);
+    const date = String(poll.publish_date || poll.published_date || '');
+    if (dateFrom && date && date < dateFrom) continue;
+    if (dateTo && date && date > dateTo) continue;
+    const key = pollDedupeKeyJs(poll);
+    if (!key || key.startsWith('|') || have.has(key)) continue;
+    if (!includeResults) {
+      // Keep a shallow copy without results when caller asked for metadata-only.
+      const slim = Object.assign({}, poll);
+      delete slim.results;
+      extras.push(slim);
+    } else {
+      extras.push(poll);
+    }
+    have.add(key);
+  }
+  if (!extras.length) return apiPolls;
+  return (Array.isArray(apiPolls) ? apiPolls : []).concat(extras);
+}
+
 async function fetchPollsAll({ scope, dateFrom, dateTo, includeResults = true, maxTotal = 2000 }) {
   const limit = POLLING_API_PAGE_SIZE;
   let offset = 0;
@@ -792,7 +876,15 @@ async function fetchPollsAll({ scope, dateFrom, dateTo, includeResults = true, m
     if (!pageItems.length) break;
     if (total !== null && offset >= total) break;
   }
-  return dropMisscopedFederalPolls(dropMatchedDuplicates(items), scope);
+  items = dropMisscopedFederalPolls(dropMatchedDuplicates(items), scope);
+  // Merge DAWUM Landtag rows missing from FastTrack (esp. Civey BE/BY).
+  items = await mergePollsSupplement(items, {
+    scope,
+    dateFrom,
+    dateTo,
+    includeResults: wantResults
+  });
+  return items;
 }
 
 async function fetchLatestPoll({ scope }) {
@@ -806,12 +898,21 @@ async function fetchLatestPoll({ scope }) {
     include_results: isTh,
     sort: '-published_date'
   });
-  const items = dropMisscopedFederalPolls(
+  let items = dropMisscopedFederalPolls(
     dropMatchedDuplicates(
       (page && Array.isArray(page.data)) ? page.data.map(normalizeV2Poll) : []
     ),
     scope
   );
+  items = await mergePollsSupplement(items, {
+    scope,
+    includeResults: true
+  });
+  items = items.slice().sort((a, b) => {
+    const da = String((a && (a.publish_date || a.published_date)) || '');
+    const db = String((b && (b.publish_date || b.published_date)) || '');
+    return db.localeCompare(da);
+  });
   return items.length ? items[0] : null;
 }
 
