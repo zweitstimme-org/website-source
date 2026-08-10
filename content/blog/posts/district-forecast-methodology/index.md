@@ -121,22 +121,24 @@ Dieser Artikel erklärt das Modell hinter der Karte. Kurz gesagt: Wir nehmen die
 
 Die Karte färbt jeden Wahlkreis nach der Partei mit der höchsten Siegchance. Klick öffnet Details: Erststimmen-Band, Vergleich zur letzten Wahl und — soweit bekannt — den Namen der Direktkandidierenden.
 
-### Die Idee: proportionaler Swing + geschätzte Erststimme
+### Die Idee: uniformer Swing
 
 Direktmandats-Umfragen gibt es für die meisten Wahlkreise nicht. Was wir haben:
 
-1. **Wahlergebnisse je Wahlkreis** aus der letzten und der vorletzten Wahl (Erst und Zweit), und
+1. das **Ergebnis der letzten Landtagswahl** (Erst- und Zweitstimme) je Wahlkreis, und
 2. unsere aktuelle **landesweite Zweitstimmen-Prognose**.
 
-Daraus bauen wir — analog zur [Bundestags-Wahlkreisvorhersage](https://doi.org/10.1016/j.electstud.2026.103104) — zwei Stufen: einen **proportionalen Zweitstimmen-Swing** und eine **geschätzte Erststimmen-Gleichung** mit Koeffizienten aus vergangenen Landtags-/AGH-Übergängen.
+Daraus bilden wir einen **uniformen Swing**: Jeder Wahlkreis bewegt sich um denselben landesweiten Veränderungsschritt — die lokalen Stärken und Schwächen der letzten Wahl bleiben relativ erhalten.
+
+Das ist bewusst eine transparente Baseline. In einer [Vergleichsstudie in *Electoral Studies*](https://doi.org/10.1016/j.electstud.2026.103104) haben wir für **Bundestagswahlen** untersucht, wie unterschiedliche Swing-Annahmen (u. a. uniform vs. proportional) Sitzprognosen beeinflussen: Die Unterschiede sind oft moderat, die Wahl der Annahme prägt aber die Präzision. Landtagswahlen haben wir dort nicht separat ausgewertet — der Mechanismus (landesweiter Trend → Wahlkreise) ist aber derselbe, und ohne flächendeckende Erststimmen-Umfragen bleibt der uniforme Swing die nachvollziehbarste Umsetzung.
 
 <div class="meth-fig" aria-label="Ablauf der Wahlkreis-Vorhersage">
   <p class="meth-fig-title">Von der letzten Wahl zum Direktmandat</p>
   <ol class="meth-pipeline">
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">1</div>
-      <div class="meth-pipeline-title">Historische Wahlen</div>
-      <div class="meth-pipeline-text">Erst/Zweit je Wahlkreis — letzte Wahl als Anker, vorletzte für die Schätzung</div>
+      <div class="meth-pipeline-title">Letzte Wahl</div>
+      <div class="meth-pipeline-text">Erst- und Zweitstimmen je Wahlkreis sowie landesweiter Zweitanteil</div>
     </li>
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">2</div>
@@ -146,53 +148,49 @@ Daraus bauen wir — analog zur [Bundestags-Wahlkreisvorhersage](https://doi.org
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">3</div>
       <div class="meth-pipeline-title">Zweit-Swing</div>
-      <div class="meth-pipeline-text">Proportionaler Swing: lokale Zweit × (1 + relativer Landestrend)</div>
+      <div class="meth-pipeline-text">Gleichmäßige Verschiebung aller Wahlkreise gegenüber der letzten Wahl</div>
     </li>
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">4</div>
       <div class="meth-pipeline-title">Erststimme</div>
-      <div class="meth-pipeline-text">OLS: Erst ≈ β₁·Zweit + β₂·Erst<sub>letzte Wahl</sub> (+ Indikator ohne Kandidatur damals)</div>
+      <div class="meth-pipeline-text">Zweit + historischer Erst−Zweit-Abstand im Wahlkreis</div>
     </li>
     <li class="meth-pipeline-step">
       <div class="meth-pipeline-n">5</div>
       <div class="meth-pipeline-title">Simulation</div>
-      <div class="meth-pipeline-text">Tausende Züge (Land + Koeffizienten) → Siegchance und Band</div>
+      <div class="meth-pipeline-text">Tausende Züge → Siegchance und Unsicherheitsband</div>
     </li>
   </ol>
 </div>
 
 ### Schritt für Schritt
 
-**1. Trainingsdaten**  
-Geschätzt wird über gestapelte Wahlkreis×Partei-Beobachtungen aus:
-
-- **MV:** 2011→2016 und 2016→2021 (Absolutstimmen, gleiche 36er-Geographie)
-- **ST:** 2016→2021 (2021 Absolutstimmen; 2016 als amtliche vergleichbare %-Anteile auf 2021er Kreise)
-- **BE:** 2016→2023 (Absolutstimmen im Ergebnisbericht, auf 2023er Wahlkreise)
+**1. Ausgangspunkt: letzte Wahl**  
+Für jeden Wahlkreis liegen die Erst- und Zweitstimmenanteile der letzten Landtagswahl (bzw. AGH-Wahl) vor. Daraus berechnen wir auch den landesweiten Zweitstimmenanteil von damals.
 
 **2. Landesprognose als Ziel**  
-Die aktuelle [Zweitstimmen-Vorhersage](/blog/posts/state-forecast-methodology/) liefert Punktschätzung und 5/6-Intervall. Daraus ziehen wir in jeder Simulation ein landesweites Ergebnis.
+Die aktuelle [Zweitstimmen-Vorhersage](/blog/posts/state-forecast-methodology/) liefert für jede Partei eine Punktschätzung und ein 5/6-Unsicherheitsintervall. Daraus ziehen wir in jeder Simulation ein plausibles landesweites Ergebnis.
 
-**3. Proportionaler Zweitstimmen-Swing**  
-Wie in der Bundestags-Wahlkreislogik:
-
-<div class="meth-formula">
-  Zweit<sub>neu</sub> = Zweit<sub>letzte Wahl</sub> × (1 + (Land<sub>neu</sub> − Land<sub>letzte Wahl</sub>) / Land<sub>letzte Wahl</sub>)
-</div>
-
-Starke Wahlkreise bleiben relativ stark; der relative Landestrend wird proportional übertragen. Anschließend Normalisierung auf 100 %.
-
-**4. Geschätzte Erststimme**  
-Direktmandate hängen von der Erststimme ab. Die Gleichung wird nur mit **Vorwahl-Information** kalibriert — dieselbe Informationsmenge wie live: Zweit im Wahlkreis ist die **Swing-Projektion** aus der vorigen Wahl (nicht das spätere Ist-Zweit der Zielwahl); dazu Erst der vorigen Wahl. Geschätzt wird (gepoolt über die Übergänge oben):
+**3. Uniformer Zweitstimmen-Swing**  
+In jedem Wahlkreis gilt näherungsweise:
 
 <div class="meth-formula">
-  Erst = β₀ + β₁·Zweit<sub>projiziert</sub> + β₂·Erst<sub>letzte Wahl</sub> + β₃·(keine Erststimme zuletzt)
+  Zweit<sub>neu</sub> = Zweit<sub>letzte Wahl</sub> + (Land<sub>neu</sub> − Land<sub>letzte Wahl</sub>)
 </div>
 
-Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen Bundestags-Modell. Neue Parteien (z. B. BSW) stecken vor allem über die Zweitstimme und den Restanteil.
+Dabei ist **Zweit** der Zweitstimmenanteil **im Wahlkreis** und **Land** der Zweitstimmenanteil **landesweit** (bei der letzten Wahl bzw. in der aktuellen Landesprognose). Der Term in Klammern ist also der landesweite Stimmungswandel — denselben Schritt addieren wir in jedem Wahlkreis auf das damalige lokale Zweitstimmenergebnis.
+
+Anschließend werden negative Anteile auf null gesetzt und die Anteile wieder auf 100 % normalisiert. So bleibt z. B. ein traditionell starker Wahlkreis relativ stark — er bewegt sich aber mit dem Landestrend.
+
+**4. Von Zweit- zu Erststimme**  
+Direktmandate hängen von der **Erststimme** ab. Viele Wähler:innen geben Erst- und Zweitstimme derselben Partei; Abweichungen (Stimmensplitting, lokale Verankerung) spiegeln sich im Abstand Erst − Zweit bei der letzten Wahl wider. Wir nehmen an, dass dieser Abstand näherungsweise stabil bleibt:
+
+<div class="meth-formula">
+  Erst<sub>neu</sub> = Zweit<sub>neu</sub> + (Erst<sub>letzte Wahl</sub> − Zweit<sub>letzte Wahl</sub>)
+</div>
 
 **5. Simulation und Siegchance**  
-2.000 Züge: jeweils ein Landesergebnis **und** ein Zug aus der Koeffizienten-Unsicherheit (+ Restfehler). Sieger im Wahlkreis = höchste Erststimme; P(Sieg) = Anteil der Siege.
+Diesen Ablauf wiederholen wir in **2.000 Simulationen**, jeweils mit einem anderen Zug aus der Landesunsicherheit. In jedem Zug gewinnt im Wahlkreis die Partei mit dem höchsten Erststimmenanteil. Der Anteil der Siege einer Partei ist ihre **Siegwahrscheinlichkeit** P(Sieg); die Karte färbt den Wahlkreis nach der Partei mit dem höchsten Wert.
 
 ### So liest man die Darstellung
 
@@ -200,14 +198,14 @@ Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen B
 - **P(Sieg)** — Anteil der Simulationen, in denen diese Partei das Direktmandat holt. 70 % heißt: in sieben von zehn Zügen gewinnt sie — nicht „sicher“.
 - **Erststimmen-Band** — die Spanne der simulierten Erststimmenanteile von niedrig bis hoch (gerundet), ohne separate Punktschätzung in der Liste. Ein **Band** ist also kein einzelner Wert, sondern der Unsicherheitsbereich über die Simulationen. Breite Bänder bedeuten: kleine Änderungen am Landestrend können den Wahlkreis kippen.
 - **Vergleichswert der letzten Wahl** — Erststimmenanteil damals, als Orientierung.
-- **Namen** — Direktkandidierende, soweit wir sie aus Partei- oder Amtsquellen haben. In **Sachsen-Anhalt** liegt das amtliche Bewerberverzeichnis vor: fehlt eine Partei in einem Wahlkreis, tritt sie dort **nicht** an — wir setzen ihren Erststimmenanteil auf 0 und normalisieren die übrigen auf 100 %. In MV und Berlin heißt ein fehlender Name dagegen oft noch „noch nicht veröffentlicht“, nicht „niemand kandidiert“. Namen und Incumbency ändern die berechneten Anteile ansonsten **nicht** (keine weiteren Kandidierenden-Kovariaten).
+- **Namen** — Direktkandidierende, soweit wir sie aus Partei- oder Amtsquellen haben. Fehlt ein Name, heißt das **nicht**, dass niemand kandidiert — oft sind die Wahlkreisvorschläge noch nicht vollständig veröffentlicht. Namen ändern die berechneten Anteile **nicht**.
 
 ### Was das Modell bewusst weglässt
 
-- **Keine Effekte der Kandidierenden.** Incumbency, Listenplatz, Bekanntheit usw. stecken noch nicht in der Erst-Gleichung (im Bundestags-Modell schon).
-- **Kein eigenes Erststimmen-Umfragemodell.** Es gibt kaum flächendeckende Wahlkreisumfragen; Swing + Regression sind die Näherung.
+- **Keine Effekte der Kandidierenden.** Beliebte oder unbekannte Direktkandidierende, lokale Kampagnen und Skandale stecken nicht im Modell — nur der Landestrend und die historische Struktur.
+- **Kein eigenes Erststimmen-Umfragemodell.** Es gibt kaum flächendeckende Wahlkreisumfragen; der Swing ist die transparente Näherung.
 - **Keine amtliche Sitzzuteilung in den Koalitionsszenarien.** Die landesweite Mehrheitsrechnung der [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) bleibt eine Näherung über Zweitstimmenanteile. Zusätzlich zeigen wir unter der Wahlkreis-Karte eine **indikative Größenverteilung** des Landtags bzw. Abgeordnetenhauses (siehe unten).
-- **Grenzen und Umschlüsselung.** In Berlin: Trainingsübergang 2016→2023 auf 2023er Kreisen; Live-Anker **Zweit 2023→2026** laut AfS (`DL_BE_AGH2026_AGH2023`), Erst wo die lokale Nummer passt. In ST: 2016er Anteile auf 2021er Kreisen sind amtliche **Vergleichswerte in %** (Briefwahl-Näherung).
+- **Neue Parteien / Grenzverschiebungen.** Wo bei der letzten Wahl keine Partei existierte (z. B. BSW) oder Wahlkreise neu zugeschnitten wurden, ist der historische Abstand Erst−Zweit unsicherer. In Berlin nutzen wir für die Zweitstimmen die offizielle Umschlüsselung der AGH-Ergebnisse 2023 auf die Wahlkreise 2026; wo der Erststimmen-Bezug fehlt, setzen wir den Abstand auf null.
 
 ### Von Direktmandaten zur Parlamentsgröße {#parlamentsgroesse}
 
@@ -223,31 +221,29 @@ Unter der Wahlkreiskarte zeigen wir die simulierte Größenverteilung (Median, P
 
 #### Mecklenburg-Vorpommern: unvollständiger Ausgleich
 
-Nur in MV kann der Deckel dazu führen, dass Überhangmandate **nicht vollständig** ausgeglichen werden. Typischer Auslöser: eine Partei gewinnt sehr viele Direktmandate bei einem Zweitstimmenanteil deutlich unter etwa einem Drittel der Landtagsparteien. Historisch hat dieser Deckel bereits gegriffen — 2021 etwa bei der SPD mit drei Überhängen und fünf von sechs möglichen Ausgleichssitzen.
+Nur in MV kann der Deckel dazu führen, dass Überhangmandate **nicht vollständig** ausgeglichen werden. Typischer Auslöser: eine Partei gewinnt sehr viele Direktmandate bei einem Zweitstimmenanteil deutlich unter etwa einem Drittel der Landtagsparteien. Historisch (1990–2021) ist dieser Deckel nie gegriffen; 2021 lag die SPD mit drei Überhängen und fünf von sechs möglichen Ausgleichssitzen nahe daran.
 
 Nach dem aktuellen Forecast (Stand der Simulation):
 
-- In rund **0,6 %** der Züge greift der Deckel (unvollständiger Ausgleich).
-- Der verbleibende Vorteil ist dann praktisch immer **genau ein** Extra-Sitz.
-- Überhangpartei in den Simulationen vor allem **SPD** oder **AfD**. Andere Parteien erhalten Ausgleichssitze — aber keinen unkompensierten Extra-Sitz zulasten des Proporzes.
+- In rund **6 %** der Züge greift der Deckel (unvollständiger Ausgleich).
+- Der verbleibende Vorteil beträgt fast immer **genau einen** Extra-Sitz (ca. 5 %); **zwei oder mehr** Extra-Sitze nur in ca. **0,6 %** der Simulationen.
+- Praktisch betrifft das die **AfD** als Überhangpartei. Andere Parteien erhalten Ausgleichssitze — aber keinen unkompensierten Extra-Sitz zulasten des Proporzes.
 
-**Auswirkung auf Mehrheits-Szenarien:** vernachlässigbar. Vergleicht man Zweitstimmen-Mehrheit, Sitzmehrheit mit vollem Ausgleich und Sitzmehrheit mit MV-Deckel, liegt der Deckel-Effekt bei **unter 0,5 pp**. Ob der Ausgleich vollständig oder gedeckelt ist, ändert die Wahrscheinlichkeit einer absoluten AfD-Mehrheit praktisch **nicht**. In der Swing-Simulation liegt sie unter 1 %; die [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) weist (gerundet) etwa 2 % aus — beide Werte sind klein, der Unterschied kommt vom Modell, nicht vom Deckel. Deshalb bleiben die Koalitionsszenarien der Landesprognose die Zweitstimmen-Näherung — ohne eigene Sitz-Korrektur für Überhang.
+**Auswirkung auf Mehrheits-Szenarien:** vernachlässigbar. Vergleicht man Zweitstimmen-Mehrheit, Sitzmehrheit mit vollem Ausgleich und Sitzmehrheit mit MV-Deckel, liegt der Deckel-Effekt bei **unter 0,5 pp**. Die Absolute Mehrheit der AfD ändert sich durch den Deckel **nicht** (0 pp gegenüber vollem Ausgleich; weiterhin unter 1 % in dieser Swing-Simulation, auf der Website gerundet 2 % aus dem Landesmodell). Deshalb bleiben die Koalitionsszenarien der [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) die Zweitstimmen-Näherung — ohne eigene Sitz-Korrektur für Überhang.
 
-In Berlin gleichen unsere Simulationen den Überhang **vollständig** aus (unvollständiger Ausgleich: 0 %). In ST kann nach mehreren Ausgleichsrunden ein kleiner Restüberhang an der Fraktionsstärke-Grenze stehen bleiben (meist ein Sitz) — die Unsicherheit steckt aber vor allem in der **Parlamentsgröße**.
+In Berlin bleibt die Proportionalität in unseren Simulationen praktisch immer erhalten. In ST kann nach mehreren Ausgleichsrunden ein kleiner Restüberhang an der Fraktionsstärke-Grenze stehen bleiben (meist ein Sitz) — die Unsicherheit steckt aber vor allem in der **Parlamentsgröße**.
 
 ### Aktuell verfügbar
 
 Die Wahlkreis-Karte erscheint zusammen mit der Landesvorhersage (ab 90 Tage vor dem Wahltermin), derzeit für:
 
-- **Mecklenburg-Vorpommern** (Anker LTW 2021; Training inkl. 2011/2016)
-- **Sachsen-Anhalt** (Anker LTW 2021; Training mit vergleichbaren Anteilen 2016)
-- **Berlin** (Anker AGH 2023→2026; Training 2016→2023)
-
-Die [landesweite Stimmenprognose](/blog/posts/state-forecast-methodology/) bleibt separat bayesianisch auf vielen Landtagswahlen trainiert; die Wahlkreis-Stufe kalibriert zusätzlich den Weg von Zweit- zu Erststimme.
+- **Mecklenburg-Vorpommern** (Basis: Landtagswahl 2021)
+- **Sachsen-Anhalt** (Basis: Landtagswahl 2021)
+- **Berlin** (Basis: Abgeordnetenhauswahl 2023, umgeschlüsselt auf 2026)
 
 ### Fazit
 
-Die Wahlkreis-Vorhersage ist ein **kalibriertes Swing-Modell** im Stil der Bundestags-Wahlkreise: proportionaler Zweit-Swing + geschätzte Erststimme aus historischen Übergängen — noch ohne Kandidierenden-Effekte. Sie sagt, welche Direktmandate beim aktuellen Landestrend plausibel sind — und wo das Rennen eng bleibt. Die Größenverteilung darunter übersetzt das in eine indikative Parlamentsgröße inkl. Überhang/Ausgleich. Für Stimmenanteile und Koalitionsszenarien bleibt die [Landtags-Vorhersage](/blog/posts/state-forecast-methodology/) maßgeblich.
+Die Wahlkreis-Vorhersage ist ein **transparentes Swing-Modell**: letzte Wahl + Landesprognose + stabiler Erst−Zweit-Abstand, ohne Schätzung zu den Kandidierenden. Sie sagt, welche Direktmandate bei dem aktuellen Landestrend plausibel sind — und wo das Rennen eng bleibt. Die Größenverteilung darunter übersetzt das in eine indikative Parlamentsgröße inkl. Überhang/Ausgleich. Für Stimmenanteile und Koalitionsszenarien bleibt die [Landtags-Vorhersage](/blog/posts/state-forecast-methodology/) maßgeblich.
 
 ---
 
