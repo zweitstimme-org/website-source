@@ -884,6 +884,12 @@ async function fetchPollsAll({ scope, dateFrom, dateTo, includeResults = true, m
     dateTo,
     includeResults: wantResults
   });
+  // Supplement is appended; re-sort so newest polls stay at the top for tables.
+  items = items.slice().sort((a, b) => {
+    const da = String((a && (a.publish_date || a.published_date)) || '');
+    const db = String((b && (b.publish_date || b.published_date)) || '');
+    return db.localeCompare(da);
+  });
   return items;
 }
 
@@ -5593,6 +5599,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         return finalPollObj;
       });
+
+      // Newest first (fetchPollsAll usually sorted; keep explicit for table paging).
+      stateAllPolls.sort((a, b) => new Date(b.date) - new Date(a.date));
       
       console.log('Loaded', stateAllPolls.length, 'state polls');
       if (stateAllPolls.length > 0) {
