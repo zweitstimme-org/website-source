@@ -3,6 +3,7 @@
     "state_code": "BE",
     "election_date": "2026-09-20",
     "election_id": "be_2026-09-20",
+    "election_name": "Landtagswahl Berlin",
     "model": "state-models lr 46_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
     "lead": "46",
     "lead_model": "46_polls",
@@ -10,7 +11,7 @@
     "poll_window_days": null,
     "last_poll_date": "2026-08-05",
     "asof_date": "2026-08-05",
-    "last_update": "2026-08-11T15:58:35",
+    "last_update": "2026-08-11T16:17:46",
     "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
     "predictor_encoding": "state_models_exact_lead_v1",
     "shares_normalized_to_100": true,
@@ -21,7 +22,7 @@
       "party": "CDU",
       "party_code": "cdu",
       "fit": 19,
-      "low": 13,
+      "low": 12,
       "high": 25
     },
     {
@@ -82,85 +83,85 @@
         "id": "coal_spd_gru_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD, Grüne und Linke",
-        "probability": 83
+        "probability": 82
       },
       {
         "id": "coal_cdu_spd_gru",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
-        "probability": 77
+        "probability": 78
       },
       {
         "id": "coal_spd_gru_lin_lead_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Linken)",
-        "probability": 51
+        "probability": 50
       },
       {
         "id": "largest_party_lin",
         "category": "largest_party",
         "label_de": "Linke stärkste Kraft",
-        "probability": 35
+        "probability": 34
       },
       {
         "id": "largest_party_cdu",
         "category": "largest_party",
         "label_de": "CDU stärkste Kraft",
-        "probability": 27
-      },
-      {
-        "id": "coal_spd_gru_lin_lead_gru",
-        "category": "coalition",
-        "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Grünen)",
-        "probability": 26
+        "probability": 28
       },
       {
         "id": "above_hurdle_fdp",
         "category": "above_hurdle",
         "label_de": "FDP über 5%-Hürde",
-        "probability": 24
+        "probability": 26
+      },
+      {
+        "id": "coal_spd_gru_lin_lead_gru",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Grünen)",
+        "probability": 25
       },
       {
         "id": "largest_party_afd",
         "category": "largest_party",
         "label_de": "AfD stärkste Kraft",
-        "probability": 20
-      },
-      {
-        "id": "largest_party_gru",
-        "category": "largest_party",
-        "label_de": "Grüne stärkste Kraft",
-        "probability": 16
+        "probability": 21
       },
       {
         "id": "above_hurdle_bsw",
         "category": "above_hurdle",
         "label_de": "BSW über 5%-Hürde",
-        "probability": 16
+        "probability": 17
+      },
+      {
+        "id": "largest_party_gru",
+        "category": "largest_party",
+        "label_de": "Grüne stärkste Kraft",
+        "probability": 15
       },
       {
         "id": "coal_gru_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit Grüne und Linke",
-        "probability": 9
-      },
-      {
-        "id": "coal_cdu_gru",
-        "category": "coalition",
-        "label_de": "Parlamentsmehrheit CDU und Grüne",
-        "probability": 7
+        "probability": 8
       },
       {
         "id": "coal_spd_gru_lin_lead_spd",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der SPD)",
+        "probability": 7
+      },
+      {
+        "id": "coal_cdu_gru",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit CDU und Grüne",
         "probability": 6
       },
       {
         "id": "largest_party_spd",
         "category": "largest_party",
         "label_de": "SPD stärkste Kraft",
-        "probability": 3
+        "probability": 4
       },
       {
         "id": "coal_spd_lin",

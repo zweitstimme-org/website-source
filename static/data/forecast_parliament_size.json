@@ -3,7 +3,7 @@
     "model": "district_swing + state Hare/Niemeyer size sim",
     "nsim": 4000,
     "seed": 20260730,
-    "last_update": "2026-08-11T15:59:16Z",
+    "last_update": "2026-08-11T16:18:23Z",
     "caveat_de": "Indikative Größenverteilung aus dem Wahlkreis-Swing-Modell (ohne Kandidateneffekte). Keine amtliche Sitzzuteilung."
   },
   "states": {
@@ -212,7 +212,7 @@
       "note_de": "Mindestens 130 Sitze (Hare/Niemeyer). Überhang wird in der Regel vollständig ausgeglichen (Formel über Direktmandate / Stimmenanteil). Grundmandatsklausel: ein Direktmandat reicht für den Einzug.",
       "nsim": 4000,
       "statewide_last_poll_date": "2026-08-05",
-      "p_overhang_pct": 52.5,
+      "p_overhang_pct": 51.8,
       "p_incomplete_pct": 0.0,
       "advantage_seats_pct": {
         "0": 100.0,
@@ -223,35 +223,35 @@
       "p_advantage_ge1_pct": 0.0,
       "p_advantage_ge2_pct": 0.0,
       "oh_parties": {
-        "CDU": 1987,
-        "GRÜNE": 101,
-        "LINKE": 11,
-        "AfD": 1
+        "CDU": 1957,
+        "GRÜNE": 104,
+        "LINKE": 7,
+        "AfD": 5
       },
       "advantage_parties": {},
-      "size_mean": 137.7,
+      "size_mean": 137.6,
       "size_median": 133,
       "size_p10": 130,
-      "size_p90": 153,
-      "size_p95": 158,
-      "size_max": 182,
-      "p_base_pct": 47.5,
+      "size_p90": 152,
+      "size_p95": 157,
+      "size_max": 177,
+      "p_base_pct": 48.2,
       "buckets": [
         {
           "label": "130",
-          "pct": 47.5
+          "pct": 48.2
         },
         {
           "label": "132–140",
-          "pct": 22.7
+          "pct": 21.6
         },
         {
           "label": "142–150",
-          "pct": 18.3
+          "pct": 19.1
         },
         {
           "label": "152–160",
-          "pct": 8.6
+          "pct": 8.3
         },
         {
           "label": "162–170",
