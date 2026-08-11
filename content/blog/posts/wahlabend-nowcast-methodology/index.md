@@ -117,7 +117,7 @@ draft: false
 
 Zwischen 18 Uhr und dem endgültigen Ergebnis kommt die Auszählung **stückweise**: zuerst einzelne Wahlbezirke, oft Zweitstimme und Wahlbeteiligung früher als die Erststimme. Der **Wahlabend-Nowcast** schätzt daraus laufend, wo die Wahl landet — Anteile, Beteiligung, Direktmandate, Einzug und Parlamentsgröße — **ohne** auf den letzten Wahlbezirk zu warten.
 
-Die aktuelle Vorschau ist ein **Replay der Abgeordnetenhauswahl 2023**: Wir spielen die Nacht mit echten Endständen und einer Meldechronologie durch. Am echten Abend 2026 ersetzt der Live-Feed der Amtlichen Wahllokale denselben Mechanismus.
+Die aktuelle Vorschau ist ein **Replay**: Berlin = Abgeordnetenhauswahl 2023; Sachsen-Anhalt und Mecklenburg-Vorpommern = Landtagswahl 2021 (L1 = 2016). Am echten Abend 2026 ersetzen die Live-Feeds der Landesstatistik denselben Mechanismus.
 
 ### Was der Nowcast beantwortet — und was nicht
 
@@ -168,7 +168,7 @@ Die aktuelle Vorschau ist ein **Replay der Abgeordnetenhauswahl 2023**: Wir spie
 
 ## 1. Daten
 
-**Quellen (Berlin):** Amt für Statistik Berlin-Brandenburg — Wahlbezirksergebnisse, Strukturdaten, AFSPRAES-`Datenexport_*_W_BE.csv` am Abend.
+**Quellen:** Berlin — AfS AFSPRAES-`Datenexport_*_W_BE.csv`. Sachsen-Anhalt — StaLA Downloads ([lt26/downloads](https://wahlergebnisse.sachsen-anhalt.de/wahlen/lt26/downloads.html)). Mecklenburg-Vorpommern — LAIV CSV mit Zeitstempel ab ~19 Uhr ([2026 Ergebnisse](https://www.laiv-mv.de/Wahlen/Landtagswahlen/2026/Ergebnisse/)).
 
 | Feld | Rolle |
 |---|---|

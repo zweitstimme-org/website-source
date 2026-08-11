@@ -15,6 +15,19 @@
     return siteBase() + 'data/' + name;
   }
 
+  function landFromQuery() {
+    var q = new URLSearchParams(window.location.search || '');
+    var s = (q.get('state') || q.get('land') || 'be').toLowerCase();
+    if (s === 'st' || s === 'mv' || s === 'be') return s;
+    return 'be';
+  }
+
+  function replayFileForLand(land) {
+    if (land === 'st') return 'wahlabend_nowcast_st.json';
+    if (land === 'mv') return 'wahlabend_nowcast_mv.json';
+    return 'wahlabend_nowcast_replay.json';
+  }
+
   var SCENARIO_LABELS = {
     actual_times: 'AfS-Zeiten (_W_ Datum/Zeit)',
     urne_first: 'Urne zuerst, dann Brief (Bias)',
@@ -39,6 +52,7 @@
 
   var state = {
     data: null,
+    land: 'be',
     scenario: 'actual_times',
     scope: 'zweit',
     unit: 'BE',
@@ -1677,7 +1691,9 @@
       ctx.fill();
       ctx.font = '12px system-ui,sans-serif';
       var label = fmtNum(cur.nowcast, 1) + '\u00a0%' +
-        (cur.uncertainty != null ? ' ±\u00a0' + fmtNum(cur.uncertainty, 1) : '');
+        (cur.uncertainty != null && cur.uncertainty > 0
+          ? ' ±\u00a0' + fmtNum(cur.uncertainty, 1)
+          : '');
       var lw = ctx.measureText(label).width;
       ctx.fillText(
         label,
@@ -2528,9 +2544,20 @@
     renderScopeButtons();
     renderSubnav();
 
+    var note = $('wb-scenario-note');
+    if (note) {
+      note.textContent = state.land === 'be'
+        ? 'Meldefluss: AfS-Zeiten'
+        : (state.land === 'st'
+          ? 'Meldefluss: simuliert (StaLA Live-CSV ab Wahlabend 2026)'
+          : 'Meldefluss: simuliert (LAIV Live-CSV ab ~19 Uhr 2026)');
+    }
+
+    var landLabel = (state.data && state.data.state_label)
+      || ({ be: 'Berlin', st: 'Sachsen-Anhalt', mv: 'Mecklenburg-Vorpommern' }[state.land] || state.land);
     var scopeTxt;
     if (state.scope === 'zweit') {
-      scopeTxt = 'Berlin · Zweitstimme';
+      scopeTxt = landLabel + ' · Zweitstimme';
     } else if (state.scope === 'lage') {
       scopeTxt = 'Szenarien & Parlamentsgröße';
     } else if (state.scope === 'land') {
@@ -2593,7 +2620,7 @@
         '<div>Wahlbeteiligung, Szenarien und <strong>Parlamentsgröße</strong></div>' +
         (to.nowcast != null
           ? '<div>Wahlbeteiligung: <strong>' + fmtNum(to.nowcast, 1) + '\u00a0%</strong>' +
-            (to.uncertainty != null
+            (to.uncertainty != null && to.uncertainty > 0
               ? ' ±\u00a0' + fmtNum(to.uncertainty, 1) + '\u00a0PP'
               : '') +
             (to.truth != null
@@ -2747,18 +2774,33 @@
 
   function init() {
     if (!$('wahlabend-root')) return;
+    state.land = landFromQuery();
     $('wb-stat').innerHTML = '<span class="wb-loading">Lade Auswertung …</span>';
-    fetch(dataUrl('wahlabend_nowcast_replay.json'))
+    document.querySelectorAll('[data-wb-land]').forEach(function (btn) {
+      btn.classList.toggle('is-active', btn.getAttribute('data-wb-land') === state.land);
+      btn.addEventListener('click', function () {
+        var next = btn.getAttribute('data-wb-land');
+        if (!next || next === state.land) return;
+        var url = new URL(window.location.href);
+        url.searchParams.set('state', next);
+        window.location.href = url.toString();
+      });
+    });
+    fetch(dataUrl(replayFileForLand(state.land)))
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
       })
       .then(function (data) {
         state.data = data;
-        // Produkt: immer AfS-Zeiten (andere Meldeflüsse nur intern/Eval).
-        state.scenario = 'actual_times';
+        var ids = Object.keys(data.scenarios || {});
+        if (ids.indexOf('actual_times') >= 0) state.scenario = 'actual_times';
+        else if (ids.indexOf('random') >= 0) state.scenario = 'random';
+        else state.scenario = ids[0] || 'random';
         state.scope = 'zweit';
-        state.unit = 'BE';
+        state.unit = (data.geo_units && data.geo_units.land && data.geo_units.land[0])
+          ? data.geo_units.land[0].id
+          : (state.land === 'be' ? 'BE' : state.land.toUpperCase());
         state.partyFocus = null;
         var n = steps().length;
         var slider = $('wb-slider');
