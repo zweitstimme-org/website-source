@@ -2,76 +2,131 @@
 title: "Forecast API"
 layout: "page"
 url: "/api"
-summary: "Dokumentation der versionierten Forecast API (Bundestag, Landtage, Aktuelle Stimmung)"
+summary: "Versionierte Forecast API: Bundestag, Landtage und Aktuelle Stimmung"
 ---
 
-Zweitstimme.org betreibt zwei APIs für Wahldaten und -prognosen. Auf dieser Seite dokumentieren wir die **Forecast API** — strukturierter Zugriff auf Modellergebnisse und die **Aktuelle Stimmung** (Kalman).
+Öffentliche, versionierte JSON-API für **Wahlprognosen** und die **Aktuelle Stimmung** (Kalman-Zeitreihe). Keine Authentifizierung. Nur `GET`.
 
-## Polling API (getrennt)
-
-Die **Polling API** für Einzelumfragen und Rohdaten ist ein eigener Dienst (nicht Teil dieser Seite). Die Forecast API liefert **keine** Rohumfragen.
+Dies ist **nicht** die Polling API (Einzelumfragen) — die bleibt ein eigener Dienst.
 
 ---
 
-## Forecast API
+## Schnellstart
 
-Alle Endpunkte sind HTTPS-GET auf statische JSON-Dateien. Neue Clients sollten die **versionierten** Pfade unter `/api/v…` nutzen. Jede versionierte Antwort enthält ein `election`-Objekt (welche Wahl die Daten betreffen).
+```bash
+# Was ist verfügbar?
+curl -s https://zweitstimme.org/api/index.json | jq .
 
-### Basis-URL
+# Landtag Sachsen-Anhalt — Prognose
+curl -s https://zweitstimme.org/api/v2/state/st.json | jq '.election, .data.parties'
 
-`https://zweitstimme.org`
+# Bund — Aktuelle Stimmung (heute)
+curl -s https://zweitstimme.org/api/v2/stimmung/federal/current.json | jq '.election, .data.parties'
+```
 
-### Discovery
+```js
+const r = await fetch("https://zweitstimme.org/api/v2/state/st.json");
+const { election, data } = await r.json();
+console.log(election.name, data.parties);
+```
 
-**Endpunkt:** [`/api/index.json`](/api/index.json)
+```python
+import urllib.request, json
+with urllib.request.urlopen("https://zweitstimme.org/api/v2/state/st.json") as f:
+    payload = json.load(f)
+print(payload["election"]["name"], payload["data"]["parties"])
+```
 
-Listet verfügbare Versionen und Endpunkte.
+**Basis-URL:** `https://zweitstimme.org`  
+**Discovery:** [`/api/index.json`](/api/index.json)  
+**CORS:** `Access-Control-Allow-Origin: *`
 
-### Antwort-Envelope (v1 / v2)
+---
+
+## Welche API brauche ich?
+
+| Ziel | Version | Einstieg |
+|------|---------|----------|
+| Bundestag-Prognose (Zweitstimme, Szenarien, Wahlkreise) | **v1** | [`/api/v1/federal/index.json`](/api/v1/federal/index.json) |
+| Landtag-Prognose (ST, BE, MV, …) | **v2** | [`/api/v2/state/index.json`](/api/v2/state/index.json) |
+| Tägliche „Aktuelle Stimmung“ (auch ohne neue Umfrage) | **v2** | [`/api/v2/stimmung/federal/current.json`](/api/v2/stimmung/federal/current.json) |
+| Vergangene Prognose nach dem Wahltag | Archiv | `/api/v1/federal/archive/…`, `/api/v2/state/archive/…` |
+
+**Prognose vs. Stimmung**
+
+- **Prognose** = Modellergebnis für den Wahltag (Unsicherheitsintervalle, Szenario-Wahrscheinlichkeiten). Nur aktiv im Fenster von ca. **90 Tagen** vor der Wahl.
+- **Stimmung** = geglättete Umfrageunterstützung **heute / an Tag D** (Kalman). Keine Sitzprognose. `election` nennt die *nächste* Wahl für den Scope, nicht „Prognose für den Wahltag“.
+
+---
+
+## Antwort-Envelope
+
+Jede versionierte Antwort hat dieselbe Hülle:
 
 ```json
 {
   "api_version": "v2",
-  "generated_at": "2026-08-11T15:35:11Z",
+  "generated_at": "2026-08-11T16:03:04Z",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
     "date": "2026-09-06",
     "scope": "state",
-    "state_code": "ST"
+    "state_code": "ST",
+    "date_is_estimated": false
   },
   "data": { }
 }
 ```
 
-| Feld | Bedeutung |
-|------|-----------|
-| `election.id` | Stabile ID, z. B. `bund_2025-02-23` oder `st_2026-09-06` |
-| `election.name` | Anzeigename der Wahl |
-| `election.date` | Wahltag (`YYYY-MM-DD`) |
-| `election.scope` | `federal` oder `state` |
-| `election.state_code` | Landeskürzel oder `null` (Bund) |
+| Feld | Typ | Bedeutung |
+|------|-----|-----------|
+| `api_version` | string | `"v1"` oder `"v2"` |
+| `generated_at` | string (ISO-8601 UTC) | Zeitpunkt der API-Erzeugung |
+| `election.id` | string | Stabil, z. B. `bund_2025-02-23`, `st_2026-09-06` |
+| `election.name` | string | Anzeigename |
+| `election.date` | string | Wahltag `YYYY-MM-DD` |
+| `election.scope` | string | `"federal"` \| `"state"` |
+| `election.state_code` | string \| null | z. B. `"ST"`; bei Bund `null` |
+| `election.date_is_estimated` | boolean | `true`, wenn der Termin geschätzt ist |
+| `data` | object \| array | Eigentliche Nutzlast |
+| `as_of` | string (optional) | Bei Stimmung: Stichtag der Werte |
+| `archived` | boolean (optional) | `true` bei Archiv-Antworten |
+
+**Immer** `election` auswerten — dieselbe URL kann über Wahlzyklen hinweg verschiedene Wahlen meinen (nach Archivierung / neuem Fenster).
 
 ---
 
-## v1 — Bundestag (federal)
+## v1 — Bundestag
 
-BTW-Prognosen und Szenario-Wahrscheinlichkeiten. Index: [`/api/v1/federal/index.json`](/api/v1/federal/index.json)
+Kanonische Pfade unter `/api/v1/federal/`. Index: [`/api/v1/federal/index.json`](/api/v1/federal/index.json).
 
-| Endpunkt | Inhalt |
-|----------|--------|
-| `/api/v1/federal/forecast.json` | Zweitstimmen-Punktwerte + 83 %/95 %-Intervalle |
-| `/api/v1/federal/pred_probabilities.json` | Hürden-, Mehrheits- und Stärkste-Kraft-Wahrscheinlichkeiten |
-| `/api/v1/federal/forecast_districts.json` | Wahlkreis Erst-/Zweitstimme (wenn veröffentlicht) |
+### Endpunkte
 
-`data` entspricht dem bisherigen Root-Array/Objekt — zusätzlich mit `election`.
+| Methode | Pfad | `data`-Inhalt |
+|---------|------|----------------|
+| GET | [`/api/v1/federal/forecast.json`](/api/v1/federal/forecast.json) | Array: Zweitstimmen je Partei |
+| GET | [`/api/v1/federal/pred_probabilities.json`](/api/v1/federal/pred_probabilities.json) | Array/Objekt: Hürden, Mehrheiten, stärkste Kraft |
+| GET | [`/api/v1/federal/forecast_districts.json`](/api/v1/federal/forecast_districts.json) | Array: 299 Wahlkreise (Erst- + Zweitstimme) |
+| GET | [`/api/v1/federal/archive/index.json`](/api/v1/federal/archive/index.json) | Katalog archivierter BTW-Läufe |
+| GET | `/api/v1/federal/archive/{YYYY-MM-DD}.json` | Eingefrorene Prognose einer BTW |
 
-**Beispiel** `GET /api/v1/federal/forecast.json`:
+### `forecast.json` — Felder je Partei
+
+| Feld | Einheit | Bedeutung |
+|------|---------|-----------|
+| `name` / `name_eng` | — | Anzeigename |
+| `_row` | — | Kurzcode (`cdu`, `afd`, …) |
+| `value` / `y` | %-Punkte | Punktschätzung |
+| `low` / `high` | %-Punkte | ca. **83 %-**Intervall |
+| `low95` / `high95` | %-Punkte | ca. **95 %-**Intervall |
+| `color` | Hex | UI-Farbe |
+
+Beispiel (gekürzt):
 
 ```json
 {
   "api_version": "v1",
-  "generated_at": "2026-08-11T15:35:11Z",
   "election": {
     "id": "bund_2025-02-23",
     "name": "Bundestagswahl",
@@ -81,11 +136,11 @@ BTW-Prognosen und Szenario-Wahrscheinlichkeiten. Index: [`/api/v1/federal/index.
   },
   "data": [
     {
-      "value": 30.2,
-      "low": 24.6,
-      "high": 35.8,
-      "low95": 21.4,
-      "high95": 39.9,
+      "value": 29.3,
+      "low": 24.2,
+      "high": 34.5,
+      "low95": 20.9,
+      "high95": 38.5,
       "name": "CDU/CSU",
       "_row": "cdu"
     }
@@ -93,9 +148,19 @@ BTW-Prognosen und Szenario-Wahrscheinlichkeiten. Index: [`/api/v1/federal/index.
 }
 ```
 
-### Legacy-Root → Redirects
+### `pred_probabilities.json`
 
-Kanonisch ist `/api/v1/federal/…`. Die alten Root-Pfade leiten dorthin um:
+Wahrscheinlichkeiten als **Anteil 0–1** (nicht Prozent). Typische Schlüssel:
+
+| Präfix | Beispiel | Bedeutung |
+|---------|----------|-----------|
+| `hurdle_*` | `hurdle_fdp` | Partei schafft die 5 %-Hürde (inkl. Grundmandatslogik wo modelliert) |
+| `maj_*` | `maj_cdu_csu_spd` | Koalition hat Sitzmehrheit |
+| `prob_*_largest` | `prob_cdu_largest` | Partei ist stärkste Kraft |
+
+### Legacy-Root (Migration)
+
+Alte Root-URLs zeigen auf v1 (Redirect bzw. Content-Alias mit Envelope):
 
 | Alt | Neu |
 |-----|-----|
@@ -103,96 +168,169 @@ Kanonisch ist `/api/v1/federal/…`. Die alten Root-Pfade leiten dorthin um:
 | `/pred_probabilities.json` | `/api/v1/federal/pred_probabilities.json` |
 | `/forecast_districts.json` | `/api/v1/federal/forecast_districts.json` |
 
-Technisch: `_redirects` (301, Cloudflare/Netlify) und auf GitHub Pages dieselben **envelopten** JSON-Inhalte unter dem alten Pfad (Content-Alias). Clients, die dem Redirect folgen oder den Alias lesen, erhalten das Envelope mit `election` — nicht mehr das nackte Array.
+**Breaking für alte Clients:** Unter dem Root-Pfad steht nicht mehr das nackte Array, sondern `{ api_version, election, data }`. Entweder dem Redirect auf `/api/v1/…` folgen und `data` lesen, oder lokal `payload.data ?? payload` nutzen.
 
-Weitere Legacy-Dateien ohne Redirect: `/pred_vacant.json`, `/draws.json`, `/last_updated.json`, `/interactive_*.html`.
-
-### Archiv (federal)
-
-Nach dem Wahltag verschiebt die Pipeline aktive Federal-Prognosen nach `archive/`. Abfragbar unter:
-
-- [`/api/v1/federal/archive/index.json`](/api/v1/federal/archive/index.json)
-- `/api/v1/federal/archive/{YYYY-MM-DD}.json`
-
-Nur Wahlen, die die Pipeline künftig archiviert — **kein Backfill** älterer BTW.
+Weitere Legacy-Dateien (ohne Envelope): `/last_updated.json`, `/draws.json`, `/pred_vacant.json`, `/interactive_*.html`.
 
 ---
 
-## v2 — Landtage (state forecasts)
+## v2 — Landtagsprognosen
 
-Aktive Landesprognosen nur im **~90-Tage-Fenster** vor dem Wahltag. Index: [`/api/v2/state/index.json`](/api/v2/state/index.json)
+Aktive Prognosen nur im **~90-Tage-Fenster** vor dem Wahltag. Außerhalb des Fensters fehlt der State-Endpunkt (404); nach dem Wahltag wandert die Datei ins Archiv.
 
-| Endpunkt | Inhalt |
-|----------|--------|
-| `/api/v2/state/index.json` | Aktive Länder + Election-Metadaten |
-| `/api/v2/state/{st\|be\|mv\|…}.json` | Parteien (fit/low/high) + Szenarien |
-| `/api/v2/state/archive/index.json` | Archivierte Landtagswahlen (nach dem Wahltag) |
-| `/api/v2/state/archive/{st}_{YYYY-MM-DD}.json` | Eingefrorene Prognose einer vergangenen Wahl |
+### Endpunkte
 
-**Beispiel** `GET /api/v2/state/st.json` — `data.parties` / `data.scenarios` wie bisher unter `/data/forecast_state_st.json`, plus äußeres `election` und `data.metadata.election_name`.
+| Methode | Pfad | Inhalt |
+|---------|------|--------|
+| GET | [`/api/v2/state/index.json`](/api/v2/state/index.json) | Aktive Länder, `forecast_window_days`, Link zum Archiv |
+| GET | `/api/v2/state/{code}.json` | Prognose eines Landes (`st`, `be`, `mv`, …) |
+| GET | [`/api/v2/state/archive/index.json`](/api/v2/state/archive/index.json) | Archiv-Katalog |
+| GET | `/api/v2/state/archive/{code}_{YYYY-MM-DD}.json` | Eingefrorene Prognose |
 
-Archiv wird **ab jetzt** befüllt, wenn eine Wahl vorbei ist; frühere Landtage werden nicht nachträglich eingespielt.
+`{code}` = kleines Landeskürzel (`st`, nicht `ST`).
 
-Wahlkreis- und Kandidaten-JSON bleiben Preview-only und sind **nicht** Teil der öffentlichen v2-API.
+Wahlkreis- und Kandidaten-JSON sind **Preview-only** und nicht Teil dieser öffentlichen API.
+
+### `data` bei `/api/v2/state/{code}.json`
+
+```json
+{
+  "metadata": {
+    "state_code": "ST",
+    "election_id": "st_2026-09-06",
+    "election_name": "Landtagswahl Sachsen-Anhalt",
+    "election_date": "2026-09-06",
+    "last_poll_date": "2026-08-10",
+    "asof_date": "2026-08-10",
+    "lead_horizon_days": 27,
+    "model": "state-models lr 27_polls …",
+    "shares_normalized_to_100": true
+  },
+  "parties": [
+    { "party": "CDU", "party_code": "cdu", "fit": 23, "low": 16, "high": 29 }
+  ],
+  "scenarios": {
+    "min_probability_pct": 1,
+    "hurdle_pct": 5,
+    "items": [
+      {
+        "id": "largest_party_afd",
+        "category": "largest_party",
+        "label_de": "AfD stärkste Kraft",
+        "probability": 97
+      }
+    ]
+  }
+}
+```
+
+| Feld | Einheit | Bedeutung |
+|------|---------|-----------|
+| `parties[].fit` | %-Punkte (ganze Zahlen) | Punktschätzung; Summe der Fits ≈ 100 |
+| `parties[].low` / `high` | %-Punkte | ca. **83 %-**Intervall |
+| `scenarios.items[].probability` | **Prozent 0–100** | Szenario-Wahrscheinlichkeit (anders als federal `pred_probabilities`!) |
+| `scenarios.items[].category` | string | z. B. `largest_party`, `hurdle`, `coalition`, `majority_excluding` |
+| `metadata.last_poll_date` | Datum | Stand der neuesten einbezogenen Umfrage |
+
+Aktive Länder immer über [`/api/v2/state/index.json`](/api/v2/state/index.json) ermitteln — nicht hart kodieren.
+
+### Archiv-Politik
+
+- Nach dem Wahltag: aktive Datei → Archiv.
+- Archiv wird **ab Einführung dieser API** befüllt; ältere Landtage werden **nicht** nachträglich eingespielt.
+- Archiv-Antworten können `"archived": true` setzen.
 
 ---
 
 ## v2 — Aktuelle Stimmung
 
-Kalman-Latentwerte **für jeden Kalendertag** im Zeitraum (auch ohne neue Umfrage an diesem Tag). Stimmung ist keine Wahlprognose; `election` benennt die **nächste** relevante Wahl für den Scope (nächste BTW bzw. Landtagswahl).
+Kalman-geglättete Unterstützung **pro Kalendertag**. Tage ohne neue Umfrage sind trotzdem vorhanden (Latentwert), nicht „fehlend“.
 
-| Endpunkt | Inhalt |
-|----------|--------|
-| `/api/v2/stimmung/federal.json` | Volle Tagesreihe Bund + `by_date` |
-| `/api/v2/stimmung/federal/current.json` | Letzter Tag |
-| `/api/v2/stimmung/state/index.json` | Übersicht Länder |
-| `/api/v2/stimmung/state/{st\|…}.json` | Volle Tagesreihe Land + `by_date` |
-| `/api/v2/stimmung/state/{st\|…}/current.json` | Letzter Tag |
+### Endpunkte
 
-### Tageszugriff
+| Methode | Pfad | Inhalt |
+|---------|------|--------|
+| GET | [`/api/v2/stimmung/federal/current.json`](/api/v2/stimmung/federal/current.json) | Bund, letzter Tag |
+| GET | [`/api/v2/stimmung/federal.json`](/api/v2/stimmung/federal.json) | Bund, volle Reihe + `by_date` |
+| GET | [`/api/v2/stimmung/state/index.json`](/api/v2/stimmung/state/index.json) | Liste der Länder |
+| GET | `/api/v2/stimmung/state/{code}/current.json` | Land, letzter Tag |
+| GET | `/api/v2/stimmung/state/{code}.json` | Land, volle Reihe + `by_date` |
 
-Es gibt keine dynamische Query (`?date=`). Stattdessen:
+`election` = **nächste** Bundestagswahl bzw. Landtagswahl für diesen Scope (Orientierung), nicht „Prognose für den Wahltag“.
 
-1. **Ein Tag (aktuell):** `/api/v2/stimmung/federal/current.json` bzw. `…/state/st/current.json`
-2. **Beliebiger Tag in der Reihe:** Serie laden und `data.by_date["YYYY-MM-DD"].parties` lesen (oder Index in `data.dates` / `data.series`)
+### Current — Beispiel
 
-Tage außerhalb der veröffentlichten Reihe fehlen in `by_date`. Fehlende Umfragen an einem Tag bedeuten **nicht**, dass der Tag fehlt — der Kalman-Filter liefert trotzdem einen Wert.
-
-**Beispiel** `data` in `/api/v2/stimmung/federal/current.json`:
+`GET /api/v2/stimmung/federal/current.json` → `data`:
 
 ```json
 {
   "as_of": "2026-08-11",
-  "parties": { "CDU/CSU": 21.0, "AfD": 27.9, "SPD": 12.1 },
+  "parties": {
+    "CDU/CSU": 21.0,
+    "AfD": 27.9,
+    "SPD": 12.1,
+    "GRÜNE": 14.2,
+    "LINKE": 11.5,
+    "BSW": 2.9,
+    "FDP": 4.6,
+    "Sonstige": 5.8
+  },
+  "uncertainty_low": { "CDU/CSU": 20.2, "AfD": 27.1 },
+  "uncertainty_high": { "CDU/CSU": 21.8, "AfD": 28.7 },
   "trends": { "CDU/CSU": -0.2, "AfD": 0.3 },
   "active_parties": ["CDU/CSU", "AfD", "SPD", "GRÜNE", "LINKE", "BSW", "FDP"],
   "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
 }
 ```
 
-Die Website-UI liest weiterhin `/data/stimmung_*.json` und `/data/forecast_state_*.json`; `/api/*` ist der öffentliche Vertrag.
+| Feld | Bedeutung |
+|------|-----------|
+| `parties` | Anteil in %-Punkten; `null` = Partei an dem Tag nicht aktiv / nicht geschätzt |
+| `trends` | Kurzfristige Veränderung (%-Punkte) |
+| `uncertainty_*` | Unsicherheitsband um den Latentwert |
+| `active_parties` | Parteien, die aktuell als aktiv gelten |
+
+### Beliebigen Tag lesen
+
+Es gibt **kein** `?date=` (statisches Hosting). Zwei Wege:
+
+1. **Nur heute:** `…/current.json`
+2. **Historisch:** Serie laden und indexieren:
+
+```js
+const { data } = await fetch(
+  "https://zweitstimme.org/api/v2/stimmung/federal.json"
+).then((r) => r.json());
+
+const day = data.by_date["2026-08-01"]; // { parties: { … } }
+// Alternative: Index in data.dates → data.series[party][i]
+```
+
+Die Serien-Dateien sind größer (volle Historie); für Dashboards oft `current` genügt.
 
 ---
 
-## Visualisierungen (Legacy)
+## Fehler und Verfügbarkeit
 
-Interaktive HTML-Karten unter Root-Pfaden (BTW-Zyklus), unverändert:
+| Situation | Verhalten |
+|-----------|-----------|
+| Unbekannter Pfad / kein aktives Forecast | **HTTP 404** |
+| Land außerhalb des 90-Tage-Fensters | State-Forecast-Endpunkt fehlt (404); Stimmung bleibt verfügbar |
+| Wartung / Deploy | Kurzzeitig veraltete oder fehlende Dateien möglich |
 
-- `/interactive_mobile.html`
-- `/interactive_districts_share.html`
-- `/interactive_districts_probability.html`
-- `/interactive_vacant.html`
+Es gibt keine Rate-Limits jenseits normaler CDN-/Hosting-Grenzen. Bitte cachen (ETag / `Last-Modified` / eigenes TTL).
 
 ---
 
-## CORS
+## Interne `/data/`-Pfade
 
-Die Forecast API erlaubt Cross-Origin-Anfragen von allen Domains (`*`).
+Die Website-UI liest parallel `/data/forecast_state_*.json`, `/data/stimmung_*.json` usw. Das ist **kein** stabiler Public-Contract. Für Integrationen immer `/api/v…` verwenden.
 
-## Fehler
-
-Nicht vorhandene Ressourcen: HTTP 404.
+---
 
 ## Nutzungsbedingungen
 
-Nicht-kommerzielle Nutzung; Quelle **zweitstimme.org** angeben. Keine Gewähr für Verfügbarkeit oder Richtigkeit.
+- Nicht-kommerzielle Nutzung.
+- Quelle: **zweitstimme.org**.
+- Keine Gewähr für Verfügbarkeit, Vollständigkeit oder Richtigkeit.
+- Prognosen und Stimmung sind Modelloutputs, keine amtlichen Ergebnisse.
