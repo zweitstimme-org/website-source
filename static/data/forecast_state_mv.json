@@ -10,8 +10,8 @@
     "poll_window_days": null,
     "last_poll_date": "2026-07-09",
     "asof_date": "2026-07-09",
-    "last_update": "2026-08-11T13:04:45",
-    "scenario_config_md5": "3a25ecaa8fd1a2e364c0f4e77797cfec",
+    "last_update": "2026-08-11T15:58:35",
+    "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
     "predictor_encoding": "state_models_exact_lead_v1",
     "shares_normalized_to_100": true,
     "source_repo": "zweitstimme-org/state-models"
@@ -79,10 +79,22 @@
     "hurdle_pct": 5,
     "items": [
       {
+        "id": "maj_ohne_afd",
+        "category": "majority_excluding",
+        "label_de": "Parlamentsmehrheit ohne AfD",
+        "probability": 95
+      },
+      {
+        "id": "maj_ohne_afd_bsw",
+        "category": "majority_excluding",
+        "label_de": "Parlamentsmehrheit ohne AfD und BSW",
+        "probability": 90
+      },
+      {
         "id": "largest_party_afd",
         "category": "largest_party",
         "label_de": "AfD stärkste Kraft",
-        "probability": 72
+        "probability": 70
       },
       {
         "id": "above_hurdle_gru",
@@ -94,13 +106,13 @@
         "id": "above_hurdle_bsw",
         "category": "above_hurdle",
         "label_de": "BSW über 5%-Hürde",
-        "probability": 47
+        "probability": 45
       },
       {
         "id": "largest_party_spd",
         "category": "largest_party",
         "label_de": "SPD stärkste Kraft",
-        "probability": 28
+        "probability": 29
       },
       {
         "id": "coal_spd_gru_lin",
@@ -109,28 +121,28 @@
         "probability": 25
       },
       {
+        "id": "coal_spd_lin",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit SPD und Linke",
+        "probability": 21
+      },
+      {
         "id": "coal_cdu_spd_gru",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
-        "probability": 20
+        "probability": 19
       },
       {
         "id": "coal_lin_bsw_spd",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit Linke, BSW und SPD",
-        "probability": 20
-      },
-      {
-        "id": "coal_spd_lin",
-        "category": "coalition",
-        "label_de": "Parlamentsmehrheit SPD und Linke",
         "probability": 19
       },
       {
         "id": "above_hurdle_fdp",
         "category": "above_hurdle",
         "label_de": "FDP über 5%-Hürde",
-        "probability": 12
+        "probability": 11
       },
       {
         "id": "abs_maj_afd",
