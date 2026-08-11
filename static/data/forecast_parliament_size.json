@@ -3,7 +3,7 @@
     "model": "district_swing + state Hare/Niemeyer size sim",
     "nsim": 4000,
     "seed": 20260730,
-    "last_update": "2026-08-10T10:37:40Z",
+    "last_update": "2026-08-11T12:34:47Z",
     "caveat_de": "Indikative Größenverteilung aus dem Wahlkreis-Swing-Modell (ohne Kandidateneffekte). Keine amtliche Sitzzuteilung."
   },
   "states": {
@@ -75,10 +75,12 @@
       "point": {
         "size": 71,
         "seats": {
-          "SPD": 23,
-          "AfD": 29,
-          "CDU": 9,
-          "LINKE": 10
+          "SPD": 20,
+          "AfD": 26,
+          "CDU": 8,
+          "LINKE": 9,
+          "GRÜNE": 4,
+          "BSW": 4
         },
         "directs": {
           "SPD": 13,
@@ -123,40 +125,40 @@
       "method": "hare_double_iter",
       "note_de": "Mindestens 83 Sitze (Hare/Niemeyer). Bei Überhang wird die Sitzzahl wiederholt um das Doppelte der verbleibenden Überhangmandate erhöht, bis der Proporz (nahezu) hergestellt ist.",
       "nsim": 4000,
-      "statewide_last_poll_date": "2026-07-30",
-      "p_overhang_pct": 26.1,
-      "p_incomplete_pct": 1.4,
+      "statewide_last_poll_date": "2026-08-10",
+      "p_overhang_pct": 27.1,
+      "p_incomplete_pct": 0.88,
       "advantage_seats_pct": {
-        "0": 98.6,
-        "1": 1.4,
+        "0": 99.12,
+        "1": 0.88,
         "2": 0.0,
         "3plus": 0.0
       },
-      "p_advantage_ge1_pct": 1.4,
+      "p_advantage_ge1_pct": 0.88,
       "p_advantage_ge2_pct": 0.0,
       "oh_parties": {
-        "AfD": 977,
-        "CDU": 65
+        "AfD": 1068,
+        "CDU": 15
       },
       "advantage_parties": {
-        "AfD": 39,
-        "CDU": 17
+        "AfD": 31,
+        "CDU": 4
       },
       "size_mean": 84.6,
       "size_median": 83,
       "size_p10": 83,
       "size_p90": 89,
       "size_p95": 93,
-      "size_max": 110,
-      "p_base_pct": 74.0,
+      "size_max": 108,
+      "p_base_pct": 72.9,
       "buckets": [
         {
           "label": "83",
-          "pct": 74.0
+          "pct": 72.9
         },
         {
           "label": "85–91",
-          "pct": 20.4
+          "pct": 21.6
         },
         {
           "label": "93–99",
@@ -180,19 +182,19 @@
         }
       ],
       "point": {
-        "size": 83,
+        "size": 85,
         "seats": {
-          "SPD": 7,
-          "AfD": 38,
-          "CDU": 24,
-          "LINKE": 13
+          "SPD": 6,
+          "AfD": 39,
+          "CDU": 22,
+          "LINKE": 13,
+          "BSW": 5
         },
         "directs": {
-          "AfD": 38,
-          "CDU": 2,
-          "GRÜNE": 1
+          "AfD": 39,
+          "CDU": 2
         },
-        "total_oh": 0,
+        "total_oh": 1,
         "incomplete": false,
         "adv": 0
       },
@@ -210,7 +212,7 @@
       "note_de": "Mindestens 130 Sitze (Hare/Niemeyer). Überhang wird in der Regel vollständig ausgeglichen (Formel über Direktmandate / Stimmenanteil). Grundmandatsklausel: ein Direktmandat reicht für den Einzug.",
       "nsim": 4000,
       "statewide_last_poll_date": "2026-08-05",
-      "p_overhang_pct": 52.5,
+      "p_overhang_pct": 47.9,
       "p_incomplete_pct": 0.0,
       "advantage_seats_pct": {
         "0": 100.0,
@@ -221,39 +223,39 @@
       "p_advantage_ge1_pct": 0.0,
       "p_advantage_ge2_pct": 0.0,
       "oh_parties": {
-        "CDU": 1987,
-        "GRÜNE": 101,
+        "CDU": 1796,
+        "GRÜNE": 103,
         "LINKE": 11,
-        "AfD": 1
+        "AfD": 5
       },
       "advantage_parties": {},
-      "size_mean": 137.7,
-      "size_median": 133,
+      "size_mean": 137.0,
+      "size_median": 130,
       "size_p10": 130,
-      "size_p90": 153,
-      "size_p95": 158,
+      "size_p90": 151,
+      "size_p95": 157,
       "size_max": 182,
-      "p_base_pct": 47.5,
+      "p_base_pct": 52.1,
       "buckets": [
         {
           "label": "130",
-          "pct": 47.5
+          "pct": 52.1
         },
         {
           "label": "132–140",
-          "pct": 22.7
+          "pct": 20.6
         },
         {
           "label": "142–150",
-          "pct": 18.3
+          "pct": 17.5
         },
         {
           "label": "152–160",
-          "pct": 8.6
+          "pct": 7.1
         },
         {
           "label": "162–170",
-          "pct": 2.5
+          "pct": 2.2
         },
         {
           "label": "172–180",
@@ -261,25 +263,25 @@
         },
         {
           "label": "182+",
-          "pct": 0.0
+          "pct": 0.1
         }
       ],
       "point": {
-        "size": 134,
+        "size": 137,
         "seats": {
-          "SPD": 20,
-          "AfD": 27,
-          "CDU": 30,
-          "LINKE": 30,
+          "SPD": 21,
+          "AfD": 28,
+          "CDU": 29,
+          "LINKE": 32,
           "GRÜNE": 27
         },
         "directs": {
-          "AfD": 12,
-          "CDU": 30,
-          "LINKE": 18,
-          "GRÜNE": 18
+          "AfD": 13,
+          "CDU": 29,
+          "LINKE": 19,
+          "GRÜNE": 17
         },
-        "total_oh": 1,
+        "total_oh": 2,
         "incomplete": false,
         "adv": 0
       },
