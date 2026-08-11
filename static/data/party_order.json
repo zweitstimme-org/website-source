@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_update": "2026-08-11T13:04:45",
+    "last_update": "2026-08-11T13:09:21",
     "source": "data/last_election_results.json (+ state-election-results.csv fallback)",
     "note": "Bars/tables/forecasts: parties ordered by last-election vote share; Sonstige always far right when shown."
   },
