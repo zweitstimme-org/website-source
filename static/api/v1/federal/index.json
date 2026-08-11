@@ -1,0 +1,28 @@
+{
+  "api_version": "v1",
+  "generated_at": "2026-08-11T16:03:03Z",
+  "election": {
+    "id": "bund_2025-02-23",
+    "name": "Bundestagswahl",
+    "date": "2025-02-23",
+    "scope": "federal",
+    "state_code": null,
+    "date_is_estimated": false
+  },
+  "data": {
+    "description": "Federal (Bundestag) forecast endpoints",
+    "endpoints": [
+      "/api/v1/federal/forecast.json",
+      "/api/v1/federal/pred_probabilities.json",
+      "/api/v1/federal/forecast_districts.json"
+    ],
+    "archive_index": "/api/v1/federal/archive/index.json",
+    "archive_count": 0,
+    "legacy_redirects": {
+      "/forecast.json": "/api/v1/federal/forecast.json",
+      "/pred_probabilities.json": "/api/v1/federal/pred_probabilities.json",
+      "/forecast_districts.json": "/api/v1/federal/forecast_districts.json"
+    },
+    "note": "Canonical paths are /api/v1/federal/*. Root /forecast.json etc. redirect (or content-alias) here. Active federal forecasts only within the 90-day window."
+  }
+}

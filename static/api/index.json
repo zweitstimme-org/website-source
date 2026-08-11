@@ -1,0 +1,53 @@
+{
+  "name": "Zweitstimme Forecast API",
+  "generated_at": "2026-08-11T16:03:04Z",
+  "docs": "https://zweitstimme.org/api/",
+  "versions": {
+    "v1": {
+      "description": "Federal (Bundestag) forecasts",
+      "index": "/api/v1/federal/index.json",
+      "archive_index": "/api/v1/federal/archive/index.json",
+      "endpoints": [
+        "/api/v1/federal/forecast.json",
+        "/api/v1/federal/pred_probabilities.json",
+        "/api/v1/federal/forecast_districts.json"
+      ]
+    },
+    "v2": {
+      "description": "State forecasts and Aktuelle Stimmung",
+      "state_index": "/api/v2/state/index.json",
+      "state_archive_index": "/api/v2/state/archive/index.json",
+      "stimmung_federal": "/api/v2/stimmung/federal.json",
+      "stimmung_state_index": "/api/v2/stimmung/state/index.json",
+      "forecast_window_days": 90
+    }
+  },
+  "election_envelope": {
+    "fields": [
+      "id",
+      "name",
+      "date",
+      "scope",
+      "state_code"
+    ],
+    "note": "Every versioned response includes an election object naming the vote."
+  },
+  "legacy_root": {
+    "note": "Root /forecast.json etc. redirect to /api/v1/federal/* (HTTP 301 via _redirects where supported; otherwise same enveloped JSON).",
+    "redirects": {
+      "/forecast.json": "/api/v1/federal/forecast.json",
+      "/pred_probabilities.json": "/api/v1/federal/pred_probabilities.json",
+      "/forecast_districts.json": "/api/v1/federal/forecast_districts.json"
+    }
+  },
+  "policy": {
+    "active_forecast_window_days": 90,
+    "archive": "After election day, forecasts move to /api/v1/federal/archive/ and /api/v2/state/archive/. No backfill of earlier elections."
+  },
+  "counts": {
+    "v1_federal_endpoints": 3,
+    "v2_state_forecasts": 3,
+    "v2_state_archive": 1,
+    "v2_stimmung_states": 16
+  }
+}

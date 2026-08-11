@@ -1,0 +1,81 @@
+{
+  "api_version": "v2",
+  "generated_at": "2026-08-11T16:03:03Z",
+  "election": {
+    "id": "bw_2031-04-20",
+    "name": "Landtagswahl Baden-Württemberg",
+    "date": "2031-04-20",
+    "scope": "state",
+    "state_code": "BW",
+    "date_is_estimated": true
+  },
+  "data": {
+    "as_of": "2026-08-11",
+    "parties": {
+      "CDU/CSU": 26.7,
+      "AfD": 20.8,
+      "SPD": 6.4,
+      "GRÜNE": 29.3,
+      "LINKE": 5.4,
+      "BSW": null,
+      "FDP": 4.7,
+      "FW": null,
+      "SSW": null,
+      "PIRATEN": null,
+      "REP": null,
+      "Sonstige": 6.7
+    },
+    "uncertainty_low": {
+      "CDU/CSU": 23.8,
+      "AfD": 17.9,
+      "SPD": 3.5,
+      "GRÜNE": 26.4,
+      "LINKE": 2.5,
+      "BSW": null,
+      "FDP": 1.8,
+      "FW": null,
+      "SSW": null,
+      "PIRATEN": null,
+      "REP": null,
+      "Sonstige": null
+    },
+    "uncertainty_high": {
+      "CDU/CSU": 29.6,
+      "AfD": 23.7,
+      "SPD": 9.3,
+      "GRÜNE": 32.2,
+      "LINKE": 8.3,
+      "BSW": null,
+      "FDP": 7.6,
+      "FW": null,
+      "SSW": null,
+      "PIRATEN": null,
+      "REP": null,
+      "Sonstige": null
+    },
+    "trends": {
+      "CDU/CSU": 0,
+      "AfD": 0,
+      "SPD": 0,
+      "GRÜNE": 0,
+      "LINKE": 0,
+      "BSW": null,
+      "FDP": 0,
+      "FW": null,
+      "SSW": null,
+      "PIRATEN": null,
+      "REP": null,
+      "Sonstige": 0
+    },
+    "active_parties": [
+      "CDU/CSU",
+      "AfD",
+      "SPD",
+      "GRÜNE",
+      "LINKE",
+      "FDP"
+    ],
+    "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
+  },
+  "as_of": "2026-08-11"
+}

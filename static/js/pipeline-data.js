@@ -234,10 +234,25 @@
     return { parties, dates, current, trends, forecastData };
   }
 
+  /** Peel versioned API envelope `{ api_version, election, data }` when present. */
+  function unwrapApiData(payload) {
+    if (
+      payload
+      && typeof payload === 'object'
+      && !Array.isArray(payload)
+      && payload.api_version
+      && Object.prototype.hasOwnProperty.call(payload, 'data')
+    ) {
+      return payload.data;
+    }
+    return payload;
+  }
+
   function forecastToBarData(forecastPayload) {
+    const unwrapped = unwrapApiData(forecastPayload);
     let rows = [];
-    if (Array.isArray(forecastPayload)) {
-      rows = forecastPayload.map(row => ({
+    if (Array.isArray(unwrapped)) {
+      rows = unwrapped.map(row => ({
         party: row.name || row.party,
         fit: row.value ?? row.y,
         low: row.low,
@@ -245,8 +260,8 @@
         low95: row.low95,
         high95: row.high95,
       }));
-    } else if (forecastPayload && Array.isArray(forecastPayload.parties)) {
-      rows = forecastPayload.parties.map(row => ({
+    } else if (unwrapped && Array.isArray(unwrapped.parties)) {
+      rows = unwrapped.parties.map(row => ({
         party: row.party,
         fit: row.fit,
         low: row.low,
@@ -313,6 +328,7 @@
     FALLBACK_PARTY_ORDER,
     sliceStimmungSeries,
     stimmungToChartData,
+    unwrapApiData,
     forecastToBarData,
     normalizeForecastShares,
   };

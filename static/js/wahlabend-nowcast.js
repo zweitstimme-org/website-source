@@ -1781,9 +1781,24 @@
       var dCount = (mc.directs || {})[p] || 0;
       var listQ = (mc.list_seats || {})[p];
       var wonWkrs = wonByParty[p] || {};
+      // Party-total Listensitze: use MC list quantiles when Landesliste;
+      // else seats − Direkt (Direkt fixed across draws ⇒ quantile(s−d)=quantile(s)−d).
+      var listLo;
+      var listMid;
+      var listHi;
+      if (Array.isArray(listQ) && listQ.length >= 3) {
+        listLo = listQ[0];
+        listMid = listQ[1];
+        listHi = listQ[2];
+      } else {
+        listLo = Math.max(0, seatsQ[0] - dCount);
+        listMid = Math.max(0, seatsQ[1] - dCount);
+        listHi = Math.max(0, seatsQ[2] - dCount);
+      }
       var head = partyShort(p) + ' — Sitze ' + seatsQ[1] +
         ' <span class="wb-art">(p10 ' + seatsQ[0] + ' – p90 ' + seatsQ[2] +
-        ') · Direkt ' + dCount + '</span>';
+        ') · Direkt ' + dCount +
+        ' · Liste ' + listMid + ' (p10 ' + listLo + ' – p90 ' + listHi + ')</span>';
       var openAttr = state.partyFocus === p ? ' open' : '';
       if (seatsQ[1] === 0 && seatsQ[2] === 0) {
         return '<details class="wb-entry-party"' + openAttr + '><summary>' + head +
