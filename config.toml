@@ -76,8 +76,8 @@ disableXML = true
       weight = 30
 
       [[languages.de.menu.footer]]
-      name = "Twitter"
-      url = "https://twitter.com/zweitstimme_org"
+      name = "Bluesky"
+      url = "https://bsky.app/profile/zweitstimme.bsky.social"
       weight = 40
 
       [[languages.de.menu.footer]]
@@ -116,8 +116,8 @@ mainSections = ["posts/blog", "posts/archive"]
 label.icon = "/images/logo_orange.png"
 
   [[params.socialIcons]]
-  name = "twitter"
-  url = "https://twitter.com/zweitstimme_org"
+  name = "bluesky"
+  url = "https://bsky.app/profile/zweitstimme.bsky.social"
 
   [[params.socialIcons]]
   name = "github"
