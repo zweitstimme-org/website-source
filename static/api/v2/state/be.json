@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-12T06:28:29Z",
+  "generated_at": "2026-08-12T08:16:24Z",
   "election": {
     "id": "be_2026-09-20",
     "name": "Landtagswahl Berlin",
@@ -22,7 +22,7 @@
       "poll_window_days": null,
       "last_poll_date": "2026-08-05",
       "asof_date": "2026-08-05",
-      "last_update": "2026-08-11T16:17:46",
+      "last_update": "2026-08-12T08:15:01",
       "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
       "predictor_encoding": "state_models_exact_lead_v1",
       "shares_normalized_to_100": true,
@@ -32,7 +32,7 @@
       {
         "party": "CDU",
         "party_code": "cdu",
-        "fit": 19,
+        "fit": 18,
         "low": 12,
         "high": 25
       },
@@ -60,7 +60,7 @@
       {
         "party": "AfD",
         "party_code": "afd",
-        "fit": 17,
+        "fit": 18,
         "low": 12,
         "high": 24
       },
@@ -106,7 +106,7 @@
           "id": "coal_spd_gru_lin_lead_lin",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Linken)",
-          "probability": 50
+          "probability": 51
         },
         {
           "id": "largest_party_lin",
@@ -118,7 +118,7 @@
           "id": "largest_party_cdu",
           "category": "largest_party",
           "label_de": "CDU stärkste Kraft",
-          "probability": 28
+          "probability": 26
         },
         {
           "id": "above_hurdle_fdp",
@@ -136,7 +136,7 @@
           "id": "largest_party_afd",
           "category": "largest_party",
           "label_de": "AfD stärkste Kraft",
-          "probability": 21
+          "probability": 20
         },
         {
           "id": "above_hurdle_bsw",
@@ -148,24 +148,24 @@
           "id": "largest_party_gru",
           "category": "largest_party",
           "label_de": "Grüne stärkste Kraft",
-          "probability": 15
+          "probability": 16
         },
         {
           "id": "coal_gru_lin",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit Grüne und Linke",
-          "probability": 8
-        },
-        {
-          "id": "coal_spd_gru_lin_lead_spd",
-          "category": "coalition",
-          "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der SPD)",
-          "probability": 7
+          "probability": 9
         },
         {
           "id": "coal_cdu_gru",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit CDU und Grüne",
+          "probability": 6
+        },
+        {
+          "id": "coal_spd_gru_lin_lead_spd",
+          "category": "coalition",
+          "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der SPD)",
           "probability": 6
         },
         {

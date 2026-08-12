@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-12T06:28:30Z",
+  "generated_at": "2026-08-12T08:16:25Z",
   "description": "Aktuelle Stimmung (Kalman) per Land. Daily series includes days without a new poll. Use data.by_date[YYYY-MM-DD] for a single day.",
   "states": [
     {
