@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-15T11:44:00Z",
+  "generated_at": "2026-08-15T12:32:11Z",
   "election": {
     "id": "bb_2029-10-21",
     "name": "Landtagswahl Brandenburg",
@@ -10,28 +10,28 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-15",
+    "as_of": "2026-08-10",
     "parties": {
-      "CDU/CSU": 12.1,
-      "AfD": 36.8,
-      "SPD": 22.2,
+      "CDU/CSU": 12.3,
+      "AfD": 36.6,
+      "SPD": 22.3,
       "GRÜNE": 5.9,
-      "LINKE": 11.6,
-      "BSW": 4.3,
+      "LINKE": 11.4,
+      "BSW": 4.5,
       "FDP": 2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 5.1
+      "Sonstige": 5
     },
     "uncertainty_low": {
-      "CDU/CSU": 9.9,
-      "AfD": 34.6,
-      "SPD": 20,
-      "GRÜNE": 3.7,
-      "LINKE": 9.4,
-      "BSW": 2.1,
+      "CDU/CSU": 10.2,
+      "AfD": 34.5,
+      "SPD": 20.2,
+      "GRÜNE": 3.8,
+      "LINKE": 9.3,
+      "BSW": 2.4,
       "FDP": 0,
       "FW": null,
       "SSW": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 14.3,
-      "AfD": 39,
+      "CDU/CSU": 14.4,
+      "AfD": 38.7,
       "SPD": 24.4,
-      "GRÜNE": 8.1,
-      "LINKE": 13.8,
-      "BSW": 6.5,
-      "FDP": 6.5,
+      "GRÜNE": 8,
+      "LINKE": 13.5,
+      "BSW": 6.6,
+      "FDP": 6.3,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -78,5 +78,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-15"
+  "as_of": "2026-08-10"
 }

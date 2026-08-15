@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-08-15T11:42:46",
+    "last_updated": "2026-08-10T12:10:20",
     "source": "website-pipeline/data/election_calendar.json",
     "forecast_window_days": 90
   },
@@ -74,8 +74,8 @@
       "state_code": "NI",
       "state_name": "Niedersachsen",
       "election_name": "Landtagswahl Niedersachsen",
-      "election_date": "2027-09-26",
-      "date_is_estimated": false
+      "election_date": "2027-10-17",
+      "date_is_estimated": true
     },
     {
       "scope": "by",

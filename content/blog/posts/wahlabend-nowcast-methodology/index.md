@@ -308,7 +308,7 @@ Gestrichelte **„Wahr“**-Linien und Treffer-Tabellen sind **Replay-Eval**. Am
 - **Meldezeiten:** Eingefrorene `_W_`-Zeiten ≠ zuverlässige Live-Chronologie.  
 - **Kein amtliches Hochrechnungsprodukt:** Wir ersetzen nicht die AfS; wir ordnen Teilstände ein.  
 - **Kandidierenden-Effekte** am Abend sind begrenzt (Namen/Listen zur Orientierung; Call basiert auf Stimmen-Nowcast).  
-- **π₀ live:** Soll die aktuelle [Landesprognose](/blog/posts/state-forecast-methodology/) (Stand = letzte Umfrage) sein, nicht ein Einfrieren auf den Wahltag-Kalender.
+- **π₀ live:** Soll die aktuelle [Landesprognose](/blog/posts/state-forecast-methodology/) sein (Stand = Modellrechnung, Letzte Umfrage = jüngste einbezogene Umfrage), nicht ein Einfrieren auf den Wahltag-Kalender.
 
 ---
 
