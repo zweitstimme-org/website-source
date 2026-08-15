@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-12T08:16:24Z",
+  "generated_at": "2026-08-15T11:25:32Z",
   "election": {
     "id": "rp_2031-04-20",
     "name": "Landtagswahl Rheinland-Pfalz",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-12",
+    "as_of": "2026-08-15",
     "parties": {
       "CDU/CSU": 28.5,
       "AfD": 19.2,
@@ -26,28 +26,28 @@
       "Sonstige": 6.7
     },
     "uncertainty_low": {
-      "CDU/CSU": 25.9,
-      "AfD": 16.6,
-      "SPD": 24.3,
-      "GRÜNE": 6.3,
-      "LINKE": 2.5,
+      "CDU/CSU": 25.8,
+      "AfD": 16.5,
+      "SPD": 24.2,
+      "GRÜNE": 6.2,
+      "LINKE": 2.4,
       "BSW": null,
       "FDP": null,
-      "FW": 2.1,
+      "FW": 2,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 31.1,
-      "AfD": 21.8,
-      "SPD": 29.5,
-      "GRÜNE": 11.5,
-      "LINKE": 7.7,
+      "CDU/CSU": 31.2,
+      "AfD": 21.9,
+      "SPD": 29.6,
+      "GRÜNE": 11.6,
+      "LINKE": 7.8,
       "BSW": null,
       "FDP": null,
-      "FW": 7.3,
+      "FW": 7.4,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
@@ -77,5 +77,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-12"
+  "as_of": "2026-08-15"
 }

@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-12T08:16:24Z",
+  "generated_at": "2026-08-15T11:25:32Z",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -10,29 +10,29 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-12",
+    "as_of": "2026-08-15",
     "parties": {
-      "CDU/CSU": 9.4,
-      "AfD": 35.7,
-      "SPD": 28.5,
-      "GRÜNE": 4.6,
-      "LINKE": 11.8,
-      "BSW": 4.6,
-      "FDP": 2.3,
+      "CDU/CSU": 9.8,
+      "AfD": 35.9,
+      "SPD": 28.9,
+      "GRÜNE": 4.9,
+      "LINKE": 11.2,
+      "BSW": 4.1,
+      "FDP": 2.8,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 3.1
+      "Sonstige": 2.4
     },
     "uncertainty_low": {
-      "CDU/CSU": 7.7,
-      "AfD": 34,
-      "SPD": 26.8,
-      "GRÜNE": 2.9,
-      "LINKE": 10.1,
-      "BSW": 2.9,
-      "FDP": 0.6,
+      "CDU/CSU": 8.9,
+      "AfD": 35,
+      "SPD": 28,
+      "GRÜNE": 4,
+      "LINKE": 10.3,
+      "BSW": 3.2,
+      "FDP": 1.9,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 11.1,
-      "AfD": 37.4,
-      "SPD": 30.2,
-      "GRÜNE": 6.3,
-      "LINKE": 13.5,
-      "BSW": 6.3,
-      "FDP": 4,
+      "CDU/CSU": 10.7,
+      "AfD": 36.8,
+      "SPD": 29.8,
+      "GRÜNE": 5.8,
+      "LINKE": 12.1,
+      "BSW": 5,
+      "FDP": 3.7,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -54,18 +54,18 @@
       "Sonstige": null
     },
     "trends": {
-      "CDU/CSU": 0,
+      "CDU/CSU": 0.1,
       "AfD": 0,
-      "SPD": 0,
+      "SPD": 0.1,
       "GRÜNE": 0,
-      "LINKE": 0,
-      "BSW": 0,
-      "FDP": 0,
+      "LINKE": -0.1,
+      "BSW": -0.1,
+      "FDP": 0.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0
+      "Sonstige": -0.1
     },
     "active_parties": [
       "CDU/CSU",
@@ -78,5 +78,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-12"
+  "as_of": "2026-08-15"
 }

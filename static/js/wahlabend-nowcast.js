@@ -17,9 +17,9 @@
 
   function landFromQuery() {
     var q = new URLSearchParams(window.location.search || '');
-    var s = (q.get('state') || q.get('land') || 'be').toLowerCase();
+    var s = (q.get('state') || q.get('land') || 'st').toLowerCase();
     if (s === 'st' || s === 'mv' || s === 'be') return s;
-    return 'be';
+    return 'st';
   }
 
   function replayFileForLand(land) {
@@ -52,7 +52,7 @@
 
   var state = {
     data: null,
-    land: 'be',
+    land: 'st',
     scenario: 'actual_times',
     scope: 'zweit',
     unit: 'BE',
@@ -60,7 +60,8 @@
     step: 10,
     openBezirk: {},
     openWkr: {},
-    showZeroScenarios: false
+    showZeroScenarios: false,
+    wkrSearch: ''
   };
 
 
@@ -76,6 +77,26 @@
 
   function $(id) { return document.getElementById(id); }
 
+  function hasBezirkslisten() {
+    var f = state.data && state.data.features;
+    if (f && typeof f.bezirkslisten === 'boolean') return f.bezirkslisten;
+    return state.land === 'be' &&
+      ((state.data && state.data.geo_units && state.data.geo_units.bezirk) || []).length > 0;
+  }
+
+  function hasListenEinzug() {
+    var f = state.data && state.data.features;
+    if (f && typeof f.listen_einzug === 'boolean') return f.listen_einzug;
+    return state.land === 'be';
+  }
+
+  function listenModeLabel() {
+    var mode = state.data && state.data.listen_mode;
+    if (mode === 'landes') return 'Landeslisten';
+    if (mode === 'berlin_mixed') return 'Landes- und Bezirkslisten';
+    return hasBezirkslisten() ? 'Landes- und Bezirkslisten' : 'Landeslisten';
+  }
+
   /** German decimal: 1,2 instead of 1.2 */
   function fmtNum(x, digits) {
     if (x == null || !isFinite(x)) return '—';
@@ -85,6 +106,12 @@
   function fmtPct(x) {
     if (x == null || !isFinite(x)) return '—';
     return fmtNum(x, 1) + '\u00a0%';
+  }
+
+  /** German integer with thousands separator (1.234.567). */
+  function fmtInt(x) {
+    if (x == null || !isFinite(x)) return '—';
+    return Math.round(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
 
   function fmtPp(x) {
@@ -176,6 +203,17 @@
     }
     if (!call || call.complete_at == null || !s) return false;
     return call.complete_at <= (s.frac_reported || 0) + 1e-9;
+  }
+
+  /** Land voll ausgezählt — erst dann Endstände im Live-Dashboard zeigen. */
+  function isLandComplete(s) {
+    return !!(s && s.frac_reported != null && s.frac_reported >= 0.999);
+  }
+
+  function isWkrComplete(s, wkrId) {
+    if (!s || !wkrId) return false;
+    var r = (s.by_wkr && s.by_wkr[wkrId]) || {};
+    return isCompleteNow(r, wkrCalls()[wkrId] || {}, s);
   }
 
   /** 'called' | 'likely' | 'open' — wahrscheinlich auch ohne lokale Auszählung. */
@@ -294,6 +332,9 @@
 
   function ensureUnit() {
     if (!state.data) return;
+    if (state.scope === 'land' && !hasListenEinzug()) {
+      state.scope = 'zweit';
+    }
     if (state.scope === 'zweit' || state.scope === 'lage' || state.scope === 'land') {
       state.unit = 'BE';
       return;
@@ -315,7 +356,9 @@
     var tabs = $('wb-scope-tabs');
     if (!tabs) return;
     tabs.querySelectorAll('[data-scope]').forEach(function (btn) {
-      btn.classList.toggle('is-active', btn.getAttribute('data-scope') === state.scope);
+      var scope = btn.getAttribute('data-scope');
+      if (scope === 'land') btn.hidden = !hasListenEinzug();
+      btn.classList.toggle('is-active', scope === state.scope);
     });
   }
 
@@ -374,20 +417,29 @@
       if (!byBez[bid]) byBez[bid] = [];
       byBez[bid].push(x);
     });
-    var groups = Object.keys(byBez).sort().map(function (bid) {
-      var tiles = byBez[bid].slice().sort(function (a, b) {
+    var bezirkIds = Object.keys(byBez).sort();
+    var tilesHtml = '';
+    bezirkIds.forEach(function (bid, idx) {
+      if (idx > 0) {
+        var label = unitLabel('bezirk', bid);
+        tilesHtml += '<span class="wb-wkr-bez-sep" title="' + escapeHtml(label) + '">' +
+          escapeHtml(bid) + '</span>';
+      }
+      byBez[bid].slice().sort(function (a, b) {
         return Number(a.id) - Number(b.id);
-      }).map(wkrTileHtml).join('');
-      var label = unitLabel('bezirk', bid);
-      var short = String(label).replace(/^\d+\s*[·.•]\s*/, '');
-      return '<div class="wb-wkr-tile-group">' +
-        '<div class="wb-wkr-tile-bez">' + escapeHtml(bid) +
-          ' · ' + escapeHtml(short) + '</div>' +
-        '<div class="wb-wkr-tiles">' + tiles + '</div></div>';
-    }).join('');
+      }).forEach(function (x) {
+        tilesHtml += wkrTileHtml(x);
+      });
+    });
     el.innerHTML =
       '<p class="wb-subnav-label">Wahlkreis' +
         (state.unit ? '' : ' — Tiles antippen') + '</p>' +
+      '<div class="wb-wkr-search-row">' +
+        '<input type="search" id="wb-wkr-search" class="wb-wkr-search" ' +
+        'placeholder="WK-Nr., Bezirk, Name …" autocomplete="off" ' +
+        'value="' + escapeHtml(state.wkrSearch || '') + '">' +
+        '<span class="wb-wkr-search-hint wb-art" id="wb-wkr-search-hint"></span>' +
+      '</div>' +
       '<div class="wb-wkr-tile-legend">' +
         '<span><i class="wb-wkr-tile-swatch is-called"></i> gecallt</span>' +
         '<span><i class="wb-wkr-tile-swatch is-likely"></i> wahrscheinlich</span>' +
@@ -395,8 +447,51 @@
         '<span class="wb-art">' + nCalled + ' Call · ' + nLikely +
           ' wahrsch. · ' + nOpen + ' offen</span>' +
       '</div>' +
-      '<div class="wb-wkr-tile-groups">' + groups + '</div>';
+      '<div class="wb-wkr-tiles">' + tilesHtml + '</div>';
     bindWkrLinks(el);
+    applyWkrSearchFilter();
+  }
+
+  function normSearch(s) {
+    return String(s || '').toLowerCase()
+      .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue')
+      .replace(/ß/g, 'ss').trim();
+  }
+
+  function wkrSearchHaystack(x) {
+    var bezLabel = unitLabel('bezirk', x.bezirk || '');
+    var parts = shortWkrLabel(x.label, x.id);
+    return normSearch([
+      x.id,
+      parts.num,
+      parts.rest,
+      x.label,
+      x.bezirk,
+      bezLabel,
+      x.party ? partyShort(x.party) : ''
+    ].join(' '));
+  }
+
+  function applyWkrSearchFilter() {
+    var wrap = $('wb-subnav');
+    if (!wrap || state.scope !== 'wkr') return;
+    var q = normSearch(state.wkrSearch);
+    var tiles = wrap.querySelectorAll('.wb-wkr-tile');
+    var seps = wrap.querySelectorAll('.wb-wkr-bez-sep');
+    var n = 0;
+    tiles.forEach(function (tile) {
+      var hay = tile.getAttribute('data-search') || '';
+      var show = !q || hay.indexOf(q) >= 0;
+      tile.hidden = !show;
+      if (show) n++;
+    });
+    seps.forEach(function (sep) { sep.hidden = !!q; });
+    var hint = $('wb-wkr-search-hint');
+    if (hint) {
+      if (!q) hint.textContent = '';
+      else if (!n) hint.textContent = 'Keine Treffer';
+      else hint.textContent = n + (n === 1 ? ' Treffer' : ' Treffer');
+    }
   }
 
   function setScope(scope) {
@@ -404,6 +499,7 @@
       renderScopeButtons();
       return;
     }
+    if (scope !== 'wkr') state.wkrSearch = '';
     state.scope = scope;
     ensureUnit();
     renderScopeButtons();
@@ -502,6 +598,8 @@
     if (!canvas || !state.data || state.scope !== 'zweit') return;
     var st = steps();
     if (!st.length) return;
+    var ci = Math.min(state.step, st.length - 1);
+    var showTruth = isLandComplete(st[ci]);
     var views = st.map(viewForStep);
     var parties = PARTIES_ORDER.filter(function (p) {
       return views.some(function (v) {
@@ -557,7 +655,7 @@
         var nc = v.nowcast[p] || 0;
         var u = (v.uncertainty && v.uncertainty[p]) || 0;
         vals.push(nc + u);
-        if (v.truth) vals.push(v.truth[p] || 0);
+        if (showTruth && v.truth) vals.push(v.truth[p] || 0);
       });
     });
     var yMin = 0;
@@ -623,8 +721,8 @@
       ctx.setLineDash([]);
     });
 
-    // Truth as dashed horizontals (endstand)
-    var truth = views[views.length - 1] && views[views.length - 1].truth;
+    // Endstand nur wenn Land voll ausgezählt (nicht die ganze Nacht vorwegnehmen)
+    var truth = showTruth && views[ci] && views[ci].truth;
     if (truth) {
       parties.forEach(function (p) {
         var tv = truth[p];
@@ -853,7 +951,10 @@
     });
     var staticW = (((state.data.geo_static || {}).wkr) || {})[state.unit] || {};
     var truth = staticW.truth || {};
-    var cur = regions[Math.min(state.step, regions.length - 1)] || {};
+    var ci = Math.min(state.step, regions.length - 1);
+    var sCur = st[ci];
+    var showTruth = isWkrComplete(sCur, state.unit);
+    var cur = regions[ci] || {};
     var parties = PARTIES_ORDER.filter(function (p) { return p !== 'others'; })
       .sort(function (a, b) {
         return ((cur.nowcast && cur.nowcast[b]) || 0) - ((cur.nowcast && cur.nowcast[a]) || 0);
@@ -867,7 +968,9 @@
           ';display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:0.35rem;"></i>' +
           partyShort(p) + '</span>';
       }).join(' ') +
-        ' <span class="wb-art">· Band = ± (Fläche + Kante) · gestrichelt horizontal = Endstand</span>';
+        (showTruth
+          ? ' <span class="wb-art">· Band = ± (Fläche + Kante) · gestrichelt horizontal = Endstand</span>'
+          : ' <span class="wb-art">· Band = ± (Fläche + Kante)</span>');
     }
 
     // --- Race share chart ---
@@ -890,7 +993,7 @@
         var u = (r.uncertainty && r.uncertainty[p]) || 0;
         vals.push(nc + u);
       });
-      if (truth[p] != null) vals.push(truth[p]);
+      if (showTruth && truth[p] != null) vals.push(truth[p]);
     });
     var yMin = 0;
     var yMax = Math.max(15, Math.max.apply(null, vals.concat([0])) * 1.1);
@@ -940,19 +1043,21 @@
       ctx.setLineDash([]);
     });
 
-    parties.forEach(function (p) {
-      if (truth[p] == null) return;
-      ctx.strokeStyle = PARTY_COLORS[p] || '#888';
-      ctx.globalAlpha = 0.4;
-      ctx.setLineDash([5, 4]);
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(pad.l, yAt(truth[p]));
-      ctx.lineTo(pad.l + w, yAt(truth[p]));
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.globalAlpha = 1;
-    });
+    if (showTruth) {
+      parties.forEach(function (p) {
+        if (truth[p] == null) return;
+        ctx.strokeStyle = PARTY_COLORS[p] || '#888';
+        ctx.globalAlpha = 0.4;
+        ctx.setLineDash([5, 4]);
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(pad.l, yAt(truth[p]));
+        ctx.lineTo(pad.l + w, yAt(truth[p]));
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.globalAlpha = 1;
+      });
+    }
 
     parties.forEach(function (p) {
       ctx.strokeStyle = PARTY_COLORS[p] || '#888';
@@ -966,7 +1071,6 @@
       ctx.stroke();
     });
 
-    var ci = Math.min(state.step, n - 1);
     ctx.strokeStyle = '#5b7cfa';
     ctx.setLineDash([4, 4]);
     ctx.lineWidth = 1;
@@ -1090,12 +1194,12 @@
     if (!st.length) { el.innerHTML = ''; return; }
     var staticW = (((state.data.geo_static || {}).wkr) || {})[state.unit] || {};
     var truthParty = staticW.erst_winner || null;
-    var truthCand = truthParty ? candidateFor(state.unit, truthParty) : null;
     var cur = st[Math.min(state.step, st.length - 1)];
     var region = (cur.by_wkr && cur.by_wkr[state.unit]) || {};
     var predParty = region.direct_pred || region.leader_pred || null;
     var predCand = predParty ? candidateFor(state.unit, predParty) : null;
-    var ok = predParty && truthParty && predParty === truthParty;
+    var call = wkrCalls()[state.unit] || {};
+    var doneNow = isCompleteNow(region, call, cur);
     var uncNow = region.uncertainty || {};
     var leadShare = predParty && region.nowcast ? region.nowcast[predParty] : null;
     var leadU = predParty ? uncNow[predParty] : null;
@@ -1103,7 +1207,6 @@
     var runShare = runP && region.nowcast ? region.nowcast[runP] : null;
     var runU = runP ? uncNow[runP] : null;
     var mU = marginUnc(region);
-    var call = wkrCalls()[state.unit] || {};
 
     var topParties = PARTIES_ORDER.filter(function (p) { return p !== 'others'; })
       .sort(function (a, b) {
@@ -1116,7 +1219,8 @@
       var sh = region.nowcast ? region.nowcast[p] : null;
       var u = uncNow[p];
       var c = candidateFor(state.unit, p);
-      var win = p === truthParty ? ' · <span class="wb-ok">Endstand</span>' : '';
+      var win = (doneNow && p === truthParty)
+        ? ' · <span class="wb-ok">Endstand</span>' : '';
       var lead = p === predParty ? ' · führt' : '';
       return '<span class="wb-wkr-chip" style="border-left:3px solid ' +
         (PARTY_COLORS[p] || '#888') + ';">' +
@@ -1139,7 +1243,6 @@
     } else {
       callInfo = '<span class="wb-art">noch offen</span>';
     }
-    var doneNow = isCompleteNow(region, call, cur);
     var doneInfo = doneNow
       ? ('<span class="wb-ok">dieser WK vollständig</span>' +
         (completeWhen(call) ? ' seit <strong>' + completeWhen(call) + '</strong>' : ''))
@@ -1177,11 +1280,6 @@
           '<dt>Call</dt><dd>' + callInfo + '</dd>' +
           '<dt>Stand Land</dt><dd>' + stepWhen(cur, 'land') + '</dd>' +
           '<dt>Auszählung WK</dt><dd>' + doneInfo + '</dd>' +
-          '<dt>Endstand 2023</dt><dd><strong>' +
-            (truthParty ? partyShort(truthParty) : '—') + '</strong> — ' +
-            nameHtml(truthCand) + ' — ' +
-            (ok ? '<span class="wb-ok">richtig</span>' : '<span class="wb-bad">falsch</span>') +
-          '</dd>' +
         '</dl></div>' +
       '</div>' +
       '<p class="wb-chart-label">Erststimmen-Rennen über die Nacht</p>' +
@@ -1231,7 +1329,7 @@
         since = ' seit <strong>' + when + '</strong>';
       }
       var verdict = '';
-      if (call.truth_erst) {
+      if (isCompleteNow(r, call, s) && call.truth_erst) {
         if (p === call.truth_erst) {
           verdict = ' · Endstand bestätigt (<strong>' + partyShort(call.truth_erst) + '</strong>)';
         } else {
@@ -1429,7 +1527,8 @@
     var active = state.scope === 'wkr' && String(state.unit) === String(x.id);
     return '<button type="button" class="wb-wkr-tile wb-wkr-tile-' + tier +
       (active ? ' is-active' : '') +
-      '" data-wkr-link="' + x.id + '" style="' + style + '" title="' + tip + '">' +
+      '" data-wkr-link="' + x.id + '" data-search="' + escapeHtml(wkrSearchHaystack(x)) +
+      '" style="' + style + '" title="' + tip + '">' +
       '<span class="wb-wkr-tile-num">' + escapeHtml(parts.num) + '</span>' +
       '</button>';
   }
@@ -1446,10 +1545,9 @@
       return (s.entry_mc && s.entry_mc.size) || null;
     });
     if (!qs.some(function (q) { return q; })) return;
-    // Wahrheit ist konstant; aus aktuellem oder finalem Eval
-    var inst = institutionsOf(st[ci].eval) ||
-      (st[st.length - 1].eval && institutionsOf(st[st.length - 1].eval));
-    var sizeTruth = inst && inst.parliament ? inst.parliament.size_truth : null;
+    var showTruth = isLandComplete(st[ci]);
+    var inst = institutionsOf(st[ci].eval);
+    var sizeTruth = showTruth && inst && inst.parliament ? inst.parliament.size_truth : null;
 
     var ctx = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;
@@ -1571,6 +1669,7 @@
     var st = steps();
     if (!st.length) return;
     var ci = Math.min(state.step, st.length - 1);
+    var showTruth = isLandComplete(st[ci]);
     var series = st.map(function (s, i) {
       if (i > ci) return null;
       return s.turnout || null;
@@ -1595,11 +1694,9 @@
       if (!t || t.nowcast == null) return;
       var u = t.uncertainty != null ? t.uncertainty : 0;
       vals.push(t.nowcast - u, t.nowcast + u);
-      if (t.truth != null) vals.push(t.truth);
+      if (showTruth && t.truth != null) vals.push(t.truth);
     });
-    var truth = (st[ci].turnout && st[ci].turnout.truth != null)
-      ? st[ci].turnout.truth
-      : (st[st.length - 1].turnout && st[st.length - 1].turnout.truth);
+    var truth = showTruth && st[ci].turnout ? st[ci].turnout.truth : null;
     if (truth != null) vals.push(truth);
     var yMin = Math.min.apply(null, vals) - 1;
     var yMax = Math.max.apply(null, vals) + 1;
@@ -1754,13 +1851,17 @@
       el.innerHTML = '';
       return;
     }
+    if (!hasListenEinzug()) {
+      el.innerHTML = '';
+      return;
+    }
     var st = steps();
     if (!st.length) { el.innerHTML = ''; return; }
     var s = st[Math.min(state.step, st.length - 1)];
     var mc = s.entry_mc;
     var roster = (state.data && state.data.listen_roster_2026) || {};
     if (!mc || !Object.keys(roster).length) {
-      el.innerHTML = '<p class="wb-meta">Einzugs-Daten fehlen (JSON neu generieren).</p>';
+      el.innerHTML = '<p class="wb-meta">Listen-Einzug für dieses Land ist noch nicht verfügbar.</p>';
       return;
     }
     var wonByParty = {};
@@ -1810,7 +1911,7 @@
         bodyHtml = '<p class="wb-meta">Keine Listendaten für ' + partyShort(p) + '.</p>';
       } else if (Array.isArray(listQ)) {
         bodyHtml = entryListTable(slot.landes, listQ, wonWkrs);
-      } else if (listQ && typeof listQ === 'object') {
+      } else if (listQ && typeof listQ === 'object' && hasBezirkslisten()) {
         var bezIds = Object.keys(slot.bezirk || {}).sort();
         bodyHtml = bezIds.map(function (bid) {
           var q = listQ[bid] || [0, 0, 0];
@@ -1832,7 +1933,11 @@
     el.innerHTML = html +
       '<p class="wb-meta" style="margin:0.5rem 0 0;">' +
       escapeHtml(state.data.listen_roster_note || '') +
-      ' Direktgewinner (aktueller Nowcast-Führer je WK) werden in der Liste übersprungen.</p>';
+      ' Direktgewinner (aktueller Nowcast-Führer je WK) werden in der Liste übersprungen.' +
+      (hasBezirkslisten()
+        ? ''
+        : ' Nur Landeslisten — keine Bezirkslisten wie in Berlin.') +
+      '</p>';
   }
 
   function yesNo(ok) {
@@ -2141,12 +2246,14 @@
           (ent ? (ent.n_ok + '\u00a0/\u00a0' + ent.n_total) : '—') + '</div>' +
         '<div class="wb-hit-s">5\u00a0% oder Grundmandat</div>' +
       '</div>' +
-      '<div class="wb-hit-card">' +
-        '<span class="wb-hit-k">Bezirkslisten (' + BEZIRKSLISTE_LABEL + ')</span>' +
-        '<div class="wb-hit-v">' +
-          (bzMae != null ? fmtNum(bzMae, 2) + '\u00a0PP' : '—') + '</div>' +
-        '<div class="wb-hit-s">mittlerer Anteilsfehler · 12 Bezirke</div>' +
-      '</div>';
+      (hasBezirkslisten()
+        ? ('<div class="wb-hit-card">' +
+          '<span class="wb-hit-k">Bezirkslisten (' + BEZIRKSLISTE_LABEL + ')</span>' +
+          '<div class="wb-hit-v">' +
+            (bzMae != null ? fmtNum(bzMae, 2) + '\u00a0PP' : '—') + '</div>' +
+          '<div class="wb-hit-s">mittlerer Anteilsfehler · 12 Bezirke</div>' +
+        '</div>')
+        : '');
   }
 
   function renderHitsTimeline() {
@@ -2193,9 +2300,11 @@
         '<td>' + sizeCell + '</td>' +
         '<td>' + dirCell + '</td>' +
         '<td>' + entCell + '</td>' +
-        '<td>' + (bzMae != null ? fmtNum(bzMae, 2) : '—') +
-          ' <span class="wb-art">naiv ' +
-          (bzMaeN != null ? fmtNum(bzMaeN, 2) : '—') + '</span></td>' +
+        (hasBezirkslisten()
+          ? ('<td>' + (bzMae != null ? fmtNum(bzMae, 2) : '—') +
+            ' <span class="wb-art">naiv ' +
+            (bzMaeN != null ? fmtNum(bzMaeN, 2) : '—') + '</span></td>')
+          : '') +
         '</tr>';
     }).join('');
     body.innerHTML =
@@ -2206,12 +2315,16 @@
       '<th>Größe</th>' +
       '<th>Direkt</th>' +
       '<th>Einzug</th>' +
-      '<th>Bezirk-MAE*</th>' +
+      (hasBezirkslisten() ? '<th>Bezirk-MAE*</th>' : '') +
       '</tr></thead><tbody>' + rows + '</tbody></table>' +
-      '<p class="wb-coverage-meta">* Nur ' + BEZIRKSLISTE_LABEL +
-      ' (Bezirkslisten). Szenarien = politische Ereignisse ' +
-      '(Mehrheit / stärkste Kraft / Hürde): P\u00a0≥\u00a050\u00a0%\u00a0=\u00a0eher ein ' +
-      'vs. Wahrheit.</p>';
+      (hasBezirkslisten()
+        ? ('<p class="wb-coverage-meta">* Nur ' + BEZIRKSLISTE_LABEL +
+          ' (Bezirkslisten). Szenarien = politische Ereignisse ' +
+          '(Mehrheit / stärkste Kraft / Hürde): P\u00a0≥\u00a050\u00a0%\u00a0=\u00a0eher ein ' +
+          'vs. Wahrheit.</p>')
+        : ('<p class="wb-coverage-meta">Szenarien = politische Ereignisse ' +
+          '(Mehrheit / stärkste Kraft / Hürde): P\u00a0≥\u00a050\u00a0%\u00a0=\u00a0eher ein ' +
+          'vs. Wahrheit.</p>'));
     body.querySelectorAll('tr[data-step]').forEach(function (tr) {
       tr.addEventListener('click', function () {
         var i = Number(tr.getAttribute('data-step'));
@@ -2349,12 +2462,14 @@
             (dir ? (dir.n_hit + '/' + dir.n_total) : '—') +
             '</strong> richtig' +
             ' <span class="wb-art">Erststimmen-Nowcast</span></dd>' +
-          '<dt>Bezirkslisten (' + BEZIRKSLISTE_LABEL + ')</dt><dd>mittlerer Fehler <strong>' +
-            (bzMae != null ? fmtNum(bzMae, 2) + '\u00a0PP' : '—') + '</strong>' +
-            ' <span class="wb-art">naiv ' +
-            (bzMaeN != null ? fmtNum(bzMaeN, 2) + '\u00a0PP' : '—') +
-            '</span><div class="wb-art">Nur Parteien mit Bezirkslisten; ' +
-            'Grüne/AfD/FDP: Landesliste</div></dd>' +
+          (hasBezirkslisten()
+            ? ('<dt>Bezirkslisten (' + BEZIRKSLISTE_LABEL + ')</dt><dd>mittlerer Fehler <strong>' +
+              (bzMae != null ? fmtNum(bzMae, 2) + '\u00a0PP' : '—') + '</strong>' +
+              ' <span class="wb-art">naiv ' +
+              (bzMaeN != null ? fmtNum(bzMaeN, 2) + '\u00a0PP' : '—') +
+              '</span><div class="wb-art">Nur Parteien mit Bezirkslisten; ' +
+              'Grüne/AfD/FDP: Landesliste</div></dd>')
+            : '') +
         '</dl></div>' +
       '</div>' +
       instBlock +
@@ -2420,6 +2535,195 @@
     var n = 0;
     for (var i = 0; i < plist.length; i++) if (reported[plist[i].id]) n++;
     return n;
+  }
+
+  function precinctMap() {
+    if (!state._precinctMap) {
+      state._precinctMap = {};
+      (state.data && state.data.precincts || []).forEach(function (p) {
+        state._precinctMap[p.id] = p;
+      });
+    }
+    return state._precinctMap;
+  }
+
+  function hasPrecinctCounts() {
+    var list = (state.data && state.data.precincts) || [];
+    return list.length > 0 && list[0].counts != null;
+  }
+
+  /** ballot: 'zweit' | 'erst' — sums only reported precincts in plist. */
+  function aggregateActual(plist, reported, ballot) {
+    ballot = ballot || 'zweit';
+    var counts = {};
+    PARTIES_ORDER.forEach(function (p) { counts[p] = 0; });
+    var gueltig = 0;
+    var gueltigTotal = 0;
+    var waehler = 0;
+    var wber = 0;
+    plist.forEach(function (meta) {
+      var p = precinctMap()[meta.id] || meta;
+      var gTot = ballot === 'erst' && p.gueltig_erst != null ? p.gueltig_erst : (p.gueltig || 0);
+      gueltigTotal += gTot;
+      wber += p.wber || 0;
+      if (!reported[meta.id]) return;
+      waehler += p.waehler || 0;
+      gueltig += gTot;
+      var csrc = ballot === 'erst' && p.counts_erst ? p.counts_erst : (p.counts || {});
+      PARTIES_ORDER.forEach(function (party) {
+        counts[party] += csrc[party] || 0;
+      });
+    });
+    return {
+      gueltig: gueltig,
+      gueltig_total: gueltigTotal,
+      waehler: waehler,
+      wber: wber,
+      turnout: wber > 0 ? (100 * waehler / wber) : null,
+      counts: counts,
+      n_reported: countReported(plist, reported),
+      n_total: plist.length
+    };
+  }
+
+  function leaderFromCounts(counts, gueltig) {
+    var best = null;
+    var bestV = -1;
+    PARTIES_ORDER.filter(function (p) { return p !== 'others'; }).forEach(function (p) {
+      var v = counts[p] || 0;
+      if (v > bestV) { bestV = v; best = p; }
+    });
+    if (best == null || bestV <= 0) return null;
+    var pct = gueltig > 0 ? (100 * bestV / gueltig) : null;
+    return { party: best, votes: bestV, pct: pct };
+  }
+
+  function actualSummaryCards(act, label) {
+    var wbTxt = act.n_reported + '/' + act.n_total + ' WB';
+    var gueltigTxt = fmtInt(act.gueltig);
+    if (act.gueltig_total > act.gueltig) {
+      gueltigTxt += ' <span class="wb-art">von ' + fmtInt(act.gueltig_total) + '</span>';
+    }
+    return '<div class="wb-hits" style="margin:0.5rem 0 0.75rem;">' +
+      '<div class="wb-hit-card">' +
+        '<span class="wb-hit-k">' + escapeHtml(label) + ' · WB</span>' +
+        '<div class="wb-hit-v">' + wbTxt + '</div>' +
+        '<div class="wb-hit-s">gemeldet</div>' +
+      '</div>' +
+      '<div class="wb-hit-card">' +
+        '<span class="wb-hit-k">Gültige Stimmen</span>' +
+        '<div class="wb-hit-v">' + gueltigTxt + '</div>' +
+        '<div class="wb-hit-s">nur gemeldete Bezirke</div>' +
+      '</div>' +
+      '<div class="wb-hit-card">' +
+        '<span class="wb-hit-k">Wählerinnen/Wähler</span>' +
+        '<div class="wb-hit-v">' + fmtInt(act.waehler) + '</div>' +
+        '<div class="wb-hit-s">von ' + fmtInt(act.wber) + ' Wahlberechtigten</div>' +
+      '</div>' +
+      '<div class="wb-hit-card">' +
+        '<span class="wb-hit-k">Wahlbeteiligung</span>' +
+        '<div class="wb-hit-v">' +
+          (act.turnout != null ? fmtNum(act.turnout, 1) + '\u00a0%' : '—') +
+        '</div>' +
+        '<div class="wb-hit-s">gemeldete WB / alle WB im Gebiet</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function actualPartyTable(act, ballotLabel) {
+    if (!act.gueltig) {
+      return '<p class="wb-meta">Noch keine Stimmen gemeldet.</p>';
+    }
+    var parties = PARTIES_ORDER.filter(function (p) { return p !== 'others'; })
+      .map(function (p) {
+        return { p: p, v: act.counts[p] || 0 };
+      })
+      .filter(function (x) { return x.v > 0; })
+      .sort(function (a, b) { return b.v - a.v; });
+    if (!parties.length) return '<p class="wb-meta">Keine Parteistimmen.</p>';
+    var rows = parties.map(function (x) {
+      var pct = act.gueltig > 0 ? (100 * x.v / act.gueltig) : 0;
+      return '<tr><td>' + partyShort(x.p) + '</td>' +
+        '<td style="text-align:right;">' + fmtInt(x.v) + '</td>' +
+        '<td style="text-align:right;">' + fmtNum(pct, 1) + '\u00a0%</td></tr>';
+    }).join('');
+    return '<p class="wb-chart-label" style="margin-top:0.75rem;">' +
+      escapeHtml(ballotLabel) + ' — absolute Stimmen (gemeldet)</p>' +
+      '<div style="overflow-x:auto;"><table class="wb-cov-table">' +
+      '<thead><tr><th>Partei</th><th style="text-align:right;">Stimmen</th>' +
+      '<th style="text-align:right;">Anteil</th></tr></thead><tbody>' +
+      rows + '</tbody></table></div>';
+  }
+
+  function renderActual() {
+    var el = $('wb-actual');
+    if (!el || !state.data) return;
+    var st = steps();
+    if (!st.length) { el.innerHTML = ''; return; }
+    var s = st[Math.min(state.step, st.length - 1)];
+    var reported = reportedSet(s);
+    if (!hasPrecinctCounts()) {
+      el.innerHTML =
+        '<p class="wb-meta">Absolute Stimmen fehlen im JSON — Replay neu generieren ' +
+        '(<code>python3 code/wahlabend_nowcast.py</code> bzw. LTW-Skript).</p>';
+      return;
+    }
+
+    var all = state.data.precincts || [];
+    var landAct = aggregateActual(all, reported, 'zweit');
+    var html = actualSummaryCards(landAct, 'Land');
+
+    if (state.scope === 'wkr' && state.unit) {
+      var wkrList = all.filter(function (p) { return String(p.wkr) === String(state.unit); });
+      var ballot = state.land === 'be' ? 'erst' : 'zweit';
+      var wkrAct = aggregateActual(wkrList, reported, ballot);
+      var wkrLabel = unitLabel('wkr', state.unit);
+      html += actualSummaryCards(wkrAct, wkrLabel);
+      html += actualPartyTable(
+        wkrAct,
+        state.land === 'be' ? 'Erststimmen' : 'Zweitstimmen (WK-Proxy)'
+      );
+    } else if (state.scope === 'bezirk' && state.unit) {
+      var bezList = all.filter(function (p) { return p.bezirk === state.unit; });
+      var bezAct = aggregateActual(bezList, reported, 'zweit');
+      html += actualSummaryCards(bezAct, unitLabel('bezirk', state.unit));
+      html += actualPartyTable(bezAct, 'Zweitstimmen');
+    } else {
+      html += actualPartyTable(landAct, 'Zweitstimmen (Land)');
+    }
+
+    var units = ((state.data.geo_units || {}).wkr) || [];
+    if (units.length) {
+      var ballotWk = state.land === 'be' ? 'erst' : 'zweit';
+      var wkrRows = units.map(function (u) {
+        var pl = all.filter(function (p) { return String(p.wkr) === String(u.id); });
+        var act = aggregateActual(pl, reported, ballotWk);
+        var lead = leaderFromCounts(act.counts, act.gueltig);
+        var leadTxt = lead
+          ? (partyShort(lead.party) + ' ' + fmtInt(lead.votes) +
+            (lead.pct != null ? ' (' + fmtNum(lead.pct, 1) + '\u00a0%)' : ''))
+          : '—';
+        var active = state.unit && String(state.unit) === String(u.id)
+          ? ' class="wb-row-active"' : '';
+        return '<tr' + active + ' data-wkr-link="' + u.id + '" style="cursor:pointer;">' +
+          '<td>WK\u00a0' + escapeHtml(String(u.id).padStart(2, '0')) + '</td>' +
+          '<td>' + act.n_reported + '/' + act.n_total + '</td>' +
+          '<td style="text-align:right;">' + fmtInt(act.gueltig) + '</td>' +
+          '<td style="text-align:right;">' +
+            (act.turnout != null ? fmtNum(act.turnout, 1) + '\u00a0%' : '—') + '</td>' +
+          '<td>' + leadTxt + '</td></tr>';
+      }).join('');
+      html +=
+        '<p class="wb-chart-label" style="margin-top:1rem;">Wahlkreise — Rohstand</p>' +
+        '<div style="overflow-x:auto;"><table class="wb-cov-table" id="wb-actual-wkr-table">' +
+        '<thead><tr><th>WK</th><th>WB</th><th style="text-align:right;">Gültige Stimmen</th>' +
+        '<th style="text-align:right;">Wahlbeteiligung</th><th>Führend (gemeldet)</th>' +
+        '</tr></thead><tbody>' + wkrRows + '</tbody></table></div>' +
+        '<p class="wb-meta" style="margin:0.35rem 0 0;">Zeile antippen öffnet den Wahlkreis.</p>';
+    }
+
+    el.innerHTML = html;
+    bindWkrLinks(el);
   }
 
   function renderCoverage() {
@@ -2625,12 +2929,15 @@
       }
     } else if (state.scope === 'land') {
       $('wb-stat').innerHTML =
-        '<div>Fokus: <strong>Listenplätze</strong> — Landes- oder Bezirksliste</div>' +
-        '<div>Entweder/oder: CDU/SPD/Linke = Bezirkslisten; ' +
-        'Grüne/AfD/FDP/BSW = Landesliste.</div>';
+        '<div>Fokus: <strong>Listenplätze</strong> — ' + listenModeLabel() + '</div>' +
+        (hasBezirkslisten()
+          ? ('<div>Entweder/oder: CDU/SPD/Linke = Bezirkslisten; ' +
+            'Grüne/AfD/FDP/BSW = Landesliste.</div>')
+          : '<div>Nur Landeslisten (keine Bezirkslisten wie in Berlin).</div>');
     } else if (state.scope === 'lage') {
       var size = s.entry_mc && s.entry_mc.size;
       var to = s.turnout || {};
+      var landDone = isLandComplete(s);
       $('wb-stat').innerHTML =
         '<div>Wahlbeteiligung, Szenarien und <strong>Parlamentsgröße</strong></div>' +
         (to.nowcast != null
@@ -2638,7 +2945,7 @@
             (to.uncertainty != null && to.uncertainty > 0
               ? ' ±\u00a0' + fmtNum(to.uncertainty, 1) + '\u00a0PP'
               : '') +
-            (to.truth != null
+            (landDone && to.truth != null
               ? ' <span class="wb-art">· Endstand ' + fmtNum(to.truth, 1) + '\u00a0%</span>'
               : '') +
             '</div>'
@@ -2713,6 +3020,7 @@
     renderWkrWhy();
     renderEntry();
     renderCoverage();
+    renderActual();
     renderEval();
     drawShareChart();
     if (state.scope === 'wkr') drawWkrRaceCharts();
@@ -2744,6 +3052,18 @@
     }
     var sub = $('wb-subnav');
     if (sub) {
+      sub.addEventListener('input', function (e) {
+        if (e.target.id === 'wb-wkr-search') {
+          state.wkrSearch = e.target.value;
+          applyWkrSearchFilter();
+        }
+      });
+      sub.addEventListener('keydown', function (e) {
+        if (e.target.id !== 'wb-wkr-search' || e.key !== 'Enter') return;
+        e.preventDefault();
+        var first = sub.querySelector('.wb-wkr-tile:not([hidden])');
+        if (first) openWkr(first.getAttribute('data-wkr-link'));
+      });
       sub.addEventListener('click', function (e) {
         var partyBtn = e.target.closest('[data-party]');
         if (partyBtn && sub.contains(partyBtn)) {
@@ -2808,6 +3128,7 @@
       })
       .then(function (data) {
         state.data = data;
+        state._precinctMap = null;
         var ids = Object.keys(data.scenarios || {});
         if (ids.indexOf('actual_times') >= 0) state.scenario = 'actual_times';
         else if (ids.indexOf('random') >= 0) state.scenario = 'random';

@@ -23,7 +23,7 @@ Einzelne Umfragen schwanken — wegen Stichprobenfehlern, unterschiedlicher Erhe
 
 ### Die Datenbasis
 
-- **Quellen**: Umfragen aus [DAWUM](https://dawum.de) und [wahlrecht.de](https://www.wahlrecht.de/umfragen/), bereitgestellt über die [Fasttrack-Polling-API](https://api.fasttrack29.com)
+- **Quellen**: Umfragen aus [DAWUM](https://dawum.de) und [wahlrecht.de](https://www.wahlrecht.de/umfragen/), bereitgestellt über die [Zweitstimme-Polling-API](https://api.zweitstimme.org)
 - **Bund und Länder**: Bundesumfragen sowie Umfragen zu allen 16 Landtagen
 - **Zeitraum**: bis zu 10 Jahre Historie für Verlaufsdiagramme
 - **Parteien**: CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP sowie — je nach Verfügbarkeit — FW, SSW, PIRATEN, REP und Sonstige

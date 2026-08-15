@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-12T08:16:25Z",
+  "generated_at": "2026-08-15T11:25:33Z",
   "description": "Aktuelle Stimmung (Kalman) per Land. Daily series includes days without a new poll. Use data.by_date[YYYY-MM-DD] for a single day.",
   "states": [
     {
@@ -15,7 +15,7 @@
         "state_code": "BB",
         "date_is_estimated": true
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "BE",
@@ -29,7 +29,7 @@
         "state_code": "BE",
         "date_is_estimated": false
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "BW",
@@ -43,7 +43,7 @@
         "state_code": "BW",
         "date_is_estimated": true
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "BY",
@@ -57,7 +57,7 @@
         "state_code": "BY",
         "date_is_estimated": true
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "HB",
@@ -71,7 +71,7 @@
         "state_code": "HB",
         "date_is_estimated": false
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "HE",
@@ -85,7 +85,7 @@
         "state_code": "HE",
         "date_is_estimated": true
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "HH",
@@ -99,7 +99,7 @@
         "state_code": "HH",
         "date_is_estimated": true
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "MV",
@@ -113,7 +113,7 @@
         "state_code": "MV",
         "date_is_estimated": false
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "NI",
@@ -127,7 +127,7 @@
         "state_code": "NI",
         "date_is_estimated": false
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "NW",
@@ -141,7 +141,7 @@
         "state_code": "NW",
         "date_is_estimated": false
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "RP",
@@ -155,7 +155,7 @@
         "state_code": "RP",
         "date_is_estimated": true
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "SH",
@@ -169,7 +169,7 @@
         "state_code": "SH",
         "date_is_estimated": false
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "SL",
@@ -183,7 +183,7 @@
         "state_code": "SL",
         "date_is_estimated": false
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "SN",
@@ -197,7 +197,7 @@
         "state_code": "SN",
         "date_is_estimated": true
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "ST",
@@ -211,7 +211,7 @@
         "state_code": "ST",
         "date_is_estimated": false
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     },
     {
       "state_code": "TH",
@@ -225,7 +225,7 @@
         "state_code": "TH",
         "date_is_estimated": true
       },
-      "as_of": "2026-08-12"
+      "as_of": "2026-08-15"
     }
   ]
 }
