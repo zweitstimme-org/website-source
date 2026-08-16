@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-15T12:32:11Z",
+  "generated_at": "2026-08-16T06:08:27Z",
   "election": {
     "id": "sl_2027-04-18",
     "name": "Landtagswahl Saarland",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-10",
+    "as_of": "2026-08-16",
     "parties": {
       "CDU/CSU": 25,
       "AfD": 22.9,
@@ -26,9 +26,9 @@
       "Sonstige": 8.1
     },
     "uncertainty_low": {
-      "CDU/CSU": 17.9,
-      "AfD": 15.8,
-      "SPD": 19.9,
+      "CDU/CSU": 17.7,
+      "AfD": 15.6,
+      "SPD": 19.7,
       "GRÜNE": 0,
       "LINKE": 0,
       "BSW": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 32.1,
-      "AfD": 30,
-      "SPD": 34.1,
-      "GRÜNE": 14.1,
-      "LINKE": 14.1,
+      "CDU/CSU": 32.3,
+      "AfD": 30.2,
+      "SPD": 34.3,
+      "GRÜNE": 14.3,
+      "LINKE": 14.3,
       "BSW": null,
-      "FDP": 13,
+      "FDP": 13.2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -77,5 +77,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-10"
+  "as_of": "2026-08-16"
 }

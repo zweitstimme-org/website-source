@@ -230,8 +230,7 @@ Wahlkreis- und Kandidaten-JSON sind **Preview-only** und nicht Teil dieser öffe
 | `parties[].low` / `high` | %-Punkte | ca. **83 %-**Intervall |
 | `scenarios.items[].probability` | **Prozent 0–100** | Szenario-Wahrscheinlichkeit (anders als federal `pred_probabilities`!) |
 | `scenarios.items[].category` | string | z. B. `largest_party`, `hurdle`, `coalition`, `majority_excluding` |
-| `metadata.last_poll_date` | Datum | Neueste Umfrage, die in diese Prognose eingeflossen ist („Letzte Umfrage“) |
-| `metadata.last_update` | Zeitstempel | Zeitpunkt der Modellrechnung / JSON-Erzeugung („Stand“) |
+| `metadata.last_poll_date` | Datum | Stand der neuesten einbezogenen Umfrage |
 
 Aktive Länder immer über [`/api/v2/state/index.json`](/api/v2/state/index.json) ermitteln — nicht hart kodieren.
 

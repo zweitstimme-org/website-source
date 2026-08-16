@@ -6932,61 +6932,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function parseForecastDate(raw) {
     if (!raw || typeof raw !== 'string') return null;
-    // Calendar date from ISO prefix — Stand/Umfrage should not shift by timezone.
-    const m = raw.trim().match(/^(\d{4})-(\d{2})-(\d{2})/);
-    if (m) return new Date(`${m[1]}-${m[2]}-${m[3]}T00:00:00Z`);
-    const d = new Date(raw);
+    const d = /^\d{4}-\d{2}-\d{2}$/.test(raw)
+      ? new Date(raw + 'T00:00:00Z')
+      : new Date(raw);
     return Number.isNaN(d.getTime()) ? null : d;
   }
 
-  /** Modellrechnung / Veröffentlichung — not the poll date. */
-  function forecastStandDate(forecast) {
-    const meta = forecast && forecast.metadata;
-    if (!meta) return null;
-    return parseForecastDate(meta.last_update)
-      || parseForecastDate(meta.asof_date)
-      || null;
-  }
-
-  /** Newest poll that actually entered this forecast JSON. */
-  function forecastLastPollDate(forecast) {
-    const meta = forecast && forecast.metadata;
-    if (!meta) return null;
-    return parseForecastDate(meta.last_poll_date);
-  }
-
-  function forecastDatesText(forecast) {
-    const stand = forecastStandDate(forecast);
-    const poll = forecastLastPollDate(forecast);
-    const bits = [];
-    if (stand) bits.push(`Stand: ${formatDateToGerman(stand)}`);
-    if (poll) bits.push(`Letzte Umfrage: ${formatDateToGerman(poll)}`);
-    return bits.length ? ` · ${bits.join(' · ')}` : '';
+  function forecastStandText(forecast) {
+    const d = parseForecastDate(forecast && forecast.metadata && forecast.metadata.last_poll_date);
+    return d ? ` · Stand: ${formatDateToGerman(d)}` : '';
   }
 
   function setVorhersageStand(elementId, forecast) {
     const el = document.getElementById(elementId);
-    if (el) el.textContent = forecastDatesText(forecast);
+    if (el) el.textContent = forecastStandText(forecast);
   }
 
-  // Stand = when this forecast was computed (last_update).
-  // Letzte Umfrage = newest poll included in the forecast (last_poll_date).
-  // Do not overwrite Stand with the live polling-API date — that belongs to Stimmung.
+  // Stand = live latest poll for this scope (always refreshed from the API).
+  // Forecast metadata last_poll_date is only a fallback while the API request runs.
   let vorhersageDatesGeneration = 0;
   async function setVorhersageDates(forecast, target) {
     const standEl = document.getElementById('vorhersage-stand');
     const latestEl = document.getElementById('vorhersage-latest-poll');
-    vorhersageDatesGeneration += 1;
-    const stand = forecastStandDate(forecast);
-    const poll = forecastLastPollDate(forecast);
-    if (standEl) {
-      standEl.textContent = stand ? ` · Stand: ${formatDateToGerman(stand)}` : '';
+    const gen = ++vorhersageDatesGeneration;
+    if (standEl) standEl.textContent = forecastStandText(forecast);
+    if (latestEl) latestEl.textContent = '';
+
+    const scope = !target
+      ? null
+      : (target.scope === 'federal' ? 'federal' : scopeForStateCode(target.code));
+    if (!scope) return;
+
+    try {
+      const stats = await fetchPollRecencyStatsForScope(scope);
+      if (gen !== vorhersageDatesGeneration) return;
+      if (stats && stats.latestDate) {
+        // Always overwrite Stand with the live latest poll date.
+        if (standEl) standEl.textContent = ` · Stand: ${formatDateToGerman(stats.latestDate)}`;
+        if (latestEl) latestEl.textContent = '';
+      }
+    } catch (e) {
+      if (gen !== vorhersageDatesGeneration) return;
+      // Keep forecast-metadata Stand if the API is unavailable.
     }
-    if (latestEl) {
-      latestEl.textContent = poll ? ` · Letzte Umfrage: ${formatDateToGerman(poll)}` : '';
-    }
-    // target kept for call-site compatibility (state/federal selection).
-    void target;
   }
 
   function renderForecastTargetTiles(containerId, targets, selectedKey, className, onSelect) {

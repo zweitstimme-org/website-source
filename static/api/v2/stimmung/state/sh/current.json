@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-15T12:32:11Z",
+  "generated_at": "2026-08-16T06:08:27Z",
   "election": {
     "id": "sh_2027-04-18",
     "name": "Landtagswahl Schleswig-Holstein",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-10",
+    "as_of": "2026-08-16",
     "parties": {
       "CDU/CSU": 28.3,
       "AfD": 17.4,
@@ -26,29 +26,29 @@
       "Sonstige": 4.4
     },
     "uncertainty_low": {
-      "CDU/CSU": 26.1,
-      "AfD": 15.2,
-      "SPD": 12.2,
-      "GRÜNE": 15.1,
-      "LINKE": 4.6,
+      "CDU/CSU": 25.9,
+      "AfD": 15,
+      "SPD": 12,
+      "GRÜNE": 14.9,
+      "LINKE": 4.4,
       "BSW": null,
-      "FDP": 3.4,
+      "FDP": 3.2,
       "FW": null,
-      "SSW": 3.6,
+      "SSW": 3.4,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 30.5,
-      "AfD": 19.6,
-      "SPD": 16.6,
-      "GRÜNE": 19.5,
-      "LINKE": 9,
+      "CDU/CSU": 30.7,
+      "AfD": 19.8,
+      "SPD": 16.8,
+      "GRÜNE": 19.7,
+      "LINKE": 9.2,
       "BSW": null,
-      "FDP": 7.8,
+      "FDP": 8,
       "FW": null,
-      "SSW": 8,
+      "SSW": 8.2,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
@@ -78,5 +78,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-10"
+  "as_of": "2026-08-16"
 }

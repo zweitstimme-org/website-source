@@ -35,8 +35,7 @@
     ],
     example: {
       title: 'Sachsen-Anhalt',
-      stand: '11.08.2026',
-      lastPoll: '10.08.2026',
+      stand: '03.07.2026',
       election: '6. September 2026',
       parties: [
         { party: 'AfD', fit: 39, low: 31, high: 47 },
@@ -261,7 +260,7 @@
       <div class="meth-anatomy">
         <div class="meth-anatomy-meta">
           <span class="meth-anatomy-party" style="color:${color}">${p.party}</span>
-          <span class="meth-anatomy-sub">${DATA.example.title} · Stand ${DATA.example.stand} · Letzte Umfrage ${DATA.example.lastPoll}</span>
+          <span class="meth-anatomy-sub">${DATA.example.title} · Stand ${DATA.example.stand}</span>
         </div>
         <div class="meth-anatomy-track">
           <div class="meth-anatomy-band" style="left:${left}%; width:${width}%; background:${hexToRgba(color, 0.28)}; border-color:${hexToRgba(color, 0.5)};"></div>
@@ -305,7 +304,7 @@
       <div class="meth-scenarios">
         <div class="meth-scenarios-head">
           <strong>${DATA.example.title}</strong>
-          <span>Beispiel aus 4.000 Simulationen · Stand ${DATA.example.stand} · Letzte Umfrage ${DATA.example.lastPoll}</span>
+          <span>Beispiel aus 4.000 Simulationen · Stand ${DATA.example.stand}</span>
         </div>
         <div class="meth-scenarios-grid">${items}</div>
       </div>`;
@@ -313,7 +312,7 @@
 
   function renderPipeline(root) {
     const steps = [
-      { n: '1', title: 'Daten', text: 'Landesumfragen bis zur letzten Umfrage' },
+      { n: '1', title: 'Daten', text: 'Landesumfragen zum Stand-Datum' },
       { n: '2', title: 'Prädiktoren', text: 'Umfragewert + Vorlauf bis zur Wahl' },
       { n: '3', title: 'Simulation', text: '4.000 plausible Wahlergebnisse' },
       { n: '4', title: 'Ausgabe', text: 'Punkt, Intervall, Szenarien' }
