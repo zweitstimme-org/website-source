@@ -366,7 +366,7 @@ Sobald eine Landtagswahl näher rückt, erscheint auf der Startseite der Bereich
 
 ### Wann erscheint eine Vorhersage?
 
-Eine Vorhersage wird **90 Tage vor dem Wahltermin** freigeschaltet und bei neuen Umfragen neu berechnet — ohne neue Daten bleibt der Stand unverändert. Das angezeigte Datum („Stand“) bezieht sich auf die jüngste Umfrage, die in die Prognose eingeflossen ist. Davor zeigen wir für das jeweilige Bundesland nur die laufende Stimmung. Nach der Wahl wird die **letzte Modellprognose vor der Wahl** im Archiv eingefroren.
+Eine Vorhersage wird **90 Tage vor dem Wahltermin** freigeschaltet und bei neuen Umfragen neu berechnet — ohne neue Daten bleibt der Stand unverändert. Unter dem Diagramm zeigen wir zwei Daten getrennt: **Stand** (wann diese Modellrechnung veröffentlicht wurde) und **Letzte Umfrage** (jüngste Umfrage, die in die Prognose eingeflossen ist). Die beiden können auseinanderlaufen, wenn das Modell neu gerechnet wurde, ohne dass seither eine neue Landesumfrage vorlag — oder umgekehrt, wenn eine frische Umfrage noch nicht in der Vorhersage steckt. Davor zeigen wir für das jeweilige Bundesland nur die laufende Stimmung. Nach der Wahl wird die **letzte Modellprognose vor der Wahl** im Archiv eingefroren.
 
 ### Warum nicht einfach die letzten Umfragen nehmen?
 
@@ -380,7 +380,7 @@ Umfragen kurz vor der Wahl sind der stärkste einzelne Prädiktor — aber sie l
 
 ### Das Modell
 
-Unsere Landtagswahl-Vorhersage beruht auf einem **bayesianischen Regressionsmodell**, trainiert auf deutschen Landtagswahlen mit Umfragedaten. Für jede Partei schätzt es den Stimmenanteil am Wahltag — aus den **aktuellen Landesumfragen** („Stand“) und daraus, **wie viele Tage** es noch bis zur Wahl sind (exakter Tages-Vorlauf, wie bei BW/RP 2026). Je näher der Termin, desto stärker zählen die Umfragen und desto schmaler werden typischerweise die Intervalle.
+Unsere Landtagswahl-Vorhersage beruht auf einem **bayesianischen Regressionsmodell**, trainiert auf deutschen Landtagswahlen mit Umfragedaten. Für jede Partei schätzt es den Stimmenanteil am Wahltag — aus den **aktuellen Landesumfragen** (Anzeige: „Letzte Umfrage“) und daraus, **wie viele Tage** es noch bis zur Wahl sind (exakter Tages-Vorlauf, wie bei BW/RP 2026). Je näher der Termin, desto stärker zählen die Umfragen und desto schmaler werden typischerweise die Intervalle.
 
 Das Live-Modell ist **umfragenbasiert** (polls-only): Eingangsdaten sind nur die Landesumfragen plus der Vorlauf. Bundestrend, letztes Wahlergebnis und Regierungsbeteiligung fließen **nicht** ein — sie gehören zur Paper-Variante `_all`, nicht zur hier gezeigten Vorhersage. Auch neue Parteien stecken bereits in den Umfragen und brauchen keinen eigenen Extra-Faktor.
 
@@ -401,7 +401,7 @@ Die Berechnung läuft täglich serverseitig in unserer Datenpipeline:
 </div>
 
 1. **Daten sammeln** — Landesumfragen kommen aus derselben Datenbasis wie die Stimmungsanzeige ([DAWUM](https://dawum.de) und [wahlrecht.de](https://www.wahlrecht.de/umfragen/)).
-2. **Prädiktoren bilden** — Für jede Partei (CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP und Sonstige) den latenten Umfragewert zum Stand-Datum und den Vorlauf bis zur Wahl. Weist ein Institut eine kleine Partei nicht einzeln aus (üblich unterhalb von etwa 3 %), halten wir sie für 90 Tage nach ihrem letzten ausgewiesenen Wert bei 2 %; danach entfällt sie, bis wieder ein echter Umfragewert vorliegt.
+2. **Prädiktoren bilden** — Für jede Partei (CDU/CSU, SPD, AfD, GRÜNE, LINKE, BSW, FDP und Sonstige) den latenten Umfragewert zum Datum der letzten einbezogenen Umfrage und den Vorlauf bis zur Wahl. Weist ein Institut eine kleine Partei nicht einzeln aus (üblich unterhalb von etwa 3 %), halten wir sie für 90 Tage nach ihrem letzten ausgewiesenen Wert bei 2 %; danach entfällt sie, bis wieder ein echter Umfragewert vorliegt.
 3. **Simulieren** — Das Modell erzeugt für jede Partei **4.000 Simulationen** des Wahlergebnisses. Jede Simulation ist ein plausibles Wahlergebnis, das sowohl die Unsicherheit der Modellparameter als auch den historischen Prognosefehler berücksichtigt; anschließend werden die Anteile in jeder Simulation auf 100 % normalisiert.
 4. **Zusammenfassen** — Die **Punktschätzung** ist der Median der Simulationen, das **5/6-Intervall** die entsprechenden Quantile — auch für Sonstige.
 

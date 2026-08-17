@@ -242,7 +242,7 @@ Aktive Länder immer über [`/api/v2/state/index.json`](/api/v2/state/index.json
 
 ### `data` bei `/api/v2/state/{code}/draws.json`
 
-Dieselben Simulationen, aus denen Punktschätzung, Intervalle und Szenario-Wahrscheinlichkeiten berechnet werden (`stan_glm` → `posterior_predict`, Anteile je Draw auf 1 normalisiert). Format analog zum älteren Federal-`/draws.json`.
+Dieselben Simulationen, aus denen Punktschätzung, Intervalle und Szenario-Wahrscheinlichkeiten berechnet werden (`stan_glm` → `posterior_predict`, Anteile je Draw auf 1 normalisiert). Format analog zum älteren Federal-`/draws.json`. **Bei jedem State-Forecast-Lauf neu** (gleiche Draws wie Summary/Szenarien).
 
 ```json
 {
@@ -251,6 +251,9 @@ Dieselben Simulationen, aus denen Punktschätzung, Intervalle und Szenario-Wahrs
   "data": {
     "n_draws": 4000,
     "unit": "share",
+    "last_update": "2026-08-17T07:45:12Z",
+    "asof_date": "2026-08-16",
+    "last_poll_date": "2026-08-16",
     "parties": ["cdu", "spd", "gru", "fdp", "lin", "afd", "bsw", "oth"],
     "draws": [
       { "cdu": 0.23, "spd": 0.07, "gru": 0.05, "fdp": 0.03, "lin": 0.13, "afd": 0.41, "bsw": 0.04, "oth": 0.04 }
@@ -264,11 +267,15 @@ Dieselben Simulationen, aus denen Punktschätzung, Intervalle und Szenario-Wahrs
 | `unit` | `"share"` = Anteile 0–1 (nicht Prozent) |
 | `draws[]` | Ein Objekt pro Simulation; Parteien summieren sich (nach Rundung) auf ≈ 1 |
 | `n_draws` | Länge von `draws` |
+| `last_update` | ISO-8601 UTC: Zeitpunkt dieses Forecast-Laufs (Draws werden bei jedem Lauf neu gezogen) |
+| `asof_date` / `last_poll_date` | Modell-Stand / neueste einbezogene Umfrage (wie in der Summary) |
+| Envelope `generated_at` | Zeitpunkt des API-Builds (Publish), nicht der Fit |
 
 Beispiel:
 
 ```bash
-curl -s https://zweitstimme.org/api/v2/state/st/draws.json | jq '.data.n_draws, .data.draws[0]'
+curl -s https://zweitstimme.org/api/v2/state/st/draws.json \
+  | jq '{generated_at, last_update: .data.last_update, n: .data.n_draws, draw0: .data.draws[0]}'
 ```
 
 ### Archiv-Politik
