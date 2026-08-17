@@ -430,7 +430,7 @@ Aus denselben 4.000 Simulationen berechnen wir die Wahrscheinlichkeiten konkrete
 
 Für die Mehrheitsrechnung gilt: Nur Parteien über der 5 %-Hürde ziehen ins Parlament ein, und die Sitze verteilen sich proportional zu den Stimmen dieser Parteien. Eine Koalition hat eine Mehrheit, wenn ihre Parteien zusammen mehr als die Hälfte dieser Sitze stellen — wobei jede beteiligte Partei selbst über der Hürde liegen muss. Angezeigt werden nur Szenarien mit mindestens 1 % Wahrscheinlichkeit.
 
-Direktmandate und Überhang/Ausgleich bilden die Szenarien nicht im Detail ab — und das ändert an den Wahrscheinlichkeiten praktisch nichts: In Berlin stellt der Ausgleich den Proporz in unseren Simulationen vollständig wieder her; in Sachsen-Anhalt nahezu. In Mecklenburg-Vorpommern kann der gesetzliche Deckel (Ausgleich höchstens doppelt so viele Sitze wie Überhangmandate) der Überhangpartei einen kleinen Sitzvorteil lassen; in unseren Simulationen verschiebt das Szenario-Wahrscheinlichkeiten um **deutlich unter einen Prozentpunkt**. Die Absolute Mehrheit der AfD bleibt davon unberührt (Unterschied Deckel vs. voller Ausgleich: 0 pp). Details zur Größenverteilung und zum MV-Deckel stehen in der [Wahlkreis-Vorhersage](/blog/posts/district-forecast-methodology/#parlamentsgroesse).
+Direktmandate und Überhang/Ausgleich bilden die Szenarien nicht im Detail ab — und das ändert an den Wahrscheinlichkeiten praktisch nichts: In Berlin stellt der Ausgleich den Proporz in unseren Simulationen vollständig wieder her; in Sachsen-Anhalt nahezu. In Mecklenburg-Vorpommern kann der gesetzliche Deckel (Ausgleich höchstens doppelt so viele Sitze wie Überhangmandate) der Überhangpartei einen kleinen Sitzvorteil lassen; in unseren Simulationen verschiebt das Szenario-Wahrscheinlichkeiten um **deutlich unter einen Prozentpunkt**. Die Absolute Mehrheit der AfD bleibt davon unberührt (Unterschied Deckel vs. voller Ausgleich: 0 pp).
 
 <div class="meth-fig" aria-label="Beispiel Szenario-Wahrscheinlichkeiten">
   <p class="meth-fig-title">Aus Simulationen werden Wahrscheinlichkeiten</p>
@@ -457,7 +457,7 @@ Kurz gesagt: Die Stimmung glättet, was Umfragen *messen*; die Vorhersage schät
 - **Ohne aktuelle Landesumfragen wird die Prognose unsicherer.** Das Live-Modell stützt sich auf die Umfragen; fehlen sie, bleiben die Intervalle entsprechend breit.
 - **Kandidaten- und Kampagneneffekte** kennt das Modell nur indirekt (über die Umfragen). Spitzenkandidat*innen, lokale Themen oder Skandale in den letzten Tagen kann es nicht vorhersehen.
 - **Kleinparteien** erscheinen gemeinsam als „Sonstige“ (nicht Partei für Partei).
-- **Wahlrechtliche Sonderregeln** (Grundmandatsklauseln, Direktmandate) sind in den Szenario-Rechnungen nicht Sitz für Sitz abgebildet. Der Effekt auf Mehrheits-Wahrscheinlichkeiten ist vernachlässigbar (siehe oben); die [Wahlkreis-Vorhersage](/blog/posts/district-forecast-methodology/) zeigt Direktmandate und eine indikative Parlamentsgröße.
+- **Wahlrechtliche Sonderregeln** (Grundmandatsklauseln, Direktmandate) sind in den Szenario-Rechnungen nicht Sitz für Sitz abgebildet. Der Effekt auf Mehrheits-Wahrscheinlichkeiten ist vernachlässigbar (siehe oben).
 
 ### Fazit
 
@@ -465,7 +465,7 @@ Die Landtagswahl-Vorhersage übersetzt aktuelle Landesumfragen in eine Wahlprogn
 
 ---
 
-**Weiterlesen:** [Wie funktioniert die Wahlkreis-Vorhersage?](/blog/posts/district-forecast-methodology/) · [FAQ](/faq)
+**Weiterlesen:** [FAQ](/faq)
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
