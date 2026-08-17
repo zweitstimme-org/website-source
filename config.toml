@@ -71,7 +71,7 @@ disableXML = true
       weight = 20
 
       [[languages.de.menu.footer]]
-      name = "API"
+      name = "Forecast API"
       url = "/docs/api"
       weight = 30
 
