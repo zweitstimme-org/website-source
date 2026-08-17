@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-17T08:02:34Z",
+  "generated_at": "2026-08-17T15:32:03Z",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -22,7 +22,7 @@
       "poll_window_days": null,
       "last_poll_date": "2026-08-13",
       "asof_date": "2026-08-13",
-      "last_update": "2026-08-17T08:01:28",
+      "last_update": "2026-08-17T15:30:32",
       "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
       "predictor_encoding": "state_models_exact_lead_v1",
       "shares_normalized_to_100": true,
@@ -40,7 +40,7 @@
         "party": "AfD",
         "party_code": "afd",
         "fit": 35,
-        "low": 26,
+        "low": 27,
         "high": 42
       },
       {
@@ -55,7 +55,7 @@
         "party_code": "lin",
         "fit": 12,
         "low": 8,
-        "high": 17
+        "high": 16
       },
       {
         "party": "GRÜNE",
@@ -94,7 +94,7 @@
           "id": "maj_ohne_afd",
           "category": "majority_excluding",
           "label_de": "Parlamentsmehrheit ohne AfD",
-          "probability": 96
+          "probability": 97
         },
         {
           "id": "maj_ohne_afd_bsw",
@@ -112,7 +112,7 @@
           "id": "above_hurdle_gru",
           "category": "above_hurdle",
           "label_de": "Grüne über 5%-Hürde",
-          "probability": 55
+          "probability": 53
         },
         {
           "id": "above_hurdle_bsw",
@@ -148,19 +148,19 @@
           "id": "coal_lin_bsw_spd",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit Linke, BSW und SPD",
-          "probability": 15
+          "probability": 16
         },
         {
           "id": "above_hurdle_fdp",
           "category": "above_hurdle",
           "label_de": "FDP über 5%-Hürde",
-          "probability": 7
+          "probability": 6
         },
         {
           "id": "abs_maj_afd",
           "category": "coalition",
           "label_de": "Absolute Mehrheit AfD",
-          "probability": 4
+          "probability": 3
         },
         {
           "id": "coal_gru_spd",
