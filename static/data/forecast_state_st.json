@@ -11,7 +11,7 @@
     "poll_window_days": null,
     "last_poll_date": "2026-08-12",
     "asof_date": "2026-08-12",
-    "last_update": "2026-08-16T07:57:41",
+    "last_update": "2026-08-17T08:01:27",
     "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
     "predictor_encoding": "state_models_exact_lead_v1",
     "shares_normalized_to_100": true,
@@ -22,14 +22,14 @@
       "party": "CDU",
       "party_code": "cdu",
       "fit": 23,
-      "low": 17,
+      "low": 16,
       "high": 29
     },
     {
       "party": "AfD",
       "party_code": "afd",
       "fit": 41,
-      "low": 33,
+      "low": 34,
       "high": 48
     },
     {
@@ -44,7 +44,7 @@
       "party_code": "spd",
       "fit": 7,
       "low": 4,
-      "high": 10
+      "high": 9
     },
     {
       "party": "FDP",
@@ -89,13 +89,13 @@
         "id": "above_hurdle_spd",
         "category": "above_hurdle",
         "label_de": "SPD über 5%-Hürde",
-        "probability": 84
+        "probability": 85
       },
       {
         "id": "maj_ohne_afd",
         "category": "majority_excluding",
         "label_de": "Parlamentsmehrheit ohne AfD",
-        "probability": 70
+        "probability": 71
       },
       {
         "id": "maj_ohne_afd_bsw",
@@ -113,13 +113,13 @@
         "id": "above_hurdle_bsw",
         "category": "above_hurdle",
         "label_de": "BSW über 5%-Hürde",
-        "probability": 37
+        "probability": 34
       },
       {
         "id": "abs_maj_afd",
         "category": "coalition",
         "label_de": "Absolute Mehrheit AfD",
-        "probability": 30
+        "probability": 29
       },
       {
         "id": "coal_afd_bsw",
