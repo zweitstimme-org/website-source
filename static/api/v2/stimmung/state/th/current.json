@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-16T07:59:03Z",
+  "generated_at": "2026-08-17T06:09:42Z",
   "election": {
     "id": "th_2029-10-21",
     "name": "Landtagswahl Thüringen",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-16",
+    "as_of": "2026-08-17",
     "parties": {
       "CDU/CSU": 22.3,
       "AfD": 39.9,
@@ -77,5 +77,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-16"
+  "as_of": "2026-08-17"
 }
