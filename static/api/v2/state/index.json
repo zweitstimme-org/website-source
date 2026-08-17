@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-17T15:54:51Z",
+  "generated_at": "2026-08-17T16:25:02Z",
   "description": "Active state (Landtag) forecasts within the ~90-day window before election day. Past elections (once archived by the pipeline) are under /api/v2/state/archive/.",
   "forecast_window_days": 90,
   "states": [
@@ -15,7 +15,8 @@
         "state_code": "BE",
         "date_is_estimated": false
       },
-      "active": true
+      "active": true,
+      "draws": "/api/v2/state/be/draws.json"
     },
     {
       "state_code": "MV",
@@ -28,7 +29,8 @@
         "state_code": "MV",
         "date_is_estimated": false
       },
-      "active": true
+      "active": true,
+      "draws": "/api/v2/state/mv/draws.json"
     },
     {
       "state_code": "ST",
@@ -41,7 +43,8 @@
         "state_code": "ST",
         "date_is_estimated": false
       },
-      "active": true
+      "active": true,
+      "draws": "/api/v2/state/st/draws.json"
     }
   ],
   "archive_index": "/api/v2/state/archive/index.json",

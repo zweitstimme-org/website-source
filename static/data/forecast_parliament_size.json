@@ -3,7 +3,7 @@
     "model": "district_swing + state Hare/Niemeyer size sim",
     "nsim": 4000,
     "seed": 20260730,
-    "last_update": "2026-08-17T15:31:13Z",
+    "last_update": "2026-08-17T16:24:17Z",
     "caveat_de": "Indikative Größenverteilung aus dem Wahlkreis-Swing-Modell (ohne Kandidateneffekte). Keine amtliche Sitzzuteilung."
   },
   "states": {
@@ -16,47 +16,47 @@
       "note_de": "Mindestens 71 Sitze (Hare/Niemeyer). Überhang bleibt; Ausgleich höchstens doppelt so viele Sitze wie Überhangmandate. Bei gerader Gesamtzahl +1 Sitz.",
       "nsim": 4000,
       "statewide_last_poll_date": "2026-08-13",
-      "p_overhang_pct": 19.8,
-      "p_incomplete_pct": 0.25,
+      "p_overhang_pct": 20.8,
+      "p_incomplete_pct": 0.38,
       "advantage_seats_pct": {
-        "0": 99.75,
-        "1": 0.25,
+        "0": 99.62,
+        "1": 0.38,
         "2": 0.0,
         "3plus": 0.0
       },
-      "p_advantage_ge1_pct": 0.25,
+      "p_advantage_ge1_pct": 0.38,
       "p_advantage_ge2_pct": 0.0,
       "oh_parties": {
-        "SPD": 302,
-        "AfD": 490
+        "SPD": 356,
+        "AfD": 474
       },
       "advantage_parties": {
-        "AfD": 3,
-        "SPD": 7
+        "AfD": 4,
+        "SPD": 11
       },
-      "size_mean": 72.3,
+      "size_mean": 72.4,
       "size_median": 71,
       "size_p10": 71,
       "size_p90": 77,
-      "size_p95": 79,
-      "size_max": 102,
-      "p_base_pct": 80.2,
+      "size_p95": 81,
+      "size_max": 101,
+      "p_base_pct": 79.2,
       "buckets": [
         {
           "label": "71",
-          "pct": 80.2
+          "pct": 79.2
         },
         {
           "label": "73–77",
-          "pct": 13.2
+          "pct": 12.9
         },
         {
           "label": "79–83",
-          "pct": 4.8
+          "pct": 5.5
         },
         {
           "label": "85–89",
-          "pct": 1.5
+          "pct": 1.7
         },
         {
           "label": "91–95",
@@ -64,7 +64,7 @@
         },
         {
           "label": "97–101",
-          "pct": 0.1
+          "pct": 0.2
         },
         {
           "label": "103+",
@@ -91,26 +91,26 @@
       "majority_impact": {
         "complete_compensation": false,
         "nsim": 4000,
-        "p_incomplete_pct": 0.25,
+        "p_incomplete_pct": 0.35,
         "note_de": "Vergleich Zweitstimmen-Mehrheit vs. Sitzmehrheit mit vollem Ausgleich vs. MV-Deckel (Ausgleich ≤ 2× Überhang). Der Deckel verschiebt Szenario-Wahrscheinlichkeiten um deutlich unter 1 Prozentpunkt; die Absolute Mehrheit der AfD bleibt praktisch unverändert. Koalitionsszenarien auf der Website bleiben daher die Zweitstimmen-Näherung.",
         "scenarios": {
           "abs_maj_afd": {
-            "vote_pct": 2.48,
-            "seats_full_ausgleich_pct": 2.53,
-            "seats_capped_pct": 2.53,
+            "vote_pct": 3.57,
+            "seats_full_ausgleich_pct": 3.65,
+            "seats_capped_pct": 3.65,
             "cap_minus_full_pp": 0.0
           },
           "coal_spd_lin": {
-            "vote_pct": 15.55,
-            "seats_full_ausgleich_pct": 15.85,
-            "seats_capped_pct": 15.85,
+            "vote_pct": 16.6,
+            "seats_full_ausgleich_pct": 16.93,
+            "seats_capped_pct": 16.93,
             "cap_minus_full_pp": 0.0
           },
           "coal_spd_gru_lin": {
-            "vote_pct": 23.08,
-            "seats_full_ausgleich_pct": 22.9,
-            "seats_capped_pct": 22.9,
-            "cap_minus_full_pp": 0.0
+            "vote_pct": 23.03,
+            "seats_full_ausgleich_pct": 23.0,
+            "seats_capped_pct": 22.98,
+            "cap_minus_full_pp": -0.03
           }
         }
       }

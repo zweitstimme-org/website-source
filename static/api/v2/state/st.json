@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-17T15:54:51Z",
+  "generated_at": "2026-08-17T16:25:02Z",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -22,10 +22,12 @@
       "poll_window_days": null,
       "last_poll_date": "2026-08-12",
       "asof_date": "2026-08-12",
-      "last_update": "2026-08-17T15:30:31",
+      "last_update": "2026-08-17T16:23:31Z",
       "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
       "predictor_encoding": "state_models_exact_lead_v1",
       "shares_normalized_to_100": true,
+      "n_draws": 4000,
+      "draws_path": "/api/v2/state/st/draws.json",
       "source_repo": "zweitstimme-org/state-models"
     },
     "parties": [
@@ -106,7 +108,7 @@
           "id": "maj_ohne_afd",
           "category": "majority_excluding",
           "label_de": "Parlamentsmehrheit ohne AfD",
-          "probability": 70
+          "probability": 71
         },
         {
           "id": "maj_ohne_afd_bsw",
@@ -118,25 +120,25 @@
           "id": "above_hurdle_gru",
           "category": "above_hurdle",
           "label_de": "Grüne über 5%-Hürde",
-          "probability": 42
+          "probability": 41
         },
         {
           "id": "above_hurdle_bsw",
           "category": "above_hurdle",
           "label_de": "BSW über 5%-Hürde",
-          "probability": 35
+          "probability": 37
         },
         {
           "id": "abs_maj_afd",
           "category": "coalition",
           "label_de": "Absolute Mehrheit AfD",
-          "probability": 30
+          "probability": 29
         },
         {
           "id": "coal_afd_bsw",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit AfD und BSW",
-          "probability": 19
+          "probability": 20
         },
         {
           "id": "above_hurdle_fdp",
@@ -149,6 +151,12 @@
           "category": "largest_party",
           "label_de": "CDU stärkste Kraft",
           "probability": 2
+        },
+        {
+          "id": "coal_cdu_bsw_spd",
+          "category": "coalition",
+          "label_de": "Parlamentsmehrheit CDU, BSW und SPD",
+          "probability": 1
         },
         {
           "id": "coal_cdu_spd_gru",
