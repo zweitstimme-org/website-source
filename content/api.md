@@ -1,13 +1,15 @@
 ---
 title: "Forecast API"
 layout: "page"
-url: "/api"
+url: "/docs/api"
 summary: "Versionierte Forecast API: Bundestag, Landtage und Aktuelle Stimmung"
 ---
 
 Öffentliche, versionierte JSON-API für **Wahlprognosen** und die **Aktuelle Stimmung** (Kalman-Zeitreihe). Keine Authentifizierung. Nur `GET`.
 
 Dies ist **nicht** die Polling API (Einzelumfragen) — die bleibt ein eigener Dienst.
+
+**Diese Seite** (Doku) liegt unter `/docs/api/`. Die maschinenlesbare Discovery ist [`/api/index.json`](/api/index.json) (JSON-Katalog unter `/api/…`).
 
 ---
 
@@ -184,6 +186,7 @@ Aktive Prognosen nur im **~90-Tage-Fenster** vor dem Wahltag. Außerhalb des Fen
 |---------|------|--------|
 | GET | [`/api/v2/state/index.json`](/api/v2/state/index.json) | Aktive Länder, `forecast_window_days`, Link zum Archiv |
 | GET | `/api/v2/state/{code}.json` | Prognose eines Landes (`st`, `be`, `mv`, …) |
+| GET | `/api/v2/state/{code}/draws.json` | Posterior-Simulationen (eine Zeile je Draw, Anteile 0–1) |
 | GET | [`/api/v2/state/archive/index.json`](/api/v2/state/archive/index.json) | Archiv-Katalog |
 | GET | `/api/v2/state/archive/{code}_{YYYY-MM-DD}.json` | Eingefrorene Prognose |
 
@@ -230,15 +233,50 @@ Wahlkreis- und Kandidaten-JSON sind **Preview-only** und nicht Teil dieser öffe
 | `parties[].low` / `high` | %-Punkte | ca. **83 %-**Intervall |
 | `scenarios.items[].probability` | **Prozent 0–100** | Szenario-Wahrscheinlichkeit (anders als federal `pred_probabilities`!) |
 | `scenarios.items[].category` | string | z. B. `largest_party`, `hurdle`, `coalition`, `majority_excluding` |
-| `metadata.last_poll_date` | Datum | Stand der neuesten einbezogenen Umfrage |
+| `metadata.last_poll_date` | Datum | Neueste Umfrage, die in diese Prognose eingeflossen ist („Letzte Umfrage“) |
+| `metadata.last_update` | Zeitstempel | Zeitpunkt der Modellrechnung / JSON-Erzeugung („Stand“) |
+| `metadata.n_draws` | Ganzzahl | Anzahl Posterior-Simulationen (typisch 4000) |
+| `metadata.draws_path` | Pfad | Link zu `/api/v2/state/{code}/draws.json` |
 
-Aktive Länder immer über [`/api/v2/state/index.json`](/api/v2/state/index.json) ermitteln — nicht hart kodieren.
+Aktive Länder immer über [`/api/v2/state/index.json`](/api/v2/state/index.json) ermitteln — nicht hart kodieren. Der Index kann ein Feld `draws` setzen, wenn Rohdraws verfügbar sind.
+
+### `data` bei `/api/v2/state/{code}/draws.json`
+
+Dieselben Simulationen, aus denen Punktschätzung, Intervalle und Szenario-Wahrscheinlichkeiten berechnet werden (`stan_glm` → `posterior_predict`, Anteile je Draw auf 1 normalisiert). Format analog zum älteren Federal-`/draws.json`.
+
+```json
+{
+  "api_version": "v2",
+  "election": { "id": "st_2026-09-06", "scope": "state", "state_code": "ST" },
+  "data": {
+    "n_draws": 4000,
+    "unit": "share",
+    "parties": ["cdu", "spd", "gru", "fdp", "lin", "afd", "bsw", "oth"],
+    "draws": [
+      { "cdu": 0.23, "spd": 0.07, "gru": 0.05, "fdp": 0.03, "lin": 0.13, "afd": 0.41, "bsw": 0.04, "oth": 0.04 }
+    ]
+  }
+}
+```
+
+| Feld | Bedeutung |
+|------|-----------|
+| `unit` | `"share"` = Anteile 0–1 (nicht Prozent) |
+| `draws[]` | Ein Objekt pro Simulation; Parteien summieren sich (nach Rundung) auf ≈ 1 |
+| `n_draws` | Länge von `draws` |
+
+Beispiel:
+
+```bash
+curl -s https://zweitstimme.org/api/v2/state/st/draws.json | jq '.data.n_draws, .data.draws[0]'
+```
 
 ### Archiv-Politik
 
 - Nach dem Wahltag: aktive Datei → Archiv.
 - Archiv wird **ab Einführung dieser API** befüllt; ältere Landtage werden **nicht** nachträglich eingespielt.
 - Archiv-Antworten können `"archived": true` setzen.
+- Rohdraws wandern mit: `/api/v2/state/archive/{code}_{YYYY-MM-DD}/draws.json`.
 
 ---
 

@@ -72,7 +72,7 @@ disableXML = true
 
       [[languages.de.menu.footer]]
       name = "API"
-      url = "/api"
+      url = "/docs/api"
       weight = 30
 
       [[languages.de.menu.footer]]
