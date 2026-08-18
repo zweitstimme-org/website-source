@@ -119,10 +119,21 @@
     }
   }
 
+  function cellular() {
+    try {
+      var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (c && String(c.type || "").toLowerCase() === "cellular") return "c";
+    } catch (e) {}
+    return "";
+  }
+
   function send(key) {
     var img = new Image();
     img.referrerPolicy = "no-referrer";
-    img.src = "https://polsci.uni-wh.de/zweitstimme.gif?p=" + encodeURIComponent(key) + "&v=" + viewport();
+    var src = "https://polsci.uni-wh.de/zweitstimme.gif?p=" + encodeURIComponent(key) + "&v=" + viewport();
+    var cell = cellular();
+    if (cell) src += "&c=" + cell;
+    img.src = src;
   }
 
   function ping() {
