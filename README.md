@@ -34,6 +34,8 @@ In other words: this repo should contain the source that Hugo needs, but not the
 
 A push to `main` triggers the site build that updates the built `website` repository and therefore the public site.
 
+The deploy copies this README into `website` (`public/README.md`) so the built-output repo keeps a description even though each deploy is an orphan commit.
+
 ## Local development
 
 ```bash
