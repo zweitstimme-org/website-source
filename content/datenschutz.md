@@ -28,7 +28,6 @@ Um einen groben Überblick über die Nutzung der Website zu erhalten (Seitenaufr
 Dabei gilt:
 
 - Es werden **keine Cookies** gesetzt und kein Gerät wiedererkannt.
-- User-Agents und Referrer werden nicht gespeichert.
 - Gezählt werden ein Tageszähler und der aufgerufene Pfad. Bei Vorschau-Seiten (Kandidat:innen, Listen, Wahlkreise) speichern wir zusätzlich öffentlich sichtbare Parameter (`id`, Land, Partei, Wahlkreis, Bezirk, Name) — keine Suchbegriffe.
 - Browser mit Do-Not-Track oder Global Privacy Control werden nicht gezählt.
 - Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer anonymen Nutzungsstatistik für ein wissenschaftliches Angebot).
