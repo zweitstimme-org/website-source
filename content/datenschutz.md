@@ -23,15 +23,15 @@ Für den Betrieb und die Reichweitenmessung dieser Website setzen wir **keine Co
 
 ## Reichweitenmessung (ohne Cookies)
 
-Um einen groben Überblick über die Nutzung der Website zu erhalten (Seitenaufrufe je Tag, ungefähre Zahl verschiedener Zugriffe, beliebte Pfade), lädt die Website im Hintergrund ein 1×1-Pixel von einem Server der Universität Witten/Herdecke (`polsci.uni-wh.de`).
+Um einen groben Überblick über die Nutzung der Website zu erhalten (Seitenaufrufe je Tag und beliebte Pfade), lädt die Website im Hintergrund ein 1×1-Pixel von einem Server der Universität Witten/Herdecke (`polsci.uni-wh.de`).
 
 Dabei gilt:
 
 - Es werden **keine Cookies** gesetzt und kein Gerät wiedererkannt.
-- Es werden **keine IP-Adressen, User-Agents oder Referrer gespeichert**.
-- Gezählt werden nur ein Tageszähler, ein ungefährer Unique-Wert (Hash einer gekürzten IP mit täglich wechselndem Salt, nur im Arbeitsspeicher) und der aufgerufene Pfad. Bei Vorschau-Seiten (Kandidat:innen, Listen, Wahlkreise) speichern wir zusätzlich öffentlich sichtbare Parameter (`id`, Land, Partei, Wahlkreis, Bezirk, Name) — keine Suchbegriffe und keine IP-Adressen.
+- User-Agents und Referrer werden nicht gespeichert.
+- Gezählt werden ein Tageszähler und der aufgerufene Pfad. Bei Vorschau-Seiten (Kandidat:innen, Listen, Wahlkreise) speichern wir zusätzlich öffentlich sichtbare Parameter (`id`, Land, Partei, Wahlkreis, Bezirk, Name) — keine Suchbegriffe.
 - Browser mit Do-Not-Track oder Global Privacy Control werden nicht gezählt.
-- Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer anonymen Nutzungstatistik für ein wissenschaftliches Angebot).
+- Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer anonymen Nutzungsstatistik für ein wissenschaftliches Angebot).
 
 Die Zählung gilt für `zweitstimme.org` und die interne GitHub-Pages-Vorschau (`zweitstimme-org.github.io`). Localhost und andere Kopien werden nicht gezählt.
 
