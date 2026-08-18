@@ -7,7 +7,7 @@ summary: "Versionierte Forecast API: Bundestag, Landtage und Aktuelle Stimmung"
 
 Öffentliche, versionierte JSON-API für **Wahlprognosen** und die **Aktuelle Stimmung** (Kalman-Zeitreihe). Keine Authentifizierung. Nur `GET`.
 
-Dies ist **nicht** die Polling API (Einzelumfragen) — die bleibt ein eigener Dienst.
+Es gibt auch eine **Polling API** für die Einzelumfragen unter [api.zweitstimme.org](https://api.zweitstimme.org/) (Docs: [api.zweitstimme.org/docs](https://api.zweitstimme.org/docs)). Hier geht es um die **Forecast API** unter [`zweitstimme.org/api`](/api/index.json) — die Hosting-Struktur soll später noch vereinheitlicht werden.
 
 **Diese Seite** (Doku) liegt unter `/docs/api/`. Die maschinenlesbare Discovery ist [`/api/index.json`](/api/index.json) (JSON-Katalog unter `/api/…`).
 
