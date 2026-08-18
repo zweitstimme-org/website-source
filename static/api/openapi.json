@@ -3,7 +3,7 @@
   "info": {
     "title": "Zweitstimme Forecast API",
     "version": "2.0.0",
-    "description": "Public JSON API for **election-day forecasts**, **posterior draws**, and **Aktuelle Stimmung**.\n\nStatic files, CORS-open (`Access-Control-Allow-Origin: *`), **GET only**. No authentication.\n\nThis is **not** the polling API for individual surveys. That lives at [api.zweitstimme.org/docs](https://api.zweitstimme.org/docs).\n\n## Concepts\n\n- **Forecast** — model output for election day: point estimates, uncertainty intervals, scenario probabilities, and optionally posterior draws.\n- **Stimmung** — Kalman-smoothed latent support by calendar day. Days without a new poll are still present. No seat scenarios.\n- **`election`** — names the next relevant election for that scope. It is not the forecast timestamp. The same path can refer to a later cycle.\n\n## Versioning\n\n| Version | Scope |\n|---|---|\n| `v1` | Federal (Bundestag) forecast contract |\n| `v2` | State forecasts, posterior draws, and Stimmung |\n| unversioned `/forecast.json` etc. | Legacy aliases of `v1` |\n\nStart at `GET /api/index.json`. Prefer `v2` for new integrations.\n\n## Envelope\n\nVersioned endpoints wrap payloads as:\n\n```json\n{\n  \"api_version\": \"v2\",\n  \"generated_at\": \"2026-08-18T08:06:53Z\",\n  \"election\": { \"id\": \"st_2026-09-06\", \"name\": \"Landtagswahl Sachsen-Anhalt\", \"date\": \"2026-09-06\", \"scope\": \"state\", \"state_code\": \"ST\" },\n  \"data\": {}\n}\n```\n\n## Availability\n\n- State forecasts exist only inside the **~90-day window** before election day. Outside that window the path returns **404**.\n- After election day the last forecast moves to `/api/v2/state/archive/`.\n- Archives start when this API began publishing them; there is no historical backfill.\n- `/data/*.json` files used by the website UI are **not** a public contract.\n\n## Units\n\nWatch the unit. Party vote shares in summary forecasts are usually **percentage points**. Posterior draws use **shares from 0 to 1**. Federal `pred_probabilities` are also 0–1. State scenario `probability` values are **percent 0–100**.\n\n## License\n\nTexts, explanations, and visualizations: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), attribution **zweitstimme.org**. Polling inputs may come from [dawum.de](https://dawum.de) ([ODbL](https://opendatacommons.org/licenses/odbl/)) and [wahlrecht.de](https://www.wahlrecht.de) / the named institutes. No guarantee of availability, completeness, or correctness. Forecasts and Stimmung are model outputs, not official results.",
+    "description": "Public JSON API for **election-day forecasts**, **posterior draws**, and **Aktuelle Stimmung**.\n\nStatic files, CORS-open (`Access-Control-Allow-Origin: *`), **GET only**. No authentication.\n\nThis is **not** the polling API for individual surveys. That lives at [api.zweitstimme.org/docs](https://api.zweitstimme.org/docs).\n\n## Concepts\n\n- **Forecast** — model output for election day: point estimates, uncertainty intervals, scenario probabilities, and optionally posterior draws.\n- **Stimmung** — Kalman-smoothed latent support by calendar day. Days without a new poll are still present. No seat scenarios.\n- **`election`** — names the next relevant election for that scope. It is not the forecast timestamp. The same path can refer to a later cycle.\n\n## Versioning\n\n| Version | Meaning |\n|---|---|\n| `v1` | Legacy contract from when only federal forecasts existed. Kept for compatibility. |\n| `v2` | Current contract: federal and state election-day forecasts, posterior draws, and Stimmung. |\n| unversioned `/forecast.json` etc. | Aliases of the `v1` federal files. |\n\nStart at `GET /api/index.json`. Prefer `v2` for new integrations. Federal data exists under both `/api/v1/federal/` (old row shape) and `/api/v2/federal/` (metadata + `fit`/`low`/`high`, same as state).\n\n## Envelope\n\nVersioned endpoints wrap payloads as:\n\n```json\n{\n  \"api_version\": \"v2\",\n  \"generated_at\": \"2026-08-18T08:06:53Z\",\n  \"election\": { \"id\": \"st_2026-09-06\", \"name\": \"Landtagswahl Sachsen-Anhalt\", \"date\": \"2026-09-06\", \"scope\": \"state\", \"state_code\": \"ST\" },\n  \"data\": {}\n}\n```\n\n## Availability\n\n- State forecasts exist only inside the **~90-day window** before election day. Outside that window the path returns **404**.\n- After election day the last forecast moves to `/api/v2/federal/archive/` or `/api/v2/state/archive/`.\n- Archives start when this API began publishing them; there is no historical backfill.\n- `/data/*.json` files used by the website UI are **not** a public contract.\n\n## Units\n\nWatch the unit. Party vote shares in summary forecasts are usually **percentage points**. Posterior draws use **shares from 0 to 1**. Federal `probabilities` / `pred_probabilities` are also 0–1. State scenario `probability` values are **percent 0–100**.\n\n## License\n\nTexts, explanations, and visualizations: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), attribution **zweitstimme.org**. Polling inputs may come from [dawum.de](https://dawum.de) ([ODbL](https://opendatacommons.org/licenses/odbl/)) and [wahlrecht.de](https://www.wahlrecht.de) / the named institutes. No guarantee of availability, completeness, or correctness. Forecasts and Stimmung are model outputs, not official results.",
     "contact": {
       "name": "zweitstimme.org",
       "url": "https://zweitstimme.org"
@@ -29,16 +29,20 @@
       "description": "Catalog and OpenAPI document"
     },
     {
+      "name": "federal",
+      "description": "Bundestag election-day forecasts (current `v2` contract)"
+    },
+    {
       "name": "state",
-      "description": "Landtag election-day forecasts and posterior draws"
+      "description": "Landtag election-day forecasts and posterior draws (`v2`)"
     },
     {
       "name": "stimmung",
       "description": "Kalman-smoothed daily latent support (federal and Länder)"
     },
     {
-      "name": "federal",
-      "description": "Bundestag forecast contract (`v1`)"
+      "name": "v1",
+      "description": "Legacy federal-only contract. Prefer `/api/v2/federal/`."
     },
     {
       "name": "legacy",
@@ -90,11 +94,11 @@
         }
       }
     },
-    "/api/v1/federal/index.json": {
+    "/api/v2/federal/index.json": {
       "get": {
-        "operationId": "get_v1_federal_index",
+        "operationId": "get_v2_federal_index",
         "summary": "Federal forecast catalog",
-        "description": "Entry point for the older federal (`v1`) contract, including legacy root aliases.",
+        "description": "Entry point for the current federal (`v2`) contract: forecast, districts, draws, archive. Successor of `/api/v1/federal/`.",
         "tags": [
           "federal"
         ],
@@ -124,13 +128,228 @@
         }
       }
     },
+    "/api/v2/federal/forecast.json": {
+      "get": {
+        "operationId": "get_v2_federal_forecast",
+        "summary": "Federal party forecast",
+        "description": "Current federal summary: `data.metadata`, `data.parties` (`fit`/`low`/`high` in **percentage points**), and `data.probabilities` (shares **0–1**). Same underlying forecast as `v1`, improved shape.",
+        "tags": [
+          "federal"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/FederalForecastData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/federal/districts.json": {
+      "get": {
+        "operationId": "get_v2_federal_districts",
+        "summary": "Federal district forecast",
+        "description": "Wahlkreis-level first- and second-vote forecast with `metadata`. Large file.",
+        "tags": [
+          "federal"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/FederalDistrictsData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No district forecast published."
+          }
+        }
+      }
+    },
+    "/api/v2/federal/draws.json": {
+      "get": {
+        "operationId": "get_v2_federal_draws",
+        "summary": "Federal posterior draws",
+        "description": "Raw posterior simulations (`unit: share`, 0–1) behind the federal summary. Header (`metadata`, `summary` with CIs) comes first; the `draws` array follows. Large file.",
+        "tags": [
+          "federal"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StateDrawsData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No federal draws published."
+          }
+        }
+      }
+    },
+    "/api/v2/federal/archive/index.json": {
+      "get": {
+        "operationId": "get_v2_federal_archive_index",
+        "summary": "Federal archive catalog",
+        "description": "Archived federal forecast runs in the v2 contract. Empty until the pipeline has frozen a cycle.",
+        "tags": [
+          "federal"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/federal/archive/{date}.json": {
+      "get": {
+        "operationId": "get_v2_federal_archive_run",
+        "summary": "One archived federal forecast",
+        "description": "Frozen federal forecast for one run date, v2 shape.",
+        "tags": [
+          "federal"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/FederalForecastData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No archived federal forecast for that date."
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "description": "Archive date `YYYY-MM-DD`.",
+            "schema": {
+              "type": "string",
+              "example": "2025-02-23",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/federal/index.json": {
+      "get": {
+        "operationId": "get_v1_federal_index",
+        "summary": "Legacy federal catalog",
+        "description": "Entry point for the **legacy** federal-only contract. Prefer `/api/v2/federal/index.json`.",
+        "tags": [
+          "v1"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/FederalIndexData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
     "/api/v1/federal/forecast.json": {
       "get": {
         "operationId": "get_v1_federal_forecast",
-        "summary": "Federal party forecast",
-        "description": "Array of party rows in `data`. Point estimates and intervals are **percentage points**.",
+        "summary": "Legacy federal party forecast",
+        "description": "Legacy `data` array of `{value, _row, …}` rows. Prefer `/api/v2/federal/forecast.json` (`fit`/`party_code`). Point estimates are **percentage points**.",
         "tags": [
-          "federal"
+          "v1"
         ],
         "responses": {
           "200": {
@@ -158,16 +377,17 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/api/v1/federal/pred_probabilities.json": {
       "get": {
         "operationId": "get_v1_federal_pred_probabilities",
-        "summary": "Federal scenario probabilities",
-        "description": "`data` is a one-element array of probability maps. Values are **shares from 0 to 1**.",
+        "summary": "Legacy federal scenario probabilities",
+        "description": "`data` is a one-element array of probability maps. Values are **shares from 0 to 1**. Prefer `data.probabilities` on `/api/v2/federal/forecast.json`.",
         "tags": [
-          "federal"
+          "v1"
         ],
         "responses": {
           "200": {
@@ -195,16 +415,17 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/api/v1/federal/forecast_districts.json": {
       "get": {
         "operationId": "get_v1_federal_forecast_districts",
-        "summary": "Federal district forecast",
-        "description": "Wahlkreis-level first- and second-vote forecast. Large file.",
+        "summary": "Legacy federal district forecast",
+        "description": "Wahlkreis-level first- and second-vote forecast. Prefer `/api/v2/federal/districts.json`. Large file.",
         "tags": [
-          "federal"
+          "v1"
         ],
         "responses": {
           "200": {
@@ -232,16 +453,17 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/api/v1/federal/archive/index.json": {
       "get": {
         "operationId": "get_v1_federal_archive_index",
-        "summary": "Federal archive catalog",
-        "description": "Archived federal forecast runs. Empty until the pipeline has frozen a cycle.",
+        "summary": "Legacy federal archive catalog",
+        "description": "Archived federal forecast runs in the v1 contract. Prefer `/api/v2/federal/archive/`.",
         "tags": [
-          "federal"
+          "v1"
         ],
         "responses": {
           "200": {
@@ -254,16 +476,17 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/api/v1/federal/archive/{date}.json": {
       "get": {
         "operationId": "get_v1_federal_archive_run",
-        "summary": "One archived federal forecast",
-        "description": "Frozen federal forecast for one run date.",
+        "summary": "One archived federal forecast (v1)",
+        "description": "Frozen federal forecast for one run date, legacy row shape.",
         "tags": [
-          "federal"
+          "v1"
         ],
         "responses": {
           "200": {
@@ -292,7 +515,8 @@
               "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
             }
           }
-        ]
+        ],
+        "deprecated": true
       }
     },
     "/api/v2/state/index.json": {
@@ -388,7 +612,7 @@
       "get": {
         "operationId": "get_v2_state_draws",
         "summary": "State posterior draws",
-        "description": "Raw posterior simulations (`unit: share`, 0–1) behind the summary and scenarios. The JSON header (`data.metadata`, last poll, published `summary` with CIs) comes first; the `draws` array follows. Regenerated on every state-forecast run. Large file (~4000 draws).",
+        "description": "Raw posterior simulations (`unit: share`, 0–1) behind the summary and scenarios. Timing, model, last poll, and published `summary` (with CIs) sit directly on `data`; `n_draws` / `unit` / `parties` come once, then the `draws` array. Regenerated on every state-forecast run. Large file (~4000 draws).",
         "tags": [
           "state"
         ],
@@ -993,6 +1217,25 @@
           "description": {
             "type": "string"
           },
+          "status": {
+            "type": "string",
+            "example": "current"
+          },
+          "successor": {
+            "type": "string"
+          },
+          "legacy": {
+            "type": "string"
+          },
+          "forecast": {
+            "type": "string"
+          },
+          "districts": {
+            "type": "string"
+          },
+          "draws": {
+            "type": "string"
+          },
           "endpoints": {
             "type": "array",
             "items": {
@@ -1018,7 +1261,7 @@
       },
       "FederalPartyRow": {
         "type": "object",
-        "description": "One party in the federal forecast. `value`/`y` and interval fields are percentage points. `low`/`high` ≈ 83% interval; `low95`/`high95` ≈ 95%.",
+        "description": "Legacy `v1` party row. `value`/`y` and interval fields are percentage points. `low`/`high` ≈ 83% interval; `low95`/`high95` ≈ 95%. Prefer `FederalPartyRowV2` on `/api/v2/federal/forecast.json`.",
         "properties": {
           "name": {
             "type": "string",
@@ -1057,6 +1300,115 @@
           },
           "color": {
             "type": "string"
+          }
+        }
+      },
+      "FederalPartyRowV2": {
+        "type": "object",
+        "description": "Current federal party row. Same fields as state forecasts (`party`, `party_code`, `fit`, `low`, `high` in percentage points). `low`/`high` ≈ 83%; `low95`/`high95` ≈ 95% when present.",
+        "required": [
+          "party",
+          "party_code",
+          "fit"
+        ],
+        "properties": {
+          "party": {
+            "type": "string",
+            "example": "CDU/CSU"
+          },
+          "party_code": {
+            "type": "string",
+            "example": "cdu"
+          },
+          "fit": {
+            "type": "number",
+            "example": 29.3
+          },
+          "low": {
+            "type": "number",
+            "example": 24.2
+          },
+          "high": {
+            "type": "number",
+            "example": 34.5
+          },
+          "low95": {
+            "type": "number"
+          },
+          "high95": {
+            "type": "number"
+          },
+          "name_eng": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        }
+      },
+      "FederalForecastMetadata": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "string",
+            "example": "federal"
+          },
+          "election_id": {
+            "type": "string"
+          },
+          "election_name": {
+            "type": "string"
+          },
+          "election_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "last_update": {
+            "type": "string",
+            "description": "When this forecast was computed / exported."
+          },
+          "asof_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Forecast input-date anchor."
+          },
+          "n_draws": {
+            "type": "integer"
+          },
+          "draws_path": {
+            "type": "string",
+            "example": "/api/v2/federal/draws.json"
+          }
+        }
+      },
+      "FederalForecastData": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/FederalForecastMetadata"
+          },
+          "parties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FederalPartyRowV2"
+            }
+          },
+          "probabilities": {
+            "$ref": "#/components/schemas/FederalProbabilities"
+          }
+        }
+      },
+      "FederalDistrictsData": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/FederalForecastMetadata"
+          },
+          "districts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FederalDistrictRow"
+            }
           }
         }
       },
@@ -1344,11 +1696,8 @@
       },
       "StateDrawsData": {
         "type": "object",
-        "description": "Self-contained posterior draws. Header fields come first (`metadata`, timing, `summary`, notes), then `n_draws` / `unit` / `parties`, then the raw `draws` array. Regenerated whenever the state forecast is rerun.",
+        "description": "Self-contained posterior draws. Timing and model fields sit at `data` (no nested `metadata` object). `n_draws` / `unit` / `parties` come once, just above the raw `draws` array. Regenerated whenever the state forecast is rerun.",
         "properties": {
-          "metadata": {
-            "$ref": "#/components/schemas/StateForecastMetadata"
-          },
           "last_update": {
             "type": "string",
             "description": "Forecast-run timestamp (UTC). Distinct from envelope `generated_at`."
@@ -1362,6 +1711,49 @@
             "type": "string",
             "format": "date",
             "description": "Newest poll included in this forecast."
+          },
+          "state_code": {
+            "type": "string"
+          },
+          "election_id": {
+            "type": "string"
+          },
+          "election_name": {
+            "type": "string"
+          },
+          "election_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "model": {
+            "type": "string"
+          },
+          "lead": {
+            "type": "string"
+          },
+          "lead_model": {
+            "type": "string"
+          },
+          "lead_horizon_days": {
+            "type": "integer"
+          },
+          "poll_window_days": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "scenario_config_md5": {
+            "type": "string"
+          },
+          "predictor_encoding": {
+            "type": "string"
+          },
+          "shares_normalized_to_100": {
+            "type": "boolean"
+          },
+          "source_repo": {
+            "type": "string"
           },
           "summary": {
             "type": "object",

@@ -1,13 +1,15 @@
 {
   "name": "Zweitstimme Forecast API",
-  "generated_at": "2026-08-18T09:12:46Z",
+  "generated_at": "2026-08-18T09:50:55Z",
   "docs": "https://zweitstimme.org/docs/api/",
   "openapi": "/api/openapi.json",
   "versions": {
     "v1": {
-      "description": "Federal (Bundestag) forecasts",
+      "status": "legacy",
+      "description": "Legacy contract from when only federal forecasts existed. Unchanged for compatibility. Prefer v2.",
       "index": "/api/v1/federal/index.json",
       "archive_index": "/api/v1/federal/archive/index.json",
+      "successor": "/api/v2/federal/index.json",
       "endpoints": [
         "/api/v1/federal/forecast.json",
         "/api/v1/federal/pred_probabilities.json",
@@ -15,7 +17,10 @@
       ]
     },
     "v2": {
-      "description": "State forecasts and Aktuelle Stimmung",
+      "status": "current",
+      "description": "Current contract: federal and state election-day forecasts, posterior draws, and Aktuelle Stimmung.",
+      "federal_index": "/api/v2/federal/index.json",
+      "federal_archive_index": "/api/v2/federal/archive/index.json",
       "state_index": "/api/v2/state/index.json",
       "state_archive_index": "/api/v2/state/archive/index.json",
       "stimmung_federal": "/api/v2/stimmung/federal.json",
@@ -43,10 +48,11 @@
   },
   "policy": {
     "active_forecast_window_days": 90,
-    "archive": "After election day, forecasts move to /api/v1/federal/archive/ and /api/v2/state/archive/. No backfill of earlier elections."
+    "archive": "After election day, forecasts move to /api/v2/federal/archive/ and /api/v2/state/archive/ (v1 federal archive remains for the legacy contract). No backfill of earlier elections."
   },
   "counts": {
     "v1_federal_endpoints": 3,
+    "v2_federal_endpoints": 3,
     "v2_state_forecasts": 3,
     "v2_state_archive": 1,
     "v2_stimmung_states": 16
