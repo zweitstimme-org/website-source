@@ -472,7 +472,7 @@ The website UI also reads `/data/forecast_state_*.json`, `/data/stimmung_*.json`
 
 ## Usage terms
 
-- Non-commercial use
-- Source attribution: **zweitstimme.org**
+- License for zweitstimme.org texts, explanations, and visualizations: **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de)**, with attribution to **zweitstimme.org**
+- Polling data may come from third-party sources, in particular **[dawum.de](https://dawum.de)** (**[ODbL](https://opendatacommons.org/licenses/odbl/)**) and **[wahlrecht.de](https://www.wahlrecht.de)** / the named polling institutes
 - No guarantee of availability, completeness, or correctness
 - Forecasts and Stimmung are model outputs, not official results

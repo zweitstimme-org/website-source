@@ -17,11 +17,11 @@ Für die Bundestagswahl 2025 simulieren wir die Erststimmenergebnisse, obwohl un
 
 Unser Modell zur Vorhersage der Zweitstimme kombiniert zwei Komponenten: ein Fundamentaldaten-Modell und ein Umfragedaten-Modell.
 
-Das Fundamentaldaten-Modell berücksichtigt langfristige Parteibindungen (z. B. Ergebnisse der letzten Wahl), frühe Umfragen (230–200 Tage vor der Wahl) und welche Partei aktuell die Regierung stellt. Das Umfragedaten-Modell integriert aktuelle Meinungsumfragen (Quelle: [wahlrecht.de](https://wahlrecht.de)).
+Das Fundamentaldaten-Modell berücksichtigt langfristige Parteibindungen (z. B. Ergebnisse der letzten Wahl), frühe Umfragen (230–200 Tage vor der Wahl) und welche Partei aktuell die Regierung stellt. Das Umfragedaten-Modell integriert aktuelle Meinungsumfragen (Quellen: [dawum.de](https://dawum.de), [wahlrecht.de](https://www.wahlrecht.de)).
 
 ## Welche Daten fließen in die Vorhersagen ein?
 
-Die Modelle berücksichtigen Ergebnisse der letzten Wahl, frühe Umfragen (230–200 Tage vor der Wahl), die Unterstützung der amtierenden Regierung sowie aktuelle Meinungsumfragen (Quelle: [wahlrecht.de](https://wahlrecht.de)).
+Die Modelle berücksichtigen Ergebnisse der letzten Wahl, frühe Umfragen (230–200 Tage vor der Wahl), die Unterstützung der amtierenden Regierung sowie aktuelle Meinungsumfragen (Quellen: [dawum.de](https://dawum.de), [wahlrecht.de](https://www.wahlrecht.de)).
 
 Für die Wahlkreisvorhersagen berücksichtigen wir außerdem lokale Faktoren wie Amtsinhaberstatus, vergangene Wahlergebnisse auf Wahlkreisebene sowie das Ergebnis unserer Zweitstimmenvorhersage.
 
@@ -59,7 +59,7 @@ Ja, unser Modell berücksichtigt das aktuelle deutsche Wahlsystem. Das bedeutet,
 
 ## Können die Inhalte weiterverwendet werden?
 
-Ja, die hier zur Verfügung gestellten Informationen können weiterverwendet werden. Die "CC BY-SA 4.0"-Lizenz (Creative Commons Attribution-ShareAlike 4.0) erlaubt es Ihnen, die Inhalte zu nutzen, zu verändern und weiterzugeben, solange Sie bestimmte Regeln einhalten. 
+Ja. Sofern nicht anders angegeben, stehen die von zweitstimme.org erstellten Texte, Erläuterungen und Visualisierungen unter der Lizenz [Creative Commons Namensnennung 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.de).
 
 Was dürfen Sie tun?
 
@@ -70,13 +70,14 @@ Was müssen Sie beachten?
 
   - Namensnennung (BY): Sie müssen den ursprünglichen Urheber nennen. Das bedeutet:
     - Geben Sie den Namen des Urhebers oder die Quelle an.
-    - Fügen Sie einen Hinweis auf die Lizenz hinzu (z. B. "CC BY-SA 4.0").
+    - Fügen Sie einen Hinweis auf die Lizenz hinzu (z. B. „CC BY 4.0“).
     - Geben Sie an, ob Sie Änderungen am Original vorgenommen haben.
-  - Weitergabe unter gleichen Bedingungen (SA): Wenn Sie den Inhalt bearbeiten oder ein neues Werk daraus erstellen, müssen Sie das Ergebnis ebenfalls unter der gleichen Lizenz (CC BY-SA 4.0) veröffentlichen.
 
 Bei der Verwendung der Inhalte ist zweitstimme.org als Quelle zu nennen, beispielsweise:
 
-"Quelle: zweitstimme.org" oder "Daten: zweitstimme.org"
+„Quelle: zweitstimme.org“ oder „Daten: zweitstimme.org“
+
+Die auf dieser Website verwendeten Polling-Daten beruhen ganz oder teilweise auf externen Quellen. Soweit Daten von [dawum.de](https://dawum.de) verwendet werden, gelten für diese die Bedingungen der [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/). Weitere Umfragedaten und sonstige Angaben stammen aus öffentlich dokumentierten Veröffentlichungen, insbesondere von [wahlrecht.de](https://www.wahlrecht.de), sowie von den jeweils genannten Umfrageinstituten. Soweit einschlägig, verbleiben die Rechte an diesen Daten und Inhalten bei den jeweiligen Rechteinhabern.
 
 Wenn Sie weitere Fragen zur Verwendung der Materialien bzw. Informationen haben, treten Sie bitte einfach mit uns in Verbindung!
 
@@ -94,4 +95,4 @@ Alle Projektbeteiligte sind an Universitäten als Politik- und Datenwissenschaft
 
 ## Wer finanziert das Projekt?
 
-Bis zu dieser Bundestagswahl war Zweitstimme.org ein Hobbyprojekt neben unserer Arbeit als Lehrende und Wissenschaftler. Für die methodische Forschung zu Vorhersagen und zu Konsequenzen von Wahlvorhersagen haben wir im Jahr 2024 Förderung durch die Deutsche Forschungsgemeinschaft (DFG) erhalten. Das [Projekt "Wahlvorhersagen zur Bundestagswahl 2025" wird 2024-2026 gefördert](https://www.mzes.uni-mannheim.de/d7/de/projects/wahlvorhersagen-fuer-die-bundestagswahl-2025). 
+Bis zu dieser Bundestagswahl war Zweitstimme.org ein Hobbyprojekt neben unserer Arbeit als Lehrende und Wissenschaftler. Für die methodische Forschung zu Vorhersagen und zu Konsequenzen von Wahlvorhersagen haben wir im Jahr 2024 Förderung durch die Deutsche Forschungsgemeinschaft (DFG) erhalten. Das [Projekt "Wahlvorhersagen zur Bundestagswahl 2025" wird 2024-2026 gefördert](https://www.mzes.uni-mannheim.de/d7/de/projects/wahlvorhersagen-fuer-die-bundestagswahl-2025).
