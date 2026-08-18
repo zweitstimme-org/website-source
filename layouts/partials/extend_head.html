@@ -26,6 +26,44 @@
     return key;
   }
 
+  function slug(s) {
+    return String(s || "")
+      .replace(/^#/, "")
+      .replace(/[^A-Za-z0-9._~/-]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 40);
+  }
+
+  function clickKey(el) {
+    var arm = el.closest(".state-arm");
+    if (arm) {
+      if (arm.classList.contains("load-more-button")) return "/click/load-more";
+      if (arm.classList.contains("show-less-button")) return "/click/show-less";
+      var section = "landtag";
+      if (arm.closest("#vorhersage-targets")) section = "vorhersage";
+      else if (arm.closest("#vorhersage-archive-targets")) section = "archiv";
+      var st = arm.getAttribute("data-state") || arm.getAttribute("data-forecast-key");
+      return st ? "/click/" + section + "/" + slug(st) : "/click/" + section;
+    }
+    var tab = el.closest(".district-preview-target, .ce-tab, [data-wb-land]");
+    if (tab) {
+      var code = tab.getAttribute("data-code") || tab.getAttribute("data-state") || tab.getAttribute("data-wb-land");
+      var kind = tab.hasAttribute("data-wb-land") ? "wahlabend" : "tab";
+      return "/click/" + kind + "/" + slug(code || "unknown");
+    }
+    var mehr = el.closest(".scenario-prob-toggle, .district-party-toggle");
+    if (mehr) {
+      var action = mehr.getAttribute("aria-expanded") === "true" ? "weniger" : "mehr";
+      var where = mehr.id ? slug(mehr.id) : "toggle";
+      return "/click/" + action + "/" + where;
+    }
+    var jump = el.closest(".home-jump-btn");
+    if (jump) return "/click/jump/" + slug(jump.getAttribute("href") || "jump");
+    var sw = el.closest(".toggle-switch");
+    if (sw) return "/click/toggle/" + slug(sw.id || "switch");
+    return null;
+  }
+
   function send(key) {
     var img = new Image();
     img.referrerPolicy = "no-referrer";
@@ -58,6 +96,12 @@
     history.pushState = wrapHistory(history.pushState);
     history.replaceState = wrapHistory(history.replaceState);
     window.addEventListener("popstate", schedulePing);
+    document.addEventListener("click", function (ev) {
+      var t = ev.target;
+      if (!t || !t.closest) return;
+      var key = clickKey(t);
+      if (key) send(key);
+    }, true);
     schedulePing();
   } catch (e) {}
 })();
