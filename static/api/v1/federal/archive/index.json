@@ -1,6 +1,6 @@
 {
   "api_version": "v1",
-  "generated_at": "2026-08-18T08:06:53Z",
+  "generated_at": "2026-08-18T09:12:45Z",
   "description": "Archived federal forecasts after election day. Only elections archived by the pipeline from now on (no backfill).",
   "forecasts": []
 }

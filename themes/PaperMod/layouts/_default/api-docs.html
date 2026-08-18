@@ -1,0 +1,110 @@
+{{- define "main" }}
+<article class="post-single api-docs">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+  </header>
+
+  {{- if .Content }}
+  <div class="post-content api-docs-intro">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  <div id="swagger-ui"></div>
+</article>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css" crossorigin="anonymous">
+<style>
+  body:has(.api-docs) .main {
+    max-width: min(1460px, calc(100vw - 24px));
+  }
+  .api-docs .post-header {
+    margin-bottom: 0.4rem;
+  }
+  .api-docs-intro {
+    margin-bottom: 1.25rem;
+  }
+  .api-docs-intro p {
+    margin: 0.55rem 0;
+  }
+  #swagger-ui {
+    background: #fff;
+    color: #3b4151;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 4px 8px 28px;
+    overflow-x: auto;
+  }
+  #swagger-ui .topbar,
+  #swagger-ui .info .title {
+    display: none;
+  }
+  #swagger-ui .information-container {
+    padding-top: 12px;
+  }
+  #swagger-ui .scheme-container {
+    background: #fff;
+    box-shadow: none;
+    padding: 12px 0;
+  }
+  #swagger-ui .opblock .opblock-summary-description,
+  #swagger-ui .markdown p,
+  #swagger-ui .markdown li,
+  #swagger-ui table thead tr td,
+  #swagger-ui table thead tr th,
+  #swagger-ui .parameter__name,
+  #swagger-ui .parameter__type,
+  #swagger-ui .response-col_status,
+  #swagger-ui .tab li {
+    font-family: sans-serif;
+  }
+  #swagger-ui pre,
+  #swagger-ui code,
+  #swagger-ui .microlight {
+    background: transparent;
+    font-size: 13px;
+  }
+  #swagger-ui .model-box,
+  #swagger-ui .model {
+    font-family: monospace;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui-bundle.js" crossorigin="anonymous"></script>
+<script>
+  (function () {
+    const specUrl = {{ "/api/openapi.json" | absURL | jsonify }};
+    const siteRoot = {{ "/" | absURL | jsonify }}.replace(/\/$/, "");
+
+    function render(spec) {
+      spec.servers = [{ url: siteRoot, description: "This host" }];
+      window.ui = SwaggerUIBundle({
+        spec: spec,
+        dom_id: "#swagger-ui",
+        deepLinking: true,
+        tryItOutEnabled: true,
+        filter: true,
+        docExpansion: "list",
+        defaultModelsExpandDepth: 1,
+        defaultModelExpandDepth: 2,
+        displayRequestDuration: true,
+        presets: [SwaggerUIBundle.presets.apis],
+        layout: "BaseLayout",
+      });
+    }
+
+    fetch(specUrl)
+      .then(function (res) {
+        if (!res.ok) throw new Error("Could not load " + specUrl);
+        return res.json();
+      })
+      .then(render)
+      .catch(function (err) {
+        document.getElementById("swagger-ui").textContent =
+          "OpenAPI spec could not be loaded: " + err.message;
+      });
+  })();
+</script>
+{{- end }}
