@@ -1,14 +1,64 @@
-{{- /* Cookie-less pageview ping to the uni-WH server. Counts only on zweitstimme.org. */ -}}
+{{- /* Cookie-less pageview ping. Counts zweitstimme.org and the GitHub Pages preview. */ -}}
 <script>
 (function () {
-  try {
-    if (location.hostname !== "zweitstimme.org") return;
-    if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl) return;
-    var p = location.pathname || "/";
-    if (p.length > 80) p = p.slice(0, 80);
+  var HOSTS = {
+    "zweitstimme.org": 1,
+    "www.zweitstimme.org": 1,
+    "zweitstimme-org.github.io": 1
+  };
+  var ALLOW = ["id", "state", "land", "party", "name", "wkr", "bezirk"];
+  var lastSent = "";
+  var timer = null;
+
+  function pageKey() {
+    var path = location.pathname || "/";
+    path = path.replace(/^\/website-pipeline(?=\/|$)/, "") || "/";
+    var params = new URLSearchParams(location.search || "");
+    var bits = [];
+    for (var i = 0; i < ALLOW.length; i++) {
+      var k = ALLOW[i];
+      var v = params.get(k);
+      if (v) bits.push(k + "=" + v);
+    }
+    var key = path;
+    if (bits.length) key += "?" + bits.join("&");
+    if (key.length > 200) key = key.slice(0, 200);
+    return key;
+  }
+
+  function send(key) {
     var img = new Image();
     img.referrerPolicy = "no-referrer";
-    img.src = "https://polsci.uni-wh.de/zweitstimme.gif?p=" + encodeURIComponent(p);
+    img.src = "https://polsci.uni-wh.de/zweitstimme.gif?p=" + encodeURIComponent(key);
+  }
+
+  function ping() {
+    var key = pageKey();
+    if (key === lastSent) return;
+    lastSent = key;
+    send(key);
+  }
+
+  function schedulePing() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(ping, 400);
+  }
+
+  function wrapHistory(fn) {
+    return function () {
+      var ret = fn.apply(this, arguments);
+      schedulePing();
+      return ret;
+    };
+  }
+
+  try {
+    if (!HOSTS[location.hostname]) return;
+    if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl) return;
+    history.pushState = wrapHistory(history.pushState);
+    history.replaceState = wrapHistory(history.replaceState);
+    window.addEventListener("popstate", schedulePing);
+    schedulePing();
   } catch (e) {}
 })();
 </script>

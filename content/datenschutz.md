@@ -29,11 +29,11 @@ Dabei gilt:
 
 - Es werden **keine Cookies** gesetzt und kein Gerät wiedererkannt.
 - Es werden **keine IP-Adressen, User-Agents oder Referrer gespeichert**.
-- Gezählt werden nur ein Tageszähler, ein ungefährer Unique-Wert (Hash einer gekürzten IP mit täglich wechselndem Salt, nur im Arbeitsspeicher) und der aufgerufene Pfad ohne Query-String.
+- Gezählt werden nur ein Tageszähler, ein ungefährer Unique-Wert (Hash einer gekürzten IP mit täglich wechselndem Salt, nur im Arbeitsspeicher) und der aufgerufene Pfad. Bei Vorschau-Seiten (Kandidat:innen, Listen, Wahlkreise) speichern wir zusätzlich öffentlich sichtbare Parameter (`id`, Land, Partei, Wahlkreis, Bezirk, Name) — keine Suchbegriffe und keine IP-Adressen.
 - Browser mit Do-Not-Track oder Global Privacy Control werden nicht gezählt.
 - Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer anonymen Nutzungstatistik für ein wissenschaftliches Angebot).
 
-Die Zählung findet nur auf `zweitstimme.org` statt, nicht auf Vorschau- oder Entwicklungskopien der Seite.
+Die Zählung gilt für `zweitstimme.org` und die interne GitHub-Pages-Vorschau (`zweitstimme-org.github.io`). Localhost und andere Kopien werden nicht gezählt.
 
 ## SSL-Verschlüsselung
 
