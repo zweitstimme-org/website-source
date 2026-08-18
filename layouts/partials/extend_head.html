@@ -10,6 +10,20 @@
   var lastSent = "";
   var timer = null;
 
+  function optedOut() {
+    try {
+      if (/[?&]nocount=1(?:&|$)/.test(location.search)) {
+        localStorage.setItem("zweitstimme-nocount", "1");
+      }
+      if (/[?&]nocount=0(?:&|$)/.test(location.search)) {
+        localStorage.removeItem("zweitstimme-nocount");
+      }
+      return localStorage.getItem("zweitstimme-nocount") === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
   function pageKey() {
     var path = location.pathname || "/";
     path = path.replace(/^\/website-pipeline(?=\/|$)/, "") || "/";
@@ -125,6 +139,7 @@
 
   try {
     if (!HOSTS[location.hostname]) return;
+    if (optedOut()) return;
     if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl) return;
     history.pushState = wrapHistory(history.pushState);
     history.replaceState = wrapHistory(history.replaceState);
