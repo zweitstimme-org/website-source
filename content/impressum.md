@@ -24,6 +24,15 @@ Hertie School
 Friedrichstraße 180  
 10117 Berlin
 
+## Systemstatus
+
+Aktueller Status der automatischen Daten- und Deploy-Workflows:
+
+[![Daily Stimmung](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/stimmung.yml/badge.svg)](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/stimmung.yml)
+[![State Forecasts](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/state-forecast.yml/badge.svg)](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/state-forecast.yml)
+[![Federal Forecast](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/federal-forecast.yml/badge.svg)](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/federal-forecast.yml)
+[![Deploy to zweitstimme.org](https://github.com/zweitstimme-org/website-source/actions/workflows/deploy.yml/badge.svg)](https://github.com/zweitstimme-org/website-source/actions/workflows/deploy.yml)
+
 ## Haftung für Inhalte
 
 Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
