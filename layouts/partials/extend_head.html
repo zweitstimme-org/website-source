@@ -111,10 +111,18 @@
     return null;
   }
 
+  function viewport() {
+    try {
+      return window.matchMedia("(max-width: 768px)").matches ? "n" : "w";
+    } catch (e) {
+      return "w";
+    }
+  }
+
   function send(key) {
     var img = new Image();
     img.referrerPolicy = "no-referrer";
-    img.src = "https://polsci.uni-wh.de/zweitstimme.gif?p=" + encodeURIComponent(key);
+    img.src = "https://polsci.uni-wh.de/zweitstimme.gif?p=" + encodeURIComponent(key) + "&v=" + viewport();
   }
 
   function ping() {
