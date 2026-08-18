@@ -176,8 +176,7 @@
     ctx.setLineDash([]);
     ctx.fillStyle = color || '#8a6d3b';
     ctx.font = '11px system-ui,sans-serif';
-    var tw = ctx.measureText(text).width;
-    ctx.fillText(text, pad.l + w - tw, y - 4);
+    ctx.fillText(text, pad.l + 6, y - 4);
   }
 
   /** German integer with thousands separator (1.234.567). */

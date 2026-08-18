@@ -4,7 +4,7 @@
     "nsim": 4000,
     "statewide_draws": "posterior",
     "seed": 20260730,
-    "last_update": "2026-08-18T10:12:56Z",
+    "last_update": "2026-08-18T11:28:25Z",
     "caveat_de": "Indikative Größenverteilung aus dem Wahlkreis-Swing-Modell (ohne Kandidateneffekte). Keine amtliche Sitzzuteilung."
   },
   "states": {
@@ -43,6 +43,12 @@
       "size_p95": 81,
       "size_max": 103,
       "p_base_pct": 75.0,
+      "last_election": {
+        "year": 2021,
+        "label": "LTW 2021",
+        "size": 79,
+        "turnout": 70.8
+      },
       "buckets": [
         {
           "label": "71",
@@ -115,12 +121,6 @@
             "cap_minus_full_pp": 0.0
           }
         }
-      },
-      "last_election": {
-        "year": 2021,
-        "label": "LTW 2021",
-        "size": 79,
-        "turnout": 70.8
       }
     },
     "ST": {
@@ -158,6 +158,12 @@
       "size_p95": 91,
       "size_max": 107,
       "p_base_pct": 76.3,
+      "last_election": {
+        "year": 2021,
+        "label": "LTW 2021",
+        "size": 97,
+        "turnout": 60.3
+      },
       "buckets": [
         {
           "label": "83",
@@ -208,12 +214,6 @@
       "majority_impact": {
         "complete_compensation": true,
         "note_de": "Ausgleich in ST stellt den Proporz in der Regel (nahezu) wieder her; Szenarien über Zweitstimmenanteile bleiben eine gute Näherung."
-      },
-      "last_election": {
-        "year": 2021,
-        "label": "LTW 2021",
-        "size": 97,
-        "turnout": 60.3
       }
     },
     "BE": {
@@ -251,6 +251,12 @@
       "size_p95": 157,
       "size_max": 185,
       "p_base_pct": 47.8,
+      "last_election": {
+        "year": 2023,
+        "label": "AGH 2023",
+        "size": 159,
+        "turnout": 62.9
+      },
       "buckets": [
         {
           "label": "130",
@@ -303,12 +309,6 @@
       "majority_impact": {
         "complete_compensation": true,
         "note_de": "In Berlin wird Überhang in unseren Simulationen vollständig ausgeglichen (0 % unvollständig); Sitzmehrheiten ≈ Zweitstimmenmehrheiten."
-      },
-      "last_election": {
-        "year": 2023,
-        "label": "AGH 2023",
-        "size": 159,
-        "turnout": 62.9
       }
     }
   }
