@@ -34,6 +34,25 @@
       .slice(0, 40);
   }
 
+  function detailsName(d) {
+    if (d.id) return d.id;
+    if (d.getAttribute("data-wkr")) return "wkr/" + d.getAttribute("data-wkr");
+    if (d.getAttribute("data-bez")) return "bez/" + d.getAttribute("data-bez");
+    var sum = d.querySelector(":scope > summary") || d.querySelector("summary");
+    var label = (sum && sum.textContent) || "item";
+    if (d.hasAttribute("data-faq-item")) {
+      return "faq/" + (d.getAttribute("data-section") || "all") + "/" + label;
+    }
+    var kind = "details";
+    if (d.classList.contains("wb-coverage")) kind = "wb";
+    else if (d.classList.contains("wb-cov-nest")) kind = "wb-nest";
+    else if (d.classList.contains("wb-entry-party")) kind = "wb-party";
+    else if (d.classList.contains("district-cand-info")) kind = "district-cand";
+    else if (d.classList.contains("ce-explainer")) kind = "ce-explainer";
+    else if (d.classList.contains("ce-cand-info")) kind = "ce-cand";
+    return kind + "/" + label;
+  }
+
   function clickKey(el) {
     var arm = el.closest(".state-arm");
     if (arm) {
@@ -53,14 +72,28 @@
     }
     var mehr = el.closest(".scenario-prob-toggle, .district-party-toggle");
     if (mehr) {
-      var action = mehr.getAttribute("aria-expanded") === "true" ? "weniger" : "mehr";
+      var action = mehr.getAttribute("aria-expanded") === "true" ? "collapse" : "expand";
       var where = mehr.id ? slug(mehr.id) : "toggle";
       return "/click/" + action + "/" + where;
+    }
+    var cap = el.closest("#poll-table-caption-toggle, #state-poll-table-caption-toggle");
+    if (cap) {
+      var capAction = cap.getAttribute("aria-expanded") === "true" ? "collapse" : "expand";
+      return "/click/" + capAction + "/" + slug(cap.id);
     }
     var jump = el.closest(".home-jump-btn");
     if (jump) return "/click/jump/" + slug(jump.getAttribute("href") || "jump");
     var sw = el.closest(".toggle-switch");
     if (sw) return "/click/toggle/" + slug(sw.id || "switch");
+    var sum = el.closest("summary");
+    if (sum) {
+      var d = sum.closest("details");
+      if (d) {
+        // Capture runs before the default toggle, so invert current open state.
+        var detAction = d.open ? "collapse" : "expand";
+        return "/click/" + detAction + "/" + slug(detailsName(d));
+      }
+    }
     return null;
   }
 
