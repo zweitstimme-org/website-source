@@ -20,7 +20,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css" crossorigin="anonymous">
 <style>
-  body:has(.api-docs) .main {
+  body:has(.api-docs) > .main {
     max-width: min(1460px, calc(100vw - 24px));
   }
   .api-docs .post-header {
@@ -43,6 +43,14 @@
   #swagger-ui .topbar,
   #swagger-ui .info .title {
     display: none;
+  }
+  /* PaperMod styles `.main { min-height: 100vh }`; Swagger's title uses <hgroup class="main">. */
+  #swagger-ui .main,
+  #swagger-ui hgroup.main {
+    min-height: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
   #swagger-ui .information-container {
     padding-top: 12px;
