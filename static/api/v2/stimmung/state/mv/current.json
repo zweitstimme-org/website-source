@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-17T16:25:03Z",
+  "generated_at": "2026-08-18T06:09:04Z",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-17",
+    "as_of": "2026-08-18",
     "parties": {
       "CDU/CSU": 9.8,
       "AfD": 35.9,
@@ -54,7 +54,7 @@
       "Sonstige": null
     },
     "trends": {
-      "CDU/CSU": 0.1,
+      "CDU/CSU": 0,
       "AfD": 0,
       "SPD": 0.1,
       "GRÜNE": 0,
@@ -65,7 +65,7 @@
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -0.1
+      "Sonstige": 0
     },
     "active_parties": [
       "CDU/CSU",
@@ -78,5 +78,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-17"
+  "as_of": "2026-08-18"
 }

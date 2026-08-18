@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-17T16:25:03Z",
+  "generated_at": "2026-08-18T06:09:04Z",
   "election": {
     "id": "ni_2027-09-26",
     "name": "Landtagswahl Niedersachsen",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-17",
+    "as_of": "2026-08-18",
     "parties": {
       "CDU/CSU": 25.2,
       "AfD": 20.1,
@@ -77,5 +77,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-17"
+  "as_of": "2026-08-18"
 }

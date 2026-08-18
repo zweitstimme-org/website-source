@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-17T16:25:03Z",
+  "generated_at": "2026-08-18T06:09:04Z",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-17",
+    "as_of": "2026-08-18",
     "parties": {
       "CDU/CSU": 22.8,
       "AfD": 42.3,
@@ -54,13 +54,13 @@
       "Sonstige": null
     },
     "trends": {
-      "CDU/CSU": -0.4,
-      "AfD": 0.6,
+      "CDU/CSU": -0.3,
+      "AfD": 0.5,
       "SPD": 0.1,
       "GRÜNE": 0.1,
-      "LINKE": -0.1,
+      "LINKE": 0,
       "BSW": 0.1,
-      "FDP": -0.1,
+      "FDP": -0.2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -78,5 +78,5 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-17"
+  "as_of": "2026-08-18"
 }
