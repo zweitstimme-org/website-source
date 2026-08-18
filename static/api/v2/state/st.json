@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-18T06:09:04Z",
+  "generated_at": "2026-08-18T08:06:53Z",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -22,7 +22,7 @@
       "poll_window_days": null,
       "last_poll_date": "2026-08-12",
       "asof_date": "2026-08-12",
-      "last_update": "2026-08-17T16:23:31Z",
+      "last_update": "2026-08-18T08:05:13Z",
       "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
       "predictor_encoding": "state_models_exact_lead_v1",
       "shares_normalized_to_100": true,
@@ -42,7 +42,7 @@
         "party": "AfD",
         "party_code": "afd",
         "fit": 41,
-        "low": 33,
+        "low": 34,
         "high": 48
       },
       {
@@ -57,7 +57,7 @@
         "party_code": "spd",
         "fit": 7,
         "low": 4,
-        "high": 10
+        "high": 9
       },
       {
         "party": "FDP",
@@ -108,19 +108,19 @@
           "id": "maj_ohne_afd",
           "category": "majority_excluding",
           "label_de": "Parlamentsmehrheit ohne AfD",
-          "probability": 71
+          "probability": 72
         },
         {
           "id": "maj_ohne_afd_bsw",
           "category": "majority_excluding",
           "label_de": "Parlamentsmehrheit ohne AfD und BSW",
-          "probability": 57
+          "probability": 58
         },
         {
           "id": "above_hurdle_gru",
           "category": "above_hurdle",
           "label_de": "Grüne über 5%-Hürde",
-          "probability": 41
+          "probability": 43
         },
         {
           "id": "above_hurdle_bsw",
@@ -132,7 +132,7 @@
           "id": "abs_maj_afd",
           "category": "coalition",
           "label_de": "Absolute Mehrheit AfD",
-          "probability": 29
+          "probability": 28
         },
         {
           "id": "coal_afd_bsw",
@@ -144,7 +144,7 @@
           "id": "above_hurdle_fdp",
           "category": "above_hurdle",
           "label_de": "FDP über 5%-Hürde",
-          "probability": 9
+          "probability": 8
         },
         {
           "id": "largest_party_cdu",
