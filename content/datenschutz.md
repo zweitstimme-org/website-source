@@ -13,25 +13,27 @@ Die Nutzung dieser Website ist in der Regel ohne Angabe personenbezogener Daten 
 
 Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
 
+## Hosting
+
+Diese Website wird über GitHub Pages bereitgestellt. Beim Aufruf der Seiten verarbeitet GitHub technisch notwendige Verbindungsdaten (insbesondere IP-Adresse, Zeitpunkt, angeforderte Datei) in Serverprotokollen, soweit dies für die Auslieferung der Website erforderlich ist. Weitere Informationen: [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement).
+
 ## Cookies
 
-Die Internetseiten verwenden teilweise sogenannte Cookies. Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren. Cookies dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. Cookies sind kleine Textdateien, die Ihr Browser speichert und auf Ihrem Rechner abgelegt werden.
+Für den Betrieb und die Reichweitenmessung dieser Website setzen wir **keine Cookies**. Es wird kein Consent-Banner benötigt.
 
-Die meisten der von uns verwendeten Cookies sind so genannte "Session-Cookies". Sie werden nach Ende Ihres Besuchs automatisch gelöscht. Andere Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese löschen. Diese Cookies ermöglichen es uns, Ihren Browser beim nächsten Besuch wiederzuerkennen.
+## Reichweitenmessung (ohne Cookies)
 
-Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browser aktivieren. Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein.
+Um einen groben Überblick über die Nutzung der Website zu erhalten (Seitenaufrufe je Tag, ungefähre Zahl verschiedener Zugriffe, beliebte Pfade), lädt die Website im Hintergrund ein 1×1-Pixel von einem Server der Universität Witten/Herdecke (`polsci.uni-wh.de`).
 
-## Server-Log-Files
+Dabei gilt:
 
-Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log Files, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+- Es werden **keine Cookies** gesetzt und kein Gerät wiedererkannt.
+- Es werden **keine IP-Adressen, User-Agents oder Referrer gespeichert**.
+- Gezählt werden nur ein Tageszähler, ein ungefährer Unique-Wert (Hash einer gekürzten IP mit täglich wechselndem Salt, nur im Arbeitsspeicher) und der aufgerufene Pfad ohne Query-String.
+- Browser mit Do-Not-Track oder Global Privacy Control werden nicht gezählt.
+- Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer anonymen Nutzungstatistik für ein wissenschaftliches Angebot).
 
-- Browsertyp und Browserversion
-- verwendetes Betriebssystem
-- Referrer URL
-- Hostname des zugreifenden Rechners
-- Uhrzeit der Serveranfrage
-
-Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Wir behalten uns vor, diese Daten nachträglich zu prüfen, wenn uns konkrete Anhaltspunkte für eine rechtswidrige Nutzung bekannt werden.
+Die Zählung findet nur auf `zweitstimme.org` statt, nicht auf Vorschau- oder Entwicklungskopien der Seite.
 
 ## SSL-Verschlüsselung
 

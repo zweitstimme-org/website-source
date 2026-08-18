@@ -3,7 +3,7 @@
   "info": {
     "title": "Zweitstimme Forecast API",
     "version": "2.0.0",
-    "description": "Public JSON API for **election-day forecasts**, **posterior draws**, and **Aktuelle Stimmung**.\n\nStatic files, CORS-open (`Access-Control-Allow-Origin: *`), **GET only**. No authentication.\n\nThis is **not** the polling API for individual surveys. That lives at [api.zweitstimme.org/docs](https://api.zweitstimme.org/docs).\n\n## Concepts\n\n- **Forecast** — model output for election day: point estimates, uncertainty intervals, scenario probabilities, and optionally posterior draws.\n- **Stimmung** — Kalman-smoothed latent support by calendar day. Days without a new poll are still present. No seat scenarios.\n- **`election`** — names the next relevant election for that scope. It is not the forecast timestamp. The same path can refer to a later cycle.\n\n## Versioning\n\n| Version | Meaning |\n|---|---|\n| `v1` | Legacy contract from when only federal forecasts existed. Kept for compatibility. |\n| `v2` | Current contract: federal and state election-day forecasts, posterior draws, and Stimmung. |\n| unversioned `/forecast.json` etc. | Aliases of the `v1` federal files. |\n\nStart at `GET /api/index.json`. Prefer `v2` for new integrations. Federal data exists under both `/api/v1/federal/` (old row shape) and `/api/v2/federal/` (metadata + `fit`/`low`/`high`, same as state).\n\n## Envelope\n\nVersioned endpoints wrap payloads as:\n\n```json\n{\n  \"api_version\": \"v2\",\n  \"generated_at\": \"2026-08-18T08:06:53Z\",\n  \"election\": { \"id\": \"st_2026-09-06\", \"name\": \"Landtagswahl Sachsen-Anhalt\", \"date\": \"2026-09-06\", \"scope\": \"state\", \"state_code\": \"ST\" },\n  \"data\": {}\n}\n```\n\n## Availability\n\n- State forecasts exist only inside the **~90-day window** before election day. Outside that window the path returns **404**.\n- After election day the last forecast moves to `/api/v2/federal/archive/` or `/api/v2/state/archive/`.\n- Archives start when this API began publishing them; there is no historical backfill.\n- `/data/*.json` files used by the website UI are **not** a public contract.\n\n## Units\n\nWatch the unit. Party vote shares in summary forecasts are usually **percentage points**. Posterior draws use **shares from 0 to 1**. Federal `probabilities` / `pred_probabilities` are also 0–1. State scenario `probability` values are **percent 0–100**.\n\n## License\n\nTexts, explanations, and visualizations: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), attribution **zweitstimme.org**. Polling inputs may come from [dawum.de](https://dawum.de) ([ODbL](https://opendatacommons.org/licenses/odbl/)) and [wahlrecht.de](https://www.wahlrecht.de) / the named institutes. No guarantee of availability, completeness, or correctness. Forecasts and Stimmung are model outputs, not official results.",
+    "description": "Public JSON API for **election-day forecasts**, **posterior draws**, and **Aktuelle Stimmung**.\n\nStatic files, CORS-open (`Access-Control-Allow-Origin: *`), **GET only**. No authentication.\n\nThis is **not** the polling API for individual surveys. That lives at [api.zweitstimme.org/docs](https://api.zweitstimme.org/docs).\n\n## Concepts\n\n- **Forecast** — model output for election day: point estimates, uncertainty intervals, scenario probabilities, and optionally posterior draws.\n- **Stimmung** — Kalman-smoothed latent support by calendar day. Days without a new poll are still present. No seat scenarios. The full series is ~10 years; prefer `/current.json`, `/day/{date}.json`, `/month/{YYYY-MM}.json`, or `/year/{YYYY}.json`.\n- **`election`** — names the next relevant election for that scope. It is not the forecast timestamp. The same path can refer to a later cycle.\n\n## Versioning\n\n| Version | Meaning |\n|---|---|\n| `v1` | Legacy contract from when only federal forecasts existed. Kept for compatibility. |\n| `v2` | Current contract: federal and state election-day forecasts, posterior draws, and Stimmung. |\n| unversioned `/forecast.json` etc. | Aliases of the `v1` federal files. |\n\nStart at `GET /api/index.json`. Prefer `v2` for new integrations. Federal data exists under both `/api/v1/federal/` (old row shape) and `/api/v2/federal/` (metadata + `fit`/`low`/`high`, same as state).\n\n## Envelope\n\nVersioned endpoints wrap payloads as:\n\n```json\n{\n  \"api_version\": \"v2\",\n  \"generated_at\": \"2026-08-18T08:06:53Z\",\n  \"election\": { \"id\": \"st_2026-09-06\", \"name\": \"Landtagswahl Sachsen-Anhalt\", \"date\": \"2026-09-06\", \"scope\": \"state\", \"state_code\": \"ST\" },\n  \"data\": {}\n}\n```\n\n## Availability\n\n- State forecasts exist only inside the **~90-day window** before election day. Outside that window the path returns **404**.\n- After election day the last forecast moves to `/api/v2/federal/archive/` or `/api/v2/state/archive/`.\n- Archives start when this API began publishing them; there is no historical backfill.\n- `/data/*.json` files used by the website UI are **not** a public contract.\n\n## Units\n\nWatch the unit. Party vote shares in summary forecasts are usually **percentage points**. Posterior draws use **shares from 0 to 1**. Federal `probabilities` / `pred_probabilities` are also 0–1. State scenario `probability` values are **percent 0–100**.\n\n## License\n\nTexts, explanations, and visualizations: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), attribution **zweitstimme.org**. Polling inputs may come from [dawum.de](https://dawum.de) ([ODbL](https://opendatacommons.org/licenses/odbl/)) and [wahlrecht.de](https://www.wahlrecht.de) / the named institutes. No guarantee of availability, completeness, or correctness. Forecasts and Stimmung are model outputs, not official results.",
     "contact": {
       "name": "zweitstimme.org",
       "url": "https://zweitstimme.org"
@@ -831,11 +831,183 @@
         }
       }
     },
+    "/api/v2/stimmung/federal/index.json": {
+      "get": {
+        "operationId": "get_v2_stimmung_federal_index",
+        "summary": "Federal Stimmung catalog",
+        "description": "Paths for the full series, today, a single day, a month, or a year. `months` and `years` list what exists.",
+        "tags": [
+          "stimmung"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/stimmung/federal/day/{date}.json": {
+      "get": {
+        "operationId": "get_v2_stimmung_federal_day",
+        "summary": "Federal Stimmung, one day",
+        "description": "Same shape as `current.json`, for any calendar day in the series. **404** if that date was not published.",
+        "tags": [
+          "stimmung"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StimmungCurrentData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Stimmung for that date."
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "description": "Calendar day `YYYY-MM-DD`.",
+            "schema": {
+              "type": "string",
+              "example": "2026-08-18",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/stimmung/federal/month/{month}.json": {
+      "get": {
+        "operationId": "get_v2_stimmung_federal_month",
+        "summary": "Federal Stimmung, one month",
+        "description": "Daily series for one calendar month (`YYYY-MM`). Same shape as the full series, without `current`/`trends`/`metadata`.",
+        "tags": [
+          "stimmung"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StimmungSeriesData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Stimmung for that month."
+          }
+        },
+        "parameters": [
+          {
+            "name": "month",
+            "in": "path",
+            "required": true,
+            "description": "Calendar month `YYYY-MM`.",
+            "schema": {
+              "type": "string",
+              "example": "2026-08",
+              "pattern": "^\\d{4}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/stimmung/federal/year/{year}.json": {
+      "get": {
+        "operationId": "get_v2_stimmung_federal_year",
+        "summary": "Federal Stimmung, one year",
+        "description": "Daily series for one calendar year (`YYYY`).",
+        "tags": [
+          "stimmung"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StimmungSeriesData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Stimmung for that year."
+          }
+        },
+        "parameters": [
+          {
+            "name": "year",
+            "in": "path",
+            "required": true,
+            "description": "Calendar year `YYYY`.",
+            "schema": {
+              "type": "string",
+              "example": "2026",
+              "pattern": "^\\d{4}$"
+            }
+          }
+        ]
+      }
+    },
     "/api/v2/stimmung/federal.json": {
       "get": {
         "operationId": "get_v2_stimmung_federal_series",
         "summary": "Federal Stimmung, full series",
-        "description": "Daily federal series. Pick a day with `data.by_date[\"YYYY-MM-DD\"]`. No `?date=` parameter.",
+        "description": "Entire daily history (~10 years). Large file. Prefer `/api/v2/stimmung/federal/current.json`, `/day/{date}.json`, `/month/{YYYY-MM}.json`, or `/year/{YYYY}.json`.",
         "tags": [
           "stimmung"
         ],
@@ -869,7 +1041,7 @@
       "get": {
         "operationId": "get_v2_stimmung_state_index",
         "summary": "State Stimmung catalog",
-        "description": "All Länder, including those without an active election-day forecast. Use `path` for the full series and `current` for today.",
+        "description": "All Länder, including those without an active election-day forecast. Use `current` for today, `day` / `month` / `year` for a subset, `path` for the full series.",
         "tags": [
           "stimmung"
         ],
@@ -954,11 +1126,300 @@
         ]
       }
     },
+    "/api/v2/stimmung/state/{code}/index.json": {
+      "get": {
+        "operationId": "get_v2_stimmung_state_scope_index",
+        "summary": "State Stimmung catalog for one Land",
+        "description": "Paths for the full series, today, a single day, a month, or a year for this Land.",
+        "tags": [
+          "stimmung"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown state code."
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "Lowercase German state code, for example `st`, `be`, `mv`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "bb",
+                "be",
+                "bw",
+                "by",
+                "hb",
+                "he",
+                "hh",
+                "mv",
+                "ni",
+                "nw",
+                "rp",
+                "sh",
+                "sl",
+                "sn",
+                "st",
+                "th"
+              ],
+              "example": "st"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/stimmung/state/{code}/day/{date}.json": {
+      "get": {
+        "operationId": "get_v2_stimmung_state_day",
+        "summary": "State Stimmung, one day",
+        "description": "Same shape as `current.json`, for any calendar day in that Land's series.",
+        "tags": [
+          "stimmung"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StimmungCurrentData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown state code or no Stimmung for that date."
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "Lowercase German state code, for example `st`, `be`, `mv`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "bb",
+                "be",
+                "bw",
+                "by",
+                "hb",
+                "he",
+                "hh",
+                "mv",
+                "ni",
+                "nw",
+                "rp",
+                "sh",
+                "sl",
+                "sn",
+                "st",
+                "th"
+              ],
+              "example": "st"
+            }
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "description": "Calendar day `YYYY-MM-DD`.",
+            "schema": {
+              "type": "string",
+              "example": "2026-08-18",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/stimmung/state/{code}/month/{month}.json": {
+      "get": {
+        "operationId": "get_v2_stimmung_state_month",
+        "summary": "State Stimmung, one month",
+        "description": "Daily series for one Land and calendar month (`YYYY-MM`).",
+        "tags": [
+          "stimmung"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StimmungSeriesData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown state code or no Stimmung for that month."
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "Lowercase German state code, for example `st`, `be`, `mv`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "bb",
+                "be",
+                "bw",
+                "by",
+                "hb",
+                "he",
+                "hh",
+                "mv",
+                "ni",
+                "nw",
+                "rp",
+                "sh",
+                "sl",
+                "sn",
+                "st",
+                "th"
+              ],
+              "example": "st"
+            }
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "required": true,
+            "description": "Calendar month `YYYY-MM`.",
+            "schema": {
+              "type": "string",
+              "example": "2026-08",
+              "pattern": "^\\d{4}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/stimmung/state/{code}/year/{year}.json": {
+      "get": {
+        "operationId": "get_v2_stimmung_state_year",
+        "summary": "State Stimmung, one year",
+        "description": "Daily series for one Land and calendar year (`YYYY`).",
+        "tags": [
+          "stimmung"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StimmungSeriesData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown state code or no Stimmung for that year."
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "Lowercase German state code, for example `st`, `be`, `mv`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "bb",
+                "be",
+                "bw",
+                "by",
+                "hb",
+                "he",
+                "hh",
+                "mv",
+                "ni",
+                "nw",
+                "rp",
+                "sh",
+                "sl",
+                "sn",
+                "st",
+                "th"
+              ],
+              "example": "st"
+            }
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "required": true,
+            "description": "Calendar year `YYYY`.",
+            "schema": {
+              "type": "string",
+              "example": "2026",
+              "pattern": "^\\d{4}$"
+            }
+          }
+        ]
+      }
+    },
     "/api/v2/stimmung/state/{code}.json": {
       "get": {
         "operationId": "get_v2_stimmung_state_series",
         "summary": "State Stimmung, full series",
-        "description": "Daily series for one Land. Index `data.by_date[YYYY-MM-DD]` locally.",
+        "description": "Entire daily history for one Land (~10 years). Large file. Prefer `current`, `day/{date}`, `month/{YYYY-MM}`, or `year/{YYYY}`.",
         "tags": [
           "stimmung"
         ],
@@ -1895,11 +2356,21 @@
       },
       "StimmungSeriesData": {
         "type": "object",
-        "description": "Full daily series. There is no `?date=` query because the API is statically hosted. Index `by_date[YYYY-MM-DD]` locally.",
+        "description": "Daily series for a date range. `from`/`to` mark the inclusive window. The unfiltered file (`federal.json` / `{code}.json`) is the full ~10-year history. For a subset use `/month/{YYYY-MM}.json` or `/year/{YYYY}.json`.",
         "properties": {
           "as_of": {
             "type": "string",
             "format": "date"
+          },
+          "from": {
+            "type": "string",
+            "format": "date",
+            "description": "First calendar day in this payload (inclusive)."
+          },
+          "to": {
+            "type": "string",
+            "format": "date",
+            "description": "Last calendar day in this payload (inclusive)."
           },
           "dates": {
             "type": "array",
@@ -1921,30 +2392,6 @@
             },
             "description": "Party label → array aligned with `dates`."
           },
-          "by_date": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "properties": {
-                "parties": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": [
-                      "number",
-                      "null"
-                    ]
-                  },
-                  "description": "Map of party label → numeric value. Inactive parties may be null.",
-                  "example": {
-                    "CDU/CSU": 20.3,
-                    "AfD": 28.0,
-                    "SPD": 12.1
-                  }
-                }
-              }
-            },
-            "description": "Calendar date → `{ parties: { … } }`."
-          },
           "current": {
             "type": "object",
             "additionalProperties": {
@@ -1953,7 +2400,7 @@
                 "null"
               ]
             },
-            "description": "Map of party label → numeric value. Inactive parties may be null.",
+            "description": "Latest day only; present on the full-series file.",
             "example": {
               "CDU/CSU": 20.3,
               "AfD": 28.0,
@@ -1984,31 +2431,25 @@
           "uncertainty_low": {
             "type": "object",
             "additionalProperties": {
-              "type": [
-                "number",
-                "null"
-              ]
-            },
-            "description": "Map of party label → numeric value. Inactive parties may be null.",
-            "example": {
-              "CDU/CSU": 20.3,
-              "AfD": 28.0,
-              "SPD": 12.1
+              "type": "array",
+              "items": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
             }
           },
           "uncertainty_high": {
             "type": "object",
             "additionalProperties": {
-              "type": [
-                "number",
-                "null"
-              ]
-            },
-            "description": "Map of party label → numeric value. Inactive parties may be null.",
-            "example": {
-              "CDU/CSU": 20.3,
-              "AfD": 28.0,
-              "SPD": 12.1
+              "type": "array",
+              "items": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
             }
           },
           "metadata": {
@@ -2030,6 +2471,26 @@
           "current": {
             "type": "string",
             "example": "/api/v2/stimmung/state/st/current.json"
+          },
+          "day": {
+            "type": "string",
+            "example": "/api/v2/stimmung/state/st/day/{date}.json"
+          },
+          "month": {
+            "type": "string",
+            "example": "/api/v2/stimmung/state/st/month/{YYYY-MM}.json"
+          },
+          "year": {
+            "type": "string",
+            "example": "/api/v2/stimmung/state/st/year/{YYYY}.json"
+          },
+          "from": {
+            "type": "string",
+            "format": "date"
+          },
+          "to": {
+            "type": "string",
+            "format": "date"
           },
           "election": {
             "$ref": "#/components/schemas/Election"

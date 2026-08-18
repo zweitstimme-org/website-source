@@ -1,6 +1,14 @@
-<!-- Override robots meta tag to prevent indexing -->
-<meta name="robots" content="noindex, nofollow">
-<meta name="googlebot" content="noindex, nofollow">
-<meta name="bingbot" content="noindex, nofollow">
-
-
+{{- /* Cookie-less pageview ping to the uni-WH server. Counts only on zweitstimme.org. */ -}}
+<script>
+(function () {
+  try {
+    if (location.hostname !== "zweitstimme.org") return;
+    if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl) return;
+    var p = location.pathname || "/";
+    if (p.length > 80) p = p.slice(0, 80);
+    var img = new Image();
+    img.referrerPolicy = "no-referrer";
+    img.src = "https://polsci.uni-wh.de/zweitstimme.gif?p=" + encodeURIComponent(p);
+  } catch (e) {}
+})();
+</script>

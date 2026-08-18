@@ -1,6 +1,6 @@
 {
   "name": "Zweitstimme Forecast API",
-  "generated_at": "2026-08-18T11:52:16Z",
+  "generated_at": "2026-08-18T12:01:26Z",
   "docs": "https://zweitstimme.org/docs/api/",
   "openapi": "/api/openapi.json",
   "versions": {
@@ -24,6 +24,8 @@
       "state_index": "/api/v2/state/index.json",
       "state_archive_index": "/api/v2/state/archive/index.json",
       "stimmung_federal": "/api/v2/stimmung/federal.json",
+      "stimmung_federal_current": "/api/v2/stimmung/federal/current.json",
+      "stimmung_federal_index": "/api/v2/stimmung/federal/index.json",
       "stimmung_state_index": "/api/v2/stimmung/state/index.json",
       "forecast_window_days": 90
     }
