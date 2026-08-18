@@ -60,6 +60,61 @@ The current layout is **transitional**:
 
 So today the version numbers are partly historical and partly structural. Future cleanup may make this more uniform.
 
+## Migration Layout
+
+A cleaner long-term layout would keep backward compatibility while making version numbers mean **contract generation**, not **scope**.
+
+### Recommended semantics
+
+- **unversioned root paths** = legacy aliases only
+- **`v1`** = old / legacy contract
+- **`v2`** = newer, consistent enveloped contract
+- **scope** belongs in the path (`federal`, `state`, `stimmung`), not in the version number
+
+### Backward-compatible path plan
+
+| Role | Path pattern | Notes |
+|---|---|---|
+| Legacy aliases | `/forecast.json`, `/pred_probabilities.json`, `/forecast_districts.json` | Keep as redirects or content aliases for older clients |
+| Legacy federal under versioned home | `/api/v1/federal/...` | Mirrors the older federal contract |
+| New federal API | `/api/v2/federal/...` | Future home for a cleaner federal forecast contract |
+| New state API | `/api/v2/state/...` | Already close to the desired structure |
+| New state draws API | `/api/v2/state/{code}/draws.json` | Raw posterior simulations |
+| New Stimmung API | `/api/v2/stimmung/...` | Already matches the desired shape |
+
+### Suggested migration phases
+
+1. **Keep current clients working**
+   - Leave root aliases in place
+   - Leave `/api/v1/federal/...` untouched
+   - Leave current `/api/v2/state/...` and `/api/v2/stimmung/...` untouched
+
+2. **Add a new federal `v2` surface**
+   - Introduce `/api/v2/federal/index.json`
+   - Add a consistent enveloped federal forecast payload
+   - Optionally add `/api/v2/federal/draws.json` if federal draws are to be supported the same way
+
+3. **Mark `v1` as legacy in docs**
+   - Keep it stable
+   - Avoid adding new concepts only to `v1`
+   - Point new integrations to `v2` first
+
+4. **Eventually simplify discovery**
+   - `/api/index.json` should describe `v1` as legacy and `v2` as preferred
+   - The docs can then say: use `v2` unless you specifically need the old federal contract
+
+### Practical end state
+
+In that end state, consumers can infer:
+
+- **`v1`** = older compatibility layer
+- **`v2`** = modern API contract
+- **`federal` / `state` / `stimmung`** = resource namespace
+
+That makes the API easier to explain, easier to document, and easier to extend without teaching users that version numbers also encode product scope.
+
+---
+
 ---
 
 ## Which Endpoint Do I Need?
