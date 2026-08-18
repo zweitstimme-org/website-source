@@ -33,8 +33,6 @@ Dabei gilt:
 - Browser mit Do-Not-Track oder Global Privacy Control werden nicht gezählt.
 - Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer anonymen Nutzungsstatistik für ein wissenschaftliches Angebot).
 
-Die Zählung gilt für `zweitstimme.org` und die interne GitHub-Pages-Vorschau (`zweitstimme-org.github.io`). Localhost und andere Kopien werden nicht gezählt.
-
 ## SSL-Verschlüsselung
 
 Diese Seite nutzt aus Gründen der Sicherheit und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel der Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
