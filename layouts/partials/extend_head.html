@@ -150,6 +150,17 @@
       var key = clickKey(t);
       if (key) send(key);
     }, true);
+    document.addEventListener("change", function (ev) {
+      var t = ev.target;
+      if (!t || t.tagName !== "SELECT") return;
+      var val = slug(t.value || "empty");
+      var selKey = null;
+      if (t.id === "time-period-select") selKey = "/click/zeitraum/bundestag/" + val;
+      else if (t.id === "state-time-period-select") selKey = "/click/zeitraum/land/" + val;
+      else if (t.classList && t.classList.contains("ce-bezirk")) selKey = "/click/select/bezirk/" + val;
+      else if (t.id) selKey = "/click/select/" + slug(t.id) + "/" + val;
+      if (selKey) send(selKey);
+    }, true);
     schedulePing();
   } catch (e) {}
 })();
