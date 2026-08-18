@@ -2,6 +2,15 @@
 title: "Forecasting Elections in Multiparty Systems: A Bayesian Approach Combining Polls and Fundamentals"
 date: 2019-04-01T00:00:00+02:00
 draft: false
+paper: true
+journal: "Political Analysis"
+authors: "Lukas F. Stoetzer, Marcel Neunhoeffer, Thomas Gschwend, Simon Munzert, Sebastian Sternberg"
+year: 2019
+doi: "10.1017/pan.2018.49"
+cover:
+  image: "/images/journals/political-analysis.jpg"
+  hidden: true
+summary: "Bayesianischer Ansatz zur Wahlprognose in Vielparteiensystemen – Kombination aus Umfragen und fundamentalen Faktoren."
 bibFile: "data/bibliography.json"
 ---
 

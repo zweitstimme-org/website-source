@@ -2,6 +2,15 @@
 title: "Ein Ansatz zur Vorhersage der Erststimmenanteile bei Bundestagswahlen"
 date: 2020-03-01T00:00:00+02:00
 draft: false
+paper: true
+journal: "Politische Vierteljahresschrift"
+authors: "Marcel Neunhoeffer, Thomas Gschwend, Simon Munzert, Lukas F. Stoetzer"
+year: 2020
+doi: "10.1007/s11615-019-00216-3"
+cover:
+  image: "/images/journals/politische-vierteljahresschrift.svg"
+  hidden: true
+summary: "Erweiterung um Erststimmen- und Wahlkreisprognosen – Direktmandate, Kompetitivität und personelle Zusammensetzung des Bundestags."
 bibFile: "data/bibliography.json"
 ---
 

@@ -1,0 +1,66 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">{{ .Description | markdownify }}</div>
+  {{- end }}
+</header>
+
+{{- if .Content }}
+<section class="research-overview post-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</section>
+{{- end }}
+
+{{- $pages := .RegularPages }}
+{{- range .Sections }}
+  {{- $pages = $pages | union .RegularPages }}
+{{- end }}
+{{- $papers := where $pages "Params.paper" true }}
+
+<section class="research-papers">
+  <h2 class="research-papers-heading">Veröffentlichungen</h2>
+
+  {{- if not $papers }}
+  <p>Noch keine Veröffentlichungen hinterlegt.</p>
+  {{- end }}
+
+  {{- range $papers.ByDate.Reverse }}
+  {{- $paper := . }}
+  <article class="paper-entry">
+    <a class="paper-entry-link" href="{{ $paper.Permalink }}" aria-label="{{ $paper.Title }}">
+      <div class="paper-cover">
+        {{- with $paper.Params.cover.image }}
+        <img src="{{ . | relURL }}" alt="Cover: {{ $paper.Params.journal | default "Journal" }}" loading="lazy" width="120" height="168">
+        {{- else }}
+        <div class="paper-cover-fallback" aria-hidden="true">{{ $paper.Params.journal | default "Paper" }}</div>
+        {{- end }}
+      </div>
+      <div class="paper-body">
+        <h3 class="paper-title">{{ $paper.Title }}</h3>
+        {{- with $paper.Params.authors }}
+        <p class="paper-authors">{{ . }}</p>
+        {{- end }}
+        <p class="paper-meta">
+          {{- with $paper.Params.journal }}<span class="paper-journal">{{ . }}</span>{{ end }}
+          {{- with $paper.Params.year }}<span class="paper-year"> · {{ . }}</span>{{ end }}
+        </p>
+        {{- with $paper.Params.summary }}
+        <p class="paper-summary">{{ . }}</p>
+        {{- else }}
+        <p class="paper-summary">{{ $paper.Summary | plainify | htmlUnescape | truncate 180 }}</p>
+        {{- end }}
+        {{- with $paper.Params.doi }}
+        <p class="paper-doi">DOI: {{ . }}</p>
+        {{- end }}
+      </div>
+    </a>
+  </article>
+  {{- end }}
+</section>
+
+{{- end }}

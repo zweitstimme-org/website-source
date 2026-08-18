@@ -2,6 +2,15 @@
 title: "Zweitstimme.org. Ein strukturell-dynamisches Vorhersagemodell für Bundestagswahlen"
 date: 2017-09-01T00:00:00+02:00
 draft: false
+paper: true
+journal: "Politische Vierteljahresschrift"
+authors: "Simon Munzert, Lukas Stötzer, Thomas Gschwend, Marcel Neunhoeffer, Sebastian Sternberg"
+year: 2017
+doi: "10.5771/0032-3470-2017-3-418"
+cover:
+  image: "/images/journals/politische-vierteljahresschrift.svg"
+  hidden: true
+summary: "Erstvorstellung des strukturell-dynamischen Zweitstimme-Modells zur ex-ante Prognose der Bundestagswahl 2017."
 bibFile: "data/bibliography.json"
 ---
 

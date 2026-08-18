@@ -1,0 +1,96 @@
+title: Häufige Fragen
+subtitle: Kurz erklärt — wie unsere Vorhersagen und Umfrageanalysen funktionieren.
+search_placeholder: Frage suchen …
+
+sections:
+  - id: methode
+    title: Vorhersage & Methode
+    items:
+      - question: Wie funktioniert die Vorhersage?
+        answer: |
+          Sobald eine Landtagswahl näher rückt, zeigen wir auf der Startseite eine **Modellprognose** des Wahlergebnisses – mit Punktschätzung, Unsicherheitsintervall und Szenario-Wahrscheinlichkeiten. Das bayesianische Modell kombiniert aktuelle Landesumfragen mit strukturellen Faktoren (u. a. letztes Wahlergebnis, Bundestrend, Regierungsbeteiligung) und ist auf vergangenen Landtagswahlen trainiert.
+
+          Parallel dazu zeigen wir die laufende **Stimmung**: eine Kalman-geglättete Schätzung der Parteienunterstützung aus veröffentlichten Umfragen – für Bund und Länder, auch außerhalb von Vorhersagefenstern.
+
+          Mehr dazu: [Wie funktioniert unsere Landtagswahl-Vorhersage?](/blog/posts/state-forecast-methodology/) und [Wie berechnen wir die Umfragewerte?](/archive/posts/polling-calculation-methods/).
+
+      - question: Welche Daten fließen in die Vorhersagen ein?
+        answer: |
+          Für die **Landtagswahl-Vorhersage** nutzen wir Landes- und Bundesumfragen (u. a. [DAWUM](https://dawum.de) und [wahlrecht.de](https://www.wahlrecht.de/umfragen/)), das letzte Landtagswahlergebnis sowie Informationen zur aktuellen Landesregierung (Regierungsbeteiligung, Ministerpräsidentenpartei).
+
+          Für die **Stimmung** fließen die veröffentlichten Meinungsumfragen ein; daraus berechnen wir täglich eine geglättete Schätzung der latenten Parteienunterstützung.
+
+      - question: Wie werden die Wahrscheinlichkeiten berechnet?
+        answer: |
+          Zur Berechnung der Wahrscheinlichkeiten ziehen wir viele Stichproben aus der Vorhersageverteilung (bei der Landtagswahl-Vorhersage z. B. 4.000 Simulationen). Die Wahrscheinlichkeit für ein Ereignis ergibt sich dann aus dem Anteil der Stichproben, in denen das Ereignis eintritt – etwa dass eine Partei die Sperrklausel überschreitet oder eine Koalition eine Mehrheit erhält.
+
+      - question: Wann wird die Vorhersage aktualisiert?
+        answer: |
+          Eine Landtagswahl-Vorhersage wird typischerweise **90 Tage vor dem Wahltermin** freigeschaltet und danach täglich neu berechnet. Die Stimmungsanzeige aktualisiert sich, sobald neue Umfragen in unserer Datenpipeline vorliegen.
+
+      - question: Wird die Sperrklausel berücksichtigt?
+        answer: |
+          Ja. In den Szenario-Wahrscheinlichkeiten (z. B. Einzug ins Parlament, Mehrheiten) berücksichtigen wir die jeweilige Sperrklausel des Landes bzw. – wo relevant – die Regeln des deutschen Wahlsystems.
+
+  - id: unsicherheit
+    title: Unsicherheit & Einordnung
+    items:
+      - question: Warum ist die Prognose so unsicher? Haben Umfragen nicht immer nur eine Fehlertoleranz von ±3 Prozentpunkten?
+        answer: |
+          Grundsätzlich ist es richtig, dass Umfragen mit einer gewissen Unsicherheit behaftet sind. Das hat sowohl statistische Gründe (es wird nur ein mehr oder weniger zufällig ausgewählter kleiner Teil der Bevölkerung befragt) als auch Ursachen in den Designentscheidungen der Umfrageinstitute. Das hat Medien dazu bewogen, ihre Praxis zur [Berichterstattung über Umfragen anzupassen](https://www.zeit.de/politik/deutschland/umfragen-bundestagswahl-neuwahl-wahltrend).
+
+          Die sogenannte Fehlertoleranz in Umfragen ist allerdings nur eine von vielen Quellen von Unsicherheit in unserer Vorhersage. Wir möchten nicht nur die hypothetische Sonntagsfrage beantworten, sondern den tatsächlichen Wahlausgang vorhersagen. Unsere Unsicherheit ergibt sich daraus, wie zuverlässig das Modell die Ausgänge vergangener Wahlen vorhersagt. Da Umfragen bisweilen deutlich mehr danebenliegen als ±3 Prozentpunkte, wäre es überraschend, wenn unsere Vorhersage ebenso genau oder sogar noch genauer wäre.
+
+      - question: Weshalb die 5/6-Intervalle?
+        answer: |
+          Unsere Vorhersagen enthalten Unsicherheiten, die wir durch Intervalle ausdrücken. Das 5/6-Intervall zeigt den Bereich, in dem wir das Wahlergebnis mit etwa 83 % Wahrscheinlichkeit erwarten.
+
+          Im Vergleich zu einem klassischen 95 %-Konfidenzintervall ist dieses etwas enger und hilft, die Unsicherheiten präziser darzustellen, ohne extreme Ausreißer zu stark zu gewichten.
+
+      - question: Was unterscheidet die Prognosen von Wahlumfragen?
+        answer: |
+          Aktuelle Umfragen sind ein wichtiger Teil unserer Datengrundlage. Je näher der Wahltag rückt, desto mehr Gewicht haben sie. Allerdings können Umfragen vor der Wahl danebenliegen. Deshalb nutzen wir zusätzlich ein Modell, das aus historischen Wahlen lernt, wie stark Umfragen zu gewichten sind und welche weiteren Faktoren das Ergebnis mitbestimmen.
+
+          Unsere Prognose ist meist ein Kompromiss zwischen historischen Zusammenhängen und aktuellen Umfragen. Außerdem versuchen wir sogenannte Institutseffekte zu berücksichtigen – systematische Unterschiede zwischen Umfrageinstituten.
+
+      - question: Wie gut waren die Prognosen in der Vergangenheit?
+        answer: |
+          Die Zweitstimmenprognose lag 2017 beispielsweise um 1,4 Prozentpunkte entfernt vom tatsächlichen Ergebnis. Für aktuelle Landtagswahl-Vorhersagen archivieren wir die letzte Modellprognose vor der Wahl unverändert – so bleibt die Vorhersageleistung überprüfbar.
+
+          Details zur Methode finden Sie im [Blogbeitrag zur Landtagswahl-Vorhersage](/blog/posts/state-forecast-methodology/).
+
+  - id: nutzung
+    title: Nutzung & Offenheit
+    items:
+      - question: Können die Inhalte weiterverwendet werden?
+        answer: |
+          Ja. Die Inhalte stehen unter der Lizenz **CC BY-SA 4.0** (Creative Commons Attribution-ShareAlike 4.0). Sie dürfen sie nutzen, verändern und weitergeben, sofern Sie die Regeln einhalten.
+
+          **Erlaubt:** Teilen und Bearbeiten – auch kommerziell.
+
+          **Pflichten:**
+          - **Namensnennung (BY):** Quelle nennen, Lizenzhinweis setzen, Änderungen kennzeichnen
+          - **ShareAlike (SA):** Bearbeitungen unter derselben Lizenz veröffentlichen
+
+          Beispiel: „Quelle: zweitstimme.org“ oder „Daten: zweitstimme.org“. Bei Fragen melden Sie sich gerne bei uns.
+
+      - question: Sind Code und Daten des Vorhersagemodells einsehbar?
+        answer: |
+          Ja. Code und Materialien finden Sie auf [GitHub](https://github.com/zweitstimme-org) sowie in den Replikationsdaten zu unseren wissenschaftlichen Veröffentlichungen (siehe [Forschung](/research/posts/)).
+
+  - id: projekt
+    title: Über das Projekt
+    items:
+      - question: Was ist die Motivation hinter Zweitstimme.org?
+        answer: |
+          Öffentliche Debatten über „danebengelegene“ Umfragen (etwa bei US-Wahlen oder dem Brexit) zeigen oft weniger ein Problem der Modelle als der Kommunikation von Unsicherheit. Zweitstimme.org will genau das verbessern: mit statistisch fundierten Vorhersagen Journalist:innen, Expert:innen und Bürger:innen helfen, Parteiunterstützung realistischer einzuschätzen und informiertere Entscheidungen zu treffen.
+
+      - question: Wer steckt hinter dem Projekt?
+        answer: |
+          Alle Projektbeteiligten sind an Universitäten als Politik- und Datenwissenschaftler:innen tätig. Unsere Ziele: (1) die Machbarkeit dynamischer Wahlvorhersagen in Deutschland zu prüfen und (2) der Öffentlichkeit transparente, statistisch fundierte Vorhersagen zu bieten. Einige Projektbeteiligte sind Mitglieder in politischen Parteien, arbeiten aber weder entgeltlich noch unentgeltlich für diese.
+
+          Mehr unter [Team](/team).
+
+      - question: Wer finanziert das Projekt?
+        answer: |
+          Zweitstimme.org begann als Hobbyprojekt neben unserer Arbeit als Lehrende und Wissenschaftler:innen. Für die methodische Forschung zu Vorhersagen und ihren Konsequenzen haben wir 2024 Förderung durch die Deutsche Forschungsgemeinschaft (DFG) erhalten. Das [Projekt „Wahlvorhersagen zur Bundestagswahl 2025“ wird 2024–2026 gefördert](https://www.mzes.uni-mannheim.de/d7/de/projects/wahlvorhersagen-fuer-die-bundestagswahl-2025).

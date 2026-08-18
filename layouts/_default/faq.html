@@ -1,0 +1,140 @@
+{{- define "main" }}
+{{- $faq := site.Data.faq }}
+
+<article class="faq-page">
+  <header class="faq-hero">
+    {{- partial "breadcrumbs.html" . }}
+    <h1 class="faq-title">{{ $faq.title | default .Title }}</h1>
+    <p class="faq-subtitle">{{ $faq.subtitle }}</p>
+
+    <div class="faq-search" role="search">
+      <label class="visually-hidden" for="faq-search-input">{{ $faq.search_placeholder }}</label>
+      <svg class="faq-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+        <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <input
+        id="faq-search-input"
+        type="search"
+        autocomplete="off"
+        placeholder="{{ $faq.search_placeholder }}"
+        aria-controls="faq-results"
+      >
+      <button type="button" id="faq-search-clear" class="faq-search-clear" hidden>Zurücksetzen</button>
+    </div>
+  </header>
+
+  <div class="faq-toolbar">
+    <div class="faq-filters" role="tablist" aria-label="FAQ-Kategorien">
+      <button type="button" class="faq-filter is-active" data-faq-filter="all" role="tab" aria-selected="true">Alle</button>
+      {{- range $faq.sections }}
+      <button type="button" class="faq-filter" data-faq-filter="{{ .id }}" role="tab" aria-selected="false">{{ .title }}</button>
+      {{- end }}
+    </div>
+    <p class="faq-count" id="faq-count" aria-live="polite"></p>
+  </div>
+
+  <div id="faq-results">
+    {{- range $faq.sections }}
+    {{- $section := . }}
+    <section class="faq-section" id="{{ $section.id }}" data-faq-section-block="{{ $section.id }}">
+      <h2 class="faq-section-title">{{ $section.title }}</h2>
+      <div class="faq-accordion">
+        {{- range $section.items }}
+        <details class="faq-item" data-faq-item data-section="{{ $section.id }}" data-search="{{ printf "%s %s" .question .answer | plainify | lower }}">
+          <summary class="faq-question">
+            <span>{{ .question }}</span>
+            <span class="faq-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-answer post-content">
+            {{ .answer | markdownify }}
+          </div>
+        </details>
+        {{- end }}
+      </div>
+    </section>
+    {{- end }}
+  </div>
+
+  <p class="faq-empty" id="faq-empty" hidden>Keine Treffer. Versuchen Sie einen anderen Suchbegriff oder wählen Sie „Alle“.</p>
+
+  <aside class="faq-footer-cta">
+    <div>
+      <h2>Noch Fragen?</h2>
+      <p>Mehr zur Methode im Blog, zu Veröffentlichungen unter Forschung, oder lernen Sie das Team kennen.</p>
+    </div>
+    <div class="faq-footer-links">
+      <a href="/blog/posts/state-forecast-methodology/">Methodik</a>
+      <a href="/research/posts/">Forschung</a>
+      <a href="/team">Team</a>
+    </div>
+  </aside>
+</article>
+
+<script>
+(() => {
+  const input = document.getElementById('faq-search-input');
+  const clearBtn = document.getElementById('faq-search-clear');
+  const empty = document.getElementById('faq-empty');
+  const countEl = document.getElementById('faq-count');
+  const items = Array.from(document.querySelectorAll('[data-faq-item]'));
+  const sections = Array.from(document.querySelectorAll('[data-faq-section-block]'));
+  const filters = Array.from(document.querySelectorAll('[data-faq-filter]'));
+  let activeFilter = 'all';
+
+  function normalize(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/\p{M}/gu, '');
+  }
+
+  function apply() {
+    const q = normalize(input.value.trim());
+    clearBtn.hidden = !q;
+    let visible = 0;
+
+    items.forEach((item) => {
+      const sectionOk = activeFilter === 'all' || item.dataset.section === activeFilter;
+      const searchOk = !q || normalize(item.dataset.search).includes(q);
+      const show = sectionOk && searchOk;
+      item.hidden = !show;
+      if (show) visible += 1;
+      if (show && q && !item.open) {
+        // keep closed; user opens deliberately
+      }
+    });
+
+    sections.forEach((section) => {
+      const sectionId = section.dataset.faqSectionBlock;
+      const sectionVisible = items.some(
+        (item) => item.dataset.section === sectionId && !item.hidden
+      );
+      const filterOk = activeFilter === 'all' || activeFilter === sectionId;
+      section.hidden = !(sectionVisible && filterOk);
+    });
+
+    empty.hidden = visible > 0;
+    countEl.textContent = visible === 1 ? '1 Frage' : `${visible} Fragen`;
+  }
+
+  input.addEventListener('input', apply);
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    input.focus();
+    apply();
+  });
+
+  filters.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.faqFilter;
+      filters.forEach((b) => {
+        const on = b === btn;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      apply();
+    });
+  });
+
+  apply();
+})();
+</script>
+{{- end }}

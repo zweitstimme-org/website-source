@@ -1,0 +1,91 @@
+{{- define "main" }}
+
+{{- $pages := .RegularPages }}
+{{- range .Sections }}
+  {{- $pages = $pages | union .RegularPages }}
+{{- end }}
+{{- $pages = $pages.ByDate.Reverse }}
+{{- $groupByYear := .Params.groupByYear | default false }}
+{{- $pageSize := .Params.pagerSize | default 10 }}
+{{- $paginator := .Paginate $pages $pageSize }}
+
+<article class="hub-page">
+  <header class="hub-hero">
+    {{- partial "breadcrumbs.html" . }}
+    {{- with .Params.kicker }}
+    <p class="hub-kicker">{{ . }}</p>
+    {{- end }}
+    <h1 class="hub-title">{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="hub-subtitle">{{ . | markdownify }}</p>
+    {{- end }}
+  </header>
+
+  {{- if .Content }}
+  <div class="intro-card hub-intro">
+    {{ .Content }}
+  </div>
+  {{- end }}
+
+  <div class="hub-toolbar">
+    <p class="hub-count" aria-live="polite">
+      {{- $n := len $pages -}}
+      {{- if eq $n 1 }}1 Beitrag{{ else }}{{ $n }} Beiträge{{ end -}}
+      {{- if gt $paginator.TotalPages 1 -}}
+        · Seite {{ $paginator.PageNumber }} von {{ $paginator.TotalPages }}
+      {{- end -}}
+    </p>
+  </div>
+
+  <div class="hub-list">
+    {{- $prevYear := 0 }}
+    {{- range $paginator.Pages }}
+      {{- $year := .Date.Year }}
+      {{- if and $groupByYear (ne $year $prevYear) }}
+      <h2 class="hub-year">{{ $year }}</h2>
+      {{- $prevYear = $year }}
+      {{- end }}
+
+      <article class="hub-card">
+        <a class="hub-card-link" href="{{ .Permalink }}" aria-label="{{ .Title }}">
+          <time class="hub-card-date" datetime="{{ .Date.Format "2006-01-02" }}">
+            <span class="hub-card-day">{{ .Date.Format "02" }}.</span>
+            <span class="hub-card-month">{{ .Date.Format "01" }}.</span>
+            <span class="hub-card-year">{{ .Date.Format "2006" }}</span>
+          </time>
+          <div class="hub-card-body">
+            <h2 class="hub-card-title">{{ .Title }}</h2>
+            {{- if ne (.Param "hideSummary") true }}
+            <p class="hub-card-summary">
+              {{- if .Description -}}
+                {{ .Description | plainify | htmlUnescape | truncate 180 }}
+              {{- else -}}
+                {{ .Summary | plainify | htmlUnescape | truncate 180 }}
+              {{- end -}}
+            </p>
+            {{- end }}
+            <span class="hub-card-cta">Lesen</span>
+          </div>
+        </a>
+      </article>
+    {{- end }}
+  </div>
+
+  {{- if gt $paginator.TotalPages 1 }}
+  <nav class="hub-pagination" aria-label="Seitennavigation">
+    {{- if $paginator.HasPrev }}
+    <a class="hub-page-btn" href="{{ $paginator.Prev.URL | absURL }}">← Neuere</a>
+    {{- else }}
+    <span class="hub-page-btn is-disabled" aria-disabled="true">← Neuere</span>
+    {{- end }}
+    <span class="hub-page-status">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+    {{- if $paginator.HasNext }}
+    <a class="hub-page-btn" href="{{ $paginator.Next.URL | absURL }}">Ältere →</a>
+    {{- else }}
+    <span class="hub-page-btn is-disabled" aria-disabled="true">Ältere →</span>
+    {{- end }}
+  </nav>
+  {{- end }}
+</article>
+
+{{- end }}

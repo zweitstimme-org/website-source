@@ -76,6 +76,11 @@ disableXML = true
       weight = 30
 
       [[languages.de.menu.footer]]
+      name = "Polling API"
+      url = "https://api.zweitstimme.org/docs"
+      weight = 35
+
+      [[languages.de.menu.footer]]
       name = "Bluesky"
       url = "https://bsky.app/profile/zweitstimme.bsky.social"
       weight = 40
