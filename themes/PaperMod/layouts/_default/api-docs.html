@@ -13,7 +13,9 @@
   </div>
   {{- end }}
 
-  <div id="swagger-ui"></div>
+  <div id="swagger-ui"
+       data-spec="{{ "/api/openapi.json" | absURL }}"
+       data-root="{{ "/" | absURL }}"></div>
 </article>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css" crossorigin="anonymous">
@@ -75,8 +77,9 @@
 <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui-bundle.js" crossorigin="anonymous"></script>
 <script>
   (function () {
-    const specUrl = {{ "/api/openapi.json" | absURL | jsonify }};
-    const siteRoot = {{ "/" | absURL | jsonify }}.replace(/\/$/, "");
+    const el = document.getElementById("swagger-ui");
+    const specUrl = el.getAttribute("data-spec");
+    const siteRoot = (el.getAttribute("data-root") || "").replace(/\/$/, "");
 
     function render(spec) {
       spec.servers = [{ url: siteRoot, description: "This host" }];
