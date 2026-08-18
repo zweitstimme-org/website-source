@@ -15,6 +15,22 @@
     return siteBase() + 'data/' + name;
   }
 
+  function stampLogo(ctx, cssW, cssH) {
+    if (typeof window.drawZweitstimmeWatermark !== 'function' || !ctx) return;
+    window.drawZweitstimmeWatermark(ctx, {
+      left: 0,
+      top: 0,
+      right: cssW,
+      bottom: cssH
+    }, {
+      anchor: 'top-right',
+      maxWidth: 156,
+      maxHeight: 28,
+      pad: 6,
+      opacity: 0.55
+    });
+  }
+
   function landFromQuery() {
     var q = new URLSearchParams(window.location.search || '');
     var s = (q.get('state') || q.get('land') || 'st').toLowerCase();
@@ -106,6 +122,62 @@
   function fmtPct(x) {
     if (x == null || !isFinite(x)) return '—';
     return fmtNum(x, 1) + '\u00a0%';
+  }
+
+  /** Official last-election turnout / size (amtliches Endergebnis). */
+  function lastElectionRef() {
+    var d = state.data || {};
+    var fromJson = d.last_election;
+    if (fromJson && (fromJson.turnout != null || fromJson.parliament_size != null || fromJson.size != null)) {
+      return {
+        year: fromJson.year,
+        label: fromJson.label || String(fromJson.year || 'letzte Wahl'),
+        turnout: fromJson.turnout,
+        parliament_size: fromJson.parliament_size != null
+          ? fromJson.parliament_size
+          : fromJson.size
+      };
+    }
+    var land = state.land;
+    var el = String(d.election || '');
+    var live = /2026/.test(el);
+    if (live) {
+      if (land === 'be') return { year: 2023, label: 'AGH 2023', turnout: 62.9, parliament_size: 159 };
+      if (land === 'st') return { year: 2021, label: 'LTW 2021', turnout: 60.3, parliament_size: 97 };
+      if (land === 'mv') return { year: 2021, label: 'LTW 2021', turnout: 70.8, parliament_size: 79 };
+    }
+    if (land === 'be' || el === 'AGH2023') {
+      return { year: 2016, label: 'AGH 2016', turnout: 66.9, parliament_size: 160 };
+    }
+    if (land === 'st') {
+      return { year: 2016, label: 'LTW 2016', turnout: 61.1, parliament_size: 87 };
+    }
+    if (land === 'mv') {
+      return { year: 2016, label: 'LTW 2016', turnout: 61.6, parliament_size: 71 };
+    }
+    return null;
+  }
+
+  function lastElectionShort(ref) {
+    if (!ref) return 'letzte Wahl';
+    return ref.year != null ? String(ref.year) : (ref.label || 'letzte Wahl');
+  }
+
+  function drawHRef(ctx, pad, w, yAt, value, text, color) {
+    if (value == null || !isFinite(value)) return;
+    var y = yAt(value);
+    ctx.strokeStyle = color || '#8a6d3b';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([2, 3]);
+    ctx.beginPath();
+    ctx.moveTo(pad.l, y);
+    ctx.lineTo(pad.l + w, y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = color || '#8a6d3b';
+    ctx.font = '11px system-ui,sans-serif';
+    var tw = ctx.measureText(text).width;
+    ctx.fillText(text, pad.l + w - tw, y - 4);
   }
 
   /** German integer with thousands separator (1.234.567). */
@@ -274,6 +346,16 @@
     return unitId;
   }
 
+  /** Split "01 · Mitte" into code + name for Wahlkreis-tile group headers. */
+  function bezirkHeadParts(bid) {
+    if (!bid || bid === '?') return { code: '', name: 'Ohne Bezirk' };
+    var label = String(unitLabel('bezirk', bid) || bid);
+    var m = label.match(/^(\d{2})\s*[·.•\-–]\s*(.+)$/);
+    if (m) return { code: m[1], name: m[2] };
+    if (label !== bid) return { code: String(bid), name: label };
+    return { code: String(bid), name: '' };
+  }
+
   function viewForStep(s) {
     if (!s) return null;
     var staticRoot = (state.data && state.data.geo_static) || {};
@@ -418,19 +500,35 @@
       byBez[bid].push(x);
     });
     var bezirkIds = Object.keys(byBez).sort();
+    var showBezirkGroups = bezirkIds.some(function (id) { return id && id !== '?'; });
     var tilesHtml = '';
-    bezirkIds.forEach(function (bid, idx) {
-      if (idx > 0) {
-        var label = unitLabel('bezirk', bid);
-        tilesHtml += '<span class="wb-wkr-bez-sep" title="' + escapeHtml(label) + '">' +
-          escapeHtml(bid) + '</span>';
-      }
-      byBez[bid].slice().sort(function (a, b) {
+    function appendTiles(list) {
+      list.slice().sort(function (a, b) {
         return Number(a.id) - Number(b.id);
       }).forEach(function (x) {
         tilesHtml += wkrTileHtml(x);
       });
-    });
+    }
+    if (!showBezirkGroups) {
+      appendTiles(races);
+    } else {
+      bezirkIds.forEach(function (bid) {
+        var head = bezirkHeadParts(bid);
+        var title = [head.code, head.name].filter(Boolean).join(' · ');
+        tilesHtml += '<div class="wb-wkr-bez-group" data-bez="' + escapeHtml(bid) + '">' +
+          '<span class="wb-wkr-bez-head" title="' + escapeHtml(title) + '">' +
+            (head.code
+              ? '<span class="wb-wkr-bez-code">' + escapeHtml(head.code) + '</span>'
+              : '') +
+            (head.name
+              ? '<span class="wb-wkr-bez-name">' + escapeHtml(head.name) + '</span>'
+              : '') +
+          '</span>' +
+          '<div class="wb-wkr-bez-tiles">';
+        appendTiles(byBez[bid]);
+        tilesHtml += '</div></div>';
+      });
+    }
     el.innerHTML =
       '<p class="wb-subnav-label">Wahlkreis' +
         (state.unit ? '' : ' — Tiles antippen') + '</p>' +
@@ -447,7 +545,9 @@
         '<span class="wb-art">' + nCalled + ' Call · ' + nLikely +
           ' wahrsch. · ' + nOpen + ' offen</span>' +
       '</div>' +
-      '<div class="wb-wkr-tiles">' + tilesHtml + '</div>';
+      '<div class="wb-wkr-tiles' +
+        (showBezirkGroups ? ' wb-wkr-tiles-grouped' : '') + '">' +
+        tilesHtml + '</div>';
     bindWkrLinks(el);
     applyWkrSearchFilter();
   }
@@ -477,7 +577,7 @@
     if (!wrap || state.scope !== 'wkr') return;
     var q = normSearch(state.wkrSearch);
     var tiles = wrap.querySelectorAll('.wb-wkr-tile');
-    var seps = wrap.querySelectorAll('.wb-wkr-bez-sep');
+    var groups = wrap.querySelectorAll('.wb-wkr-bez-group');
     var n = 0;
     tiles.forEach(function (tile) {
       var hay = tile.getAttribute('data-search') || '';
@@ -485,7 +585,13 @@
       tile.hidden = !show;
       if (show) n++;
     });
-    seps.forEach(function (sep) { sep.hidden = !!q; });
+    groups.forEach(function (g) {
+      var visible = false;
+      g.querySelectorAll('.wb-wkr-tile').forEach(function (tile) {
+        if (!tile.hidden) visible = true;
+      });
+      g.hidden = !!q && !visible;
+    });
     var hint = $('wb-wkr-search-hint');
     if (hint) {
       if (!q) hint.textContent = '';
@@ -568,6 +674,7 @@
     ctx.lineTo(xAt(i), pad.t + h);
     ctx.stroke();
     ctx.setLineDash([]);
+    stampLogo(ctx, cssW, cssH);
   }
 
   function colorWithAlpha(hex, a) {
@@ -782,6 +889,7 @@
       ctx.arc(x, yAt(val), 3.5, 0, Math.PI * 2);
       ctx.fill();
     });
+    stampLogo(ctx, cssW, cssH);
   }
 
   function stepIndexNearFrac(fracList, fracTarget) {
@@ -1097,6 +1205,7 @@
       ctx.arc(x, yAt(val), 4, 0, Math.PI * 2);
       ctx.fill();
     });
+    stampLogo(ctx, cssW, cssH);
 
     // --- P(lead) chart ---
     if (!probCanvas) return;
@@ -1179,6 +1288,7 @@
     ctx.fill();
     ctx.font = '12px system-ui,sans-serif';
     ctx.fillText(fmtProb(pNow), Math.min(xAt(ci) + 8, pad.l + w - 60), yP(pNow) - 6);
+    stampLogo(ctx, cssW, cssH);
   }
 
   function renderWkrRace() {
@@ -1548,23 +1658,26 @@
     var showTruth = isLandComplete(st[ci]);
     var inst = institutionsOf(st[ci].eval);
     var sizeTruth = showTruth && inst && inst.parliament ? inst.parliament.size_truth : null;
+    var lastEl = lastElectionRef();
+    var lastSize = lastEl && lastEl.parliament_size != null ? lastEl.parliament_size : null;
 
     var ctx = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;
     var cssW = canvas.clientWidth || 900;
-    var cssH = 200;
+    var cssH = canvas.clientHeight || 220;
     canvas.width = Math.round(cssW * dpr);
     canvas.height = Math.round(cssH * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, cssW, cssH);
 
     var nFull = st.length;
-    var pad = { l: 40, r: 12, t: 14, b: 24 };
+    var pad = { l: 40, r: 12, t: 16, b: 24 };
     var w = cssW - pad.l - pad.r;
     var h = cssH - pad.t - pad.b;
     var vals = [];
     qs.forEach(function (q) { if (q) { vals.push(q[0], q[2]); } });
     if (sizeTruth != null) vals.push(sizeTruth);
+    if (lastSize != null) vals.push(lastSize);
     var yMin = Math.min.apply(null, vals) - 4;
     var yMax = Math.max.apply(null, vals) + 4;
 
@@ -1625,6 +1738,13 @@
       ctx.fillStyle = '#666';
       ctx.fillText('Wahr ' + sizeTruth, pad.l + 6, yAt(sizeTruth) - 4);
     }
+    if (lastSize != null) {
+      drawHRef(
+        ctx, pad, w, yAt, lastSize,
+        lastElectionShort(lastEl) + ': ' + lastSize,
+        '#8a6d3b'
+      );
+    }
 
     ctx.strokeStyle = '#1a1a1a';
     ctx.lineWidth = 2;
@@ -1661,6 +1781,7 @@
         yAt(qs[ci][1]) - 8
       );
     }
+    stampLogo(ctx, cssW, cssH);
   }
 
   function drawTurnoutChart() {
@@ -1679,14 +1800,14 @@
     var ctx = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;
     var cssW = canvas.clientWidth || 900;
-    var cssH = 180;
+    var cssH = canvas.clientHeight || 220;
     canvas.width = Math.round(cssW * dpr);
     canvas.height = Math.round(cssH * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, cssW, cssH);
 
     var nFull = st.length;
-    var pad = { l: 40, r: 12, t: 14, b: 24 };
+    var pad = { l: 40, r: 12, t: 16, b: 24 };
     var w = cssW - pad.l - pad.r;
     var h = cssH - pad.t - pad.b;
     var vals = [];
@@ -1698,6 +1819,9 @@
     });
     var truth = showTruth && st[ci].turnout ? st[ci].turnout.truth : null;
     if (truth != null) vals.push(truth);
+    var lastEl = lastElectionRef();
+    var lastTo = lastEl && lastEl.turnout != null ? lastEl.turnout : null;
+    if (lastTo != null) vals.push(lastTo);
     var yMin = Math.min.apply(null, vals) - 1;
     var yMax = Math.max.apply(null, vals) + 1;
     if (!(yMax > yMin)) { yMin = 50; yMax = 80; }
@@ -1758,6 +1882,13 @@
       ctx.fillStyle = '#666';
       ctx.fillText('Wahr ' + fmtNum(truth, 1) + '\u00a0%', pad.l + 6, yAt(truth) - 4);
     }
+    if (lastTo != null) {
+      drawHRef(
+        ctx, pad, w, yAt, lastTo,
+        lastElectionShort(lastEl) + ': ' + fmtNum(lastTo, 1) + '\u00a0%',
+        '#8a6d3b'
+      );
+    }
 
     ctx.strokeStyle = '#1a1a1a';
     ctx.lineWidth = 2;
@@ -1798,6 +1929,7 @@
         yAt(cur.nowcast) - 8
       );
     }
+    stampLogo(ctx, cssW, cssH);
   }
 
   function entryStatusHtml(rank, q) {
@@ -2938,6 +3070,15 @@
       var size = s.entry_mc && s.entry_mc.size;
       var to = s.turnout || {};
       var landDone = isLandComplete(s);
+      var lastEl = lastElectionRef();
+      var lastToTxt = (lastEl && lastEl.turnout != null)
+        ? ' <span class="wb-art">· ' + lastElectionShort(lastEl) + ': ' +
+          fmtNum(lastEl.turnout, 1) + '\u00a0%</span>'
+        : '';
+      var lastSizeTxt = (lastEl && lastEl.parliament_size != null)
+        ? ' <span class="wb-art">· ' + lastElectionShort(lastEl) + ': ' +
+          lastEl.parliament_size + '</span>'
+        : '';
       $('wb-stat').innerHTML =
         '<div>Wahlbeteiligung, Szenarien und <strong>Parlamentsgröße</strong></div>' +
         (to.nowcast != null
@@ -2948,12 +3089,20 @@
             (landDone && to.truth != null
               ? ' <span class="wb-art">· Endstand ' + fmtNum(to.truth, 1) + '\u00a0%</span>'
               : '') +
+            lastToTxt +
             '</div>'
-          : '') +
+          : (lastToTxt
+            ? '<div>Wahlbeteiligung letzte Wahl (' + lastElectionShort(lastEl) +
+              '): <strong>' + fmtNum(lastEl.turnout, 1) + '\u00a0%</strong></div>'
+            : '')) +
         (size
           ? '<div>Größe jetzt: <strong>' + size[1] + '</strong> Sitze ' +
-            '<span class="wb-art">(p10 ' + size[0] + ' – p90 ' + size[2] + ')</span></div>'
-          : '');
+            '<span class="wb-art">(p10 ' + size[0] + ' – p90 ' + size[2] + ')</span>' +
+            lastSizeTxt + '</div>'
+          : (lastEl && lastEl.parliament_size != null
+            ? '<div>Parlamentsgröße letzte Wahl (' + lastElectionShort(lastEl) +
+              '): <strong>' + lastEl.parliament_size + '</strong> Sitze</div>'
+            : ''));
     } else {
       var top = PARTIES_ORDER.filter(function (p) { return p !== 'others'; })
         .slice()
@@ -3094,6 +3243,15 @@
       drawTurnoutChart();
       drawSizeChart();
     }
+    });
+    window.addEventListener('zweitstimme-logo-ready', function () {
+      drawShareChart();
+      if (state.scope === 'wkr') drawWkrRaceCharts();
+      if (state.scope === 'zweit') drawChart();
+      if (state.scope === 'lage') {
+        drawTurnoutChart();
+        drawSizeChart();
+      }
     });
     var evalRoot = $('wb-eval-root');
     if (evalRoot) {

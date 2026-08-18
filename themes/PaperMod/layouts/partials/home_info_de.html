@@ -5906,6 +5906,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+<script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/enhanced-party-mapper.js" | relURL }}"></script>
 <script src="{{ "js/polls-mapper-aggregator.js" | relURL }}"></script>
 <script src="{{ "js/kalman-latent-support.js" | relURL }}"></script>
@@ -6284,7 +6285,7 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         });
 
-        // Draw poll meta (date + institute) in top-right plot area.
+        // Draw poll meta (date + institute) in the top-left band, opposite the watermark.
         const chartArea = chart.chartArea;
         if (chartArea) {
           const dateText = activeRaw && activeRaw.pollDate
@@ -6300,8 +6301,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const padY = 2;
             const boxW = textWidth + (padX * 2);
             const boxH = 14 + (padY * 2);
-            const x = Math.max(chartArea.left, chartArea.right - boxW - 6);
-            const y = chartArea.top + 6;
+            const x = chartArea.left + 6;
+            const y = 6;
 
             ctx.beginPath();
             ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';

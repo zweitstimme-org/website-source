@@ -474,4 +474,5 @@ Die Landtagswahl-Vorhersage übersetzt aktuelle Landesumfragen in eine Wahlprogn
     Chart.register(ChartDataLabels);
   }
 </script>
+<script src="/js/chart-logo-watermark.js?v=6"></script>
 <script src="/js/methodology-viz.js"></script>

@@ -79,6 +79,23 @@ Bei der Verwendung der Inhalte ist zweitstimme.org als Quelle zu nennen, beispie
 
 Die auf dieser Website verwendeten Polling-Daten beruhen ganz oder teilweise auf externen Quellen. Soweit Daten von [dawum.de](https://dawum.de) verwendet werden, gelten für diese die Bedingungen der [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/). Weitere Umfragedaten und sonstige Angaben stammen aus öffentlich dokumentierten Veröffentlichungen, insbesondere von [wahlrecht.de](https://www.wahlrecht.de), sowie von den jeweils genannten Umfrageinstituten. Soweit einschlägig, verbleiben die Rechte an diesen Daten und Inhalten bei den jeweiligen Rechteinhabern.
 
+## Gibt es ein Logo zum Download?
+
+Ja. Für Quellenangaben in Medien, Folien und eigenen Grafiken stellen wir das Logo als PNG mit transparentem Hintergrund bereit:
+
+<div style="display:flex;flex-wrap:wrap;gap:1.35rem;align-items:flex-end;margin:0.85rem 0 1.1rem;">
+  <a href="/images/logo_zweitstimme.png" download="zweitstimme-logo.png" style="text-align:center;color:inherit;text-decoration:none;">
+    <img src="/images/logo_zweitstimme.png" alt="Wordmark zweitstimme.org" style="height:52px;width:auto;max-width:100%;background:#f3f3f3;padding:10px 14px;border-radius:8px;margin:0;">
+    <div style="font-size:0.85rem;margin-top:0.4rem;">Wordmark (PNG)</div>
+  </a>
+  <a href="/images/logo_zweitstimme_icon.png" download="zweitstimme-icon.png" style="text-align:center;color:inherit;text-decoration:none;">
+    <img src="/images/logo_zweitstimme_icon.png" alt="Wal-Icon zweitstimme.org" style="height:52px;width:auto;background:#f3f3f3;padding:8px;border-radius:8px;margin:0;">
+    <div style="font-size:0.85rem;margin-top:0.4rem;">Wal-Icon (PNG)</div>
+  </a>
+</div>
+
+Bitte das Logo nicht umfärben, verzerren oder mit anderen Markenzeichen kombinieren. Es ersetzt nicht die Textquelle: nennen Sie weiterhin **zweitstimme.org** (Lizenz [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de)). Unsere Diagramme enthalten das Logo bereits; bei eigenen Grafiken aus unseren Daten reicht auch die Zeile „Quelle: zweitstimme.org“.
+
 Wenn Sie weitere Fragen zur Verwendung der Materialien bzw. Informationen haben, treten Sie bitte einfach mit uns in Verbindung!
 
 ## Sind Code und Daten des Vorhersagemodells einsehbar?

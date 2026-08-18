@@ -1,13 +1,13 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-18T09:50:55Z",
+  "generated_at": "2026-08-18T10:21:38Z",
   "election": {
-    "id": "ni_2027-09-26",
+    "id": "ni_2027-10-17",
     "name": "Landtagswahl Niedersachsen",
-    "date": "2027-09-26",
+    "date": "2027-10-17",
     "scope": "state",
     "state_code": "NI",
-    "date_is_estimated": false
+    "date_is_estimated": true
   },
   "data": {
     "as_of": "2026-08-18",

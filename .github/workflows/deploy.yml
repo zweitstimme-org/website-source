@@ -40,10 +40,6 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      # force_orphan wipes the website repo each deploy — keep a README there.
-      - name: Copy stack README into publish dir
-        run: cp README.md public/README.md
-
       - name: Deploy to zweitstimme-org/website
         uses: peaceiris/actions-gh-pages@v3
         with:
