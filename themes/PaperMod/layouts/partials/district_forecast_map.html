@@ -29,7 +29,7 @@
 }
 .scenario-prob-heading {
   margin: 0 0 0.85rem;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #111;
   text-align: center;
@@ -700,7 +700,7 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
     if (heading) {
-      heading.textContent = 'Wahlkreise — ' + (labels[code] || code);
+      heading.textContent = 'Wahlkreise';
     }
     syncEinzugLink(code);
     if (window.DistrictForecastMap) {

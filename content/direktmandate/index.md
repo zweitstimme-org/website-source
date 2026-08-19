@@ -1,5 +1,5 @@
 ---
-title: "Prognose Landtagswahlen - Wahlkreise"
+title: "Prognose Landtagswahlen"
 url: "/direktmandate/"
 aliases:
   - /preview/direktmandate/
