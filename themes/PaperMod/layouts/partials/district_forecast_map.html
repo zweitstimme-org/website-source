@@ -316,6 +316,31 @@ a.district-aw:hover {
   padding-top: 0.9rem;
   border-top: 1px solid #eee;
 }
+.district-fold {
+  margin: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+.district-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111;
+  text-align: left;
+  padding: 0.1rem 0;
+}
+.district-fold > summary::-webkit-details-marker { display: none; }
+.district-fold > summary::before {
+  content: "▸ ";
+  color: #666;
+  font-weight: 400;
+}
+.district-fold[open] > summary::before { content: "▾ "; }
+.district-fold[open] > summary {
+  margin-bottom: 0.45rem;
+}
 .district-size-panel h4 {
   margin: 0 0 0.35rem;
   font-size: 0.9rem;
@@ -638,7 +663,7 @@ a.district-aw:hover {
 
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=7"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=25"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=26"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const labels = {

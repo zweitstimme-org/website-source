@@ -87,6 +87,14 @@
   let addressMarker = null;
   let leafletLoaderPromise = null;
   let searchSession = null;
+  let genderFoldOpen = false;
+  let sizeFoldOpen = false;
+
+  function bindDistrictFold(el, setOpen) {
+    const fold = el && el.querySelector('details.district-fold');
+    if (!fold) return;
+    fold.addEventListener('toggle', () => setOpen(fold.open));
+  }
 
   function formatStandDate(raw) {
     if (!raw || typeof raw !== 'string') return '';
@@ -1415,16 +1423,19 @@
       .join('');
     el.style.display = 'block';
     el.innerHTML = `
-      <h4>Geschlechteranteil — Direktkandidierende</h4>
-      <p class="district-gender-intro">
-        Anteil Frauen unter den bekannt benannten Direktkandidierenden je Partei.
-        „×&nbsp;Siegchance“ gewichtet mit der prognostizierten Direktmandat-Wahrscheinlichkeit
-        (erwartete Geschlechterverteilung der Gewinner*innen; bei Σ&nbsp;P&nbsp;&lt;&nbsp;1:&nbsp;„keine Mandate erwartet“).
-        ${escapeHtml(note)}
-      </p>
-      <div class="district-gender-rows">${body}</div>
-      <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
+      <details class="district-fold"${genderFoldOpen ? ' open' : ''}>
+        <summary>Geschlechteranteil — Direktkandidierende</summary>
+        <p class="district-gender-intro">
+          Anteil Frauen unter den bekannt benannten Direktkandidierenden je Partei.
+          „×&nbsp;Siegchance“ gewichtet mit der prognostizierten Direktmandat-Wahrscheinlichkeit
+          (erwartete Geschlechterverteilung der Gewinner*innen; bei Σ&nbsp;P&nbsp;&lt;&nbsp;1:&nbsp;„keine Mandate erwartet“).
+          ${escapeHtml(note)}
+        </p>
+        <div class="district-gender-rows">${body}</div>
+        <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
+      </details>
     `;
+    bindDistrictFold(el, (open) => { genderFoldOpen = open; });
   }
 
   function renderParliamentSize(code, payload) {
@@ -1538,19 +1549,22 @@
       ? `<span>Wahlbeteiligung ${escapeHtml(lastYear)}: <strong>${escapeHtml(String(lastEl.turnout).replace('.', ','))} %</strong></span>`
       : '';
     el.innerHTML = `
-      <h4>Geschätzte Größe — ${escapeHtml(chamber)}</h4>
-      <div class="district-size-stats">
-        <span>Minimum gesetzlich: <strong>${escapeHtml(String(st.base_seats))}</strong></span>
-        <span>Median: <strong>${escapeHtml(String(st.size_median))}</strong></span>
-        <span>Punktschätzung: <strong>${escapeHtml(String(pointSize))}</strong></span>
-        <span>p90: <strong>${escapeHtml(String(st.size_p90))}</strong></span>
-        ${lastSizeHtml}
-        ${lastToHtml}
-      </div>
-      <div class="district-size-bars">${bars}</div>
-      <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
-      ${note}
+      <details class="district-fold"${sizeFoldOpen ? ' open' : ''}>
+        <summary>Geschätzte Größe — ${escapeHtml(chamber)}</summary>
+        <div class="district-size-stats">
+          <span>Minimum gesetzlich: <strong>${escapeHtml(String(st.base_seats))}</strong></span>
+          <span>Median: <strong>${escapeHtml(String(st.size_median))}</strong></span>
+          <span>Punktschätzung: <strong>${escapeHtml(String(pointSize))}</strong></span>
+          <span>p90: <strong>${escapeHtml(String(st.size_p90))}</strong></span>
+          ${lastSizeHtml}
+          ${lastToHtml}
+        </div>
+        <div class="district-size-bars">${bars}</div>
+        <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
+        ${note}
+      </details>
     `;
+    bindDistrictFold(el, (open) => { sizeFoldOpen = open; });
   }
 
   async function mount(opts) {
