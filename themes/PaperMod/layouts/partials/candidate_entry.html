@@ -2,6 +2,17 @@
   Preview: Einzugschancen Direkt + Liste (BE/MV/ST).
 */}}
 <style>
+/* Match /direktmandate/ panel styling */
+.scenario-prob-panel {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 .ce-wrap { max-width: 960px; margin: 0 auto; }
 .ce-caveat {
   font-size: 0.9rem;
@@ -495,9 +506,10 @@ a.ce-aw:hover {
 }
 </style>
 
-<details class="ce-explainer">
-  <summary>So lesen Sie die Einzugschancen</summary>
-  <div class="ce-explainer-body">
+<div class="scenario-prob-panel">
+  <details class="ce-explainer">
+    <summary>So lesen Sie die Einzugschancen</summary>
+    <div class="ce-explainer-body">
     <p>
       Pro Person schätzen wir, wie oft sie in unserem Modell ins Parlament käme —
       über ein <strong>Direktmandat</strong>, über die <strong>Liste</strong>, oder beides.
@@ -526,10 +538,11 @@ a.ce-aw:hover {
     <p>
       Fehlende Namen erscheinen kursiv als Platzhalter und zählen als eigene Personen.
     </p>
-  </div>
-</details>
+    </div>
+  </details>
 
-<div id="candidate-entry-root"></div>
+  <div id="candidate-entry-root"></div>
+</div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
 <script src="{{ "js/candidate-entry.js" | relURL }}?v=27" defer></script>
