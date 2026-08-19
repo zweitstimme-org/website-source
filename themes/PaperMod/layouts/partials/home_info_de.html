@@ -5972,7 +5972,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="{{ "js/polls-mapper-aggregator.js" | relURL }}"></script>
 <script src="{{ "js/kalman-latent-support.js" | relURL }}"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=23"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=24"></script>
 <script>
 // Bundestag forecast chart functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -7011,7 +7011,15 @@ document.addEventListener('DOMContentLoaded', function() {
         targets.push({ key: code, scope: 'state', code, ...info });
       }
     });
-    targets.sort((a, b) => String(a.election_date || '').localeCompare(String(b.election_date || '')));
+    targets.sort((a, b) => {
+      if (a.scope === 'federal' && b.scope !== 'federal') return -1;
+      if (b.scope === 'federal' && a.scope !== 'federal') return 1;
+      const order = { ST: 0, BE: 1, MV: 2 };
+      const oa = Object.prototype.hasOwnProperty.call(order, a.code) ? order[a.code] : 99;
+      const ob = Object.prototype.hasOwnProperty.call(order, b.code) ? order[b.code] : 99;
+      if (oa !== ob) return oa - ob;
+      return String(a.election_date || '').localeCompare(String(b.election_date || ''));
+    });
     return targets;
   }
 

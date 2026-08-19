@@ -51,9 +51,13 @@
   border-radius: 3px;
 }
 .ce-controls { margin-bottom: 0.75rem; }
-.ce-state-tabs,
+.ce-state-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0 0 1rem;
+}
 .ce-party-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
-.ce-tab,
 .ce-party-tab {
   border: 1px solid #ccc;
   background: #fff;
@@ -61,18 +65,99 @@
   padding: 0.35rem 0.7rem;
   cursor: pointer;
   font-size: 0.9rem;
-}
-.ce-tab.is-active {
-  border-color: #111;
-  background: #111;
-  color: #fff;
-}
-.ce-party-tab {
   font-weight: 600;
-  background: #fff;
 }
 .ce-party-tab.is-active {
   font-weight: 700;
+}
+.ce-state-tabs .state-arm {
+  appearance: none;
+  border: 3px solid transparent;
+  width: 100%;
+  font-family: inherit;
+  text-align: left;
+  padding: 0.65rem 0.75rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  height: 78px;
+  box-sizing: border-box;
+}
+.ce-state-tabs .state-arm.selected {
+  background: #e6f3ff;
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  position: relative;
+}
+.ce-state-tabs .state-arm.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: var(--primary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+.ce-state-tabs .state-arm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.ce-state-tabs .state-arm img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 auto;
+}
+.ce-state-tabs .state-arm-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.ce-state-tabs .state-arm span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 500;
+  text-align: left;
+  line-height: 1.15;
+}
+.ce-state-tabs .election-date {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--secondary, #666);
+  font-weight: 400;
+  text-align: left;
+  margin-top: 0.15rem;
+}
+@media screen and (max-width: 768px) {
+  .ce-state-tabs { gap: 0.75rem; }
+  .ce-state-tabs .state-arm { padding: 0.5rem; height: 72px; gap: 0.55rem; }
+  .ce-state-tabs .state-arm img { width: 38px; height: 38px; }
+  .ce-state-tabs .state-arm span { font-size: 0.7rem; }
+}
+@media screen and (max-width: 480px) {
+  .ce-state-tabs { gap: 0.5rem; }
+  .ce-state-tabs .state-arm { padding: 0.4rem; height: 66px; gap: 0.5rem; }
+  .ce-state-tabs .state-arm img { width: 34px; height: 34px; }
 }
 .ce-filters {
   display: flex;
@@ -414,5 +499,5 @@ a.ce-aw:hover {
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=20" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=21" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}

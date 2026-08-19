@@ -589,7 +589,7 @@
     const winnerLabel = winnerName
       ? ` · ${candidateNameHtml(winnerName, winnerList, winnerBio, winnerInc, winner)}`
       : ' · <span style="font-weight:400;font-style:italic;color:#888;">Name noch nicht bekannt</span>';
-    const einzugHref = `${siteBase()}einzug/?state=${encodeURIComponent(stateCode || 'BE')}`;
+    const einzugHref = `${siteBase()}einzug/?state=${encodeURIComponent(stateCode || 'ST')}`;
     // Keep deep-link shareable when user clicks a district
     try {
       if (stateCode && Number.isFinite(Number(wkr))) {
