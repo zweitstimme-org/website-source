@@ -237,34 +237,41 @@
 .ce-cross-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.1rem;
+  gap: 0.6rem;
   margin: 0 0 0.85rem;
-  font-size: 0.88rem;
-  align-items: baseline;
+  font-size: 0.95rem;
+  align-items: stretch;
+}
+.ce-cross-nav > * {
+  flex: 1 1 14rem;
 }
 .ce-cross-nav .is-here {
-  color: #333;
+  color: #fff;
   font-weight: 650;
-  background: #eef1f4;
-  border: 1px solid #c5ccd4;
-  border-radius: 0.2rem;
-  padding: 0.22rem 0.55rem;
-  display: inline-block;
+  background: #111;
+  border: 1px solid #111;
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .ce-cross-nav a {
-  color: #445;
+  color: #444;
   text-decoration: none !important;
-  background: #eef1f4;
-  border: 1px solid #c5ccd4;
-  border-radius: 0.2rem;
-  padding: 0.22rem 0.55rem;
-  display: inline-block;
-  font-weight: 650;
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
 }
 .ce-cross-nav a:hover {
-  color: var(--primary, #003d80);
-  border-color: var(--primary, #003d80);
-  background: #e8eef6;
+  color: #111;
+  border-color: #d0d0d0;
+  background: #efefef;
 }
 .ce-cross { font-size: 0.85rem; margin: 0 0 0.75rem; }
 .ce-cross a,
@@ -525,5 +532,5 @@ a.ce-aw:hover {
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=25" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=26" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}

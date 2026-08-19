@@ -502,7 +502,7 @@
     root.innerHTML = `
       <div class="ce-wrap">
         <nav class="ce-cross-nav" aria-label="Wahlkreise und Listen">
-          <a class="ce-districts-link" href="#">→ Wahlkreise</a>
+          <a class="ce-districts-link" href="#">Wahlkreise</a>
           <span class="is-here">Alle Kandidierende</span>
         </nav>
         <div class="ce-controls">
