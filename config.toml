@@ -88,7 +88,7 @@ disableXML = true
 
       [[languages.de.menu.footer]]
       name = "LinkedIn"
-      url = "https://www.linkedin.com/company/zweitstimme-org/posts/"
+      url = "https://www.linkedin.com/company/zweitstimme-org"
       weight = 45
       [[languages.de.menu.footer]]
       name = "Github"
@@ -135,7 +135,7 @@ label.icon = "/images/logo_orange.png"
 
   [[params.socialIcons]]
   name = "linkedin"
-  url = "https://www.linkedin.com/company/zweitstimme-org/posts/"
+  url = "https://www.linkedin.com/company/zweitstimme-org"
 
 
   [params.assets]
