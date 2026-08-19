@@ -568,9 +568,9 @@
           const active = s.code === stateCode;
           const coat = STATE_COATS[s.code] || "";
           return `<button type="button" class="state-arm visible ce-tab${active ? " selected is-active" : ""}" data-state="${s.code}" aria-pressed="${active ? "true" : "false"}">
-            <img src="${escapeHtml(coat)}" alt="" title="${escapeHtml(s.label)}">
-            <div class="state-arm-text">
-              <span>${escapeHtml(s.label)}</span>
+            <div class="state-arm-name">${escapeHtml(s.label)}</div>
+            <div class="state-arm-sub">
+              <img src="${escapeHtml(coat)}" alt="" title="${escapeHtml(s.label)}">
               <div class="election-date">${escapeHtml(s.date || "")}</div>
             </div>
           </button>`;

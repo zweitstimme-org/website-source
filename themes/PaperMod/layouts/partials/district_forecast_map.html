@@ -253,10 +253,10 @@ a.district-aw:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.65rem;
+  justify-content: center;
+  gap: 0.35rem;
   cursor: pointer;
   height: 78px;
   box-sizing: border-box;
@@ -291,45 +291,46 @@ a.district-aw:hover {
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 .district-preview-targets .state-arm img {
-  width: 42px;
-  height: 42px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   display: block;
-  flex: 0 0 auto;
 }
-.district-preview-targets .state-arm-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  min-width: 0;
-  flex: 1 1 auto;
-}
-.district-preview-targets .state-arm span {
+.district-preview-targets .state-arm-name {
   display: block;
   font-size: 0.75rem;
   color: var(--primary);
-  font-weight: 500;
-  text-align: left;
-  line-height: 1.15;
+  font-weight: 650;
+  text-align: center;
+  line-height: 1.1;
+  padding: 0 0.1rem;
+}
+.district-preview-targets .state-arm-sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
 }
 .district-preview-targets .election-date {
   display: block;
   font-size: 0.65rem;
   color: var(--secondary, #666);
   font-weight: 400;
-  margin-top: 0.15rem;
+  margin-top: 0;
+  text-align: center;
 }
 @media screen and (max-width: 768px) {
   .district-preview-targets { gap: 0.75rem; }
-  .district-preview-targets .state-arm { padding: 0.5rem; height: 72px; gap: 0.55rem; }
-  .district-preview-targets .state-arm img { width: 38px; height: 38px; }
-  .district-preview-targets .state-arm span { font-size: 0.7rem; }
+  .district-preview-targets .state-arm { padding: 0.5rem; height: 72px; gap: 0.3rem; }
+  .district-preview-targets .state-arm img { width: 18px; height: 18px; }
+  .district-preview-targets .state-arm-name { font-size: 0.7rem; }
 }
 @media screen and (max-width: 480px) {
   .district-preview-targets { gap: 0.5rem; }
-  .district-preview-targets .state-arm { padding: 0.4rem; height: 66px; gap: 0.5rem; }
-  .district-preview-targets .state-arm img { width: 34px; height: 34px; }
+  .district-preview-targets .state-arm { padding: 0.4rem; height: 66px; gap: 0.25rem; }
+  .district-preview-targets .state-arm img { width: 16px; height: 16px; }
+  .district-preview-targets .state-arm-name { font-size: 0.66rem; }
 }
 .district-size-panel {
   margin-top: 1rem;
@@ -620,23 +621,23 @@ a.district-aw:hover {
 
 <div class="district-preview-targets" id="district-preview-targets" role="tablist" aria-label="Bundesland">
   <button type="button" class="state-arm visible district-preview-target is-active selected" data-code="ST" aria-pressed="true">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="" title="Sachsen-Anhalt">
-    <div class="state-arm-text">
-      <span>Sachsen-Anhalt</span>
+    <div class="state-arm-name">Sachsen-Anhalt</div>
+    <div class="state-arm-sub">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="" title="Sachsen-Anhalt">
       <div class="election-date">06.09.2026</div>
     </div>
   </button>
   <button type="button" class="state-arm visible district-preview-target" data-code="BE" aria-pressed="false">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DEU_Berlin_COA.svg/60px-DEU_Berlin_COA.svg.png" alt="" title="Berlin">
-    <div class="state-arm-text">
-      <span>Berlin</span>
+    <div class="state-arm-name">Berlin</div>
+    <div class="state-arm-sub">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DEU_Berlin_COA.svg/60px-DEU_Berlin_COA.svg.png" alt="" title="Berlin">
       <div class="election-date">20.09.2026</div>
     </div>
   </button>
   <button type="button" class="state-arm visible district-preview-target" data-code="MV" aria-pressed="false">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg/60px-Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg.png" alt="" title="Mecklenburg-Vorpommern">
-    <div class="state-arm-text">
-      <span>Mecklenburg-Vorpommern</span>
+    <div class="state-arm-name">Mecklenburg-Vorpommern</div>
+    <div class="state-arm-sub">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg/60px-Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg.png" alt="" title="Mecklenburg-Vorpommern">
       <div class="election-date">20.09.2026</div>
     </div>
   </button>
