@@ -322,6 +322,22 @@
     return `${rounded}%`;
   }
 
+  /**
+   * IPCC-style likelihood for a district win probability (0–100).
+   * ≥99 nearly certain, ≥90 very likely, ≥66 likely, >50 lean,
+   * ≥33 toss-up, else scramble.
+   */
+  function districtWinLikelihoodLabel(prob) {
+    const p = Number(prob);
+    if (!Number.isFinite(p)) return '';
+    if (p >= 99) return 'Nahezu sicher';
+    if (p >= 90) return 'Sehr wahrscheinlich';
+    if (p >= 66) return 'Wahrscheinlich';
+    if (p > 50) return 'Tendenziell';
+    if (p >= 33) return 'Offen';
+    return 'Völlig offen';
+  }
+
   /** District win chance from the Wahlkreis forecast (0–100). */
   function districtWinProbability(row) {
     const n = Number(row && row.probability);
@@ -591,6 +607,10 @@
       return `<span class="district-name-wrap">${name}${badge}${info}</span>`;
     };
     const winnerWinProb = districtWinProbability(winner);
+    const winnerLikelihood = districtWinLikelihoodLabel(winnerWinProb);
+    const winnerHeadline = winnerLikelihood
+      ? `${escapeHtml(winnerLikelihood)}: <strong>${escapeHtml(winner.partei)}</strong> (${formatWinProbabilityPct(winnerWinProb)})`
+      : `<strong>${escapeHtml(winner.partei)}</strong> (P(Sieg): ${formatWinProbabilityPct(winnerWinProb)})`;
     // Keep deep-link shareable when user clicks a district
     try {
       if (stateCode && Number.isFinite(Number(wkr))) {
@@ -604,7 +624,7 @@
       <div style="font-weight:700; margin-bottom:0.55rem; text-align:center;">
         WK ${wkr}: ${escapeHtml(name)}
         <div style="font-weight:600; font-size:0.95rem; color:#333; margin-top:0.25rem;">
-          Höchste Gewinnwahrscheinlichkeit: <strong>${escapeHtml(winner.partei)}</strong> (P(Sieg): ${formatWinProbabilityPct(winnerWinProb)})
+          ${winnerHeadline}
         </div>
       </div>
       <div class="district-party-list${needsToggle ? ' is-collapsed' : ''}" style="display:flex; flex-direction:column; gap:0.55rem;">
