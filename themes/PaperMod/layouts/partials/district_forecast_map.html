@@ -281,6 +281,7 @@ a.district-aw:hover {
   align-items: flex-start;
   justify-content: center;
   min-width: 0;
+  flex: 1 1 auto;
 }
 .district-preview-targets .state-arm-wide-name {
   display: block;
@@ -324,10 +325,15 @@ a.district-aw:hover {
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 .district-preview-targets .state-arm img {
-  width: 20px;
-  height: 20px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   display: block;
+  flex: 0 0 auto;
+}
+.district-preview-targets .state-arm-narrow img {
+  width: 20px;
+  height: 20px;
 }
 .district-preview-targets .state-arm-name {
   display: block;
