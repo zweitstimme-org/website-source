@@ -260,6 +260,7 @@ a.district-aw:hover {
   cursor: pointer;
   height: 78px;
   box-sizing: border-box;
+  overflow: visible;
 }
 .district-preview-targets .state-arm-narrow {
   display: none;
@@ -362,18 +363,53 @@ a.district-aw:hover {
 }
 @media screen and (max-width: 768px) {
   .district-preview-targets { gap: 0.75rem; }
-  .district-preview-targets .state-arm { padding: 0.5rem; height: 72px; gap: 0.35rem; flex-direction: column; align-items: center; justify-content: center; }
+  .district-preview-targets .state-arm {
+    padding: 0.85rem 0.4rem 0.4rem;
+    height: auto;
+    min-height: 76px;
+    gap: 0.35rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+  .district-preview-targets .state-arm.selected::after,
+  .district-preview-targets .state-arm.is-active::after {
+    top: 3px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
   .district-preview-targets .state-arm img { width: 18px; height: 18px; }
-  .district-preview-targets .state-arm-name { font-size: 0.7rem; margin-top: 0.3rem; line-height: 1.05; }
-  .district-preview-targets .state-arm-narrow { display: flex; }
+  .district-preview-targets .state-arm-name {
+    font-size: 0.7rem;
+    margin-top: 0.15rem;
+    padding: 0.2rem 0.55rem 0;
+    line-height: 1.25;
+  }
+  .district-preview-targets .state-arm-narrow { display: flex; justify-content: flex-start; }
   .district-preview-targets .state-arm-wide { display: none; }
 }
 @media screen and (max-width: 480px) {
   .district-preview-targets { gap: 0.5rem; }
-  .district-preview-targets .state-arm { padding: 0.4rem; height: 66px; gap: 0.25rem; flex-direction: column; align-items: center; justify-content: center; }
+  .district-preview-targets .state-arm {
+    padding: 0.8rem 0.3rem 0.35rem;
+    min-height: 72px;
+    gap: 0.25rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: visible;
+  }
   .district-preview-targets .state-arm img { width: 16px; height: 16px; }
-  .district-preview-targets .state-arm-name { font-size: 0.66rem; margin-top: 0.25rem; line-height: 1.05; }
-  .district-preview-targets .state-arm-narrow { display: flex; }
+  .district-preview-targets .state-arm-name {
+    font-size: 0.66rem;
+    margin-top: 0.12rem;
+    padding: 0.18rem 0.5rem 0;
+    line-height: 1.25;
+  }
+  .district-preview-targets .state-arm-narrow { display: flex; justify-content: flex-start; }
   .district-preview-targets .state-arm-wide { display: none; }
 }
 .district-size-panel {
