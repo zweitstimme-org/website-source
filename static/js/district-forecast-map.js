@@ -312,7 +312,7 @@
     }
     if (districtWinLikelihoodIsOpen(label)) {
       const listed = (partyRows || [])
-        .filter((r) => !districtIsOthers(r) && districtWinProbability(r) > 1)
+        .filter((r) => !districtIsOthers(r) && districtWinProbability(r) > 5)
         .sort((a, b) => (districtWinProbability(b) || 0) - (districtWinProbability(a) || 0));
       if (listed.length) {
         const bits = listed.map((r) =>
