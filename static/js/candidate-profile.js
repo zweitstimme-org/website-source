@@ -300,7 +300,7 @@
     }
     const awHref = httpSource(c.aw_url);
     if (awHref) {
-      badge += `<a class="cp-aw" href="${escapeHtml(awHref)}" target="_blank" rel="noopener noreferrer" title="Profil und Fragen bei abgeordnetenwatch">abgeordnetenwatch</a>`;
+      badge += `<a class="cp-aw" href="${escapeHtml(awHref)}" target="_blank" rel="noopener noreferrer" title="Profil bei abgeordnetenwatch">abgeordnetenwatch</a>`;
     }
 
     const metaRows = [];
@@ -399,8 +399,8 @@
     const awBlock = awHref
       ? `<div class="cp-card cp-source">
           <h2 class="cp-section-title">abgeordnetenwatch</h2>
-          <div><a href="${escapeHtml(awHref)}" target="_blank" rel="noopener noreferrer">Profil und Fragen stellen</a></div>
-          <p class="cp-note">Wahlkreisprofil, Positionen und das Frageportal von abgeordnetenwatch (nicht von Zweitstimme betrieben).</p>
+          <div><a href="${escapeHtml(awHref)}" target="_blank" rel="noopener noreferrer">Profil ansehen</a></div>
+          <p class="cp-note">Wahlkreisprofil und Positionen von abgeordnetenwatch (nicht von Zweitstimme betrieben).</p>
         </div>`
       : "";
     const sourceBlock = sourceHtml
