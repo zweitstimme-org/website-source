@@ -1811,15 +1811,13 @@
       Object.values(winners).forEach(w => {
         tally[w.partei] = (tally[w.partei] || 0) + 1;
       });
-      const detail = document.getElementById('vorhersage-districts-detail');
-      if (detail && !hasFocus) {
-        detail.style.display = 'block';
-        detail.innerHTML = `
-          <div style="text-align:center; font-size:0.9rem; color:#333;">
-            Voraus. Direktmandate:
-            ${Object.entries(tally).sort((a,b)=>b[1]-a[1]).map(([p,n]) => `<strong>${p}</strong> ${n}`).join(' · ')}
-            <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
-          </div>
+      const hint = document.getElementById('vorhersage-districts-hint');
+      if (hint) {
+        hint.style.display = 'block';
+        hint.innerHTML = `
+          Voraus. Direktmandate:
+          ${Object.entries(tally).sort((a,b)=>b[1]-a[1]).map(([p,n]) => `<strong>${p}</strong> ${n}`).join(' · ')}
+          <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
         `;
       }
       renderDistrictGender(items, meta);
