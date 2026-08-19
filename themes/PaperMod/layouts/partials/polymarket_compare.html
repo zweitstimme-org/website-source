@@ -1,0 +1,90 @@
+{{/*
+  Polymarket vs zweitstimme scenario comparison (preview only).
+*/}}
+<style>
+.pm-page { max-width: 760px; margin: 0 auto; font-size: 0.95rem; }
+.pm-lede { color: var(--secondary, #555); line-height: 1.5; margin: 0 0 1.1rem; }
+.pm-meta { font-size: 0.82rem; color: var(--secondary, #666); margin: 0 0 1.25rem; }
+.pm-tabs, .pm-sorts { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 0.7rem; }
+.pm-sorts { margin: 0 0 1.1rem; align-items: center; }
+.pm-sort-label { font-size: 0.75rem; color: var(--secondary, #777); margin-right: 0.15rem; }
+.pm-tab {
+  border: 1px solid var(--border, #ddd);
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.28rem 0.8rem;
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  color: #222;
+}
+.pm-tab.is-on { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+.pm-legend button {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: right;
+}
+.pm-legend button.is-on { color: #111; font-weight: 700; }
+.pm-row-ctx { font-size: 0.72rem; color: var(--secondary, #777); margin-bottom: 0.12rem; }
+.pm-h2 { font-size: 1.12rem; margin: 1.5rem 0 0.7rem; }
+.pm-ov { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 0 0 0.4rem; }
+.pm-ov th, .pm-ov td { padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--border, #eee); }
+.pm-ov th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--secondary, #777); font-weight: 600; }
+.pm-ov td:not(:first-child), .pm-ov th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+.pm-dot { display: inline-block; width: 0.65rem; height: 0.65rem; border-radius: 2px; margin-right: 0.4rem; vertical-align: middle; }
+.pm-pm-tag { font-size: 0.68rem; color: var(--secondary, #777); margin-left: 0.35rem; letter-spacing: 0.03em; }
+.pm-group h3 { margin: 0 0 0.2rem; font-size: 1.05rem; }
+.pm-group-sub { margin: 0 0 0.7rem; font-size: 0.8rem; color: var(--secondary, #666); }
+.pm-group-sub a { color: inherit; }
+.pm-legend {
+  display: grid;
+  grid-template-columns: 1fr 3.4rem 3.4rem 3.4rem 3.2rem;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--secondary, #777);
+  margin: 0 0 0.35rem;
+  padding: 0 0.1rem;
+}
+.pm-row {
+  display: grid;
+  grid-template-columns: 1fr 3.4rem 3.4rem 3.4rem 3.2rem;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.45rem 0.1rem;
+  border-top: 1px solid var(--border, #eee);
+}
+.pm-vote { font-size: 0.75rem; color: var(--secondary, #777); margin-top: 0.1rem; }
+.pm-bars { display: flex; flex-direction: column; gap: 3px; margin-top: 0.28rem; }
+.pm-bar-track { height: 7px; background: #eee; border-radius: 4px; overflow: hidden; }
+.pm-bar-fill { height: 100%; border-radius: 4px; min-width: 0; }
+.pm-num { font-variant-numeric: tabular-nums; font-weight: 650; text-align: right; }
+.pm-delta { font-variant-numeric: tabular-nums; text-align: right; font-size: 0.88rem; }
+.pm-delta.is-pos { color: #1a7f37; }
+.pm-delta.is-neg { color: #b42318; }
+.pm-notes { margin: 1.5rem 0 0; padding: 0.85rem 1rem; background: #f6f5f2; border-radius: 10px; font-size: 0.84rem; color: #444; }
+.pm-notes ul { margin: 0.35rem 0 0; padding-left: 1.15rem; }
+.pm-err { color: #b42318; }
+@media (max-width: 640px) {
+  .pm-legend, .pm-row { grid-template-columns: 1fr 2.8rem 2.8rem 2.8rem 2.6rem; }
+  .pm-row-label { font-size: 0.82rem; }
+}
+</style>
+<div id="pm-root" class="pm-page"
+     data-json="{{ "data/polymarket_compare.json" | relURL }}">
+  <p class="pm-lede">Szenario-Wahrscheinlichkeiten aus der Wahlkreis-Simulation neben einem naiven Sitzmodell (letzte Parlamentsgröße × Stimmenanteil, 5%-Hürde) und den Ja-Preisen auf Polymarket.</p>
+  <p class="pm-meta" id="pm-meta">Lade Vergleich …</p>
+  <div class="pm-tabs" id="pm-tabs" role="tablist"></div>
+  <div class="pm-sorts" id="pm-sorts" role="group" aria-label="Sortierung"></div>
+  <div id="pm-body"></div>
+  <div class="pm-notes" id="pm-notes" hidden></div>
+</div>
+<script src="{{ "js/polymarket-compare.js" | relURL }}" defer></script>

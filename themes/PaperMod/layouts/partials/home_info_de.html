@@ -1290,7 +1290,7 @@ function updateProbability(textId, progressId, value, type) {
       Schauen Sie später wieder vorbei — dann finden Sie hier die Modellprognosen.
     </div>
     <div class="state-coats-of-arms" id="vorhersage-targets"></div>
-    <div id="vorhersage-panel" style="display: none; margin-top: 0.25rem;">
+    <div id="vorhersage-panel" style="display: none; margin-top: 0;">
       <div style="width: 100%; max-width: 700px; margin: 0 auto; height: 300px; position: relative;">
         <canvas id="vorhersage-chart"></canvas>
       </div>
@@ -1299,6 +1299,29 @@ function updateProbability(textId, progressId, value, type) {
           <h3 class="scenario-prob-heading">Szenario-Wahrscheinlichkeiten</h3>
           <div id="vorhersage-scenarios-list" class="scenario-prob-list is-collapsed"></div>
           <button type="button" id="vorhersage-scenarios-toggle" class="scenario-prob-toggle" style="display: none;" aria-expanded="false">Mehr anzeigen</button>
+        </div>
+      </div>
+      <div id="vorhersage-districts-embed-section" style="display: none; margin: 1.25rem auto 0; max-width: 700px;">
+        <div id="vorhersage-districts-embed-content" class="scenario-prob-panel">
+          <h3 class="scenario-prob-heading">Wahlkreise und Listen</h3>
+          <div id="vorhersage-embed-root" class="vorhersage-embed" style="display:none; margin-top:0; padding-top:0; border-top:0;">
+            <div id="vorhersage-districts-section" class="vorhersage-home-map" style="display:none;">
+              <div id="vorhersage-districts-map"></div>
+            </div>
+          </div>
+
+          <div class="vorhersage-subpage-links" aria-label="Weiterführende Links">
+            <a
+              id="vorhersage-subpage-link-wahlkreise"
+              class="scenario-prob-toggle vorhersage-subpage-link"
+              href="{{ "direktmandate/" | relURL }}"
+            >→ Wahlkreise</a>
+            <a
+              id="vorhersage-subpage-link-einzug"
+              class="scenario-prob-toggle vorhersage-subpage-link"
+              href="{{ "einzug/" | relURL }}"
+            >→ Alle Kandidierende</a>
+          </div>
         </div>
       </div>
       <div id="vorhersage-methodology" style="text-align: center; color: #888; font-size: 0.95rem; margin-top: 0.75rem;">
@@ -1996,8 +2019,8 @@ section {
   gap: 0.85rem 1.25rem;
 }
 
-/* Desktop: 2 columns → 3 rows = first 6 items. Mobile: 1 column → first 3. */
-.scenario-prob-list.is-collapsed .scenario-prob-item:nth-child(n+7) {
+/* Desktop: 2 columns → 2 rows = first 4 items. Mobile: first 4 as well. */
+.scenario-prob-list.is-collapsed .scenario-prob-item:nth-child(n+5) {
   display: none;
 }
 
@@ -2034,6 +2057,91 @@ section {
 .scenario-prob-toggle:hover {
   background: #efefef;
   border-color: #d0d0d0;
+}
+
+.vorhersage-embed {
+  margin-top: 1.15rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid #eee;
+}
+
+.vorhersage-embed-toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 0 0 0.9rem;
+}
+
+.vorhersage-embed-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 0.9rem;
+}
+
+.vorhersage-embed-toggle-btn {
+  appearance: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background: #f7f7f7;
+  color: #444;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.vorhersage-embed-toggle-btn:hover {
+  background: #efefef;
+  border-color: #d0d0d0;
+}
+
+.vorhersage-embed-toggle-btn.is-active {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+.vorhersage-home-map {
+  height: 220px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+}
+.vorhersage-home-map #vorhersage-districts-map {
+  width: 100%;
+  height: 220px;
+}
+
+.vorhersage-subpage-links {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 0.9rem;
+  position: relative;
+  z-index: 5;
+}
+
+a.vorhersage-subpage-link {
+  flex: 1;
+  margin-top: 0;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  color: #444;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .vorhersage-home-map,
+  .vorhersage-home-map #vorhersage-districts-map { height: 200px; }
+  .vorhersage-subpage-links { flex-direction: column; }
 }
 
 .scenario-prob-item {
@@ -2098,7 +2206,7 @@ section {
     gap: 0.75rem;
   }
 
-  .scenario-prob-list.is-collapsed .scenario-prob-item:nth-child(n+4) {
+  .scenario-prob-list.is-collapsed .scenario-prob-item:nth-child(n+5) {
     display: none;
   }
 }
@@ -2561,7 +2669,7 @@ section {
 /* Forecast charts sit directly under the target tiles — tighten the gap */
 #vorhersage-targets,
 #vorhersage-archive-targets {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0;
 }
 
 .state-arm {
@@ -5859,11 +5967,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
-<script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
+<script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=7"></script>
 <script src="{{ "js/enhanced-party-mapper.js" | relURL }}"></script>
 <script src="{{ "js/polls-mapper-aggregator.js" | relURL }}"></script>
 <script src="{{ "js/kalman-latent-support.js" | relURL }}"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=23"></script>
 <script>
 // Bundestag forecast chart functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -6663,7 +6772,7 @@ document.addEventListener('DOMContentLoaded', function() {
         responsive: true,
         maintainAspectRatio: false,
         animation: false,
-        layout: { padding: { top: 18 } },
+        layout: { padding: { top: 4 } },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -6750,6 +6859,121 @@ document.addEventListener('DOMContentLoaded', function() {
   let vorhersageTargets = [];
   let currentVorhersageKey = null;
 
+  const vorhersageDistrictEmbedSupportedStates = new Set(["BE", "MV", "ST"]);
+  let vorhersageDistrictEmbedMode = "wkr"; // "wkr" = Wahlkreise, "cand" = Kandidierende
+  let vorhersageDistrictEmbedCurrentStateCode = null;
+  let vorhersageDistrictEmbedBound = false;
+
+  function vorhersageEmbedSiteBase() {
+    try {
+      if (window.pipelineData && window.pipelineData.SITE_BASE) {
+        return String(window.pipelineData.SITE_BASE).replace(/\/?$/, "/");
+      }
+    } catch (_) {
+      /* ignore */
+    }
+    return "/";
+  }
+
+  function setVorhersageDistrictEmbedMode(mode) {
+    const root = document.getElementById("vorhersage-embed-root");
+    const candView = document.getElementById("vorhersage-embed-cand-view");
+    const wkrBtn = document.getElementById("vorhersage-embed-wahlkreise-btn");
+    const candBtn = document.getElementById("vorhersage-embed-kandidierende-btn");
+    if (!root || !candView || !wkrBtn || !candBtn) return;
+
+    vorhersageDistrictEmbedMode = mode === "cand" ? "cand" : "wkr";
+    const showCand = vorhersageDistrictEmbedMode === "cand";
+    root.style.display = showCand ? "none" : "block";
+    candView.style.display = showCand ? "block" : "none";
+
+    wkrBtn.classList.toggle("is-active", !showCand);
+    candBtn.classList.toggle("is-active", showCand);
+    wkrBtn.setAttribute("aria-pressed", showCand ? "false" : "true");
+    candBtn.setAttribute("aria-pressed", showCand ? "true" : "false");
+  }
+
+  function bindVorhersageDistrictEmbedControls() {
+    if (vorhersageDistrictEmbedBound) return;
+    const wkrBtn = document.getElementById("vorhersage-embed-wahlkreise-btn");
+    const candBtn = document.getElementById("vorhersage-embed-kandidierende-btn");
+    if (!wkrBtn || !candBtn) return;
+
+    wkrBtn.addEventListener("click", () => {
+      setVorhersageDistrictEmbedMode("wkr");
+      if (vorhersageDistrictEmbedCurrentStateCode) {
+        if (window.DistrictForecastMap && typeof window.DistrictForecastMap.mount === "function") {
+          window.DistrictForecastMap.mount({
+            code: vorhersageDistrictEmbedCurrentStateCode,
+            navigateToWkr: true,
+            extraZoom: 0.7,
+          }).catch((e) => console.warn("DistrictForecastMap mount failed", e));
+        }
+      }
+    });
+    candBtn.addEventListener("click", () => {
+      setVorhersageDistrictEmbedMode("cand");
+      if (vorhersageDistrictEmbedCurrentStateCode) {
+        try {
+          const u = new URL(window.location.href);
+          u.searchParams.set("state", vorhersageDistrictEmbedCurrentStateCode);
+          window.history.replaceState({}, "", u.pathname + u.search + u.hash);
+        } catch (_) { /* ignore */ }
+        const ceRoot = document.getElementById("candidate-entry-root");
+        if (window.candidateEntry && ceRoot) {
+          window.candidateEntry.mount(ceRoot);
+        }
+      }
+    });
+    // Ensure initial state is in sync with defaults / SSR.
+    setVorhersageDistrictEmbedMode(vorhersageDistrictEmbedMode);
+
+    vorhersageDistrictEmbedBound = true;
+  }
+
+  // Bind Wahlkreise/Kandidierende toggle once.
+  bindVorhersageDistrictEmbedControls();
+
+  function updateVorhersageDistrictEmbedForTarget(target) {
+    const section = document.getElementById("vorhersage-districts-embed-section");
+    const root = document.getElementById("vorhersage-embed-root");
+    const mapSection = document.getElementById("vorhersage-districts-section");
+    const mapEl = document.getElementById("vorhersage-districts-map");
+    if (!section || !root || !mapSection || !mapEl) return;
+
+    const stateCode = target && target.scope === "state" ? String(target.code || "").toUpperCase() : "";
+    const supported = vorhersageDistrictEmbedSupportedStates.has(stateCode);
+    if (!supported) {
+      section.style.display = "none";
+      root.style.display = "none";
+      return;
+    }
+
+    section.style.display = "";
+    root.style.display = "";
+
+    // Update subpage links (arrows) for the current state.
+    const linkWkr = document.getElementById("vorhersage-subpage-link-wahlkreise");
+    const linkEinzug = document.getElementById("vorhersage-subpage-link-einzug");
+    if (linkWkr || linkEinzug) {
+      const base = vorhersageEmbedSiteBase();
+      const st = encodeURIComponent(stateCode);
+      if (linkWkr) linkWkr.href = `${base}direktmandate/?state=${st}`;
+      if (linkEinzug) linkEinzug.href = `${base}einzug/?state=${st}`;
+    }
+
+    // Mount Leaflet directly on the homepage (no iframe).
+    if (window.DistrictForecastMap && typeof window.DistrictForecastMap.mount === "function") {
+      window.DistrictForecastMap.mount({
+        code: stateCode,
+        navigateToWkr: true,
+        extraZoom: 0.7,
+      }).catch((e) => {
+        console.warn("DistrictForecastMap mount failed", e);
+      });
+    }
+  }
+
   function forecastTargetLabel(target) {
     if (target.scope === 'federal') return 'Bundestag';
     return FORECAST_STATE_NAMES[target.code] || (target.election_name || '').replace(/^Landtagswahl\s+/, '') || target.code;
@@ -6801,7 +7025,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function bindScenarioToggle(list, toggle) {
     if (!list || !toggle) return;
-    const collapsedLimit = window.matchMedia('(max-width: 640px)').matches ? 3 : 6;
+    const collapsedLimit = 4;
     const needsToggle = list.children.length > collapsedLimit;
     toggle.style.display = needsToggle ? 'block' : 'none';
     if (!needsToggle) {
@@ -6995,6 +7219,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       await createPipelineForecastChart('vorhersage-chart', forecast);
       renderVorhersageScenarios(forecast);
+      updateVorhersageDistrictEmbedForTarget(target);
       await setVorhersageDates(forecast, target);
     } catch (e) {
       console.warn('Vorhersage chart unavailable', e);

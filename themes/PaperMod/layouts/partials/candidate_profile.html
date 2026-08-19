@@ -1,0 +1,197 @@
+{{/*
+  Single-candidate profile (JSON-driven via ?id= or state/party/name).
+*/}}
+<style>
+.cp-wrap { max-width: 720px; margin: 0 auto; }
+.cp-loading, .cp-error {
+  color: #555;
+  font-size: 0.95rem;
+}
+.cp-error { color: #a33; }
+.cp-back {
+  display: inline-block;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #0056b3;
+  text-decoration: none;
+}
+.cp-back:hover { text-decoration: underline; }
+.cp-card {
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  background: #fafafa;
+  padding: 1rem 1.15rem 1.15rem;
+  margin: 0 0 1.1rem;
+}
+.cp-name-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
+  margin: 0 0 0.85rem;
+}
+.cp-name {
+  margin: 0;
+  width: auto;
+  flex: 0 1 auto;
+  font-size: 1.55rem;
+  font-weight: 750;
+  line-height: 1.2;
+  color: #111;
+}
+.cp-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+}
+a.cp-badge:hover { opacity: 0.88; }
+.cp-aw {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 650;
+  padding: 0.12rem 0.42rem;
+  border-radius: 4px;
+  border: 1px solid #c5ccd4;
+  background: #eef1f4;
+  color: #334;
+  text-decoration: none;
+}
+a.cp-aw:hover { color: #003d80; border-color: #003d80; background: #e8eef6; }
+.cp-party {
+  font-size: 1.05rem;
+  font-weight: 650;
+  margin: 0;
+  flex: 0 0 auto;
+}
+.cp-wrap .cp-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem 2rem;
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.cp-wrap .cp-meta-item {
+  min-width: 0;
+}
+.cp-wrap .cp-meta dt,
+.cp-wrap .cp-meta dd {
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+.cp-wrap .cp-meta dt {
+  margin-bottom: 0.12rem;
+  color: #666;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.cp-wrap .cp-meta dd {
+  color: #222;
+}
+.cp-wrap .cp-meta a {
+  color: #0056b3;
+  text-decoration: none;
+}
+.cp-wrap .cp-meta a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 520px) {
+  .cp-wrap .cp-meta { grid-template-columns: 1fr; }
+}
+.cp-section-title {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.cp-probs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+  gap: 0.55rem;
+  margin: 0 0 0.35rem;
+}
+.cp-prob {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  text-align: center;
+}
+.cp-prob-label {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0 0 0.2rem;
+}
+.cp-prob-value {
+  font-size: 1.25rem;
+  font-weight: 750;
+  color: #111;
+}
+.cp-note {
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0.55rem 0 0;
+  line-height: 1.4;
+}
+.cp-explain-block {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e6e6e6;
+}
+.cp-explain-heading {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #222;
+}
+.cp-explain {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #333;
+}
+.cp-explain:last-child { margin-bottom: 0; }
+.cp-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+  margin: 0.85rem 0 0;
+  font-size: 0.9rem;
+}
+.cp-links a { color: #0056b3; }
+.cp-source {
+  margin-top: 0.25rem;
+}
+.cp-source a {
+  word-break: break-all;
+  color: #0056b3;
+}
+.cp-source-path {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  color: #444;
+  background: #eee;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  word-break: break-all;
+}
+.cp-ph {
+  font-style: italic;
+  color: #777;
+  font-weight: 500;
+}
+</style>
+<div class="cp-wrap" id="candidate-profile-root">
+  <p class="cp-loading">Lade Kandidat:innenprofil…</p>
+</div>
+<script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
+<script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
+<script src="{{ "js/candidate-profile.js" | relURL }}?v=9" defer></script>

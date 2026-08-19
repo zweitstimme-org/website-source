@@ -13,7 +13,7 @@
     "ST": {
       "mode": "forecast",
       "election_date": "2026-09-06",
-      "days_to_election": 19,
+      "days_to_election": 18,
       "election_name": "Landtagswahl Sachsen-Anhalt",
       "date_is_estimated": false,
       "forecast_available": true
@@ -21,7 +21,7 @@
     "BE": {
       "mode": "forecast",
       "election_date": "2026-09-20",
-      "days_to_election": 33,
+      "days_to_election": 32,
       "election_name": "Landtagswahl Berlin",
       "date_is_estimated": false,
       "forecast_available": true
@@ -29,7 +29,7 @@
     "MV": {
       "mode": "forecast",
       "election_date": "2026-09-20",
-      "days_to_election": 33,
+      "days_to_election": 32,
       "election_name": "Landtagswahl Mecklenburg-Vorpommern",
       "date_is_estimated": false,
       "forecast_available": true

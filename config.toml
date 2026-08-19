@@ -85,6 +85,11 @@ disableXML = true
       url = "https://bsky.app/profile/zweitstimme.bsky.social"
       weight = 40
 
+
+      [[languages.de.menu.footer]]
+      name = "LinkedIn"
+      url = "https://www.linkedin.com/company/zweitstimme-org/posts/"
+      weight = 45
       [[languages.de.menu.footer]]
       name = "Github"
       url = "https://github.com/zweitstimme-org"
@@ -127,6 +132,10 @@ label.icon = "/images/logo_orange.png"
   [[params.socialIcons]]
   name = "github"
   url = "https://github.com/zweitstimme-org"
+
+  [[params.socialIcons]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/company/zweitstimme-org/posts/"
 
 
   [params.assets]

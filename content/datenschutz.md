@@ -28,7 +28,7 @@ Um einen groben Überblick über die Nutzung der Website zu erhalten (Seitenaufr
 Dabei gilt:
 
 - Es werden **keine Cookies** gesetzt und kein Gerät wiedererkannt.
-- Gezählt werden ein Tageszähler und der aufgerufene Pfad. Bei Vorschau-Seiten (Kandidat:innen, Listen, Wahlkreise) speichern wir zusätzlich öffentlich sichtbare Parameter (`id`, Land, Partei, Wahlkreis, Bezirk, Name) — keine Suchbegriffe.
+- Gezählt werden ein Tageszähler und der aufgerufene Pfad. Bei Unterseiten zu Kandidat:innen, Listen und Wahlkreisen speichern wir zusätzlich öffentlich sichtbare Parameter (`id`, Land, Partei, Wahlkreis, Bezirk, Name) — keine Suchbegriffe.
 - Zusätzlich speichern wir grob geschätztes Herkunftsland, Bundesland/Region und Stadt aus einer lokalen Geo-Datenbank. Die Zuordnung ist ungenau. Koordinaten und IP-Adresse werden nicht gespeichert. Bei vermutetem Mobilfunk- oder Rechenzentrumszugang speichern wir keine Stadt/Region.
 - Browser, Betriebssystem und User-Agent werden nicht gespeichert. Es wird nur grob erfasst, ob das Browserfenster schmal (höchstens 768 Pixel) oder breit ist.
 - Browser mit Do-Not-Track oder Global Privacy Control werden nicht gezählt.

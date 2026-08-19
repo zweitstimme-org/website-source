@@ -280,7 +280,7 @@
     ctx.restore();
   }
 
-  var EXTRA_TOP = 38;
+  var EXTRA_TOP = 0;
 
   function applyChartPadding(chart) {
     if (!chart || !chart.options) return;
@@ -316,18 +316,22 @@
       if (pluginOpts && pluginOpts.display === false) return;
       try {
         if (!chart || !chart.ctx) return;
-        drawZweitstimmeWatermark(chart.ctx, {
-          left: 0,
-          top: 0,
-          right: chart.width,
-          bottom: chart.height
-        }, Object.assign({
+        var ca = chart.chartArea;
+        var area = (ca && ca.right > ca.left && ca.bottom > ca.top)
+          ? { left: ca.left, top: ca.top, right: ca.right, bottom: ca.bottom }
+          : { left: 0, top: 0, right: chart.width, bottom: chart.height };
+        chart.ctx.save();
+        chart.ctx.beginPath();
+        chart.ctx.rect(area.left, area.top, area.right - area.left, area.bottom - area.top);
+        chart.ctx.clip();
+        drawZweitstimmeWatermark(chart.ctx, area, Object.assign({
           maxWidth: 168,
           maxHeight: 32,
-          pad: 8,
+          pad: 18,
           opacity: 0.55,
           anchor: 'top-right'
         }, pluginOpts || {}));
+        chart.ctx.restore();
       } catch (e) {
         console.warn('zweitstimmeWatermark plugin error:', e);
       }

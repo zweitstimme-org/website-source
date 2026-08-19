@@ -1,0 +1,30 @@
+{{/*
+  Shared banner for /preview/* pages: internal preview, do not share.
+*/}}
+<style>
+.preview-do-not-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid #c9a227;
+  border-left: 4px solid #b8860b;
+  background: #fff8e1;
+  color: #3d3200;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.preview-do-not-share strong {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.preview-do-not-share span {
+  color: #5a4a00;
+}
+</style>
+<aside class="preview-do-not-share" role="status" aria-label="Vorschau-Hinweis">
+  <strong>Vorschau — bitte nicht teilen</strong>
+  <span>Interne Vorab-Ansicht, noch nicht freigegeben.</span>
+</aside>

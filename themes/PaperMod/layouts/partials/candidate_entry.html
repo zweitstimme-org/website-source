@@ -1,0 +1,417 @@
+{{/*
+  Preview: Einzugschancen Direkt + Liste (BE/MV/ST).
+*/}}
+<style>
+.ce-wrap { max-width: 960px; margin: 0 auto; }
+.ce-caveat {
+  font-size: 0.9rem;
+  color: #444;
+  background: #f7f7f7;
+  border-left: 3px solid #999;
+  padding: 0.65rem 0.85rem;
+  margin: 0 0 1rem;
+}
+.ce-explainer {
+  margin: 0 0 1.1rem;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  background: #fafafa;
+  padding: 0.55rem 0.85rem 0.7rem;
+}
+.ce-explainer > summary {
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 0.95rem;
+  list-style: none;
+  color: #222;
+}
+.ce-explainer > summary::-webkit-details-marker { display: none; }
+.ce-explainer > summary::before {
+  content: "▸ ";
+  color: #666;
+  font-weight: 400;
+}
+.ce-explainer[open] > summary::before { content: "▾ "; }
+.ce-explainer-body {
+  margin-top: 0.65rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #333;
+}
+.ce-explainer-body p { margin: 0 0 0.55rem; }
+.ce-explainer-body ul {
+  margin: 0 0 0.65rem;
+  padding-left: 1.15rem;
+}
+.ce-explainer-body li { margin: 0.2rem 0; }
+.ce-explainer-body code {
+  font-size: 0.84em;
+  background: #eee;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+}
+.ce-controls { margin-bottom: 0.75rem; }
+.ce-state-tabs,
+.ce-party-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+.ce-tab,
+.ce-party-tab {
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.ce-tab.is-active {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+.ce-party-tab {
+  font-weight: 600;
+  background: #fff;
+}
+.ce-party-tab.is-active {
+  font-weight: 700;
+}
+.ce-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: end;
+  font-size: 0.85rem;
+}
+.ce-filters label { display: flex; flex-direction: column; gap: 0.2rem; }
+.ce-filters input[type="search"],
+.ce-filters input[type="number"],
+.ce-filters select {
+  min-width: 9rem;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.ce-check { flex-direction: row !important; align-items: center; gap: 0.4rem !important; padding-bottom: 0.35rem; }
+.ce-note { font-size: 0.85rem; color: #555; margin: 0.5rem 0 0.85rem; }
+.ce-party-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+.ce-party-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+.ce-meta { color: #666; font-size: 0.85rem; }
+.ce-table-wrap { overflow-x: auto; }
+.ce-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.ce-table th,
+.ce-table td {
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0.4rem 0.45rem;
+  text-align: left;
+  vertical-align: middle;
+}
+.ce-table th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.02em; color: #666; }
+.ce-table th.ce-sortable {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+.ce-table th.ce-sortable:hover { color: #222; }
+.ce-table th.ce-sortable.is-sorted { color: #111; font-weight: 700; }
+.ce-num { text-align: right !important; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ce-entry { min-width: 7.5rem; }
+.ce-ph { color: #777; font-style: italic; }
+.ce-na { color: #888; font-size: 0.92em; }
+.ce-ph-hint {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0 0 0.65rem;
+  line-height: 1.4;
+}
+.ce-bar {
+  display: inline-block;
+  width: 3.2rem;
+  height: 0.45rem;
+  background: #eee;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-left: 0.25rem;
+  overflow: hidden;
+}
+.ce-bar-fill { display: block; height: 100%; }
+.ce-loading, .ce-error { color: #555; }
+.ce-cross-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.1rem;
+  margin: 0 0 0.85rem;
+  font-size: 0.88rem;
+  align-items: baseline;
+}
+.ce-cross-nav .is-here {
+  color: #333;
+  font-weight: 650;
+}
+.ce-cross-nav a {
+  color: var(--primary, #0056b3);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ce-cross-nav a:hover {
+  color: var(--primary, #003d80);
+}
+.ce-cross { font-size: 0.85rem; margin: 0 0 0.75rem; }
+.ce-cross a,
+a.ce-wk-link,
+a.ce-source-link {
+  color: var(--primary, #0056b3);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a.ce-source-link:hover {
+  color: var(--primary, #003d80);
+}
+.ce-name-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.28rem;
+  flex-wrap: wrap;
+}
+.ce-incumbent {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #445;
+  background: #eef1f4;
+  border: 1px solid #c5ccd4;
+  border-radius: 0.2rem;
+  padding: 0.05rem 0.28rem;
+  line-height: 1.2;
+  text-decoration: none !important;
+  vertical-align: baseline;
+}
+a.ce-incumbent:hover {
+  color: var(--primary, #003d80);
+  border-color: var(--primary, #003d80);
+  background: #e8eef6;
+}
+.ce-aw {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #445;
+  background: #eef1f4;
+  border: 1px solid #c5ccd4;
+  border-radius: 0.2rem;
+  padding: 0.05rem 0.28rem;
+  line-height: 1.2;
+  text-decoration: none !important;
+  vertical-align: baseline;
+}
+a.ce-aw:hover {
+  color: var(--primary, #003d80);
+  border-color: var(--primary, #003d80);
+  background: #e8eef6;
+}
+.ce-cand-info {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+}
+.ce-cand-info > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.ce-cand-info > summary::-webkit-details-marker { display: none; }
+.ce-cand-info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  border: 1px solid #8a93a0;
+  color: #555;
+  background: #f4f6f8;
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-style: normal;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1;
+  padding: 0;
+  user-select: none;
+}
+.ce-cand-info-btn:hover,
+.ce-cand-info[open] > .ce-cand-info-btn {
+  border-color: var(--primary, #0056b3);
+  color: var(--primary, #0056b3);
+  background: #eef4fb;
+}
+.ce-cand-info-body {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  top: calc(100% + 0.3rem);
+  min-width: 12.5rem;
+  max-width: 18rem;
+  padding: 0.55rem 0.65rem;
+  background: #fff;
+  border: 1px solid #cfd5dd;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: #333;
+  line-height: 1.35;
+  white-space: normal;
+}
+.ce-cand-info-body > div + div { margin-top: 0.2rem; }
+.ce-cand-info-src {
+  margin-top: 0.4rem !important;
+  padding-top: 0.35rem;
+  border-top: 1px solid #e6e9ee;
+  font-size: 0.7rem;
+  color: #777;
+}
+.ce-row-hl td {
+  background: #fff3cc;
+}
+.ce-row-hl td:first-child {
+  box-shadow: inset 3px 0 0 #d4a017;
+}
+.ce-table tr.ce-group td {
+  background: #eceff3;
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #1a1a1a;
+  padding-top: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #cfd5dd;
+  letter-spacing: 0.01em;
+}
+.ce-table tr.ce-group .ce-group-label {
+  margin-right: 0.75rem;
+}
+.ce-table tr.ce-group .ce-gender {
+  display: inline-flex;
+  vertical-align: middle;
+  font-weight: 500;
+  margin: 0;
+}
+.ce-gender-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  margin: 0 0 0.75rem;
+}
+.ce-gender {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 0.8rem;
+  color: #444;
+  flex-wrap: wrap;
+}
+.ce-gender-kind {
+  flex: 0 0 7.5rem;
+  font-size: 0.72rem;
+  color: #666;
+  line-height: 1.2;
+}
+.ce-gender-bar {
+  display: inline-flex;
+  width: 5.5rem;
+  height: 0.45rem;
+  background: #c5d4e8;
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.ce-gender-f {
+  display: block;
+  height: 100%;
+  background: #8b5a7a;
+}
+.ce-gender-label { line-height: 1.3; }
+.ce-gender-empty .ce-gender-label {
+  color: #777;
+  font-style: italic;
+}
+@media (max-width: 640px) {
+  .ce-gender-kind { flex-basis: 6.2rem; font-size: 0.68rem; }
+  .ce-table {
+    font-size: 0.76rem;
+  }
+  .ce-table th,
+  .ce-table td {
+    padding: 0.28rem 0.22rem;
+  }
+  .ce-table th {
+    font-size: 0.66rem;
+    letter-spacing: 0;
+  }
+  .ce-entry { min-width: 0; }
+  .ce-bar { display: none; }
+}
+</style>
+
+<details class="ce-explainer">
+  <summary>So lesen Sie die Einzugschancen</summary>
+  <div class="ce-explainer-body">
+    <p>
+      Pro Person schätzen wir, wie oft sie in unserem Modell ins Parlament käme —
+      über ein <strong>Direktmandat</strong>, über die <strong>Liste</strong>, oder beides.
+      Grundlage sind dieselben Umfrage- und Wahlkreis-Simulationen wie bei der
+      <a href="{{ "direktmandate/" | relURL }}">Direktmandate-Karte</a>.
+    </p>
+    <ul>
+      <li><strong>Einzug</strong> — Anteil der Simulationen, in denen die Person einen Sitz erhält (Direkt und/oder Liste).</li>
+      <li><strong>Direkt</strong> — Anteil, in dem sie ihren Wahlkreis gewinnt.</li>
+      <li><strong>Liste&nbsp;%</strong> — Anteil, in dem sie über die Liste nachrückt (nur wenn ein Listenplatz bekannt ist).</li>
+      <li><strong>Listenplatz / WK</strong> — bekannter Listenplatz bzw. Direktwahlkreis. Ohne Listenplatz steht <code>—</code>, Liste&nbsp;% ebenfalls, und <strong>Einzug = Direkt</strong>.</li>
+      <li><strong>Quellen</strong> — auf der <a href="{{ "kandidat/" | relURL }}">Profilseite</a> der Person ausgewiesen; Namen verlinken dorthin.</li>
+      <li><strong>i-Button</strong> (Sachsen-Anhalt) — Geburtsjahr/-ort, Wohnort und Beruf laut Landeswahlleiterin / StaLa.</li>
+      <li><strong>Geschlechteranteil</strong> — geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen), nicht amtlich.
+        Getrennt ausgewiesen: <em>Gesamt</em>, nur <em>Liste</em>, nur <em>Direkt</em>,
+        sowie gewichtet mit <em>P(Liste)</em> bzw. <em>P(Sieg)</em> (erwartete Anteile unter Einziehenden;
+        inkl. erwarteter Mandatszahl Σ&nbsp;P; bei Σ&nbsp;P&nbsp;&lt;&nbsp;1:&nbsp;„keine Mandate erwartet“, kein %-Anteil).
+        Unklare Namen zählen separat und fallen aus dem %-Anteil.</li>
+    </ul>
+    <p>
+      <strong>Doppelkandidatur:</strong> Wer schon über Direkt einzieht, wird auf der Liste
+      übersprungen — darunterliegende Plätze rücken nach. Deshalb kann jemand mit
+      schlechterem Listenplatz eine höhere Listen-Chance haben, wenn darüber viele
+      Direktmandate gewinnen.
+    </p>
+    <p>
+      <strong>Berlin:</strong> CDU, SPD und Linke verteilen Sitze über Bezirkslisten
+      (aus geswingten historischen Bezirk-Zweitstimmen); Grüne, AfD, FDP und BSW über
+      eine Landesliste. Ein Direktmandat reicht hier als Grundmandat für den Parteieinzug.
+      In MV und ST gilt die Landesliste in Listenplatz-Reihenfolge — ohne Grundmandatsklausel;
+      unter 5 % gibt es keine Listensitze, gewonnene Direktmandate bleiben aber.
+    </p>
+    <p>
+      Fehlende Namen erscheinen kursiv als Platzhalter und zählen als eigene Personen.
+      Solange die amtlichen Bewerbungsverzeichnisse unvollständig sind, sind die Werte
+      indikativ — vor allem weiter hinten auf den Listen.
+    </p>
+  </div>
+</details>
+
+<div id="candidate-entry-root"></div>
+<script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
+<script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=19" defer></script>
+{{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}
