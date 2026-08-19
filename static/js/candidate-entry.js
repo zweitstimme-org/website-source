@@ -17,6 +17,8 @@
   const UNOFFICIAL_SOURCE_NOTE =
     "Die hier angezeigten Namen stammen überwiegend aus Angaben der Parteien; je Person finden Sie die genutzte Quelle auf der Profilseite. Nichtamtliche Namensstände können sich bis zum amtlichen Bewerberverzeichnis ändern.";
 
+  let genderFoldOpen = false;
+
   const PARTY_COLOR = {
     spd: "#E3000F",
     afd: "#009EE0",
@@ -181,7 +183,10 @@
       }),
     ].filter(Boolean);
     if (!rows.length) return "";
-    return `<div class="ce-gender-block">${rows.join("")}<div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div></div>`;
+    return `<details class="ce-gender-fold"${genderFoldOpen ? " open" : ""}>
+      <summary>Geschlechteranteil</summary>
+      <div class="ce-gender-block">${rows.join("")}<div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div></div>
+    </details>`;
   }
 
   function pctBar(pct, color) {
@@ -768,8 +773,17 @@
               : ""
         }`;
 
+      function bindGenderFold() {
+        const fold = tableWrap.querySelector("details.ce-gender-fold");
+        if (!fold) return;
+        fold.addEventListener("toggle", () => {
+          genderFoldOpen = fold.open;
+        });
+      }
+
       if (!rows.length) {
         tableWrap.innerHTML = head + "<p>Keine Kandidierenden für diese Filter.</p>";
+        bindGenderFold();
         return;
       }
 
@@ -863,6 +877,7 @@
           <tbody>${body}</tbody>
         </table>`;
 
+      bindGenderFold();
       tableWrap.querySelectorAll("th.ce-sortable").forEach((thEl) => {
         thEl.addEventListener("click", () => {
           const key = thEl.getAttribute("data-sort");

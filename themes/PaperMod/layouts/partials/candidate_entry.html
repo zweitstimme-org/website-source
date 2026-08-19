@@ -394,11 +394,35 @@ a.ce-aw:hover {
   font-weight: 500;
   margin: 0;
 }
+.ce-gender-fold {
+  margin: 0 0 0.75rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+.ce-gender-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111;
+  padding: 0.1rem 0;
+}
+.ce-gender-fold > summary::-webkit-details-marker { display: none; }
+.ce-gender-fold > summary::before {
+  content: "▸ ";
+  color: #666;
+  font-weight: 400;
+}
+.ce-gender-fold[open] > summary::before { content: "▾ "; }
+.ce-gender-fold[open] > summary {
+  margin-bottom: 0.4rem;
+}
 .ce-gender-block {
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
-  margin: 0 0 0.75rem;
+  margin: 0;
 }
 .ce-gender {
   display: flex;
@@ -489,5 +513,5 @@ a.ce-aw:hover {
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=22" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=23" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}
