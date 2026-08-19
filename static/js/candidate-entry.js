@@ -879,10 +879,7 @@
             prevKey = key;
             const label =
               c.bezirk_name || (c.bezirk ? `Bezirk ${c.bezirk}` : "Ohne Bezirk");
-            const gHtml = genderRatioHtml(byBez.get(key) || [], {
-              compact: true,
-            });
-            body += `<tr class="ce-group"><td colspan="6"><span class="ce-group-label">${escapeHtml(label)}</span>${gHtml}</td></tr>`;
+            body += `<tr class="ce-group"><td colspan="6"><span class="ce-group-label">${escapeHtml(label)}</span></td></tr>`;
           }
           body += rowHtml(c);
         }

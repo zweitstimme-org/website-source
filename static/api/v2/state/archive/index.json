@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-19T12:22:20Z",
+  "generated_at": "2026-08-19T12:23:04Z",
   "description": "Archived Landtag forecasts (frozen after election day). Populated going forward by the pipeline; past elections are not backfilled.",
   "forecasts": [
     {
