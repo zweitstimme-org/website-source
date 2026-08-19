@@ -338,6 +338,31 @@
     return 'Völlig offen';
   }
 
+  function districtWinLikelihoodIsOpen(label) {
+    return label === 'Offen' || label === 'Völlig offen';
+  }
+
+  /** Headline HTML for the WK detail header (party names escaped). */
+  function districtWinLikelihoodHeadline(label, favorite, partyRows) {
+    const favProb = districtWinProbability(favorite);
+    const favName = escapeHtml((favorite && favorite.partei) || '');
+    if (!label) {
+      return `<strong>${favName}</strong> (P(Sieg): ${formatWinProbabilityPct(favProb)})`;
+    }
+    if (districtWinLikelihoodIsOpen(label)) {
+      const listed = (partyRows || [])
+        .filter((r) => !districtIsOthers(r) && districtWinProbability(r) > 1)
+        .sort((a, b) => (districtWinProbability(b) || 0) - (districtWinProbability(a) || 0));
+      if (listed.length) {
+        const bits = listed.map((r) =>
+          `${escapeHtml(r.partei)} (${formatWinProbabilityPct(districtWinProbability(r))})`
+        );
+        return `${escapeHtml(label)}: ${bits.join(', ')}`;
+      }
+    }
+    return `${escapeHtml(label)}: <strong>${favName}</strong> (${formatWinProbabilityPct(favProb)})`;
+  }
+
   /** District win chance from the Wahlkreis forecast (0–100). */
   function districtWinProbability(row) {
     const n = Number(row && row.probability);
@@ -608,9 +633,7 @@
     };
     const winnerWinProb = districtWinProbability(winner);
     const winnerLikelihood = districtWinLikelihoodLabel(winnerWinProb);
-    const winnerHeadline = winnerLikelihood
-      ? `${escapeHtml(winnerLikelihood)}: <strong>${escapeHtml(winner.partei)}</strong> (${formatWinProbabilityPct(winnerWinProb)})`
-      : `<strong>${escapeHtml(winner.partei)}</strong> (P(Sieg): ${formatWinProbabilityPct(winnerWinProb)})`;
+    const winnerHeadline = districtWinLikelihoodHeadline(winnerLikelihood, winner, allRows);
     // Keep deep-link shareable when user clicks a district
     try {
       if (stateCode && Number.isFinite(Number(wkr))) {
