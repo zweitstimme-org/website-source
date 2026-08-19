@@ -5,7 +5,7 @@
     "statewide_draws": "posterior",
     "seed": 20260730,
     "last_update": "2026-08-18T11:28:51Z",
-    "caveat_de": "Indikativ: Listenplätze teilweise Platzhalter bis amtliche Bewerbungsverzeichnisse vorliegen. Berlin-Bezirkslisten nutzen geswingte historische Bezirk-Zweitstimmen, nicht getrennte Landes-/Bezirkslisten-Stimmen. Geschlechteranteile sind aus Vornamen geschätzt (nicht amtlich).",
+    "caveat_de": "",
     "gender_note_de": "Geschlechteranteile geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen). Keine amtliche Angabe."
   },
   "states": {
@@ -13971,7 +13971,8 @@
             }
           ]
         }
-      ]
+      ],
+      "sources_official": false
     },
     "MV": {
       "state_code": "MV",
@@ -19970,7 +19971,8 @@
             }
           ]
         }
-      ]
+      ],
+      "sources_official": false
     },
     "ST": {
       "state_code": "ST",
@@ -27703,7 +27705,8 @@
             }
           ]
         }
-      ]
+      ],
+      "sources_official": true
     }
   }
 }

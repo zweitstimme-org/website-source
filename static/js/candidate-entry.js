@@ -9,6 +9,9 @@
     { code: "ST", label: "Sachsen-Anhalt" },
   ];
 
+  const UNOFFICIAL_SOURCE_NOTE =
+    "Quellen der Bewerber:innen bisher nicht amtlich — je Person auf der Profilseite.";
+
   const PARTY_COLOR = {
     spd: "#E3000F",
     afd: "#009EE0",
@@ -467,7 +470,6 @@
 
   function render(root, data) {
     const states = data.states || {};
-    const meta = data.metadata || {};
     const params = readQuery();
     let stateCode = String(params.get("state") || "BE").toUpperCase();
     if (!states[stateCode]) stateCode = STATES.find((s) => states[s.code])?.code || "BE";
@@ -486,18 +488,8 @@
 
     bindCandInfoExclusive(root);
 
-    const baseCaveat = escapeHtml(meta.caveat_de || "");
-    const beMvNameDisclaimer =
-      stateCode === "BE" || stateCode === "MV"
-        ? "Hinweis (BE/MV): Die hier angezeigten Direktkandidat:innen-Namen stammen überwiegend aus Angaben der Parteien; je Person finden Sie die genutzte Quelle auf der Profilseite. Nichtamtliche Namensstände können sich bis zum amtlichen Bewerberverzeichnis ändern."
-        : "";
-    const caveatCombined = beMvNameDisclaimer
-      ? `${baseCaveat}<br/>${escapeHtml(beMvNameDisclaimer)}`
-      : baseCaveat;
-
     root.innerHTML = `
       <div class="ce-wrap">
-        <p class="ce-caveat">${caveatCombined}</p>
         <nav class="ce-cross-nav" aria-label="Wahlkreise und Listen">
           <span class="is-here">Alle Kandidierende</span>
           <a class="ce-districts-link" href="#">→ Wahlkreise</a>
@@ -626,7 +618,11 @@
         tableWrap.innerHTML = "<p>Keine Daten.</p>";
         return;
       }
-      note.textContent = st.list_note_de || "";
+      const bits = [st.list_note_de || ""];
+      const official =
+        st.sources_official === true || String(stateCode).toUpperCase() === "ST";
+      if (!official) bits.push(UNOFFICIAL_SOURCE_NOTE);
+      note.textContent = bits.filter(Boolean).join(" ");
       const party = (st.parties || []).find((p) => p.party === partyCode);
       if (!party) {
         tableWrap.innerHTML = "<p>Keine Partei gewählt.</p>";
