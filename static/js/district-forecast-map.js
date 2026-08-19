@@ -1814,9 +1814,11 @@
       const hint = document.getElementById('vorhersage-districts-hint');
       if (hint) {
         hint.style.display = 'block';
+        const top = Object.entries(tally).sort((a, b) => b[1] - a[1])[0];
+        const topParty = top ? top[0] : '';
         hint.innerHTML = `
-          Voraus. Direktmandate:
-          ${Object.entries(tally).sort((a,b)=>b[1]-a[1]).map(([p,n]) => `<strong>${p}</strong> ${n}`).join(' · ')}
+          Höchste Gewinnwahrscheinlichkeit:
+          <strong>${topParty}</strong>
           <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
         `;
       }
