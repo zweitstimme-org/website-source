@@ -323,13 +323,24 @@
   }
 
   /**
-   * IPCC-style likelihood for a district win probability (0–100).
-   * ≥99 nearly certain, ≥90 very likely, ≥66 likely, >50 lean,
-   * ≥33 toss-up, else scramble.
+   * IPCC-style likelihood for the district favorite (0–100).
+   * If a second party is still above 33%, the race is "Offen" even when
+   * the leader is just over 50% (e.g. 51–47).
    */
-  function districtWinLikelihoodLabel(prob) {
+  function districtRunnerUpWinProbability(partyRows) {
+    const probs = (partyRows || [])
+      .filter((r) => !districtIsOthers(r))
+      .map((r) => districtWinProbability(r))
+      .filter((p) => Number.isFinite(p))
+      .sort((a, b) => b - a);
+    return probs.length >= 2 ? probs[1] : 0;
+  }
+
+  function districtWinLikelihoodLabel(prob, runnerUpProb) {
     const p = Number(prob);
     if (!Number.isFinite(p)) return '';
+    const second = Number(runnerUpProb);
+    if (Number.isFinite(second) && second > 33) return 'Offen';
     if (p >= 99) return 'Nahezu sicher';
     if (p >= 90) return 'Sehr wahrscheinlich';
     if (p >= 66) return 'Wahrscheinlich';
@@ -632,7 +643,10 @@
       return `<span class="district-name-wrap">${name}${badge}${info}</span>`;
     };
     const winnerWinProb = districtWinProbability(winner);
-    const winnerLikelihood = districtWinLikelihoodLabel(winnerWinProb);
+    const winnerLikelihood = districtWinLikelihoodLabel(
+      winnerWinProb,
+      districtRunnerUpWinProbability(allRows)
+    );
     const winnerHeadline = districtWinLikelihoodHeadline(winnerLikelihood, winner, allRows);
     // Keep deep-link shareable when user clicks a district
     try {
