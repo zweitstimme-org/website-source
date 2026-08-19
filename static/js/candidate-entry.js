@@ -527,15 +527,17 @@
       </div>
     `;
 
-    // Put the (collapsed) "So lesen Sie …" explainer directly below the cross-nav,
-    // instead of above it (so the page reads like the /direktmandate/ page).
+    // Place the (collapsed) "So lesen Sie …" explainer below the country buttons
+    // (ce-state-tabs inside ce-controls), so the visual reading order matches
+    // the /direktmandate/ page.
     try {
       const explainer = document.querySelector(".ce-explainer");
       const wrap = root.querySelector(".ce-wrap");
       const controls = root.querySelector(".ce-controls");
-      if (explainer && wrap && controls) {
+      const note = root.querySelector(".ce-note");
+      if (explainer && wrap && controls && note) {
         const inRoot = explainer.closest("#candidate-entry-root") === root;
-        if (!inRoot) wrap.insertBefore(explainer, controls);
+        if (!inRoot) wrap.insertBefore(explainer, note);
       }
     } catch (_) { /* ignore */ }
 
