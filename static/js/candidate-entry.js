@@ -507,6 +507,9 @@
         </nav>
         <div class="ce-controls">
           <div class="ce-state-tabs" role="tablist"></div>
+        </div>
+
+        <div class="scenario-prob-panel">
           <div class="ce-party-tabs" role="tablist" aria-label="Partei"></div>
           <div class="ce-filters">
             <label class="ce-bezirk-wrap" style="display:none">Bezirk
@@ -520,8 +523,6 @@
             </label>
             <label class="ce-check"><input type="checkbox" class="ce-hide-ph"${hidePh ? " checked" : ""} /> Nur bekannte Namen</label>
           </div>
-        </div>
-        <div class="scenario-prob-panel">
           <p class="ce-note"></p>
           <div class="ce-table-wrap"></div>
           <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
