@@ -827,9 +827,16 @@
         const pDirect = pctInt(c.p_direct);
         const pEntry = pctInt(hasList ? c.p_entry : pDirect);
         const pList = pctInt(c.p_list);
-        const entryCell = hasList
+        const entryMain = hasList
           ? `${pEntry}% ${pctBar(pEntry, color)}`
           : `<span title="Kein Listenplatz: Einzug = Direkt">${pEntry}%</span> ${pctBar(pEntry, color)}`;
+        const stackTop = `${pEntry}%`;
+        const stackMid = `${pDirect}%`;
+        const stackBot = hasList ? `${pList}%` : "—";
+        const entryCell = `
+          <span class="ce-entry-main">${entryMain}</span>
+          <span class="ce-entry-stack">${stackTop}<br>${stackMid}<br>${stackBot}</span>
+        `;
         const listCell = hasList
           ? `${pList}%`
           : `<span class="ce-na" title="Kein Listenplatz">—</span>`;

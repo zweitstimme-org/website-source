@@ -226,6 +226,8 @@
 .ce-table th.ce-sortable.is-sorted { color: #111; font-weight: 700; }
 .ce-num { text-align: right !important; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .ce-entry { min-width: 5.2rem; }
+.ce-entry-stack { display: none; width: 100%; text-align: center; font-variant-numeric: tabular-nums; }
+.ce-entry-main { display: inline; }
 .ce-ph { color: #777; font-style: italic; }
 .ce-na { color: #888; font-size: 0.92em; }
 .ce-ph-hint {
@@ -504,6 +506,15 @@ a.ce-aw:hover {
   }
   .ce-entry { min-width: 0; }
   .ce-bar { display: none; }
+  .ce-entry-main { display: none; }
+  .ce-entry-stack { display: block; font-size: 0.78rem; line-height: 1.15; }
+  /* Hide Direkt + Liste % columns (5th + 6th columns) and replace with stacked values. */
+  .ce-table thead th:nth-child(5),
+  .ce-table tbody td:nth-child(5),
+  .ce-table thead th:nth-child(6),
+  .ce-table tbody td:nth-child(6) {
+    display: none;
+  }
 }
 </style>
 
@@ -546,5 +557,5 @@ a.ce-aw:hover {
 </div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=30" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=31" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}
