@@ -253,13 +253,46 @@ a.district-aw:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  height: 78px;
+  box-sizing: border-box;
+}
+.district-preview-targets .state-arm-narrow {
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  cursor: pointer;
-  height: 78px;
-  box-sizing: border-box;
+  width: 100%;
+}
+.district-preview-targets .state-arm-wide {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+.district-preview-targets .state-arm-wide-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+}
+.district-preview-targets .state-arm-wide-name {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 650;
+  text-align: left;
+  line-height: 1.1;
+}
+.district-preview-targets .state-arm-wide .election-date {
+  text-align: left;
+  margin-top: 0.15rem;
 }
 .district-preview-targets .state-arm.selected,
 .district-preview-targets .state-arm.is-active {
@@ -323,15 +356,19 @@ a.district-aw:hover {
 }
 @media screen and (max-width: 768px) {
   .district-preview-targets { gap: 0.75rem; }
-  .district-preview-targets .state-arm { padding: 0.5rem; height: 72px; gap: 0.3rem; }
+  .district-preview-targets .state-arm { padding: 0.5rem; height: 72px; gap: 0.35rem; flex-direction: column; align-items: center; justify-content: center; }
   .district-preview-targets .state-arm img { width: 18px; height: 18px; }
   .district-preview-targets .state-arm-name { font-size: 0.7rem; }
+  .district-preview-targets .state-arm-narrow { display: flex; }
+  .district-preview-targets .state-arm-wide { display: none; }
 }
 @media screen and (max-width: 480px) {
   .district-preview-targets { gap: 0.5rem; }
-  .district-preview-targets .state-arm { padding: 0.4rem; height: 66px; gap: 0.25rem; }
+  .district-preview-targets .state-arm { padding: 0.4rem; height: 66px; gap: 0.25rem; flex-direction: column; align-items: center; justify-content: center; }
   .district-preview-targets .state-arm img { width: 16px; height: 16px; }
   .district-preview-targets .state-arm-name { font-size: 0.66rem; }
+  .district-preview-targets .state-arm-narrow { display: flex; }
+  .district-preview-targets .state-arm-wide { display: none; }
 }
 .district-size-panel {
   margin-top: 1rem;
@@ -622,24 +659,51 @@ a.district-aw:hover {
 
 <div class="district-preview-targets" id="district-preview-targets" role="tablist" aria-label="Bundesland">
   <button type="button" class="state-arm visible district-preview-target is-active selected" data-code="ST" aria-pressed="true">
-    <div class="state-arm-name">Sachsen-Anhalt</div>
-    <div class="state-arm-sub">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="" title="Sachsen-Anhalt">
-      <div class="election-date">06.09.2026</div>
+    <div class="state-arm-narrow">
+      <div class="state-arm-name">Sachsen-Anhalt</div>
+      <div class="state-arm-sub">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="Sachsen-Anhalt" title="Sachsen-Anhalt">
+        <div class="election-date">06.09.2026</div>
+      </div>
+    </div>
+    <div class="state-arm-wide">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="Sachsen-Anhalt" title="Sachsen-Anhalt">
+      <div class="state-arm-wide-text">
+        <div class="state-arm-wide-name">Sachsen-Anhalt</div>
+        <div class="election-date">06.09.2026</div>
+      </div>
     </div>
   </button>
   <button type="button" class="state-arm visible district-preview-target" data-code="BE" aria-pressed="false">
-    <div class="state-arm-name">Berlin</div>
-    <div class="state-arm-sub">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DEU_Berlin_COA.svg/60px-DEU_Berlin_COA.svg.png" alt="" title="Berlin">
-      <div class="election-date">20.09.2026</div>
+    <div class="state-arm-narrow">
+      <div class="state-arm-name">Berlin</div>
+      <div class="state-arm-sub">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DEU_Berlin_COA.svg/60px-DEU_Berlin_COA.svg.png" alt="Berlin" title="Berlin">
+        <div class="election-date">20.09.2026</div>
+      </div>
+    </div>
+    <div class="state-arm-wide">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DEU_Berlin_COA.svg/60px-DEU_Berlin_COA.svg.png" alt="Berlin" title="Berlin">
+      <div class="state-arm-wide-text">
+        <div class="state-arm-wide-name">Berlin</div>
+        <div class="election-date">20.09.2026</div>
+      </div>
     </div>
   </button>
   <button type="button" class="state-arm visible district-preview-target" data-code="MV" aria-pressed="false">
-    <div class="state-arm-name">Mecklenburg-Vorpommern</div>
-    <div class="state-arm-sub">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg/60px-Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg.png" alt="" title="Mecklenburg-Vorpommern">
-      <div class="election-date">20.09.2026</div>
+    <div class="state-arm-narrow">
+      <div class="state-arm-name">Mecklenburg-Vorpommern</div>
+      <div class="state-arm-sub">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg/60px-Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg.png" alt="Mecklenburg-Vorpommern" title="Mecklenburg-Vorpommern">
+        <div class="election-date">20.09.2026</div>
+      </div>
+    </div>
+    <div class="state-arm-wide">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg/60px-Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg.png" alt="Mecklenburg-Vorpommern" title="Mecklenburg-Vorpommern">
+      <div class="state-arm-wide-text">
+        <div class="state-arm-wide-name">Mecklenburg-Vorpommern</div>
+        <div class="election-date">20.09.2026</div>
+      </div>
     </div>
   </button>
 </div>
