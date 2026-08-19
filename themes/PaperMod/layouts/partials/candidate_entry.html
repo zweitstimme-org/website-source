@@ -518,43 +518,41 @@ a.ce-aw:hover {
 }
 </style>
 
-<div class="scenario-prob-panel">
-  <details class="ce-explainer">
-    <summary>So lesen Sie die Einzugschancen</summary>
-    <div class="ce-explainer-body">
-    <p>
-      Pro Person schätzen wir, wie oft sie in unserem Modell ins Parlament käme —
-      über ein <strong>Direktmandat</strong>, über die <strong>Liste</strong>, oder beides.
-      Grundlage sind dieselben Umfrage- und Wahlkreis-Simulationen wie bei der
-      <a href="{{ "direktmandate/" | relURL }}">Wahlkreise</a>.
-    </p>
-    <ul>
-      <li><strong>Einzug</strong> — Anteil der Simulationen, in denen die Person einen Sitz erhält (Direkt und/oder Liste).</li>
-      <li><strong>Direkt</strong> — Anteil, in dem sie ihren Wahlkreis gewinnt.</li>
-      <li><strong>Liste&nbsp;%</strong> — Anteil, in dem sie über die Liste nachrückt (nur wenn ein Listenplatz bekannt ist).</li>
-      <li><strong>Listenplatz / WK</strong> — bekannter Listenplatz bzw. Direktwahlkreis. Ohne Listenplatz steht <code>—</code>, Liste&nbsp;% ebenfalls, und <strong>Einzug = Direkt</strong>.</li>
-      <li><strong>Quellen</strong> — auf der <a href="{{ "kandidat/" | relURL }}">Profilseite</a> der Person ausgewiesen; Namen verlinken dorthin.</li>
-      <li><strong>i-Button</strong> (Sachsen-Anhalt) — Geburtsjahr/-ort, Wohnort und Beruf laut Landeswahlleiterin / StaLa.</li>
-      <li><strong>Geschlechteranteil</strong> — geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen), nicht amtlich.
-        Getrennt ausgewiesen: <em>Gesamt</em>, nur <em>Liste</em>, nur <em>Direkt</em>,
-        sowie gewichtet mit <em>P(Liste)</em> bzw. <em>P(Sieg)</em> (erwartete Anteile unter Einziehenden;
-        inkl. erwarteter Mandatszahl Σ&nbsp;P; bei Σ&nbsp;P&nbsp;&lt;&nbsp;1:&nbsp;„keine Mandate erwartet“, kein %-Anteil).
-        Unklare Namen zählen separat und fallen aus dem %-Anteil.</li>
-    </ul>
-    <p>
-      <strong>Doppelkandidatur:</strong> Wer schon über Direkt einzieht, wird auf der Liste
-      übersprungen — darunterliegende Plätze rücken nach. Deshalb kann jemand mit
-      schlechterem Listenplatz eine höhere Listen-Chance haben, wenn darüber viele
-      Direktmandate gewinnen.
-    </p>
-    <p>
-      Fehlende Namen erscheinen kursiv als Platzhalter und zählen als eigene Personen.
-    </p>
-    </div>
-  </details>
+<details class="ce-explainer">
+  <summary>So lesen Sie die Einzugschancen</summary>
+  <div class="ce-explainer-body">
+  <p>
+    Pro Person schätzen wir, wie oft sie in unserem Modell ins Parlament käme —
+    über ein <strong>Direktmandat</strong>, über die <strong>Liste</strong>, oder beides.
+    Grundlage sind dieselben Umfrage- und Wahlkreis-Simulationen wie bei der
+    <a href="{{ "direktmandate/" | relURL }}">Wahlkreise</a>.
+  </p>
+  <ul>
+    <li><strong>Einzug</strong> — Anteil der Simulationen, in denen die Person einen Sitz erhält (Direkt und/oder Liste).</li>
+    <li><strong>Direkt</strong> — Anteil, in dem sie ihren Wahlkreis gewinnt.</li>
+    <li><strong>Liste&nbsp;%</strong> — Anteil, in dem sie über die Liste nachrückt (nur wenn ein Listenplatz bekannt ist).</li>
+    <li><strong>Listenplatz / WK</strong> — bekannter Listenplatz bzw. Direktwahlkreis. Ohne Listenplatz steht <code>—</code>, Liste&nbsp;% ebenfalls, und <strong>Einzug = Direkt</strong>.</li>
+    <li><strong>Quellen</strong> — auf der <a href="{{ "kandidat/" | relURL }}">Profilseite</a> der Person ausgewiesen; Namen verlinken dorthin.</li>
+    <li><strong>i-Button</strong> (Sachsen-Anhalt) — Geburtsjahr/-ort, Wohnort und Beruf laut Landeswahlleiterin / StaLa.</li>
+    <li><strong>Geschlechteranteil</strong> — geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen), nicht amtlich.
+      Getrennt ausgewiesen: <em>Gesamt</em>, nur <em>Liste</em>, nur <em>Direkt</em>,
+      sowie gewichtet mit <em>P(Liste)</em> bzw. <em>P(Sieg)</em> (erwartete Anteile unter Einziehenden;
+      inkl. erwarteter Mandatszahl Σ&nbsp;P; bei Σ&nbsp;P&nbsp;&lt;&nbsp;1:&nbsp;„keine Mandate erwartet“, kein %-Anteil).
+      Unklare Namen zählen separat und fallen aus dem %-Anteil.</li>
+  </ul>
+  <p>
+    <strong>Doppelkandidatur:</strong> Wer schon über Direkt einzieht, wird auf der Liste
+    übersprungen — darunterliegende Plätze rücken nach. Deshalb kann jemand mit
+    schlechterem Listenplatz eine höhere Listen-Chance haben, wenn darüber viele
+    Direktmandate gewinnen.
+  </p>
+  <p>
+    Fehlende Namen erscheinen kursiv als Platzhalter und zählen als eigene Personen.
+  </p>
+  </div>
+</details>
 
-  <div id="candidate-entry-root"></div>
-</div>
+<div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
 <script src="{{ "js/candidate-entry.js" | relURL }}?v=31" defer></script>
