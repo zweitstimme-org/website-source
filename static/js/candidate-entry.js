@@ -521,9 +521,11 @@
             <label class="ce-check"><input type="checkbox" class="ce-hide-ph"${hidePh ? " checked" : ""} /> Nur bekannte Namen</label>
           </div>
         </div>
-        <p class="ce-note"></p>
-        <div class="ce-table-wrap"></div>
-        <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
+        <div class="scenario-prob-panel">
+          <p class="ce-note"></p>
+          <div class="ce-table-wrap"></div>
+          <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
+        </div>
       </div>
     `;
 
@@ -532,12 +534,12 @@
     // the /direktmandate/ page.
     try {
       const explainer = document.querySelector(".ce-explainer");
-      const wrap = root.querySelector(".ce-wrap");
       const controls = root.querySelector(".ce-controls");
       const note = root.querySelector(".ce-note");
-      if (explainer && wrap && controls && note) {
+      if (explainer && controls && note) {
         const inRoot = explainer.closest("#candidate-entry-root") === root;
-        if (!inRoot) wrap.insertBefore(explainer, note);
+        const noteWrap = note && note.parentElement;
+        if (!inRoot && noteWrap) noteWrap.insertBefore(explainer, note);
       }
     } catch (_) { /* ignore */ }
 
