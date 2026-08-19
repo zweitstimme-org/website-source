@@ -93,13 +93,46 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  height: 78px;
+  box-sizing: border-box;
+}
+.ce-state-tabs .state-arm-narrow {
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  cursor: pointer;
-  height: 78px;
-  box-sizing: border-box;
+  width: 100%;
+}
+.ce-state-tabs .state-arm-wide {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+.ce-state-tabs .state-arm-wide-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+}
+.ce-state-tabs .state-arm-wide-name {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 650;
+  text-align: left;
+  line-height: 1.1;
+}
+.ce-state-tabs .state-arm-wide .election-date {
+  text-align: left;
+  margin-top: 0.15rem;
 }
 .ce-state-tabs .state-arm.selected {
   background: #e6f3ff;
@@ -161,13 +194,15 @@
 }
 @media screen and (max-width: 768px) {
   .ce-state-tabs { gap: 0.75rem; }
-  .ce-state-tabs .state-arm { padding: 0.5rem; height: 72px; gap: 0.3rem; }
+  .ce-state-tabs .state-arm { padding: 0.5rem; height: 72px; gap: 0.35rem; flex-direction: column; align-items: center; justify-content: center; }
   .ce-state-tabs .state-arm img { width: 18px; height: 18px; }
   .ce-state-tabs .state-arm-name { font-size: 0.7rem; }
+  .ce-state-tabs .state-arm-narrow { display: flex; }
+  .ce-state-tabs .state-arm-wide { display: none; }
 }
 @media screen and (max-width: 480px) {
   .ce-state-tabs { gap: 0.5rem; }
-  .ce-state-tabs .state-arm { padding: 0.4rem; height: 66px; gap: 0.25rem; }
+  .ce-state-tabs .state-arm { padding: 0.4rem; height: 66px; gap: 0.25rem; flex-direction: column; align-items: center; justify-content: center; }
   .ce-state-tabs .state-arm img { width: 16px; height: 16px; }
   .ce-state-tabs .state-arm-name { font-size: 0.66rem; }
 }
@@ -555,5 +590,5 @@ a.ce-aw:hover {
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=31" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=32" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}

@@ -572,10 +572,22 @@
           const active = s.code === stateCode;
           const coat = STATE_COATS[s.code] || "";
           return `<button type="button" class="state-arm visible ce-tab${active ? " selected is-active" : ""}" data-state="${s.code}" aria-pressed="${active ? "true" : "false"}">
-            <div class="state-arm-name">${escapeHtml(s.label)}</div>
-            <div class="state-arm-sub">
-              <img src="${escapeHtml(coat)}" alt="" title="${escapeHtml(s.label)}">
-              <div class="election-date">${escapeHtml(s.date || "")}</div>
+            <!-- Narrow (subpage tiles): Name top, Wappen+Datum bottom -->
+            <div class="state-arm-narrow">
+              <div class="state-arm-name">${escapeHtml(s.label)}</div>
+              <div class="state-arm-sub">
+                <img src="${escapeHtml(coat)}" alt="${escapeHtml(s.label)}" title="${escapeHtml(s.label)}">
+                <div class="election-date">${escapeHtml(s.date || "")}</div>
+              </div>
+            </div>
+
+            <!-- Wide (subpages): Startseite-Layout (Wappen left, Name+Datum right) -->
+            <div class="state-arm-wide">
+              <img src="${escapeHtml(coat)}" alt="${escapeHtml(s.label)}" title="${escapeHtml(s.label)}">
+              <div class="state-arm-wide-text">
+                <div class="state-arm-wide-name">${escapeHtml(s.label)}</div>
+                <div class="election-date">${escapeHtml(s.date || "")}</div>
+              </div>
             </div>
           </button>`;
         })
