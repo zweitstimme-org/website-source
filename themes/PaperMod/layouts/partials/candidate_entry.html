@@ -245,14 +245,26 @@
 .ce-cross-nav .is-here {
   color: #333;
   font-weight: 650;
+  background: #eef1f4;
+  border: 1px solid #c5ccd4;
+  border-radius: 0.2rem;
+  padding: 0.22rem 0.55rem;
+  display: inline-block;
 }
 .ce-cross-nav a {
-  color: var(--primary, #0056b3);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: #445;
+  text-decoration: none !important;
+  background: #eef1f4;
+  border: 1px solid #c5ccd4;
+  border-radius: 0.2rem;
+  padding: 0.22rem 0.55rem;
+  display: inline-block;
+  font-weight: 650;
 }
 .ce-cross-nav a:hover {
   color: var(--primary, #003d80);
+  border-color: var(--primary, #003d80);
+  background: #e8eef6;
 }
 .ce-cross { font-size: 0.85rem; margin: 0 0 0.75rem; }
 .ce-cross a,
@@ -513,5 +525,5 @@ a.ce-aw:hover {
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=24" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=25" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}
