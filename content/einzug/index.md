@@ -1,5 +1,5 @@
 ---
-title: "Prognose Landtagswahlen - Alle Kandidierende"
+title: "Prognose Landtagswahlen"
 url: "/einzug/"
 aliases:
   - /preview/einzug/

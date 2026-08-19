@@ -527,6 +527,18 @@
       </div>
     `;
 
+    // Put the (collapsed) "So lesen Sie …" explainer directly below the cross-nav,
+    // instead of above it (so the page reads like the /direktmandate/ page).
+    try {
+      const explainer = document.querySelector(".ce-explainer");
+      const wrap = root.querySelector(".ce-wrap");
+      const controls = root.querySelector(".ce-controls");
+      if (explainer && wrap && controls) {
+        const inRoot = explainer.closest("#candidate-entry-root") === root;
+        if (!inRoot) wrap.insertBefore(explainer, controls);
+      }
+    } catch (_) { /* ignore */ }
+
     const tabs = root.querySelector(".ce-state-tabs");
     const partyTabs = root.querySelector(".ce-party-tabs");
     const bezirkWrap = root.querySelector(".ce-bezirk-wrap");
