@@ -590,25 +590,7 @@
       }
       return `<span class="district-name-wrap">${name}${badge}${info}</span>`;
     };
-    const winnerList = lookupListInfo(listLookup, winner);
-    const winnerName = resolveCandidateName(winner, winnerList);
     const winnerWinProb = districtWinProbability(winner);
-    const winnerListTxt = formatListEntryLine(winnerList, stateCode, winnerWinProb);
-    const winnerBio = {
-      birth_year: winner.birth_year || (winnerList && winnerList.birth_year),
-      birth_place: winner.birth_place || (winnerList && winnerList.birth_place),
-      residence: winner.residence || (winnerList && winnerList.residence),
-      profession: winner.profession || (winnerList && winnerList.profession)
-    };
-    const winnerInc = {
-      is_incumbent: !!(winner.is_incumbent || (winnerList && winnerList.is_incumbent)),
-      incumbent_chamber: winner.incumbent_chamber || (winnerList && winnerList.incumbent_chamber) || '',
-      incumbent_url: winner.incumbent_url || (winnerList && winnerList.incumbent_url) || '',
-      aw_url: winner.aw_url || (winnerList && winnerList.aw_url) || ''
-    };
-    const winnerLabel = winnerName
-      ? ` · ${candidateNameHtml(winnerName, winnerList, winnerBio, winnerInc, winner)}`
-      : ' · <span style="font-weight:400;font-style:italic;color:#888;">Name noch nicht bekannt</span>';
     // Keep deep-link shareable when user clicks a district
     try {
       if (stateCode && Number.isFinite(Number(wkr))) {
@@ -621,11 +603,9 @@
     el.innerHTML = `
       <div style="font-weight:700; margin-bottom:0.55rem; text-align:center;">
         WK ${wkr}: ${escapeHtml(name)}
-        <span style="font-weight:500; color:#555;"> — voraus. ${escapeHtml(winner.partei)}${winnerLabel}</span>
         <div style="font-weight:600; font-size:0.95rem; color:#333; margin-top:0.25rem;">
-          P(Sieg): ${formatWinProbabilityPct(winnerWinProb)}
+          Höchste Gewinnwahrscheinlichkeit: <strong>${escapeHtml(winner.partei)}</strong> (P(Sieg): ${formatWinProbabilityPct(winnerWinProb)})
         </div>
-        ${winnerListTxt ? `<div class="district-list-line" style="font-weight:400;font-size:0.8rem;color:#666;margin-top:0.2rem;">${winnerListTxt}</div>` : ''}
       </div>
       <div class="district-party-list${needsToggle ? ' is-collapsed' : ''}" style="display:flex; flex-direction:column; gap:0.55rem;">
         ${rows.map((r, index) => {
@@ -1814,11 +1794,13 @@
       const hint = document.getElementById('vorhersage-districts-hint');
       if (hint) {
         hint.style.display = 'block';
-        const top = Object.entries(tally).sort((a, b) => b[1] - a[1])[0];
-        const topParty = top ? top[0] : '';
+        const tallyHtml = Object.entries(tally)
+          .sort((a, b) => b[1] - a[1])
+          .map(([p, n]) => `<strong>${p}</strong> ${n}`)
+          .join(' · ');
         hint.innerHTML = `
-          Höchste Gewinnwahrscheinlichkeit:
-          <strong>${topParty}</strong>
+          Voraus. Direktmandate:
+          ${tallyHtml}
           <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
         `;
       }
