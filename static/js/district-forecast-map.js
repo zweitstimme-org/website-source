@@ -547,17 +547,18 @@
     };
     const candidateProfileHref = (displayName, listRec, row) => {
       const params = new URLSearchParams();
+      params.set('from', 'direktmandate');
       const pid = (listRec && listRec.person_id) || (row && row.person_id) || '';
+      if (stateCode) params.set('state', String(stateCode).toUpperCase());
+      const wkrForLink = (row && row.wkr != null) ? row.wkr : (listRec && listRec.wkr_direct);
+      if (wkrForLink != null && wkrForLink !== '') params.set('wkr', String(wkrForLink));
       if (pid) {
         params.set('id', String(pid));
         return `${siteBase()}kandidat/?${params.toString()}`;
       }
-      if (stateCode) params.set('state', String(stateCode).toUpperCase());
       const party = (listRec && listRec.party) || normalizePartyCode(row && row.party, row && row.partei);
       if (party) params.set('party', String(party).toLowerCase());
       if (displayName) params.set('name', String(displayName));
-      const wkr = (row && row.wkr != null) ? row.wkr : (listRec && listRec.wkr_direct);
-      if (wkr != null && wkr !== '') params.set('wkr', String(wkr));
       return `${siteBase()}kandidat/?${params.toString()}`;
     };
     const candidateNameHtml = (displayName, listRec, bioMeta, incumbentMeta, row) => {

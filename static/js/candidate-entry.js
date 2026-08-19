@@ -247,11 +247,12 @@
 
   function candidateProfileHref(c, stateCode) {
     const params = new URLSearchParams();
+    params.set("from", "einzug");
+    if (stateCode) params.set("state", String(stateCode).toUpperCase());
     if (c && c.person_id) {
       params.set("id", String(c.person_id));
       return `${siteBase()}kandidat/?${params.toString()}`;
     }
-    if (stateCode) params.set("state", String(stateCode).toUpperCase());
     if (c && c.name) params.set("name", String(c.name));
     const party = c && (c.party || c._party);
     if (party) params.set("party", String(party).toLowerCase());
