@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T11:04:00Z",
+  "generated_at": "2026-08-19T12:33:27Z",
   "source": {
     "zweitstimme": "https://zweitstimme.org/api/v2/state/",
     "polymarket": "https://gamma-api.polymarket.com"
@@ -106,7 +106,7 @@
           "label_de": "Sitze AfD",
           "polymarket_title": "Sachsen-Anhalt Parliamentary Elections: AfD # of seats?",
           "polymarket_url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-afd-of-seats-20260722230807017",
-          "polymarket_volume": 14774.752458,
+          "polymarket_volume": 14774.752457999999,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf. Modell: Median 39 Sitze (Mittel 39.35). Naiv: Median 45 Sitze.",
           "rows": [
             {
@@ -116,8 +116,8 @@
               "zs": 11.53,
               "zs_naive": 2.73,
               "zs_source": "seats",
-              "pm": 2.8,
-              "pm_norm": 2.8,
+              "pm": 2.85,
+              "pm_norm": 2.85,
               "pm_volume": 2943.01,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-afd-of-seats-20260722230807017",
               "delta": 8.7
@@ -129,11 +129,11 @@
               "zs": 20.05,
               "zs_naive": 7.58,
               "zs_source": "seats",
-              "pm": 6.5,
-              "pm_norm": 6.5,
+              "pm": 6.35,
+              "pm_norm": 6.35,
               "pm_volume": 671.8,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-afd-of-seats-20260722230807017",
-              "delta": 13.6
+              "delta": 13.7
             },
             {
               "id": "seats_afd_38-41",
@@ -142,11 +142,11 @@
               "zs": 37.83,
               "zs_naive": 16.7,
               "zs_source": "seats",
-              "pm": 59.0,
-              "pm_norm": 59.0,
+              "pm": 58.5,
+              "pm_norm": 58.5,
               "pm_volume": 4677.62,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-afd-of-seats-20260722230807017",
-              "delta": -21.2
+              "delta": -20.7
             },
             {
               "id": "seats_afd_42-45",
@@ -472,7 +472,7 @@
           "label_de": "Stärkste Kraft",
           "polymarket_title": "Sachsen-Anhalt Parliamentary Election Winner",
           "polymarket_url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner",
-          "polymarket_volume": 885395.995233,
+          "polymarket_volume": 885621.5385660002,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf.",
           "rows": [
             {
@@ -483,7 +483,7 @@
               "zs_vote": 98.0,
               "zs_source": "seats",
               "pm": 99.15,
-              "pm_norm": 99.15,
+              "pm_norm": 98.75,
               "pm_volume": 90984.08,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner/will-afd-win-the-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
               "delta": -1.5
@@ -495,23 +495,23 @@
               "zs": 2.3,
               "zs_vote": 2.0,
               "zs_source": "seats",
-              "pm": 0.6,
-              "pm_norm": 0.6,
-              "pm_volume": 502171.59,
+              "pm": 1.0,
+              "pm_norm": 1.0,
+              "pm_volume": 502397.13,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner/will-cdu-win-the-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
-              "delta": 1.7
+              "delta": 1.3
             },
             {
-              "id": "largest_party_lin",
-              "party": "lin",
-              "label_de": "Linke stärkste Kraft",
+              "id": "largest_party_bsw",
+              "party": "bsw",
+              "label_de": "BSW stärkste Kraft",
               "zs": 0.0,
               "zs_vote": 0.0,
               "zs_source": "seats",
               "pm": 0.05,
               "pm_norm": 0.05,
-              "pm_volume": 47106.48,
-              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner/will-the-left-win-the-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
+              "pm_volume": 36802.61,
+              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner/will-bsw-win-the-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
               "delta": -0.1
             },
             {
@@ -525,19 +525,6 @@
               "pm_norm": 0.05,
               "pm_volume": 56850.54,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner/will-the-greens-win-the-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
-              "delta": -0.1
-            },
-            {
-              "id": "largest_party_bsw",
-              "party": "bsw",
-              "label_de": "BSW stärkste Kraft",
-              "zs": 0.0,
-              "zs_vote": 0.0,
-              "zs_source": "seats",
-              "pm": 0.05,
-              "pm_norm": 0.05,
-              "pm_volume": 36802.61,
-              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner/will-bsw-win-the-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
               "delta": -0.1
             },
             {
@@ -565,6 +552,19 @@
               "pm_volume": 27385.38,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner/will-fdp-win-the-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
               "delta": -0.1
+            },
+            {
+              "id": "largest_party_lin",
+              "party": "lin",
+              "label_de": "Linke stärkste Kraft",
+              "zs": 0.0,
+              "zs_vote": 0.0,
+              "zs_source": "seats",
+              "pm": 0.05,
+              "pm_norm": 0.05,
+              "pm_volume": 47106.48,
+              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-election-winner/will-the-left-win-the-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
+              "delta": -0.1
             }
           ]
         },
@@ -573,7 +573,7 @@
           "label_de": "Zweitstärkste Kraft",
           "polymarket_title": "Sachsen-Anhalt Parliamentary Elections: 2nd Place",
           "polymarket_url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place",
-          "polymarket_volume": 125981.136247,
+          "polymarket_volume": 132990.999257,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf.",
           "rows": [
             {
@@ -583,11 +583,11 @@
               "zs": 91.4,
               "zs_vote": 91.4,
               "zs_source": "seats",
-              "pm": 98.3,
-              "pm_norm": 97.81,
-              "pm_volume": 83601.48,
+              "pm": 98.75,
+              "pm_norm": 97.97,
+              "pm_volume": 84812.63,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place/will-cdu-win-the-second-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
-              "delta": -6.9
+              "delta": -7.3
             },
             {
               "id": "place2_lin",
@@ -596,11 +596,11 @@
               "zs": 6.3,
               "zs_vote": 6.3,
               "zs_source": "seats",
-              "pm": 0.95,
-              "pm_norm": 0.95,
-              "pm_volume": 7348.95,
+              "pm": 0.8,
+              "pm_norm": 0.79,
+              "pm_volume": 8315.4,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place/will-the-left-win-the-second-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
-              "delta": 5.3
+              "delta": 5.5
             },
             {
               "id": "place2_afd",
@@ -610,23 +610,10 @@
               "zs_vote": 2.3,
               "zs_source": "seats",
               "pm": 0.65,
-              "pm_norm": 0.65,
-              "pm_volume": 3350.74,
+              "pm_norm": 0.64,
+              "pm_volume": 4317.19,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place/will-afd-win-the-second-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
               "delta": 1.6
-            },
-            {
-              "id": "place2_gru",
-              "party": "gru",
-              "label_de": "Grüne Zweitstärkste Kraft",
-              "zs": 0.0,
-              "zs_vote": 0.0,
-              "zs_source": "seats",
-              "pm": 0.15,
-              "pm_norm": 0.15,
-              "pm_volume": 2641.09,
-              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place/will-the-greens-win-the-second-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
-              "delta": -0.1
             },
             {
               "id": "place2_bsw",
@@ -637,8 +624,21 @@
               "zs_source": "seats",
               "pm": 0.15,
               "pm_norm": 0.15,
-              "pm_volume": 2032.8,
+              "pm_volume": 2999.25,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place/will-bsw-win-the-second-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
+              "delta": -0.1
+            },
+            {
+              "id": "place2_gru",
+              "party": "gru",
+              "label_de": "Grüne Zweitstärkste Kraft",
+              "zs": 0.0,
+              "zs_vote": 0.0,
+              "zs_source": "seats",
+              "pm": 0.15,
+              "pm_norm": 0.15,
+              "pm_volume": 3607.54,
+              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place/will-the-greens-win-the-second-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
               "delta": -0.1
             },
             {
@@ -650,7 +650,7 @@
               "zs_source": "seats",
               "pm": 0.15,
               "pm_norm": 0.15,
-              "pm_volume": 23797.38,
+              "pm_volume": 24763.83,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place/will-spd-win-the-second-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
               "delta": -0.1
             },
@@ -663,7 +663,7 @@
               "zs_source": "seats",
               "pm": 0.15,
               "pm_norm": 0.15,
-              "pm_volume": 3208.7,
+              "pm_volume": 4175.15,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-2nd-place/will-fdp-win-the-second-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections",
               "delta": -0.1
             }
@@ -685,7 +685,7 @@
               "zs_vote": 89.55,
               "zs_source": "seats",
               "pm": 96.75,
-              "pm_norm": 92.27,
+              "pm_norm": 92.32,
               "pm_volume": 2477.29,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-the-left-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837809",
               "delta": -7.2
@@ -698,7 +698,7 @@
               "zs_vote": 6.3,
               "zs_source": "seats",
               "pm": 1.85,
-              "pm_norm": 1.76,
+              "pm_norm": 1.77,
               "pm_volume": 248.76,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-cdu-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837805",
               "delta": 4.4
@@ -710,37 +710,11 @@
               "zs": 3.8,
               "zs_vote": 3.8,
               "zs_source": "seats",
-              "pm": 1.85,
-              "pm_norm": 1.76,
+              "pm": 1.8,
+              "pm_norm": 1.72,
               "pm_volume": 303.45,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-spd-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837807",
-              "delta": 1.9
-            },
-            {
-              "id": "place3_bsw",
-              "party": "bsw",
-              "label_de": "BSW Drittstärkste Kraft",
-              "zs": 0.12,
-              "zs_vote": 0.12,
-              "zs_source": "seats",
-              "pm": 1.75,
-              "pm_norm": 1.67,
-              "pm_volume": 187.34,
-              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-bsw-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837811",
-              "delta": -1.6
-            },
-            {
-              "id": "place3_afd",
-              "party": "afd",
-              "label_de": "AfD Drittstärkste Kraft",
-              "zs": 0.0,
-              "zs_vote": 0.0,
-              "zs_source": "seats",
-              "pm": 1.2,
-              "pm_norm": 1.14,
-              "pm_volume": 167.34,
-              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-afd-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837806",
-              "delta": -1.2
+              "delta": 2.0
             },
             {
               "id": "place3_gru",
@@ -749,11 +723,37 @@
               "zs": 0.22,
               "zs_vote": 0.23,
               "zs_source": "seats",
-              "pm": 1.1,
-              "pm_norm": 1.05,
+              "pm": 1.8,
+              "pm_norm": 1.72,
               "pm_volume": 167.34,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-the-greens-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837808",
-              "delta": -0.9
+              "delta": -1.6
+            },
+            {
+              "id": "place3_bsw",
+              "party": "bsw",
+              "label_de": "BSW Drittstärkste Kraft",
+              "zs": 0.12,
+              "zs_vote": 0.12,
+              "zs_source": "seats",
+              "pm": 1.25,
+              "pm_norm": 1.19,
+              "pm_volume": 187.34,
+              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-bsw-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837811",
+              "delta": -1.1
+            },
+            {
+              "id": "place3_afd",
+              "party": "afd",
+              "label_de": "AfD Drittstärkste Kraft",
+              "zs": 0.0,
+              "zs_vote": 0.0,
+              "zs_source": "seats",
+              "pm": 1.05,
+              "pm_norm": 1.0,
+              "pm_volume": 167.34,
+              "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-afd-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837806",
+              "delta": -1.1
             },
             {
               "id": "place3_fdp",
@@ -762,8 +762,8 @@
               "zs": 0.0,
               "zs_vote": 0.0,
               "zs_source": "seats",
-              "pm": 0.35,
-              "pm_norm": 0.33,
+              "pm": 0.3,
+              "pm_norm": 0.29,
               "pm_volume": 1037.63,
               "url": "https://polymarket.com/event/sachsen-anhalt-parliamentary-elections-3rd-place-20260722225837804/will-fdp-win-the-third-most-seats-in-the-2026-sachsen-anhalt-parliamentary-elections-20260722225837810",
               "delta": -0.3
@@ -775,7 +775,7 @@
           "label_de": "Absolute Mehrheit AfD",
           "polymarket_title": "Will AfD win an absolute majority of seats in Sachsen-Anhalt?",
           "polymarket_url": "https://polymarket.com/event/will-afd-win-an-absolute-majority-of-seats-in-sachsen-anhalt",
-          "polymarket_volume": 296393.4733170001,
+          "polymarket_volume": 296404.4733170001,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf. Absolute Mehrheit: Sitze > Hälfte der jeweiligen Parlamentsgröße.",
           "rows": [
             {
@@ -787,7 +787,7 @@
               "zs_source": "seats",
               "pm": 31.5,
               "pm_norm": 31.5,
-              "pm_volume": 296393.47,
+              "pm_volume": 296404.47,
               "url": "https://polymarket.com/event/will-afd-win-an-absolute-majority-of-seats-in-sachsen-anhalt",
               "delta": -1.0
             }
@@ -890,7 +890,7 @@
           "label_de": "Sitze CDU",
           "polymarket_title": "Berlin State Elections: CDU # of seats?",
           "polymarket_url": "https://polymarket.com/event/berlin-state-elections-cdu-of-seats-20260805192827457",
-          "polymarket_volume": 3221.3723130000003,
+          "polymarket_volume": 3351.172313,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf. Modell: Median 30 Sitze (Mittel 30.21). Naiv: Median 34 Sitze.",
           "rows": [
             {
@@ -913,11 +913,11 @@
               "zs": 23.18,
               "zs_naive": 17.6,
               "zs_source": "seats",
-              "pm": 23.0,
-              "pm_norm": 23.0,
+              "pm": 20.5,
+              "pm_norm": 20.5,
               "pm_volume": 117.73,
               "url": "https://polymarket.com/event/berlin-state-elections-cdu-of-seats-20260805192827457",
-              "delta": 0.2
+              "delta": 2.7
             },
             {
               "id": "seats_cdu_30-34",
@@ -926,11 +926,11 @@
               "zs": 22.23,
               "zs_naive": 23.07,
               "zs_source": "seats",
-              "pm": 28.5,
-              "pm_norm": 28.5,
+              "pm": 27.0,
+              "pm_norm": 27.0,
               "pm_volume": 46.31,
               "url": "https://polymarket.com/event/berlin-state-elections-cdu-of-seats-20260805192827457",
-              "delta": -6.3
+              "delta": -4.8
             },
             {
               "id": "seats_cdu_35-39",
@@ -939,11 +939,11 @@
               "zs": 14.65,
               "zs_naive": 23.0,
               "zs_source": "seats",
-              "pm": 30.0,
-              "pm_norm": 30.0,
-              "pm_volume": 1833.22,
+              "pm": 32.0,
+              "pm_norm": 32.0,
+              "pm_volume": 1883.22,
               "url": "https://polymarket.com/event/berlin-state-elections-cdu-of-seats-20260805192827457",
-              "delta": -15.3
+              "delta": -17.4
             },
             {
               "id": "seats_cdu_40-44",
@@ -952,11 +952,11 @@
               "zs": 8.28,
               "zs_naive": 15.32,
               "zs_source": "seats",
-              "pm": 24.5,
-              "pm_norm": 24.5,
+              "pm": 22.5,
+              "pm_norm": 22.5,
               "pm_volume": 20.0,
               "url": "https://polymarket.com/event/berlin-state-elections-cdu-of-seats-20260805192827457",
-              "delta": -16.2
+              "delta": -14.2
             },
             {
               "id": "seats_cdu_45+",
@@ -965,11 +965,11 @@
               "zs": 5.38,
               "zs_naive": 11.45,
               "zs_source": "seats",
-              "pm": 10.5,
-              "pm_norm": 10.5,
-              "pm_volume": 934.92,
+              "pm": 12.0,
+              "pm_norm": 12.0,
+              "pm_volume": 1014.72,
               "url": "https://polymarket.com/event/berlin-state-elections-cdu-of-seats-20260805192827457",
-              "delta": -5.1
+              "delta": -6.6
             }
           ]
         },
@@ -988,11 +988,11 @@
               "zs": 5.88,
               "zs_naive": 1.25,
               "zs_source": "seats",
-              "pm": 3.25,
-              "pm_norm": 3.25,
+              "pm": 4.9,
+              "pm_norm": 4.9,
               "pm_volume": 255.71,
               "url": "https://polymarket.com/event/berlin-state-elections-linke-of-seats-20260805192827457",
-              "delta": 2.6
+              "delta": 1.0
             },
             {
               "id": "seats_lin_20-24",
@@ -1001,11 +1001,11 @@
               "zs": 16.3,
               "zs_naive": 7.67,
               "zs_source": "seats",
-              "pm": 5.15,
-              "pm_norm": 5.15,
+              "pm": 5.2,
+              "pm_norm": 5.2,
               "pm_volume": 818.1,
               "url": "https://polymarket.com/event/berlin-state-elections-linke-of-seats-20260805192827457",
-              "delta": 11.2
+              "delta": 11.1
             },
             {
               "id": "seats_lin_25-29",
@@ -1027,11 +1027,11 @@
               "zs": 23.98,
               "zs_naive": 23.98,
               "zs_source": "seats",
-              "pm": 41.5,
-              "pm_norm": 41.5,
+              "pm": 43.5,
+              "pm_norm": 43.5,
               "pm_volume": 1451.98,
               "url": "https://polymarket.com/event/berlin-state-elections-linke-of-seats-20260805192827457",
-              "delta": -17.5
+              "delta": -19.5
             },
             {
               "id": "seats_lin_35-39",
@@ -1040,11 +1040,11 @@
               "zs": 16.3,
               "zs_naive": 21.75,
               "zs_source": "seats",
-              "pm": 26.5,
-              "pm_norm": 26.5,
+              "pm": 22.0,
+              "pm_norm": 22.0,
               "pm_volume": 1256.62,
               "url": "https://polymarket.com/event/berlin-state-elections-linke-of-seats-20260805192827457",
-              "delta": -10.2
+              "delta": -5.7
             },
             {
               "id": "seats_lin_40+",
@@ -1053,11 +1053,11 @@
               "zs": 11.0,
               "zs_naive": 28.3,
               "zs_source": "seats",
-              "pm": 34.5,
-              "pm_norm": 34.5,
+              "pm": 29.5,
+              "pm_norm": 29.5,
               "pm_volume": 1846.39,
               "url": "https://polymarket.com/event/berlin-state-elections-linke-of-seats-20260805192827457",
-              "delta": -23.5
+              "delta": -18.5
             }
           ]
         },
@@ -1066,7 +1066,7 @@
           "label_de": "Sitze AfD",
           "polymarket_title": "Berlin State Elections: AfD # of seats?",
           "polymarket_url": "https://polymarket.com/event/berlin-state-elections-afd-of-seats-20260805192827457",
-          "polymarket_volume": 22001.786013,
+          "polymarket_volume": 22040.386013,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf. Modell: Median 27 Sitze (Mittel 27.0). Naiv: Median 31 Sitze.",
           "rows": [
             {
@@ -1128,11 +1128,11 @@
               "zs": 16.93,
               "zs_naive": 15.62,
               "zs_source": "seats",
-              "pm": 29.5,
-              "pm_norm": 29.5,
+              "pm": 23.5,
+              "pm_norm": 23.5,
               "pm_volume": 1445.23,
               "url": "https://polymarket.com/event/berlin-state-elections-afd-of-seats-20260805192827457",
-              "delta": -12.6
+              "delta": -6.6
             },
             {
               "id": "seats_afd_32-34",
@@ -1141,11 +1141,11 @@
               "zs": 10.93,
               "zs_naive": 14.07,
               "zs_source": "seats",
-              "pm": 25.5,
-              "pm_norm": 25.5,
+              "pm": 26.0,
+              "pm_norm": 26.0,
               "pm_volume": 2113.91,
               "url": "https://polymarket.com/event/berlin-state-elections-afd-of-seats-20260805192827457",
-              "delta": -14.6
+              "delta": -15.1
             },
             {
               "id": "seats_afd_35+",
@@ -1154,11 +1154,11 @@
               "zs": 10.32,
               "zs_naive": 33.17,
               "zs_source": "seats",
-              "pm": 37.45,
-              "pm_norm": 37.45,
-              "pm_volume": 7966.1,
+              "pm": 39.95,
+              "pm_norm": 39.95,
+              "pm_volume": 8004.7,
               "url": "https://polymarket.com/event/berlin-state-elections-afd-of-seats-20260805192827457",
-              "delta": -27.1
+              "delta": -29.6
             }
           ]
         },
@@ -1177,11 +1177,11 @@
               "zs": 16.27,
               "zs_naive": 6.75,
               "zs_source": "seats",
-              "pm": 16.0,
-              "pm_norm": 16.0,
+              "pm": 10.5,
+              "pm_norm": 10.5,
               "pm_volume": 65.26,
               "url": "https://polymarket.com/event/berlin-state-elections-grune-of-seats-20260805192827457",
-              "delta": 0.3
+              "delta": 5.8
             },
             {
               "id": "seats_gru_20-24",
@@ -1190,11 +1190,11 @@
               "zs": 28.62,
               "zs_naive": 17.73,
               "zs_source": "seats",
-              "pm": 18.0,
-              "pm_norm": 18.0,
+              "pm": 19.5,
+              "pm_norm": 19.5,
               "pm_volume": 8.0,
               "url": "https://polymarket.com/event/berlin-state-elections-grune-of-seats-20260805192827457",
-              "delta": 10.6
+              "delta": 9.1
             },
             {
               "id": "seats_gru_25-29",
@@ -1216,11 +1216,11 @@
               "zs": 17.18,
               "zs_naive": 23.73,
               "zs_source": "seats",
-              "pm": 33.0,
-              "pm_norm": 33.0,
+              "pm": 32.5,
+              "pm_norm": 32.5,
               "pm_volume": 16.0,
               "url": "https://polymarket.com/event/berlin-state-elections-grune-of-seats-20260805192827457",
-              "delta": -15.8
+              "delta": -15.3
             },
             {
               "id": "seats_gru_35-39",
@@ -1229,11 +1229,11 @@
               "zs": 6.8,
               "zs_naive": 14.97,
               "zs_source": "seats",
-              "pm": 26.5,
-              "pm_norm": 26.5,
+              "pm": 29.0,
+              "pm_norm": 29.0,
               "pm_volume": 953.05,
               "url": "https://polymarket.com/event/berlin-state-elections-grune-of-seats-20260805192827457",
-              "delta": -19.7
+              "delta": -22.2
             },
             {
               "id": "seats_gru_40-44",
@@ -1242,11 +1242,11 @@
               "zs": 2.08,
               "zs_naive": 6.78,
               "zs_source": "seats",
-              "pm": 3.55,
-              "pm_norm": 3.55,
+              "pm": 3.65,
+              "pm_norm": 3.65,
               "pm_volume": 739.55,
               "url": "https://polymarket.com/event/berlin-state-elections-grune-of-seats-20260805192827457",
-              "delta": -1.5
+              "delta": -1.6
             },
             {
               "id": "seats_gru_45+",
@@ -1255,11 +1255,11 @@
               "zs": 0.57,
               "zs_naive": 3.55,
               "zs_source": "seats",
-              "pm": 11.0,
-              "pm_norm": 11.0,
+              "pm": 9.5,
+              "pm_norm": 9.5,
               "pm_volume": 28.0,
               "url": "https://polymarket.com/event/berlin-state-elections-grune-of-seats-20260805192827457",
-              "delta": -10.4
+              "delta": -8.9
             }
           ]
         },
@@ -1396,7 +1396,7 @@
           "label_de": "Stärkste Kraft",
           "polymarket_title": "Berlin State Election Winner",
           "polymarket_url": "https://polymarket.com/event/berlin-state-election-winner",
-          "polymarket_volume": 3264787.3351940005,
+          "polymarket_volume": 3264887.349558,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf.",
           "rows": [
             {
@@ -1407,7 +1407,7 @@
               "zs_vote": 33.0,
               "zs_source": "seats",
               "pm": 38.0,
-              "pm_norm": 38.52,
+              "pm_norm": 38.54,
               "pm_volume": 127153.08,
               "url": "https://polymarket.com/event/berlin-state-election-winner/will-linke-win-the-most-seats-in-the-2026-berlin-state-elections",
               "delta": -5.4
@@ -1420,7 +1420,7 @@
               "zs_vote": 30.0,
               "zs_source": "seats",
               "pm": 33.0,
-              "pm_norm": 33.45,
+              "pm_norm": 33.47,
               "pm_volume": 180679.09,
               "url": "https://polymarket.com/event/berlin-state-election-winner/will-cdu-win-the-most-seats-in-the-2026-berlin-state-elections",
               "delta": -2.6
@@ -1432,9 +1432,9 @@
               "zs": 18.27,
               "zs_vote": 18.0,
               "zs_source": "seats",
-              "pm": 15.6,
-              "pm_norm": 15.81,
-              "pm_volume": 2369129.34,
+              "pm": 15.55,
+              "pm_norm": 15.77,
+              "pm_volume": 2369229.35,
               "url": "https://polymarket.com/event/berlin-state-election-winner/will-afd-win-the-most-seats-in-the-2026-berlin-state-elections",
               "delta": 2.7
             },
@@ -1446,7 +1446,7 @@
               "zs_vote": 14.0,
               "zs_source": "seats",
               "pm": 8.25,
-              "pm_norm": 8.36,
+              "pm_norm": 8.37,
               "pm_volume": 135719.0,
               "url": "https://polymarket.com/event/berlin-state-election-winner/will-grne-win-the-most-seats-in-the-2026-berlin-state-elections",
               "delta": 5.8
@@ -1507,11 +1507,11 @@
               "zs": 26.42,
               "zs_vote": 26.43,
               "zs_source": "seats",
-              "pm": 29.0,
-              "pm_norm": 29.55,
+              "pm": 28.0,
+              "pm_norm": 28.96,
               "pm_volume": 2921.99,
               "url": "https://polymarket.com/event/berlin-state-election-2nd-place-20260708005726718/will-cdu-win-the-second-most-seats-in-the-2026-berlin-state-elections-20260708005726719",
-              "delta": -2.6
+              "delta": -1.6
             },
             {
               "id": "place2_afd",
@@ -1521,7 +1521,7 @@
               "zs_vote": 21.4,
               "zs_source": "seats",
               "pm": 26.5,
-              "pm_norm": 27.0,
+              "pm_norm": 27.4,
               "pm_volume": 3757.46,
               "url": "https://polymarket.com/event/berlin-state-election-2nd-place-20260708005726718/will-afd-win-the-second-most-seats-in-the-2026-berlin-state-elections-20260708005726720",
               "delta": -5.1
@@ -1533,11 +1533,11 @@
               "zs": 25.02,
               "zs_vote": 25.02,
               "zs_source": "seats",
-              "pm": 26.0,
-              "pm_norm": 26.49,
+              "pm": 25.5,
+              "pm_norm": 26.37,
               "pm_volume": 5486.65,
               "url": "https://polymarket.com/event/berlin-state-election-2nd-place-20260708005726718/will-linke-win-the-second-most-seats-in-the-2026-berlin-state-elections-20260708005726724",
-              "delta": -1.0
+              "delta": -0.5
             },
             {
               "id": "place2_gru",
@@ -1547,7 +1547,7 @@
               "zs_vote": 18.12,
               "zs_source": "seats",
               "pm": 12.5,
-              "pm_norm": 12.74,
+              "pm_norm": 12.93,
               "pm_volume": 3885.74,
               "url": "https://polymarket.com/event/berlin-state-election-2nd-place-20260708005726718/will-grune-win-the-second-most-seats-in-the-2026-berlin-state-elections-20260708005726721",
               "delta": 5.6
@@ -1559,8 +1559,8 @@
               "zs": 9.03,
               "zs_vote": 9.03,
               "zs_source": "seats",
-              "pm": 4.0,
-              "pm_norm": 4.08,
+              "pm": 4.05,
+              "pm_norm": 4.19,
               "pm_volume": 2627.87,
               "url": "https://polymarket.com/event/berlin-state-election-2nd-place-20260708005726718/will-spd-win-the-second-most-seats-in-the-2026-berlin-state-elections-20260708005726722",
               "delta": 5.0
@@ -1608,11 +1608,11 @@
               "zs": 23.67,
               "zs_vote": 23.68,
               "zs_source": "seats",
-              "pm": 31.0,
-              "pm_norm": 32.04,
+              "pm": 31.5,
+              "pm_norm": 32.42,
               "pm_volume": 5073.77,
               "url": "https://polymarket.com/event/berlin-state-election-3rd-place-20260708010022790/will-afd-win-the-third-most-seats-in-the-2026-berlin-state-elections-20260708010022792",
-              "delta": -7.3
+              "delta": -7.8
             },
             {
               "id": "place3_gru",
@@ -1622,7 +1622,7 @@
               "zs_vote": 22.43,
               "zs_source": "seats",
               "pm": 28.5,
-              "pm_norm": 29.46,
+              "pm_norm": 29.34,
               "pm_volume": 3511.84,
               "url": "https://polymarket.com/event/berlin-state-election-3rd-place-20260708010022790/will-grune-win-the-third-most-seats-in-the-2026-berlin-state-elections-20260708010022793",
               "delta": -6.1
@@ -1635,7 +1635,7 @@
               "zs_vote": 19.93,
               "zs_source": "seats",
               "pm": 19.0,
-              "pm_norm": 19.64,
+              "pm_norm": 19.56,
               "pm_volume": 5638.9,
               "url": "https://polymarket.com/event/berlin-state-election-3rd-place-20260708010022790/will-cdu-win-the-third-most-seats-in-the-2026-berlin-state-elections-20260708010022791",
               "delta": 0.9
@@ -1648,7 +1648,7 @@
               "zs_vote": 19.3,
               "zs_source": "seats",
               "pm": 9.5,
-              "pm_norm": 9.82,
+              "pm_norm": 9.78,
               "pm_volume": 4520.06,
               "url": "https://polymarket.com/event/berlin-state-election-3rd-place-20260708010022790/will-linke-win-the-third-most-seats-in-the-2026-berlin-state-elections-20260708010022796",
               "delta": 9.8
@@ -1660,11 +1660,11 @@
               "zs": 14.67,
               "zs_vote": 14.68,
               "zs_source": "seats",
-              "pm": 8.3,
-              "pm_norm": 8.58,
+              "pm": 8.2,
+              "pm_norm": 8.44,
               "pm_volume": 1268.37,
               "url": "https://polymarket.com/event/berlin-state-election-3rd-place-20260708010022790/will-spd-win-the-third-most-seats-in-the-2026-berlin-state-elections-20260708010022794",
-              "delta": 6.4
+              "delta": 6.5
             },
             {
               "id": "place3_bsw",
@@ -1674,7 +1674,7 @@
               "zs_vote": 0.0,
               "zs_source": "seats",
               "pm": 0.15,
-              "pm_norm": 0.16,
+              "pm_norm": 0.15,
               "pm_volume": 750.49,
               "url": "https://polymarket.com/event/berlin-state-election-3rd-place-20260708010022790/will-bsw-win-the-third-most-seats-in-the-2026-berlin-state-elections-20260708010022798",
               "delta": -0.1
@@ -1687,7 +1687,7 @@
               "zs_vote": 0.0,
               "zs_source": "seats",
               "pm": 0.15,
-              "pm_norm": 0.16,
+              "pm_norm": 0.15,
               "pm_volume": 673.57,
               "url": "https://polymarket.com/event/berlin-state-election-3rd-place-20260708010022790/will-fdp-win-the-third-most-seats-in-the-2026-berlin-state-elections-20260708010022795",
               "delta": -0.1
@@ -1801,11 +1801,11 @@
               "zs": 0.7,
               "zs_naive": 1.15,
               "zs_source": "seats",
-              "pm": 2.2,
-              "pm_norm": 2.2,
+              "pm": 2.5,
+              "pm_norm": 2.5,
               "pm_volume": 158.75,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-afd-of-seats-20260805192827457",
-              "delta": -1.5
+              "delta": -1.8
             },
             {
               "id": "seats_afd_20-23",
@@ -1827,11 +1827,11 @@
               "zs": 30.73,
               "zs_naive": 21.23,
               "zs_source": "seats",
-              "pm": 23.0,
-              "pm_norm": 23.0,
+              "pm": 26.0,
+              "pm_norm": 26.0,
               "pm_volume": 1704.05,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-afd-of-seats-20260805192827457",
-              "delta": 7.7
+              "delta": 4.7
             },
             {
               "id": "seats_afd_28-31",
@@ -1866,11 +1866,11 @@
               "zs": 4.6,
               "zs_naive": 15.85,
               "zs_source": "seats",
-              "pm": 4.6,
-              "pm_norm": 4.6,
+              "pm": 4.7,
+              "pm_norm": 4.7,
               "pm_volume": 408.17,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-afd-of-seats-20260805192827457",
-              "delta": 0.0
+              "delta": -0.1
             }
           ]
         },
@@ -1879,7 +1879,7 @@
           "label_de": "Sitze SPD",
           "polymarket_title": "Mecklenburg-Vorpommern Parliamentary Elections: SPD # of seats?",
           "polymarket_url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-spd-of-seats-20260805193137880",
-          "polymarket_volume": 12805.869139,
+          "polymarket_volume": 12892.24682,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf. Modell: Median 22 Sitze (Mittel 22.4). Naiv: Median 24 Sitze.",
           "rows": [
             {
@@ -1902,11 +1902,11 @@
               "zs": 34.1,
               "zs_naive": 22.25,
               "zs_source": "seats",
-              "pm": 27.6,
-              "pm_norm": 27.6,
-              "pm_volume": 518.82,
+              "pm": 6.25,
+              "pm_norm": 6.25,
+              "pm_volume": 531.67,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-spd-of-seats-20260805193137880",
-              "delta": 6.5
+              "delta": 27.9
             },
             {
               "id": "seats_spd_22-25",
@@ -1915,11 +1915,11 @@
               "zs": 30.07,
               "zs_naive": 31.85,
               "zs_source": "seats",
-              "pm": 42.5,
-              "pm_norm": 42.5,
+              "pm": 36.5,
+              "pm_norm": 36.5,
               "pm_volume": 6876.32,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-spd-of-seats-20260805193137880",
-              "delta": -12.4
+              "delta": -6.4
             },
             {
               "id": "seats_spd_26-29",
@@ -1930,7 +1930,7 @@
               "zs_source": "seats",
               "pm": 47.5,
               "pm_norm": 47.5,
-              "pm_volume": 1814.7,
+              "pm_volume": 1888.23,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-spd-of-seats-20260805193137880",
               "delta": -32.1
             },
@@ -1941,11 +1941,11 @@
               "zs": 6.15,
               "zs_naive": 10.65,
               "zs_source": "seats",
-              "pm": 6.65,
-              "pm_norm": 6.65,
+              "pm": 6.25,
+              "pm_norm": 6.25,
               "pm_volume": 1985.92,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-spd-of-seats-20260805193137880",
-              "delta": -0.5
+              "delta": -0.1
             },
             {
               "id": "seats_spd_34+",
@@ -1954,11 +1954,11 @@
               "zs": 1.75,
               "zs_naive": 3.6,
               "zs_source": "seats",
-              "pm": 3.15,
-              "pm_norm": 3.15,
+              "pm": 3.3,
+              "pm_norm": 3.3,
               "pm_volume": 674.54,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-elections-spd-of-seats-20260805193137880",
-              "delta": -1.4
+              "delta": -1.5
             }
           ]
         },
@@ -2175,7 +2175,7 @@
           "label_de": "Stärkste Kraft",
           "polymarket_title": "Mecklenburg-Vorpommern Parliamentary Election Winner",
           "polymarket_url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-winner",
-          "polymarket_volume": 456250.367045,
+          "polymarket_volume": 456250.36704499996,
           "note_de": "ZS = Sitzverteilung aus Wahlkreis-Swing + Hare/Niemeyer (Direktmandate + Ausgleich). Naiv = letzte Parlamentsgröße × Stimmenanteil (Hare/Niemeyer, 5%-Hürde, ohne Wahlkreise). Polymarket löst nach Sitzen auf.",
           "rows": [
             {
@@ -2205,17 +2205,17 @@
               "delta": 9.1
             },
             {
-              "id": "largest_party_lin",
-              "party": "lin",
-              "label_de": "Linke stärkste Kraft",
-              "zs": 0.03,
-              "zs_vote": 0.03,
+              "id": "largest_party_bsw",
+              "party": "bsw",
+              "label_de": "BSW stärkste Kraft",
+              "zs": 0.0,
+              "zs_vote": 0.0,
               "zs_source": "seats",
               "pm": 0.05,
               "pm_norm": 0.05,
-              "pm_volume": 27668.0,
-              "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-winner/will-linke-win-the-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections",
-              "delta": -0.0
+              "pm_volume": 22325.75,
+              "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-winner/will-bsw-win-the-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections",
+              "delta": -0.1
             },
             {
               "id": "largest_party_gru",
@@ -2231,19 +2231,6 @@
               "delta": -0.1
             },
             {
-              "id": "largest_party_bsw",
-              "party": "bsw",
-              "label_de": "BSW stärkste Kraft",
-              "zs": 0.0,
-              "zs_vote": 0.0,
-              "zs_source": "seats",
-              "pm": 0.05,
-              "pm_norm": 0.05,
-              "pm_volume": 22325.75,
-              "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-winner/will-bsw-win-the-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections",
-              "delta": -0.1
-            },
-            {
               "id": "largest_party_fdp",
               "party": "fdp",
               "label_de": "FDP stärkste Kraft",
@@ -2255,6 +2242,19 @@
               "pm_volume": 77089.18,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-winner/will-fdp-win-the-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections",
               "delta": -0.1
+            },
+            {
+              "id": "largest_party_lin",
+              "party": "lin",
+              "label_de": "Linke stärkste Kraft",
+              "zs": 0.03,
+              "zs_vote": 0.03,
+              "zs_source": "seats",
+              "pm": 0.05,
+              "pm_norm": 0.05,
+              "pm_volume": 27668.0,
+              "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-winner/will-linke-win-the-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections",
+              "delta": -0.0
             },
             {
               "id": "largest_party_cdu",
@@ -2287,7 +2287,7 @@
               "zs_vote": 73.85,
               "zs_source": "seats",
               "pm": 84.5,
-              "pm_norm": 84.46,
+              "pm_norm": 84.67,
               "pm_volume": 2001.66,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-2nd-place-20260806103311321/will-spd-win-the-second-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections-20260806103311325",
               "delta": -10.7
@@ -2300,7 +2300,7 @@
               "zs_vote": 24.48,
               "zs_source": "seats",
               "pm": 14.45,
-              "pm_norm": 14.44,
+              "pm_norm": 14.48,
               "pm_volume": 2239.95,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-2nd-place-20260806103311321/will-afd-win-the-second-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections-20260806103311323",
               "delta": 10.1
@@ -2338,11 +2338,11 @@
               "zs": 0.0,
               "zs_vote": 0.0,
               "zs_source": "seats",
-              "pm": 0.45,
-              "pm_norm": 0.45,
+              "pm": 0.35,
+              "pm_norm": 0.35,
               "pm_volume": 874.41,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-2nd-place-20260806103311321/will-fdp-win-the-second-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections-20260806103311326",
-              "delta": -0.5
+              "delta": -0.3
             },
             {
               "id": "place2_bsw",
@@ -2351,11 +2351,11 @@
               "zs": 0.0,
               "zs_vote": 0.0,
               "zs_source": "seats",
-              "pm": 0.4,
-              "pm_norm": 0.4,
+              "pm": 0.25,
+              "pm_norm": 0.25,
               "pm_volume": 799.77,
               "url": "https://polymarket.com/event/mecklenburg-vorpommern-parliamentary-election-2nd-place-20260806103311321/will-bsw-win-the-second-most-seats-in-the-2026-mecklenburg-vorpommern-parliamentary-elections-20260806103311329",
-              "delta": -0.4
+              "delta": -0.2
             },
             {
               "id": "place2_gru",
@@ -2387,8 +2387,8 @@
               "zs": 4.17,
               "zs_vote": 4.0,
               "zs_source": "seats",
-              "pm": 2.75,
-              "pm_norm": 2.75,
+              "pm": 2.8,
+              "pm_norm": 2.8,
               "pm_volume": 1507.36,
               "url": "https://polymarket.com/event/will-afd-win-an-absolute-majority-of-seats-in-mecklenburg-vorpommern-20260806103954025",
               "delta": 1.4
@@ -2426,10 +2426,10 @@
         "n": 1,
         "label_de": "AfD stärkste Kraft in 1 Wahl",
         "zs": 21.24,
-        "pm": 13.0,
-        "pm_norm": 13.0,
+        "pm": 12.95,
+        "pm_norm": 12.95,
         "pm_volume": 13496.94,
-        "delta": 8.2
+        "delta": 8.3
       },
       {
         "id": "afd_n_2",

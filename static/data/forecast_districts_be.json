@@ -9,7 +9,7 @@
     "model_loo_mae": 0.0252,
     "nsim": 4000,
     "seed": 20260730,
-    "last_update": "2026-08-18T13:27:50",
+    "last_update": "2026-08-19T14:47:59",
     "statewide_source": "forecast_state_be.json",
     "statewide_draws": "posterior",
     "statewide_draws_file": "forecast_state_be_draws.json",
@@ -76,7 +76,7 @@
       "land": "BE",
       "party": "cdu",
       "partei": "CDU",
-      "name": "Johannes Kraft",
+      "name": null,
       "winner": false,
       "probability": 2,
       "value": 15.7,
@@ -86,15 +86,7 @@
       "zs_value": 14.3,
       "zs_value_l1": 20.6,
       "valid_l1": 20195,
-      "zs_valid_l1": 20232,
-      "name_source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-      "gender": "m",
-      "gender_confidence": "high",
-      "is_incumbent": true,
-      "incumbent_chamber": "MdA",
-      "incumbent_url": "https://www.abgeordnetenwatch.de/profile/johannes-kraft",
-      "incumbent_mandate": "constituency",
-      "incumbent_match": "exact"
+      "zs_valid_l1": 20232
     },
     {
       "wkr": 1,
@@ -567,7 +559,7 @@
       "land": "BE",
       "party": "cdu",
       "partei": "CDU",
-      "name": "Dirk Stettner",
+      "name": null,
       "winner": false,
       "probability": 0,
       "value": 11.5,
@@ -577,15 +569,7 @@
       "zs_value": 10.4,
       "zs_value_l1": 15.6,
       "valid_l1": 17040,
-      "zs_valid_l1": 17052,
-      "name_source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-      "gender": "m",
-      "gender_confidence": "high",
-      "is_incumbent": true,
-      "incumbent_chamber": "MdA",
-      "incumbent_url": "https://www.abgeordnetenwatch.de/profile/dirk-stettner",
-      "incumbent_mandate": "constituency",
-      "incumbent_match": "exact"
+      "zs_valid_l1": 17052
     },
     {
       "wkr": 4,
@@ -741,7 +725,7 @@
       "land": "BE",
       "party": "cdu",
       "partei": "CDU",
-      "name": "Denise Bittner",
+      "name": null,
       "winner": false,
       "probability": 16,
       "value": 17.5,
@@ -751,10 +735,7 @@
       "zs_value": 15.9,
       "zs_value_l1": 24.1,
       "valid_l1": 14894,
-      "zs_valid_l1": 14897,
-      "name_source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-      "gender": "f",
-      "gender_confidence": "high"
+      "zs_valid_l1": 14897
     },
     {
       "wkr": 5,
@@ -1385,7 +1366,7 @@
       "land": "BE",
       "party": "cdu",
       "partei": "CDU",
-      "name": "David Paul",
+      "name": null,
       "winner": false,
       "probability": 0,
       "value": 8.4,
@@ -1395,10 +1376,7 @@
       "zs_value": 7.6,
       "zs_value_l1": 11.5,
       "valid_l1": 16731,
-      "zs_valid_l1": 22229,
-      "name_source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-      "gender": "m",
-      "gender_confidence": "high"
+      "zs_valid_l1": 22229
     },
     {
       "wkr": 9,
@@ -2030,7 +2008,7 @@
       "land": "BE",
       "party": "cdu",
       "partei": "CDU",
-      "name": null,
+      "name": "Johannes Kraft",
       "winner": false,
       "probability": 38,
       "value": 24.9,
@@ -2040,7 +2018,15 @@
       "zs_value": 21.2,
       "zs_value_l1": 33.6,
       "valid_l1": 21830,
-      "zs_valid_l1": 21827
+      "zs_valid_l1": 21827,
+      "name_source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
+      "gender": "m",
+      "gender_confidence": "high",
+      "is_incumbent": true,
+      "incumbent_chamber": "MdA",
+      "incumbent_url": "https://www.abgeordnetenwatch.de/profile/johannes-kraft",
+      "incumbent_mandate": "constituency",
+      "incumbent_match": "exact"
     },
     {
       "wkr": 13,
@@ -2521,7 +2507,7 @@
       "land": "BE",
       "party": "cdu",
       "partei": "CDU",
-      "name": null,
+      "name": "Dirk Stettner",
       "winner": false,
       "probability": 28,
       "value": 20.6,
@@ -2531,7 +2517,15 @@
       "zs_value": 18.3,
       "zs_value_l1": 28.9,
       "valid_l1": 18243,
-      "zs_valid_l1": 18270
+      "zs_valid_l1": 18270,
+      "name_source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
+      "gender": "m",
+      "gender_confidence": "high",
+      "is_incumbent": true,
+      "incumbent_chamber": "MdA",
+      "incumbent_url": "https://www.abgeordnetenwatch.de/profile/dirk-stettner",
+      "incumbent_mandate": "constituency",
+      "incumbent_match": "exact"
     },
     {
       "wkr": 16,
@@ -2677,7 +2671,7 @@
       "land": "BE",
       "party": "cdu",
       "partei": "CDU",
-      "name": null,
+      "name": "Denise Bittner",
       "winner": false,
       "probability": 4,
       "value": 14.6,
@@ -2687,7 +2681,10 @@
       "zs_value": 13.0,
       "zs_value_l1": 20.6,
       "valid_l1": 20026,
-      "zs_valid_l1": 20038
+      "zs_valid_l1": 20038,
+      "name_source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
+      "gender": "f",
+      "gender_confidence": "high"
     },
     {
       "wkr": 17,
@@ -3326,7 +3323,7 @@
       "land": "BE",
       "party": "cdu",
       "partei": "CDU",
-      "name": null,
+      "name": "David Paul",
       "winner": false,
       "probability": 1,
       "value": 12.5,
@@ -3336,7 +3333,10 @@
       "zs_value": 11.4,
       "zs_value_l1": 17.7,
       "valid_l1": 21692,
-      "zs_valid_l1": 21721
+      "zs_valid_l1": 21721,
+      "name_source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
+      "gender": "m",
+      "gender_confidence": "high"
     },
     {
       "wkr": 21,

@@ -4,7 +4,7 @@
     "nsim": 4000,
     "statewide_draws": "posterior",
     "seed": 20260730,
-    "last_update": "2026-08-19T11:39:25Z",
+    "last_update": "2026-08-19T12:48:33Z",
     "caveat_de": "",
     "gender_note_de": "Geschlechteranteile geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen). Keine amtliche Angabe."
   },
@@ -17,6 +17,7 @@
       "statewide_draws": "posterior",
       "statewide_last_poll_date": "2026-08-14",
       "list_note_de": "Berlin: CDU/SPD/Linke mit Bezirkslisten (Sitze nach Bezirk-Zweitstimmen aus proportionalem Swing der historischen WK-Ergebnisse); Grüne/AfD/FDP/BSW mit Landesliste. Grundmandatsklausel: ein Direktmandat reicht für den Parteieinzug. Fehlende Namen = Platzhalter (als verschiedene Personen behandelt).",
+      "sources_official": false,
       "parties": [
         {
           "party": "spd",
@@ -4435,11 +4436,11 @@
               "n_m": 38,
               "n_x": 0,
               "n_u": 0,
-              "pct_f": 24.1,
-              "pct_m": 75.9,
+              "pct_f": 23.1,
+              "pct_m": 76.9,
               "weighted": true,
               "weight_key": "p_direct",
-              "expected": 25.8
+              "expected": 26.4
             }
           },
           "gender_by_bezirk": {
@@ -4490,12 +4491,11 @@
                 "n_m": 4,
                 "n_x": 0,
                 "n_u": 0,
-                "pct_f": null,
-                "pct_m": null,
+                "pct_f": 3.6,
+                "pct_m": 96.4,
                 "weighted": true,
                 "weight_key": "p_direct",
-                "expected": 0.6,
-                "no_seats_expected": true
+                "expected": 1.1
               }
             },
             "04": {
@@ -4833,11 +4833,11 @@
               "bezirk": "03",
               "bezirk_name": "Pankow",
               "list_pos": 1,
-              "wkr_direct": 4,
+              "wkr_direct": 16,
               "source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-              "p_entry": 37,
-              "p_direct": 0,
-              "p_list": 37,
+              "p_entry": 64,
+              "p_direct": 28,
+              "p_list": 36,
               "gender": "m",
               "gender_confidence": "high",
               "is_incumbent": true,
@@ -4856,9 +4856,9 @@
               "list_pos": 2,
               "wkr_direct": null,
               "source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-              "p_entry": 26,
+              "p_entry": 27,
               "p_direct": 0,
-              "p_list": 26,
+              "p_list": 27,
               "gender": "m",
               "gender_confidence": "high",
               "is_incumbent": true,
@@ -4875,10 +4875,10 @@
               "bezirk": "03",
               "bezirk_name": "Pankow",
               "list_pos": 3,
-              "wkr_direct": 1,
+              "wkr_direct": 13,
               "source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-              "p_entry": 6,
-              "p_direct": 2,
+              "p_entry": 42,
+              "p_direct": 38,
               "p_list": 4,
               "gender": "m",
               "gender_confidence": "high",
@@ -4917,10 +4917,10 @@
               "bezirk": "03",
               "bezirk_name": "Pankow",
               "list_pos": 5,
-              "wkr_direct": 5,
+              "wkr_direct": 17,
               "source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-              "p_entry": 16,
-              "p_direct": 16,
+              "p_entry": 4,
+              "p_direct": 4,
               "p_list": 0,
               "gender": "f",
               "gender_confidence": "high"
@@ -4965,10 +4965,10 @@
               "bezirk": "03",
               "bezirk_name": "Pankow",
               "list_pos": 8,
-              "wkr_direct": 9,
+              "wkr_direct": 21,
               "source": "https://www.cdupankow.de/Fuer-das-Abgeordnetenhaus_p_127.html",
-              "p_entry": 0,
-              "p_direct": 0,
+              "p_entry": 1,
+              "p_direct": 1,
               "p_list": 0,
               "gender": "m",
               "gender_confidence": "high"
@@ -6235,6 +6235,20 @@
               "gender_confidence": "high"
             },
             {
+              "person_id": "be:cdu:direkt:1",
+              "name": "WK 1 · unbekannt",
+              "is_placeholder": true,
+              "list_type": "bezirk",
+              "bezirk": "01",
+              "bezirk_name": "Mitte",
+              "list_pos": null,
+              "wkr_direct": 1,
+              "source": "",
+              "p_entry": 2,
+              "p_direct": 2,
+              "p_list": 0
+            },
+            {
               "person_id": "be:cdu:direkt:2",
               "name": "WK 2 · unbekannt",
               "is_placeholder": true,
@@ -6260,6 +6274,34 @@
               "source": "",
               "p_entry": 6,
               "p_direct": 6,
+              "p_list": 0
+            },
+            {
+              "person_id": "be:cdu:direkt:4",
+              "name": "WK 4 · unbekannt",
+              "is_placeholder": true,
+              "list_type": "bezirk",
+              "bezirk": "01",
+              "bezirk_name": "Mitte",
+              "list_pos": null,
+              "wkr_direct": 4,
+              "source": "",
+              "p_entry": 0,
+              "p_direct": 0,
+              "p_list": 0
+            },
+            {
+              "person_id": "be:cdu:direkt:5",
+              "name": "WK 5 · unbekannt",
+              "is_placeholder": true,
+              "list_type": "bezirk",
+              "bezirk": "01",
+              "bezirk_name": "Mitte",
+              "list_pos": null,
+              "wkr_direct": 5,
+              "source": "",
+              "p_entry": 16,
+              "p_direct": 16,
               "p_list": 0
             },
             {
@@ -6347,17 +6389,17 @@
               "p_list": 0
             },
             {
-              "person_id": "be:cdu:direkt:13",
-              "name": "WK 13 · unbekannt",
+              "person_id": "be:cdu:direkt:9",
+              "name": "WK 9 · unbekannt",
               "is_placeholder": true,
               "list_type": "bezirk",
-              "bezirk": "03",
-              "bezirk_name": "Pankow",
+              "bezirk": "02",
+              "bezirk_name": "Friedrichshain-Kreuzberg",
               "list_pos": null,
-              "wkr_direct": 13,
+              "wkr_direct": 9,
               "source": "",
-              "p_entry": 38,
-              "p_direct": 38,
+              "p_entry": 0,
+              "p_direct": 0,
               "p_list": 0
             },
             {
@@ -6372,34 +6414,6 @@
               "source": "",
               "p_entry": 3,
               "p_direct": 3,
-              "p_list": 0
-            },
-            {
-              "person_id": "be:cdu:direkt:16",
-              "name": "WK 16 · unbekannt",
-              "is_placeholder": true,
-              "list_type": "bezirk",
-              "bezirk": "03",
-              "bezirk_name": "Pankow",
-              "list_pos": null,
-              "wkr_direct": 16,
-              "source": "",
-              "p_entry": 28,
-              "p_direct": 28,
-              "p_list": 0
-            },
-            {
-              "person_id": "be:cdu:direkt:17",
-              "name": "WK 17 · unbekannt",
-              "is_placeholder": true,
-              "list_type": "bezirk",
-              "bezirk": "03",
-              "bezirk_name": "Pankow",
-              "list_pos": null,
-              "wkr_direct": 17,
-              "source": "",
-              "p_entry": 4,
-              "p_direct": 4,
               "p_list": 0
             },
             {
@@ -6442,20 +6456,6 @@
               "source": "",
               "p_entry": 0,
               "p_direct": 0,
-              "p_list": 0
-            },
-            {
-              "person_id": "be:cdu:direkt:21",
-              "name": "WK 21 · unbekannt",
-              "is_placeholder": true,
-              "list_type": "bezirk",
-              "bezirk": "03",
-              "bezirk_name": "Pankow",
-              "list_pos": null,
-              "wkr_direct": 21,
-              "source": "",
-              "p_entry": 1,
-              "p_direct": 1,
               "p_list": 0
             },
             {
@@ -13971,8 +13971,7 @@
             }
           ]
         }
-      ],
-      "sources_official": false
+      ]
     },
     "MV": {
       "state_code": "MV",

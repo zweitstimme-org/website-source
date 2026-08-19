@@ -233,73 +233,23 @@
     return p === 'others' || p === 'oth' || label === 'Sonstige' || label === 'And.' || label === 'Andere';
   }
 
-  function districtPartyNameCoverage(stateItems) {
-    const byParty = {};
-    const wkrs = new Set();
-    (stateItems || []).forEach(r => {
-      if (!r || districtIsOthers(r)) return;
-      const wkr = Number(r.wkr);
-      if (!Number.isFinite(wkr)) return;
-      wkrs.add(wkr);
-      const key = String(r.party || r.partei || '');
-      if (!key) return;
-      if (!byParty[key]) byParty[key] = { namedWkrs: new Set(), label: r.partei || key };
-      if (districtHasCandidateName(r)) byParty[key].namedWkrs.add(wkr);
-    });
-    const nWkr = Math.max(1, wkrs.size);
-    const out = {};
-    Object.keys(byParty).forEach(key => {
-      const n = byParty[key].namedWkrs.size;
-      out[key] = {
-        namedCount: n,
-        share: n / nWkr,
-        fairlyComplete: n / nWkr >= 0.7
-      };
-    });
-    return out;
-  }
-
-  function districtRowsForDisplay(rows, stateItems, opts) {
+  function districtRowsForDisplay(rows, _stateItems, opts) {
     const complete = !!(opts && opts.candidatesComplete);
     const all = (rows || []).slice();
-    const coverage = districtPartyNameCoverage(stateItems || all);
     const keep = [];
-    const fold = [];
     all.forEach(r => {
       if (districtIsOthers(r)) return;
-      if (districtHasCandidateName(r)) {
-        keep.push(r);
-        return;
-      }
-      // Complete official lists: missing name = party does not field here.
-      if (complete) return;
-      const key = String(r.party || r.partei || '');
-      const cov = coverage[key];
-      if (cov && cov.fairlyComplete) {
-        fold.push(r);
-      } else {
-        keep.push(r);
-      }
+      // Never fold CDU/SPD/… into Sonstige. A missing Direkt name is not
+      // "others" — only official complete lists may hide a party that does
+      // not field a candidate (ST). Berlin lists are incomplete.
+      if (!districtHasCandidateName(r) && complete) return;
+      keep.push(r);
     });
     const othersSrc = all.find(districtIsOthers);
-    const foldValue = fold.reduce((s, r) => s + (Number(r.value) || 0), 0);
-    const foldL1 = fold.reduce((s, r) => s + (Number(r.value_l1) || 0), 0);
-    const foldLow = fold.reduce((s, r) => s + (Number(r.low) || 0), 0);
-    const foldHigh = fold.reduce((s, r) => s + (Number(r.high) || 0), 0);
-
     const out = keep.map(r => ({ ...r }));
-    if (othersSrc || foldValue > 0.05) {
-      const o = othersSrc ? { ...othersSrc } : {
-        party: 'others',
-        partei: 'Sonstige',
-        probability: 0,
-        winner: false
-      };
+    if (othersSrc) {
+      const o = { ...othersSrc };
       o.partei = (o.partei === 'And.') ? 'Andere' : (o.partei || 'Sonstige');
-      o.value = Math.round(((Number(o.value) || 0) + foldValue) * 10) / 10;
-      o.value_l1 = Math.round(((Number(o.value_l1) || 0) + foldL1) * 10) / 10;
-      o.low = Math.round(Math.max(0, (Number(o.low) || 0) + foldLow) * 10) / 10;
-      o.high = Math.round(Math.min(100, (Number(o.high) || 0) + foldHigh) * 10) / 10;
       delete o.name;
       delete o.Vornamen;
       delete o.Nachname;
