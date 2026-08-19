@@ -196,6 +196,24 @@ a.district-aw:hover {
   font-weight: 650;
   text-decoration: none;
 }
+.district-page-note {
+  margin: 1.1rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+  color: #666;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.district-page-note p {
+  margin: 0 0 0.55rem;
+}
+.district-page-note p:last-child {
+  margin-bottom: 0;
+}
+.district-page-note a {
+  color: var(--primary);
+}
 .district-preview-targets {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -582,11 +600,6 @@ a.district-aw:hover {
 <div id="vorhersage-districts-section" style="display: none; margin: 0 auto; max-width: 700px;">
   <div class="scenario-prob-panel">
     <h3 class="scenario-prob-heading" id="district-preview-heading">Wahlkreise</h3>
-    <div id="vorhersage-districts-note" style="text-align: center; color: #666; font-size: 0.85rem; margin: 0 0 0.75rem;">
-      Uniformer Swing aus Landesprognose und letzter Wahl — ohne Effekte der Kandidierenden. Erststimme als Band; Namen führen zur Profilseite (Quelle dort).
-      Suche nach Adresse, Wahlkreis oder Name; Klick auf einen Wahlkreis für Details<span id="vorhersage-districts-stand"></span>
-      — <a href="{{ "blog/posts/district-forecast-methodology/" | relURL }}" style="color: var(--primary);">Wie funktioniert die Wahlkreis-Vorhersage?</a>
-    </div>
     <div class="district-search" id="district-search">
       <label class="district-search-label" for="district-search-input">Suche</label>
       <input
@@ -609,12 +622,23 @@ a.district-aw:hover {
     <div id="vorhersage-districts-detail" style="margin-top: 0.9rem; display: none;"></div>
     <div id="vorhersage-districts-gender" class="district-gender-panel" style="display: none;" aria-live="polite"></div>
     <div id="vorhersage-parliament-size" class="district-size-panel" style="display: none;" aria-live="polite"></div>
+    <div id="vorhersage-districts-note" class="district-page-note">
+      <p>
+        Uniformer Swing aus Landesprognose und letzter Wahl — ohne Effekte der Kandidierenden. Erststimme als Band; Namen führen zur Profilseite (Quelle dort).
+        Suche nach Adresse, Wahlkreis oder Name; Klick auf einen Wahlkreis für Details<span id="vorhersage-districts-stand"></span>
+        — <a href="{{ "blog/posts/district-forecast-methodology/" | relURL }}">Wie funktioniert die Wahlkreis-Vorhersage?</a>
+      </p>
+      <p>
+        Listenplatz &amp; Einzugschancen — P(Einzug) = P(Sieg) + P(Liste). Details in der
+        <a id="district-note-einzug-link" href="{{ "einzug/" | relURL }}">Einzugs-Vorhersage</a>.
+      </p>
+    </div>
   </div>
 </div>
 
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=7"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=24"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=25"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const labels = {
@@ -625,6 +649,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const buttons = Array.from(document.querySelectorAll('.district-preview-target'));
   const heading = document.getElementById('district-preview-heading');
   const einzugLink = document.getElementById('district-einzug-link');
+  const noteEinzugLink = document.getElementById('district-note-einzug-link');
 
   function siteBase() {
     try {
@@ -636,8 +661,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function syncEinzugLink(code) {
-    if (!einzugLink) return;
-    einzugLink.href = siteBase() + 'einzug/?state=' + encodeURIComponent(code);
+    const href = siteBase() + 'einzug/?state=' + encodeURIComponent(code);
+    if (einzugLink) einzugLink.href = href;
+    if (noteEinzugLink) noteEinzugLink.href = href;
   }
 
   async function selectCode(code, wkr) {

@@ -589,7 +589,6 @@
     const winnerLabel = winnerName
       ? ` · ${candidateNameHtml(winnerName, winnerList, winnerBio, winnerInc, winner)}`
       : ' · <span style="font-weight:400;font-style:italic;color:#888;">Name noch nicht bekannt</span>';
-    const einzugHref = `${siteBase()}einzug/?state=${encodeURIComponent(stateCode || 'ST')}`;
     // Keep deep-link shareable when user clicks a district
     try {
       if (stateCode && Number.isFinite(Number(wkr))) {
@@ -651,7 +650,6 @@
       </div>
       ${needsToggle ? '<button type="button" class="scenario-prob-toggle district-party-toggle" aria-expanded="false">Mehr anzeigen</button>' : ''}
       ${unnamedCount ? `<div style="margin-top:0.65rem;text-align:center;font-size:0.78rem;color:#888;">Bei ${unnamedCount === 1 ? escapeHtml(unnamedParties[0]) : escapeHtml(unnamedParties.slice(0, -1).join(', ') + ' und ' + unnamedParties[unnamedParties.length - 1])} ist uns der Direktkandidat:innen-Name noch nicht bekannt — die Partei wird trotzdem ausgewiesen.</div>` : ''}
-      ${listLookup && (listLookup.byWkr && Object.keys(listLookup.byWkr).length) ? `<div style="margin-top:0.55rem;text-align:center;font-size:0.78rem;color:#888;">Listenplatz &amp; Einzugschancen — P(Einzug) = P(Sieg) + P(Liste). Details in der <a href="${escapeHtml(einzugHref)}" style="color:var(--primary,#0056b3);">Einzugs-Vorhersage</a>.</div>` : ''}
     `;
     const list = el.querySelector('.district-party-list');
     const toggle = el.querySelector('.district-party-toggle');
