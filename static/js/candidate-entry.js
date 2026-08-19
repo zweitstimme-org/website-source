@@ -15,7 +15,7 @@
   };
 
   const UNOFFICIAL_SOURCE_NOTE =
-    "Quellen der Bewerber:innen bisher nicht amtlich — je Person auf der Profilseite.";
+    "Die hier angezeigten Namen stammen überwiegend aus Angaben der Parteien; je Person finden Sie die genutzte Quelle auf der Profilseite. Nichtamtliche Namensstände können sich bis zum amtlichen Bewerberverzeichnis ändern.";
 
   const PARTY_COLOR = {
     spd: "#E3000F",

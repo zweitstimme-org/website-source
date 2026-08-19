@@ -127,6 +127,17 @@
     el.textContent = bits.length ? ` · ${bits.join(' · ')}` : '';
   }
 
+  const UNOFFICIAL_DIRECT_NOTE =
+    'Die hier angezeigten Direktkandidat:innen-Namen stammen überwiegend aus Angaben der Parteien; je Person finden Sie die genutzte Quelle auf der Profilseite. Nichtamtliche Namensstände können sich bis zum amtlichen Bewerberverzeichnis ändern.';
+
+  function setDistrictSourceNote(code) {
+    const el = document.getElementById('vorhersage-districts-source-note');
+    if (!el) return;
+    const unofficial = code === 'BE' || code === 'MV';
+    el.hidden = !unofficial;
+    el.textContent = unofficial ? UNOFFICIAL_DIRECT_NOTE : '';
+  }
+
   function ensureLeaflet() {
     if (global.L) return Promise.resolve(global.L);
     if (leafletLoaderPromise) return leafletLoaderPromise;
@@ -1277,6 +1288,7 @@
     const section = document.getElementById('vorhersage-districts-section');
     if (section) section.style.display = 'none';
     setDistrictStand(null);
+    setDistrictSourceNote(null);
     clearAddressMarker();
     hideSearchResults();
     setSearchStatus('');
@@ -1604,6 +1616,7 @@
 
       section.style.display = 'block';
       setDistrictStand(meta);
+      setDistrictSourceNote(code);
       if (mapInstance) {
         clearAddressMarker();
         mapInstance.remove();
