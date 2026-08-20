@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-18T07:47:44",
+  "generated_at": "2026-08-20T06:09:18Z",
   "election": {
     "id": "bw_2031-04-20",
     "name": "Landtagswahl Baden-Württemberg",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-18",
+    "as_of": "2026-08-20",
     "parties": {
       "CDU/CSU": 26.4,
       "AfD": 21.2,
@@ -53,15 +53,6 @@
       "REP": null,
       "Sonstige": null
     },
-    "active_parties": [
-      "CDU/CSU",
-      "AfD",
-      "SPD",
-      "GRÜNE",
-      "LINKE",
-      "FDP"
-    ],
-    "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
       "CDU/CSU": 0,
       "AfD": 0,
@@ -75,7 +66,16 @@
       "PIRATEN": null,
       "REP": null,
       "Sonstige": 0
-    }
+    },
+    "active_parties": [
+      "CDU/CSU",
+      "AfD",
+      "SPD",
+      "GRÜNE",
+      "LINKE",
+      "FDP"
+    ],
+    "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-18"
+  "as_of": "2026-08-20"
 }

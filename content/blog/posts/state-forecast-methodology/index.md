@@ -27,6 +27,62 @@ draft: false
 }
 .meth-fig-cap strong { color: #444; font-weight: 600; }
 
+/* Bias */
+.meth-bias-axis {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: #888;
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.meth-bias-axis span:first-child { text-align: left; }
+.meth-bias-axis span:nth-child(2) { text-align: center; text-transform: none; letter-spacing: 0; color: #666; }
+.meth-bias-axis span:last-child { text-align: right; }
+.meth-bias-row {
+  display: grid;
+  grid-template-columns: 5.2rem 1fr 3.2rem;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.28rem 0;
+}
+.meth-bias-party {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: right;
+}
+.meth-bias-track {
+  position: relative;
+  height: 14px;
+  background: #f3f3f3;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.meth-bias-zero {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #bbb;
+}
+.meth-bias-bar {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  border-radius: 2px;
+  transition: width 0.7s cubic-bezier(.2,.8,.2,1);
+}
+.meth-bias-bar--over { left: 50%; }
+.meth-bias-bar--under { right: 50%; }
+.meth-bias-val {
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
 /* MAE */
 .meth-mae {
   display: grid;
@@ -288,6 +344,7 @@ draft: false
   }
   .meth-pipeline-step:nth-child(2)::after { display: none; }
   .meth-scenarios-grid { grid-template-columns: 1fr; }
+  .meth-bias-row { grid-template-columns: 4.4rem 1fr 2.8rem; }
   .meth-anatomy-callout span { display: none; }
   .meth-chart-wrap { height: 240px; }
 }
@@ -299,7 +356,7 @@ draft: false
   .meth-scenario-dots { width: 110px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .meth-mae-bar { animation: none !important; transition: none !important; }
+  .meth-mae-bar, .meth-bias-bar { animation: none !important; transition: none !important; }
 }
 </style>
 
@@ -313,20 +370,26 @@ Eine Vorhersage wird **90 Tage vor dem Wahltermin** freigeschaltet und bei neuen
 
 ### Warum nicht einfach die letzten Umfragen nehmen?
 
-Umfragen kurz vor der Wahl sind der stärkste einzelne Prädiktor — aber sie liegen regelmäßig daneben. Umfragen einige Wochen vor der Wahl verfehlen das Ergebnis im Schnitt um mehrere Prozentpunkte. Ein statistisches Modell kann aus vergangenen Wahlen **lernen**, wie stark Umfragen zu gewichten sind — und wie groß die verbleibende Unsicherheit realistischerweise ist.
+Umfragen kurz vor der Wahl sind der stärkste einzelne Prädiktor — aber sie liegen systematisch mal daneben, und zwar nicht für alle Parteien gleich. Historisch werden manche Parteien in Landtagsumfragen tendenziell über-, andere unterschätzt, und Umfragen einige Wochen vor der Wahl verfehlen das Ergebnis im Schnitt um mehrere Prozentpunkte. Ein statistisches Modell kann aus vergangenen Wahlen **lernen**, wie stark Umfragen zu gewichten sind — und wie groß die verbleibende Unsicherheit realistischerweise ist.
+
+<div class="meth-fig" aria-label="Historischer Umfragefehler nach Partei">
+  <p class="meth-fig-title">Historischer Umfragefehler nach Partei</p>
+  <div id="meth-viz-bias"></div>
+  <p class="meth-fig-cap">Mittlere Abweichung der Landesumfragen vom Wahlergebnis in den letzten 14 Tagen vor der Wahl (Umfrage minus Ergebnis). Positive Werte: Partei wurde überschätzt. Quelle: Landtagswahlen mit Umfragedaten seit den 1990er Jahren.</p>
+</div>
 
 ### Das Modell
 
-Die Vorhersage folgt dem Ansatz aus [Stoetzer, Erfort, Rajski, Gschwend, Munzert und Koch (2025)](https://doi.org/10.1016/j.electstud.2025.102939) in *Electoral Studies*: einem **bayesianischen Regressionsmodell**, trainiert auf deutschen Landtagswahlen mit Umfragedaten. Für jede Partei schätzt es den Stimmenanteil am Wahltag — aus den **aktuellen Landesumfragen** (Anzeige: „Letzte Umfrage“) und daraus, **wie viele Tage** es noch bis zur Wahl sind (exakter Tages-Vorlauf, wie bei BW/RP 2026). Je näher der Termin, desto stärker zählen die Umfragen und desto schmaler werden typischerweise die Intervalle.
+Unsere Landtagswahl-Vorhersage beruht auf einem **bayesianischen Regressionsmodell**, trainiert auf deutschen Landtagswahlen mit Umfragedaten. Für jede Partei schätzt es den Stimmenanteil am Wahltag — aus den **aktuellen Landesumfragen** (Anzeige: „Letzte Umfrage“) und daraus, **wie viele Tage** es noch bis zur Wahl sind (exakter Tages-Vorlauf, wie bei BW/RP 2026). Je näher der Termin, desto stärker zählen die Umfragen und desto schmaler werden typischerweise die Intervalle.
 
-Das Live-Modell ist **umfragenbasiert** (polls-only): Eingangsdaten sind nur die Landesumfragen plus der Vorlauf. Bundestrend, letztes Wahlergebnis und Regierungsbeteiligung fließen **nicht** ein — sie gehören zur Paper-Variante (kombiniertes Modell, `_all`), nicht zur hier gezeigten Vorhersage. Auch neue Parteien stecken bereits in den Umfragen und brauchen keinen eigenen Extra-Faktor.
+Das Live-Modell ist **umfragenbasiert** (polls-only): Eingangsdaten sind nur die Landesumfragen plus der Vorlauf. Bundestrend, letztes Wahlergebnis und Regierungsbeteiligung fließen **nicht** ein — sie gehören zur Paper-Variante `_all`, nicht zur hier gezeigten Vorhersage. Auch neue Parteien stecken bereits in den Umfragen und brauchen keinen eigenen Extra-Faktor.
 
 Das Modell lernt aus vergangenen Wahlen, wie stark Umfragen zu gewichten sind und wie groß der typische Restfehler bleibt. Genau dieser Restfehler bestimmt die Breite der Unsicherheitsintervalle.
 
 <div class="meth-fig" aria-label="Prognosefehler nach Vorlauf">
   <p class="meth-fig-title">Je näher die Wahl, desto kleiner der Fehler</p>
   <div id="meth-viz-mae"></div>
-  <p class="meth-fig-cap">Mittlerer absoluter Fehler (MAE) des <strong>kombinierten Modells</strong> aus dem Paper (Umfragen plus Strukturdaten: letztes Wahlergebnis, Bundestrend, Regierungsbeteiligung) bei historischer Kreuzvalidierung — für die festen Vorläufe 2 Tage, 2 Wochen und 2 Monate. Quelle: <a href="https://doi.org/10.1016/j.electstud.2025.102939">Stoetzer et al. (2025)</a>, <em>Electoral Studies</em>, log-ratio-Spezifikation. Die Live-Vorhersage verwendet die <strong>umfragenbasierte Variante</strong> desselben Ansatzes, trainiert am <strong>exakten Tages-Vorlauf</strong> der jeweiligen Wahl — nicht die 2-/14-/60-Tage-Fenster des Papers.</p>
+  <p class="meth-fig-cap">Mittlerer absoluter Fehler (MAE) des Modells bei historischer Kreuzvalidierung — getrennt nach Vorlauf. Für Live-Vorhersagen trainieren wir am exakten Tages-Vorlauf der jeweiligen Wahl.</p>
 </div>
 
 ### Von Umfragen zur Prognose
@@ -382,7 +445,7 @@ Eine Wahrscheinlichkeit von z. B. 69 % für „BSW über 5 %-Hürde“ heißt: I
 | | **Stimmung** (Balken/Linien) | **Vorhersage** |
 |---|---|---|
 | Frage | Wie ist die Stimmung *heute*? | Wie geht die Wahl *am Wahltag* aus? |
-| Methode | [Kalman-Filter](/blog/posts/polling-calculation-methods/) über alle Umfragen | Bayesianisches Modell nach [Stoetzer et al. (2025)](https://doi.org/10.1016/j.electstud.2025.102939), hier umfragenbasiert |
+| Methode | [Kalman-Filter](/blog/posts/polling-calculation-methods/) über alle Umfragen | Bayesianisches Modell, trainiert auf Landtagswahlen |
 | Eingangsdaten | Nur Umfragen | Landesumfragen + Tage bis zur Wahl |
 | Unsicherheit | ±1σ-Band der Umfrageglättung | 5/6-Intervall inkl. historischem Prognosefehler |
 | Verfügbar | Immer | Ab 90 Tage vor der Wahl |
@@ -400,11 +463,9 @@ Kurz gesagt: Die Stimmung glättet, was Umfragen *messen*; die Vorhersage schät
 
 Die Landtagswahl-Vorhersage übersetzt aktuelle Landesumfragen in eine Wahlprognose — gelernt aus vergangenen Landtagswahlen, mit ehrlicher Unsicherheit. Sie liefert keine Gewissheit, sondern **kalibrierte Wahrscheinlichkeiten**: eine Punktschätzung, ein Unsicherheitsintervall und Szenario-Wahrscheinlichkeiten, die man beim Wort nehmen darf. Die archivierten Prognosen vergangener Wahlen bleiben unverändert online — so können Sie selbst überprüfen, wie gut das Modell trifft.
 
-Die wissenschaftliche Grundlage und die Evaluation des kombinierten Modells stehen in [Stoetzer et al. (2025)](https://doi.org/10.1016/j.electstud.2025.102939), *Electoral Studies*.
-
 ---
 
-**Weiterlesen:** [FAQ](/faq) · [Stoetzer et al. (2025) in *Electoral Studies*](https://doi.org/10.1016/j.electstud.2025.102939)
+**Weiterlesen:** [FAQ](/faq)
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -413,5 +474,4 @@ Die wissenschaftliche Grundlage und die Evaluation des kombinierten Modells steh
     Chart.register(ChartDataLabels);
   }
 </script>
-<script src="/js/chart-logo-watermark.js?v=6"></script>
-<script src="/js/methodology-viz.js?v=2"></script>
+<script src="/js/methodology-viz.js"></script>
