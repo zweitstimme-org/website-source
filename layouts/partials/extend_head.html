@@ -9,6 +9,11 @@
   var ALLOW = ["id", "state", "land", "party", "name", "wkr", "bezirk"];
   var lastSent = "";
   var timer = null;
+  var dwellSection = "";
+  var dwellVisibleAt = 0;
+  var dwellAcc = 0;
+  var dwellPinged = 0;
+  var dwellTimer = null;
 
   function optedOut() {
     try {
@@ -127,19 +132,78 @@
     return "";
   }
 
-  function send(key) {
-    var img = new Image();
-    img.referrerPolicy = "no-referrer";
+  function pageSection() {
+    var p = (location.pathname || "/").replace(/^\/website-pipeline(?=\/|$)/, "") || "/";
+    p = p.replace(/\/+$/, "") || "/";
+    if (p === "/" || p === "/index.html") return "home";
+    var parts = p.replace(/^\//, "").split("/");
+    var first = parts[0];
+    if (first === "preview") first = parts[1] || "preview";
+    var known = {
+      direktmandate: 1, einzug: 1, kandidat: 1, faq: 1, blog: 1,
+      research: 1, team: 1, docs: 1, archive: 1, impressum: 1, datenschutz: 1,
+      preview: 1
+    };
+    return known[first] ? first : "other";
+  }
+
+  function send(key, extra) {
+    extra = extra || {};
     var src = "https://polsci.uni-wh.de/zweitstimme.gif?p=" + encodeURIComponent(key) + "&v=" + viewport();
     var cell = cellular();
     if (cell) src += "&c=" + cell;
+    if (extra.d) src += "&d=" + extra.d;
+    if (extra.t) src += "&t=" + extra.t;
+    if (extra.e) src += "&e=1";
+    if (extra.keep) {
+      try {
+        fetch(src, { method: "GET", mode: "no-cors", keepalive: true, credentials: "omit" });
+        return;
+      } catch (err) {}
+    }
+    var img = new Image();
+    img.referrerPolicy = "no-referrer";
     img.src = src;
+  }
+
+  function dwellNow() {
+    return Date.now() / 1000;
+  }
+
+  function resetDwell() {
+    dwellSection = pageSection();
+    dwellAcc = 0;
+    dwellPinged = 0;
+    dwellVisibleAt = (typeof document !== "undefined" && document.visibilityState === "hidden") ? 0 : dwellNow();
+  }
+
+  function flushDwell(isEnd) {
+    if (!dwellSection) return;
+    if (dwellVisibleAt) {
+      dwellAcc += dwellNow() - dwellVisibleAt;
+      dwellVisibleAt = isEnd ? 0 : dwellNow();
+    }
+    var total = dwellAcc;
+    var delta = total - dwellPinged;
+    if (delta < 1 && !isEnd) return;
+    dwellPinged = total;
+    var extra = {};
+    if (delta >= 1) extra.d = Math.min(90, Math.max(1, Math.round(delta)));
+    if (isEnd && total >= 1) {
+      extra.e = 1;
+      extra.t = Math.min(3600, Math.max(1, Math.round(total)));
+      extra.keep = true;
+    }
+    if (!extra.d && !extra.t) return;
+    send("/dwell/" + dwellSection, extra);
   }
 
   function ping() {
     var key = pageKey();
     if (key === lastSent) return;
+    if (lastSent) flushDwell(true);
     lastSent = key;
+    resetDwell();
     send(key);
   }
 
@@ -181,6 +245,21 @@
       if (selKey) send(selKey);
     }, true);
     schedulePing();
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "hidden") {
+        if (dwellVisibleAt) {
+          dwellAcc += dwellNow() - dwellVisibleAt;
+          dwellVisibleAt = 0;
+        }
+        flushDwell(false);
+      } else {
+        dwellVisibleAt = dwellNow();
+      }
+    });
+    window.addEventListener("pagehide", function () { flushDwell(true); });
+    dwellTimer = setInterval(function () {
+      if (document.visibilityState === "visible") flushDwell(false);
+    }, 15000);
   } catch (e) {}
 })();
 </script>

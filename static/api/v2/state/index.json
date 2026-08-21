@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-21T06:08:36Z",
+  "generated_at": "2026-08-21T08:01:27Z",
   "description": "Active state (Landtag) forecasts within the ~90-day window before election day. Past elections (once archived by the pipeline) are under /api/v2/state/archive/.",
   "forecast_window_days": 90,
   "states": [
