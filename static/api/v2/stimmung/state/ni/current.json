@@ -1,16 +1,16 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-18T07:48:01",
+  "generated_at": "2026-08-21T06:08:36Z",
   "election": {
-    "id": "ni_2027-10-17",
+    "id": "ni_2027-09-26",
     "name": "Landtagswahl Niedersachsen",
-    "date": "2027-10-17",
+    "date": "2027-09-26",
     "scope": "state",
     "state_code": "NI",
-    "date_is_estimated": true
+    "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-18",
+    "as_of": "2026-08-21",
     "parties": {
       "CDU/CSU": 25.2,
       "AfD": 20.1,
@@ -53,15 +53,6 @@
       "REP": null,
       "Sonstige": null
     },
-    "active_parties": [
-      "CDU/CSU",
-      "AfD",
-      "SPD",
-      "GRÜNE",
-      "LINKE",
-      "FDP"
-    ],
-    "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
       "CDU/CSU": 0,
       "AfD": 0,
@@ -75,7 +66,16 @@
       "PIRATEN": null,
       "REP": null,
       "Sonstige": 0
-    }
+    },
+    "active_parties": [
+      "CDU/CSU",
+      "AfD",
+      "SPD",
+      "GRÜNE",
+      "LINKE",
+      "FDP"
+    ],
+    "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-18"
+  "as_of": "2026-08-21"
 }

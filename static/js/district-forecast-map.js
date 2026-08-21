@@ -233,23 +233,73 @@
     return p === 'others' || p === 'oth' || label === 'Sonstige' || label === 'And.' || label === 'Andere';
   }
 
-  function districtRowsForDisplay(rows, _stateItems, opts) {
+  function districtPartyNameCoverage(stateItems) {
+    const byParty = {};
+    const wkrs = new Set();
+    (stateItems || []).forEach(r => {
+      if (!r || districtIsOthers(r)) return;
+      const wkr = Number(r.wkr);
+      if (!Number.isFinite(wkr)) return;
+      wkrs.add(wkr);
+      const key = String(r.party || r.partei || '');
+      if (!key) return;
+      if (!byParty[key]) byParty[key] = { namedWkrs: new Set(), label: r.partei || key };
+      if (districtHasCandidateName(r)) byParty[key].namedWkrs.add(wkr);
+    });
+    const nWkr = Math.max(1, wkrs.size);
+    const out = {};
+    Object.keys(byParty).forEach(key => {
+      const n = byParty[key].namedWkrs.size;
+      out[key] = {
+        namedCount: n,
+        share: n / nWkr,
+        fairlyComplete: n / nWkr >= 0.7
+      };
+    });
+    return out;
+  }
+
+  function districtRowsForDisplay(rows, stateItems, opts) {
     const complete = !!(opts && opts.candidatesComplete);
     const all = (rows || []).slice();
+    const coverage = districtPartyNameCoverage(stateItems || all);
     const keep = [];
+    const fold = [];
     all.forEach(r => {
       if (districtIsOthers(r)) return;
-      // Never fold CDU/SPD/… into Sonstige. A missing Direkt name is not
-      // "others" — only official complete lists may hide a party that does
-      // not field a candidate (ST). Berlin lists are incomplete.
-      if (!districtHasCandidateName(r) && complete) return;
-      keep.push(r);
+      if (districtHasCandidateName(r)) {
+        keep.push(r);
+        return;
+      }
+      // Complete official lists: missing name = party does not field here.
+      if (complete) return;
+      const key = String(r.party || r.partei || '');
+      const cov = coverage[key];
+      if (cov && cov.fairlyComplete) {
+        fold.push(r);
+      } else {
+        keep.push(r);
+      }
     });
     const othersSrc = all.find(districtIsOthers);
+    const foldValue = fold.reduce((s, r) => s + (Number(r.value) || 0), 0);
+    const foldL1 = fold.reduce((s, r) => s + (Number(r.value_l1) || 0), 0);
+    const foldLow = fold.reduce((s, r) => s + (Number(r.low) || 0), 0);
+    const foldHigh = fold.reduce((s, r) => s + (Number(r.high) || 0), 0);
+
     const out = keep.map(r => ({ ...r }));
-    if (othersSrc) {
-      const o = { ...othersSrc };
+    if (othersSrc || foldValue > 0.05) {
+      const o = othersSrc ? { ...othersSrc } : {
+        party: 'others',
+        partei: 'Sonstige',
+        probability: 0,
+        winner: false
+      };
       o.partei = (o.partei === 'And.') ? 'Andere' : (o.partei || 'Sonstige');
+      o.value = Math.round(((Number(o.value) || 0) + foldValue) * 10) / 10;
+      o.value_l1 = Math.round(((Number(o.value_l1) || 0) + foldL1) * 10) / 10;
+      o.low = Math.round(Math.max(0, (Number(o.low) || 0) + foldLow) * 10) / 10;
+      o.high = Math.round(Math.min(100, (Number(o.high) || 0) + foldHigh) * 10) / 10;
       delete o.name;
       delete o.Vornamen;
       delete o.Nachname;
@@ -270,58 +320,6 @@
     if (rounded >= 100) return '~100%';
     if (rounded <= 0) return '~0%';
     return `${rounded}%`;
-  }
-
-  /**
-   * IPCC-style likelihood for the district favorite (0–100).
-   * If a second party is still above 33%, the race is "Offen" even when
-   * the leader is just over 50% (e.g. 51–47).
-   */
-  function districtRunnerUpWinProbability(partyRows) {
-    const probs = (partyRows || [])
-      .filter((r) => !districtIsOthers(r))
-      .map((r) => districtWinProbability(r))
-      .filter((p) => Number.isFinite(p))
-      .sort((a, b) => b - a);
-    return probs.length >= 2 ? probs[1] : 0;
-  }
-
-  function districtWinLikelihoodLabel(prob, runnerUpProb) {
-    const p = Number(prob);
-    if (!Number.isFinite(p)) return '';
-    const second = Number(runnerUpProb);
-    if (Number.isFinite(second) && second > 33) return 'Offen';
-    if (p >= 99) return 'Nahezu sicher';
-    if (p >= 90) return 'Sehr wahrscheinlich';
-    if (p >= 66) return 'Wahrscheinlich';
-    if (p > 50) return 'Tendenziell';
-    if (p >= 33) return 'Offen';
-    return 'Völlig offen';
-  }
-
-  function districtWinLikelihoodIsOpen(label) {
-    return label === 'Offen' || label === 'Völlig offen';
-  }
-
-  /** Headline HTML for the WK detail header (party names escaped). */
-  function districtWinLikelihoodHeadline(label, favorite, partyRows) {
-    const favProb = districtWinProbability(favorite);
-    const favName = escapeHtml((favorite && favorite.partei) || '');
-    if (!label) {
-      return `<strong>${favName}</strong> (P(Sieg): ${formatWinProbabilityPct(favProb)})`;
-    }
-    if (districtWinLikelihoodIsOpen(label)) {
-      const listed = (partyRows || [])
-        .filter((r) => !districtIsOthers(r) && districtWinProbability(r) > 5)
-        .sort((a, b) => (districtWinProbability(b) || 0) - (districtWinProbability(a) || 0));
-      if (listed.length) {
-        const bits = listed.map((r) =>
-          `${escapeHtml(r.partei)} (${formatWinProbabilityPct(districtWinProbability(r))})`
-        );
-        return `${escapeHtml(label)}: ${bits.join(', ')}`;
-      }
-    }
-    return `${escapeHtml(label)}: <strong>${favName}</strong> (${formatWinProbabilityPct(favProb)})`;
   }
 
   /** District win chance from the Wahlkreis forecast (0–100). */
@@ -549,18 +547,17 @@
     };
     const candidateProfileHref = (displayName, listRec, row) => {
       const params = new URLSearchParams();
-      params.set('from', 'direktmandate');
       const pid = (listRec && listRec.person_id) || (row && row.person_id) || '';
-      if (stateCode) params.set('state', String(stateCode).toUpperCase());
-      const wkrForLink = (row && row.wkr != null) ? row.wkr : (listRec && listRec.wkr_direct);
-      if (wkrForLink != null && wkrForLink !== '') params.set('wkr', String(wkrForLink));
       if (pid) {
         params.set('id', String(pid));
         return `${siteBase()}kandidat/?${params.toString()}`;
       }
+      if (stateCode) params.set('state', String(stateCode).toUpperCase());
       const party = (listRec && listRec.party) || normalizePartyCode(row && row.party, row && row.partei);
       if (party) params.set('party', String(party).toLowerCase());
       if (displayName) params.set('name', String(displayName));
+      const wkr = (row && row.wkr != null) ? row.wkr : (listRec && listRec.wkr_direct);
+      if (wkr != null && wkr !== '') params.set('wkr', String(wkr));
       return `${siteBase()}kandidat/?${params.toString()}`;
     };
     const candidateNameHtml = (displayName, listRec, bioMeta, incumbentMeta, row) => {
@@ -592,12 +589,25 @@
       }
       return `<span class="district-name-wrap">${name}${badge}${info}</span>`;
     };
+    const winnerList = lookupListInfo(listLookup, winner);
+    const winnerName = resolveCandidateName(winner, winnerList);
     const winnerWinProb = districtWinProbability(winner);
-    const winnerLikelihood = districtWinLikelihoodLabel(
-      winnerWinProb,
-      districtRunnerUpWinProbability(allRows)
-    );
-    const winnerHeadline = districtWinLikelihoodHeadline(winnerLikelihood, winner, allRows);
+    const winnerListTxt = formatListEntryLine(winnerList, stateCode, winnerWinProb);
+    const winnerBio = {
+      birth_year: winner.birth_year || (winnerList && winnerList.birth_year),
+      birth_place: winner.birth_place || (winnerList && winnerList.birth_place),
+      residence: winner.residence || (winnerList && winnerList.residence),
+      profession: winner.profession || (winnerList && winnerList.profession)
+    };
+    const winnerInc = {
+      is_incumbent: !!(winner.is_incumbent || (winnerList && winnerList.is_incumbent)),
+      incumbent_chamber: winner.incumbent_chamber || (winnerList && winnerList.incumbent_chamber) || '',
+      incumbent_url: winner.incumbent_url || (winnerList && winnerList.incumbent_url) || '',
+      aw_url: winner.aw_url || (winnerList && winnerList.aw_url) || ''
+    };
+    const winnerLabel = winnerName
+      ? ` · ${candidateNameHtml(winnerName, winnerList, winnerBio, winnerInc, winner)}`
+      : ' · <span style="font-weight:400;font-style:italic;color:#888;">Name noch nicht bekannt</span>';
     // Keep deep-link shareable when user clicks a district
     try {
       if (stateCode && Number.isFinite(Number(wkr))) {
@@ -610,9 +620,11 @@
     el.innerHTML = `
       <div style="font-weight:700; margin-bottom:0.55rem; text-align:center;">
         WK ${wkr}: ${escapeHtml(name)}
+        <span style="font-weight:500; color:#555;"> — voraus. ${escapeHtml(winner.partei)}${winnerLabel}</span>
         <div style="font-weight:600; font-size:0.95rem; color:#333; margin-top:0.25rem;">
-          ${winnerHeadline}
+          P(Sieg): ${formatWinProbabilityPct(winnerWinProb)}
         </div>
+        ${winnerListTxt ? `<div class="district-list-line" style="font-weight:400;font-size:0.8rem;color:#666;margin-top:0.2rem;">${winnerListTxt}</div>` : ''}
       </div>
       <div class="district-party-list${needsToggle ? ' is-collapsed' : ''}" style="display:flex; flex-direction:column; gap:0.55rem;">
         ${rows.map((r, index) => {
@@ -1798,17 +1810,15 @@
       Object.values(winners).forEach(w => {
         tally[w.partei] = (tally[w.partei] || 0) + 1;
       });
-      const hint = document.getElementById('vorhersage-districts-hint');
-      if (hint) {
-        hint.style.display = 'block';
-        const tallyHtml = Object.entries(tally)
-          .sort((a, b) => b[1] - a[1])
-          .map(([p, n]) => `<strong>${p}</strong> ${n}`)
-          .join(' · ');
-        hint.innerHTML = `
-          Voraus. Direktmandate:
-          ${tallyHtml}
-          <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
+      const detail = document.getElementById('vorhersage-districts-detail');
+      if (detail && !hasFocus) {
+        detail.style.display = 'block';
+        detail.innerHTML = `
+          <div style="text-align:center; font-size:0.9rem; color:#333;">
+            Voraus. Direktmandate:
+            ${Object.entries(tally).sort((a,b)=>b[1]-a[1]).map(([p,n]) => `<strong>${p}</strong> ${n}`).join(' · ')}
+            <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
+          </div>
         `;
       }
       renderDistrictGender(items, meta);

@@ -14,8 +14,6 @@ Einzelumfragen liegen in der separaten **[Polling API](https://api.zweitstimme.o
 
 **Forecast** = Modelloutput für den Wahltag (Punktschätzung, Intervalle, Szenarien, Draws). **Stimmung** = geglättete tägliche Unterstützung, ohne Sitzszenarien. State-Forecasts nur im ~90-Tage-Fenster vor der Wahl.
 
-**Versionen:** `v1` ist die ältere Version und liefert nur Bundesprognosen. `v2` ist aktuell und umfasst **Bund**, **Länder** und **Stimmung**. Für neue Integrationen `v2` nutzen (`/api/v2/federal/`, `/api/v2/state/`, `/api/v2/stimmung/`).
-
-**Stimmung:** Die volle Zeitreihe (`/api/v2/stimmung/federal.json`) umfasst ca. 10 Jahre. Einzelner Tag: `/api/v2/stimmung/federal/day/YYYY-MM-DD.json`. Zeitraum: `/month/YYYY-MM.json` oder `/year/YYYY.json`. Heute: `/current.json`. Gleiche Pfade unter `/api/v2/stimmung/state/{land}/`.
+**Versionen:** `v1` ist der ältere Vertrag aus der Zeit, als es nur Bundesprognosen gab. `v2` ist der aktuelle Vertrag mit **Bund**, **Ländern** und **Stimmung**. Neue Integrationen sollten `v2` nutzen (`/api/v2/federal/`, `/api/v2/state/`, `/api/v2/stimmung/`).
 
 Lizenz: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de), Namensnennung **zweitstimme.org**. Umfragedaten u. a. [dawum.de](https://dawum.de) ([ODbL](https://opendatacommons.org/licenses/odbl/)) und [wahlrecht.de](https://www.wahlrecht.de).
