@@ -272,7 +272,7 @@ Die Liste der 29 Wahlkreise, in denen wir falsch lagen, zeigt, dass es sich teil
 </table>
 
 
-Die Vorhersage der Erststimmenanteile in den Wahlkreisen ist mit einer im Vergleich zum Zweitstimmenanteil auf Bundesebene höheren, aber quantifizierbaren Unsicherheit behaftet. Im Durchschnitt lagen wir um 2,5 absolute Prozentpunkte neben dem Endergebnis.
+Die Vorhersage der Erststimmenanteile in den Wahlkreisen ist mit einer im Vergleich zum Zweitstimmenanteil auf Bundesebene höheren, aber quantifizierbaren Unsicherheit behaftet. Im Durchschnitt lagen wir um 2,21 absolute Prozentpunkte neben dem Endergebnis.
 
 Deshalb war für uns die Angabe der ⅚-Kredibilitätsintervalle besonders wichtig. Über alle Parteien hinweg lagen 84 % der Erststimmenergebnisse innerhalb dieser Intervalle – also ziemlich genau die erwarteten ⅚. Hier zeigt sich allerdings auch, dass unser Modell Schwierigkeiten hatte, die Unsicherheit über die Erststimmenergebnisse der Linken akkurat abzubilden. Nur 53 % der Intervalle beinhalteten das finale Ergebnis der Linken. Das hat unserer Einschätzung nach vor allem mit dem starken Abschneiden der Linken in Städten und damit der Abweichung der nationalen Veränderung des Zuspruchs für die Linke zu tun. Für die anderen Parteien ist die Deckung durch die Kredibilitätsintervalle deutlich höher.
  
