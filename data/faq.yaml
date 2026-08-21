@@ -64,15 +64,13 @@ sections:
     items:
       - question: Können die Inhalte weiterverwendet werden?
         answer: |
-          Ja. Die Inhalte stehen unter der Lizenz **CC BY-SA 4.0** (Creative Commons Attribution-ShareAlike 4.0). Sie dürfen sie nutzen, verändern und weitergeben, sofern Sie die Regeln einhalten.
+          Ja. Sofern nicht anders angegeben, stehen die von uns erstellten Inhalte unter der Lizenz [**CC BY 4.0**](https://creativecommons.org/licenses/by/4.0/deed.de) (Creative Commons Namensnennung 4.0 International). Sie dürfen sie nutzen, verändern und weitergeben, sofern Sie die Regeln einhalten.
 
           **Erlaubt:** Teilen und Bearbeiten – auch kommerziell.
 
-          **Pflichten:**
-          - **Namensnennung (BY):** Quelle nennen, Lizenzhinweis setzen, Änderungen kennzeichnen
-          - **ShareAlike (SA):** Bearbeitungen unter derselben Lizenz veröffentlichen
+          **Pflicht:** Namensnennung – Quelle nennen, Lizenzhinweis setzen, Änderungen kennzeichnen. Bearbeitungen müssen *nicht* unter derselben Lizenz veröffentlicht werden.
 
-          Beispiel: „Quelle: zweitstimme.org“ oder „Daten: zweitstimme.org“. Bei Fragen melden Sie sich gerne bei uns.
+          Beispiel: „Quelle: zweitstimme.org“ oder „Daten: zweitstimme.org“. Umfragedaten stammen u. a. von [dawum.de](https://dawum.de) ([ODbL](https://opendatacommons.org/licenses/odbl/)) und [wahlrecht.de](https://www.wahlrecht.de) und unterliegen eigenen Bedingungen. Details im [Impressum](/impressum/). Bei Fragen melden Sie sich gerne bei uns.
 
       - question: Sind Code und Daten des Vorhersagemodells einsehbar?
         answer: |

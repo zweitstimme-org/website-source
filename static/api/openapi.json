@@ -3,7 +3,7 @@
   "info": {
     "title": "Zweitstimme Forecast API",
     "version": "2.0.0",
-    "description": "Public JSON API for **election-day forecasts**, **posterior draws**, and **Aktuelle Stimmung**.\n\nStatic files, CORS-open (`Access-Control-Allow-Origin: *`), **GET only**. No authentication.\n\nThis is **not** the polling API for individual surveys. That lives at [api.zweitstimme.org/docs](https://api.zweitstimme.org/docs).\n\n## Concepts\n\n- **Forecast** — model output for election day: point estimates, uncertainty intervals, scenario probabilities, and optionally posterior draws.\n- **Stimmung** — Kalman-smoothed latent support by calendar day. Days without a new poll are still present. No seat scenarios. The full series is ~10 years; prefer `/current.json`, `/day/{date}.json`, `/month/{YYYY-MM}.json`, or `/year/{YYYY}.json`.\n- **`election`** — names the next relevant election for that scope. It is not the forecast timestamp. The same path can refer to a later cycle.\n\n## Versioning\n\n| Version | Meaning |\n|---|---|\n| `v1` | Legacy contract from when only federal forecasts existed. Kept for compatibility. |\n| `v2` | Current contract: federal and state election-day forecasts, posterior draws, and Stimmung. |\n| unversioned `/forecast.json` etc. | Aliases of the `v1` federal files. |\n\nStart at `GET /api/index.json`. Prefer `v2` for new integrations. Federal data exists under both `/api/v1/federal/` (old row shape) and `/api/v2/federal/` (metadata + `fit`/`low`/`high`, same as state).\n\n## Envelope\n\nVersioned endpoints wrap payloads as:\n\n```json\n{\n  \"api_version\": \"v2\",\n  \"generated_at\": \"2026-08-18T08:06:53Z\",\n  \"election\": { \"id\": \"st_2026-09-06\", \"name\": \"Landtagswahl Sachsen-Anhalt\", \"date\": \"2026-09-06\", \"scope\": \"state\", \"state_code\": \"ST\" },\n  \"data\": {}\n}\n```\n\n## Availability\n\n- State forecasts exist only inside the **~90-day window** before election day. Outside that window the path returns **404**.\n- After election day the last forecast moves to `/api/v2/federal/archive/` or `/api/v2/state/archive/`.\n- Archives start when this API began publishing them; there is no historical backfill.\n- `/data/*.json` files used by the website UI are **not** a public contract.\n\n## Units\n\nWatch the unit. Party vote shares in summary forecasts are usually **percentage points**. Posterior draws use **shares from 0 to 1**. Federal `probabilities` / `pred_probabilities` are also 0–1. State scenario `probability` values are **percent 0–100**.\n\n## License\n\nTexts, explanations, and visualizations: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), attribution **zweitstimme.org**. Polling inputs may come from [dawum.de](https://dawum.de) ([ODbL](https://opendatacommons.org/licenses/odbl/)) and [wahlrecht.de](https://www.wahlrecht.de) / the named institutes. No guarantee of availability, completeness, or correctness. Forecasts and Stimmung are model outputs, not official results.",
+    "description": "Public JSON API for **election-day forecasts**, **posterior draws**, and **Aktuelle Stimmung**.\n\nStatic files, CORS-open (`Access-Control-Allow-Origin: *`), **GET only**. No authentication.\n\nThis is **not** the polling API for individual surveys. That lives at [api.zweitstimme.org/docs](https://api.zweitstimme.org/docs).\n\n## Concepts\n\n- **Forecast** — model output for election day: point estimates, uncertainty intervals, scenario probabilities, and optionally posterior draws.\n- **Stimmung** — Kalman-smoothed latent support by calendar day. Days without a new poll are still present. No seat scenarios. The full series is ~10 years; prefer `/current.json`, `/day/{date}.json`, `/month/{YYYY-MM}.json`, or `/year/{YYYY}.json`.\n- **`election`** — names the next relevant election for that scope. It is not the forecast timestamp. The same path can refer to a later cycle.\n\n## Versioning\n\n| Version | Meaning |\n|---|---|\n| `v1` | Legacy contract from when only federal forecasts existed. Kept for compatibility. |\n| `v2` | Current contract: federal and state election-day forecasts (districts, candidates, parliament sims), posterior draws, and Stimmung. |\n| unversioned `/forecast.json` etc. | Aliases of the `v1` federal files. |\n\nStart at `GET /api/index.json`. Prefer `v2` for new integrations. Federal data exists under both `/api/v1/federal/` (old row shape) and `/api/v2/federal/` (metadata + `fit`/`low`/`high`, same as state).\n\n## Envelope\n\nVersioned endpoints wrap payloads as:\n\n```json\n{\n  \"api_version\": \"v2\",\n  \"generated_at\": \"2026-08-18T08:06:53Z\",\n  \"election\": { \"id\": \"st_2026-09-06\", \"name\": \"Landtagswahl Sachsen-Anhalt\", \"date\": \"2026-09-06\", \"scope\": \"state\", \"state_code\": \"ST\" },\n  \"data\": {}\n}\n```\n\n## Availability\n\n- State forecasts exist only inside the **~90-day window** before election day. Outside that window the path returns **404**.\n- After election day the last forecast moves to `/api/v2/federal/archive/` or `/api/v2/state/archive/` (including districts / candidates / parliament sidecars when archived).\n- Archives start when this API began publishing them; there is no historical backfill.\n- Website `/data/*.json` files mirror the same pipeline outputs for the UI; prefer the versioned `/api/v2/` paths as the public contract.\n\n## Units\n\nWatch the unit. Party vote shares in summary forecasts are usually **percentage points**. Posterior draws use **shares from 0 to 1**. Federal `probabilities` / `pred_probabilities` are also 0–1. State scenario `probability` values are **percent 0–100**. District win probabilities and candidate `p_entry` / `p_direct` / `p_list` are **integer percents 0–100**.\n\n## License\n\nTexts, explanations, and visualizations: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), attribution **zweitstimme.org**. Polling inputs may come from [dawum.de](https://dawum.de) ([ODbL](https://opendatacommons.org/licenses/odbl/)) and [wahlrecht.de](https://www.wahlrecht.de) / the named institutes. No guarantee of availability, completeness, or correctness. Forecasts and Stimmung are model outputs, not official results.",
     "contact": {
       "name": "zweitstimme.org",
       "url": "https://zweitstimme.org"
@@ -308,6 +308,56 @@
         ]
       }
     },
+    "/api/v2/federal/archive/{date}/districts.json": {
+      "get": {
+        "operationId": "get_v2_federal_archive_districts",
+        "summary": "Archived federal district forecast",
+        "description": "Wahlkreis forecast frozen with the archived federal run. Large file.",
+        "tags": [
+          "federal"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/FederalDistrictsData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No archived federal districts for that date."
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "description": "Archive date `YYYY-MM-DD`.",
+            "schema": {
+              "type": "string",
+              "example": "2025-02-23",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
     "/api/v1/federal/index.json": {
       "get": {
         "operationId": "get_v1_federal_index",
@@ -523,7 +573,7 @@
       "get": {
         "operationId": "get_v2_state_index",
         "summary": "Active state forecasts",
-        "description": "States currently inside the ~90-day forecast window. Prefer this over hardcoding state codes. Each item includes `path` and, when published, `draws`.",
+        "description": "States currently inside the ~90-day forecast window. Prefer this over hardcoding state codes. Each item includes `path` and, when published, `draws`, `districts`, `candidates`, and `parliament`.",
         "tags": [
           "state"
         ],
@@ -675,6 +725,207 @@
         ]
       }
     },
+    "/api/v2/state/{code}/districts.json": {
+      "get": {
+        "operationId": "get_v2_state_districts",
+        "summary": "State district forecast",
+        "description": "Landtag Wahlkreis-level Erst/Zweit estimates, Direktmandat win probabilities, and district candidates. Large file.",
+        "tags": [
+          "state"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StateDistrictsData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No district forecast published for that state."
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "Lowercase German state code, for example `st`, `be`, `mv`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "bb",
+                "be",
+                "bw",
+                "by",
+                "hb",
+                "he",
+                "hh",
+                "mv",
+                "ni",
+                "nw",
+                "rp",
+                "sh",
+                "sl",
+                "sn",
+                "st",
+                "th"
+              ],
+              "example": "st"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/state/{code}/candidates.json": {
+      "get": {
+        "operationId": "get_v2_state_candidates",
+        "summary": "State candidate entry probabilities",
+        "description": "List and direct candidates with `p_entry` / `p_direct` / `p_list` (integer percents 0–100). Same data the website shows on Einzug.",
+        "tags": [
+          "state"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StateCandidatesData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No candidate entry probabilities for that state."
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "Lowercase German state code, for example `st`, `be`, `mv`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "bb",
+                "be",
+                "bw",
+                "by",
+                "hb",
+                "he",
+                "hh",
+                "mv",
+                "ni",
+                "nw",
+                "rp",
+                "sh",
+                "sl",
+                "sn",
+                "st",
+                "th"
+              ],
+              "example": "st"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/state/{code}/parliament.json": {
+      "get": {
+        "operationId": "get_v2_state_parliament",
+        "summary": "State parliament-size simulation",
+        "description": "Seat-total and per-party seat distribution from the district swing + Hare/Niemeyer simulation.",
+        "tags": [
+          "state"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StateParliamentData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No parliament simulation for that state."
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "Lowercase German state code, for example `st`, `be`, `mv`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "bb",
+                "be",
+                "bw",
+                "by",
+                "hb",
+                "he",
+                "hh",
+                "mv",
+                "ni",
+                "nw",
+                "rp",
+                "sh",
+                "sl",
+                "sn",
+                "st",
+                "th"
+              ],
+              "example": "st"
+            }
+          }
+        ]
+      }
+    },
     "/api/v2/state/archive/index.json": {
       "get": {
         "operationId": "get_v2_state_archive_index",
@@ -780,6 +1031,156 @@
           },
           "404": {
             "description": "No archived draws for that id."
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Archive id `{code}_{YYYY-MM-DD}`, for example `st_2021-06-06`.",
+            "schema": {
+              "type": "string",
+              "example": "st_2021-06-06",
+              "pattern": "^[a-z]{2}_\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/state/archive/{id}/districts.json": {
+      "get": {
+        "operationId": "get_v2_state_archive_districts",
+        "summary": "Archived state districts",
+        "description": "Wahlkreis forecast frozen with the archived state run.",
+        "tags": [
+          "state"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StateDistrictsData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No archived districts for that id."
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Archive id `{code}_{YYYY-MM-DD}`, for example `st_2021-06-06`.",
+            "schema": {
+              "type": "string",
+              "example": "st_2021-06-06",
+              "pattern": "^[a-z]{2}_\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/state/archive/{id}/candidates.json": {
+      "get": {
+        "operationId": "get_v2_state_archive_candidates",
+        "summary": "Archived state candidates",
+        "description": "Candidate entry probabilities frozen with the archived state run.",
+        "tags": [
+          "state"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StateCandidatesData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No archived candidates for that id."
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Archive id `{code}_{YYYY-MM-DD}`, for example `st_2021-06-06`.",
+            "schema": {
+              "type": "string",
+              "example": "st_2021-06-06",
+              "pattern": "^[a-z]{2}_\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/state/archive/{id}/parliament.json": {
+      "get": {
+        "operationId": "get_v2_state_archive_parliament",
+        "summary": "Archived state parliament sim",
+        "description": "Parliament-size simulation frozen with the archived state run.",
+        "tags": [
+          "state"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/StateParliamentData"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No archived parliament sim for that id."
           }
         },
         "parameters": [
@@ -1967,6 +2368,21 @@
             "description": "Present when posterior draws are published.",
             "example": "/api/v2/state/st/draws.json"
           },
+          "districts": {
+            "type": "string",
+            "description": "Present when Wahlkreis forecasts are published.",
+            "example": "/api/v2/state/st/districts.json"
+          },
+          "candidates": {
+            "type": "string",
+            "description": "Present when candidate entry probabilities are published.",
+            "example": "/api/v2/state/st/candidates.json"
+          },
+          "parliament": {
+            "type": "string",
+            "description": "Present when parliament-size / seat sims are published.",
+            "example": "/api/v2/state/st/parliament.json"
+          },
           "active": {
             "type": "boolean"
           },
@@ -2102,6 +2518,18 @@
             "type": "string",
             "example": "/api/v2/state/st/draws.json"
           },
+          "districts_path": {
+            "type": "string",
+            "example": "/api/v2/state/st/districts.json"
+          },
+          "candidates_path": {
+            "type": "string",
+            "example": "/api/v2/state/st/candidates.json"
+          },
+          "parliament_path": {
+            "type": "string",
+            "example": "/api/v2/state/st/parliament.json"
+          },
           "model": {
             "type": "string"
           },
@@ -2140,6 +2568,212 @@
             }
           }
         }
+      },
+      "StateDistrictRow": {
+        "type": "object",
+        "description": "Landtag Wahlkreis × party row with candidate bio fields when available.",
+        "properties": {
+          "wkr": {
+            "type": "integer"
+          },
+          "wkr_name": {
+            "type": "string"
+          },
+          "land": {
+            "type": "string"
+          },
+          "party": {
+            "type": "string"
+          },
+          "partei": {
+            "type": "string"
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "winner": {
+            "type": [
+              "boolean",
+              "integer",
+              "string",
+              "null"
+            ]
+          },
+          "probability": {
+            "type": "number",
+            "description": "Direktmandat win probability, integer percent 0–100."
+          },
+          "value": {
+            "type": "number",
+            "description": "Erststimme %, point estimate."
+          },
+          "low": {
+            "type": "number"
+          },
+          "high": {
+            "type": "number"
+          },
+          "zs_value": {
+            "type": "number",
+            "description": "Zweitstimme %."
+          },
+          "zs_value_l1": {
+            "type": "number"
+          },
+          "gender": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "is_incumbent": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "aw_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "StateDistrictsData": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object"
+          },
+          "districts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StateDistrictRow"
+            }
+          }
+        }
+      },
+      "StateCandidateRow": {
+        "type": "object",
+        "description": "List/direct candidate with entry probabilities.",
+        "properties": {
+          "person_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "list_pos": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "wkr_direct": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "list_type": {
+            "type": "string"
+          },
+          "p_entry": {
+            "type": "number",
+            "description": "Probability of entering parliament, integer percent 0–100."
+          },
+          "p_direct": {
+            "type": "number",
+            "description": "Probability via Direktmandat, integer percent 0–100."
+          },
+          "p_list": {
+            "type": "number",
+            "description": "Probability via list seat, integer percent 0–100."
+          },
+          "is_placeholder": {
+            "type": "boolean"
+          },
+          "gender": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "aw_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "StateCandidatesData": {
+        "type": "object",
+        "description": "Candidate list/direct entry probabilities for one Land.",
+        "properties": {
+          "metadata": {
+            "type": "object"
+          },
+          "parties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "party": {
+                  "type": "string"
+                },
+                "partei": {
+                  "type": "string"
+                },
+                "list_type": {
+                  "type": "string"
+                },
+                "candidates": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StateCandidateRow"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "StateParliamentData": {
+        "type": "object",
+        "description": "Parliament-size and per-party seat simulation for one Land (Hare/Niemeyer + district overhang/Ausgleich).",
+        "properties": {
+          "metadata": {
+            "type": "object"
+          },
+          "base_seats": {
+            "type": "integer"
+          },
+          "size_mean": {
+            "type": "number"
+          },
+          "size_median": {
+            "type": "integer"
+          },
+          "buckets": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "party_seats": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            },
+            "description": "Per-party seat distribution stats from the simulation."
+          }
+        },
+        "additionalProperties": true
       },
       "StateDraw": {
         "type": "object",
