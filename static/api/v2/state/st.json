@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-21T16:31:44Z",
+  "generated_at": "2026-08-22T06:06:44Z",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -28,10 +28,7 @@
       "shares_normalized_to_100": true,
       "n_draws": 4000,
       "draws_path": "/api/v2/state/st/draws.json",
-      "source_repo": "zweitstimme-org/state-models",
-      "districts_path": "/api/v2/state/st/districts.json",
-      "candidates_path": "/api/v2/state/st/candidates.json",
-      "parliament_path": "/api/v2/state/st/parliament.json"
+      "source_repo": "zweitstimme-org/state-models"
     },
     "parties": [
       {

@@ -1,7 +1,7 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-21T16:31:44Z",
-  "description": "Active state (Landtag) forecasts within the ~90-day window before election day. Includes party forecasts, draws, districts, candidate entry probabilities, and parliament-size sims when published. Past elections (once archived by the pipeline) are under /api/v2/state/archive/.",
+  "generated_at": "2026-08-22T06:06:44Z",
+  "description": "Active state (Landtag) forecasts within the ~90-day window before election day. Past elections (once archived by the pipeline) are under /api/v2/state/archive/.",
   "forecast_window_days": 90,
   "states": [
     {
@@ -16,10 +16,7 @@
         "date_is_estimated": false
       },
       "active": true,
-      "draws": "/api/v2/state/be/draws.json",
-      "districts": "/api/v2/state/be/districts.json",
-      "candidates": "/api/v2/state/be/candidates.json",
-      "parliament": "/api/v2/state/be/parliament.json"
+      "draws": "/api/v2/state/be/draws.json"
     },
     {
       "state_code": "MV",
@@ -33,10 +30,7 @@
         "date_is_estimated": false
       },
       "active": true,
-      "draws": "/api/v2/state/mv/draws.json",
-      "districts": "/api/v2/state/mv/districts.json",
-      "candidates": "/api/v2/state/mv/candidates.json",
-      "parliament": "/api/v2/state/mv/parliament.json"
+      "draws": "/api/v2/state/mv/draws.json"
     },
     {
       "state_code": "ST",
@@ -50,10 +44,7 @@
         "date_is_estimated": false
       },
       "active": true,
-      "draws": "/api/v2/state/st/draws.json",
-      "districts": "/api/v2/state/st/districts.json",
-      "candidates": "/api/v2/state/st/candidates.json",
-      "parliament": "/api/v2/state/st/parliament.json"
+      "draws": "/api/v2/state/st/draws.json"
     }
   ],
   "archive_index": "/api/v2/state/archive/index.json",

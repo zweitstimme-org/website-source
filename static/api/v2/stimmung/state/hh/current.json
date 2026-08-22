@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-18T07:47:55",
+  "generated_at": "2026-08-22T06:06:45Z",
   "election": {
     "id": "hh_2030-01-20",
     "name": "Landtagswahl Hamburg",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-18",
+    "as_of": "2026-08-22",
     "parties": {
       "CDU/CSU": 17,
       "AfD": 11.5,
@@ -26,13 +26,13 @@
       "Sonstige": 4.4
     },
     "uncertainty_low": {
-      "CDU/CSU": 14.7,
-      "AfD": 9.2,
-      "SPD": 28.5,
-      "GRÜNE": 15.4,
-      "LINKE": 11.1,
+      "CDU/CSU": 14.6,
+      "AfD": 9.1,
+      "SPD": 28.4,
+      "GRÜNE": 15.3,
+      "LINKE": 11,
       "BSW": 0,
-      "FDP": 0.6,
+      "FDP": 0.5,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,29 +40,19 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 19.3,
-      "AfD": 13.8,
-      "SPD": 33.1,
-      "GRÜNE": 20,
-      "LINKE": 15.7,
+      "CDU/CSU": 19.4,
+      "AfD": 13.9,
+      "SPD": 33.2,
+      "GRÜNE": 20.1,
+      "LINKE": 15.8,
       "BSW": 7.8,
-      "FDP": 5.4,
+      "FDP": 5.5,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
     },
-    "active_parties": [
-      "CDU/CSU",
-      "AfD",
-      "SPD",
-      "GRÜNE",
-      "LINKE",
-      "BSW",
-      "FDP"
-    ],
-    "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
       "CDU/CSU": 0,
       "AfD": 0,
@@ -76,7 +66,17 @@
       "PIRATEN": null,
       "REP": null,
       "Sonstige": 0
-    }
+    },
+    "active_parties": [
+      "CDU/CSU",
+      "AfD",
+      "SPD",
+      "GRÜNE",
+      "LINKE",
+      "BSW",
+      "FDP"
+    ],
+    "note": "Kalman latent support for this calendar day (filled on days without a new poll)."
   },
-  "as_of": "2026-08-18"
+  "as_of": "2026-08-22"
 }
