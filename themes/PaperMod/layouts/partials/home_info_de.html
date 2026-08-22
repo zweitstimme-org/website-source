@@ -1262,8 +1262,36 @@ function updateProbability(textId, progressId, value, type) {
 }
 </script>
 
+{{- /* Include Vorhersage / Archiv in the HTML at Hugo build time (from data/display_mode.json).
+       Omitting empty sections also keeps the grey/white section-alt stripe stable — no JS restripe.
+       Scratch (not $vars) so assignments inside with/range/if survive those inner scopes. */ -}}
+{{- $homeLayout := newScratch -}}
+{{- $homeLayout.Set "showForecasts" false -}}
+{{- $homeLayout.Set "showArchive" false -}}
+{{- $homeLayout.Set "i" 0 -}}
+{{- with site.Data.display_mode -}}
+  {{- with .federal -}}
+    {{- if and .forecast_available (eq .mode "forecast") (gt (int (.days_to_election | default 0)) 0) -}}
+      {{- $homeLayout.Set "showForecasts" true -}}
+    {{- end -}}
+  {{- end -}}
+  {{- range .states -}}
+    {{- if and .forecast_available (eq .mode "forecast") (gt (int (.days_to_election | default 0)) 0) -}}
+      {{- $homeLayout.Set "showForecasts" true -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with .archive -}}
+    {{- if and .forecasts (gt (len .forecasts) 0) -}}
+      {{- $homeLayout.Set "showArchive" true -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $homeShowForecasts := $homeLayout.Get "showForecasts" -}}
+{{- $homeShowArchive := $homeLayout.Get "showArchive" -}}
+
 <article class="first-entry home-info">
-  <section class="section-alt">
+  <section{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+    {{- $homeLayout.Add "i" 1 -}}
     <div class="content-wrapper">
       <div class="entry-content">
         <h2 style="color: var(--primary); text-align: center; margin: 0 0 1rem 0; padding: 0;">
@@ -1271,7 +1299,9 @@ function updateProbability(textId, progressId, value, type) {
         </h2>
         <p>Hier finden Sie wissenschaftlich fundierte Analysen von Wahlumfragen und Vorhersagen für Bundes- und Landtagswahlen in Deutschland. Mit unseren interaktiven Visualisierungen und detaillierten Analysen machen wir Umfrageergebnisse transparent und verständlich.</p>
         <nav class="home-jump-nav" aria-label="Abschnitte">
+          {{- if $homeShowForecasts }}
           <a class="home-jump-btn" href="#vorhersage-section"><span>Vorhersagen</span></a>
+          {{- end }}
           <a class="home-jump-btn" href="#bundestag-section"><span>Bundestag</span></a>
           <a class="home-jump-btn" href="#landtage-section"><span>Landtage</span></a>
         </nav>
@@ -1279,15 +1309,13 @@ function updateProbability(textId, progressId, value, type) {
     </div>
   </section>
 
-<section id="vorhersage-section" style="display: none;">
+{{- if $homeShowForecasts }}
+<section id="vorhersage-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+  {{- $homeLayout.Add "i" 1 -}}
   <div class="content-wrapper">
     <h2 class="home-section-title">Vorhersagen</h2>
     <div style="text-align: center; margin-bottom: 1rem;">
       <div class="home-section-subtitle">Modellprognosen für anstehende Wahlen</div>
-    </div>
-    <div id="vorhersage-empty" style="display: none; text-align: center; max-width: 36rem; margin: 0.5rem auto 0; color: #666; font-size: 1rem; line-height: 1.45;">
-      Derzeit stehen keine Wahlen im Vorhersagefenster an.<br/>
-      Schauen Sie später wieder vorbei — dann finden Sie hier die Modellprognosen.
     </div>
     <div class="state-coats-of-arms" id="vorhersage-targets"></div>
     <div id="vorhersage-panel" style="display: none; margin-top: 0;">
@@ -1330,8 +1358,11 @@ function updateProbability(textId, progressId, value, type) {
     </div>
   </div>
 </section>
+{{- end }}
 
-<section id="vorhersage-archive-section" style="display: none;">
+{{- if $homeShowArchive }}
+<section id="vorhersage-archive-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+  {{- $homeLayout.Add "i" 1 -}}
   <div class="content-wrapper">
     <h2 class="home-section-title">Archiv – Vorhersagen</h2>
     <div style="text-align: center; margin-bottom: 1rem;">
@@ -1355,8 +1386,10 @@ function updateProbability(textId, progressId, value, type) {
     </div>
   </div>
 </section>
+{{- end }}
 
-<section id="bundestag-section">
+<section id="bundestag-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+  {{- $homeLayout.Add "i" 1 -}}
   <div class="content-wrapper">
     <div id="bundestag-chart-title" class="home-section-title" style="margin-bottom: 0.5rem;">Bundestag</div>
           <div style="text-align: center; margin-bottom: 0rem; margin-top: 0rem;">
@@ -1483,7 +1516,8 @@ function updateProbability(textId, progressId, value, type) {
 
 </section>
 
-<section id="landtage-section" class="section-alt">
+<section id="landtage-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+  {{- $homeLayout.Add "i" 1 -}}
   <div class="content-wrapper">
     <h2 class="home-section-title">Landtage – Aktuelle Stimmung</h2>
     <div style="text-align: center; margin-bottom: 1rem;">
@@ -1620,7 +1654,8 @@ function updateProbability(textId, progressId, value, type) {
 </section>
 
 
-<section id="medien-section">
+<section id="medien-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+  {{- $homeLayout.Add "i" 1 -}}
   <div class="content-wrapper">
     <div class="entry-content">
       <h2 style="color: var(--primary); text-align: center; margin: 1rem 0; font-size: 1.5rem;">In den Medien</h2>
@@ -1710,7 +1745,8 @@ function updateProbability(textId, progressId, value, type) {
   </div>
 </section>
 
-<section class="section-alt">
+<section{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+  {{- $homeLayout.Add "i" 1 -}}
   <div class="content-wrapper">
     <div class="entry-content">
       <h2 style="color: var(--primary); text-align: center;">Das Projekt</h2>
@@ -2880,6 +2916,7 @@ a.vorhersage-subpage-link {
 
 /* Sticky header is --header-height (60px); keep section titles clear of it. */
 #vorhersage-section,
+#vorhersage-archive-section,
 #bundestag-section,
 #landtage-section {
   scroll-margin-top: calc(var(--header-height, 60px) + 0.75rem);
@@ -5972,7 +6009,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="{{ "js/polls-mapper-aggregator.js" | relURL }}"></script>
 <script src="{{ "js/kalman-latent-support.js" | relURL }}"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=27"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=36"></script>
 <script>
 // Bundestag forecast chart functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -7240,34 +7277,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function setVorhersageEmptyState(isEmpty) {
-    const empty = document.getElementById('vorhersage-empty');
-    const targets = document.getElementById('vorhersage-targets');
-    const panel = document.getElementById('vorhersage-panel');
-    if (empty) empty.style.display = isEmpty ? 'block' : 'none';
-    if (targets) targets.style.display = isEmpty ? 'none' : '';
-    if (panel && isEmpty) panel.style.display = 'none';
+  function setVorhersageSectionVisible(visible) {
+    const section = document.getElementById('vorhersage-section');
+    if (!section) return;
+    section.style.display = visible ? '' : 'none';
+    const jump = document.querySelector('.home-jump-btn[href="#vorhersage-section"]');
+    if (jump) jump.style.display = visible ? '' : 'none';
   }
 
   async function initVorhersageSection() {
     const section = document.getElementById('vorhersage-section');
     if (!section) return;
-    // Always keep the section visible so the jump nav target exists even
-    // when no election is currently inside the forecast window.
-    section.style.display = 'block';
     try {
       vorhersageTargets = await buildVorhersageTargets();
       if (!vorhersageTargets.length) {
-        setVorhersageEmptyState(true);
+        setVorhersageSectionVisible(false);
         updateHomeSectionBackgrounds();
         return;
       }
-      setVorhersageEmptyState(false);
+      setVorhersageSectionVisible(true);
       renderVorhersageTargets();
       await selectVorhersageTarget(vorhersageTargets[0].key);
     } catch (e) {
       console.warn('Vorhersage section unavailable', e);
-      setVorhersageEmptyState(true);
+      setVorhersageSectionVisible(false);
     }
     updateHomeSectionBackgrounds();
   }
@@ -7344,7 +7377,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateHomeSectionBackgrounds();
         return;
       }
-      section.style.display = 'block';
+      section.style.display = '';
       renderVorhersageArchiveTargets();
       await selectVorhersageArchiveTarget(vorhersageArchiveTargets[0].key);
     } catch (e) {
