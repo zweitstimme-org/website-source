@@ -1,13 +1,13 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-22T06:06:44Z",
+  "generated_at": "2026-08-22T16:23:01Z",
   "election": {
-    "id": "bund_2025-02-23",
+    "id": "bund_2029-02-25",
     "name": "Bundestagswahl",
-    "date": "2025-02-23",
+    "date": "2029-02-25",
     "scope": "federal",
     "state_code": null,
-    "date_is_estimated": false
+    "date_is_estimated": true
   },
   "data": {
     "description": "Federal (Bundestag) election-day forecasts, current (v2) contract.",
@@ -16,13 +16,7 @@
     "archive_index": "/api/v2/federal/archive/index.json",
     "archive_count": 0,
     "legacy": "/api/v1/federal/index.json",
-    "endpoints": [
-      "/api/v2/federal/forecast.json",
-      "/api/v2/federal/districts.json",
-      "/api/v2/federal/draws.json"
-    ],
-    "note": "Same underlying federal forecast as v1, with the improved envelope: metadata plus parties as fit/low/high (percentage points). Probabilities stay 0–1. Prefer this over /api/v1/federal/.",
-    "districts": "/api/v2/federal/districts.json",
-    "draws": "/api/v2/federal/draws.json"
+    "endpoints": [],
+    "note": "Same underlying federal forecast as v1, with the improved envelope: metadata plus parties as fit/low/high (percentage points). Probabilities stay 0–1. Prefer this over /api/v1/federal/."
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "Zweitstimme Forecast API",
-  "generated_at": "2026-08-22T06:06:45Z",
+  "generated_at": "2026-08-22T16:23:17Z",
   "docs": "https://zweitstimme.org/docs/api/",
   "openapi": "/api/openapi.json",
   "versions": {
@@ -10,20 +10,18 @@
       "index": "/api/v1/federal/index.json",
       "archive_index": "/api/v1/federal/archive/index.json",
       "successor": "/api/v2/federal/index.json",
-      "endpoints": [
-        "/api/v1/federal/forecast.json",
-        "/api/v1/federal/pred_probabilities.json",
-        "/api/v1/federal/forecast_districts.json"
-      ]
+      "endpoints": []
     },
     "v2": {
       "status": "current",
-      "description": "Current contract: federal and state election-day forecasts, posterior draws, and Aktuelle Stimmung.",
+      "description": "Current contract: federal and state election-day forecasts (including districts, candidate entry probabilities, and parliament-size sims), posterior draws, and Aktuelle Stimmung.",
       "federal_index": "/api/v2/federal/index.json",
       "federal_archive_index": "/api/v2/federal/archive/index.json",
       "state_index": "/api/v2/state/index.json",
       "state_archive_index": "/api/v2/state/archive/index.json",
       "stimmung_federal": "/api/v2/stimmung/federal.json",
+      "stimmung_federal_current": "/api/v2/stimmung/federal/current.json",
+      "stimmung_federal_index": "/api/v2/stimmung/federal/index.json",
       "stimmung_state_index": "/api/v2/stimmung/state/index.json",
       "forecast_window_days": 90
     }
@@ -51,8 +49,8 @@
     "archive": "After election day, forecasts move to /api/v2/federal/archive/ and /api/v2/state/archive/ (v1 federal archive remains for the legacy contract). No backfill of earlier elections."
   },
   "counts": {
-    "v1_federal_endpoints": 3,
-    "v2_federal_endpoints": 3,
+    "v1_federal_endpoints": 0,
+    "v2_federal_endpoints": 0,
     "v2_state_forecasts": 3,
     "v2_state_archive": 1,
     "v2_stimmung_states": 16
