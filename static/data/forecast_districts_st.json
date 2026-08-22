@@ -9,7 +9,7 @@
     "model_loo_mae": 0.0252,
     "nsim": 4000,
     "seed": 20260730,
-    "last_update": "2026-08-18T13:28:01",
+    "last_update": "2026-08-22T16:47:02",
     "statewide_source": "forecast_state_st.json",
     "statewide_draws": "posterior",
     "statewide_draws_file": "forecast_state_st_draws.json",
@@ -42,7 +42,7 @@
       "winner": false,
       "probability": 0,
       "value": 7.7,
-      "low": 1.0,
+      "low": 0.9,
       "high": 14.5,
       "value_l1": 9.7,
       "zs_value": 7.1,
@@ -55,8 +55,7 @@
       "residence": "Hansestadt Salzwedel",
       "profession": "Bäcker, LKW-Fahrer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/dieter-diederichs"
+      "gender_confidence": "high"
     },
     {
       "wkr": 1,
@@ -68,10 +67,10 @@
       "winner": true,
       "probability": 84,
       "value": 33.2,
-      "low": 23.2,
-      "high": 43.2,
+      "low": 23.3,
+      "high": 43.1,
       "value_l1": 17.7,
-      "zs_value": 36.6,
+      "zs_value": 36.7,
       "zs_value_l1": 18.3,
       "valid_l1": 21183,
       "zs_valid_l1": 21191,
@@ -81,8 +80,7 @@
       "residence": "Hansestadt Gardelegen",
       "profession": "Dipl. Elektroingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/simon-lansmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 1,
@@ -92,10 +90,10 @@
       "partei": "CDU",
       "name": "Carsten Borchert",
       "winner": false,
-      "probability": 16,
+      "probability": 15,
       "value": 25.1,
-      "low": 15.7,
-      "high": 34.5,
+      "low": 15.9,
+      "high": 34.4,
       "value_l1": 36.4,
       "zs_value": 22.6,
       "zs_value_l1": 36.2,
@@ -112,8 +110,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/carsten-borchert",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/carsten-borchert"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 1,
@@ -123,10 +120,10 @@
       "partei": "LINKE",
       "name": "Raik Ohlmeyer",
       "winner": false,
-      "probability": 0,
+      "probability": 1,
       "value": 16.0,
-      "low": 7.3,
-      "high": 24.6,
+      "low": 7.2,
+      "high": 24.7,
       "value_l1": 14.9,
       "zs_value": 16.0,
       "zs_value_l1": 12.9,
@@ -138,8 +135,7 @@
       "residence": "Hansestadt Salzwedel",
       "profession": "Angestellter im öffentlichen Dienst",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/raik-ohlmeyer"
+      "gender_confidence": "high"
     },
     {
       "wkr": 1,
@@ -150,11 +146,11 @@
       "name": "Jascha Rihm",
       "winner": false,
       "probability": 0,
-      "value": 5.1,
+      "value": 5.0,
       "low": 0.0,
-      "high": 11.3,
+      "high": 11.2,
       "value_l1": 4.6,
-      "zs_value": 4.8,
+      "zs_value": 4.7,
       "zs_value_l1": 5.9,
       "valid_l1": 21183,
       "zs_valid_l1": 21191,
@@ -164,8 +160,7 @@
       "residence": "Halle (Saale)",
       "profession": "Politikwissenschaftler (B.A.)",
       "gender": "m",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/jascha-rihm"
+      "gender_confidence": "override"
     },
     {
       "wkr": 1,
@@ -180,7 +175,7 @@
       "low": 0.0,
       "high": 9.6,
       "value_l1": 5.2,
-      "zs_value": 3.0,
+      "zs_value": 2.9,
       "zs_value_l1": 5.6,
       "valid_l1": 21183,
       "zs_valid_l1": 21191,
@@ -190,8 +185,7 @@
       "residence": "Diesdorf",
       "profession": "Handwerksmeister",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-mothes"
+      "gender_confidence": "high"
     },
     {
       "wkr": 1,
@@ -216,8 +210,7 @@
       "residence": "Klötze, OT Kunrau",
       "profession": "Landmaschinenschlosser",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/heiko-behne"
+      "gender_confidence": "high"
     },
     {
       "wkr": 1,
@@ -230,7 +223,7 @@
       "probability": 0,
       "value": 4.9,
       "low": 0.0,
-      "high": 12.5,
+      "high": 12.4,
       "value_l1": 11.6,
       "zs_value": 5.3,
       "zs_value_l1": 12.4,
@@ -247,8 +240,8 @@
       "winner": false,
       "probability": 0,
       "value": 9.6,
-      "low": 2.6,
-      "high": 16.6,
+      "low": 2.5,
+      "high": 16.7,
       "value_l1": 13.9,
       "zs_value": 8.4,
       "zs_value_l1": 10.3,
@@ -260,8 +253,7 @@
       "residence": "Oberharz am Brocken",
       "profession": "Studentin/Studentische Mitarbeiterin",
       "gender": "f",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/skady-herkenrath"
+      "gender_confidence": "override"
     },
     {
       "wkr": 2,
@@ -273,8 +265,8 @@
       "winner": true,
       "probability": 84,
       "value": 34.7,
-      "low": 24.6,
-      "high": 44.8,
+      "low": 24.8,
+      "high": 44.6,
       "value_l1": 19.8,
       "zs_value": 38.0,
       "zs_value_l1": 19.0,
@@ -286,8 +278,7 @@
       "residence": "Hansestadt Gardelegen",
       "profession": "IT-Systemelektroniker",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sebastian-koch-0"
+      "gender_confidence": "high"
     },
     {
       "wkr": 2,
@@ -299,10 +290,10 @@
       "winner": false,
       "probability": 16,
       "value": 26.4,
-      "low": 16.8,
+      "low": 16.9,
       "high": 35.9,
       "value_l1": 36.3,
-      "zs_value": 24.2,
+      "zs_value": 24.3,
       "zs_value_l1": 38.8,
       "valid_l1": 26907,
       "zs_valid_l1": 26916,
@@ -317,8 +308,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/sandra-hietel-heuer",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sandra-hietel-heuer"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 2,
@@ -330,8 +320,8 @@
       "winner": false,
       "probability": 0,
       "value": 13.5,
-      "low": 5.4,
-      "high": 21.7,
+      "low": 5.5,
+      "high": 21.5,
       "value_l1": 12.5,
       "zs_value": 13.6,
       "zs_value_l1": 10.9,
@@ -343,8 +333,7 @@
       "residence": "Klötze",
       "profession": "Forstwirt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/toni-klabis"
+      "gender_confidence": "high"
     },
     {
       "wkr": 2,
@@ -355,9 +344,9 @@
       "name": "Tobias Kremkau",
       "winner": false,
       "probability": 0,
-      "value": 3.9,
+      "value": 3.8,
       "low": 0.0,
-      "high": 9.5,
+      "high": 9.4,
       "value_l1": 4.2,
       "zs_value": 3.3,
       "zs_value_l1": 4.1,
@@ -369,8 +358,7 @@
       "residence": "Magdeburg",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/tobias-kremkau"
+      "gender_confidence": "high"
     },
     {
       "wkr": 2,
@@ -383,7 +371,7 @@
       "probability": 0,
       "value": 3.9,
       "low": 0.0,
-      "high": 9.6,
+      "high": 9.5,
       "value_l1": 4.9,
       "zs_value": 3.2,
       "zs_value_l1": 6.0,
@@ -395,8 +383,7 @@
       "residence": "Hansestadt Gardelegen",
       "profession": "Studentin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/annelie-brune"
+      "gender_confidence": "high"
     },
     {
       "wkr": 2,
@@ -409,7 +396,7 @@
       "probability": 0,
       "value": 4.0,
       "low": 0.0,
-      "high": 10.6,
+      "high": 10.5,
       "value_l1": 0.0,
       "zs_value": 4.6,
       "zs_value_l1": 0.0,
@@ -421,8 +408,7 @@
       "residence": "Gardelegen",
       "profession": "Lehrer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/frank-rossband"
+      "gender_confidence": "high"
     },
     {
       "wkr": 2,
@@ -465,8 +451,7 @@
       "residence": "Hansestadt Osterburg (Altmark)",
       "profession": "Sozialarbeiter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/eric-boellstorf"
+      "gender_confidence": "high"
     },
     {
       "wkr": 3,
@@ -479,9 +464,9 @@
       "probability": 98,
       "value": 38.2,
       "low": 28.0,
-      "high": 48.3,
+      "high": 48.4,
       "value_l1": 21.1,
-      "zs_value": 41.8,
+      "zs_value": 41.9,
       "zs_value_l1": 21.0,
       "valid_l1": 21782,
       "zs_valid_l1": 21781,
@@ -491,8 +476,7 @@
       "residence": "Tangermünde",
       "profession": "Wirtschaftsingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sebastian-killinger"
+      "gender_confidence": "high"
     },
     {
       "wkr": 3,
@@ -504,10 +488,10 @@
       "winner": false,
       "probability": 2,
       "value": 21.6,
-      "low": 12.4,
-      "high": 30.8,
+      "low": 12.5,
+      "high": 30.7,
       "value_l1": 26.7,
-      "zs_value": 20.3,
+      "zs_value": 20.4,
       "zs_value_l1": 32.7,
       "valid_l1": 21782,
       "zs_valid_l1": 21781,
@@ -522,8 +506,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/chris-schulenburg",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/chris-schulenburg"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 3,
@@ -548,8 +531,7 @@
       "residence": "Goldbeck",
       "profession": "Verbandsgemeindebürgermeister",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/rene-schernikau"
+      "gender_confidence": "high"
     },
     {
       "wkr": 3,
@@ -560,11 +542,11 @@
       "name": "Michael Dihlmann",
       "winner": false,
       "probability": 0,
-      "value": 3.9,
+      "value": 3.8,
       "low": 0.0,
       "high": 9.6,
       "value_l1": 3.4,
-      "zs_value": 3.4,
+      "zs_value": 3.3,
       "zs_value_l1": 4.2,
       "valid_l1": 21782,
       "zs_valid_l1": 21781,
@@ -574,8 +556,7 @@
       "residence": "Iden",
       "profession": "Biolandwirt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/michael-dihlmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 3,
@@ -600,8 +581,7 @@
       "residence": "Hohenberg-Krusemark",
       "profession": "Unternehmer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/gunnar-salomon"
+      "gender_confidence": "high"
     },
     {
       "wkr": 3,
@@ -626,8 +606,7 @@
       "residence": "Sandau (Elbe)",
       "profession": "Finanzwirt (CoB)",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/holger-koehne"
+      "gender_confidence": "high"
     },
     {
       "wkr": 3,
@@ -656,7 +635,7 @@
       "name": "Juliane Kleemann",
       "winner": false,
       "probability": 0,
-      "value": 8.2,
+      "value": 8.1,
       "low": 1.2,
       "high": 15.1,
       "value_l1": 11.8,
@@ -675,8 +654,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/juliane-kleemann",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/juliane-kleemann"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 4,
@@ -686,10 +664,10 @@
       "partei": "AfD",
       "name": "Matthias Büttner",
       "winner": true,
-      "probability": 98,
-      "value": 38.9,
+      "probability": 97,
+      "value": 39.0,
       "low": 28.7,
-      "high": 49.1,
+      "high": 49.2,
       "value_l1": 22.3,
       "zs_value": 42.5,
       "zs_value_l1": 21.9,
@@ -706,8 +684,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/matthias-buettner-0",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-buettner"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 4,
@@ -717,12 +694,12 @@
       "partei": "CDU",
       "name": "Thomas Weise",
       "winner": false,
-      "probability": 2,
-      "value": 22.2,
-      "low": 13.1,
+      "probability": 3,
+      "value": 22.3,
+      "low": 13.2,
       "high": 31.4,
       "value_l1": 29.7,
-      "zs_value": 20.5,
+      "zs_value": 20.6,
       "zs_value_l1": 33.8,
       "valid_l1": 21659,
       "zs_valid_l1": 21669,
@@ -732,8 +709,7 @@
       "residence": "Hansestadt Stendal",
       "profession": "Unternehmer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-weise"
+      "gender_confidence": "high"
     },
     {
       "wkr": 4,
@@ -758,8 +734,7 @@
       "residence": "Hansestadt Stendal",
       "profession": "Versicherungskaufmann",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/rico-goroncy"
+      "gender_confidence": "high"
     },
     {
       "wkr": 4,
@@ -772,9 +747,9 @@
       "probability": 0,
       "value": 4.6,
       "low": 0.0,
-      "high": 10.6,
+      "high": 10.5,
       "value_l1": 4.7,
-      "zs_value": 4.1,
+      "zs_value": 4.0,
       "zs_value_l1": 5.1,
       "valid_l1": 21659,
       "zs_valid_l1": 21669,
@@ -784,8 +759,7 @@
       "residence": "Hansestadt Stendal",
       "profession": "Lehrerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/miriam-zeller"
+      "gender_confidence": "high"
     },
     {
       "wkr": 4,
@@ -810,8 +784,7 @@
       "residence": "Hansestadt Stendal",
       "profession": "Rechtsanwalt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/marco-slotta"
+      "gender_confidence": "high"
     },
     {
       "wkr": 4,
@@ -822,7 +795,7 @@
       "name": "Volkmar Gryschok",
       "winner": false,
       "probability": 0,
-      "value": 4.2,
+      "value": 4.1,
       "low": 0.0,
       "high": 10.4,
       "value_l1": 0.0,
@@ -836,8 +809,7 @@
       "residence": "Tangermünde",
       "profession": "Eisenbahnbauingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/volkmar-gryschok"
+      "gender_confidence": "high"
     },
     {
       "wkr": 4,
@@ -850,9 +822,9 @@
       "probability": 0,
       "value": 5.6,
       "low": 0.0,
-      "high": 14.1,
+      "high": 14.0,
       "value_l1": 13.5,
-      "zs_value": 6.0,
+      "zs_value": 6.1,
       "zs_value_l1": 14.4,
       "valid_l1": 21659,
       "zs_valid_l1": 21669
@@ -867,8 +839,8 @@
       "winner": false,
       "probability": 0,
       "value": 7.6,
-      "low": 1.1,
-      "high": 14.2,
+      "low": 0.9,
+      "high": 14.3,
       "value_l1": 11.6,
       "zs_value": 6.5,
       "zs_value_l1": 8.5,
@@ -880,8 +852,7 @@
       "residence": "Tangermünde",
       "profession": "IT-Projektleiter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/timm-haussen"
+      "gender_confidence": "high"
     },
     {
       "wkr": 5,
@@ -893,10 +864,10 @@
       "winner": true,
       "probability": 98,
       "value": 42.2,
-      "low": 31.8,
+      "low": 31.9,
       "high": 52.5,
       "value_l1": 26.6,
-      "zs_value": 45.8,
+      "zs_value": 45.9,
       "zs_value_l1": 24.4,
       "valid_l1": 23831,
       "zs_valid_l1": 23898,
@@ -911,8 +882,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/ulrich-siegmund",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ulrich-siegmund"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 5,
@@ -923,11 +893,11 @@
       "name": "Thomas Staudt",
       "winner": false,
       "probability": 2,
-      "value": 24.1,
+      "value": 24.2,
       "low": 14.7,
-      "high": 33.5,
+      "high": 33.6,
       "value_l1": 31.3,
-      "zs_value": 22.6,
+      "zs_value": 22.7,
       "zs_value_l1": 38.5,
       "valid_l1": 23831,
       "zs_valid_l1": 23898,
@@ -942,8 +912,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/thomas-staudt",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-staudt"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 5,
@@ -956,7 +925,7 @@
       "probability": 0,
       "value": 11.2,
       "low": 3.6,
-      "high": 18.9,
+      "high": 18.8,
       "value_l1": 10.3,
       "zs_value": 11.2,
       "zs_value_l1": 9.6,
@@ -968,8 +937,7 @@
       "residence": "Tangermünde",
       "profession": "Bildungsreferent",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/denis-kreuzadler"
+      "gender_confidence": "high"
     },
     {
       "wkr": 5,
@@ -994,8 +962,7 @@
       "residence": "Burg",
       "profession": "angest. Vertriebsleiter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-michael"
+      "gender_confidence": "high"
     },
     {
       "wkr": 5,
@@ -1020,8 +987,7 @@
       "residence": "Tangermünde",
       "profession": "Finanzanlagenfachmann",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/oliver-mank"
+      "gender_confidence": "high"
     },
     {
       "wkr": 5,
@@ -1034,9 +1000,9 @@
       "probability": 0,
       "value": 4.1,
       "low": 0.0,
-      "high": 10.9,
+      "high": 10.8,
       "value_l1": 0.0,
-      "zs_value": 4.4,
+      "zs_value": 4.3,
       "zs_value_l1": 0.0,
       "valid_l1": 23831,
       "zs_valid_l1": 23898,
@@ -1046,8 +1012,7 @@
       "residence": "Tangermünde",
       "profession": "Verwaltungsbeamter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-schulze-0"
+      "gender_confidence": "high"
     },
     {
       "wkr": 5,
@@ -1077,8 +1042,8 @@
       "winner": false,
       "probability": 0,
       "value": 8.3,
-      "low": 1.5,
-      "high": 15.2,
+      "low": 1.6,
+      "high": 15.1,
       "value_l1": 12.4,
       "zs_value": 7.3,
       "zs_value_l1": 9.0,
@@ -1095,8 +1060,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/elrid-pasbrig",
       "incumbent_mandate": "moved_up",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/elrid-pasbrig"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 6,
@@ -1108,10 +1072,10 @@
       "winner": true,
       "probability": 87,
       "value": 36.4,
-      "low": 26.3,
-      "high": 46.6,
+      "low": 26.5,
+      "high": 46.4,
       "value_l1": 20.6,
-      "zs_value": 40.0,
+      "zs_value": 40.1,
       "zs_value_l1": 20.4,
       "valid_l1": 26767,
       "zs_valid_l1": 26805,
@@ -1126,8 +1090,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/jan-scharfenort",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/jan-scharfenort"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 6,
@@ -1140,7 +1103,7 @@
       "probability": 13,
       "value": 26.9,
       "low": 17.2,
-      "high": 36.5,
+      "high": 36.6,
       "value_l1": 38.5,
       "zs_value": 24.4,
       "zs_value_l1": 39.8,
@@ -1157,8 +1120,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/markus-kurze",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/markus-kurze"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 6,
@@ -1170,8 +1132,8 @@
       "winner": false,
       "probability": 0,
       "value": 12.6,
-      "low": 4.9,
-      "high": 20.4,
+      "low": 4.7,
+      "high": 20.6,
       "value_l1": 11.1,
       "zs_value": 12.8,
       "zs_value_l1": 10.5,
@@ -1183,8 +1145,7 @@
       "residence": "Burg",
       "profession": "Altenpfleger",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/rafael-rotermund"
+      "gender_confidence": "high"
     },
     {
       "wkr": 6,
@@ -1209,8 +1170,7 @@
       "residence": "Burg",
       "profession": "Studentin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/friederike-larek"
+      "gender_confidence": "high"
     },
     {
       "wkr": 6,
@@ -1221,7 +1181,7 @@
       "name": "Allard von Arnim",
       "winner": false,
       "probability": 0,
-      "value": 4.3,
+      "value": 4.2,
       "low": 0.0,
       "high": 10.0,
       "value_l1": 7.0,
@@ -1235,8 +1195,7 @@
       "residence": "Möckern, OT Brandenstein",
       "profession": "Dipl.-Kaufmann",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/allard-von-arnim"
+      "gender_confidence": "high"
     },
     {
       "wkr": 6,
@@ -1247,9 +1206,9 @@
       "name": "Matthias Hohmann",
       "winner": false,
       "probability": 0,
-      "value": 3.9,
+      "value": 3.8,
       "low": 0.0,
-      "high": 10.9,
+      "high": 10.8,
       "value_l1": 0.0,
       "zs_value": 4.5,
       "zs_value_l1": 0.0,
@@ -1261,8 +1220,7 @@
       "residence": "Burg",
       "profession": "Rentner",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-hohmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 6,
@@ -1275,7 +1233,7 @@
       "probability": 0,
       "value": 3.4,
       "low": 0.0,
-      "high": 9.5,
+      "high": 9.7,
       "value_l1": 6.0,
       "zs_value": 4.0,
       "zs_value_l1": 9.4,
@@ -1292,7 +1250,7 @@
       "winner": false,
       "probability": 0,
       "value": 8.2,
-      "low": 1.5,
+      "low": 1.4,
       "high": 15.0,
       "value_l1": 11.6,
       "zs_value": 7.3,
@@ -1305,8 +1263,7 @@
       "residence": "Magdeburg",
       "profession": "Schuldirektor",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/philipp-morgner"
+      "gender_confidence": "high"
     },
     {
       "wkr": 7,
@@ -1318,7 +1275,7 @@
       "winner": true,
       "probability": 93,
       "value": 38.6,
-      "low": 28.3,
+      "low": 28.4,
       "high": 48.8,
       "value_l1": 23.6,
       "zs_value": 42.0,
@@ -1331,8 +1288,7 @@
       "residence": "Hohe Börde, OT Hohenwarsleben",
       "profession": "Wahlkreismitarbeiter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/dirk-lassowski"
+      "gender_confidence": "high"
     },
     {
       "wkr": 7,
@@ -1344,10 +1300,10 @@
       "winner": false,
       "probability": 7,
       "value": 25.6,
-      "low": 16.1,
+      "low": 16.3,
       "high": 35.0,
       "value_l1": 37.0,
-      "zs_value": 23.1,
+      "zs_value": 23.2,
       "zs_value_l1": 38.4,
       "valid_l1": 22612,
       "zs_valid_l1": 22640,
@@ -1362,8 +1318,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/tim-tessmann",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/tim-tessmann"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 7,
@@ -1376,7 +1331,7 @@
       "probability": 0,
       "value": 12.5,
       "low": 4.7,
-      "high": 20.3,
+      "high": 20.2,
       "value_l1": 11.6,
       "zs_value": 12.5,
       "zs_value_l1": 10.4,
@@ -1388,8 +1343,7 @@
       "residence": "Wanzleben-Börde, OT Dreileben",
       "profession": "Schüler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/arne-hornung"
+      "gender_confidence": "high"
     },
     {
       "wkr": 7,
@@ -1400,7 +1354,7 @@
       "name": "Philipp Händler",
       "winner": false,
       "probability": 0,
-      "value": 3.9,
+      "value": 3.8,
       "low": 0.0,
       "high": 9.5,
       "value_l1": 4.3,
@@ -1414,8 +1368,7 @@
       "residence": "Magdeburg",
       "profession": "Psychologe",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/philipp-haendler"
+      "gender_confidence": "high"
     },
     {
       "wkr": 7,
@@ -1428,9 +1381,9 @@
       "probability": 0,
       "value": 3.9,
       "low": 0.0,
-      "high": 9.6,
+      "high": 9.5,
       "value_l1": 5.5,
-      "zs_value": 3.1,
+      "zs_value": 3.0,
       "zs_value_l1": 6.0,
       "valid_l1": 22612,
       "zs_valid_l1": 22640,
@@ -1440,8 +1393,7 @@
       "residence": "Hohe Börde, OT Schackensleben",
       "profession": "ltd. IT-Konfigurationsmanager",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/pascal-weiser"
+      "gender_confidence": "high"
     },
     {
       "wkr": 7,
@@ -1452,11 +1404,11 @@
       "name": "Oliver Bart",
       "winner": false,
       "probability": 0,
-      "value": 3.9,
+      "value": 3.8,
       "low": 0.0,
-      "high": 10.8,
+      "high": 10.6,
       "value_l1": 0.0,
-      "zs_value": 4.5,
+      "zs_value": 4.4,
       "zs_value_l1": 0.0,
       "valid_l1": 22612,
       "zs_valid_l1": 22640,
@@ -1466,8 +1418,7 @@
       "residence": "Haldensleben",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/oliver-bart"
+      "gender_confidence": "high"
     },
     {
       "wkr": 7,
@@ -1480,9 +1431,9 @@
       "probability": 0,
       "value": 3.6,
       "low": 0.0,
-      "high": 9.9,
+      "high": 10.1,
       "value_l1": 6.4,
-      "zs_value": 4.1,
+      "zs_value": 4.2,
       "zs_value_l1": 10.0,
       "valid_l1": 22612,
       "zs_valid_l1": 22640
@@ -1515,8 +1466,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/katrin-gensecke",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/katrin-gensecke"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 8,
@@ -1526,12 +1476,12 @@
       "partei": "AfD",
       "name": "Felix Zietmann",
       "winner": true,
-      "probability": 94,
+      "probability": 95,
       "value": 39.0,
-      "low": 28.8,
+      "low": 28.9,
       "high": 49.1,
       "value_l1": 20.6,
-      "zs_value": 43.0,
+      "zs_value": 43.1,
       "zs_value_l1": 22.3,
       "valid_l1": 32340,
       "zs_valid_l1": 32378,
@@ -1546,8 +1496,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/felix-zietmann",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/felix-zietmann"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 8,
@@ -1557,12 +1506,12 @@
       "partei": "CDU",
       "name": "Christopher Schult",
       "winner": false,
-      "probability": 6,
-      "value": 25.3,
+      "probability": 5,
+      "value": 25.4,
       "low": 16.2,
-      "high": 34.4,
+      "high": 34.6,
       "value_l1": 40.4,
-      "zs_value": 22.0,
+      "zs_value": 22.1,
       "zs_value_l1": 36.6,
       "valid_l1": 32340,
       "zs_valid_l1": 32378,
@@ -1572,8 +1521,7 @@
       "residence": "Barleben",
       "profession": "Kaufmann im Groß- und Außenhandel",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christopher-schult"
+      "gender_confidence": "high"
     },
     {
       "wkr": 8,
@@ -1585,7 +1533,7 @@
       "winner": false,
       "probability": 0,
       "value": 12.5,
-      "low": 4.6,
+      "low": 4.5,
       "high": 20.4,
       "value_l1": 11.0,
       "zs_value": 12.6,
@@ -1598,8 +1546,7 @@
       "residence": "Rogätz",
       "profession": "Sozialarbeiterin (B.A.)",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/vanessa-mertens"
+      "gender_confidence": "high"
     },
     {
       "wkr": 8,
@@ -1614,7 +1561,7 @@
       "low": 0.0,
       "high": 9.5,
       "value_l1": 3.9,
-      "zs_value": 3.5,
+      "zs_value": 3.4,
       "zs_value_l1": 4.4,
       "valid_l1": 32340,
       "zs_valid_l1": 32378,
@@ -1624,8 +1571,7 @@
       "residence": "Hohe Börde, OT Niederndodeleben",
       "profession": "Heilpädagoge",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-lehfeld"
+      "gender_confidence": "high"
     },
     {
       "wkr": 8,
@@ -1636,7 +1582,7 @@
       "name": "Björn Wasserthal",
       "winner": false,
       "probability": 0,
-      "value": 4.5,
+      "value": 4.4,
       "low": 0.0,
       "high": 10.3,
       "value_l1": 5.8,
@@ -1650,8 +1596,7 @@
       "residence": "Hohe Börde, OT Irxleben",
       "profession": "selbst. Unternehmer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/bjoern-wasserthal"
+      "gender_confidence": "high"
     },
     {
       "wkr": 8,
@@ -1666,7 +1611,7 @@
       "low": 0.0,
       "high": 10.6,
       "value_l1": 0.0,
-      "zs_value": 4.5,
+      "zs_value": 4.4,
       "zs_value_l1": 0.0,
       "valid_l1": 32340,
       "zs_valid_l1": 32378,
@@ -1676,8 +1621,7 @@
       "residence": "Angern",
       "profession": "Informatiker",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/wolfgang-michael-fuerst"
+      "gender_confidence": "high"
     },
     {
       "wkr": 8,
@@ -1710,7 +1654,7 @@
       "low": 1.7,
       "high": 15.7,
       "value_l1": 13.8,
-      "zs_value": 7.4,
+      "zs_value": 7.3,
       "zs_value_l1": 9.4,
       "valid_l1": 25551,
       "zs_valid_l1": 25612,
@@ -1720,8 +1664,7 @@
       "residence": "Niedere Börde, OT Vahldorf",
       "profession": "Auszubildender",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/thorben-nick-rehak"
+      "gender_confidence": "high"
     },
     {
       "wkr": 9,
@@ -1733,10 +1676,10 @@
       "winner": true,
       "probability": 97,
       "value": 40.7,
-      "low": 30.6,
-      "high": 50.8,
+      "low": 30.5,
+      "high": 50.9,
       "value_l1": 24.5,
-      "zs_value": 44.4,
+      "zs_value": 44.5,
       "zs_value_l1": 23.3,
       "valid_l1": 25551,
       "zs_valid_l1": 25612,
@@ -1746,8 +1689,7 @@
       "residence": "Sülzetal, OT Osterweddingen",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-schmirander"
+      "gender_confidence": "high"
     },
     {
       "wkr": 9,
@@ -1760,9 +1702,9 @@
       "probability": 3,
       "value": 24.2,
       "low": 15.0,
-      "high": 33.3,
+      "high": 33.5,
       "value_l1": 32.8,
-      "zs_value": 22.3,
+      "zs_value": 22.4,
       "zs_value_l1": 37.5,
       "valid_l1": 25551,
       "zs_valid_l1": 25612,
@@ -1777,8 +1719,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/guido-heuer",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/guido-heuer"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 9,
@@ -1790,7 +1731,7 @@
       "winner": false,
       "probability": 0,
       "value": 11.1,
-      "low": 3.6,
+      "low": 3.5,
       "high": 18.6,
       "value_l1": 9.7,
       "zs_value": 11.2,
@@ -1803,8 +1744,7 @@
       "residence": "Hötensleben, OT Wackersleben",
       "profession": "Fachinformatikerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sophie-manleitner"
+      "gender_confidence": "high"
     },
     {
       "wkr": 9,
@@ -1815,7 +1755,7 @@
       "name": "Kristin Schuller",
       "winner": false,
       "probability": 0,
-      "value": 3.3,
+      "value": 3.2,
       "low": 0.0,
       "high": 8.5,
       "value_l1": 3.3,
@@ -1829,8 +1769,7 @@
       "residence": "Wanzleben-Börde, OT Hohendodeleben",
       "profession": "Volljuristin, Rechtsassessorin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/kristin-schuller"
+      "gender_confidence": "high"
     },
     {
       "wkr": 9,
@@ -1843,7 +1782,7 @@
       "probability": 0,
       "value": 4.8,
       "low": 0.0,
-      "high": 10.7,
+      "high": 10.6,
       "value_l1": 9.4,
       "zs_value": 3.4,
       "zs_value_l1": 6.8,
@@ -1855,8 +1794,7 @@
       "residence": "Hohe Börde, OT Niederndodeleben",
       "profession": "Student des Lehramtes für Gymnasien",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/adrian-gusinde"
+      "gender_confidence": "high"
     },
     {
       "wkr": 9,
@@ -1869,7 +1807,7 @@
       "probability": 0,
       "value": 3.7,
       "low": 0.0,
-      "high": 10.3,
+      "high": 10.2,
       "value_l1": 0.0,
       "zs_value": 4.4,
       "zs_value_l1": 0.0,
@@ -1881,8 +1819,7 @@
       "residence": "Wanzleben-Börde, OT Klein Rodensleben",
       "profession": "Polizeibeamter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/carsten-reiche"
+      "gender_confidence": "high"
     },
     {
       "wkr": 9,
@@ -1925,8 +1862,7 @@
       "residence": "Magdeburg",
       "profession": "Master of Laws (LL.M.) Nachhaltigkeitsrecht",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/julia-brandt"
+      "gender_confidence": "high"
     },
     {
       "wkr": 10,
@@ -1938,7 +1874,7 @@
       "winner": true,
       "probability": 95,
       "value": 34.0,
-      "low": 24.2,
+      "low": 24.3,
       "high": 43.7,
       "value_l1": 19.9,
       "zs_value": 37.1,
@@ -1956,8 +1892,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/oliver-kirchner",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/oliver-kirchner"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 10,
@@ -1968,11 +1903,11 @@
       "name": "Tim Rohne",
       "winner": false,
       "probability": 4,
-      "value": 21.0,
+      "value": 21.1,
       "low": 12.3,
-      "high": 29.7,
+      "high": 29.8,
       "value_l1": 29.2,
-      "zs_value": 19.2,
+      "zs_value": 19.3,
       "zs_value_l1": 31.1,
       "valid_l1": 23164,
       "zs_valid_l1": 23200,
@@ -1982,8 +1917,7 @@
       "residence": "Magdeburg",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/tim-rohne"
+      "gender_confidence": "high"
     },
     {
       "wkr": 10,
@@ -1995,8 +1929,8 @@
       "winner": false,
       "probability": 1,
       "value": 15.8,
-      "low": 7.0,
-      "high": 24.5,
+      "low": 7.2,
+      "high": 24.3,
       "value_l1": 14.3,
       "zs_value": 15.9,
       "zs_value_l1": 13.0,
@@ -2008,8 +1942,7 @@
       "residence": "Magdeburg",
       "profession": "Sozialwissenschaftler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/noah-biswanger"
+      "gender_confidence": "high"
     },
     {
       "wkr": 10,
@@ -2022,9 +1955,9 @@
       "probability": 0,
       "value": 7.0,
       "low": 0.2,
-      "high": 13.9,
+      "high": 13.8,
       "value_l1": 7.1,
-      "zs_value": 6.7,
+      "zs_value": 6.6,
       "zs_value_l1": 8.4,
       "valid_l1": 23164,
       "zs_valid_l1": 23200,
@@ -2034,8 +1967,7 @@
       "residence": "Magdeburg",
       "profession": "Beamter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/rico-herrmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 10,
@@ -2046,7 +1978,7 @@
       "name": "Dr. Lydia Maria Hüskens",
       "winner": false,
       "probability": 0,
-      "value": 4.2,
+      "value": 4.1,
       "low": 0.0,
       "high": 9.9,
       "value_l1": 6.7,
@@ -2065,8 +1997,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/lydia-hueskens",
       "incumbent_mandate": "list",
-      "incumbent_match": "first_last",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/lydia-hueskens"
+      "incumbent_match": "first_last"
     },
     {
       "wkr": 10,
@@ -2081,7 +2012,7 @@
       "low": 0.0,
       "high": 10.5,
       "value_l1": 0.0,
-      "zs_value": 4.6,
+      "zs_value": 4.5,
       "zs_value_l1": 0.0,
       "valid_l1": 23164,
       "zs_valid_l1": 23200,
@@ -2091,8 +2022,7 @@
       "residence": "Magdeburg",
       "profession": "Fahrlehrer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/vinzenz-louis-muehlbach"
+      "gender_confidence": "high"
     },
     {
       "wkr": 10,
@@ -2105,7 +2035,7 @@
       "probability": 0,
       "value": 5.1,
       "low": 0.0,
-      "high": 13.1,
+      "high": 13.0,
       "value_l1": 10.7,
       "zs_value": 5.6,
       "zs_value_l1": 13.2,
@@ -2140,8 +2070,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/falko-grube",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/falko-grube"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 11,
@@ -2151,8 +2080,8 @@
       "partei": "AfD",
       "name": "Hagen Kohl",
       "winner": false,
-      "probability": 39,
-      "value": 21.7,
+      "probability": 40,
+      "value": 21.8,
       "low": 13.2,
       "high": 30.3,
       "value_l1": 11.2,
@@ -2171,8 +2100,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/hagen-kohl",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/hagen-kohl"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 11,
@@ -2183,11 +2111,11 @@
       "name": "Tobias Krull",
       "winner": true,
       "probability": 44,
-      "value": 22.1,
-      "low": 13.0,
+      "value": 22.2,
+      "low": 13.2,
       "high": 31.2,
       "value_l1": 28.1,
-      "zs_value": 20.7,
+      "zs_value": 20.8,
       "zs_value_l1": 30.5,
       "valid_l1": 34141,
       "zs_valid_l1": 34179,
@@ -2202,8 +2130,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/tobias-krull",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/tobias-krull"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 11,
@@ -2228,8 +2155,7 @@
       "residence": "Magdeburg",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/mustafa-groener"
+      "gender_confidence": "high"
     },
     {
       "wkr": 11,
@@ -2240,11 +2166,11 @@
       "name": "Madeleine Linke",
       "winner": false,
       "probability": 3,
-      "value": 13.9,
-      "low": 5.4,
-      "high": 22.5,
+      "value": 13.8,
+      "low": 5.3,
+      "high": 22.3,
       "value_l1": 15.9,
-      "zs_value": 13.5,
+      "zs_value": 13.4,
       "zs_value_l1": 15.5,
       "valid_l1": 34141,
       "zs_valid_l1": 34179,
@@ -2254,8 +2180,7 @@
       "residence": "Magdeburg",
       "profession": "Ingenierin für Erneuerbare Energien",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/madeleine-linke"
+      "gender_confidence": "high"
     },
     {
       "wkr": 11,
@@ -2280,8 +2205,7 @@
       "residence": "Magdeburg",
       "profession": "Rollenoffsetdrucker",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-daehre"
+      "gender_confidence": "high"
     },
     {
       "wkr": 11,
@@ -2294,7 +2218,7 @@
       "probability": 0,
       "value": 4.6,
       "low": 0.0,
-      "high": 11.6,
+      "high": 11.5,
       "value_l1": 0.0,
       "zs_value": 5.0,
       "zs_value_l1": 0.0,
@@ -2306,8 +2230,7 @@
       "residence": "Magdeburg",
       "profession": "Werkstudent",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/john-lucas-dittrich"
+      "gender_confidence": "high"
     },
     {
       "wkr": 11,
@@ -2318,9 +2241,9 @@
       "name": null,
       "winner": false,
       "probability": 0,
-      "value": 5.2,
+      "value": 5.3,
       "low": 0.0,
-      "high": 13.0,
+      "high": 13.1,
       "value_l1": 10.6,
       "zs_value": 5.7,
       "zs_value_l1": 12.1,
@@ -2340,7 +2263,7 @@
       "low": 1.6,
       "high": 15.9,
       "value_l1": 10.8,
-      "zs_value": 8.1,
+      "zs_value": 8.0,
       "zs_value_l1": 9.4,
       "valid_l1": 27618,
       "zs_valid_l1": 27658,
@@ -2350,8 +2273,7 @@
       "residence": "Loitsche-Heinrichsberg",
       "profession": "Angestellter Landesverwaltung",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-hausmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 12,
@@ -2366,7 +2288,7 @@
       "low": 20.2,
       "high": 39.2,
       "value_l1": 16.5,
-      "zs_value": 32.5,
+      "zs_value": 32.6,
       "zs_value_l1": 15.6,
       "valid_l1": 27618,
       "zs_valid_l1": 27658,
@@ -2381,8 +2303,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/christian-mertens",
       "incumbent_mandate": "moved_up",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-mertens"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 12,
@@ -2392,12 +2313,12 @@
       "partei": "CDU",
       "name": "Sven Schulze",
       "winner": false,
-      "probability": 26,
-      "value": 24.8,
-      "low": 15.3,
-      "high": 34.3,
+      "probability": 27,
+      "value": 24.9,
+      "low": 15.4,
+      "high": 34.4,
       "value_l1": 32.6,
-      "zs_value": 23.0,
+      "zs_value": 23.1,
       "zs_value_l1": 35.4,
       "valid_l1": 27618,
       "zs_valid_l1": 27658,
@@ -2407,8 +2328,7 @@
       "residence": "Magdeburg",
       "profession": "Diplom-Ingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sven-schulze"
+      "gender_confidence": "high"
     },
     {
       "wkr": 12,
@@ -2420,8 +2340,8 @@
       "winner": false,
       "probability": 1,
       "value": 14.6,
-      "low": 6.0,
-      "high": 23.2,
+      "low": 6.1,
+      "high": 23.1,
       "value_l1": 12.6,
       "zs_value": 14.8,
       "zs_value_l1": 11.5,
@@ -2438,8 +2358,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/eva-von-angern",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/eva-von-angern"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 12,
@@ -2450,11 +2369,11 @@
       "name": "Michelle Angeli",
       "winner": false,
       "probability": 0,
-      "value": 8.3,
-      "low": 1.4,
+      "value": 8.2,
+      "low": 1.3,
       "high": 15.2,
       "value_l1": 11.6,
-      "zs_value": 7.4,
+      "zs_value": 7.3,
       "zs_value_l1": 8.8,
       "valid_l1": 27618,
       "zs_valid_l1": 27658,
@@ -2464,8 +2383,7 @@
       "residence": "Magdeburg",
       "profession": "Juristin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/michelle-angeli"
+      "gender_confidence": "high"
     },
     {
       "wkr": 12,
@@ -2476,7 +2394,7 @@
       "name": "Thomas Gürke",
       "winner": false,
       "probability": 0,
-      "value": 4.7,
+      "value": 4.6,
       "low": 0.0,
       "high": 10.5,
       "value_l1": 7.3,
@@ -2490,8 +2408,7 @@
       "residence": "Magdeburg",
       "profession": "Rechtsanwalt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-guerke"
+      "gender_confidence": "high"
     },
     {
       "wkr": 12,
@@ -2502,9 +2419,9 @@
       "name": "Lenny Werner Wapenhans",
       "winner": false,
       "probability": 0,
-      "value": 4.3,
+      "value": 4.2,
       "low": 0.0,
-      "high": 11.0,
+      "high": 10.9,
       "value_l1": 0.0,
       "zs_value": 4.8,
       "zs_value_l1": 0.0,
@@ -2516,8 +2433,7 @@
       "residence": "Magdeburg",
       "profession": "Bauingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/lenny-wapenhans"
+      "gender_confidence": "high"
     },
     {
       "wkr": 12,
@@ -2528,7 +2444,7 @@
       "name": null,
       "winner": false,
       "probability": 0,
-      "value": 4.9,
+      "value": 5.0,
       "low": 0.0,
       "high": 12.6,
       "value_l1": 8.6,
@@ -2547,8 +2463,8 @@
       "winner": false,
       "probability": 0,
       "value": 8.2,
-      "low": 1.4,
-      "high": 15.1,
+      "low": 1.3,
+      "high": 15.2,
       "value_l1": 10.2,
       "zs_value": 7.6,
       "zs_value_l1": 9.1,
@@ -2560,8 +2476,7 @@
       "residence": "Magdeburg",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ralph-bluemel"
+      "gender_confidence": "high"
     },
     {
       "wkr": 13,
@@ -2572,9 +2487,9 @@
       "name": "Ronny Kumpf",
       "winner": true,
       "probability": 81,
-      "value": 30.8,
-      "low": 21.2,
-      "high": 40.4,
+      "value": 30.9,
+      "low": 21.4,
+      "high": 40.3,
       "value_l1": 17.5,
       "zs_value": 33.8,
       "zs_value_l1": 16.5,
@@ -2586,8 +2501,7 @@
       "residence": "Magdeburg",
       "profession": "Geschäftsführer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ronny-kumpf"
+      "gender_confidence": "high"
     },
     {
       "wkr": 13,
@@ -2599,10 +2513,10 @@
       "winner": false,
       "probability": 18,
       "value": 24.0,
-      "low": 14.8,
-      "high": 33.2,
+      "low": 14.9,
+      "high": 33.1,
       "value_l1": 33.2,
-      "zs_value": 21.9,
+      "zs_value": 22.0,
       "zs_value_l1": 34.4,
       "valid_l1": 31802,
       "zs_valid_l1": 31810,
@@ -2617,8 +2531,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/andreas-schumann",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-schumann"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 13,
@@ -2643,8 +2556,7 @@
       "residence": "Magdeburg",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/dennis-jannack"
+      "gender_confidence": "high"
     },
     {
       "wkr": 13,
@@ -2655,11 +2567,11 @@
       "name": "Olaf Meister",
       "winner": false,
       "probability": 0,
-      "value": 8.2,
+      "value": 8.1,
       "low": 1.2,
-      "high": 15.2,
+      "high": 15.0,
       "value_l1": 9.9,
-      "zs_value": 7.6,
+      "zs_value": 7.5,
       "zs_value_l1": 9.2,
       "valid_l1": 31802,
       "zs_valid_l1": 31810,
@@ -2674,8 +2586,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/olaf-meister",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/olaf-meister"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 13,
@@ -2688,7 +2599,7 @@
       "probability": 0,
       "value": 4.6,
       "low": 0.0,
-      "high": 10.5,
+      "high": 10.4,
       "value_l1": 6.5,
       "zs_value": 3.7,
       "zs_value_l1": 6.8,
@@ -2700,8 +2611,7 @@
       "residence": "Magdeburg",
       "profession": "Schulleiterin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/daniela-tost"
+      "gender_confidence": "high"
     },
     {
       "wkr": 13,
@@ -2726,8 +2636,7 @@
       "residence": "Magdeburg",
       "profession": "Rentner",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/hugo-boeck"
+      "gender_confidence": "high"
     },
     {
       "wkr": 13,
@@ -2757,8 +2666,8 @@
       "winner": false,
       "probability": 0,
       "value": 7.0,
-      "low": 0.5,
-      "high": 13.6,
+      "low": 0.4,
+      "high": 13.7,
       "value_l1": 8.4,
       "zs_value": 6.5,
       "zs_value_l1": 8.3,
@@ -2770,8 +2679,7 @@
       "residence": "Huy, OT Dingelstedt am Huy",
       "profession": "Beamter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/nils-johannson"
+      "gender_confidence": "high"
     },
     {
       "wkr": 14,
@@ -2782,11 +2690,11 @@
       "name": "Christian Ulrich Hecht",
       "winner": true,
       "probability": 94,
-      "value": 36.7,
-      "low": 26.7,
+      "value": 36.8,
+      "low": 26.8,
       "high": 46.7,
       "value_l1": 21.3,
-      "zs_value": 40.2,
+      "zs_value": 40.3,
       "zs_value_l1": 20.9,
       "valid_l1": 22572,
       "zs_valid_l1": 22592,
@@ -2801,8 +2709,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/christian-hecht",
       "incumbent_mandate": "list",
-      "incumbent_match": "first_last",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-hecht"
+      "incumbent_match": "first_last"
     },
     {
       "wkr": 14,
@@ -2813,11 +2720,11 @@
       "name": "Artjom Pusch",
       "winner": false,
       "probability": 6,
-      "value": 23.8,
-      "low": 14.6,
-      "high": 33.0,
+      "value": 23.9,
+      "low": 14.7,
+      "high": 33.1,
       "value_l1": 30.4,
-      "zs_value": 22.5,
+      "zs_value": 22.6,
       "zs_value_l1": 37.5,
       "valid_l1": 22572,
       "zs_valid_l1": 22592,
@@ -2827,8 +2734,7 @@
       "residence": "Halberstadt",
       "profession": "Wirtschaftsingenieur",
       "gender": "m",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/artjom-pusch"
+      "gender_confidence": "override"
     },
     {
       "wkr": 14,
@@ -2840,7 +2746,7 @@
       "winner": false,
       "probability": 0,
       "value": 16.9,
-      "low": 8.4,
+      "low": 8.5,
       "high": 25.3,
       "value_l1": 22.3,
       "zs_value": 15.6,
@@ -2853,8 +2759,7 @@
       "residence": "Halberstadt",
       "profession": "Informatiker B.Sc.",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-luft"
+      "gender_confidence": "high"
     },
     {
       "wkr": 14,
@@ -2867,9 +2772,9 @@
       "probability": 0,
       "value": 4.0,
       "low": 0.0,
-      "high": 9.8,
+      "high": 9.6,
       "value_l1": 3.3,
-      "zs_value": 3.7,
+      "zs_value": 3.6,
       "zs_value_l1": 4.7,
       "valid_l1": 22572,
       "zs_valid_l1": 22592,
@@ -2879,8 +2784,7 @@
       "residence": "Halberstadt",
       "profession": "Ärztin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/elke-lampka"
+      "gender_confidence": "high"
     },
     {
       "wkr": 14,
@@ -2893,7 +2797,7 @@
       "probability": 0,
       "value": 4.2,
       "low": 0.0,
-      "high": 9.9,
+      "high": 9.8,
       "value_l1": 7.0,
       "zs_value": 3.1,
       "zs_value_l1": 6.1,
@@ -2905,8 +2809,7 @@
       "residence": "Quedlinburg",
       "profession": "Bankkaufmann (Auszubildender)",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/felix-julius-krueger"
+      "gender_confidence": "high"
     },
     {
       "wkr": 14,
@@ -2931,8 +2834,7 @@
       "residence": "Halberstadt",
       "profession": "Rentnerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/monika-gehlis"
+      "gender_confidence": "high"
     },
     {
       "wkr": 14,
@@ -2961,11 +2863,11 @@
       "name": "Florian Fahrtmann",
       "winner": false,
       "probability": 0,
-      "value": 11.5,
+      "value": 11.4,
       "low": 4.0,
       "high": 18.9,
       "value_l1": 18.0,
-      "zs_value": 9.9,
+      "zs_value": 9.8,
       "zs_value_l1": 12.0,
       "valid_l1": 24486,
       "zs_valid_l1": 24550,
@@ -2975,8 +2877,7 @@
       "residence": "Ilsenburg (Harz)",
       "profession": "Geschäftsführer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/florian-fahrtmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 15,
@@ -2986,9 +2887,9 @@
       "partei": "AfD",
       "name": "Armin Friese",
       "winner": true,
-      "probability": 86,
-      "value": 34.4,
-      "low": 24.5,
+      "probability": 85,
+      "value": 34.5,
+      "low": 24.6,
       "high": 44.3,
       "value_l1": 20.2,
       "zs_value": 37.7,
@@ -3001,8 +2902,7 @@
       "residence": "Halberstadt",
       "profession": "Mediengestalter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/armin-friese"
+      "gender_confidence": "high"
     },
     {
       "wkr": 15,
@@ -3012,12 +2912,12 @@
       "partei": "CDU",
       "name": "Alexander Räuscher",
       "winner": false,
-      "probability": 14,
+      "probability": 15,
       "value": 25.9,
-      "low": 16.3,
+      "low": 16.4,
       "high": 35.4,
       "value_l1": 33.6,
-      "zs_value": 24.3,
+      "zs_value": 24.4,
       "zs_value_l1": 38.9,
       "valid_l1": 24486,
       "zs_valid_l1": 24550,
@@ -3032,8 +2932,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/alexander-raeuscher",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-raeuscher"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 15,
@@ -3045,7 +2944,7 @@
       "winner": false,
       "probability": 0,
       "value": 12.1,
-      "low": 4.4,
+      "low": 4.5,
       "high": 19.8,
       "value_l1": 11.0,
       "zs_value": 12.3,
@@ -3058,8 +2957,7 @@
       "residence": "Blankenburg",
       "profession": "Augenoptiker",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/lukas-franke"
+      "gender_confidence": "high"
     },
     {
       "wkr": 15,
@@ -3070,9 +2968,9 @@
       "name": "Klaus Plitzkat",
       "winner": false,
       "probability": 0,
-      "value": 4.4,
+      "value": 4.3,
       "low": 0.0,
-      "high": 10.2,
+      "high": 10.1,
       "value_l1": 5.0,
       "zs_value": 3.8,
       "zs_value_l1": 4.7,
@@ -3084,8 +2982,7 @@
       "residence": "Nordharz, OT Wasserleben",
       "profession": "Rentner",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/klaus-plitzkat"
+      "gender_confidence": "high"
     },
     {
       "wkr": 15,
@@ -3110,8 +3007,7 @@
       "residence": "Quedlinburg",
       "profession": "selbstständig",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/steffen-mente"
+      "gender_confidence": "high"
     },
     {
       "wkr": 15,
@@ -3124,7 +3020,7 @@
       "probability": 0,
       "value": 4.0,
       "low": 0.0,
-      "high": 10.9,
+      "high": 10.8,
       "value_l1": 0.0,
       "zs_value": 4.6,
       "zs_value_l1": 0.0,
@@ -3136,8 +3032,7 @@
       "residence": "Ilsenburg (Harz)",
       "profession": "Kesselwärter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/maximilian-schwartz"
+      "gender_confidence": "high"
     },
     {
       "wkr": 15,
@@ -3170,7 +3065,7 @@
       "low": 5.3,
       "high": 20.6,
       "value_l1": 24.4,
-      "zs_value": 10.4,
+      "zs_value": 10.3,
       "zs_value_l1": 12.5,
       "valid_l1": 25719,
       "zs_valid_l1": 25748,
@@ -3180,8 +3075,7 @@
       "residence": "Wernigerode",
       "profession": "Minister für Wissenschaft, Energie, Klimaschutz und Umwelt des Landes Sachsen-Anhalt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/armin-willingmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 16,
@@ -3193,10 +3087,10 @@
       "winner": true,
       "probability": 80,
       "value": 32.7,
-      "low": 22.8,
-      "high": 42.6,
+      "low": 22.9,
+      "high": 42.5,
       "value_l1": 18.4,
-      "zs_value": 35.9,
+      "zs_value": 36.0,
       "zs_value_l1": 17.7,
       "valid_l1": 25719,
       "zs_valid_l1": 25748,
@@ -3206,8 +3100,7 @@
       "residence": "Oberharz am Brocken",
       "profession": "Jurist",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ronald-bischoff"
+      "gender_confidence": "high"
     },
     {
       "wkr": 16,
@@ -3218,11 +3111,11 @@
       "name": "Bianca Heine",
       "winner": false,
       "probability": 20,
-      "value": 25.6,
+      "value": 25.7,
       "low": 16.0,
-      "high": 35.3,
+      "high": 35.5,
       "value_l1": 30.4,
-      "zs_value": 24.6,
+      "zs_value": 24.7,
       "zs_value_l1": 39.0,
       "valid_l1": 25719,
       "zs_valid_l1": 25748,
@@ -3232,8 +3125,7 @@
       "residence": "Harzgerode",
       "profession": "Verwaltungsbeamtin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/bianca-heine"
+      "gender_confidence": "high"
     },
     {
       "wkr": 16,
@@ -3246,7 +3138,7 @@
       "probability": 0,
       "value": 12.4,
       "low": 4.5,
-      "high": 20.3,
+      "high": 20.2,
       "value_l1": 10.7,
       "zs_value": 12.6,
       "zs_value_l1": 10.0,
@@ -3258,8 +3150,7 @@
       "residence": "Harzgerode",
       "profession": "Bürokauffrau",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/katja-kaefer"
+      "gender_confidence": "high"
     },
     {
       "wkr": 16,
@@ -3272,9 +3163,9 @@
       "probability": 0,
       "value": 4.8,
       "low": 0.0,
-      "high": 11.0,
+      "high": 10.9,
       "value_l1": 3.8,
-      "zs_value": 4.7,
+      "zs_value": 4.6,
       "zs_value_l1": 5.7,
       "valid_l1": 25719,
       "zs_valid_l1": 25748,
@@ -3284,8 +3175,7 @@
       "residence": "Wernigerode",
       "profession": "Student Wirtschaftsingenieurwesen",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/lennox-schrickel"
+      "gender_confidence": "high"
     },
     {
       "wkr": 16,
@@ -3296,11 +3186,11 @@
       "name": "Max Henrik Schröder",
       "winner": false,
       "probability": 0,
-      "value": 4.2,
+      "value": 4.1,
       "low": 0.0,
       "high": 9.8,
       "value_l1": 6.3,
-      "zs_value": 3.3,
+      "zs_value": 3.2,
       "zs_value_l1": 6.1,
       "valid_l1": 25719,
       "zs_valid_l1": 25748,
@@ -3310,8 +3200,7 @@
       "residence": "Quedlinburg",
       "profession": "Kreisinspektoranwärter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/max-henrik-schroeder"
+      "gender_confidence": "high"
     },
     {
       "wkr": 16,
@@ -3324,9 +3213,9 @@
       "probability": 0,
       "value": 4.0,
       "low": 0.0,
-      "high": 10.8,
+      "high": 10.9,
       "value_l1": 0.0,
-      "zs_value": 4.7,
+      "zs_value": 4.6,
       "zs_value_l1": 0.0,
       "valid_l1": 25719,
       "zs_valid_l1": 25748,
@@ -3336,8 +3225,7 @@
       "residence": "Wernigerode",
       "profession": "Prüfer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/joachim-pasemann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 16,
@@ -3350,9 +3238,9 @@
       "probability": 0,
       "value": 3.4,
       "low": 0.0,
-      "high": 9.5,
+      "high": 9.4,
       "value_l1": 6.1,
-      "zs_value": 3.9,
+      "zs_value": 4.0,
       "zs_value_l1": 9.0,
       "valid_l1": 25719,
       "zs_valid_l1": 25748
@@ -3366,7 +3254,7 @@
       "name": "Nadine Hillecke",
       "winner": false,
       "probability": 0,
-      "value": 8.0,
+      "value": 7.9,
       "low": 1.1,
       "high": 14.8,
       "value_l1": 10.6,
@@ -3380,8 +3268,7 @@
       "residence": "Quedlinburg",
       "profession": "leitende Ergotherapeutin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/nadine-hillecke"
+      "gender_confidence": "high"
     },
     {
       "wkr": 17,
@@ -3394,7 +3281,7 @@
       "probability": 89,
       "value": 35.7,
       "low": 25.7,
-      "high": 45.7,
+      "high": 45.8,
       "value_l1": 20.9,
       "zs_value": 39.0,
       "zs_value_l1": 19.7,
@@ -3406,8 +3293,7 @@
       "residence": "Thale",
       "profession": "Tischlermeister",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/dennis-moehring"
+      "gender_confidence": "high"
     },
     {
       "wkr": 17,
@@ -3418,11 +3304,11 @@
       "name": "Ulrich Thomas",
       "winner": false,
       "probability": 11,
-      "value": 25.2,
+      "value": 25.3,
       "low": 15.9,
-      "high": 34.6,
+      "high": 34.8,
       "value_l1": 33.5,
-      "zs_value": 23.5,
+      "zs_value": 23.6,
       "zs_value_l1": 38.0,
       "valid_l1": 28104,
       "zs_valid_l1": 28146,
@@ -3437,8 +3323,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/ulrich-thomas",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ulrich-thomas"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 17,
@@ -3450,7 +3335,7 @@
       "winner": false,
       "probability": 0,
       "value": 13.2,
-      "low": 5.0,
+      "low": 5.1,
       "high": 21.3,
       "value_l1": 12.4,
       "zs_value": 13.3,
@@ -3463,8 +3348,7 @@
       "residence": "Thale",
       "profession": "Veranstaltungskaufmann für Konzert- und Theaterveranstaltungen",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/maik-fye"
+      "gender_confidence": "high"
     },
     {
       "wkr": 17,
@@ -3475,11 +3359,11 @@
       "name": "Susan Sziborra-Seidlitz",
       "winner": false,
       "probability": 0,
-      "value": 5.3,
+      "value": 5.2,
       "low": 0.0,
-      "high": 11.5,
+      "high": 11.4,
       "value_l1": 6.6,
-      "zs_value": 4.6,
+      "zs_value": 4.5,
       "zs_value_l1": 5.7,
       "valid_l1": 28104,
       "zs_valid_l1": 28146,
@@ -3494,8 +3378,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/susan-sziborra-seidlitz",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/susan-sziborra-seidlitz"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 17,
@@ -3506,11 +3389,11 @@
       "name": "Florian Pascal Feger",
       "winner": false,
       "probability": 0,
-      "value": 4.9,
+      "value": 4.8,
       "low": 0.0,
-      "high": 10.9,
+      "high": 10.8,
       "value_l1": 8.7,
-      "zs_value": 3.7,
+      "zs_value": 3.6,
       "zs_value_l1": 7.0,
       "valid_l1": 28104,
       "zs_valid_l1": 28146,
@@ -3520,8 +3403,7 @@
       "residence": "Magdeburg",
       "profession": "Pflegefachkraft",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/florian-pascal-feger"
+      "gender_confidence": "high"
     },
     {
       "wkr": 17,
@@ -3534,9 +3416,9 @@
       "probability": 0,
       "value": 4.0,
       "low": 0.0,
-      "high": 11.0,
+      "high": 10.9,
       "value_l1": 0.0,
-      "zs_value": 4.6,
+      "zs_value": 4.5,
       "zs_value_l1": 0.0,
       "valid_l1": 28104,
       "zs_valid_l1": 28146,
@@ -3546,8 +3428,7 @@
       "residence": "Ballenstedt",
       "profession": "Fachinformatiker",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/michael-reim"
+      "gender_confidence": "high"
     },
     {
       "wkr": 17,
@@ -3560,7 +3441,7 @@
       "probability": 0,
       "value": 3.8,
       "low": 0.0,
-      "high": 10.3,
+      "high": 10.4,
       "value_l1": 7.4,
       "zs_value": 4.3,
       "zs_value_l1": 10.1,
@@ -3576,9 +3457,9 @@
       "name": "Yves Metzing",
       "winner": false,
       "probability": 0,
-      "value": 7.3,
-      "low": 0.6,
-      "high": 13.9,
+      "value": 7.2,
+      "low": 0.7,
+      "high": 13.8,
       "value_l1": 9.3,
       "zs_value": 6.5,
       "zs_value_l1": 8.3,
@@ -3590,8 +3471,7 @@
       "residence": "Aschersleben",
       "profession": "Betriebswirt (BA), Geschäftsführer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/yves-metzing"
+      "gender_confidence": "high"
     },
     {
       "wkr": 18,
@@ -3603,10 +3483,10 @@
       "winner": true,
       "probability": 95,
       "value": 38.8,
-      "low": 28.5,
+      "low": 28.4,
       "high": 49.1,
       "value_l1": 22.7,
-      "zs_value": 42.4,
+      "zs_value": 42.5,
       "zs_value_l1": 22.2,
       "valid_l1": 21570,
       "zs_valid_l1": 21617,
@@ -3621,8 +3501,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/daniel-rausch",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-rausch"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 18,
@@ -3633,11 +3512,11 @@
       "name": "Detlef Gürth",
       "winner": false,
       "probability": 5,
-      "value": 24.4,
-      "low": 14.9,
-      "high": 34.0,
+      "value": 24.5,
+      "low": 15.3,
+      "high": 33.7,
       "value_l1": 33.8,
-      "zs_value": 22.5,
+      "zs_value": 22.6,
       "zs_value_l1": 37.7,
       "valid_l1": 21570,
       "zs_valid_l1": 21617,
@@ -3652,8 +3531,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/detlef-guerth",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/detlef-guerth"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 18,
@@ -3666,7 +3544,7 @@
       "probability": 0,
       "value": 14.0,
       "low": 5.7,
-      "high": 22.3,
+      "high": 22.2,
       "value_l1": 13.4,
       "zs_value": 13.9,
       "zs_value_l1": 11.7,
@@ -3678,8 +3556,7 @@
       "residence": "Könnern, OT Belleben",
       "profession": "Erzieher",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/kay-lorenz"
+      "gender_confidence": "high"
     },
     {
       "wkr": 18,
@@ -3692,9 +3569,9 @@
       "probability": 0,
       "value": 3.5,
       "low": 0.0,
-      "high": 8.9,
+      "high": 8.8,
       "value_l1": 4.1,
-      "zs_value": 2.9,
+      "zs_value": 2.8,
       "zs_value_l1": 3.7,
       "valid_l1": 21570,
       "zs_valid_l1": 21617,
@@ -3704,8 +3581,7 @@
       "residence": "Aschersleben",
       "profession": "Sicherheitsprüfer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/martin-mertens-keylock"
+      "gender_confidence": "high"
     },
     {
       "wkr": 18,
@@ -3720,7 +3596,7 @@
       "low": 0.0,
       "high": 9.8,
       "value_l1": 6.0,
-      "zs_value": 3.2,
+      "zs_value": 3.1,
       "zs_value_l1": 6.2,
       "valid_l1": 21570,
       "zs_valid_l1": 21617,
@@ -3730,8 +3606,7 @@
       "residence": "Aschersleben",
       "profession": "Diplomingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/torsten-haussmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 18,
@@ -3744,7 +3619,7 @@
       "probability": 0,
       "value": 4.1,
       "low": 0.0,
-      "high": 10.9,
+      "high": 10.8,
       "value_l1": 0.0,
       "zs_value": 4.4,
       "zs_value_l1": 0.0,
@@ -3756,8 +3631,7 @@
       "residence": "Aschersleben",
       "profession": "Germanist",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-michelmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 18,
@@ -3770,7 +3644,7 @@
       "probability": 0,
       "value": 3.9,
       "low": 0.0,
-      "high": 10.3,
+      "high": 10.4,
       "value_l1": 10.6,
       "zs_value": 4.2,
       "zs_value_l1": 10.2,
@@ -3788,7 +3662,7 @@
       "probability": 0,
       "value": 5.8,
       "low": 0.0,
-      "high": 12.1,
+      "high": 12.0,
       "value_l1": 8.3,
       "zs_value": 5.0,
       "zs_value_l1": 6.8,
@@ -3800,8 +3674,7 @@
       "residence": "Barby",
       "profession": "Angestellter im öffentlichen Dienst",
       "gender": "m",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/seluan-al-chakmakchi"
+      "gender_confidence": "override"
     },
     {
       "wkr": 19,
@@ -3813,8 +3686,8 @@
       "winner": true,
       "probability": 100,
       "value": 45.8,
-      "low": 35.4,
-      "high": 56.2,
+      "low": 35.6,
+      "high": 56.1,
       "value_l1": 28.7,
       "zs_value": 50.0,
       "zs_value_l1": 28.0,
@@ -3831,8 +3704,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/matthias-buettner-0",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-buettner"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 19,
@@ -3843,11 +3715,11 @@
       "name": "Sven Rosomkiewicz",
       "winner": false,
       "probability": 0,
-      "value": 22.3,
+      "value": 22.4,
       "low": 13.4,
       "high": 31.3,
       "value_l1": 32.7,
-      "zs_value": 20.2,
+      "zs_value": 20.3,
       "zs_value_l1": 36.1,
       "valid_l1": 18850,
       "zs_valid_l1": 18885,
@@ -3862,8 +3734,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/sven-rosomkiewicz",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sven-rosomkiewicz"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 19,
@@ -3875,8 +3746,8 @@
       "winner": false,
       "probability": 0,
       "value": 12.0,
-      "low": 4.3,
-      "high": 19.7,
+      "low": 4.4,
+      "high": 19.5,
       "value_l1": 12.2,
       "zs_value": 11.9,
       "zs_value_l1": 10.6,
@@ -3888,8 +3759,7 @@
       "residence": "Bernburg (Saale)",
       "profession": "Evangel. Diakon",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/veit-kuhr"
+      "gender_confidence": "high"
     },
     {
       "wkr": 19,
@@ -3914,8 +3784,7 @@
       "residence": "Güsten",
       "profession": "Schüler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/kevin-pockrandt"
+      "gender_confidence": "high"
     },
     {
       "wkr": 19,
@@ -3928,9 +3797,9 @@
       "probability": 0,
       "value": 5.3,
       "low": 0.0,
-      "high": 11.4,
+      "high": 11.3,
       "value_l1": 11.8,
-      "zs_value": 3.7,
+      "zs_value": 3.6,
       "zs_value_l1": 7.7,
       "valid_l1": 18850,
       "zs_valid_l1": 18885,
@@ -3940,8 +3809,7 @@
       "residence": "Magdeburg",
       "profession": "Erzieher",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/axel-riedel"
+      "gender_confidence": "high"
     },
     {
       "wkr": 19,
@@ -3956,7 +3824,7 @@
       "low": 0.0,
       "high": 10.4,
       "value_l1": 0.0,
-      "zs_value": 4.2,
+      "zs_value": 4.1,
       "zs_value_l1": 0.0,
       "valid_l1": 18850,
       "zs_valid_l1": 18885,
@@ -3966,8 +3834,7 @@
       "residence": "Staßfurt",
       "profession": "Berufsschullehrer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/roland-herbert"
+      "gender_confidence": "high"
     },
     {
       "wkr": 19,
@@ -4010,8 +3877,7 @@
       "residence": "Schönebeck (Elbe)",
       "profession": "Leitender Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/rene-woelfer"
+      "gender_confidence": "high"
     },
     {
       "wkr": 20,
@@ -4022,9 +3888,9 @@
       "name": "Tobias Rausch",
       "winner": true,
       "probability": 93,
-      "value": 38.5,
-      "low": 28.3,
-      "high": 48.8,
+      "value": 38.6,
+      "low": 28.5,
+      "high": 48.6,
       "value_l1": 22.6,
       "zs_value": 42.3,
       "zs_value_l1": 22.0,
@@ -4041,8 +3907,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/tobias-rausch",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/tobias-rausch"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 20,
@@ -4053,11 +3918,11 @@
       "name": "Dr. Daniel Schlothmann-Jeschek",
       "winner": false,
       "probability": 7,
-      "value": 25.8,
+      "value": 25.9,
       "low": 16.2,
-      "high": 35.5,
+      "high": 35.6,
       "value_l1": 34.5,
-      "zs_value": 24.0,
+      "zs_value": 24.1,
       "zs_value_l1": 40.1,
       "valid_l1": 24826,
       "zs_valid_l1": 24841,
@@ -4067,8 +3932,7 @@
       "residence": "Schönebeck (Elbe)",
       "profession": "Referent",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-schlothmann-jeschek"
+      "gender_confidence": "high"
     },
     {
       "wkr": 20,
@@ -4093,8 +3957,7 @@
       "residence": "Barby, OT Lödderitz",
       "profession": "Psychologin M.Sc.",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/natalie-nagel"
+      "gender_confidence": "high"
     },
     {
       "wkr": 20,
@@ -4107,7 +3970,7 @@
       "probability": 0,
       "value": 3.3,
       "low": 0.0,
-      "high": 8.7,
+      "high": 8.6,
       "value_l1": 3.1,
       "zs_value": 2.7,
       "zs_value_l1": 3.5,
@@ -4119,8 +3982,7 @@
       "residence": "Bördeland, OT Eickendorf",
       "profession": "Softwareberater",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/marlyn-waga"
+      "gender_confidence": "high"
     },
     {
       "wkr": 20,
@@ -4145,8 +4007,7 @@
       "residence": "Nienburg (Saale)",
       "profession": "Ärztin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/johanna-engel"
+      "gender_confidence": "high"
     },
     {
       "wkr": 20,
@@ -4159,9 +4020,9 @@
       "probability": 0,
       "value": 3.8,
       "low": 0.0,
-      "high": 10.8,
+      "high": 10.7,
       "value_l1": 0.0,
-      "zs_value": 4.5,
+      "zs_value": 4.4,
       "zs_value_l1": 0.0,
       "valid_l1": 24826,
       "zs_valid_l1": 24841,
@@ -4171,8 +4032,7 @@
       "residence": "Schönebeck (Elbe)",
       "profession": "Rentner",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/uwe-georgi"
+      "gender_confidence": "high"
     },
     {
       "wkr": 20,
@@ -4183,7 +4043,7 @@
       "name": null,
       "winner": false,
       "probability": 0,
-      "value": 3.2,
+      "value": 3.3,
       "low": 0.0,
       "high": 9.2,
       "value_l1": 6.1,
@@ -4203,7 +4063,7 @@
       "probability": 0,
       "value": 6.5,
       "low": 0.0,
-      "high": 13.1,
+      "high": 13.0,
       "value_l1": 8.9,
       "zs_value": 5.6,
       "zs_value_l1": 7.2,
@@ -4215,8 +4075,7 @@
       "residence": "Könnern",
       "profession": "Sozialpädagogin B.A.",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/caroline-mueller"
+      "gender_confidence": "high"
     },
     {
       "wkr": 21,
@@ -4228,8 +4087,8 @@
       "winner": true,
       "probability": 97,
       "value": 42.1,
-      "low": 31.5,
-      "high": 52.7,
+      "low": 31.8,
+      "high": 52.4,
       "value_l1": 24.8,
       "zs_value": 44.3,
       "zs_value_l1": 23.5,
@@ -4246,8 +4105,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/jan-moldenhauer",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/jan-moldenhauer"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 21,
@@ -4259,8 +4117,8 @@
       "winner": false,
       "probability": 3,
       "value": 25.4,
-      "low": 16.0,
-      "high": 34.7,
+      "low": 16.1,
+      "high": 34.8,
       "value_l1": 34.7,
       "zs_value": 22.3,
       "zs_value_l1": 37.9,
@@ -4277,8 +4135,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/stefan-ruland",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-ruland"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 21,
@@ -4290,8 +4147,8 @@
       "winner": false,
       "probability": 0,
       "value": 14.0,
-      "low": 5.8,
-      "high": 22.2,
+      "low": 5.9,
+      "high": 22.1,
       "value_l1": 13.3,
       "zs_value": 13.5,
       "zs_value_l1": 11.5,
@@ -4303,8 +4160,7 @@
       "residence": "Bernburg (Saale)",
       "profession": "Kommunikationswissenschaftlerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/henriette-krebs"
+      "gender_confidence": "high"
     },
     {
       "wkr": 21,
@@ -4317,9 +4173,9 @@
       "probability": 0,
       "value": 3.6,
       "low": 0.0,
-      "high": 9.2,
+      "high": 9.1,
       "value_l1": 4.0,
-      "zs_value": 2.8,
+      "zs_value": 2.7,
       "zs_value_l1": 3.6,
       "valid_l1": 26117,
       "zs_valid_l1": 26184,
@@ -4329,8 +4185,7 @@
       "residence": "Giersleben, OT Strummendorf",
       "profession": "Angestellte im Öffentlichen Dienst",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sandra-bauer"
+      "gender_confidence": "high"
     },
     {
       "wkr": 21,
@@ -4343,9 +4198,9 @@
       "probability": 0,
       "value": 5.2,
       "low": 0.0,
-      "high": 11.3,
+      "high": 11.2,
       "value_l1": 9.4,
-      "zs_value": 3.7,
+      "zs_value": 3.6,
       "zs_value_l1": 7.4,
       "valid_l1": 26117,
       "zs_valid_l1": 26184,
@@ -4355,8 +4210,7 @@
       "residence": "Könnern",
       "profession": "Arzt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/frank-odemar"
+      "gender_confidence": "high"
     },
     {
       "wkr": 21,
@@ -4371,7 +4225,7 @@
       "low": 0.0,
       "high": 9.6,
       "value_l1": 5.0,
-      "zs_value": 3.5,
+      "zs_value": 3.6,
       "zs_value_l1": 8.7,
       "valid_l1": 26117,
       "zs_valid_l1": 26184
@@ -4387,7 +4241,7 @@
       "probability": 0,
       "value": 5.2,
       "low": 0.0,
-      "high": 11.3,
+      "high": 11.2,
       "value_l1": 6.2,
       "zs_value": 4.7,
       "zs_value_l1": 6.2,
@@ -4399,8 +4253,7 @@
       "residence": "Osternienburger Land",
       "profession": "Ingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/felix-giesa"
+      "gender_confidence": "high"
     },
     {
       "wkr": 22,
@@ -4410,12 +4263,12 @@
       "partei": "AfD",
       "name": "Volker Olenicak",
       "winner": true,
-      "probability": 96,
+      "probability": 97,
       "value": 41.1,
-      "low": 30.7,
-      "high": 51.4,
+      "low": 30.9,
+      "high": 51.3,
       "value_l1": 25.1,
-      "zs_value": 44.8,
+      "zs_value": 44.9,
       "zs_value_l1": 24.2,
       "valid_l1": 28843,
       "zs_valid_l1": 28840,
@@ -4425,8 +4278,7 @@
       "residence": "Muldestausee",
       "profession": "Kaufmann",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/volker-olenicak"
+      "gender_confidence": "high"
     },
     {
       "wkr": 22,
@@ -4436,12 +4288,12 @@
       "partei": "CDU",
       "name": "Olaf Feuerborn",
       "winner": false,
-      "probability": 4,
-      "value": 24.9,
-      "low": 15.6,
+      "probability": 3,
+      "value": 25.0,
+      "low": 15.7,
       "high": 34.2,
       "value_l1": 37.4,
-      "zs_value": 22.3,
+      "zs_value": 22.4,
       "zs_value_l1": 38.5,
       "valid_l1": 28843,
       "zs_valid_l1": 28840,
@@ -4456,8 +4308,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/olaf-feuerborn",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/olaf-feuerborn"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 22,
@@ -4469,7 +4320,7 @@
       "winner": false,
       "probability": 0,
       "value": 15.3,
-      "low": 7.0,
+      "low": 6.9,
       "high": 23.7,
       "value_l1": 17.7,
       "zs_value": 14.8,
@@ -4482,8 +4333,7 @@
       "residence": "Südliches Anhalt",
       "profession": "Wirtschaftsjurist",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-pulst"
+      "gender_confidence": "high"
     },
     {
       "wkr": 22,
@@ -4494,9 +4344,9 @@
       "name": "Sascha Greiner",
       "winner": false,
       "probability": 0,
-      "value": 3.3,
+      "value": 3.2,
       "low": 0.0,
-      "high": 8.5,
+      "high": 8.4,
       "value_l1": 3.3,
       "zs_value": 2.6,
       "zs_value_l1": 3.5,
@@ -4508,8 +4358,7 @@
       "residence": "Köthen (Anhalt)",
       "profession": "selbständig",
       "gender": "m",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sascha-greiner"
+      "gender_confidence": "override"
     },
     {
       "wkr": 22,
@@ -4524,7 +4373,7 @@
       "low": 0.0,
       "high": 9.1,
       "value_l1": 5.0,
-      "zs_value": 2.9,
+      "zs_value": 2.8,
       "zs_value_l1": 5.8,
       "valid_l1": 28843,
       "zs_valid_l1": 28840,
@@ -4534,8 +4383,7 @@
       "residence": "Aken (Elbe)",
       "profession": "Student",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/john-matthias-kaube"
+      "gender_confidence": "high"
     },
     {
       "wkr": 22,
@@ -4548,7 +4396,7 @@
       "probability": 0,
       "value": 3.6,
       "low": 0.0,
-      "high": 10.3,
+      "high": 10.2,
       "value_l1": 0.0,
       "zs_value": 4.3,
       "zs_value_l1": 0.0,
@@ -4560,8 +4408,7 @@
       "residence": "Dessau-Roßlau",
       "profession": "Versicherungsbetriebswirt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-samter"
+      "gender_confidence": "high"
     },
     {
       "wkr": 22,
@@ -4576,7 +4423,7 @@
       "low": 0.0,
       "high": 8.7,
       "value_l1": 5.4,
-      "zs_value": 3.6,
+      "zs_value": 3.7,
       "zs_value_l1": 9.1,
       "valid_l1": 28843,
       "zs_valid_l1": 28840
@@ -4591,8 +4438,8 @@
       "winner": false,
       "probability": 0,
       "value": 6.8,
-      "low": 0.2,
-      "high": 13.4,
+      "low": 0.1,
+      "high": 13.5,
       "value_l1": 7.4,
       "zs_value": 6.2,
       "zs_value_l1": 7.8,
@@ -4604,8 +4451,7 @@
       "residence": "Zerbst/Anhalt",
       "profession": "kaufmännischer Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/tobias-boettcher"
+      "gender_confidence": "high"
     },
     {
       "wkr": 23,
@@ -4630,8 +4476,7 @@
       "residence": "Gommern",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/phillipp-anders-rau"
+      "gender_confidence": "high"
     },
     {
       "wkr": 23,
@@ -4642,11 +4487,11 @@
       "name": "Jonas Döhring",
       "winner": false,
       "probability": 6,
-      "value": 26.7,
-      "low": 17.1,
-      "high": 36.4,
+      "value": 26.8,
+      "low": 17.0,
+      "high": 36.6,
       "value_l1": 36.5,
-      "zs_value": 23.4,
+      "zs_value": 23.5,
       "zs_value_l1": 39.2,
       "valid_l1": 24030,
       "zs_valid_l1": 24040,
@@ -4656,8 +4501,7 @@
       "residence": "Zerbst/Anhalt",
       "profession": "Unternehmer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/jonas-doehring"
+      "gender_confidence": "high"
     },
     {
       "wkr": 23,
@@ -4669,10 +4513,10 @@
       "winner": false,
       "probability": 0,
       "value": 13.8,
-      "low": 5.7,
+      "low": 5.6,
       "high": 22.0,
       "value_l1": 13.0,
-      "zs_value": 13.2,
+      "zs_value": 13.1,
       "zs_value_l1": 11.0,
       "valid_l1": 24030,
       "zs_valid_l1": 24040,
@@ -4682,8 +4526,7 @@
       "residence": "Köthen (Anhalt)",
       "profession": "Ingenieurin für Pharmatechnik",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/natalie-winzenhoeller"
+      "gender_confidence": "high"
     },
     {
       "wkr": 23,
@@ -4696,7 +4539,7 @@
       "probability": 0,
       "value": 3.8,
       "low": 0.0,
-      "high": 9.4,
+      "high": 9.3,
       "value_l1": 4.1,
       "zs_value": 3.0,
       "zs_value_l1": 3.9,
@@ -4708,8 +4551,7 @@
       "residence": "Zerbst/Anhalt, OT Steutz",
       "profession": "staatlich anerkannte Erzieherin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/luise-globig"
+      "gender_confidence": "high"
     },
     {
       "wkr": 23,
@@ -4734,8 +4576,7 @@
       "residence": "Aken (Elbe)",
       "profession": "Berufssoldat",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/marco-airoldi"
+      "gender_confidence": "high"
     },
     {
       "wkr": 23,
@@ -4748,7 +4589,7 @@
       "probability": 0,
       "value": 3.9,
       "low": 0.0,
-      "high": 10.9,
+      "high": 10.8,
       "value_l1": 9.6,
       "zs_value": 4.0,
       "zs_value_l1": 9.7,
@@ -4778,8 +4619,7 @@
       "residence": "Oranienbaum-Wörlitz",
       "profession": "Teamleitung im Einzelhandel",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/tina-fuehrer"
+      "gender_confidence": "high"
     },
     {
       "wkr": 24,
@@ -4789,7 +4629,7 @@
       "partei": "AfD",
       "name": "Andreas Best",
       "winner": true,
-      "probability": 60,
+      "probability": 58,
       "value": 34.7,
       "low": 24.7,
       "high": 44.8,
@@ -4804,8 +4644,7 @@
       "residence": "Coswig (Anhalt), OT Köselitz",
       "profession": "Bauunternehmer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-best"
+      "gender_confidence": "high"
     },
     {
       "wkr": 24,
@@ -4815,12 +4654,12 @@
       "partei": "CDU",
       "name": "Nico Elsner",
       "winner": false,
-      "probability": 40,
+      "probability": 42,
       "value": 32.8,
-      "low": 22.7,
-      "high": 42.8,
+      "low": 22.8,
+      "high": 42.9,
       "value_l1": 53.9,
-      "zs_value": 27.4,
+      "zs_value": 27.5,
       "zs_value_l1": 43.1,
       "valid_l1": 27086,
       "zs_valid_l1": 27093,
@@ -4830,8 +4669,7 @@
       "residence": "Lutherstadt Wittenberg",
       "profession": "Bundesverwaltungsangestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/nico-elsner"
+      "gender_confidence": "high"
     },
     {
       "wkr": 24,
@@ -4843,8 +4681,8 @@
       "winner": false,
       "probability": 0,
       "value": 11.6,
-      "low": 4.1,
-      "high": 19.2,
+      "low": 3.9,
+      "high": 19.3,
       "value_l1": 8.4,
       "zs_value": 11.9,
       "zs_value_l1": 9.4,
@@ -4861,8 +4699,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/thomas-lippmann",
       "incumbent_mandate": "list",
-      "incumbent_match": "first_last",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-lippmann"
+      "incumbent_match": "first_last"
     },
     {
       "wkr": 24,
@@ -4873,11 +4710,11 @@
       "name": "Beatrice Lindhorst",
       "winner": false,
       "probability": 0,
-      "value": 4.4,
+      "value": 4.3,
       "low": 0.0,
-      "high": 10.2,
+      "high": 10.1,
       "value_l1": 3.0,
-      "zs_value": 4.1,
+      "zs_value": 4.0,
       "zs_value_l1": 4.9,
       "valid_l1": 27086,
       "zs_valid_l1": 27093,
@@ -4887,8 +4724,7 @@
       "residence": "Lutherstadt Wittenberg",
       "profession": "Online Marketing Managerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/bea-lindhorst"
+      "gender_confidence": "high"
     },
     {
       "wkr": 24,
@@ -4913,8 +4749,7 @@
       "residence": "Muldestausee, OT Schlaitz",
       "profession": "Verwaltungsfachangestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/maximilian-frey"
+      "gender_confidence": "high"
     },
     {
       "wkr": 24,
@@ -4927,7 +4762,7 @@
       "probability": 0,
       "value": 3.2,
       "low": 0.0,
-      "high": 9.9,
+      "high": 10.1,
       "value_l1": 9.4,
       "zs_value": 5.0,
       "zs_value_l1": 11.4,
@@ -4957,8 +4792,7 @@
       "residence": "Gräfenhainichen",
       "profession": "Politikwissenschaftler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-riedle"
+      "gender_confidence": "high"
     },
     {
       "wkr": 25,
@@ -4970,7 +4804,7 @@
       "winner": true,
       "probability": 89,
       "value": 41.0,
-      "low": 30.4,
+      "low": 30.5,
       "high": 51.5,
       "value_l1": 25.7,
       "zs_value": 43.5,
@@ -4988,8 +4822,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/matthias-lieschke",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact_cross_party",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-lieschke"
+      "incumbent_match": "exact_cross_party"
     },
     {
       "wkr": 25,
@@ -5000,11 +4833,11 @@
       "name": "Patrick Schubert",
       "winner": false,
       "probability": 11,
-      "value": 29.3,
-      "low": 19.3,
+      "value": 29.4,
+      "low": 19.5,
       "high": 39.3,
       "value_l1": 39.2,
-      "zs_value": 26.7,
+      "zs_value": 26.8,
       "zs_value_l1": 44.0,
       "valid_l1": 26015,
       "zs_valid_l1": 26265,
@@ -5014,8 +4847,7 @@
       "residence": "Annaburg",
       "profession": "Marineoffizier und Personalreferent",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/patrick-schubert"
+      "gender_confidence": "high"
     },
     {
       "wkr": 25,
@@ -5027,8 +4859,8 @@
       "winner": false,
       "probability": 0,
       "value": 11.4,
-      "low": 3.8,
-      "high": 19.0,
+      "low": 3.9,
+      "high": 18.9,
       "value_l1": 11.7,
       "zs_value": 10.9,
       "zs_value_l1": 9.0,
@@ -5040,8 +4872,7 @@
       "residence": "Lutherstadt Wittenberg",
       "profession": "Beamtin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/doreen-hainich"
+      "gender_confidence": "high"
     },
     {
       "wkr": 25,
@@ -5066,8 +4897,7 @@
       "residence": "Lutherstadt Wittenberg",
       "profession": "IT-Projektmanagement",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/martin-schaefer-2"
+      "gender_confidence": "high"
     },
     {
       "wkr": 25,
@@ -5080,7 +4910,7 @@
       "probability": 0,
       "value": 6.1,
       "low": 0.0,
-      "high": 12.3,
+      "high": 12.2,
       "value_l1": 0.0,
       "zs_value": 2.7,
       "zs_value_l1": 5.2,
@@ -5092,8 +4922,7 @@
       "residence": "Dessau-Roßlau",
       "profession": "Geschäfsführer Immobilienverwaltung",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/marcus-hillwig"
+      "gender_confidence": "high"
     },
     {
       "wkr": 25,
@@ -5106,7 +4935,7 @@
       "probability": 0,
       "value": 2.6,
       "low": 0.0,
-      "high": 8.4,
+      "high": 8.5,
       "value_l1": 10.1,
       "zs_value": 4.2,
       "zs_value_l1": 10.0,
@@ -5122,11 +4951,11 @@
       "name": "Larissa Wallner",
       "winner": false,
       "probability": 0,
-      "value": 7.8,
+      "value": 7.7,
       "low": 1.0,
       "high": 14.5,
       "value_l1": 10.5,
-      "zs_value": 6.8,
+      "zs_value": 6.7,
       "zs_value_l1": 8.2,
       "valid_l1": 24091,
       "zs_valid_l1": 24207,
@@ -5136,8 +4965,7 @@
       "residence": "Dessau-Roßlau",
       "profession": "Sozialarbeiterin im Gewaltschutz",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/larissa-wallner"
+      "gender_confidence": "high"
     },
     {
       "wkr": 26,
@@ -5149,10 +4977,10 @@
       "winner": true,
       "probability": 76,
       "value": 34.3,
-      "low": 24.2,
-      "high": 44.4,
+      "low": 24.4,
+      "high": 44.2,
       "value_l1": 19.1,
-      "zs_value": 36.3,
+      "zs_value": 36.4,
       "zs_value_l1": 18.1,
       "valid_l1": 24091,
       "zs_valid_l1": 24207,
@@ -5162,8 +4990,7 @@
       "residence": "Dessau-Roßlau, OT Rodleben",
       "profession": "Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/burkhardt-ratzmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 26,
@@ -5174,11 +5001,11 @@
       "name": "Dr. Anja Schneider",
       "winner": false,
       "probability": 24,
-      "value": 28.3,
-      "low": 18.4,
+      "value": 28.4,
+      "low": 18.5,
       "high": 38.3,
       "value_l1": 37.1,
-      "zs_value": 25.4,
+      "zs_value": 25.5,
       "zs_value_l1": 40.7,
       "valid_l1": 24091,
       "zs_valid_l1": 24207,
@@ -5193,8 +5020,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/anja-schneider",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/anja-schneider"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 26,
@@ -5206,8 +5032,8 @@
       "winner": false,
       "probability": 0,
       "value": 14.6,
-      "low": 6.4,
-      "high": 22.9,
+      "low": 6.2,
+      "high": 23.0,
       "value_l1": 14.5,
       "zs_value": 14.0,
       "zs_value_l1": 11.2,
@@ -5219,8 +5045,7 @@
       "residence": "Dessau-Roßlau, OT Großkühnau",
       "profession": "Heilerziehungspfleger",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/kevin-goldhahn"
+      "gender_confidence": "high"
     },
     {
       "wkr": 26,
@@ -5231,11 +5056,11 @@
       "name": "Leonie Bronkalla",
       "winner": false,
       "probability": 0,
-      "value": 6.9,
+      "value": 6.8,
       "low": 0.2,
-      "high": 13.5,
+      "high": 13.3,
       "value_l1": 8.4,
-      "zs_value": 6.0,
+      "zs_value": 5.9,
       "zs_value_l1": 7.4,
       "valid_l1": 24091,
       "zs_valid_l1": 24207,
@@ -5245,8 +5070,7 @@
       "residence": "Dessau-Roßlau",
       "profession": "Landschaftsökologin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/leonie-bronkalla"
+      "gender_confidence": "high"
     },
     {
       "wkr": 26,
@@ -5276,8 +5100,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/joerg-bernstein",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/joerg-bernstein"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 26,
@@ -5290,7 +5113,7 @@
       "probability": 0,
       "value": 2.7,
       "low": 0.0,
-      "high": 8.3,
+      "high": 8.5,
       "value_l1": 0.0,
       "zs_value": 3.1,
       "zs_value_l1": 7.2,
@@ -5306,7 +5129,7 @@
       "name": "Daniel Frank Kutsche",
       "winner": false,
       "probability": 0,
-      "value": 7.7,
+      "value": 7.6,
       "low": 0.9,
       "high": 14.4,
       "value_l1": 12.1,
@@ -5320,8 +5143,7 @@
       "residence": "Dessau-Roßlau",
       "profession": "Fachtrainer für bürgerliches Engagement",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-kutsche"
+      "gender_confidence": "high"
     },
     {
       "wkr": 27,
@@ -5331,10 +5153,10 @@
       "partei": "AfD",
       "name": "Nadine Koppehel",
       "winner": true,
-      "probability": 91,
-      "value": 39.2,
-      "low": 28.9,
-      "high": 49.6,
+      "probability": 92,
+      "value": 39.3,
+      "low": 29.1,
+      "high": 49.4,
       "value_l1": 22.3,
       "zs_value": 41.2,
       "zs_value_l1": 21.0,
@@ -5351,8 +5173,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/nadine-koppehel",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/nadine-koppehel"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 27,
@@ -5362,9 +5183,9 @@
       "partei": "CDU",
       "name": "Karin Tschernich-Weiske",
       "winner": false,
-      "probability": 9,
-      "value": 27.1,
-      "low": 17.4,
+      "probability": 8,
+      "value": 27.2,
+      "low": 17.5,
       "high": 36.8,
       "value_l1": 35.6,
       "zs_value": 24.0,
@@ -5382,8 +5203,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/karin-tschernich-weiske",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/karin-tschernich-weiske"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 27,
@@ -5395,8 +5215,8 @@
       "winner": false,
       "probability": 0,
       "value": 12.2,
-      "low": 4.3,
-      "high": 20.0,
+      "low": 4.4,
+      "high": 19.9,
       "value_l1": 10.7,
       "zs_value": 11.7,
       "zs_value_l1": 9.6,
@@ -5408,8 +5228,7 @@
       "residence": "Dessau-Roßlau",
       "profession": "Angestellte",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/stine-rummel-strebelow"
+      "gender_confidence": "high"
     },
     {
       "wkr": 27,
@@ -5422,9 +5241,9 @@
       "probability": 0,
       "value": 5.5,
       "low": 0.0,
-      "high": 11.8,
+      "high": 11.7,
       "value_l1": 4.8,
-      "zs_value": 5.1,
+      "zs_value": 5.0,
       "zs_value_l1": 6.4,
       "valid_l1": 23566,
       "zs_valid_l1": 23709,
@@ -5434,8 +5253,7 @@
       "residence": "Dessau-Roßlau, OT Meinsdorf",
       "profession": "Personalreferent",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/felix-fugmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 27,
@@ -5446,9 +5264,9 @@
       "name": "Philipp Stavenow",
       "winner": false,
       "probability": 0,
-      "value": 4.3,
+      "value": 4.2,
       "low": 0.0,
-      "high": 10.1,
+      "high": 10.0,
       "value_l1": 6.2,
       "zs_value": 3.2,
       "zs_value_l1": 6.2,
@@ -5460,8 +5278,7 @@
       "residence": "Dessau-Roßlau",
       "profession": "Industriekaufmann",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/philipp-stavenow"
+      "gender_confidence": "high"
     },
     {
       "wkr": 27,
@@ -5474,9 +5291,9 @@
       "probability": 0,
       "value": 4.1,
       "low": 0.0,
-      "high": 11.2,
+      "high": 11.3,
       "value_l1": 8.2,
-      "zs_value": 4.2,
+      "zs_value": 4.3,
       "zs_value_l1": 10.1,
       "valid_l1": 23566,
       "zs_valid_l1": 23709
@@ -5492,7 +5309,7 @@
       "probability": 0,
       "value": 6.5,
       "low": 0.0,
-      "high": 13.1,
+      "high": 13.0,
       "value_l1": 8.7,
       "zs_value": 5.5,
       "zs_value_l1": 7.1,
@@ -5504,8 +5321,7 @@
       "residence": "Halle (Saale)",
       "profession": "Lehrerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/katharina-kohl"
+      "gender_confidence": "high"
     },
     {
       "wkr": 28,
@@ -5515,12 +5331,12 @@
       "partei": "AfD",
       "name": "Daniel Roi",
       "winner": true,
-      "probability": 97,
+      "probability": 98,
       "value": 44.1,
-      "low": 33.4,
-      "high": 54.9,
+      "low": 33.7,
+      "high": 54.6,
       "value_l1": 26.7,
-      "zs_value": 46.1,
+      "zs_value": 46.2,
       "zs_value_l1": 24.6,
       "valid_l1": 28954,
       "zs_valid_l1": 29009,
@@ -5535,8 +5351,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/daniel-roi",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-roi"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 28,
@@ -5546,12 +5361,12 @@
       "partei": "CDU",
       "name": "Lars-Jörn Zimmer",
       "winner": false,
-      "probability": 3,
-      "value": 25.8,
-      "low": 16.1,
-      "high": 35.5,
+      "probability": 2,
+      "value": 25.9,
+      "low": 16.3,
+      "high": 35.4,
       "value_l1": 35.3,
-      "zs_value": 22.7,
+      "zs_value": 22.8,
       "zs_value_l1": 38.9,
       "valid_l1": 28954,
       "zs_valid_l1": 29009,
@@ -5566,8 +5381,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/lars-joern-zimmer",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/lars-joern-zimmer"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 28,
@@ -5592,8 +5406,7 @@
       "residence": "Magdeburg",
       "profession": "Journalistin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/antonia-kaloff"
+      "gender_confidence": "high"
     },
     {
       "wkr": 28,
@@ -5618,8 +5431,7 @@
       "residence": "Sandersdorf-Brehna",
       "profession": "Dipl.-Lebensmittelchemikerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/janina-hampel"
+      "gender_confidence": "high"
     },
     {
       "wkr": 28,
@@ -5632,9 +5444,9 @@
       "probability": 0,
       "value": 3.9,
       "low": 0.0,
-      "high": 9.6,
+      "high": 9.5,
       "value_l1": 6.1,
-      "zs_value": 2.8,
+      "zs_value": 2.7,
       "zs_value_l1": 5.5,
       "valid_l1": 28954,
       "zs_valid_l1": 29009,
@@ -5649,8 +5461,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/guido-kosmehl",
       "incumbent_mandate": "list",
-      "incumbent_match": "first_last",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/guido-kosmehl"
+      "incumbent_match": "first_last"
     },
     {
       "wkr": 28,
@@ -5665,7 +5476,7 @@
       "low": 0.0,
       "high": 11.0,
       "value_l1": 8.0,
-      "zs_value": 4.1,
+      "zs_value": 4.2,
       "zs_value_l1": 10.3,
       "valid_l1": 28954,
       "zs_valid_l1": 29009
@@ -5679,7 +5490,7 @@
       "name": "Danilo Pee-Moch",
       "winner": false,
       "probability": 0,
-      "value": 6.9,
+      "value": 6.8,
       "low": 0.3,
       "high": 13.4,
       "value_l1": 9.0,
@@ -5693,8 +5504,7 @@
       "residence": "Wettin-Löbejün, OT Nauendorf",
       "profession": "Referatsleiter Haushalt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/danilo-pee-moch"
+      "gender_confidence": "high"
     },
     {
       "wkr": 29,
@@ -5706,10 +5516,10 @@
       "winner": true,
       "probability": 97,
       "value": 42.8,
-      "low": 32.4,
-      "high": 53.2,
+      "low": 32.3,
+      "high": 53.3,
       "value_l1": 24.6,
-      "zs_value": 44.9,
+      "zs_value": 45.0,
       "zs_value_l1": 23.6,
       "valid_l1": 28861,
       "zs_valid_l1": 28922,
@@ -5724,8 +5534,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/florian-schroeder",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/florian-schroeder"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 29,
@@ -5738,9 +5547,9 @@
       "probability": 3,
       "value": 26.0,
       "low": 16.5,
-      "high": 35.4,
+      "high": 35.6,
       "value_l1": 35.2,
-      "zs_value": 22.8,
+      "zs_value": 22.9,
       "zs_value_l1": 38.4,
       "valid_l1": 28861,
       "zs_valid_l1": 28922,
@@ -5755,8 +5564,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/michael-scheffler-0",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/michael-scheffler-0"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 29,
@@ -5767,9 +5575,9 @@
       "name": "Isabell Anton",
       "winner": false,
       "probability": 0,
-      "value": 11.5,
+      "value": 11.4,
       "low": 3.8,
-      "high": 19.1,
+      "high": 19.0,
       "value_l1": 10.0,
       "zs_value": 11.1,
       "zs_value_l1": 9.4,
@@ -5781,8 +5589,7 @@
       "residence": "Helbra",
       "profession": "Betriebswirtschaftlerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/isabell-anton"
+      "gender_confidence": "high"
     },
     {
       "wkr": 29,
@@ -5797,7 +5604,7 @@
       "low": 0.0,
       "high": 9.7,
       "value_l1": 4.8,
-      "zs_value": 3.3,
+      "zs_value": 3.2,
       "zs_value_l1": 4.2,
       "valid_l1": 28861,
       "zs_valid_l1": 28922,
@@ -5807,8 +5614,7 @@
       "residence": "Lutherstadt Wittenberg",
       "profession": "Pharmareferentin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sandra-lueder"
+      "gender_confidence": "high"
     },
     {
       "wkr": 29,
@@ -5833,8 +5639,7 @@
       "residence": "Petersberg, OT Sennewitz",
       "profession": "Arzt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/maximilian-philipp"
+      "gender_confidence": "high"
     },
     {
       "wkr": 29,
@@ -5847,7 +5652,7 @@
       "probability": 0,
       "value": 3.5,
       "low": 0.0,
-      "high": 10.0,
+      "high": 10.1,
       "value_l1": 7.1,
       "zs_value": 3.8,
       "zs_value_l1": 9.2,
@@ -5877,8 +5682,7 @@
       "residence": "Müchel (Geiseltal)",
       "profession": "Chemikant",
       "gender": "m",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/aick-pietschmann"
+      "gender_confidence": "override"
     },
     {
       "wkr": 30,
@@ -5889,11 +5693,11 @@
       "name": "Reiner Kretschmann",
       "winner": true,
       "probability": 99,
-      "value": 45.6,
+      "value": 45.7,
       "low": 35.1,
       "high": 56.2,
       "value_l1": 28.6,
-      "zs_value": 47.9,
+      "zs_value": 48.0,
       "zs_value_l1": 26.5,
       "valid_l1": 26228,
       "zs_valid_l1": 26292,
@@ -5903,8 +5707,7 @@
       "residence": "Mansfeld",
       "profession": "Meister Holztechnik",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/reiner-kretschmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 30,
@@ -5915,7 +5718,7 @@
       "name": "René Barthel",
       "winner": false,
       "probability": 1,
-      "value": 23.5,
+      "value": 23.6,
       "low": 14.3,
       "high": 32.8,
       "value_l1": 32.3,
@@ -5934,8 +5737,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/rene-barthel",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/rene-barthel"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 30,
@@ -5947,7 +5749,7 @@
       "winner": false,
       "probability": 0,
       "value": 14.3,
-      "low": 6.3,
+      "low": 6.2,
       "high": 22.3,
       "value_l1": 16.6,
       "zs_value": 13.1,
@@ -5965,8 +5767,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/stefan-gebhardt",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-gebhardt"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 30,
@@ -5991,8 +5792,7 @@
       "residence": "Mansfeld",
       "profession": "Winzerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/lisa-mertens"
+      "gender_confidence": "high"
     },
     {
       "wkr": 30,
@@ -6022,8 +5822,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/kathrin-tarricone",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/kathrin-tarricone"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 30,
@@ -6066,8 +5865,7 @@
       "residence": "Sangerhausen",
       "profession": "Student",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/friedrich-ruschke"
+      "gender_confidence": "high"
     },
     {
       "wkr": 31,
@@ -6079,8 +5877,8 @@
       "winner": true,
       "probability": 98,
       "value": 43.6,
-      "low": 33.0,
-      "high": 54.2,
+      "low": 33.2,
+      "high": 53.9,
       "value_l1": 26.9,
       "zs_value": 45.7,
       "zs_value_l1": 24.5,
@@ -6092,8 +5890,7 @@
       "residence": "Sangerhausen",
       "profession": "Dipl.-Ingenieur (FH)",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-gehlmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 31,
@@ -6105,10 +5902,10 @@
       "winner": false,
       "probability": 2,
       "value": 25.6,
-      "low": 16.1,
-      "high": 35.0,
+      "low": 16.2,
+      "high": 35.1,
       "value_l1": 35.0,
-      "zs_value": 22.5,
+      "zs_value": 22.6,
       "zs_value_l1": 38.7,
       "valid_l1": 26788,
       "zs_valid_l1": 26884,
@@ -6123,8 +5920,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/matthias-redlich",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-redlich"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 31,
@@ -6137,7 +5933,7 @@
       "probability": 0,
       "value": 13.4,
       "low": 5.3,
-      "high": 21.5,
+      "high": 21.4,
       "value_l1": 14.1,
       "zs_value": 12.6,
       "zs_value_l1": 10.9,
@@ -6149,8 +5945,7 @@
       "residence": "Sangerhausen",
       "profession": "Fachausbilder",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andre-roethel"
+      "gender_confidence": "high"
     },
     {
       "wkr": 31,
@@ -6175,8 +5970,7 @@
       "residence": "Südharz",
       "profession": "Krankenschwester",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christine-reimann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 31,
@@ -6191,7 +5985,7 @@
       "low": 0.0,
       "high": 10.1,
       "value_l1": 8.0,
-      "zs_value": 3.0,
+      "zs_value": 2.9,
       "zs_value_l1": 6.0,
       "valid_l1": 26788,
       "zs_valid_l1": 26884,
@@ -6201,8 +5995,7 @@
       "residence": "Sangerhausen",
       "profession": "Ingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/karsten-pille"
+      "gender_confidence": "high"
     },
     {
       "wkr": 31,
@@ -6215,7 +6008,7 @@
       "probability": 0,
       "value": 3.1,
       "low": 0.0,
-      "high": 9.3,
+      "high": 9.2,
       "value_l1": 4.1,
       "zs_value": 3.6,
       "zs_value_l1": 8.9,
@@ -6233,9 +6026,9 @@
       "probability": 0,
       "value": 6.2,
       "low": 0.0,
-      "high": 12.6,
+      "high": 12.5,
       "value_l1": 8.5,
-      "zs_value": 5.3,
+      "zs_value": 5.2,
       "zs_value_l1": 6.9,
       "valid_l1": 28074,
       "zs_valid_l1": 28173,
@@ -6245,8 +6038,7 @@
       "residence": "Allstedt",
       "profession": "Bankkaufmann",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/raphael-coccejus"
+      "gender_confidence": "high"
     },
     {
       "wkr": 32,
@@ -6258,8 +6050,8 @@
       "winner": true,
       "probability": 98,
       "value": 45.4,
-      "low": 34.7,
-      "high": 56.1,
+      "low": 34.9,
+      "high": 56.0,
       "value_l1": 28.5,
       "zs_value": 47.6,
       "zs_value_l1": 25.8,
@@ -6276,8 +6068,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/hans-thomas-tillschneider",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/hans-thomas-tillschneider"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 32,
@@ -6288,11 +6079,11 @@
       "name": "Eva Feußner",
       "winner": false,
       "probability": 2,
-      "value": 25.4,
-      "low": 15.8,
-      "high": 35.0,
+      "value": 25.5,
+      "low": 16.0,
+      "high": 34.9,
       "value_l1": 34.9,
-      "zs_value": 22.3,
+      "zs_value": 22.4,
       "zs_value_l1": 38.7,
       "valid_l1": 28074,
       "zs_valid_l1": 28173,
@@ -6307,8 +6098,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/eva-feussner",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/eva-feussner"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 32,
@@ -6320,8 +6110,8 @@
       "winner": false,
       "probability": 0,
       "value": 12.5,
-      "low": 4.7,
-      "high": 20.3,
+      "low": 4.6,
+      "high": 20.4,
       "value_l1": 14.2,
       "zs_value": 11.5,
       "zs_value_l1": 10.0,
@@ -6333,8 +6123,7 @@
       "residence": "Leuna",
       "profession": "Pfarrer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-tschurn"
+      "gender_confidence": "high"
     },
     {
       "wkr": 32,
@@ -6345,9 +6134,9 @@
       "name": "Susanne Otto",
       "winner": false,
       "probability": 0,
-      "value": 2.9,
+      "value": 2.8,
       "low": 0.0,
-      "high": 8.0,
+      "high": 7.9,
       "value_l1": 2.1,
       "zs_value": 2.2,
       "zs_value_l1": 2.9,
@@ -6359,8 +6148,7 @@
       "residence": "Allstedt",
       "profession": "Angestellte im Öffentlichen Dienst",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/susanne-otto"
+      "gender_confidence": "high"
     },
     {
       "wkr": 32,
@@ -6373,7 +6161,7 @@
       "probability": 0,
       "value": 4.5,
       "low": 0.0,
-      "high": 10.4,
+      "high": 10.3,
       "value_l1": 8.0,
       "zs_value": 3.2,
       "zs_value_l1": 6.5,
@@ -6385,8 +6173,7 @@
       "residence": "Wettin-Löbejün, OT Wettin",
       "profession": "Rechtsanwältin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ramona-hoyer"
+      "gender_confidence": "high"
     },
     {
       "wkr": 32,
@@ -6401,7 +6188,7 @@
       "low": 0.0,
       "high": 9.2,
       "value_l1": 3.7,
-      "zs_value": 3.6,
+      "zs_value": 3.7,
       "zs_value_l1": 9.2,
       "valid_l1": 28074,
       "zs_valid_l1": 28173
@@ -6417,7 +6204,7 @@
       "probability": 0,
       "value": 7.1,
       "low": 0.7,
-      "high": 13.6,
+      "high": 13.5,
       "value_l1": 10.8,
       "zs_value": 6.1,
       "zs_value_l1": 8.0,
@@ -6434,8 +6221,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/andreas-schmidt-0",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-schmidt-0"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 33,
@@ -6447,8 +6233,8 @@
       "winner": true,
       "probability": 98,
       "value": 42.7,
-      "low": 32.3,
-      "high": 53.1,
+      "low": 32.6,
+      "high": 52.8,
       "value_l1": 28.9,
       "zs_value": 45.7,
       "zs_value_l1": 24.5,
@@ -6465,8 +6251,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/daniel-wald",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-wald"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 33,
@@ -6478,10 +6263,10 @@
       "winner": false,
       "probability": 2,
       "value": 25.1,
-      "low": 16.0,
+      "low": 16.1,
       "high": 34.1,
       "value_l1": 41.2,
-      "zs_value": 21.5,
+      "zs_value": 21.6,
       "zs_value_l1": 36.9,
       "valid_l1": 22774,
       "zs_valid_l1": 22954,
@@ -6491,8 +6276,7 @@
       "residence": "Merseburg",
       "profession": "Diplom-Theologin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ilka-reckmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 33,
@@ -6504,8 +6288,8 @@
       "winner": false,
       "probability": 0,
       "value": 12.7,
-      "low": 5.0,
-      "high": 20.3,
+      "low": 4.9,
+      "high": 20.4,
       "value_l1": 14.3,
       "zs_value": 12.2,
       "zs_value_l1": 10.5,
@@ -6517,8 +6301,7 @@
       "residence": "Braunsbedra, OT Krumpa",
       "profession": "Industriekauffrau",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/leila-eisfelder-mylius"
+      "gender_confidence": "high"
     },
     {
       "wkr": 33,
@@ -6529,11 +6312,11 @@
       "name": "Dennis Tobias Helmich",
       "winner": false,
       "probability": 0,
-      "value": 3.9,
+      "value": 3.8,
       "low": 0.0,
-      "high": 9.5,
+      "high": 9.4,
       "value_l1": 4.8,
-      "zs_value": 3.2,
+      "zs_value": 3.1,
       "zs_value_l1": 4.1,
       "valid_l1": 22774,
       "zs_valid_l1": 22954,
@@ -6543,8 +6326,7 @@
       "residence": "Halle (Saale)",
       "profession": "Sozialwissenschaftler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/dennis-helmich"
+      "gender_confidence": "high"
     },
     {
       "wkr": 33,
@@ -6555,7 +6337,7 @@
       "name": "Markus Göhricke",
       "winner": false,
       "probability": 0,
-      "value": 6.6,
+      "value": 6.5,
       "low": 0.4,
       "high": 12.7,
       "value_l1": 0.0,
@@ -6569,8 +6351,7 @@
       "residence": "Merseburg",
       "profession": "Techniker (Maschinenbau)",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/markus-goehricke"
+      "gender_confidence": "high"
     },
     {
       "wkr": 33,
@@ -6583,7 +6364,7 @@
       "probability": 0,
       "value": 2.0,
       "low": 0.0,
-      "high": 7.1,
+      "high": 7.3,
       "value_l1": 0.0,
       "zs_value": 3.8,
       "zs_value_l1": 9.5,
@@ -6613,8 +6394,7 @@
       "residence": "Schkopau",
       "profession": "Heilpädagogin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ines-seeger"
+      "gender_confidence": "high"
     },
     {
       "wkr": 34,
@@ -6626,8 +6406,8 @@
       "winner": true,
       "probability": 96,
       "value": 40.5,
-      "low": 30.2,
-      "high": 50.8,
+      "low": 30.1,
+      "high": 50.9,
       "value_l1": 24.7,
       "zs_value": 44.1,
       "zs_value_l1": 22.8,
@@ -6644,8 +6424,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/gordon-koehler",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/gordon-koehler"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 34,
@@ -6657,10 +6436,10 @@
       "winner": false,
       "probability": 4,
       "value": 25.1,
-      "low": 15.5,
+      "low": 15.6,
       "high": 34.6,
       "value_l1": 34.7,
-      "zs_value": 23.0,
+      "zs_value": 23.1,
       "zs_value_l1": 38.2,
       "valid_l1": 28553,
       "zs_valid_l1": 28608,
@@ -6670,8 +6449,7 @@
       "residence": "Petersberg, OT Werderthau",
       "profession": "BMSR-Techniker",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/frank-bommersbach"
+      "gender_confidence": "high"
     },
     {
       "wkr": 34,
@@ -6683,8 +6461,8 @@
       "winner": false,
       "probability": 0,
       "value": 10.7,
-      "low": 3.1,
-      "high": 18.2,
+      "low": 3.2,
+      "high": 18.1,
       "value_l1": 9.4,
       "zs_value": 10.8,
       "zs_value_l1": 9.0,
@@ -6696,8 +6474,7 @@
       "residence": "Teutschental, OT Angersdorf",
       "profession": "selbständige Berufspädagogin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/julia-mayer"
+      "gender_confidence": "high"
     },
     {
       "wkr": 34,
@@ -6708,11 +6485,11 @@
       "name": "Leon Lenny Elias Eisfelder-Mylius",
       "winner": false,
       "probability": 0,
-      "value": 4.2,
+      "value": 4.1,
       "low": 0.0,
-      "high": 10.1,
+      "high": 10.0,
       "value_l1": 4.8,
-      "zs_value": 3.6,
+      "zs_value": 3.5,
       "zs_value_l1": 4.5,
       "valid_l1": 28553,
       "zs_valid_l1": 28608,
@@ -6722,8 +6499,7 @@
       "residence": "Bad Dürrenberg",
       "profession": "Schüler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/leon-lenny-elias-eisfelder-mylius"
+      "gender_confidence": "high"
     },
     {
       "wkr": 34,
@@ -6748,8 +6524,7 @@
       "residence": "Bad Dürrenberg",
       "profession": "Kfz-Meister",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/dirk-taschner"
+      "gender_confidence": "high"
     },
     {
       "wkr": 34,
@@ -6764,7 +6539,7 @@
       "low": 0.0,
       "high": 10.7,
       "value_l1": 0.0,
-      "zs_value": 4.5,
+      "zs_value": 4.4,
       "zs_value_l1": 0.0,
       "valid_l1": 28553,
       "zs_valid_l1": 28608,
@@ -6774,8 +6549,7 @@
       "residence": "Landsberg",
       "profession": "Angestellter im Öffentlichen Dienst",
       "gender": "m",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/laszlo-mueller"
+      "gender_confidence": "override"
     },
     {
       "wkr": 34,
@@ -6818,8 +6592,7 @@
       "residence": "Halle (Saale)",
       "profession": "Landschaftsarchitektin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christine-fuhrmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 35,
@@ -6831,8 +6604,8 @@
       "winner": true,
       "probability": 98,
       "value": 38.8,
-      "low": 28.6,
-      "high": 49.0,
+      "low": 28.8,
+      "high": 48.8,
       "value_l1": 24.2,
       "zs_value": 42.2,
       "zs_value_l1": 22.3,
@@ -6844,8 +6617,7 @@
       "residence": "Halle (Saale)",
       "profession": "Bauingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-raue"
+      "gender_confidence": "high"
     },
     {
       "wkr": 35,
@@ -6856,11 +6628,11 @@
       "name": "Christian Albrecht",
       "winner": false,
       "probability": 2,
-      "value": 22.3,
+      "value": 22.4,
       "low": 13.6,
-      "high": 31.0,
+      "high": 31.1,
       "value_l1": 31.4,
-      "zs_value": 20.3,
+      "zs_value": 20.4,
       "zs_value_l1": 34.4,
       "valid_l1": 20717,
       "zs_valid_l1": 20780,
@@ -6875,8 +6647,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/christian-albrecht",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-albrecht"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 35,
@@ -6888,8 +6659,8 @@
       "winner": false,
       "probability": 0,
       "value": 15.3,
-      "low": 7.0,
-      "high": 23.7,
+      "low": 7.1,
+      "high": 23.6,
       "value_l1": 16.1,
       "zs_value": 14.9,
       "zs_value_l1": 12.7,
@@ -6906,8 +6677,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/hendrik-lange",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/hendrik-lange"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 35,
@@ -6920,7 +6690,7 @@
       "probability": 0,
       "value": 5.3,
       "low": 0.0,
-      "high": 11.5,
+      "high": 11.4,
       "value_l1": 6.3,
       "zs_value": 4.7,
       "zs_value_l1": 6.2,
@@ -6932,8 +6702,7 @@
       "residence": "Halle (Saale)",
       "profession": "Umwelt- und Politikwissenschaftlerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/lena-zehne"
+      "gender_confidence": "high"
     },
     {
       "wkr": 35,
@@ -6948,7 +6717,7 @@
       "low": 0.0,
       "high": 9.9,
       "value_l1": 6.9,
-      "zs_value": 3.2,
+      "zs_value": 3.1,
       "zs_value_l1": 6.3,
       "valid_l1": 20717,
       "zs_valid_l1": 20780,
@@ -6958,8 +6727,7 @@
       "residence": "Halle (Saale)",
       "profession": "Theatervermittlerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/annett-krake"
+      "gender_confidence": "high"
     },
     {
       "wkr": 35,
@@ -6970,11 +6738,11 @@
       "name": "Andreas Neubert",
       "winner": false,
       "probability": 0,
-      "value": 3.7,
+      "value": 3.6,
       "low": 0.0,
-      "high": 10.5,
+      "high": 10.4,
       "value_l1": 0.0,
-      "zs_value": 4.4,
+      "zs_value": 4.3,
       "zs_value_l1": 0.0,
       "valid_l1": 20717,
       "zs_valid_l1": 20780,
@@ -6984,8 +6752,7 @@
       "residence": "Halle (Saale)",
       "profession": "Archäologe",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-neubert"
+      "gender_confidence": "high"
     },
     {
       "wkr": 35,
@@ -6996,7 +6763,7 @@
       "name": null,
       "winner": false,
       "probability": 0,
-      "value": 3.3,
+      "value": 3.4,
       "low": 0.0,
       "high": 9.5,
       "value_l1": 5.5,
@@ -7015,8 +6782,8 @@
       "winner": false,
       "probability": 0,
       "value": 9.5,
-      "low": 2.6,
-      "high": 16.4,
+      "low": 2.4,
+      "high": 16.6,
       "value_l1": 15.8,
       "zs_value": 8.0,
       "zs_value_l1": 9.2,
@@ -7033,8 +6800,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/katja-paehle",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/katja-paehle"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 36,
@@ -7044,12 +6810,12 @@
       "partei": "AfD",
       "name": "Benedikt Weiß",
       "winner": true,
-      "probability": 57,
-      "value": 24.1,
+      "probability": 56,
+      "value": 24.2,
       "low": 15.3,
       "high": 33.0,
       "value_l1": 12.9,
-      "zs_value": 26.6,
+      "zs_value": 26.7,
       "zs_value_l1": 12.5,
       "valid_l1": 29853,
       "zs_valid_l1": 29912,
@@ -7059,8 +6825,7 @@
       "residence": "Halle (Saale)",
       "profession": "Softwareentwickler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/benedikt-weiss"
+      "gender_confidence": "high"
     },
     {
       "wkr": 36,
@@ -7070,12 +6835,12 @@
       "partei": "CDU",
       "name": "Marco Tullner",
       "winner": false,
-      "probability": 32,
-      "value": 21.9,
-      "low": 12.9,
+      "probability": 34,
+      "value": 22.0,
+      "low": 13.1,
       "high": 30.9,
       "value_l1": 27.0,
-      "zs_value": 20.7,
+      "zs_value": 20.8,
       "zs_value_l1": 31.4,
       "valid_l1": 29853,
       "zs_valid_l1": 29912,
@@ -7090,8 +6855,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/marco-tullner",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/marco-tullner"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 36,
@@ -7101,8 +6865,8 @@
       "partei": "LINKE",
       "name": "Gitta Susann Hartenstein-Wiermann",
       "winner": false,
-      "probability": 10,
-      "value": 17.3,
+      "probability": 9,
+      "value": 17.4,
       "low": 8.5,
       "high": 26.2,
       "value_l1": 14.2,
@@ -7116,8 +6880,7 @@
       "residence": "Halle (Saale)",
       "profession": "Kulturwissenschaftlerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/gitta-susann-hartenstein-wiermann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 36,
@@ -7128,11 +6891,11 @@
       "name": "Mamad Mohamad",
       "winner": false,
       "probability": 1,
-      "value": 13.1,
+      "value": 13.0,
       "low": 4.9,
-      "high": 21.3,
+      "high": 21.0,
       "value_l1": 13.2,
-      "zs_value": 12.9,
+      "zs_value": 12.7,
       "zs_value_l1": 15.1,
       "valid_l1": 29853,
       "zs_valid_l1": 29912,
@@ -7142,8 +6905,7 @@
       "residence": "Halle (Saale)",
       "profession": "Dipl.-Sozialpädagoge",
       "gender": "m",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/mamad-mohamad"
+      "gender_confidence": "override"
     },
     {
       "wkr": 36,
@@ -7168,8 +6930,7 @@
       "residence": "Halle (Saale)",
       "profession": "Dipl.-Betriebswirt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/torsten-schaper"
+      "gender_confidence": "high"
     },
     {
       "wkr": 36,
@@ -7182,7 +6943,7 @@
       "probability": 0,
       "value": 4.4,
       "low": 0.0,
-      "high": 11.6,
+      "high": 11.4,
       "value_l1": 0.0,
       "zs_value": 4.9,
       "zs_value_l1": 0.0,
@@ -7194,8 +6955,7 @@
       "residence": "Halle (Saale)",
       "profession": "Orientarchäologe",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/sylvia-winkelmann-witkowsky"
+      "gender_confidence": "high"
     },
     {
       "wkr": 36,
@@ -7225,8 +6985,8 @@
       "winner": false,
       "probability": 0,
       "value": 9.3,
-      "low": 2.3,
-      "high": 16.4,
+      "low": 2.1,
+      "high": 16.5,
       "value_l1": 13.0,
       "zs_value": 8.3,
       "zs_value_l1": 9.3,
@@ -7238,8 +6998,7 @@
       "residence": "Halle (Saale)",
       "profession": "Polizeibeamter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/stephan-scherf"
+      "gender_confidence": "high"
     },
     {
       "wkr": 37,
@@ -7249,10 +7008,10 @@
       "partei": "AfD",
       "name": "Martin Sehrndt",
       "winner": false,
-      "probability": 16,
+      "probability": 15,
       "value": 18.1,
-      "low": 10.0,
-      "high": 26.1,
+      "low": 10.2,
+      "high": 26.0,
       "value_l1": 9.2,
       "zs_value": 20.0,
       "zs_value_l1": 9.1,
@@ -7264,8 +7023,7 @@
       "residence": "Halle (Saale)",
       "profession": "Dipl.-Ing. Maschinenbau",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/martin-sehrndt"
+      "gender_confidence": "high"
     },
     {
       "wkr": 37,
@@ -7275,12 +7033,12 @@
       "partei": "CDU",
       "name": "Kerstin Godenrath",
       "winner": false,
-      "probability": 23,
-      "value": 19.1,
+      "probability": 25,
+      "value": 19.2,
       "low": 10.7,
-      "high": 27.5,
+      "high": 27.7,
       "value_l1": 23.0,
-      "zs_value": 18.2,
+      "zs_value": 18.3,
       "zs_value_l1": 26.8,
       "valid_l1": 34638,
       "zs_valid_l1": 34678,
@@ -7295,8 +7053,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/kerstin-godenrath",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/kerstin-godenrath"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 37,
@@ -7307,9 +7064,9 @@
       "name": "Jannik-Loris Balint",
       "winner": false,
       "probability": 24,
-      "value": 18.9,
-      "low": 9.7,
-      "high": 28.2,
+      "value": 19.0,
+      "low": 9.6,
+      "high": 28.3,
       "value_l1": 17.4,
       "zs_value": 19.3,
       "zs_value_l1": 14.3,
@@ -7321,8 +7078,7 @@
       "residence": "Halle (Saale)",
       "profession": "Elektro- und Informationstechniker",
       "gender": "m",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/jannik-balint"
+      "gender_confidence": "override"
     },
     {
       "wkr": 37,
@@ -7332,12 +7088,12 @@
       "partei": "GRÜNE",
       "name": "Wolfgang Aldag",
       "winner": true,
-      "probability": 38,
-      "value": 20.7,
-      "low": 10.7,
-      "high": 30.7,
+      "probability": 37,
+      "value": 20.5,
+      "low": 10.6,
+      "high": 30.4,
       "value_l1": 21.2,
-      "zs_value": 20.6,
+      "zs_value": 20.4,
       "zs_value_l1": 23.6,
       "valid_l1": 34638,
       "zs_valid_l1": 34678,
@@ -7352,8 +7108,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/wolfgang-aldag",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/wolfgang-aldag"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 37,
@@ -7383,8 +7138,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/andreas-silbersack",
       "incumbent_mandate": "list",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-silbersack"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 37,
@@ -7397,7 +7151,7 @@
       "probability": 0,
       "value": 4.5,
       "low": 0.0,
-      "high": 11.9,
+      "high": 11.8,
       "value_l1": 0.0,
       "zs_value": 5.0,
       "zs_value_l1": 0.0,
@@ -7409,8 +7163,7 @@
       "residence": "Halle (Saale)",
       "profession": "Historikerin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/claudia-wittig"
+      "gender_confidence": "high"
     },
     {
       "wkr": 37,
@@ -7421,9 +7174,9 @@
       "name": null,
       "winner": false,
       "probability": 0,
-      "value": 4.0,
+      "value": 4.1,
       "low": 0.0,
-      "high": 10.7,
+      "high": 10.8,
       "value_l1": 7.2,
       "zs_value": 4.5,
       "zs_value_l1": 9.6,
@@ -7453,8 +7206,7 @@
       "residence": "Halle (Saale)",
       "profession": "Wirtschaftsingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/julius-neumann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 38,
@@ -7464,10 +7216,10 @@
       "partei": "AfD",
       "name": "Paul Backmund",
       "winner": true,
-      "probability": 88,
-      "value": 35.8,
-      "low": 25.8,
-      "high": 45.9,
+      "probability": 89,
+      "value": 35.9,
+      "low": 26.0,
+      "high": 45.8,
       "value_l1": 21.1,
       "zs_value": 39.2,
       "zs_value_l1": 19.9,
@@ -7479,8 +7231,7 @@
       "residence": "Halle (Saale)",
       "profession": "Objektleiter in der Gebäudereinigung",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/paul-backmund"
+      "gender_confidence": "high"
     },
     {
       "wkr": 38,
@@ -7490,12 +7241,12 @@
       "partei": "CDU",
       "name": "Claudia Freia Schmidt",
       "winner": false,
-      "probability": 12,
-      "value": 26.0,
-      "low": 16.6,
+      "probability": 11,
+      "value": 26.1,
+      "low": 16.7,
       "high": 35.4,
       "value_l1": 38.5,
-      "zs_value": 23.3,
+      "zs_value": 23.4,
       "zs_value_l1": 37.9,
       "valid_l1": 25809,
       "zs_valid_l1": 25874,
@@ -7505,8 +7256,7 @@
       "residence": "Halle (Saale)",
       "profession": "Wissenschaftsreferentin",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/claudia-schmidt-1"
+      "gender_confidence": "high"
     },
     {
       "wkr": 38,
@@ -7518,7 +7268,7 @@
       "winner": false,
       "probability": 0,
       "value": 13.6,
-      "low": 5.7,
+      "low": 5.6,
       "high": 21.6,
       "value_l1": 13.0,
       "zs_value": 13.7,
@@ -7531,8 +7281,7 @@
       "residence": "Halle (Saale)",
       "profession": "Agrarwissenschaftlerin",
       "gender": "f",
-      "gender_confidence": "override",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/wenke-dargel"
+      "gender_confidence": "override"
     },
     {
       "wkr": 38,
@@ -7543,7 +7292,7 @@
       "name": "Nicole Walldorf",
       "winner": false,
       "probability": 0,
-      "value": 5.0,
+      "value": 4.9,
       "low": 0.0,
       "high": 11.1,
       "value_l1": 5.7,
@@ -7557,8 +7306,7 @@
       "residence": "Halle (Saale)",
       "profession": "Kinderkrankenschwester",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/nicole-walldorf"
+      "gender_confidence": "high"
     },
     {
       "wkr": 38,
@@ -7571,9 +7319,9 @@
       "probability": 0,
       "value": 4.9,
       "low": 0.0,
-      "high": 11.1,
+      "high": 11.0,
       "value_l1": 7.3,
-      "zs_value": 4.0,
+      "zs_value": 3.9,
       "zs_value_l1": 7.6,
       "valid_l1": 25809,
       "zs_valid_l1": 25874,
@@ -7583,8 +7331,7 @@
       "residence": "Halle (Saale)",
       "profession": "Student",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/tim-kehrwieder"
+      "gender_confidence": "high"
     },
     {
       "wkr": 38,
@@ -7595,11 +7342,11 @@
       "name": "Rudenz Schramm",
       "winner": false,
       "probability": 0,
-      "value": 3.9,
+      "value": 3.8,
       "low": 0.0,
-      "high": 10.9,
+      "high": 10.7,
       "value_l1": 0.0,
-      "zs_value": 4.6,
+      "zs_value": 4.5,
       "zs_value_l1": 0.0,
       "valid_l1": 25809,
       "zs_valid_l1": 25874,
@@ -7609,8 +7356,7 @@
       "residence": "Halle (Saale)",
       "profession": "Diplomkulturwissenschaftler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/rudenz-schramm"
+      "gender_confidence": "high"
     },
     {
       "wkr": 38,
@@ -7623,9 +7369,9 @@
       "probability": 0,
       "value": 3.4,
       "low": 0.0,
-      "high": 9.5,
+      "high": 9.7,
       "value_l1": 4.9,
-      "zs_value": 4.0,
+      "zs_value": 4.1,
       "zs_value_l1": 9.5,
       "valid_l1": 25809,
       "zs_valid_l1": 25874
@@ -7640,8 +7386,8 @@
       "winner": false,
       "probability": 0,
       "value": 10.7,
-      "low": 3.7,
-      "high": 17.7,
+      "low": 3.9,
+      "high": 17.5,
       "value_l1": 23.1,
       "zs_value": 7.4,
       "zs_value_l1": 9.7,
@@ -7653,8 +7399,7 @@
       "residence": "Lützen",
       "profession": "Diplom-Ingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/jens-mende"
+      "gender_confidence": "high"
     },
     {
       "wkr": 39,
@@ -7666,8 +7411,8 @@
       "winner": true,
       "probability": 99,
       "value": 44.4,
-      "low": 33.7,
-      "high": 55.0,
+      "low": 33.9,
+      "high": 54.9,
       "value_l1": 24.9,
       "zs_value": 46.8,
       "zs_value_l1": 25.2,
@@ -7679,8 +7424,7 @@
       "residence": "Zeitz",
       "profession": "Orthopädiemechanikermeister",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/dirk-jonas"
+      "gender_confidence": "high"
     },
     {
       "wkr": 39,
@@ -7691,9 +7435,9 @@
       "name": "Elke Simon-Kuch",
       "winner": false,
       "probability": 1,
-      "value": 23.6,
+      "value": 23.7,
       "low": 14.3,
-      "high": 32.9,
+      "high": 33.0,
       "value_l1": 27.7,
       "zs_value": 21.7,
       "zs_value_l1": 37.3,
@@ -7710,8 +7454,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/elke-simon-kuch",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/elke-simon-kuch"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 39,
@@ -7723,8 +7466,8 @@
       "winner": false,
       "probability": 0,
       "value": 10.7,
-      "low": 3.1,
-      "high": 18.3,
+      "low": 3.2,
+      "high": 18.2,
       "value_l1": 7.7,
       "zs_value": 10.7,
       "zs_value_l1": 9.2,
@@ -7736,8 +7479,7 @@
       "residence": "Weißenfels",
       "profession": "Student",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/eric-stehr"
+      "gender_confidence": "high"
     },
     {
       "wkr": 39,
@@ -7752,7 +7494,7 @@
       "low": 0.0,
       "high": 8.5,
       "value_l1": 2.2,
-      "zs_value": 2.5,
+      "zs_value": 2.4,
       "zs_value_l1": 3.3,
       "valid_l1": 23556,
       "zs_valid_l1": 23595,
@@ -7762,8 +7504,7 @@
       "residence": "Goseck",
       "profession": "Unternehmer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/peter-schneider-3"
+      "gender_confidence": "high"
     },
     {
       "wkr": 39,
@@ -7776,7 +7517,7 @@
       "probability": 0,
       "value": 3.9,
       "low": 0.0,
-      "high": 9.5,
+      "high": 9.6,
       "value_l1": 5.4,
       "zs_value": 2.9,
       "zs_value_l1": 5.8,
@@ -7793,8 +7534,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/maximilian-gludau",
       "incumbent_mandate": "moved_up",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/maximilian-gludau"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 39,
@@ -7807,7 +7547,7 @@
       "probability": 0,
       "value": 3.6,
       "low": 0.0,
-      "high": 10.4,
+      "high": 10.2,
       "value_l1": 9.0,
       "zs_value": 3.8,
       "zs_value_l1": 9.4,
@@ -7837,8 +7577,7 @@
       "residence": "Weißenfels",
       "profession": "Student",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/paul-kley"
+      "gender_confidence": "high"
     },
     {
       "wkr": 40,
@@ -7850,8 +7589,8 @@
       "winner": true,
       "probability": 93,
       "value": 41.9,
-      "low": 31.2,
-      "high": 52.6,
+      "low": 31.5,
+      "high": 52.3,
       "value_l1": 24.0,
       "zs_value": 44.1,
       "zs_value_l1": 23.2,
@@ -7863,8 +7602,7 @@
       "residence": "Elsteraue",
       "profession": "Verwaltungsfachangestellte",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/juliane-waehler"
+      "gender_confidence": "high"
     },
     {
       "wkr": 40,
@@ -7876,10 +7614,10 @@
       "winner": false,
       "probability": 7,
       "value": 28.4,
-      "low": 18.5,
-      "high": 38.3,
+      "low": 18.7,
+      "high": 38.2,
       "value_l1": 42.1,
-      "zs_value": 24.2,
+      "zs_value": 24.3,
       "zs_value_l1": 40.7,
       "valid_l1": 27015,
       "zs_valid_l1": 27024,
@@ -7894,8 +7632,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/daniel-sturm",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-sturm"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 40,
@@ -7907,8 +7644,8 @@
       "winner": false,
       "probability": 0,
       "value": 11.8,
-      "low": 4.1,
-      "high": 19.5,
+      "low": 3.9,
+      "high": 19.7,
       "value_l1": 9.3,
       "zs_value": 11.7,
       "zs_value_l1": 9.8,
@@ -7920,8 +7657,7 @@
       "residence": "Naumburg (Saale)",
       "profession": "Software/Datenbank-Entwickler",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/michael-scholz"
+      "gender_confidence": "high"
     },
     {
       "wkr": 40,
@@ -7936,7 +7672,7 @@
       "low": 0.0,
       "high": 9.7,
       "value_l1": 3.2,
-      "zs_value": 3.6,
+      "zs_value": 3.5,
       "zs_value_l1": 4.6,
       "valid_l1": 27015,
       "zs_valid_l1": 27024,
@@ -7946,8 +7682,7 @@
       "residence": "Naumburg (Saale)",
       "profession": "Lehrer",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-garthoff"
+      "gender_confidence": "high"
     },
     {
       "wkr": 40,
@@ -7962,7 +7697,7 @@
       "low": 0.0,
       "high": 10.1,
       "value_l1": 5.7,
-      "zs_value": 3.3,
+      "zs_value": 3.2,
       "zs_value_l1": 6.4,
       "valid_l1": 27015,
       "zs_valid_l1": 27024,
@@ -7972,8 +7707,7 @@
       "residence": "Naumburg (Saale)",
       "profession": "Vermessungsingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/gunnar-blache"
+      "gender_confidence": "high"
     },
     {
       "wkr": 40,
@@ -8016,8 +7750,7 @@
       "residence": "Zeitz",
       "profession": "kaufmännischer Angestellter",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-schneider-1"
+      "gender_confidence": "high"
     },
     {
       "wkr": 41,
@@ -8028,9 +7761,9 @@
       "name": "Lothar Waehler",
       "winner": true,
       "probability": 99,
-      "value": 44.3,
-      "low": 33.9,
-      "high": 54.7,
+      "value": 44.4,
+      "low": 34.2,
+      "high": 54.5,
       "value_l1": 27.1,
       "zs_value": 48.3,
       "zs_value_l1": 26.5,
@@ -8047,8 +7780,7 @@
       "incumbent_chamber": "MdL",
       "incumbent_url": "https://www.abgeordnetenwatch.de/profile/lothar-waehler",
       "incumbent_mandate": "constituency",
-      "incumbent_match": "exact",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/lothar-waehler"
+      "incumbent_match": "exact"
     },
     {
       "wkr": 41,
@@ -8060,10 +7792,10 @@
       "winner": false,
       "probability": 1,
       "value": 22.1,
-      "low": 12.9,
+      "low": 13.1,
       "high": 31.2,
       "value_l1": 26.1,
-      "zs_value": 21.1,
+      "zs_value": 21.2,
       "zs_value_l1": 37.0,
       "valid_l1": 24467,
       "zs_valid_l1": 24538,
@@ -8073,8 +7805,7 @@
       "residence": "Zeitz",
       "profession": "Zahnarzt",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ulf-altmann"
+      "gender_confidence": "high"
     },
     {
       "wkr": 41,
@@ -8087,7 +7818,7 @@
       "probability": 0,
       "value": 12.5,
       "low": 4.8,
-      "high": 20.3,
+      "high": 20.2,
       "value_l1": 14.0,
       "zs_value": 12.1,
       "zs_value_l1": 10.6,
@@ -8099,8 +7830,7 @@
       "residence": "Kretzschau",
       "profession": "Mitarbeiter Bürgerdialog",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/nicklas-kurzweil"
+      "gender_confidence": "high"
     },
     {
       "wkr": 41,
@@ -8125,8 +7855,7 @@
       "residence": "Hohenmölsen",
       "profession": "Diplom-Wirtschafts-Ingenieur",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/ralf-hoenicke"
+      "gender_confidence": "high"
     },
     {
       "wkr": 41,
@@ -8139,7 +7868,7 @@
       "probability": 0,
       "value": 4.2,
       "low": 0.0,
-      "high": 10.1,
+      "high": 10.0,
       "value_l1": 7.5,
       "zs_value": 3.1,
       "zs_value_l1": 6.4,
@@ -8151,8 +7880,7 @@
       "residence": "Halle (Saale)",
       "profession": "Diplom-Ingenieur",
       "gender": "f",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/birgit-kansy"
+      "gender_confidence": "high"
     },
     {
       "wkr": 41,
@@ -8163,9 +7891,9 @@
       "name": "Andreas Holger Kendelbacher",
       "winner": false,
       "probability": 0,
-      "value": 4.2,
+      "value": 4.1,
       "low": 0.0,
-      "high": 11.2,
+      "high": 11.0,
       "value_l1": 0.0,
       "zs_value": 4.2,
       "zs_value_l1": 0.0,
@@ -8177,8 +7905,7 @@
       "residence": "Elsteraue",
       "profession": "Rentner",
       "gender": "m",
-      "gender_confidence": "high",
-      "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-kendelbacher"
+      "gender_confidence": "high"
     },
     {
       "wkr": 41,
@@ -8191,7 +7918,7 @@
       "probability": 0,
       "value": 3.7,
       "low": 0.0,
-      "high": 9.9,
+      "high": 10.0,
       "value_l1": 13.4,
       "zs_value": 3.7,
       "zs_value_l1": 9.5,

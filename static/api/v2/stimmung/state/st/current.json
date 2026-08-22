@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-18T07:48:10",
+  "generated_at": "2026-08-22T16:30:23",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-18",
+    "as_of": "2026-08-22",
     "parties": {
       "CDU/CSU": 22.8,
       "AfD": 42.3,
@@ -26,13 +26,13 @@
       "Sonstige": 3.5
     },
     "uncertainty_low": {
-      "CDU/CSU": 21.9,
-      "AfD": 41.4,
-      "SPD": 5.6,
-      "GRÜNE": 3.7,
-      "LINKE": 12.2,
-      "BSW": 3.5,
-      "FDP": 1.9,
+      "CDU/CSU": 21.7,
+      "AfD": 41.2,
+      "SPD": 5.4,
+      "GRÜNE": 3.5,
+      "LINKE": 12,
+      "BSW": 3.3,
+      "FDP": 1.7,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 23.7,
-      "AfD": 43.2,
-      "SPD": 7.4,
-      "GRÜNE": 5.5,
-      "LINKE": 14,
-      "BSW": 5.3,
-      "FDP": 3.7,
+      "CDU/CSU": 23.9,
+      "AfD": 43.4,
+      "SPD": 7.6,
+      "GRÜNE": 5.7,
+      "LINKE": 14.2,
+      "BSW": 5.5,
+      "FDP": 3.9,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -64,19 +64,19 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": -0.3,
-      "AfD": 0.5,
+      "CDU/CSU": -0.1,
+      "AfD": 0.3,
       "SPD": 0.1,
       "GRÜNE": 0.1,
       "LINKE": 0,
-      "BSW": 0.1,
+      "BSW": 0,
       "FDP": -0.2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -0.3
+      "Sonstige": -0.2
     }
   },
-  "as_of": "2026-08-18"
+  "as_of": "2026-08-22"
 }
