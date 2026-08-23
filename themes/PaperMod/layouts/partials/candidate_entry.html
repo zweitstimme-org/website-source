@@ -2,6 +2,17 @@
   Preview: Einzugschancen Direkt + Liste (BE/MV/ST).
 */}}
 <style>
+/* Match /direktmandate/ panel styling */
+.scenario-prob-panel {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 .ce-wrap { max-width: 960px; margin: 0 auto; }
 .ce-caveat {
   font-size: 0.9rem;
@@ -89,6 +100,41 @@
   cursor: pointer;
   height: 78px;
   box-sizing: border-box;
+  overflow: visible;
+}
+.ce-state-tabs .state-arm-narrow {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  width: 100%;
+}
+.ce-state-tabs .state-arm-wide {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+.ce-state-tabs .state-arm-wide-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.ce-state-tabs .state-arm-wide-name {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 650;
+  text-align: left;
+  line-height: 1.1;
+}
+.ce-state-tabs .state-arm-wide .election-date {
+  text-align: left;
+  margin-top: 0.15rem;
 }
 .ce-state-tabs .state-arm.selected {
   background: #e6f3ff;
@@ -124,40 +170,84 @@
   display: block;
   flex: 0 0 auto;
 }
-.ce-state-tabs .state-arm-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  min-width: 0;
-  flex: 1 1 auto;
+.ce-state-tabs .state-arm-narrow img {
+  width: 20px;
+  height: 20px;
 }
-.ce-state-tabs .state-arm span {
+.ce-state-tabs .state-arm-name {
   display: block;
   font-size: 0.75rem;
   color: var(--primary);
-  font-weight: 500;
-  text-align: left;
-  line-height: 1.15;
+  font-weight: 650;
+  text-align: center;
+  line-height: 1.1;
+  padding: 0 0.1rem;
+  margin-top: 0.12rem;
+}
+.ce-state-tabs .state-arm-sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
 }
 .ce-state-tabs .election-date {
   display: block;
   font-size: 0.65rem;
   color: var(--secondary, #666);
   font-weight: 400;
-  text-align: left;
-  margin-top: 0.15rem;
+  text-align: center;
+  margin-top: 0;
 }
 @media screen and (max-width: 768px) {
   .ce-state-tabs { gap: 0.75rem; }
-  .ce-state-tabs .state-arm { padding: 0.5rem; height: 72px; gap: 0.55rem; }
-  .ce-state-tabs .state-arm img { width: 38px; height: 38px; }
-  .ce-state-tabs .state-arm span { font-size: 0.7rem; }
+  .ce-state-tabs .state-arm {
+    padding: 0.85rem 0.4rem 0.4rem;
+    height: auto;
+    min-height: 76px;
+    gap: 0.35rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+  .ce-state-tabs .state-arm.selected::after {
+    top: 3px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
+  .ce-state-tabs .state-arm img { width: 18px; height: 18px; }
+  .ce-state-tabs .state-arm-name {
+    font-size: 0.7rem;
+    margin-top: 0.15rem;
+    padding: 0.2rem 0.55rem 0;
+    line-height: 1.25;
+  }
+  .ce-state-tabs .state-arm-narrow { display: flex; justify-content: flex-start; }
+  .ce-state-tabs .state-arm-wide { display: none; }
 }
 @media screen and (max-width: 480px) {
   .ce-state-tabs { gap: 0.5rem; }
-  .ce-state-tabs .state-arm { padding: 0.4rem; height: 66px; gap: 0.5rem; }
-  .ce-state-tabs .state-arm img { width: 34px; height: 34px; }
+  .ce-state-tabs .state-arm {
+    padding: 0.8rem 0.3rem 0.35rem;
+    min-height: 72px;
+    gap: 0.25rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+  .ce-state-tabs .state-arm img { width: 16px; height: 16px; }
+  .ce-state-tabs .state-arm-name {
+    font-size: 0.66rem;
+    margin-top: 0.12rem;
+    padding: 0.18rem 0.5rem 0;
+    line-height: 1.25;
+  }
+  .ce-state-tabs .state-arm-narrow { display: flex; justify-content: flex-start; }
+  .ce-state-tabs .state-arm-wide { display: none; }
 }
 .ce-filters {
   display: flex;
@@ -213,7 +303,9 @@
 .ce-table th.ce-sortable:hover { color: #222; }
 .ce-table th.ce-sortable.is-sorted { color: #111; font-weight: 700; }
 .ce-num { text-align: right !important; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.ce-entry { min-width: 7.5rem; }
+.ce-entry { min-width: 5.2rem; }
+.ce-entry-stack { display: none; width: 100%; text-align: center; font-variant-numeric: tabular-nums; }
+.ce-entry-main { display: inline; }
 .ce-ph { color: #777; font-style: italic; }
 .ce-na { color: #888; font-size: 0.92em; }
 .ce-ph-hint {
@@ -237,22 +329,41 @@
 .ce-cross-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.1rem;
+  gap: 0.6rem;
   margin: 0 0 0.85rem;
-  font-size: 0.88rem;
-  align-items: baseline;
+  font-size: 0.95rem;
+  align-items: stretch;
+}
+.ce-cross-nav > * {
+  flex: 1 1 14rem;
 }
 .ce-cross-nav .is-here {
-  color: #333;
+  color: #fff;
   font-weight: 650;
+  background: #111;
+  border: 1px solid #111;
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .ce-cross-nav a {
-  color: var(--primary, #0056b3);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: #444;
+  text-decoration: none !important;
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
 }
 .ce-cross-nav a:hover {
-  color: var(--primary, #003d80);
+  color: #111;
+  border-color: #d0d0d0;
+  background: #efefef;
 }
 .ce-cross { font-size: 0.85rem; margin: 0 0 0.75rem; }
 .ce-cross a,
@@ -473,45 +584,59 @@ a.ce-aw:hover {
   }
   .ce-entry { min-width: 0; }
   .ce-bar { display: none; }
+  .ce-entry-main { display: none; }
+  .ce-entry-stack { display: block; font-size: 0.78rem; line-height: 1.15; }
+  /* Hide Direkt + Liste % columns (5th + 6th columns) and replace with stacked values. */
+  .ce-table thead th:nth-child(5),
+  .ce-table tbody td:nth-child(5),
+  .ce-table thead th:nth-child(6),
+  .ce-table tbody td:nth-child(6) {
+    display: none;
+  }
 }
 </style>
 
 <details class="ce-explainer">
   <summary>So lesen Sie die Einzugschancen</summary>
   <div class="ce-explainer-body">
-    <p>
-      Pro Person schätzen wir, wie oft sie in unserem Modell ins Parlament käme —
-      über ein <strong>Direktmandat</strong>, über die <strong>Liste</strong>, oder beides.
-      Grundlage sind dieselben Umfrage- und Wahlkreis-Simulationen wie bei der
-      <a href="{{ "direktmandate/" | relURL }}">Direktmandate-Karte</a>.
-    </p>
-    <ul>
-      <li><strong>Einzug</strong> — Anteil der Simulationen, in denen die Person einen Sitz erhält (Direkt und/oder Liste).</li>
-      <li><strong>Direkt</strong> — Anteil, in dem sie ihren Wahlkreis gewinnt.</li>
-      <li><strong>Liste&nbsp;%</strong> — Anteil, in dem sie über die Liste nachrückt (nur wenn ein Listenplatz bekannt ist).</li>
-      <li><strong>Listenplatz / WK</strong> — bekannter Listenplatz bzw. Direktwahlkreis. Ohne Listenplatz steht <code>—</code>, Liste&nbsp;% ebenfalls, und <strong>Einzug = Direkt</strong>.</li>
-      <li><strong>Quellen</strong> — auf der <a href="{{ "kandidat/" | relURL }}">Profilseite</a> der Person ausgewiesen; Namen verlinken dorthin.</li>
-      <li><strong>i-Button</strong> (Sachsen-Anhalt) — Geburtsjahr/-ort, Wohnort und Beruf laut Landeswahlleiterin / StaLa.</li>
-      <li><strong>Geschlechteranteil</strong> — geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen), nicht amtlich.
-        Getrennt ausgewiesen: <em>Gesamt</em>, nur <em>Liste</em>, nur <em>Direkt</em>,
-        sowie gewichtet mit <em>P(Liste)</em> bzw. <em>P(Sieg)</em> (erwartete Anteile unter Einziehenden;
-        inkl. erwarteter Mandatszahl Σ&nbsp;P; bei Σ&nbsp;P&nbsp;&lt;&nbsp;1:&nbsp;„keine Mandate erwartet“, kein %-Anteil).
-        Unklare Namen zählen separat und fallen aus dem %-Anteil.</li>
-    </ul>
-    <p>
-      <strong>Doppelkandidatur:</strong> Wer schon über Direkt einzieht, wird auf der Liste
-      übersprungen — darunterliegende Plätze rücken nach. Deshalb kann jemand mit
-      schlechterem Listenplatz eine höhere Listen-Chance haben, wenn darüber viele
-      Direktmandate gewinnen.
-    </p>
-    <p>
-      Fehlende Namen erscheinen kursiv als Platzhalter und zählen als eigene Personen.
-    </p>
+  <p>
+    Pro Person schätzen wir, wie oft sie in unserem Modell ins Parlament käme —
+    über ein <strong>Direktmandat</strong>, über die <strong>Liste</strong>, oder beides.
+    Grundlage sind dieselben Umfrage- und Wahlkreis-Simulationen wie bei der
+    <a href="{{ "direktmandate/" | relURL }}">Wahlkreise</a>.
+  </p>
+  <ul>
+    <li><strong>Einzug</strong> — Anteil der Simulationen, in denen die Person einen Sitz erhält (Direkt und/oder Liste).</li>
+    <li><strong>Direkt</strong> — Anteil, in dem sie ihren Wahlkreis gewinnt.</li>
+    <li><strong>Liste&nbsp;%</strong> — Anteil, in dem sie über die Liste nachrückt (nur wenn ein Listenplatz bekannt ist).</li>
+    <li><strong>Listenplatz / WK</strong> — bekannter Listenplatz bzw. Direktwahlkreis. Ohne Listenplatz steht <code>—</code>, Liste&nbsp;% ebenfalls, und <strong>Einzug = Direkt</strong>.</li>
+    <li><strong>Quellen</strong> — auf der <a href="{{ "kandidat/" | relURL }}">Profilseite</a> der Person ausgewiesen; Namen verlinken dorthin.</li>
+    <li><strong>i-Button</strong> (Sachsen-Anhalt) — Geburtsjahr/-ort, Wohnort und Beruf laut Landeswahlleiterin / StaLa.</li>
+    <li><strong>Geschlechteranteil</strong> — geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen), nicht amtlich.
+      Getrennt ausgewiesen: <em>Gesamt</em>, nur <em>Liste</em>, nur <em>Direkt</em>,
+      sowie gewichtet mit <em>P(Liste)</em> bzw. <em>P(Sieg)</em> (erwartete Anteile unter Einziehenden;
+      inkl. erwarteter Mandatszahl Σ&nbsp;P; bei Σ&nbsp;P&nbsp;&lt;&nbsp;1:&nbsp;„keine Mandate erwartet“, kein %-Anteil).
+      Unklare Namen zählen separat und fallen aus dem %-Anteil.</li>
+  </ul>
+  <p>
+    <strong>Doppelkandidatur:</strong> Wer schon über Direkt einzieht, wird auf der Liste
+    übersprungen — darunterliegende Plätze rücken nach. Deshalb kann jemand mit
+    schlechterem Listenplatz eine höhere Listen-Chance haben, wenn darüber viele
+    Direktmandate gewinnen.
+  </p>
+  <p>
+    <strong>Landesliste:</strong> Für Landeslisten gilt: nach Listenplatz; Direktmandatierte werden
+    auf der Liste übersprungen. Keine Grundmandatsklausel — unter 5% gibt es keine Listensitze,
+    aber gewonnene Direktmandate bleiben.
+  </p>
+  <p>
+    Fehlende Namen erscheinen kursiv als Platzhalter und zählen als eigene Personen.
+  </p>
   </div>
 </details>
 
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=23" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=34" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}

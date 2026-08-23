@@ -247,11 +247,12 @@
 
   function candidateProfileHref(c, stateCode) {
     const params = new URLSearchParams();
+    params.set("from", "einzug");
+    if (stateCode) params.set("state", String(stateCode).toUpperCase());
     if (c && c.person_id) {
       params.set("id", String(c.person_id));
       return `${siteBase()}kandidat/?${params.toString()}`;
     }
-    if (stateCode) params.set("state", String(stateCode).toUpperCase());
     if (c && c.name) params.set("name", String(c.name));
     const party = c && (c.party || c._party);
     if (party) params.set("party", String(party).toLowerCase());
@@ -501,11 +502,14 @@
     root.innerHTML = `
       <div class="ce-wrap">
         <nav class="ce-cross-nav" aria-label="Wahlkreise und Listen">
+          <a class="ce-districts-link" href="#">Wahlkreise</a>
           <span class="is-here">Alle Kandidierende</span>
-          <a class="ce-districts-link" href="#">→ Wahlkreise</a>
         </nav>
         <div class="ce-controls">
           <div class="ce-state-tabs" role="tablist"></div>
+        </div>
+
+        <div class="scenario-prob-panel">
           <div class="ce-party-tabs" role="tablist" aria-label="Partei"></div>
           <div class="ce-filters">
             <label class="ce-bezirk-wrap" style="display:none">Bezirk
@@ -519,12 +523,26 @@
             </label>
             <label class="ce-check"><input type="checkbox" class="ce-hide-ph"${hidePh ? " checked" : ""} /> Nur bekannte Namen</label>
           </div>
+          <p class="ce-note"></p>
+          <div class="ce-table-wrap"></div>
+          <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
         </div>
-        <p class="ce-note"></p>
-        <div class="ce-table-wrap"></div>
-        <div class="zs-wm-strip zs-wm-strip--compact" aria-hidden="true"></div>
       </div>
     `;
+
+    // Place the (collapsed) "So lesen Sie …" explainer below the country buttons
+    // (ce-state-tabs inside ce-controls), so the visual reading order matches
+    // the /direktmandate/ page.
+    try {
+      const explainer = document.querySelector(".ce-explainer");
+      const controls = root.querySelector(".ce-controls");
+      const note = root.querySelector(".ce-note");
+      if (explainer && controls && note) {
+        const inRoot = explainer.closest("#candidate-entry-root") === root;
+        const noteWrap = note && note.parentElement;
+        if (!inRoot && noteWrap) noteWrap.insertBefore(explainer, note);
+      }
+    } catch (_) { /* ignore */ }
 
     const tabs = root.querySelector(".ce-state-tabs");
     const partyTabs = root.querySelector(".ce-party-tabs");
@@ -555,10 +573,22 @@
           const active = s.code === stateCode;
           const coat = STATE_COATS[s.code] || "";
           return `<button type="button" class="state-arm visible ce-tab${active ? " selected is-active" : ""}" data-state="${s.code}" aria-pressed="${active ? "true" : "false"}">
-            <img src="${escapeHtml(coat)}" alt="" title="${escapeHtml(s.label)}">
-            <div class="state-arm-text">
-              <span>${escapeHtml(s.label)}</span>
-              <div class="election-date">${escapeHtml(s.date || "")}</div>
+            <!-- Narrow (subpage tiles): Name top, Wappen+Datum bottom -->
+            <div class="state-arm-narrow">
+              <div class="state-arm-name">${escapeHtml(s.label)}</div>
+              <div class="state-arm-sub">
+                <img src="${escapeHtml(coat)}" alt="${escapeHtml(s.label)}" title="${escapeHtml(s.label)}">
+                <div class="election-date">${escapeHtml(s.date || "")}</div>
+              </div>
+            </div>
+
+            <!-- Wide (subpages): Startseite-Layout (Wappen left, Name+Datum right) -->
+            <div class="state-arm-wide">
+              <img src="${escapeHtml(coat)}" alt="${escapeHtml(s.label)}" title="${escapeHtml(s.label)}">
+              <div class="state-arm-wide-text">
+                <div class="state-arm-wide-name">${escapeHtml(s.label)}</div>
+                <div class="election-date">${escapeHtml(s.date || "")}</div>
+              </div>
             </div>
           </button>`;
         })
@@ -810,9 +840,16 @@
         const pDirect = pctInt(c.p_direct);
         const pEntry = pctInt(hasList ? c.p_entry : pDirect);
         const pList = pctInt(c.p_list);
-        const entryCell = hasList
+        const entryMain = hasList
           ? `${pEntry}% ${pctBar(pEntry, color)}`
           : `<span title="Kein Listenplatz: Einzug = Direkt">${pEntry}%</span> ${pctBar(pEntry, color)}`;
+        const stackTop = `${pEntry}%`;
+        const stackMid = `${pDirect}%`;
+        const stackBot = hasList ? `${pList}%` : "—";
+        const entryCell = `
+          <span class="ce-entry-main">${entryMain}</span>
+          <span class="ce-entry-stack">${stackTop}<br>${stackMid}<br>${stackBot}</span>
+        `;
         const listCell = hasList
           ? `${pList}%`
           : `<span class="ce-na" title="Kein Listenplatz">—</span>`;
@@ -842,10 +879,7 @@
             prevKey = key;
             const label =
               c.bezirk_name || (c.bezirk ? `Bezirk ${c.bezirk}` : "Ohne Bezirk");
-            const gHtml = genderRatioHtml(byBez.get(key) || [], {
-              compact: true,
-            });
-            body += `<tr class="ce-group"><td colspan="6"><span class="ce-group-label">${escapeHtml(label)}</span>${gHtml}</td></tr>`;
+            body += `<tr class="ce-group"><td colspan="6"><span class="ce-group-label">${escapeHtml(label)}</span></td></tr>`;
           }
           body += rowHtml(c);
         }

@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-23T06:08:59Z",
+  "generated_at": "2026-08-23T06:57:48Z",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -22,7 +22,7 @@
       "poll_window_days": null,
       "last_poll_date": "2026-08-13",
       "asof_date": "2026-08-13",
-      "last_update": "2026-08-22T16:46:32Z",
+      "last_update": "2026-08-20T09:13:46Z",
       "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
       "predictor_encoding": "state_models_exact_lead_v1",
       "shares_normalized_to_100": true,
@@ -60,7 +60,7 @@
         "party_code": "lin",
         "fit": 12,
         "low": 8,
-        "high": 17
+        "high": 16
       },
       {
         "party": "GRÜNE",
@@ -117,13 +117,13 @@
           "id": "above_hurdle_gru",
           "category": "above_hurdle",
           "label_de": "Grüne über 5%-Hürde",
-          "probability": 53
+          "probability": 50
         },
         {
           "id": "above_hurdle_bsw",
           "category": "above_hurdle",
           "label_de": "BSW über 5%-Hürde",
-          "probability": 36
+          "probability": 34
         },
         {
           "id": "largest_party_spd",
@@ -138,16 +138,16 @@
           "probability": 23
         },
         {
-          "id": "coal_cdu_spd_gru",
-          "category": "coalition",
-          "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
-          "probability": 19
-        },
-        {
           "id": "coal_spd_lin",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit SPD und Linke",
-          "probability": 16
+          "probability": 18
+        },
+        {
+          "id": "coal_cdu_spd_gru",
+          "category": "coalition",
+          "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
+          "probability": 17
         },
         {
           "id": "coal_lin_bsw_spd",
@@ -159,7 +159,7 @@
           "id": "above_hurdle_fdp",
           "category": "above_hurdle",
           "label_de": "FDP über 5%-Hürde",
-          "probability": 7
+          "probability": 6
         },
         {
           "id": "abs_maj_afd",
