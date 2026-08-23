@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-22T16:29:52",
+  "generated_at": "2026-08-23T06:07:03",
   "election": {
     "id": "bund_2029-02-25",
     "name": "Bundestagswahl",
@@ -10,29 +10,29 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-22",
+    "as_of": "2026-08-23",
     "parties": {
-      "CDU/CSU": 20.9,
-      "AfD": 27.9,
-      "SPD": 13,
-      "GRÜNE": 13.7,
-      "LINKE": 11.5,
-      "BSW": 2.9,
-      "FDP": 5.1,
+      "CDU/CSU": 21.1,
+      "AfD": 28.1,
+      "SPD": 12.6,
+      "GRÜNE": 13.5,
+      "LINKE": 11.4,
+      "BSW": 2.8,
+      "FDP": 4.9,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 5
+      "Sonstige": 5.6
     },
     "uncertainty_low": {
-      "CDU/CSU": 20.3,
-      "AfD": 27.3,
-      "SPD": 12.4,
-      "GRÜNE": 13.1,
-      "LINKE": 10.9,
-      "BSW": 2.3,
-      "FDP": 4.5,
+      "CDU/CSU": 20.5,
+      "AfD": 27.5,
+      "SPD": 12,
+      "GRÜNE": 12.9,
+      "LINKE": 10.8,
+      "BSW": 2.2,
+      "FDP": 4.3,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 21.5,
-      "AfD": 28.5,
-      "SPD": 13.6,
-      "GRÜNE": 14.3,
-      "LINKE": 12.1,
-      "BSW": 3.5,
-      "FDP": 5.7,
+      "CDU/CSU": 21.7,
+      "AfD": 28.7,
+      "SPD": 13.2,
+      "GRÜNE": 14.1,
+      "LINKE": 12,
+      "BSW": 3.4,
+      "FDP": 5.5,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -64,19 +64,19 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": 0,
-      "AfD": -0.1,
-      "SPD": 0.8,
-      "GRÜNE": -0.5,
-      "LINKE": -0.1,
+      "CDU/CSU": 0.2,
+      "AfD": 0,
+      "SPD": 0.4,
+      "GRÜNE": -0.7,
+      "LINKE": -0.3,
       "BSW": 0.1,
-      "FDP": 0.5,
+      "FDP": 0.3,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -0.7
+      "Sonstige": 0
     }
   },
-  "as_of": "2026-08-22"
+  "as_of": "2026-08-23"
 }

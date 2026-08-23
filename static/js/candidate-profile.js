@@ -238,31 +238,14 @@
     return `<a href="${escapeHtml(href)}"${t}>${html}</a>`;
   }
 
-  function backLinks(hit, params) {
+  function backLinks(hit) {
     const base = siteBase();
     const state = hit.stateCode;
     const c = hit.candidate;
-    const from = String((params && params.get("from")) || "").toLowerCase();
     const links = [];
-    const toDistrict = from === "direktmandate"
-      || (!from && c.wkr_direct != null && c.wkr_direct !== "");
-    if (toDistrict) {
-      const u = new URLSearchParams();
-      u.set("state", state);
-      const wkrBack = (c.wkr_direct != null && c.wkr_direct !== "")
-        ? c.wkr_direct
-        : (params && params.get("wkr"));
-      if (wkrBack != null && wkrBack !== "") {
-        u.set("wkr", String(wkrBack));
-      }
-      links.push(
-        `<a class="cp-back" href="${escapeHtml(base + "direktmandate/?" + u.toString())}">← Wahlkreise</a>`
-      );
-    } else {
-      links.push(
-        `<a class="cp-back" href="${escapeHtml(base + "einzug/?state=" + encodeURIComponent(state))}">← Alle Kandidierende</a>`
-      );
-    }
+    links.push(
+      `<a class="cp-back" href="${escapeHtml(base + "einzug/?state=" + encodeURIComponent(state))}">← Einzugs-Vorhersage (${escapeHtml(state)})</a>`
+    );
     const dHref = districtHref(hit);
     if (dHref) {
       links.push(
@@ -300,7 +283,7 @@
     }
     const awHref = httpSource(c.aw_url);
     if (awHref) {
-      badge += `<a class="cp-aw" href="${escapeHtml(awHref)}" target="_blank" rel="noopener noreferrer" title="Profil bei abgeordnetenwatch">abgeordnetenwatch</a>`;
+      badge += `<a class="cp-aw" href="${escapeHtml(awHref)}" target="_blank" rel="noopener noreferrer" title="Profil und Fragen bei abgeordnetenwatch">abgeordnetenwatch</a>`;
     }
 
     const metaRows = [];
@@ -325,7 +308,7 @@
         linkedText(
           listHref(hit),
           escapeHtml(listBits.join(" · ")),
-          "Zur Einzugsübersicht"
+          "Zur Einzugs-Vorhersage"
         ),
       ]);
     } else {
@@ -338,7 +321,7 @@
         linkedText(
           districtHref(hit),
           `WK ${escapeHtml(String(c.wkr_direct))}`,
-          "Zur Wahlkreiskarte"
+          "Zur Direktmandate-Karte"
         ),
       ]);
     }
@@ -399,8 +382,8 @@
     const awBlock = awHref
       ? `<div class="cp-card cp-source">
           <h2 class="cp-section-title">abgeordnetenwatch</h2>
-          <div><a href="${escapeHtml(awHref)}" target="_blank" rel="noopener noreferrer">Profil ansehen</a></div>
-          <p class="cp-note">Wahlkreisprofil und Positionen von abgeordnetenwatch (nicht von Zweitstimme betrieben).</p>
+          <div><a href="${escapeHtml(awHref)}" target="_blank" rel="noopener noreferrer">Profil und Fragen stellen</a></div>
+          <p class="cp-note">Wahlkreisprofil, Positionen und das Frageportal von abgeordnetenwatch (nicht von Zweitstimme betrieben).</p>
         </div>`
       : "";
     const sourceBlock = sourceHtml
@@ -414,7 +397,7 @@
           <p class="cp-note">Keine öffentliche URL hinterlegt (lokale Rohdatei / noch ohne Link).</p>
         </div>`;
 
-    const links = backLinks(hit, queryParams());
+    const links = backLinks(hit);
     const titleEl = document.getElementById("cp-title");
     if (titleEl) titleEl.textContent = displayName;
     const descEl = document.getElementById("cp-description");
@@ -474,7 +457,7 @@
       !params.get("q") &&
       !(params.get("state") && params.get("wkr") && params.get("party"))
     ) {
-      root.innerHTML = `<p class="cp-error">Kein Kandidat angegeben. Bitte über <a href="${escapeHtml(siteBase() + "einzug/")}">Alle Kandidierende</a> oder die <a href="${escapeHtml(siteBase() + "direktmandate/")}">Wahlkreise</a> öffnen.</p>`;
+      root.innerHTML = `<p class="cp-error">Kein Kandidat angegeben. Bitte über die <a href="${escapeHtml(siteBase() + "einzug/")}">Einzugs-Vorhersage</a> oder die <a href="${escapeHtml(siteBase() + "direktmandate/")}">Direktmandate-Karte</a> öffnen.</p>`;
       return;
     }
 
@@ -484,7 +467,7 @@
       .then((data) => {
         const hit = findCandidate(data, params);
         if (!hit) {
-          root.innerHTML = `<p class="cp-error">Kandidat:in nicht gefunden. <a href="${escapeHtml(siteBase() + "einzug/")}">Zur Einzugsübersicht</a></p>`;
+          root.innerHTML = `<p class="cp-error">Kandidat:in nicht gefunden. <a href="${escapeHtml(siteBase() + "einzug/")}">Zur Einzugs-Vorhersage</a></p>`;
           return;
         }
         render(root, hit);
