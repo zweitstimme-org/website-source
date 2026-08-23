@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-23T06:57:48Z",
+  "generated_at": "2026-08-23T07:05:30Z",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -22,7 +22,7 @@
       "poll_window_days": null,
       "last_poll_date": "2026-08-12",
       "asof_date": "2026-08-12",
-      "last_update": "2026-08-20T09:13:40Z",
+      "last_update": "2026-08-22T16:46:26Z",
       "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
       "predictor_encoding": "state_models_exact_lead_v1",
       "shares_normalized_to_100": true,
@@ -105,49 +105,49 @@
           "id": "above_hurdle_spd",
           "category": "above_hurdle",
           "label_de": "SPD über 5%-Hürde",
-          "probability": 82
+          "probability": 85
         },
         {
           "id": "maj_ohne_afd",
           "category": "majority_excluding",
           "label_de": "Parlamentsmehrheit ohne AfD",
-          "probability": 69
+          "probability": 73
         },
         {
           "id": "maj_ohne_afd_bsw",
           "category": "majority_excluding",
           "label_de": "Parlamentsmehrheit ohne AfD und BSW",
-          "probability": 57
+          "probability": 58
         },
         {
           "id": "above_hurdle_gru",
           "category": "above_hurdle",
           "label_de": "Grüne über 5%-Hürde",
+          "probability": 41
+        },
+        {
+          "id": "above_hurdle_bsw",
+          "category": "above_hurdle",
+          "label_de": "BSW über 5%-Hürde",
           "probability": 37
         },
         {
           "id": "abs_maj_afd",
           "category": "coalition",
           "label_de": "Absolute Mehrheit AfD",
-          "probability": 31
-        },
-        {
-          "id": "above_hurdle_bsw",
-          "category": "above_hurdle",
-          "label_de": "BSW über 5%-Hürde",
-          "probability": 30
+          "probability": 27
         },
         {
           "id": "coal_afd_bsw",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit AfD und BSW",
-          "probability": 17
+          "probability": 20
         },
         {
           "id": "above_hurdle_fdp",
           "category": "above_hurdle",
           "label_de": "FDP über 5%-Hürde",
-          "probability": 6
+          "probability": 8
         },
         {
           "id": "largest_party_cdu",

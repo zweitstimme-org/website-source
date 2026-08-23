@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-23T06:57:48Z",
+  "generated_at": "2026-08-23T07:05:30Z",
   "election": {
     "id": "be_2026-09-20",
     "name": "Landtagswahl Berlin",
@@ -15,14 +15,14 @@
       "election_date": "2026-09-20",
       "election_id": "be_2026-09-20",
       "election_name": "Landtagswahl Berlin",
-      "model": "state-models lr 37_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
-      "lead": "37",
-      "lead_model": "37_polls",
-      "lead_horizon_days": 37,
+      "model": "state-models lr 29_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
+      "lead": "29",
+      "lead_model": "29_polls",
+      "lead_horizon_days": 29,
       "poll_window_days": null,
-      "last_poll_date": "2026-08-14",
-      "asof_date": "2026-08-14",
-      "last_update": "2026-08-20T09:13:50Z",
+      "last_poll_date": "2026-08-22",
+      "asof_date": "2026-08-22",
+      "last_update": "2026-08-22T16:46:29Z",
       "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
       "predictor_encoding": "state_models_exact_lead_v1",
       "shares_normalized_to_100": true,
@@ -39,7 +39,7 @@
         "party_code": "cdu",
         "fit": 19,
         "low": 13,
-        "high": 25
+        "high": 24
       },
       {
         "party": "GRÜNE",
@@ -51,15 +51,15 @@
       {
         "party": "SPD",
         "party_code": "spd",
-        "fit": 14,
+        "fit": 13,
         "low": 9,
-        "high": 19
+        "high": 18
       },
       {
         "party": "LINKE",
         "party_code": "lin",
-        "fit": 19,
-        "low": 13,
+        "fit": 20,
+        "low": 14,
         "high": 26
       },
       {
@@ -74,19 +74,19 @@
         "party_code": "fdp",
         "fit": 4,
         "low": 2,
-        "high": 6
+        "high": 5
       },
       {
         "party": "BSW",
         "party_code": "bsw",
-        "fit": 3,
-        "low": 2,
-        "high": 5
+        "fit": 4,
+        "low": 3,
+        "high": 6
       },
       {
         "party": "Sonstige",
         "party_code": "oth",
-        "fit": 8,
+        "fit": 7,
         "low": 5,
         "high": 11
       }
@@ -99,37 +99,43 @@
           "id": "coal_spd_gru_lin",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit SPD, Grüne und Linke",
-          "probability": 86
+          "probability": 84
         },
         {
           "id": "coal_cdu_spd_gru",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
-          "probability": 84
+          "probability": 77
         },
         {
           "id": "coal_spd_gru_lin_lead_lin",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Linken)",
-          "probability": 51
+          "probability": 56
         },
         {
           "id": "largest_party_lin",
           "category": "largest_party",
           "label_de": "Linke stärkste Kraft",
+          "probability": 39
+        },
+        {
+          "id": "above_hurdle_bsw",
+          "category": "above_hurdle",
+          "label_de": "BSW über 5%-Hürde",
           "probability": 33
         },
         {
           "id": "largest_party_cdu",
           "category": "largest_party",
           "label_de": "CDU stärkste Kraft",
-          "probability": 30
+          "probability": 27
         },
         {
           "id": "coal_spd_gru_lin_lead_gru",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Grünen)",
-          "probability": 25
+          "probability": 22
         },
         {
           "id": "largest_party_afd",
@@ -141,49 +147,37 @@
           "id": "above_hurdle_fdp",
           "category": "above_hurdle",
           "label_de": "FDP über 5%-Hürde",
-          "probability": 15
+          "probability": 17
         },
         {
           "id": "largest_party_gru",
           "category": "largest_party",
           "label_de": "Grüne stärkste Kraft",
-          "probability": 14
-        },
-        {
-          "id": "coal_spd_gru_lin_lead_spd",
-          "category": "coalition",
-          "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der SPD)",
-          "probability": 10
-        },
-        {
-          "id": "above_hurdle_bsw",
-          "category": "above_hurdle",
-          "label_de": "BSW über 5%-Hürde",
-          "probability": 9
-        },
-        {
-          "id": "coal_cdu_gru",
-          "category": "coalition",
-          "label_de": "Parlamentsmehrheit CDU und Grüne",
-          "probability": 7
+          "probability": 12
         },
         {
           "id": "coal_gru_lin",
           "category": "coalition",
           "label_de": "Parlamentsmehrheit Grüne und Linke",
-          "probability": 7
+          "probability": 6
+        },
+        {
+          "id": "coal_spd_gru_lin_lead_spd",
+          "category": "coalition",
+          "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der SPD)",
+          "probability": 6
+        },
+        {
+          "id": "coal_cdu_gru",
+          "category": "coalition",
+          "label_de": "Parlamentsmehrheit CDU und Grüne",
+          "probability": 4
         },
         {
           "id": "largest_party_spd",
           "category": "largest_party",
           "label_de": "SPD stärkste Kraft",
-          "probability": 5
-        },
-        {
-          "id": "coal_cdu_spd",
-          "category": "coalition",
-          "label_de": "Parlamentsmehrheit CDU und SPD",
-          "probability": 2
+          "probability": 3
         },
         {
           "id": "coal_spd_lin",
@@ -192,9 +186,9 @@
           "probability": 2
         },
         {
-          "id": "coal_gru_spd",
+          "id": "coal_cdu_spd",
           "category": "coalition",
-          "label_de": "Parlamentsmehrheit Grüne und SPD",
+          "label_de": "Parlamentsmehrheit CDU und SPD",
           "probability": 1
         }
       ]
