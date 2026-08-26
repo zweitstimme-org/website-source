@@ -226,9 +226,8 @@
 
   function districtStripeCandidates(rows) {
     return (rows || [])
-      .filter((r) => !districtIsOthers(r) && districtWinProbability(r) > 5)
-      .sort((a, b) => (districtWinProbability(b) || 0) - (districtWinProbability(a) || 0))
-      .slice(0, 2);
+      .filter((r) => !districtIsOthers(r) && districtWinProbability(r) > 10)
+      .sort((a, b) => (districtWinProbability(b) || 0) - (districtWinProbability(a) || 0));
   }
 
   function districtNeedsStripes(label) {
@@ -249,21 +248,41 @@
   }
 
   /**
-   * Diagonal two-party hatch. Stripe widths follow win-probability share
-   * (favorite vs runner-up), quantized so we do not explode pattern count.
+   * Diagonal multi-party hatch. Stripe widths follow each party's share of
+   * win probabilities among parties above 10% (quantized for reuse).
    */
-  function ensureDistrictStripePattern(map, colorA, colorB, shareA) {
+  function ensureDistrictStripePattern(map, segments) {
     const defs = districtPatternSvg(map);
-    if (!defs) return null;
-    const share = Math.max(0.18, Math.min(0.82, Number(shareA) || 0.5));
-    const q = Math.round(share * 20);
-    const safe = (c) => String(c || 'x').replace(/[^a-zA-Z0-9]/g, '').slice(0, 10) || 'x';
-    const id = `dstripe-${safe(colorA)}-${safe(colorB)}-${q}`;
+    if (!defs || !segments || segments.length < 2) return null;
+    const safe = (c) => String(c || 'x').replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) || 'x';
+    const total = segments.reduce((s, seg) => s + Math.max(0, Number(seg.share) || 0), 0);
+    if (total <= 0) return null;
+
+    // Quantize shares to 20ths so identical races share one pattern.
+    const parts = segments.map((seg) => {
+      const raw = Math.max(0, Number(seg.share) || 0) / total;
+      return {
+        color: seg.color || '#999',
+        q: Math.max(1, Math.round(raw * 20))
+      };
+    });
+    let qSum = parts.reduce((s, p) => s + p.q, 0);
+    while (qSum > 20) {
+      const i = parts.reduce((best, p, idx, arr) => (p.q > arr[best].q ? idx : best), 0);
+      if (parts[i].q <= 1) break;
+      parts[i].q -= 1;
+      qSum -= 1;
+    }
+    while (qSum < 20) {
+      const i = parts.reduce((best, p, idx, arr) => (p.q >= arr[best].q ? idx : best), 0);
+      parts[i].q += 1;
+      qSum += 1;
+    }
+
+    const id = `dstripe-${parts.map((p) => `${safe(p.color)}${p.q}`).join('-')}`;
     if (defs.querySelector('#' + id)) return id;
 
-    const period = 14;
-    const wA = Math.max(2, Math.round((period * q) / 20));
-    const wB = Math.max(2, period - wA);
+    const period = Math.max(16, parts.length * 6);
     const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
     pattern.setAttribute('id', id);
     pattern.setAttribute('patternUnits', 'userSpaceOnUse');
@@ -271,21 +290,20 @@
     pattern.setAttribute('height', String(period));
     pattern.setAttribute('patternTransform', 'rotate(35)');
 
-    const a = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    a.setAttribute('x', '0');
-    a.setAttribute('y', '0');
-    a.setAttribute('width', String(wA));
-    a.setAttribute('height', String(period));
-    a.setAttribute('fill', colorA || '#999');
-    pattern.appendChild(a);
-
-    const b = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    b.setAttribute('x', String(wA));
-    b.setAttribute('y', '0');
-    b.setAttribute('width', String(wB));
-    b.setAttribute('height', String(period));
-    b.setAttribute('fill', colorB || '#ccc');
-    pattern.appendChild(b);
+    let x = 0;
+    parts.forEach((p, idx) => {
+      const w = idx === parts.length - 1
+        ? period - x
+        : Math.max(2, Math.round((period * p.q) / 20));
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', String(x));
+      rect.setAttribute('y', '0');
+      rect.setAttribute('width', String(Math.max(1, w)));
+      rect.setAttribute('height', String(period));
+      rect.setAttribute('fill', p.color);
+      pattern.appendChild(rect);
+      x += w;
+    });
 
     defs.appendChild(pattern);
     return id;
@@ -305,15 +323,13 @@
     const label = districtWinLikelihoodLabel(districtWinProbability(win), runnerUp);
     if (!districtNeedsStripes(label)) return base;
 
-    const pair = districtStripeCandidates(partyRows);
-    if (pair.length < 2) return base;
-    const p1 = districtWinProbability(pair[0]) || 0;
-    const p2 = districtWinProbability(pair[1]) || 0;
-    const sum = p1 + p2;
-    if (sum <= 0) return base;
-    const c1 = DISTRICT_PARTY_COLORS[pair[0].partei] || '#999';
-    const c2 = DISTRICT_PARTY_COLORS[pair[1].partei] || '#ccc';
-    const patternId = ensureDistrictStripePattern(map, c1, c2, p1 / sum);
+    const contenders = districtStripeCandidates(partyRows);
+    if (contenders.length < 2) return base;
+    const segments = contenders.map((row) => ({
+      color: DISTRICT_PARTY_COLORS[row.partei] || '#999',
+      share: districtWinProbability(row) || 0
+    }));
+    const patternId = ensureDistrictStripePattern(map, segments);
     if (!patternId) return base;
     return {
       color: '#3a3a3a',
@@ -1914,7 +1930,7 @@
             Offen / tendenziell
           </span>
           <span style="width:100%; text-align:center; color:#777; font-size:0.78rem; margin-top:0.15rem;">
-            Einfarbig = klarer Favorit (Intensität ≈ P). Streifen = offen/tendenziell (Breite ≈ Gewinnwahrscheinlichkeit).
+            Einfarbig = klarer Favorit (Intensität ≈ P). Streifen = offen/tendenziell (alle Parteien &gt;10 %, Breite ≈ P).
           </span>`;
       }
 
