@@ -309,6 +309,13 @@
     return id;
   }
 
+  /** Absolute url(#id) — Hugo <base href> breaks bare fragment refs. */
+  function districtPatternFill(patternId) {
+    if (!patternId) return null;
+    const page = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+    return `url("${page}#${patternId}")`;
+  }
+
   function districtFillStyle(win, opts) {
     const map = opts && opts.map;
     const partyRows = (opts && opts.partyRows) || null;
@@ -330,12 +337,13 @@
       share: districtWinProbability(row) || 0
     }));
     const patternId = ensureDistrictStripePattern(map, segments);
-    if (!patternId) return base;
+    const fill = districtPatternFill(patternId);
+    if (!fill) return base;
     return {
       color: '#3a3a3a',
       weight: 1.1,
       opacity: 0.7,
-      fillColor: `url(#${patternId})`,
+      fillColor: fill,
       fillOpacity: 0.72
     };
   }
@@ -1741,11 +1749,10 @@
         global.attachZweitstimmeWatermark(mapEl, { map: true });
       }
       const geoAttr = DISTRICT_GEO_ATTRIBUTION[code] || 'Wahlkreise';
-      // Voyager: town/village names + streets when zoomed in (light_all was too sparse).
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: `&copy; OpenStreetMap, &copy; CARTO · ${geoAttr}`,
-        subdomains: 'abcd',
-        maxZoom: 17
+      // OSM tiles (CARTO Voyager now watermarks "API key required" without a key).
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · ${geoAttr}`,
+        maxZoom: 19
       }).addTo(mapInstance);
 
       function styleForWkr(wkr) {
@@ -1754,6 +1761,16 @@
           map: mapInstance,
           partyRows: rowsByWkr[key] || null
         });
+      }
+
+      function applyLayerStyle(layer) {
+        if (!layer || !layer.feature) return;
+        const style = styleForWkr(layer.feature.properties.wkr);
+        layer.setStyle(style);
+        // Leaflet + <base href> can drop pattern fills; force the SVG attribute.
+        if (layer._path && style.fillColor && String(style.fillColor).indexOf('url(') === 0) {
+          layer._path.setAttribute('fill', style.fillColor);
+        }
       }
 
       function findLayerByWkr(wkrNum) {
@@ -1769,8 +1786,27 @@
       function resetDistrictStyles() {
         if (!mapLayer) return;
         mapLayer.eachLayer((layer) => {
-          try { mapLayer.resetStyle(layer); } catch (_) { /* ignore */ }
+          try { applyLayerStyle(layer); } catch (_) { /* ignore */ }
         });
+      }
+
+      function highlightLayer(layer) {
+        if (!layer) return;
+        applyLayerStyle(layer);
+        try {
+          const fill = layer.options && layer.options.fillColor;
+          layer.setStyle({
+            weight: 3,
+            color: '#111',
+            opacity: 1,
+            fillOpacity: 0.85,
+            fillColor: fill
+          });
+          if (layer._path && fill && String(fill).indexOf('url(') === 0) {
+            layer._path.setAttribute('fill', fill);
+          }
+          if (layer.bringToFront) layer.bringToFront();
+        } catch (_) { /* ignore */ }
       }
 
       function focusDistrict(wkrNum, opts) {
@@ -1779,15 +1815,7 @@
         const props = focused.feature.properties;
         resetDistrictStyles();
         renderDistrictDetail(wkrNum, items, props.wkr_name, l1Label, listLookup, meta);
-        try {
-          focused.setStyle({
-            weight: 3,
-            color: '#111',
-            opacity: 1,
-            fillOpacity: 0.85
-          });
-          if (focused.bringToFront) focused.bringToFront();
-        } catch (_) { /* ignore */ }
+        highlightLayer(focused);
 
         const pinLon = opts && Number(opts.lon);
         const pinLat = opts && Number(opts.lat);
@@ -1852,21 +1880,13 @@
             clearAddressMarker();
             resetDistrictStyles();
             renderDistrictDetail(wkr, items, name, l1Label, listLookup, meta);
-            try {
-              layer.setStyle({
-                weight: 3,
-                color: '#111',
-                opacity: 1,
-                fillOpacity: 0.85
-              });
-              if (layer.bringToFront) layer.bringToFront();
-            } catch (_) { /* ignore */ }
+            highlightLayer(layer);
           });
         }
       }).addTo(mapInstance);
-      // Patterns need the map container; re-apply once after addTo.
+      // Patterns need the map SVG + absolute url(); re-apply once after addTo.
       mapLayer.eachLayer((layer) => {
-        try { mapLayer.resetStyle(layer); } catch (_) { /* ignore */ }
+        try { applyLayerStyle(layer); } catch (_) { /* ignore */ }
       });
 
       bindDistrictSearch({
@@ -1925,12 +1945,8 @@
             ${p}
           </span>
         `).join('') + `
-          <span style="display:inline-flex;align-items:center;gap:0.35rem;">
-            <span style="width:18px;height:12px;border-radius:2px;background:repeating-linear-gradient(35deg,#46962b 0 7px,#BE3075 7px 14px);"></span>
-            Offen / tendenziell
-          </span>
           <span style="width:100%; text-align:center; color:#777; font-size:0.78rem; margin-top:0.15rem;">
-            Einfarbig = klarer Favorit (Intensität ≈ P). Streifen = offen/tendenziell (alle Parteien &gt;10 %, Breite ≈ P).
+            Einfarbig = klarer Favorit (Intensität ≈ P). Streifen = offen/tendenziell (Parteien &gt;10 %, Breite ≈ P).
           </span>`;
       }
 
