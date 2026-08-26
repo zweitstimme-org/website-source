@@ -348,12 +348,13 @@
     const patternId = ensureDistrictStripePattern(map, segments);
     const fill = districtPatternFill(patternId);
     if (!fill) return base;
+    // Same opacity scale as solid fills: stronger when the leader is clearer.
     return {
       color: '#3a3a3a',
       weight: 1.1,
-      opacity: 0.7,
+      opacity: 0.65,
       fillColor: fill,
-      fillOpacity: 0.72,
+      fillOpacity,
       patternId
     };
   }
