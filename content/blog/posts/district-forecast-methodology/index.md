@@ -116,10 +116,10 @@ Dieser Artikel erklärt das Modell hinter der Karte. Kurz gesagt: Wir nehmen die
 |---|---|---|
 | Frage | Wie fallen die **Zweitstimmen** landesweit aus? | Wer gewinnt das **Direktmandat** (Erststimme) im Wahlkreis? |
 | Einheit | Prozentanteile + Szenarien | Karte + Siegchancen je Wahlkreis |
-| Unsicherheit | 5/6-Intervall der Landesanteile | **Band** der Erststimmen (Spanne von niedrig bis hoch über die Simulationen) + P(Sieg) |
+| Unsicherheit | 5/6-Unsicherheitsintervall der Landesanteile | **95 %-Unsicherheitsintervall** der Erststimmen (+ P(Sieg)) |
 | Kandidierende | Spitzenkandidierende nur indirekt (über Umfragen) | Namen zur Orientierung; **ohne** Einfluss auf die Prognose |
 
-Klare Favoriten (Siegchance ab etwa zwei Dritteln, Zweite höchstens ein Drittel) färbt die Karte **einfarbig** in der Parteifarbe — die Intensität folgt der Siegchance. Offene und tendenziell knappe Wahlkreise bekommen **Streifen** in den Farben aller Parteien mit mehr als 10 % Siegchance; die Streifenbreite folgt ungefähr diesen Anteilen. Klick öffnet Details: Erststimmen-Band, Vergleich zur letzten Wahl und — soweit bekannt — den Namen der Direktkandidierenden.
+Klare Favoriten (Siegchance ab etwa zwei Dritteln, Zweite höchstens ein Drittel) färbt die Karte **einfarbig** in der Parteifarbe — die Intensität folgt der Siegchance. Offene und tendenziell knappe Wahlkreise bekommen **Streifen** in den Farben aller Parteien mit mehr als 10 % Siegchance; die Streifenbreite folgt ungefähr diesen Anteilen. Klick öffnet Details: 95 %-Unsicherheitsintervall der Erststimme, Vergleich zur letzten Wahl und — soweit bekannt — den Namen der Direktkandidierenden.
 
 ### Die Idee: proportionaler Swing + geschätzte Erststimme
 
@@ -198,7 +198,7 @@ Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen B
 
 - **Kartenfarbe** — einfarbig bei klarem Favoriten (P ≥ 66 %, Zweite ≤ 33 %); sonst Streifen für offen/tendenziell (alle Parteien &gt;10 %, Breite ≈ P).
 - **P(Sieg)** — Anteil der Simulationen, in denen diese Partei das Direktmandat holt. 70 % heißt: in sieben von zehn Zügen gewinnt sie — nicht „sicher“.
-- **Erststimmen-Band** — ungefährer 95 %-Bereich der simulierten Erststimmenanteile (Mittelwert ± 1,96·SD über die Simulationen), ohne separate Punktschätzung in der Liste. Breite Bänder bedeuten: kleine Änderungen am Landestrend können den Wahlkreis kippen.
+- **95 %-Unsicherheitsintervall (Erststimme)** — Mittelwert ± 1,96·SD über die Simulationen (Normalnäherung), analog zum 5/6-Intervall der Landesprognose. Ohne separate Punktschätzung in der Liste. Breite Intervalle bedeuten: kleine Änderungen am Landestrend können den Wahlkreis kippen.
 - **Vergleichswert der letzten Wahl** — Erststimmenanteil damals, als Orientierung.
 - **Namen** — Direktkandidierende, soweit wir sie aus Partei- oder Amtsquellen haben. In **Sachsen-Anhalt** liegt das amtliche Bewerberverzeichnis vor: fehlt eine Partei in einem Wahlkreis, tritt sie dort **nicht** an — wir setzen ihren Erststimmenanteil auf 0 und normalisieren die übrigen auf 100 %. In MV und Berlin heißt ein fehlender Name dagegen oft noch „noch nicht veröffentlicht“, nicht „niemand kandidiert“. Namen und Incumbency ändern die berechneten Anteile ansonsten **nicht** (keine weiteren Kandidierenden-Kovariaten).
 

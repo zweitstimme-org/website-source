@@ -478,9 +478,9 @@
     const color = DISTRICT_PARTY_COLORS[row.partei] || '#999';
     const label = `${Math.round(lo)}–${Math.round(hi)}%`;
     return `
-      <div style="position:relative;height:20px;background:#f0f0f0;border-radius:4px;width:100%;margin-top:0.35rem;">
+      <div style="position:relative;height:20px;background:#f0f0f0;border-radius:4px;width:100%;margin-top:0.35rem;" title="95%-Unsicherheitsintervall der Erststimme">
         <div style="position:absolute;left:${left}%;width:${barWidth}%;height:4px;top:50%;transform:translateY(-50%);background:${color};border-radius:2px;"></div>
-        <div style="position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:0.78rem;color:#333;background:#f0f0f0;padding-left:4px;z-index:1;">${label}</div>
+        <div style="position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:0.78rem;color:#333;background:#f0f0f0;padding-left:4px;z-index:1;">${label} <span style="color:#888;font-weight:400;">(95 %)</span></div>
       </div>`;
   }
 
