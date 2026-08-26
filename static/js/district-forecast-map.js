@@ -1966,7 +1966,7 @@
           </span>
         `).join('') + `
           <span style="width:100%; text-align:center; color:#777; font-size:0.78rem; margin-top:0.15rem;">
-            Einfarbig = klarer Favorit (Intensität ≈ P). Streifen = offen/tendenziell (Parteien &gt;10 %, Breite ≈ P).
+            Einfarbig = klarer Favorit (P ≥ 66 %, Zweite ≤ 33 %; Intensität ≈ P). Streifen = offen/tendenziell (Parteien &gt;10 %, Breite ≈ P).
           </span>`;
       }
 
