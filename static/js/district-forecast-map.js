@@ -213,12 +213,115 @@
     return winners;
   }
 
-  function districtFillStyle(win) {
+  function districtRowsByWkr(items) {
+    const byWkr = {};
+    (items || []).forEach((row) => {
+      if (!row || row.wkr == null) return;
+      const key = String(row.wkr);
+      if (!byWkr[key]) byWkr[key] = [];
+      byWkr[key].push(row);
+    });
+    return byWkr;
+  }
+
+  function districtStripeCandidates(rows) {
+    return (rows || [])
+      .filter((r) => !districtIsOthers(r) && districtWinProbability(r) > 5)
+      .sort((a, b) => (districtWinProbability(b) || 0) - (districtWinProbability(a) || 0))
+      .slice(0, 2);
+  }
+
+  function districtNeedsStripes(label) {
+    return label === 'Offen' || label === 'Völlig offen' || label === 'Tendenziell';
+  }
+
+  function districtPatternSvg(map) {
+    if (!map || !map.getPanes) return null;
+    const overlay = map.getPanes().overlayPane && map.getPanes().overlayPane.querySelector('svg');
+    if (!overlay) return null;
+    let defs = overlay.querySelector('defs.district-stripe-defs');
+    if (!defs) {
+      defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      defs.classList.add('district-stripe-defs');
+      overlay.insertBefore(defs, overlay.firstChild);
+    }
+    return defs;
+  }
+
+  /**
+   * Diagonal two-party hatch. Stripe widths follow win-probability share
+   * (favorite vs runner-up), quantized so we do not explode pattern count.
+   */
+  function ensureDistrictStripePattern(map, colorA, colorB, shareA) {
+    const defs = districtPatternSvg(map);
+    if (!defs) return null;
+    const share = Math.max(0.18, Math.min(0.82, Number(shareA) || 0.5));
+    const q = Math.round(share * 20);
+    const safe = (c) => String(c || 'x').replace(/[^a-zA-Z0-9]/g, '').slice(0, 10) || 'x';
+    const id = `dstripe-${safe(colorA)}-${safe(colorB)}-${q}`;
+    if (defs.querySelector('#' + id)) return id;
+
+    const period = 14;
+    const wA = Math.max(2, Math.round((period * q) / 20));
+    const wB = Math.max(2, period - wA);
+    const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+    pattern.setAttribute('id', id);
+    pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+    pattern.setAttribute('width', String(period));
+    pattern.setAttribute('height', String(period));
+    pattern.setAttribute('patternTransform', 'rotate(35)');
+
+    const a = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    a.setAttribute('x', '0');
+    a.setAttribute('y', '0');
+    a.setAttribute('width', String(wA));
+    a.setAttribute('height', String(period));
+    a.setAttribute('fill', colorA || '#999');
+    pattern.appendChild(a);
+
+    const b = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    b.setAttribute('x', String(wA));
+    b.setAttribute('y', '0');
+    b.setAttribute('width', String(wB));
+    b.setAttribute('height', String(period));
+    b.setAttribute('fill', colorB || '#ccc');
+    pattern.appendChild(b);
+
+    defs.appendChild(pattern);
+    return id;
+  }
+
+  function districtFillStyle(win, opts) {
+    const map = opts && opts.map;
+    const partyRows = (opts && opts.partyRows) || null;
     const color = win ? (DISTRICT_PARTY_COLORS[win.partei] || '#999') : '#ccc';
     const p = Math.max(0, Math.min(100, Number(win && win.probability) || 0)) / 100;
     // Light fill so basemap labels (towns, streets) stay readable underneath.
     const fillOpacity = 0.10 + 0.28 * p;
-    return { color: '#3a3a3a', weight: 1.1, opacity: 0.65, fillColor: color, fillOpacity };
+    const base = { color: '#3a3a3a', weight: 1.1, opacity: 0.65, fillColor: color, fillOpacity };
+
+    if (!partyRows || !map) return base;
+    const runnerUp = districtRunnerUpWinProbability(partyRows);
+    const label = districtWinLikelihoodLabel(districtWinProbability(win), runnerUp);
+    if (!districtNeedsStripes(label)) return base;
+
+    const pair = districtStripeCandidates(partyRows);
+    if (pair.length < 2) return base;
+    const p1 = districtWinProbability(pair[0]) || 0;
+    const p2 = districtWinProbability(pair[1]) || 0;
+    const sum = p1 + p2;
+    if (sum <= 0) return base;
+    const c1 = DISTRICT_PARTY_COLORS[pair[0].partei] || '#999';
+    const c2 = DISTRICT_PARTY_COLORS[pair[1].partei] || '#ccc';
+    const patternId = ensureDistrictStripePattern(map, c1, c2, p1 / sum);
+    if (!patternId) return base;
+    return {
+      color: '#3a3a3a',
+      weight: 1.1,
+      opacity: 0.7,
+      fillColor: `url(#${patternId})`,
+      fillOpacity: 0.72
+    };
   }
 
   function districtHasCandidateName(r) {
@@ -1600,6 +1703,7 @@
       const l1Label = meta.l1_label || 'l1';
       const listLookup = buildListLookup(candidateEntry, code);
       const winners = districtWinnerIndex(items);
+      const rowsByWkr = districtRowsByWkr(items);
       const L = await ensureLeaflet();
 
       section.style.display = 'block';
@@ -1627,6 +1731,14 @@
         subdomains: 'abcd',
         maxZoom: 17
       }).addTo(mapInstance);
+
+      function styleForWkr(wkr) {
+        const key = String(wkr);
+        return districtFillStyle(winners[key], {
+          map: mapInstance,
+          partyRows: rowsByWkr[key] || null
+        });
+      }
 
       function findLayerByWkr(wkrNum) {
         let found = null;
@@ -1656,7 +1768,7 @@
             weight: 3,
             color: '#111',
             opacity: 1,
-            fillOpacity: 0.75
+            fillOpacity: 0.85
           });
           if (focused.bringToFront) focused.bringToFront();
         } catch (_) { /* ignore */ }
@@ -1694,16 +1806,20 @@
 
       mapLayer = L.geoJSON(geo, {
         style(feature) {
-          const win = winners[String(feature.properties.wkr)];
-          return districtFillStyle(win);
+          return styleForWkr(feature.properties.wkr);
         },
         onEachFeature(feature, layer) {
           const wkr = feature.properties.wkr;
           const name = feature.properties.wkr_name;
           const win = winners[String(wkr)];
-          const tip = win
-            ? `WK ${wkr}: ${name}<br>${win.partei} ${formatWinProbabilityPct(win.probability)}`
-            : `WK ${wkr}: ${name}`;
+          const rows = rowsByWkr[String(wkr)] || [];
+          const runnerUp = districtRunnerUpWinProbability(rows);
+          const like = districtWinLikelihoodLabel(districtWinProbability(win), runnerUp);
+          let tip = `WK ${wkr}: ${name}`;
+          if (win) {
+            tip += `<br>${win.partei} ${formatWinProbabilityPct(win.probability)}`;
+            if (like) tip += ` · ${like}`;
+          }
           layer.bindTooltip(tip, { sticky: true });
           layer.on('click', () => {
             if (opts && opts.navigateToWkr) {
@@ -1725,13 +1841,17 @@
                 weight: 3,
                 color: '#111',
                 opacity: 1,
-                fillOpacity: 0.75
+                fillOpacity: 0.85
               });
               if (layer.bringToFront) layer.bringToFront();
             } catch (_) { /* ignore */ }
           });
         }
       }).addTo(mapInstance);
+      // Patterns need the map container; re-apply once after addTo.
+      mapLayer.eachLayer((layer) => {
+        try { mapLayer.resetStyle(layer); } catch (_) { /* ignore */ }
+      });
 
       bindDistrictSearch({
         code,
@@ -1789,8 +1909,12 @@
             ${p}
           </span>
         `).join('') + `
+          <span style="display:inline-flex;align-items:center;gap:0.35rem;">
+            <span style="width:18px;height:12px;border-radius:2px;background:repeating-linear-gradient(35deg,#46962b 0 7px,#BE3075 7px 14px);"></span>
+            Offen / tendenziell
+          </span>
           <span style="width:100%; text-align:center; color:#777; font-size:0.78rem; margin-top:0.15rem;">
-            Intensität = Gewinnwahrscheinlichkeit
+            Einfarbig = klarer Favorit (Intensität ≈ P). Streifen = offen/tendenziell (Breite ≈ Gewinnwahrscheinlichkeit).
           </span>`;
       }
 
