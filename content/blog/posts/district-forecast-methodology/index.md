@@ -207,7 +207,7 @@ Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen B
 - **Keine Effekte der Kandidierenden.** Incumbency, Listenplatz, Bekanntheit usw. stecken noch nicht in der Erst-Gleichung (im Bundestags-Modell schon).
 - **Kein eigenes Erststimmen-Umfragemodell.** Es gibt kaum flächendeckende Wahlkreisumfragen; Swing + Regression sind die Näherung.
 - **Keine amtliche Sitzzuteilung in den Koalitionsszenarien.** Die landesweite Mehrheitsrechnung der [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) bleibt eine Näherung über Zweitstimmenanteile. Zusätzlich zeigen wir unter der Wahlkreis-Karte eine **indikative Größenverteilung** des Landtags bzw. Abgeordnetenhauses (siehe unten).
-- **Grenzen und Umschlüsselung.** In Berlin: Trainingsübergang 2016→2023 auf 2023er Kreisen; Live-Anker **Zweit 2023→2026** laut AfS (`DL_BE_AGH2026_AGH2023`), Erst wo die lokale Nummer passt. In ST: 2016er Anteile auf 2021er Kreisen sind amtliche **Vergleichswerte in %** (Briefwahl-Näherung).
+- **Grenzen und Umschlüsselung.** Wahlkreiszuschnitte ändern sich. Für Berlin nutzen wir die amtliche Umschlüsselung der Zweitstimmen von 2023 auf die Gebiete von 2026; Erststimmen nur dort, wo die lokale Nummer noch passt. In Sachsen-Anhalt stammen die 2016er Vergleichswerte auf 2021er Kreisen aus amtlichen %-Angaben (mit Briefwahl-Näherung).
 
 ### Von Direktmandaten zur Parlamentsgröße {#parlamentsgroesse}
 
