@@ -2008,7 +2008,7 @@
           </span>
         `).join('') + `
           <span style="width:100%; text-align:center; color:#777; font-size:0.78rem; margin-top:0.15rem;">
-            Einfarbig = klarer Favorit (P ≥ 66 %, Zweite ≤ 33 %; Intensität ≈ P). Streifen = offen/tendenziell (Parteien &gt;10 %, Breite ≈ P).
+            Einfarbig ab P(Favorit) ≥ 66 %, wenn die Zweitplatzierte ≤ 33 % hat; je höher P, desto kräftiger die Farbe. Streifen bei offen/tendenziell (alle Parteien &gt;10 %, Breite ≈ P).
           </span>`;
       }
 
