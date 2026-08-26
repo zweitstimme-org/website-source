@@ -1970,19 +1970,78 @@
           </span>`;
       }
 
-      const tally = {};
-      Object.values(winners).forEach(w => {
-        tally[w.partei] = (tally[w.partei] || 0) + 1;
-      });
+      function percentileSorted(sortedArr, p) {
+        if (!sortedArr.length) return 0;
+        const idx = Math.min(
+          sortedArr.length - 1,
+          Math.max(0, Math.ceil((p / 100) * sortedArr.length) - 1)
+        );
+        return sortedArr[idx];
+      }
+
+      /** p10–p90 Direktmandate from district win probs (multinomial per WK). */
+      function simulateDirectRanges(districtItems, nsim) {
+        const byWkr = {};
+        (districtItems || []).forEach((r) => {
+          if (districtIsOthers(r)) return;
+          const p = districtWinProbability(r);
+          if (!Number.isFinite(p) || p <= 0 || !r.partei) return;
+          const key = String(r.wkr);
+          if (!byWkr[key]) byWkr[key] = [];
+          byWkr[key].push({ partei: r.partei, p });
+        });
+        const parties = [];
+        const seen = {};
+        Object.keys(byWkr).forEach((w) => {
+          byWkr[w].forEach((r) => {
+            if (!seen[r.partei]) {
+              seen[r.partei] = true;
+              parties.push(r.partei);
+            }
+          });
+        });
+        const sims = {};
+        parties.forEach((p) => { sims[p] = new Int16Array(nsim); });
+        const wkList = Object.keys(byWkr);
+        for (let i = 0; i < nsim; i++) {
+          for (let w = 0; w < wkList.length; w++) {
+            const rows = byWkr[wkList[w]];
+            let sum = 0;
+            for (let k = 0; k < rows.length; k++) sum += rows[k].p;
+            if (sum <= 0) continue;
+            let u = Math.random() * sum;
+            for (let k = 0; k < rows.length; k++) {
+              u -= rows[k].p;
+              if (u <= 0) {
+                sims[rows[k].partei][i] += 1;
+                break;
+              }
+            }
+          }
+        }
+        return parties.map((p) => {
+          const arr = Array.from(sims[p]).sort((a, b) => a - b);
+          const p10 = percentileSorted(arr, 10);
+          const p90 = percentileSorted(arr, 90);
+          const median = percentileSorted(arr, 50);
+          return { partei: p, p10, p90, median };
+        })
+          .filter((r) => r.p90 > 0)
+          .sort((a, b) => b.median - a.median || b.p90 - a.p90 || String(a.partei).localeCompare(String(b.partei), 'de'));
+      }
+
       const hint = document.getElementById('vorhersage-districts-hint');
       if (hint) {
         hint.style.display = 'block';
-        const tallyHtml = Object.entries(tally)
-          .sort((a, b) => b[1] - a[1])
-          .map(([p, n]) => `<strong>${p}</strong> ${n}`)
-          .join(' · ');
+        const ranges = simulateDirectRanges(items, 2500);
+        const tallyHtml = ranges.map((r) => {
+          const span = r.p10 === r.p90
+            ? String(r.p10)
+            : `${r.p10}–${r.p90}`;
+          return `<strong>${escapeHtml(r.partei)}</strong> ${escapeHtml(span)}`;
+        }).join(' · ');
         hint.innerHTML = `
-          Voraus. Direktmandate:
+          Voraus. Direktmandate <span style="color:#777;font-weight:400;">(p10–p90)</span>:
           ${tallyHtml}
           <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
         `;
