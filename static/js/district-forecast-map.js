@@ -1937,9 +1937,29 @@
         else fitStateOverview();
       }, 250);
 
-      const used = [...new Set(Object.values(winners).map(w => w.partei))];
+      const used = new Set();
+      Object.keys(rowsByWkr).forEach((wkr) => {
+        const rows = rowsByWkr[wkr] || [];
+        const win = winners[wkr];
+        if (!win) return;
+        const runnerUp = districtRunnerUpWinProbability(rows);
+        const label = districtWinLikelihoodLabel(districtWinProbability(win), runnerUp);
+        if (districtNeedsStripes(label)) {
+          districtStripeCandidates(rows).forEach((r) => {
+            if (r && r.partei) used.add(r.partei);
+          });
+        } else if (win.partei) {
+          used.add(win.partei);
+        }
+      });
+      const partyOrder = ['CDU', 'CSU', 'CDU/CSU', 'AfD', 'SPD', 'GRÜNE', 'LINKE', 'BSW', 'FDP', 'Sonstige'];
+      const usedList = [...used].sort((a, b) => {
+        const ia = partyOrder.indexOf(a);
+        const ib = partyOrder.indexOf(b);
+        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || String(a).localeCompare(String(b), 'de');
+      });
       if (legendEl) {
-        legendEl.innerHTML = used.map(p => `
+        legendEl.innerHTML = usedList.map(p => `
           <span style="display:inline-flex;align-items:center;gap:0.35rem;">
             <span style="width:12px;height:12px;border-radius:2px;background:${DISTRICT_PARTY_COLORS[p] || '#999'};"></span>
             ${p}
