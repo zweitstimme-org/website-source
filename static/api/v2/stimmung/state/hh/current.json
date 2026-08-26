@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-24T06:10:57",
+  "generated_at": "2026-08-26T06:09:22",
   "election": {
     "id": "hh_2030-01-20",
     "name": "Landtagswahl Hamburg",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-24",
+    "as_of": "2026-08-26",
     "parties": {
       "CDU/CSU": 17,
       "AfD": 11.5,
@@ -45,7 +45,7 @@
       "SPD": 33.2,
       "GRÜNE": 20.1,
       "LINKE": 15.8,
-      "BSW": 7.8,
+      "BSW": 7.9,
       "FDP": 5.5,
       "FW": null,
       "SSW": null,
@@ -78,5 +78,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-08-24"
+  "as_of": "2026-08-26"
 }

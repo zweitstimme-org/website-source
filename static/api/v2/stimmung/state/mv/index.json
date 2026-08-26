@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-24T06:11:01",
+  "generated_at": "2026-08-26T06:09:24",
   "description": "Aktuelle Stimmung (Kalman). The full series covers ~10 years. Prefer current, day/YYYY-MM-DD, month/YYYY-MM, or year/YYYY.",
   "path": "/api/v2/stimmung/state/mv.json",
   "current": "/api/v2/stimmung/state/mv/current.json",
@@ -8,8 +8,8 @@
   "month": "/api/v2/stimmung/state/mv/month/{YYYY-MM}.json",
   "year": "/api/v2/stimmung/state/mv/year/{YYYY}.json",
   "from": "2016-09-01",
-  "to": "2026-08-24",
-  "as_of": "2026-08-24",
+  "to": "2026-08-26",
+  "as_of": "2026-08-26",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
