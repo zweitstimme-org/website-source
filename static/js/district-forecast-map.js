@@ -2082,8 +2082,9 @@
           return `<strong>${escapeHtml(r.partei)}</strong> ${escapeHtml(span)}`;
         }).join(' · ');
         hint.innerHTML = `
-          Voraus. Direktmandate <span style="color:#777;font-weight:400;">(p10–p90)</span>:
+          Anzahl Direktmandate:
           ${tallyHtml}
+          <span style="color:#777;font-weight:400;"> · p10–p90</span>
           <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
         `;
       }
