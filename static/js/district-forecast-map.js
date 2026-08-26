@@ -323,8 +323,8 @@
     const partyRows = (opts && opts.partyRows) || null;
     const color = win ? (DISTRICT_PARTY_COLORS[win.partei] || '#999') : '#ccc';
     const p = Math.max(0, Math.min(100, Number(win && win.probability) || 0)) / 100;
-    // Light fill so basemap labels (towns, streets) stay readable underneath.
-    const fillOpacity = 0.10 + 0.28 * p;
+    // Moderate fill: basemap labels stay readable, colors still readable at a glance.
+    const fillOpacity = 0.18 + 0.38 * p;
     const base = {
       color: '#3a3a3a',
       weight: 1.1,
