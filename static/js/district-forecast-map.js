@@ -280,40 +280,42 @@
     }
 
     const id = `dstripe-${parts.map((p) => `${safe(p.color)}${p.q}`).join('-')}`;
-    if (defs.querySelector('#' + id)) return id;
+    if (!defs.querySelector(`[id="${id}"]`)) {
+      const period = Math.max(16, parts.length * 6);
+      const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+      pattern.setAttribute('id', id);
+      pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+      pattern.setAttribute('width', String(period));
+      pattern.setAttribute('height', String(period));
+      pattern.setAttribute('patternTransform', 'rotate(35)');
 
-    const period = Math.max(16, parts.length * 6);
-    const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
-    pattern.setAttribute('id', id);
-    pattern.setAttribute('patternUnits', 'userSpaceOnUse');
-    pattern.setAttribute('width', String(period));
-    pattern.setAttribute('height', String(period));
-    pattern.setAttribute('patternTransform', 'rotate(35)');
-
-    let x = 0;
-    parts.forEach((p, idx) => {
-      const w = idx === parts.length - 1
-        ? period - x
-        : Math.max(2, Math.round((period * p.q) / 20));
-      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      rect.setAttribute('x', String(x));
-      rect.setAttribute('y', '0');
-      rect.setAttribute('width', String(Math.max(1, w)));
-      rect.setAttribute('height', String(period));
-      rect.setAttribute('fill', p.color);
-      pattern.appendChild(rect);
-      x += w;
-    });
-
-    defs.appendChild(pattern);
+      let x = 0;
+      parts.forEach((p, idx) => {
+        const w = idx === parts.length - 1
+          ? period - x
+          : Math.max(2, Math.round((period * p.q) / 20));
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', String(x));
+        rect.setAttribute('y', '0');
+        rect.setAttribute('width', String(Math.max(1, w)));
+        rect.setAttribute('height', String(period));
+        rect.setAttribute('fill', p.color);
+        pattern.appendChild(rect);
+        x += w;
+      });
+      defs.appendChild(pattern);
+    }
     return id;
   }
 
-  /** Absolute url(#id) — Hugo <base href> breaks bare fragment refs. */
+  /**
+   * Resolve pattern paint against Hugo <base href>. Prefer a same-document
+   * fragment rooted at location.href (not document.baseURI).
+   */
   function districtPatternFill(patternId) {
     if (!patternId) return null;
-    const page = `${window.location.origin}${window.location.pathname}${window.location.search}`;
-    return `url("${page}#${patternId}")`;
+    const page = String(window.location.href || '').split('#')[0];
+    return `url(${page}#${patternId})`;
   }
 
   function districtFillStyle(win, opts) {
@@ -323,7 +325,14 @@
     const p = Math.max(0, Math.min(100, Number(win && win.probability) || 0)) / 100;
     // Light fill so basemap labels (towns, streets) stay readable underneath.
     const fillOpacity = 0.10 + 0.28 * p;
-    const base = { color: '#3a3a3a', weight: 1.1, opacity: 0.65, fillColor: color, fillOpacity };
+    const base = {
+      color: '#3a3a3a',
+      weight: 1.1,
+      opacity: 0.65,
+      fillColor: color,
+      fillOpacity,
+      patternId: null
+    };
 
     if (!partyRows || !map) return base;
     const runnerUp = districtRunnerUpWinProbability(partyRows);
@@ -344,7 +353,8 @@
       weight: 1.1,
       opacity: 0.7,
       fillColor: fill,
-      fillOpacity: 0.72
+      fillOpacity: 0.72,
+      patternId
     };
   }
 
@@ -1763,13 +1773,30 @@
         });
       }
 
+      function paintPathFill(layer, fill) {
+        const path = layer && layer._path;
+        if (!path || !fill) return;
+        path.setAttribute('fill', fill);
+        // CSS fill beats a stale presentation attribute after Leaflet updates.
+        path.style.fill = fill;
+      }
+
       function applyLayerStyle(layer) {
         if (!layer || !layer.feature) return;
-        const style = styleForWkr(layer.feature.properties.wkr);
-        layer.setStyle(style);
-        // Leaflet + <base href> can drop pattern fills; force the SVG attribute.
-        if (layer._path && style.fillColor && String(style.fillColor).indexOf('url(') === 0) {
-          layer._path.setAttribute('fill', style.fillColor);
+        const wkr = layer.feature.properties.wkr;
+        const style = styleForWkr(wkr);
+        const solid = DISTRICT_PARTY_COLORS[(winners[String(wkr)] || {}).partei] || '#999';
+        layer.setStyle({
+          color: style.color,
+          weight: style.weight,
+          opacity: style.opacity,
+          fillColor: style.patternId ? solid : style.fillColor,
+          fillOpacity: style.fillOpacity
+        });
+        if (style.patternId) {
+          paintPathFill(layer, districtPatternFill(style.patternId));
+        } else if (layer._path) {
+          layer._path.style.fill = '';
         }
       }
 
@@ -1783,39 +1810,46 @@
         return found;
       }
 
+      let selectedWkr = null;
+
       function resetDistrictStyles() {
         if (!mapLayer) return;
         mapLayer.eachLayer((layer) => {
           try { applyLayerStyle(layer); } catch (_) { /* ignore */ }
         });
-      }
-
-      function highlightLayer(layer) {
-        if (!layer) return;
-        applyLayerStyle(layer);
+        if (selectedWkr == null) return;
+        const focused = findLayerByWkr(selectedWkr);
+        if (!focused) return;
         try {
-          const fill = layer.options && layer.options.fillColor;
-          layer.setStyle({
+          const style = styleForWkr(selectedWkr);
+          const solid = DISTRICT_PARTY_COLORS[(winners[String(selectedWkr)] || {}).partei] || '#999';
+          focused.setStyle({
             weight: 3,
             color: '#111',
             opacity: 1,
             fillOpacity: 0.85,
-            fillColor: fill
+            fillColor: style.patternId ? solid : style.fillColor
           });
-          if (layer._path && fill && String(fill).indexOf('url(') === 0) {
-            layer._path.setAttribute('fill', fill);
+          if (style.patternId) {
+            paintPathFill(focused, districtPatternFill(style.patternId));
           }
-          if (layer.bringToFront) layer.bringToFront();
+          if (focused.bringToFront) focused.bringToFront();
         } catch (_) { /* ignore */ }
+      }
+
+      function highlightLayer(layer) {
+        if (!layer || !layer.feature) return;
+        selectedWkr = layer.feature.properties.wkr;
+        resetDistrictStyles();
       }
 
       function focusDistrict(wkrNum, opts) {
         const focused = findLayerByWkr(wkrNum);
         if (!focused || !mapInstance) return false;
         const props = focused.feature.properties;
-        resetDistrictStyles();
+        selectedWkr = wkrNum;
         renderDistrictDetail(wkrNum, items, props.wkr_name, l1Label, listLookup, meta);
-        highlightLayer(focused);
+        resetDistrictStyles();
 
         const pinLon = opts && Number(opts.lon);
         const pinLat = opts && Number(opts.lat);
@@ -1878,16 +1912,21 @@
               return;
             }
             clearAddressMarker();
-            resetDistrictStyles();
+            selectedWkr = wkr;
             renderDistrictDetail(wkr, items, name, l1Label, listLookup, meta);
-            highlightLayer(layer);
+            resetDistrictStyles();
           });
         }
       }).addTo(mapInstance);
-      // Patterns need the map SVG + absolute url(); re-apply once after addTo.
-      mapLayer.eachLayer((layer) => {
-        try { applyLayerStyle(layer); } catch (_) { /* ignore */ }
-      });
+
+      function restyleAllDistricts() {
+        resetDistrictStyles();
+      }
+      // Patterns live in Leaflet's overlay SVG; re-paint after add/fit/zoom.
+      restyleAllDistricts();
+      mapInstance.on('viewreset zoomend moveend', restyleAllDistricts);
+      setTimeout(restyleAllDistricts, 0);
+      setTimeout(restyleAllDistricts, 300);
 
       bindDistrictSearch({
         code,
@@ -1929,12 +1968,14 @@
         mapInstance.invalidateSize();
         if (hasFocus) focusDistrict(focusWkr);
         else fitStateOverview();
+        restyleAllDistricts();
       });
       setTimeout(() => {
         if (!mapInstance) return;
         mapInstance.invalidateSize();
         if (hasFocus) focusDistrict(focusWkr);
         else fitStateOverview();
+        restyleAllDistricts();
       }, 250);
 
       const used = new Set();
