@@ -20,8 +20,14 @@
   };
 
   const DATA = {
-    // MAE from Stoetzer et al. (2025), Electoral Studies: combined
-    // polls+fundamentals log-ratio model at 2-day / 2-week / 2-month leads.
+    pollBias: [
+      { party: 'SPD', bias: 0.84 },
+      { party: 'GRÜNE', bias: 0.41 },
+      { party: 'CDU/CSU', bias: 0.21 },
+      { party: 'LINKE', bias: 0.02 },
+      { party: 'FDP', bias: -0.12 },
+      { party: 'AfD', bias: -0.59 }
+    ],
     modelMae: [
       { lead: '≈2 Tage', short: 'Tage', mae: 1.46 },
       { lead: '≈2 Wochen', short: 'Wochen', mae: 2.16 },
@@ -75,6 +81,38 @@
       minimumFractionDigits: d,
       maximumFractionDigits: d
     });
+  }
+
+  function renderBiasChart(root) {
+    const maxAbs = Math.max(...DATA.pollBias.map((d) => Math.abs(d.bias)), 1);
+    const rows = DATA.pollBias
+      .map((d) => {
+        const color = partyColor(d.party);
+        const pct = (Math.abs(d.bias) / maxAbs) * 50;
+        const side = d.bias >= 0 ? 'over' : 'under';
+        const label = (d.bias > 0 ? '+' : '') + fmtPct(d.bias, 2);
+        return `
+          <div class="meth-bias-row" data-side="${side}">
+            <div class="meth-bias-party">${d.party}</div>
+            <div class="meth-bias-track">
+              <div class="meth-bias-zero"></div>
+              <div class="meth-bias-bar meth-bias-bar--${side}"
+                   style="width:${pct}%; background:${color};"></div>
+            </div>
+            <div class="meth-bias-val" style="color:${d.party === 'FDP' ? '#8a7a00' : color}">${label}</div>
+          </div>`;
+      })
+      .join('');
+
+    root.innerHTML = `
+      <div class="meth-bias">
+        <div class="meth-bias-axis">
+          <span>unterschätzt ←</span>
+          <span>Umfrage − Ergebnis (Pp.)</span>
+          <span>→ überschätzt</span>
+        </div>
+        ${rows}
+      </div>`;
   }
 
   function renderMaeChart(root) {
@@ -296,12 +334,14 @@
   }
 
   function init() {
+    const bias = document.getElementById('meth-viz-bias');
     const mae = document.getElementById('meth-viz-mae');
     const anatomy = document.getElementById('meth-viz-anatomy');
     const forecast = document.getElementById('meth-viz-forecast');
     const scenarios = document.getElementById('meth-viz-scenarios');
     const pipeline = document.getElementById('meth-viz-pipeline');
 
+    if (bias) renderBiasChart(bias);
     if (mae) renderMaeChart(mae);
     if (anatomy) renderAnatomy(anatomy);
     if (scenarios) renderScenarios(scenarios);
