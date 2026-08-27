@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-27T09:01:38Z",
+  "generated_at": "2026-08-27T09:48:26Z",
   "description": "Archived federal forecasts after election day. District forecasts are linked as `districts` when archived. Only elections archived by the pipeline from now on (no backfill).",
   "forecasts": []
 }

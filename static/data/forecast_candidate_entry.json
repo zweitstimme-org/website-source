@@ -4,7 +4,7 @@
     "nsim": 4000,
     "statewide_draws": "posterior",
     "seed": 20260730,
-    "last_update": "2026-08-22T16:47:53Z",
+    "last_update": "2026-08-27T09:47:17Z",
     "caveat_de": "",
     "gender_note_de": "Geschlechteranteile geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen). Keine amtliche Angabe."
   },
@@ -19980,7 +19980,7 @@
       "chamber": "Landtag",
       "nsim": 4000,
       "statewide_draws": "posterior",
-      "statewide_last_poll_date": "2026-08-12",
+      "statewide_last_poll_date": "2026-08-26",
       "list_note_de": "Landesliste: nach Listenplatz, Direktmandatierte werden auf der Liste übersprungen. Keine Grundmandatsklausel — unter 5 % gibt es keine Listensitze, aber gewonnene Direktmandate bleiben.",
       "sources_official": true,
       "parties": [
@@ -20025,11 +20025,11 @@
               "n_m": 27,
               "n_x": 0,
               "n_u": 0,
-              "pct_f": 46.2,
-              "pct_m": 53.8,
+              "pct_f": 46.5,
+              "pct_m": 53.5,
               "weighted": true,
               "weight_key": "p_list",
-              "expected": 5.7
+              "expected": 6.6
             },
             "district_weighted": {
               "n": 41,
@@ -20057,15 +20057,16 @@
               "list_pos": 1,
               "wkr_direct": 16,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 82,
+              "p_entry": 90,
               "p_direct": 0,
-              "p_list": 82,
+              "p_list": 90,
               "birth_year": 1963,
               "birth_place": "Dinslaken",
               "residence": "Wernigerode",
               "profession": "Minister für Wissenschaft, Energie, Klimaschutz und Umwelt des Landes Sachsen-Anhalt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/armin-willingmann"
             },
             {
               "person_id": "st:spd:person:katja paehle",
@@ -20077,9 +20078,9 @@
               "list_pos": 2,
               "wkr_direct": 36,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 82,
+              "p_entry": 90,
               "p_direct": 0,
-              "p_list": 82,
+              "p_list": 90,
               "birth_year": 1977,
               "birth_place": "Wippra",
               "residence": "Halle (Saale)",
@@ -20090,7 +20091,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/katja-paehle",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/katja-paehle"
             },
             {
               "person_id": "st:spd:person:andreas schmidt",
@@ -20102,9 +20104,9 @@
               "list_pos": 3,
               "wkr_direct": 33,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 82,
+              "p_entry": 90,
               "p_direct": 0,
-              "p_list": 82,
+              "p_list": 90,
               "birth_year": 1970,
               "birth_place": "Merseburg",
               "residence": "Halle (Saale)",
@@ -20115,7 +20117,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/andreas-schmidt-0",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-schmidt-0"
             },
             {
               "person_id": "st:spd:person:juliane kleemann",
@@ -20127,9 +20130,9 @@
               "list_pos": 4,
               "wkr_direct": 4,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 82,
+              "p_entry": 90,
               "p_direct": 0,
-              "p_list": 82,
+              "p_list": 90,
               "birth_year": 1970,
               "birth_place": "Sangerhausen",
               "residence": "Hansestadt Osterburg (Altmark)",
@@ -20140,7 +20143,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/juliane-kleemann",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/juliane-kleemann"
             },
             {
               "person_id": "st:spd:person:falko grube",
@@ -20152,9 +20156,9 @@
               "list_pos": 5,
               "wkr_direct": 11,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 82,
+              "p_entry": 90,
               "p_direct": 0,
-              "p_list": 82,
+              "p_list": 90,
               "birth_year": 1977,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
@@ -20165,7 +20169,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/falko-grube",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/falko-grube"
             },
             {
               "person_id": "st:spd:person:katrin gensecke",
@@ -20177,9 +20182,9 @@
               "list_pos": 6,
               "wkr_direct": 8,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 66,
+              "p_entry": 78,
               "p_direct": 0,
-              "p_list": 66,
+              "p_list": 78,
               "birth_year": 1972,
               "birth_place": "Erfurt",
               "residence": "Niedere Börde, OT Gersdorf",
@@ -20190,7 +20195,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/katrin-gensecke",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/katrin-gensecke"
             },
             {
               "person_id": "st:spd:person:florian fahrtmann",
@@ -20202,15 +20208,16 @@
               "list_pos": 7,
               "wkr_direct": 15,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 44,
+              "p_entry": 57,
               "p_direct": 0,
-              "p_list": 44,
+              "p_list": 57,
               "birth_year": 1983,
               "birth_place": "Wernigerode",
               "residence": "Ilsenburg (Harz)",
               "profession": "Geschäftsführer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/florian-fahrtmann"
             },
             {
               "person_id": "st:spd:person:katharina kohl",
@@ -20222,15 +20229,16 @@
               "list_pos": 8,
               "wkr_direct": 28,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 26,
+              "p_entry": 36,
               "p_direct": 0,
-              "p_list": 26,
+              "p_list": 36,
               "birth_year": 1992,
               "birth_place": "Heilbad Heiligenstadt",
               "residence": "Halle (Saale)",
               "profession": "Lehrerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/katharina-kohl"
             },
             {
               "person_id": "st:spd:person:rene woelfer",
@@ -20242,15 +20250,16 @@
               "list_pos": 9,
               "wkr_direct": 20,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 14,
+              "p_entry": 21,
               "p_direct": 0,
-              "p_list": 14,
+              "p_list": 21,
               "birth_year": 1982,
               "birth_place": "Magdeburg",
               "residence": "Schönebeck (Elbe)",
               "profession": "Leitender Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/rene-woelfer"
             },
             {
               "person_id": "st:spd:person:elrid pasbrig",
@@ -20262,9 +20271,9 @@
               "list_pos": 10,
               "wkr_direct": 6,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 7,
+              "p_entry": 11,
               "p_direct": 0,
-              "p_list": 7,
+              "p_list": 11,
               "birth_year": 1974,
               "birth_place": "Zerbst",
               "residence": "Biederitz, OT Gübs",
@@ -20275,7 +20284,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/elrid-pasbrig",
               "incumbent_mandate": "moved_up",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/elrid-pasbrig"
             },
             {
               "person_id": "st:spd:person:jens mende",
@@ -20287,15 +20297,16 @@
               "list_pos": 11,
               "wkr_direct": 39,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 3,
+              "p_entry": 5,
               "p_direct": 0,
-              "p_list": 3,
+              "p_list": 5,
               "birth_year": 1987,
               "birth_place": "Hohenmölsen",
               "residence": "Lützen",
               "profession": "Diplom-Ingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/jens-mende"
             },
             {
               "person_id": "st:spd:person:tina fuehrer",
@@ -20315,7 +20326,8 @@
               "residence": "Oranienbaum-Wörlitz",
               "profession": "Teamleitung im Einzelhandel",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/tina-fuehrer"
             },
             {
               "person_id": "st:spd:person:aick pietschmann",
@@ -20335,7 +20347,8 @@
               "residence": "Müchel (Geiseltal)",
               "profession": "Chemikant",
               "gender": "m",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/aick-pietschmann"
             },
             {
               "person_id": "st:spd:person:skady luisa herkenrath",
@@ -20347,15 +20360,16 @@
               "list_pos": 14,
               "wkr_direct": 2,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 0,
+              "p_entry": 1,
               "p_direct": 0,
-              "p_list": 0,
+              "p_list": 1,
               "birth_year": 1998,
               "birth_place": "Wernigerode",
               "residence": "Oberharz am Brocken",
               "profession": "Studentin/Studentische Mitarbeiterin",
               "gender": "f",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/skady-herkenrath"
             },
             {
               "person_id": "st:spd:person:daniel frank kutsche",
@@ -20375,7 +20389,8 @@
               "residence": "Dessau-Roßlau",
               "profession": "Fachtrainer für bürgerliches Engagement",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-kutsche"
             },
             {
               "person_id": "st:spd:person:larissa wallner",
@@ -20395,7 +20410,8 @@
               "residence": "Dessau-Roßlau",
               "profession": "Sozialarbeiterin im Gewaltschutz",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/larissa-wallner"
             },
             {
               "person_id": "st:spd:person:yves metzing",
@@ -20415,7 +20431,8 @@
               "residence": "Aschersleben",
               "profession": "Betriebswirt (BA), Geschäftsführer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/yves-metzing"
             },
             {
               "person_id": "st:spd:person:julia brandt",
@@ -20435,7 +20452,8 @@
               "residence": "Magdeburg",
               "profession": "Master of Laws (LL.M.) Nachhaltigkeitsrecht",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/julia-brandt"
             },
             {
               "person_id": "st:spd:person:tobias boettcher",
@@ -20455,7 +20473,8 @@
               "residence": "Zerbst/Anhalt",
               "profession": "kaufmännischer Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/tobias-boettcher"
             },
             {
               "person_id": "st:spd:person:nadine hillecke",
@@ -20475,7 +20494,8 @@
               "residence": "Quedlinburg",
               "profession": "leitende Ergotherapeutin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/nadine-hillecke"
             },
             {
               "person_id": "st:spd:person:timm haussen",
@@ -20495,7 +20515,8 @@
               "residence": "Tangermünde",
               "profession": "IT-Projektleiter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/timm-haussen"
             },
             {
               "person_id": "st:spd:person:caroline mueller",
@@ -20515,7 +20536,8 @@
               "residence": "Könnern",
               "profession": "Sozialpädagogin B.A.",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/caroline-mueller"
             },
             {
               "person_id": "st:spd:person:julius neumann",
@@ -20535,7 +20557,8 @@
               "residence": "Halle (Saale)",
               "profession": "Wirtschaftsingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/julius-neumann"
             },
             {
               "person_id": "st:spd:person:ines seeger",
@@ -20555,7 +20578,8 @@
               "residence": "Schkopau",
               "profession": "Heilpädagogin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ines-seeger"
             },
             {
               "person_id": "st:spd:person:philipp morgner",
@@ -20575,7 +20599,8 @@
               "residence": "Magdeburg",
               "profession": "Schuldirektor",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/philipp-morgner"
             },
             {
               "person_id": "st:spd:person:christine fuhrmann",
@@ -20595,7 +20620,8 @@
               "residence": "Halle (Saale)",
               "profession": "Landschaftsarchitektin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christine-fuhrmann"
             },
             {
               "person_id": "st:spd:person:ralph bluemel",
@@ -20615,7 +20641,8 @@
               "residence": "Magdeburg",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ralph-bluemel"
             },
             {
               "person_id": "st:spd:person:felix giesa",
@@ -20635,7 +20662,8 @@
               "residence": "Osternienburger Land",
               "profession": "Ingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/felix-giesa"
             },
             {
               "person_id": "st:spd:person:raphael coccejus",
@@ -20655,7 +20683,8 @@
               "residence": "Allstedt",
               "profession": "Bankkaufmann",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/raphael-coccejus"
             },
             {
               "person_id": "st:spd:person:friedrich ruschke",
@@ -20675,7 +20704,8 @@
               "residence": "Sangerhausen, OT Riestedt",
               "profession": "Student",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/friedrich-ruschke"
             },
             {
               "person_id": "st:spd:person:seluan al-chakmakchi",
@@ -20695,7 +20725,8 @@
               "residence": "Barby",
               "profession": "Angestellter im öffentlichen Dienst",
               "gender": "m",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/seluan-al-chakmakchi"
             },
             {
               "person_id": "st:spd:person:alexander riedle",
@@ -20715,7 +20746,8 @@
               "residence": "Gräfenhainichen",
               "profession": "Politikwissenschaftler",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-riedle"
             },
             {
               "person_id": "st:spd:person:danilo pee-moch",
@@ -20735,7 +20767,8 @@
               "residence": "Wettin-Löbejün, OT Nauendorf",
               "profession": "Referatsleiter Haushalt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/danilo-pee-moch"
             },
             {
               "person_id": "st:spd:person:stephan scherf",
@@ -20755,7 +20788,8 @@
               "residence": "Halle (Saale)",
               "profession": "Polizeibeamter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/stephan-scherf"
             },
             {
               "person_id": "st:spd:person:stefan schneider",
@@ -20775,7 +20809,8 @@
               "residence": "Zeitz",
               "profession": "kaufmännischer Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-schneider-1"
             },
             {
               "person_id": "st:spd:person:dieter diederichs",
@@ -20795,7 +20830,8 @@
               "residence": "Hansestadt Salzwedel",
               "profession": "Bäcker, LKW-Fahrer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/dieter-diederichs"
             },
             {
               "person_id": "st:spd:person:christian hausmann",
@@ -20815,7 +20851,8 @@
               "residence": "Loitsche-Heinrichsberg",
               "profession": "Angestellter Landesverwaltung",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-hausmann"
             },
             {
               "person_id": "st:spd:person:eric boellstorf",
@@ -20835,7 +20872,8 @@
               "residence": "Hansestadt Osterburg (Altmark)",
               "profession": "Sozialarbeiter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/eric-boellstorf"
             },
             {
               "person_id": "st:spd:person:paul kley",
@@ -20855,7 +20893,8 @@
               "residence": "Weißenfels",
               "profession": "Student",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/paul-kley"
             },
             {
               "person_id": "st:spd:person:nils johannson",
@@ -20875,7 +20914,8 @@
               "residence": "Huy, OT Dingelstedt am Huy",
               "profession": "Beamter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/nils-johannson"
             },
             {
               "person_id": "st:spd:person:thorben nick rehak",
@@ -20895,7 +20935,8 @@
               "residence": "Niedere Börde, OT Vahldorf",
               "profession": "Auszubildender",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/thorben-nick-rehak"
             }
           ]
         },
@@ -20940,11 +20981,11 @@
               "n_m": 50,
               "n_x": 0,
               "n_u": 0,
-              "pct_f": 17.0,
-              "pct_m": 83.0,
+              "pct_f": 18.3,
+              "pct_m": 81.7,
               "weighted": true,
               "weight_key": "p_list",
-              "expected": 4.4
+              "expected": 3.8
             },
             "district_weighted": {
               "n": 40,
@@ -20956,7 +20997,7 @@
               "pct_m": 94.7,
               "weighted": true,
               "weight_key": "p_direct",
-              "expected": 35.0
+              "expected": 35.8
             }
           },
           "gender_by_bezirk": {},
@@ -20972,8 +21013,8 @@
               "wkr_direct": 5,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 98,
-              "p_list": 2,
+              "p_direct": 99,
+              "p_list": 1,
               "birth_year": 1990,
               "birth_place": "Havelberg",
               "residence": "Tangermünde",
@@ -20984,7 +21025,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/ulrich-siegmund",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ulrich-siegmund"
             },
             {
               "person_id": "st:afd:person:oliver kirchner",
@@ -20997,8 +21039,8 @@
               "wkr_direct": 10,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 95,
-              "p_list": 5,
+              "p_direct": 97,
+              "p_list": 3,
               "birth_year": 1966,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
@@ -21009,7 +21051,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/oliver-kirchner",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/oliver-kirchner"
             },
             {
               "person_id": "st:afd:person:hans-thomas tillschneider",
@@ -21022,8 +21065,8 @@
               "wkr_direct": 32,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 98,
-              "p_list": 2,
+              "p_direct": 99,
+              "p_list": 1,
               "birth_year": 1978,
               "birth_place": "Temeschburg",
               "residence": "Querfurt, OT Grockstädt",
@@ -21034,7 +21077,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/hans-thomas-tillschneider",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/hans-thomas-tillschneider"
             },
             {
               "person_id": "st:afd:person:tobias rausch",
@@ -21047,8 +21091,8 @@
               "wkr_direct": 20,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 93,
-              "p_list": 7,
+              "p_direct": 95,
+              "p_list": 5,
               "birth_year": 1990,
               "birth_place": "Mellrichstadt",
               "residence": "Staßfurt",
@@ -21059,7 +21103,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/tobias-rausch",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/tobias-rausch"
             },
             {
               "person_id": "st:afd:person:gordon koehler",
@@ -21072,8 +21117,8 @@
               "wkr_direct": 34,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 96,
-              "p_list": 4,
+              "p_direct": 98,
+              "p_list": 2,
               "birth_year": 1987,
               "birth_place": "Magdeburg",
               "residence": "Gommern, OT Lübs",
@@ -21084,7 +21129,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/gordon-koehler",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/gordon-koehler"
             },
             {
               "person_id": "st:afd:person:matthias buettner",
@@ -21104,7 +21150,8 @@
               "residence": "Staßfurt",
               "profession": "Mitglied des Landtages",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-buettner"
             },
             {
               "person_id": "st:afd:person:jan moldenhauer",
@@ -21117,8 +21164,8 @@
               "wkr_direct": 21,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 97,
-              "p_list": 3,
+              "p_direct": 98,
+              "p_list": 2,
               "birth_year": 1980,
               "birth_place": "Bergisch Gladbach",
               "residence": "Magdeburg",
@@ -21129,7 +21176,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/jan-moldenhauer",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/jan-moldenhauer"
             },
             {
               "person_id": "st:afd:person:sebastian koch",
@@ -21142,14 +21190,15 @@
               "wkr_direct": 2,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 84,
-              "p_list": 16,
+              "p_direct": 87,
+              "p_list": 13,
               "birth_year": 1987,
               "birth_place": "Gardelegen",
               "residence": "Hansestadt Gardelegen",
               "profession": "IT-Systemelektroniker",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sebastian-koch-0"
             },
             {
               "person_id": "st:afd:person:jan scharfenort",
@@ -21161,9 +21210,9 @@
               "list_pos": 9,
               "wkr_direct": 6,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 100,
-              "p_direct": 87,
-              "p_list": 13,
+              "p_entry": 99,
+              "p_direct": 90,
+              "p_list": 9,
               "birth_year": 1972,
               "birth_place": "Osterburg",
               "residence": "Burg",
@@ -21174,7 +21223,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/jan-scharfenort",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/jan-scharfenort"
             },
             {
               "person_id": "st:afd:person:daniel wald",
@@ -21187,8 +21237,8 @@
               "wkr_direct": 33,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 98,
-              "p_list": 2,
+              "p_direct": 99,
+              "p_list": 1,
               "birth_year": 1982,
               "birth_place": "Merseburg",
               "residence": "Merseburg, OT Geusa",
@@ -21199,7 +21249,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/daniel-wald",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-wald"
             },
             {
               "person_id": "st:afd:person:felix zietmann",
@@ -21212,8 +21263,8 @@
               "wkr_direct": 8,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 95,
-              "p_list": 5,
+              "p_direct": 96,
+              "p_list": 4,
               "birth_year": 1990,
               "birth_place": "Wolmirstedt",
               "residence": "Wolmirstedt",
@@ -21224,7 +21275,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/felix-zietmann",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/felix-zietmann"
             },
             {
               "person_id": "st:afd:person:dennis moehring",
@@ -21237,14 +21289,15 @@
               "wkr_direct": 17,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 99,
-              "p_direct": 89,
-              "p_list": 10,
+              "p_direct": 92,
+              "p_list": 7,
               "birth_year": 1976,
               "birth_place": "Blankenburg",
               "residence": "Thale",
               "profession": "Tischlermeister",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/dennis-moehring"
             },
             {
               "person_id": "st:afd:person:christian ulrich hecht",
@@ -21257,8 +21310,8 @@
               "wkr_direct": 14,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 94,
-              "p_list": 6,
+              "p_direct": 96,
+              "p_list": 4,
               "birth_year": 1971,
               "birth_place": "Halberstadt",
               "residence": "Halberstadt",
@@ -21269,7 +21322,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/christian-hecht",
               "incumbent_mandate": "list",
-              "incumbent_match": "first_last"
+              "incumbent_match": "first_last",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-hecht"
             },
             {
               "person_id": "st:afd:person:nadine koppehel",
@@ -21281,9 +21335,9 @@
               "list_pos": 15,
               "wkr_direct": 27,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 100,
-              "p_direct": 92,
-              "p_list": 8,
+              "p_entry": 99,
+              "p_direct": 94,
+              "p_list": 5,
               "birth_year": 1977,
               "birth_place": "Wolfen",
               "residence": "Oranienbaum-Wörlitz, OT Oranienbaum",
@@ -21294,7 +21348,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/nadine-koppehel",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/nadine-koppehel"
             },
             {
               "person_id": "st:afd:person:florian schroeder",
@@ -21307,8 +21362,8 @@
               "wkr_direct": 29,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 97,
-              "p_list": 3,
+              "p_direct": 98,
+              "p_list": 2,
               "birth_year": 1975,
               "birth_place": "Halle (Saale)",
               "residence": "Petersberg, OT Sennewitz",
@@ -21319,7 +21374,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/florian-schroeder",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/florian-schroeder"
             },
             {
               "person_id": "st:afd:person:hagen kohl",
@@ -21331,9 +21387,9 @@
               "list_pos": 17,
               "wkr_direct": 11,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 94,
-              "p_direct": 40,
-              "p_list": 54,
+              "p_entry": 93,
+              "p_direct": 44,
+              "p_list": 49,
               "birth_year": 1969,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
@@ -21344,7 +21400,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/hagen-kohl",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/hagen-kohl"
             },
             {
               "person_id": "st:afd:person:lothar waehler",
@@ -21357,14 +21414,15 @@
               "wkr_direct": 41,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 99,
-              "p_list": 1,
+              "p_direct": 100,
+              "p_list": 0,
               "birth_year": 1959,
               "birth_place": "Zeitz",
               "residence": "Gutenborn, OT Droßdorf",
               "profession": "SHK-Installateur, Politiker",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/lothar-waehler"
             },
             {
               "person_id": "st:afd:person:simon lansmann",
@@ -21377,14 +21435,15 @@
               "wkr_direct": 1,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 96,
-              "p_direct": 84,
-              "p_list": 12,
+              "p_direct": 87,
+              "p_list": 9,
               "birth_year": 1982,
               "birth_place": "Gardelegen",
               "residence": "Hansestadt Gardelegen",
               "profession": "Dipl. Elektroingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/simon-lansmann"
             },
             {
               "person_id": "st:afd:person:matthias lieschke",
@@ -21397,8 +21456,8 @@
               "wkr_direct": 25,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 98,
-              "p_direct": 89,
-              "p_list": 9,
+              "p_direct": 92,
+              "p_list": 6,
               "birth_year": 1970,
               "birth_place": "Wittenberg",
               "residence": "Kemberg",
@@ -21409,7 +21468,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/matthias-lieschke",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact_cross_party"
+              "incumbent_match": "exact_cross_party",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-lieschke"
             },
             {
               "person_id": "st:afd:person:dirk lassowski",
@@ -21421,15 +21481,16 @@
               "list_pos": 21,
               "wkr_direct": 7,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 98,
-              "p_direct": 93,
-              "p_list": 5,
+              "p_entry": 99,
+              "p_direct": 96,
+              "p_list": 3,
               "birth_year": 1973,
               "birth_place": "Osterburg",
               "residence": "Hohe Börde, OT Hohenwarsleben",
               "profession": "Wahlkreismitarbeiter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/dirk-lassowski"
             },
             {
               "person_id": "st:afd:person:daniel rausch",
@@ -21442,8 +21503,8 @@
               "wkr_direct": 18,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 99,
-              "p_direct": 95,
-              "p_list": 4,
+              "p_direct": 97,
+              "p_list": 2,
               "birth_year": 1963,
               "birth_place": "Gotha",
               "residence": "Calbe (Saale)",
@@ -21454,7 +21515,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/daniel-rausch",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-rausch"
             },
             {
               "person_id": "st:afd:person:frank otto lizureck",
@@ -21466,9 +21528,9 @@
               "list_pos": 23,
               "wkr_direct": null,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 72,
+              "p_entry": 70,
               "p_direct": 0,
-              "p_list": 72,
+              "p_list": 70,
               "birth_year": 1960,
               "birth_place": "Tangermünde",
               "residence": "Tangermünde",
@@ -21491,9 +21553,9 @@
               "list_pos": 24,
               "wkr_direct": 12,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 85,
-              "p_direct": 73,
-              "p_list": 12,
+              "p_entry": 87,
+              "p_direct": 77,
+              "p_list": 10,
               "birth_year": 1991,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
@@ -21504,7 +21566,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/christian-mertens",
               "incumbent_mandate": "moved_up",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-mertens"
             },
             {
               "person_id": "st:afd:person:andreas best",
@@ -21516,15 +21579,16 @@
               "list_pos": 25,
               "wkr_direct": 24,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 75,
-              "p_direct": 58,
-              "p_list": 17,
+              "p_entry": 77,
+              "p_direct": 64,
+              "p_list": 13,
               "birth_year": 1962,
               "birth_place": "Coswig (Anhalt)",
               "residence": "Coswig (Anhalt), OT Köselitz",
               "profession": "Bauunternehmer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-best"
             },
             {
               "person_id": "st:afd:person:margret wendt",
@@ -21561,15 +21625,16 @@
               "list_pos": 27,
               "wkr_direct": 13,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 85,
-              "p_direct": 81,
-              "p_list": 4,
+              "p_entry": 87,
+              "p_direct": 85,
+              "p_list": 2,
               "birth_year": 1976,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
               "profession": "Geschäftsführer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ronny-kumpf"
             },
             {
               "person_id": "st:afd:person:thomas schmirander",
@@ -21581,15 +21646,16 @@
               "list_pos": 28,
               "wkr_direct": 9,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 98,
-              "p_direct": 97,
+              "p_entry": 99,
+              "p_direct": 98,
               "p_list": 1,
               "birth_year": 1977,
               "birth_place": "Leipzig",
               "residence": "Sülzetal, OT Osterweddingen",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-schmirander"
             },
             {
               "person_id": "st:afd:person:phillipp-anders rau",
@@ -21601,15 +21667,16 @@
               "list_pos": 29,
               "wkr_direct": 23,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 95,
-              "p_direct": 94,
-              "p_list": 1,
+              "p_entry": 96,
+              "p_direct": 96,
+              "p_list": 0,
               "birth_year": 1983,
               "birth_place": "Schönebeck",
               "residence": "Gommern",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/phillipp-anders-rau"
             },
             {
               "person_id": "st:afd:person:andreas gehlmann",
@@ -21621,15 +21688,16 @@
               "list_pos": 30,
               "wkr_direct": 31,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 98,
-              "p_direct": 98,
+              "p_entry": 99,
+              "p_direct": 99,
               "p_list": 0,
               "birth_year": 1974,
               "birth_place": "Sangerhausen",
               "residence": "Sangerhausen",
               "profession": "Dipl.-Ingenieur (FH)",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-gehlmann"
             },
             {
               "person_id": "st:afd:person:juliane waehler",
@@ -21641,15 +21709,16 @@
               "list_pos": 31,
               "wkr_direct": 40,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 94,
-              "p_direct": 93,
+              "p_entry": 96,
+              "p_direct": 95,
               "p_list": 1,
               "birth_year": 1986,
               "birth_place": "Zeitz",
               "residence": "Elsteraue",
               "profession": "Verwaltungsfachangestellte",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/juliane-waehler"
             },
             {
               "person_id": "st:afd:person:fabian luedecke",
@@ -21681,15 +21750,16 @@
               "list_pos": 33,
               "wkr_direct": 16,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 81,
-              "p_direct": 80,
+              "p_entry": 85,
+              "p_direct": 84,
               "p_list": 1,
               "birth_year": 1948,
               "birth_place": "Zeitz Aue",
               "residence": "Oberharz am Brocken",
               "profession": "Jurist",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ronald-bischoff"
             },
             {
               "person_id": "st:afd:person:sebastian killinger",
@@ -21701,15 +21771,16 @@
               "list_pos": 34,
               "wkr_direct": 3,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 98,
-              "p_direct": 98,
+              "p_entry": 99,
+              "p_direct": 99,
               "p_list": 0,
               "birth_year": 1986,
               "birth_place": "Rathenow",
               "residence": "Tangermünde",
               "profession": "Wirtschaftsingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sebastian-killinger"
             },
             {
               "person_id": "st:afd:person:nils reichenbach",
@@ -21781,9 +21852,9 @@
               "list_pos": 38,
               "wkr_direct": null,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 10,
+              "p_entry": 9,
               "p_direct": 0,
-              "p_list": 10,
+              "p_list": 9,
               "birth_year": 1987,
               "birth_place": "Stendal",
               "residence": "Hansestadt Gardelegen",
@@ -21801,9 +21872,9 @@
               "list_pos": 39,
               "wkr_direct": null,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 7,
+              "p_entry": 6,
               "p_direct": 0,
-              "p_list": 7,
+              "p_list": 6,
               "birth_year": 1972,
               "birth_place": "Magdeburg",
               "residence": "Angern",
@@ -21849,7 +21920,8 @@
               "residence": "Zeitz",
               "profession": "Orthopädiemechanikermeister",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/dirk-jonas"
             },
             {
               "person_id": "st:afd:person:kai behrens",
@@ -21861,9 +21933,9 @@
               "list_pos": 42,
               "wkr_direct": null,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 3,
+              "p_entry": 2,
               "p_direct": 0,
-              "p_list": 3,
+              "p_list": 2,
               "birth_year": 1963,
               "birth_place": "Gardelegen",
               "residence": "Hansestadt Gardelegen",
@@ -21921,9 +21993,9 @@
               "list_pos": 45,
               "wkr_direct": null,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 1,
+              "p_entry": 0,
               "p_direct": 0,
-              "p_list": 1,
+              "p_list": 0,
               "birth_year": 1952,
               "birth_place": "Schartau",
               "residence": "Burg",
@@ -21961,15 +22033,16 @@
               "list_pos": 47,
               "wkr_direct": 26,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 76,
-              "p_direct": 76,
+              "p_entry": 80,
+              "p_direct": 80,
               "p_list": 0,
               "birth_year": 1965,
               "birth_place": "Dessau",
               "residence": "Dessau-Roßlau, OT Rodleben",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/burkhardt-ratzmann"
             },
             {
               "person_id": "st:afd:person:juergen treder",
@@ -22001,15 +22074,16 @@
               "list_pos": 49,
               "wkr_direct": 35,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 98,
-              "p_direct": 98,
+              "p_entry": 99,
+              "p_direct": 99,
               "p_list": 0,
               "birth_year": 1973,
               "birth_place": "Halle (Saale)",
               "residence": "Halle (Saale)",
               "profession": "Bauingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-raue"
             },
             {
               "person_id": "st:afd:person:felix martin richter",
@@ -22221,15 +22295,16 @@
               "list_pos": null,
               "wkr_direct": 15,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 85,
-              "p_direct": 85,
+              "p_entry": 88,
+              "p_direct": 88,
               "p_list": 0,
               "birth_year": 1953,
               "birth_place": "Dillingen",
               "residence": "Halberstadt",
               "profession": "Mediengestalter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/armin-friese"
             },
             {
               "person_id": "st:afd:person:benedikt weiss",
@@ -22241,15 +22316,16 @@
               "list_pos": null,
               "wkr_direct": 36,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 56,
-              "p_direct": 56,
+              "p_entry": 61,
+              "p_direct": 61,
               "p_list": 0,
               "birth_year": 1994,
               "birth_place": "Stendal",
               "residence": "Halle (Saale)",
               "profession": "Softwareentwickler",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/benedikt-weiss"
             },
             {
               "person_id": "st:afd:person:daniel roi",
@@ -22261,8 +22337,8 @@
               "list_pos": null,
               "wkr_direct": 28,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 98,
-              "p_direct": 98,
+              "p_entry": 99,
+              "p_direct": 99,
               "p_list": 0,
               "birth_year": 1987,
               "birth_place": "Wolfen",
@@ -22274,7 +22350,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/daniel-roi",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-roi"
             },
             {
               "person_id": "st:afd:person:martin sehrndt",
@@ -22294,7 +22371,8 @@
               "residence": "Halle (Saale)",
               "profession": "Dipl.-Ing. Maschinenbau",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/martin-sehrndt"
             },
             {
               "person_id": "st:afd:person:paul backmund",
@@ -22306,15 +22384,16 @@
               "list_pos": null,
               "wkr_direct": 38,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 89,
-              "p_direct": 89,
+              "p_entry": 91,
+              "p_direct": 91,
               "p_list": 0,
               "birth_year": 1991,
               "birth_place": "Halle (Saale)",
               "residence": "Halle (Saale)",
               "profession": "Objektleiter in der Gebäudereinigung",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/paul-backmund"
             },
             {
               "person_id": "st:afd:person:reiner kretschmann",
@@ -22326,15 +22405,16 @@
               "list_pos": null,
               "wkr_direct": 30,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 99,
-              "p_direct": 99,
+              "p_entry": 100,
+              "p_direct": 100,
               "p_list": 0,
               "birth_year": 1966,
               "birth_place": "Wippra",
               "residence": "Mansfeld",
               "profession": "Meister Holztechnik",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/reiner-kretschmann"
             },
             {
               "person_id": "st:afd:person:volker olenicak",
@@ -22346,15 +22426,16 @@
               "list_pos": null,
               "wkr_direct": 22,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 97,
-              "p_direct": 97,
+              "p_entry": 98,
+              "p_direct": 98,
               "p_list": 0,
               "birth_year": 1966,
               "birth_place": "Brehna",
               "residence": "Muldestausee",
               "profession": "Kaufmann",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/volker-olenicak"
             }
           ]
         },
@@ -22399,8 +22480,8 @@
               "n_m": 38,
               "n_x": 0,
               "n_u": 0,
-              "pct_f": 18.4,
-              "pct_m": 81.6,
+              "pct_f": 18.5,
+              "pct_m": 81.5,
               "weighted": true,
               "weight_key": "p_list",
               "expected": 17.8
@@ -22411,11 +22492,11 @@
               "n_m": 32,
               "n_x": 0,
               "n_u": 0,
-              "pct_f": 26.1,
-              "pct_m": 73.9,
+              "pct_f": 26.4,
+              "pct_m": 73.6,
               "weighted": true,
               "weight_key": "p_direct",
-              "expected": 4.2
+              "expected": 3.3
             }
           },
           "gender_by_bezirk": {},
@@ -22431,14 +22512,15 @@
               "wkr_direct": 12,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 27,
-              "p_list": 73,
+              "p_direct": 23,
+              "p_list": 77,
               "birth_year": 1979,
               "birth_place": "Quedlinburg",
               "residence": "Magdeburg",
               "profession": "Diplom-Ingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sven-schulze"
             },
             {
               "person_id": "st:cdu:person:chris schulenburg",
@@ -22451,8 +22533,8 @@
               "wkr_direct": 3,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 2,
-              "p_list": 98,
+              "p_direct": 1,
+              "p_list": 99,
               "birth_year": 1980,
               "birth_place": "Havelberg",
               "residence": "Sandau (Elbe)",
@@ -22463,7 +22545,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/chris-schulenburg",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/chris-schulenburg"
             },
             {
               "person_id": "st:cdu:person:guido heuer",
@@ -22476,8 +22559,8 @@
               "wkr_direct": 9,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 3,
-              "p_list": 97,
+              "p_direct": 2,
+              "p_list": 98,
               "birth_year": 1966,
               "birth_place": "Magdeburg",
               "residence": "Sülzetal, OT Osterweddingen",
@@ -22488,7 +22571,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/guido-heuer",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/guido-heuer"
             },
             {
               "person_id": "st:cdu:person:lars-joern zimmer",
@@ -22501,8 +22585,8 @@
               "wkr_direct": 28,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 2,
-              "p_list": 98,
+              "p_direct": 1,
+              "p_list": 99,
               "birth_year": 1970,
               "birth_place": "Brehna",
               "residence": "Bitterfeld-Wolfen",
@@ -22513,7 +22597,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/lars-joern-zimmer",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/lars-joern-zimmer"
             },
             {
               "person_id": "st:cdu:person:tobias krull",
@@ -22526,8 +22611,8 @@
               "wkr_direct": 11,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 44,
-              "p_list": 56,
+              "p_direct": 41,
+              "p_list": 59,
               "birth_year": 1977,
               "birth_place": "Magdeburg",
               "residence": "Wanzleben-Börde",
@@ -22538,7 +22623,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/tobias-krull",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/tobias-krull"
             },
             {
               "person_id": "st:cdu:person:ulrich thomas",
@@ -22551,8 +22637,8 @@
               "wkr_direct": 17,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 11,
-              "p_list": 89,
+              "p_direct": 8,
+              "p_list": 92,
               "birth_year": 1968,
               "birth_place": "Quedlinburg",
               "residence": "Quedlinburg",
@@ -22563,7 +22649,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/ulrich-thomas",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ulrich-thomas"
             },
             {
               "person_id": "st:cdu:person:daniel sturm",
@@ -22576,8 +22663,8 @@
               "wkr_direct": 40,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 7,
-              "p_list": 93,
+              "p_direct": 5,
+              "p_list": 95,
               "birth_year": 1977,
               "birth_place": "Naumburg (Saale)",
               "residence": "Naumburg (Saale)",
@@ -22588,7 +22675,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/daniel-sturm",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-sturm"
             },
             {
               "person_id": "st:cdu:person:sandra hietel-heuer",
@@ -22601,8 +22689,8 @@
               "wkr_direct": 2,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 16,
-              "p_list": 84,
+              "p_direct": 13,
+              "p_list": 87,
               "birth_year": 1981,
               "birth_place": "Gardelegen",
               "residence": "Hansestadt Gardelegen",
@@ -22613,7 +22701,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/sandra-hietel-heuer",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sandra-hietel-heuer"
             },
             {
               "person_id": "st:cdu:person:stefan ruland",
@@ -22626,8 +22715,8 @@
               "wkr_direct": 21,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 3,
-              "p_list": 97,
+              "p_direct": 2,
+              "p_list": 98,
               "birth_year": 1980,
               "birth_place": "Schönebeck (Elbe)",
               "residence": "Bernburg (Saale)",
@@ -22638,7 +22727,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/stefan-ruland",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-ruland"
             },
             {
               "person_id": "st:cdu:person:karin tschernich-weiske",
@@ -22651,8 +22741,8 @@
               "wkr_direct": 27,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 8,
-              "p_list": 92,
+              "p_direct": 6,
+              "p_list": 94,
               "birth_year": 1973,
               "birth_place": "Dessau",
               "residence": "Oranienbaum-Wörlitz, OT Oranienbaum",
@@ -22663,7 +22753,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/karin-tschernich-weiske",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/karin-tschernich-weiske"
             },
             {
               "person_id": "st:cdu:person:marco tullner",
@@ -22676,8 +22767,8 @@
               "wkr_direct": 36,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 34,
-              "p_list": 66,
+              "p_direct": 30,
+              "p_list": 70,
               "birth_year": 1968,
               "birth_place": "Wismar",
               "residence": "Halle (Saale)",
@@ -22688,7 +22779,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/marco-tullner",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/marco-tullner"
             },
             {
               "person_id": "st:cdu:person:rene barthel",
@@ -22700,9 +22792,9 @@
               "list_pos": 12,
               "wkr_direct": 30,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 98,
-              "p_direct": 1,
-              "p_list": 97,
+              "p_entry": 99,
+              "p_direct": 0,
+              "p_list": 99,
               "birth_year": 1982,
               "birth_place": "Lutherstadt Eisleben",
               "residence": "Lutherstadt Eisleben",
@@ -22713,7 +22805,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/rene-barthel",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/rene-barthel"
             },
             {
               "person_id": "st:cdu:person:frank hartmut uwe bommersbach",
@@ -22726,14 +22819,15 @@
               "wkr_direct": 34,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 98,
-              "p_direct": 4,
-              "p_list": 94,
+              "p_direct": 2,
+              "p_list": 96,
               "birth_year": 1963,
               "birth_place": "Halle (Saale)",
               "residence": "Petersberg, OT Werderthau",
               "profession": "BMSR-Techniker",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/frank-bommersbach"
             },
             {
               "person_id": "st:cdu:person:carsten borchert",
@@ -22745,9 +22839,9 @@
               "list_pos": 14,
               "wkr_direct": 1,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 98,
-              "p_direct": 15,
-              "p_list": 83,
+              "p_entry": 97,
+              "p_direct": 12,
+              "p_list": 85,
               "birth_year": 1962,
               "birth_place": "Riebau",
               "residence": "Jübar",
@@ -22758,7 +22852,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/carsten-borchert",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/carsten-borchert"
             },
             {
               "person_id": "st:cdu:person:tim tessmann",
@@ -22770,9 +22865,9 @@
               "list_pos": 15,
               "wkr_direct": 7,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 96,
-              "p_direct": 7,
-              "p_list": 89,
+              "p_entry": 94,
+              "p_direct": 4,
+              "p_list": 90,
               "birth_year": 1989,
               "birth_place": "Haldensleben",
               "residence": "Bülstringen",
@@ -22783,7 +22878,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/tim-tessmann",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/tim-tessmann"
             },
             {
               "person_id": "st:cdu:person:anja schneider",
@@ -22795,9 +22891,9 @@
               "list_pos": 16,
               "wkr_direct": 26,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 93,
-              "p_direct": 24,
-              "p_list": 69,
+              "p_entry": 91,
+              "p_direct": 20,
+              "p_list": 71,
               "birth_year": 1968,
               "birth_place": "Dessau",
               "residence": "Dessau-Roßlau, OT Großkühnau",
@@ -22808,7 +22904,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/anja-schneider",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/anja-schneider"
             },
             {
               "person_id": "st:cdu:person:tim rohne",
@@ -22820,15 +22917,16 @@
               "list_pos": 17,
               "wkr_direct": 10,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 87,
-              "p_direct": 4,
-              "p_list": 83,
+              "p_entry": 84,
+              "p_direct": 3,
+              "p_list": 81,
               "birth_year": 1986,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/tim-rohne"
             },
             {
               "person_id": "st:cdu:person:artjom pusch",
@@ -22840,15 +22938,16 @@
               "list_pos": 18,
               "wkr_direct": 14,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 81,
-              "p_direct": 6,
-              "p_list": 75,
+              "p_entry": 77,
+              "p_direct": 4,
+              "p_list": 73,
               "birth_year": 1987,
               "birth_place": "Prokopjewsk",
               "residence": "Halberstadt",
               "profession": "Wirtschaftsingenieur",
               "gender": "m",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/artjom-pusch"
             },
             {
               "person_id": "st:cdu:person:elke simon-kuch",
@@ -22860,9 +22959,9 @@
               "list_pos": 19,
               "wkr_direct": 39,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 71,
+              "p_entry": 67,
               "p_direct": 1,
-              "p_list": 70,
+              "p_list": 66,
               "birth_year": 1970,
               "birth_place": "Weißenfels",
               "residence": "Weißenfels",
@@ -22873,7 +22972,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/elke-simon-kuch",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/elke-simon-kuch"
             },
             {
               "person_id": "st:cdu:person:thomas staudt",
@@ -22885,9 +22985,9 @@
               "list_pos": 20,
               "wkr_direct": 5,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 60,
-              "p_direct": 2,
-              "p_list": 58,
+              "p_entry": 55,
+              "p_direct": 1,
+              "p_list": 54,
               "birth_year": 1974,
               "birth_place": "Stendal",
               "residence": "Tangermünde",
@@ -22898,7 +22998,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/thomas-staudt",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-staudt"
             },
             {
               "person_id": "st:cdu:person:detlef guerth",
@@ -22910,9 +23011,9 @@
               "list_pos": 21,
               "wkr_direct": 18,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 49,
-              "p_direct": 5,
-              "p_list": 44,
+              "p_entry": 42,
+              "p_direct": 3,
+              "p_list": 39,
               "birth_year": 1962,
               "birth_place": "Aschersleben",
               "residence": "Aschersleben",
@@ -22923,7 +23024,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/detlef-guerth",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/detlef-guerth"
             },
             {
               "person_id": "st:cdu:person:olaf feuerborn",
@@ -22935,9 +23037,9 @@
               "list_pos": 22,
               "wkr_direct": 22,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 35,
-              "p_direct": 3,
-              "p_list": 32,
+              "p_entry": 30,
+              "p_direct": 2,
+              "p_list": 28,
               "birth_year": 1961,
               "birth_place": "Zülpich",
               "residence": "Südliches Anhalt",
@@ -22948,7 +23050,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/olaf-feuerborn",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/olaf-feuerborn"
             },
             {
               "person_id": "st:cdu:person:kerstin godenrath",
@@ -22960,9 +23063,9 @@
               "list_pos": 23,
               "wkr_direct": 37,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 37,
-              "p_direct": 25,
-              "p_list": 12,
+              "p_entry": 31,
+              "p_direct": 20,
+              "p_list": 11,
               "birth_year": 1979,
               "birth_place": "Weißenfels",
               "residence": "Halle (Saale)",
@@ -22973,7 +23076,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/kerstin-godenrath",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/kerstin-godenrath"
             },
             {
               "person_id": "st:cdu:person:matthias redlich",
@@ -22985,9 +23089,9 @@
               "list_pos": 24,
               "wkr_direct": 31,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 17,
-              "p_direct": 2,
-              "p_list": 15,
+              "p_entry": 13,
+              "p_direct": 1,
+              "p_list": 12,
               "birth_year": 1982,
               "birth_place": "Sangerhausen",
               "residence": "Sangerhausen",
@@ -22998,7 +23102,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/matthias-redlich",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-redlich"
             },
             {
               "person_id": "st:cdu:person:michael scheffler",
@@ -23010,9 +23115,9 @@
               "list_pos": 25,
               "wkr_direct": 29,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 11,
-              "p_direct": 3,
-              "p_list": 8,
+              "p_entry": 8,
+              "p_direct": 2,
+              "p_list": 6,
               "birth_year": 1973,
               "birth_place": "Halle (Saale)",
               "residence": "Salzatal, OT Höhnstedt",
@@ -23023,7 +23128,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/michael-scheffler-0",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/michael-scheffler-0"
             },
             {
               "person_id": "st:cdu:person:thomas weise",
@@ -23035,15 +23141,16 @@
               "list_pos": 26,
               "wkr_direct": 4,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 7,
-              "p_direct": 3,
-              "p_list": 4,
+              "p_entry": 4,
+              "p_direct": 1,
+              "p_list": 3,
               "birth_year": 1969,
               "birth_place": "Stendal",
               "residence": "Hansestadt Stendal",
               "profession": "Unternehmer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-weise"
             },
             {
               "person_id": "st:cdu:person:christopher schult",
@@ -23055,15 +23162,16 @@
               "list_pos": 27,
               "wkr_direct": 8,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 7,
-              "p_direct": 5,
-              "p_list": 2,
+              "p_entry": 5,
+              "p_direct": 4,
+              "p_list": 1,
               "birth_year": 1986,
               "birth_place": "Magdeburg",
               "residence": "Barleben",
               "profession": "Kaufmann im Groß- und Außenhandel",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christopher-schult"
             },
             {
               "person_id": "st:cdu:person:nico elsner",
@@ -23075,15 +23183,16 @@
               "list_pos": 28,
               "wkr_direct": 24,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 42,
-              "p_direct": 42,
+              "p_entry": 36,
+              "p_direct": 36,
               "p_list": 0,
               "birth_year": 2001,
               "birth_place": "Lutherstadt Wittenberg",
               "residence": "Lutherstadt Wittenberg",
               "profession": "Bundesverwaltungsangestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/nico-elsner"
             },
             {
               "person_id": "st:cdu:person:andreas schumann",
@@ -23095,15 +23204,16 @@
               "list_pos": 29,
               "wkr_direct": 13,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 19,
-              "p_direct": 18,
-              "p_list": 1,
+              "p_entry": 15,
+              "p_direct": 15,
+              "p_list": 0,
               "birth_year": 1964,
               "birth_place": "Ebersbach",
               "residence": "Magdeburg",
               "profession": "Mitglied des Landtages",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-schumann"
             },
             {
               "person_id": "st:cdu:person:bianca heine",
@@ -23115,15 +23225,16 @@
               "list_pos": 30,
               "wkr_direct": 16,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 20,
-              "p_direct": 20,
+              "p_entry": 16,
+              "p_direct": 16,
               "p_list": 0,
               "birth_year": 1997,
               "birth_place": "Magdeburg",
               "residence": "Harzgerode",
               "profession": "Verwaltungsbeamtin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/bianca-heine"
             },
             {
               "person_id": "st:cdu:person:ulf altmann",
@@ -23135,15 +23246,16 @@
               "list_pos": 31,
               "wkr_direct": 41,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 1,
-              "p_direct": 1,
+              "p_entry": 0,
+              "p_direct": 0,
               "p_list": 0,
               "birth_year": 1968,
               "birth_place": "Zeitz",
               "residence": "Zeitz",
               "profession": "Zahnarzt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ulf-altmann"
             },
             {
               "person_id": "st:cdu:person:lisa willy",
@@ -23188,7 +23300,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/sven-rosomkiewicz",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sven-rosomkiewicz"
             },
             {
               "person_id": "st:cdu:person:jonas doehring",
@@ -23200,15 +23313,16 @@
               "list_pos": 34,
               "wkr_direct": 23,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 6,
-              "p_direct": 6,
+              "p_entry": 4,
+              "p_direct": 4,
               "p_list": 0,
               "birth_year": 1996,
               "birth_place": "Zerbst",
               "residence": "Zerbst/Anhalt",
               "profession": "Unternehmer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/jonas-doehring"
             },
             {
               "person_id": "st:cdu:person:christian albrecht",
@@ -23220,8 +23334,8 @@
               "list_pos": 35,
               "wkr_direct": 35,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 2,
-              "p_direct": 2,
+              "p_entry": 1,
+              "p_direct": 1,
               "p_list": 0,
               "birth_year": 1982,
               "birth_place": "Merseburg",
@@ -23233,7 +23347,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/christian-albrecht",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-albrecht"
             },
             {
               "person_id": "st:cdu:person:alexander raeuscher",
@@ -23245,8 +23360,8 @@
               "list_pos": 36,
               "wkr_direct": 15,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 15,
-              "p_direct": 15,
+              "p_entry": 12,
+              "p_direct": 12,
               "p_list": 0,
               "birth_year": 1970,
               "birth_place": "Leipzig",
@@ -23258,7 +23373,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/alexander-raeuscher",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-raeuscher"
             },
             {
               "person_id": "st:cdu:person:ilka reckmann",
@@ -23270,15 +23386,16 @@
               "list_pos": 37,
               "wkr_direct": 33,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 2,
-              "p_direct": 2,
+              "p_entry": 1,
+              "p_direct": 1,
               "p_list": 0,
               "birth_year": 1973,
               "birth_place": "Stendal",
               "residence": "Merseburg",
               "profession": "Diplom-Theologin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ilka-reckmann"
             },
             {
               "person_id": "st:cdu:person:daniel schlothmann-jeschek",
@@ -23290,15 +23407,16 @@
               "list_pos": 38,
               "wkr_direct": 20,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 7,
-              "p_direct": 7,
+              "p_entry": 5,
+              "p_direct": 5,
               "p_list": 0,
               "birth_year": 1983,
               "birth_place": "Moers",
               "residence": "Schönebeck (Elbe)",
               "profession": "Referent",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/daniel-schlothmann-jeschek"
             },
             {
               "person_id": "st:cdu:person:patrick schubert",
@@ -23310,15 +23428,16 @@
               "list_pos": 39,
               "wkr_direct": 25,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 11,
-              "p_direct": 11,
+              "p_entry": 8,
+              "p_direct": 8,
               "p_list": 0,
               "birth_year": 1979,
               "birth_place": "Lutherstadt Wittenberg",
               "residence": "Annaburg",
               "profession": "Marineoffizier und Personalreferent",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/patrick-schubert"
             },
             {
               "person_id": "st:cdu:person:claudia freia schmidt",
@@ -23330,15 +23449,16 @@
               "list_pos": 40,
               "wkr_direct": 38,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 11,
-              "p_direct": 11,
+              "p_entry": 9,
+              "p_direct": 9,
               "p_list": 0,
               "birth_year": 1980,
               "birth_place": "Halle (Saale)",
               "residence": "Halle (Saale)",
               "profession": "Wissenschaftsreferentin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/claudia-schmidt-1"
             },
             {
               "person_id": "st:cdu:person:franziska beyer",
@@ -23550,8 +23670,8 @@
               "list_pos": null,
               "wkr_direct": 32,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 2,
-              "p_direct": 2,
+              "p_entry": 1,
+              "p_direct": 1,
               "p_list": 0,
               "birth_year": 1963,
               "birth_place": "Naumburg",
@@ -23563,7 +23683,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/eva-feussner",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/eva-feussner"
             },
             {
               "person_id": "st:cdu:person:markus kurze",
@@ -23575,8 +23696,8 @@
               "list_pos": null,
               "wkr_direct": 6,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 13,
-              "p_direct": 13,
+              "p_entry": 10,
+              "p_direct": 10,
               "p_list": 0,
               "birth_year": 1970,
               "birth_place": "Burg",
@@ -23588,7 +23709,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/markus-kurze",
               "incumbent_mandate": "constituency",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/markus-kurze"
             }
           ]
         },
@@ -23633,11 +23755,11 @@
               "n_m": 17,
               "n_x": 0,
               "n_u": 0,
-              "pct_f": 52.1,
-              "pct_m": 47.9,
+              "pct_f": 52.2,
+              "pct_m": 47.8,
               "weighted": true,
               "weight_key": "p_list",
-              "expected": 12.4
+              "expected": 11.6
             },
             "district_weighted": {
               "n": 41,
@@ -23649,7 +23771,7 @@
               "pct_m": null,
               "weighted": true,
               "weight_key": "p_direct",
-              "expected": 0.5,
+              "expected": 0.3,
               "no_seats_expected": true
             }
           },
@@ -23666,8 +23788,8 @@
               "wkr_direct": 12,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
               "p_entry": 100,
-              "p_direct": 1,
-              "p_list": 99,
+              "p_direct": 0,
+              "p_list": 100,
               "birth_year": 1976,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
@@ -23678,7 +23800,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/eva-von-angern",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/eva-von-angern"
             },
             {
               "person_id": "st:linke:person:eric roman stehr",
@@ -23698,7 +23821,8 @@
               "residence": "Weißenfels",
               "profession": "Student",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/eric-stehr"
             },
             {
               "person_id": "st:linke:person:antonia kaloff",
@@ -23718,7 +23842,8 @@
               "residence": "Magdeburg",
               "profession": "Journalistin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/antonia-kaloff"
             },
             {
               "person_id": "st:linke:person:hendrik lange",
@@ -23743,7 +23868,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/hendrik-lange",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/hendrik-lange"
             },
             {
               "person_id": "st:linke:person:henriette krebs",
@@ -23763,7 +23889,8 @@
               "residence": "Bernburg (Saale)",
               "profession": "Kommunikationswissenschaftlerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/henriette-krebs"
             },
             {
               "person_id": "st:linke:person:thomas erich herbert lippmann",
@@ -23788,7 +23915,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/thomas-lippmann",
               "incumbent_mandate": "list",
-              "incumbent_match": "first_last"
+              "incumbent_match": "first_last",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-lippmann"
             },
             {
               "person_id": "st:linke:person:vanessa mertens",
@@ -23808,7 +23936,8 @@
               "residence": "Rogätz",
               "profession": "Sozialarbeiterin (B.A.)",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/vanessa-mertens"
             },
             {
               "person_id": "st:linke:person:stefan gebhardt",
@@ -23820,9 +23949,9 @@
               "list_pos": 8,
               "wkr_direct": 30,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 97,
+              "p_entry": 95,
               "p_direct": 0,
-              "p_list": 97,
+              "p_list": 95,
               "birth_year": 1974,
               "birth_place": "Wippra",
               "residence": "Hettstedt",
@@ -23833,7 +23962,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/stefan-gebhardt",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-gebhardt"
             },
             {
               "person_id": "st:linke:person:julia mayer",
@@ -23845,15 +23975,16 @@
               "list_pos": 9,
               "wkr_direct": 34,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 93,
+              "p_entry": 88,
               "p_direct": 0,
-              "p_list": 93,
+              "p_list": 88,
               "birth_year": 1978,
               "birth_place": "Halle (Saale)",
               "residence": "Teutschental, OT Angersdorf",
               "profession": "selbständige Berufspädagogin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/julia-mayer"
             },
             {
               "person_id": "st:linke:person:rene schernikau",
@@ -23865,15 +23996,16 @@
               "list_pos": 10,
               "wkr_direct": 3,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 85,
+              "p_entry": 77,
               "p_direct": 0,
-              "p_list": 85,
+              "p_list": 77,
               "birth_year": 1972,
               "birth_place": "Osterburg",
               "residence": "Goldbeck",
               "profession": "Verbandsgemeindebürgermeister",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/rene-schernikau"
             },
             {
               "person_id": "st:linke:person:natalie nagel",
@@ -23885,15 +24017,16 @@
               "list_pos": 11,
               "wkr_direct": 20,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 74,
+              "p_entry": 63,
               "p_direct": 0,
-              "p_list": 74,
+              "p_list": 63,
               "birth_year": 1992,
               "birth_place": "Magdeburg",
               "residence": "Barby, OT Lödderitz",
               "profession": "Psychologin M.Sc.",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/natalie-nagel"
             },
             {
               "person_id": "st:linke:person:alexander luft",
@@ -23905,15 +24038,16 @@
               "list_pos": 12,
               "wkr_direct": 14,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 60,
+              "p_entry": 48,
               "p_direct": 0,
-              "p_list": 60,
+              "p_list": 48,
               "birth_year": 1989,
               "birth_place": "Perleberg",
               "residence": "Halberstadt",
               "profession": "Informatiker B.Sc.",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-luft"
             },
             {
               "person_id": "st:linke:person:natalie winzenhoeller",
@@ -23925,15 +24059,16 @@
               "list_pos": 13,
               "wkr_direct": 23,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 47,
+              "p_entry": 36,
               "p_direct": 0,
-              "p_list": 47,
+              "p_list": 36,
               "birth_year": 2000,
               "birth_place": "Wertheim am Main",
               "residence": "Köthen (Anhalt)",
               "profession": "Ingenieurin für Pharmatechnik",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/natalie-winzenhoeller"
             },
             {
               "person_id": "st:linke:person:noah elias biswanger",
@@ -23945,15 +24080,16 @@
               "list_pos": 14,
               "wkr_direct": 10,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 34,
-              "p_direct": 1,
-              "p_list": 33,
+              "p_entry": 24,
+              "p_direct": 0,
+              "p_list": 24,
               "birth_year": 1999,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
               "profession": "Sozialwissenschaftler",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/noah-biswanger"
             },
             {
               "person_id": "st:linke:person:sophie manleitner",
@@ -23965,15 +24101,16 @@
               "list_pos": 15,
               "wkr_direct": 9,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 24,
+              "p_entry": 15,
               "p_direct": 0,
-              "p_list": 24,
+              "p_list": 15,
               "birth_year": 1998,
               "birth_place": "Halberstadt",
               "residence": "Hötensleben, OT Wackersleben",
               "profession": "Fachinformatikerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sophie-manleitner"
             },
             {
               "person_id": "st:linke:person:raik ohlmeyer",
@@ -23985,15 +24122,16 @@
               "list_pos": 16,
               "wkr_direct": 1,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 16,
-              "p_direct": 1,
-              "p_list": 15,
+              "p_entry": 8,
+              "p_direct": 0,
+              "p_list": 8,
               "birth_year": 1982,
               "birth_place": "Salzwedel",
               "residence": "Hansestadt Salzwedel",
               "profession": "Angestellter im öffentlichen Dienst",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/raik-ohlmeyer"
             },
             {
               "person_id": "st:linke:person:wenke marie dargel",
@@ -24005,15 +24143,16 @@
               "list_pos": 17,
               "wkr_direct": 38,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 9,
+              "p_entry": 5,
               "p_direct": 0,
-              "p_list": 9,
+              "p_list": 5,
               "birth_year": 1992,
               "birth_place": "Wittingen",
               "residence": "Halle (Saale)",
               "profession": "Agrarwissenschaftlerin",
               "gender": "f",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/wenke-dargel"
             },
             {
               "person_id": "st:linke:person:denis kreuzadler",
@@ -24025,15 +24164,16 @@
               "list_pos": 18,
               "wkr_direct": 5,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 5,
+              "p_entry": 2,
               "p_direct": 0,
-              "p_list": 5,
+              "p_list": 2,
               "birth_year": 1977,
               "birth_place": "Berlin",
               "residence": "Tangermünde",
               "profession": "Bildungsreferent",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/denis-kreuzadler"
             },
             {
               "person_id": "st:linke:person:leila kim eisfelder-mylius",
@@ -24045,15 +24185,16 @@
               "list_pos": 19,
               "wkr_direct": 33,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 3,
+              "p_entry": 1,
               "p_direct": 0,
-              "p_list": 3,
+              "p_list": 1,
               "birth_year": 2003,
               "birth_place": "Schkeuditz",
               "residence": "Braunsbedra, OT Krumpa",
               "profession": "Industriekauffrau",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/leila-eisfelder-mylius"
             },
             {
               "person_id": "st:linke:person:dennis jannack",
@@ -24065,15 +24206,16 @@
               "list_pos": 20,
               "wkr_direct": 13,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 2,
-              "p_direct": 1,
+              "p_entry": 1,
+              "p_direct": 0,
               "p_list": 1,
               "birth_year": 1974,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/dennis-jannack"
             },
             {
               "person_id": "st:linke:person:isabell anton",
@@ -24085,15 +24227,16 @@
               "list_pos": 21,
               "wkr_direct": 29,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 1,
+              "p_entry": 0,
               "p_direct": 0,
-              "p_list": 1,
+              "p_list": 0,
               "birth_year": 2001,
               "birth_place": "Lutherstadt Eisleben",
               "residence": "Helbra",
               "profession": "Betriebswirtschaftlerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/isabell-anton"
             },
             {
               "person_id": "st:linke:person:veit kuhr",
@@ -24113,7 +24256,8 @@
               "residence": "Bernburg (Saale)",
               "profession": "Evangel. Diakon",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/veit-kuhr"
             },
             {
               "person_id": "st:linke:person:jasmin blume",
@@ -24153,7 +24297,8 @@
               "residence": "Könnern, OT Belleben",
               "profession": "Erzieher",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/kay-lorenz"
             },
             {
               "person_id": "st:linke:person:lisa marie tuchen",
@@ -24193,7 +24338,8 @@
               "residence": "Naumburg (Saale)",
               "profession": "Software/Datenbank-Entwickler",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/michael-scholz"
             },
             {
               "person_id": "st:linke:person:katja kaefer",
@@ -24213,7 +24359,8 @@
               "residence": "Harzgerode",
               "profession": "Bürokauffrau",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/katja-kaefer"
             },
             {
               "person_id": "st:linke:person:nicklas kurzweil",
@@ -24233,7 +24380,8 @@
               "residence": "Kretzschau",
               "profession": "Mitarbeiter Bürgerdialog",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/nicklas-kurzweil"
             },
             {
               "person_id": "st:linke:person:claudia bolde",
@@ -24273,7 +24421,8 @@
               "residence": "Wanzleben-Börde, OT Dreileben",
               "profession": "Schüler",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/arne-hornung"
             },
             {
               "person_id": "st:linke:person:anne siebert",
@@ -24313,7 +24462,8 @@
               "residence": "Sangerhausen",
               "profession": "Fachausbilder",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andre-roethel"
             },
             {
               "person_id": "st:linke:person:nathalie jasmin roscher",
@@ -24373,7 +24523,8 @@
               "residence": "Südliches Anhalt",
               "profession": "Wirtschaftsjurist",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-pulst"
             },
             {
               "person_id": "st:linke:person:andreas tschurn",
@@ -24393,7 +24544,8 @@
               "residence": "Leuna",
               "profession": "Pfarrer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-tschurn"
             },
             {
               "person_id": "st:linke:person:doreen hainich",
@@ -24413,7 +24565,8 @@
               "residence": "Lutherstadt Wittenberg",
               "profession": "Beamtin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/doreen-hainich"
             },
             {
               "person_id": "st:linke:person:gitta susann hartenstein-wiermann",
@@ -24425,15 +24578,16 @@
               "list_pos": null,
               "wkr_direct": 36,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 9,
-              "p_direct": 9,
+              "p_entry": 6,
+              "p_direct": 6,
               "p_list": 0,
               "birth_year": 1976,
               "birth_place": "Zeitz",
               "residence": "Halle (Saale)",
               "profession": "Kulturwissenschaftlerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/gitta-susann-hartenstein-wiermann"
             },
             {
               "person_id": "st:linke:person:jannik-loris balint",
@@ -24445,15 +24599,16 @@
               "list_pos": null,
               "wkr_direct": 37,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 24,
-              "p_direct": 24,
+              "p_entry": 15,
+              "p_direct": 15,
               "p_list": 0,
               "birth_year": 1996,
               "birth_place": "Heilbronn",
               "residence": "Halle (Saale)",
               "profession": "Elektro- und Informationstechniker",
               "gender": "m",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/jannik-balint"
             },
             {
               "person_id": "st:linke:person:kevin goldhahn",
@@ -24473,7 +24628,8 @@
               "residence": "Dessau-Roßlau, OT Großkühnau",
               "profession": "Heilerziehungspfleger",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/kevin-goldhahn"
             },
             {
               "person_id": "st:linke:person:lukas franke",
@@ -24493,7 +24649,8 @@
               "residence": "Blankenburg",
               "profession": "Augenoptiker",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/lukas-franke"
             },
             {
               "person_id": "st:linke:person:maik fye",
@@ -24513,7 +24670,8 @@
               "residence": "Thale",
               "profession": "Veranstaltungskaufmann für Konzert- und Theaterveranstaltungen",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/maik-fye"
             },
             {
               "person_id": "st:linke:person:mustafa groener",
@@ -24525,15 +24683,16 @@
               "list_pos": null,
               "wkr_direct": 11,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 13,
-              "p_direct": 13,
+              "p_entry": 9,
+              "p_direct": 9,
               "p_list": 0,
               "birth_year": 1999,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/mustafa-groener"
             },
             {
               "person_id": "st:linke:person:rafael rotermund",
@@ -24553,7 +24712,8 @@
               "residence": "Burg",
               "profession": "Altenpfleger",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/rafael-rotermund"
             },
             {
               "person_id": "st:linke:person:rico goroncy",
@@ -24573,7 +24733,8 @@
               "residence": "Hansestadt Stendal",
               "profession": "Versicherungskaufmann",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/rico-goroncy"
             },
             {
               "person_id": "st:linke:person:stine rummel-strebelow",
@@ -24593,7 +24754,8 @@
               "residence": "Dessau-Roßlau",
               "profession": "Angestellte",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/stine-rummel-strebelow"
             },
             {
               "person_id": "st:linke:person:toni klabis",
@@ -24613,7 +24775,8 @@
               "residence": "Klötze",
               "profession": "Forstwirt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/toni-klabis"
             }
           ]
         },
@@ -24658,11 +24821,11 @@
               "n_m": 8,
               "n_x": 0,
               "n_u": 0,
-              "pct_f": 58.0,
-              "pct_m": 42.0,
+              "pct_f": 58.6,
+              "pct_m": 41.4,
               "weighted": true,
               "weight_key": "p_list",
-              "expected": 1.7
+              "expected": 2.6
             },
             "district_weighted": {
               "n": 41,
@@ -24674,7 +24837,7 @@
               "pct_m": null,
               "weighted": true,
               "weight_key": "p_direct",
-              "expected": 0.4,
+              "expected": 0.6,
               "no_seats_expected": true
             }
           },
@@ -24690,9 +24853,9 @@
               "list_pos": 1,
               "wkr_direct": 17,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 35,
+              "p_entry": 50,
               "p_direct": 0,
-              "p_list": 35,
+              "p_list": 50,
               "birth_year": 1977,
               "birth_place": "Berlin",
               "residence": "Quedlinburg",
@@ -24703,7 +24866,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/susan-sziborra-seidlitz",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/susan-sziborra-seidlitz"
             },
             {
               "person_id": "st:gruene:person:olaf meister",
@@ -24715,9 +24879,9 @@
               "list_pos": 2,
               "wkr_direct": 13,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 35,
+              "p_entry": 50,
               "p_direct": 0,
-              "p_list": 35,
+              "p_list": 50,
               "birth_year": 1971,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
@@ -24728,7 +24892,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/olaf-meister",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/olaf-meister"
             },
             {
               "person_id": "st:gruene:person:madeleine linke",
@@ -24740,15 +24905,16 @@
               "list_pos": 3,
               "wkr_direct": 11,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 35,
-              "p_direct": 3,
-              "p_list": 32,
+              "p_entry": 51,
+              "p_direct": 6,
+              "p_list": 45,
               "birth_year": 1992,
               "birth_place": "Goslar",
               "residence": "Magdeburg",
               "profession": "Ingenierin für Erneuerbare Energien",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/madeleine-linke"
             },
             {
               "person_id": "st:gruene:person:mamad mohamad",
@@ -24760,15 +24926,16 @@
               "list_pos": 4,
               "wkr_direct": 36,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 35,
-              "p_direct": 1,
-              "p_list": 34,
+              "p_entry": 50,
+              "p_direct": 2,
+              "p_list": 48,
               "birth_year": 1981,
               "birth_place": "Kastel-Jendo (Syrien)",
               "residence": "Halle (Saale)",
               "profession": "Dipl.-Sozialpädagoge",
               "gender": "m",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/mamad-mohamad"
             },
             {
               "person_id": "st:gruene:person:leonie bronkalla",
@@ -24780,15 +24947,16 @@
               "list_pos": 5,
               "wkr_direct": 26,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 25,
+              "p_entry": 38,
               "p_direct": 0,
-              "p_list": 25,
+              "p_list": 38,
               "birth_year": 1996,
               "birth_place": "Grevenbroich",
               "residence": "Dessau-Roßlau",
               "profession": "Landschaftsökologin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/leonie-bronkalla"
             },
             {
               "person_id": "st:gruene:person:wolfgang aldag",
@@ -24800,9 +24968,9 @@
               "list_pos": 6,
               "wkr_direct": 37,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 39,
-              "p_direct": 37,
-              "p_list": 2,
+              "p_entry": 53,
+              "p_direct": 50,
+              "p_list": 3,
               "birth_year": 1968,
               "birth_place": "Stuttgart",
               "residence": "Halle (Saale)",
@@ -24813,7 +24981,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/wolfgang-aldag",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/wolfgang-aldag"
             },
             {
               "person_id": "st:gruene:person:beatrice lindhorst",
@@ -24825,15 +24994,16 @@
               "list_pos": 7,
               "wkr_direct": 24,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 8,
+              "p_entry": 14,
               "p_direct": 0,
-              "p_list": 8,
+              "p_list": 14,
               "birth_year": 1985,
               "birth_place": "Prenzlau",
               "residence": "Lutherstadt Wittenberg",
               "profession": "Online Marketing Managerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/bea-lindhorst"
             },
             {
               "person_id": "st:gruene:person:dennis tobias helmich",
@@ -24845,15 +25015,16 @@
               "list_pos": 8,
               "wkr_direct": 33,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 2,
+              "p_entry": 5,
               "p_direct": 0,
-              "p_list": 2,
+              "p_list": 5,
               "birth_year": 1991,
               "birth_place": "Moers",
               "residence": "Halle (Saale)",
               "profession": "Sozialwissenschaftler B.A.",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/dennis-helmich"
             },
             {
               "person_id": "st:gruene:person:miriam zeller",
@@ -24865,15 +25036,16 @@
               "list_pos": 9,
               "wkr_direct": 4,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 1,
+              "p_entry": 2,
               "p_direct": 0,
-              "p_list": 1,
+              "p_list": 2,
               "birth_year": 1990,
               "birth_place": "Freising",
               "residence": "Hansestadt Stendal",
               "profession": "Lehrerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/miriam-zeller"
             },
             {
               "person_id": "st:gruene:person:sandra sinner",
@@ -24885,9 +25057,9 @@
               "list_pos": 10,
               "wkr_direct": null,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 0,
+              "p_entry": 1,
               "p_direct": 0,
-              "p_list": 0,
+              "p_list": 1,
               "birth_year": 1991,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
@@ -24913,7 +25085,8 @@
               "residence": "Burg",
               "profession": "Studentin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/friederike-larek"
             },
             {
               "person_id": "st:gruene:person:jascha rihm",
@@ -24933,7 +25106,8 @@
               "residence": "Halle (Saale)",
               "profession": "Politikwissenschaftler (B.A.)",
               "gender": "m",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/jascha-rihm"
             },
             {
               "person_id": "st:gruene:person:darlin hoeckendorff",
@@ -24973,7 +25147,8 @@
               "residence": "Köthen (Anhalt)",
               "profession": "selbständig",
               "gender": "m",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sascha-greiner"
             },
             {
               "person_id": "st:gruene:person:lena zehne",
@@ -24993,7 +25168,8 @@
               "residence": "Halle (Saale)",
               "profession": "Umwelt- und Politikwissenschaftlerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/lena-zehne"
             },
             {
               "person_id": "st:gruene:person:martin schaefer",
@@ -25013,7 +25189,8 @@
               "residence": "Lutherstadt Wittenberg",
               "profession": "IT-Projektmanagement",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/martin-schaefer-2"
             },
             {
               "person_id": "st:gruene:person:susanne otto",
@@ -25033,7 +25210,8 @@
               "residence": "Allstedt",
               "profession": "Angestellte im Öffentlichen Dienst",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/susanne-otto"
             },
             {
               "person_id": "st:gruene:person:lennox schrickel",
@@ -25053,7 +25231,8 @@
               "residence": "Wernigerode",
               "profession": "Student Wirtschaftsingenieurwesen",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/lennox-schrickel"
             },
             {
               "person_id": "st:gruene:person:sandra sabine lueder",
@@ -25073,7 +25252,8 @@
               "residence": "Lutherstadt Wittenberg",
               "profession": "Pharmareferentin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sandra-lueder"
             },
             {
               "person_id": "st:gruene:person:marlyn waga",
@@ -25093,7 +25273,8 @@
               "residence": "Bördeland, OT Eickendorf",
               "profession": "Softwareberater",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/marlyn-waga"
             },
             {
               "person_id": "st:gruene:person:alexander michael",
@@ -25113,7 +25294,8 @@
               "residence": "Burg",
               "profession": "angest. Vertriebsleiter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/alexander-michael"
             },
             {
               "person_id": "st:gruene:person:christine reimann",
@@ -25133,7 +25315,8 @@
               "residence": "Südharz",
               "profession": "Krankenschwester",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christine-reimann"
             },
             {
               "person_id": "st:gruene:person:elke ruth lampka",
@@ -25153,7 +25336,8 @@
               "residence": "Halberstadt",
               "profession": "Ärztin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/elke-lampka"
             },
             {
               "person_id": "st:gruene:person:felix fugmann",
@@ -25173,7 +25357,8 @@
               "residence": "Dessau-Roßlau, OT Meinsdorf",
               "profession": "Personalreferent",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/felix-fugmann"
             },
             {
               "person_id": "st:gruene:person:janina hampel",
@@ -25193,7 +25378,8 @@
               "residence": "Sandersdorf-Brehna",
               "profession": "Dipl.-Lebensmittelchemikerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/janina-hampel"
             },
             {
               "person_id": "st:gruene:person:kevin pockrandt",
@@ -25213,7 +25399,8 @@
               "residence": "Güsten",
               "profession": "Schüler",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/kevin-pockrandt"
             },
             {
               "person_id": "st:gruene:person:klaus plitzkat",
@@ -25233,7 +25420,8 @@
               "residence": "Nordharz, OT Wasserleben",
               "profession": "Rentner",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/klaus-plitzkat"
             },
             {
               "person_id": "st:gruene:person:kristin schuller",
@@ -25253,7 +25441,8 @@
               "residence": "Wanzleben-Börde, OT Hohendodeleben",
               "profession": "Volljuristin, Rechtsassessorin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/kristin-schuller"
             },
             {
               "person_id": "st:gruene:person:leon lenny elias eisfelder-mylius",
@@ -25273,7 +25462,8 @@
               "residence": "Bad Dürrenberg",
               "profession": "Schüler",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/leon-lenny-elias-eisfelder-mylius"
             },
             {
               "person_id": "st:gruene:person:lisa mertens",
@@ -25293,7 +25483,8 @@
               "residence": "Mansfeld",
               "profession": "Winzerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/lisa-mertens"
             },
             {
               "person_id": "st:gruene:person:luise globig",
@@ -25313,7 +25504,8 @@
               "residence": "Zerbst/Anhalt, OT Steutz",
               "profession": "staatlich anerkannte Erzieherin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/luise-globig"
             },
             {
               "person_id": "st:gruene:person:martin mertens-keylock",
@@ -25333,7 +25525,8 @@
               "residence": "Aschersleben",
               "profession": "Sicherheitsprüfer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/martin-mertens-keylock"
             },
             {
               "person_id": "st:gruene:person:michael dihlmann",
@@ -25353,7 +25546,8 @@
               "residence": "Iden",
               "profession": "Biolandwirt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/michael-dihlmann"
             },
             {
               "person_id": "st:gruene:person:michelle angeli",
@@ -25373,7 +25567,8 @@
               "residence": "Magdeburg",
               "profession": "Juristin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/michelle-angeli"
             },
             {
               "person_id": "st:gruene:person:nicole walldorf",
@@ -25393,7 +25588,8 @@
               "residence": "Halle (Saale)",
               "profession": "Kinderkrankenschwester",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/nicole-walldorf"
             },
             {
               "person_id": "st:gruene:person:peter paul schneider",
@@ -25413,7 +25609,8 @@
               "residence": "Goseck",
               "profession": "Unternehmer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/peter-schneider-3"
             },
             {
               "person_id": "st:gruene:person:philipp haendler",
@@ -25433,7 +25630,8 @@
               "residence": "Magdeburg",
               "profession": "Psychologe",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/philipp-haendler"
             },
             {
               "person_id": "st:gruene:person:ralf hoenicke",
@@ -25453,7 +25651,8 @@
               "residence": "Hohenmölsen",
               "profession": "Diplom-Wirtschafts-Ingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ralf-hoenicke"
             },
             {
               "person_id": "st:gruene:person:rico herrmann",
@@ -25473,7 +25672,8 @@
               "residence": "Magdeburg",
               "profession": "Beamter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/rico-herrmann"
             },
             {
               "person_id": "st:gruene:person:sandra bauer",
@@ -25493,7 +25693,8 @@
               "residence": "Giersleben, OT Strummendorf",
               "profession": "Angestellte im Öffentlichen Dienst",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sandra-bauer"
             },
             {
               "person_id": "st:gruene:person:stefan garthoff",
@@ -25513,7 +25714,8 @@
               "residence": "Naumburg (Saale)",
               "profession": "Lehrer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-garthoff"
             },
             {
               "person_id": "st:gruene:person:stefan lehfeld",
@@ -25533,7 +25735,8 @@
               "residence": "Hohe Börde, OT Niederndodeleben",
               "profession": "Heilpädagoge",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/stefan-lehfeld"
             },
             {
               "person_id": "st:gruene:person:tobias kremkau",
@@ -25553,7 +25756,8 @@
               "residence": "Magdeburg",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/tobias-kremkau"
             }
           ]
         },
@@ -25602,7 +25806,7 @@
               "pct_m": null,
               "weighted": true,
               "weight_key": "p_list",
-              "expected": 0.3,
+              "expected": 0.4,
               "no_seats_expected": true
             },
             "district_weighted": {
@@ -25631,9 +25835,9 @@
               "list_pos": 1,
               "wkr_direct": 10,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 6,
+              "p_entry": 8,
               "p_direct": 0,
-              "p_list": 6,
+              "p_list": 8,
               "birth_year": 1964,
               "birth_place": "Geldern",
               "residence": "Magdeburg",
@@ -25644,7 +25848,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/lydia-hueskens",
               "incumbent_mandate": "list",
-              "incumbent_match": "first_last"
+              "incumbent_match": "first_last",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/lydia-hueskens"
             },
             {
               "person_id": "st:fdp:person:andreas silbersack",
@@ -25656,9 +25861,9 @@
               "list_pos": 2,
               "wkr_direct": 37,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 6,
+              "p_entry": 8,
               "p_direct": 0,
-              "p_list": 6,
+              "p_list": 8,
               "birth_year": 1967,
               "birth_place": "Halle (Saale)",
               "residence": "Halle (Saale)",
@@ -25669,7 +25874,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/andreas-silbersack",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-silbersack"
             },
             {
               "person_id": "st:fdp:person:joerg bernstein",
@@ -25681,9 +25887,9 @@
               "list_pos": 3,
               "wkr_direct": 26,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 6,
+              "p_entry": 8,
               "p_direct": 0,
-              "p_list": 6,
+              "p_list": 8,
               "birth_year": 1966,
               "birth_place": "Roßlau",
               "residence": "Dessau-Roßlau, OT Kochstedt",
@@ -25694,7 +25900,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/joerg-bernstein",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/joerg-bernstein"
             },
             {
               "person_id": "st:fdp:person:kathrin tarricone",
@@ -25706,9 +25913,9 @@
               "list_pos": 4,
               "wkr_direct": 30,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 6,
+              "p_entry": 8,
               "p_direct": 0,
-              "p_list": 6,
+              "p_list": 8,
               "birth_year": 1965,
               "birth_place": "Zeitz",
               "residence": "Mansfeld",
@@ -25719,7 +25926,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/kathrin-tarricone",
               "incumbent_mandate": "list",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/kathrin-tarricone"
             },
             {
               "person_id": "st:fdp:person:guido lars kosmehl",
@@ -25731,9 +25939,9 @@
               "list_pos": 5,
               "wkr_direct": 28,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 6,
+              "p_entry": 8,
               "p_direct": 0,
-              "p_list": 6,
+              "p_list": 8,
               "birth_year": 1975,
               "birth_place": "Leipzig",
               "residence": "Bitterfeld-Wolfen",
@@ -25744,7 +25952,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/guido-kosmehl",
               "incumbent_mandate": "list",
-              "incumbent_match": "first_last"
+              "incumbent_match": "first_last",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/guido-kosmehl"
             },
             {
               "person_id": "st:fdp:person:maximilian philipp",
@@ -25764,7 +25973,8 @@
               "residence": "Petersberg",
               "profession": "Arzt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/maximilian-philipp"
             },
             {
               "person_id": "st:fdp:person:adrian gusinde",
@@ -25784,7 +25994,8 @@
               "residence": "Hohe Börde, OT Niederndodeleben",
               "profession": "Student des Lehramtes für Gymnasien",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/adrian-gusinde"
             },
             {
               "person_id": "st:fdp:person:florian pascal feger",
@@ -25804,7 +26015,8 @@
               "residence": "Magdeburg",
               "profession": "Pflegefachkraft",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/florian-pascal-feger"
             },
             {
               "person_id": "st:fdp:person:marco airoldi",
@@ -25824,7 +26036,8 @@
               "residence": "Aken (Elbe)",
               "profession": "Berufssoldat",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/marco-airoldi"
             },
             {
               "person_id": "st:fdp:person:gunnar salomon",
@@ -25844,7 +26057,8 @@
               "residence": "Hohenberg-Krusemark",
               "profession": "Unternehmer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/gunnar-salomon"
             },
             {
               "person_id": "st:fdp:person:thomas guerke",
@@ -25864,7 +26078,8 @@
               "residence": "Magdeburg",
               "profession": "Rechtsanwalt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-guerke"
             },
             {
               "person_id": "st:fdp:person:johanna engel",
@@ -25884,7 +26099,8 @@
               "residence": "Nienburg (Saale)",
               "profession": "Ärztin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/johanna-engel"
             },
             {
               "person_id": "st:fdp:person:annelie brune",
@@ -25904,7 +26120,8 @@
               "residence": "Hansestadt Gardelegen",
               "profession": "Studentin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/annelie-brune"
             },
             {
               "person_id": "st:fdp:person:bjoern wasserthal",
@@ -25924,7 +26141,8 @@
               "residence": "Hohe Börde, OT Irxleben",
               "profession": "selbst. Unternehmer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/bjoern-wasserthal"
             },
             {
               "person_id": "st:fdp:person:maximilian gludau",
@@ -25949,7 +26167,8 @@
               "incumbent_chamber": "MdL",
               "incumbent_url": "https://www.abgeordnetenwatch.de/profile/maximilian-gludau",
               "incumbent_mandate": "moved_up",
-              "incumbent_match": "exact"
+              "incumbent_match": "exact",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/maximilian-gludau"
             },
             {
               "person_id": "st:fdp:person:oliver mank",
@@ -25969,7 +26188,8 @@
               "residence": "Tangermünde",
               "profession": "Finanzanlagenfachmann",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/oliver-mank"
             },
             {
               "person_id": "st:fdp:person:john matthias kaube",
@@ -25989,7 +26209,8 @@
               "residence": "Aken (Elbe)",
               "profession": "Student",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/john-matthias-kaube"
             },
             {
               "person_id": "st:fdp:person:frank odemar",
@@ -26009,7 +26230,8 @@
               "residence": "Könnern",
               "profession": "Arzt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/frank-odemar"
             },
             {
               "person_id": "st:fdp:person:christian daehre",
@@ -26029,7 +26251,8 @@
               "residence": "Magdeburg",
               "profession": "Rollenoffsetdrucker",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-daehre"
             },
             {
               "person_id": "st:fdp:person:daniela tost",
@@ -26049,7 +26272,8 @@
               "residence": "Magdeburg",
               "profession": "Schulleiterin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/daniela-tost"
             },
             {
               "person_id": "st:fdp:person:allard von arnim",
@@ -26069,7 +26293,8 @@
               "residence": "Möckern, OT Brandenstein",
               "profession": "Dipl.-Kaufmann",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/allard-von-arnim"
             },
             {
               "person_id": "st:fdp:person:annett krake",
@@ -26089,7 +26314,8 @@
               "residence": "Halle (Saale)",
               "profession": "Theatervermittlerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/annett-krake"
             },
             {
               "person_id": "st:fdp:person:axel riedel",
@@ -26109,7 +26335,8 @@
               "residence": "Magdeburg",
               "profession": "Erzieher",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/axel-riedel"
             },
             {
               "person_id": "st:fdp:person:birgit kansy",
@@ -26129,7 +26356,8 @@
               "residence": "Halle (Saale)",
               "profession": "Diplom-Ingenieur",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/birgit-kansy"
             },
             {
               "person_id": "st:fdp:person:dirk taschner",
@@ -26149,7 +26377,8 @@
               "residence": "Bad Dürrenberg",
               "profession": "Kfz-Meister",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/dirk-taschner"
             },
             {
               "person_id": "st:fdp:person:felix julius krueger",
@@ -26169,7 +26398,8 @@
               "residence": "Quedlinburg",
               "profession": "Bankkaufmann (Auszubildender)",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/felix-julius-krueger"
             },
             {
               "person_id": "st:fdp:person:gunnar blache",
@@ -26189,7 +26419,8 @@
               "residence": "Naumburg (Saale)",
               "profession": "Vermessungsingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/gunnar-blache"
             },
             {
               "person_id": "st:fdp:person:karsten pille",
@@ -26209,7 +26440,8 @@
               "residence": "Sangerhausen",
               "profession": "Ingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/karsten-pille"
             },
             {
               "person_id": "st:fdp:person:marco slotta",
@@ -26229,7 +26461,8 @@
               "residence": "Hansestadt Stendal",
               "profession": "Rechtsanwalt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/marco-slotta"
             },
             {
               "person_id": "st:fdp:person:marcus hillwig",
@@ -26249,7 +26482,8 @@
               "residence": "Dessau-Roßlau",
               "profession": "Geschäfsführer Immobilienverwaltung",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/marcus-hillwig"
             },
             {
               "person_id": "st:fdp:person:markus goehricke",
@@ -26269,7 +26503,8 @@
               "residence": "Merseburg",
               "profession": "Techniker (Maschinenbau)",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/markus-goehricke"
             },
             {
               "person_id": "st:fdp:person:max henrik schroeder",
@@ -26289,7 +26524,8 @@
               "residence": "Quedlinburg",
               "profession": "Kreisinspektoranwärter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/max-henrik-schroeder"
             },
             {
               "person_id": "st:fdp:person:maximilian frey",
@@ -26309,7 +26545,8 @@
               "residence": "Muldestausee, OT Schlaitz",
               "profession": "Verwaltungsfachangestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/maximilian-frey"
             },
             {
               "person_id": "st:fdp:person:pascal weiser",
@@ -26329,7 +26566,8 @@
               "residence": "Hohe Börde, OT Schackensleben",
               "profession": "ltd. IT-Konfigurationsmanager",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/pascal-weiser"
             },
             {
               "person_id": "st:fdp:person:philipp stavenow",
@@ -26349,7 +26587,8 @@
               "residence": "Dessau-Roßlau",
               "profession": "Industriekaufmann",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/philipp-stavenow"
             },
             {
               "person_id": "st:fdp:person:ramona hoyer",
@@ -26369,7 +26608,8 @@
               "residence": "Wettin-Löbejün, OT Wettin",
               "profession": "Rechtsanwältin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/ramona-hoyer"
             },
             {
               "person_id": "st:fdp:person:steffen mente",
@@ -26389,7 +26629,8 @@
               "residence": "Quedlinburg",
               "profession": "selbstständig",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/steffen-mente"
             },
             {
               "person_id": "st:fdp:person:thomas dietmar mothes",
@@ -26409,7 +26650,8 @@
               "residence": "Diesdorf",
               "profession": "Handwerksmeister",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-mothes"
             },
             {
               "person_id": "st:fdp:person:tim kehrwieder",
@@ -26429,7 +26671,8 @@
               "residence": "Halle (Saale)",
               "profession": "Student",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/tim-kehrwieder"
             },
             {
               "person_id": "st:fdp:person:torsten haussmann",
@@ -26449,7 +26692,8 @@
               "residence": "Aschersleben",
               "profession": "Diplomingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/torsten-haussmann"
             },
             {
               "person_id": "st:fdp:person:torsten schaper",
@@ -26469,7 +26713,8 @@
               "residence": "Halle (Saale)",
               "profession": "Dipl.-Betriebswirt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/torsten-schaper"
             }
           ]
         },
@@ -26514,11 +26759,11 @@
               "n_m": 18,
               "n_x": 0,
               "n_u": 0,
-              "pct_f": 34.4,
-              "pct_m": 65.6,
+              "pct_f": 35.4,
+              "pct_m": 64.6,
               "weighted": true,
               "weight_key": "p_list",
-              "expected": 1.8
+              "expected": 1.6
             },
             "district_weighted": {
               "n": 27,
@@ -26546,15 +26791,16 @@
               "list_pos": 1,
               "wkr_direct": 5,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 31,
+              "p_entry": 28,
               "p_direct": 0,
-              "p_list": 31,
+              "p_list": 28,
               "birth_year": 1964,
               "birth_place": "Merseburg",
               "residence": "Tangermünde",
               "profession": "Verwaltungsbeamter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/thomas-schulze-0"
             },
             {
               "person_id": "st:bsw:person:claudia wittig",
@@ -26566,15 +26812,16 @@
               "list_pos": 2,
               "wkr_direct": 37,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 31,
+              "p_entry": 28,
               "p_direct": 0,
-              "p_list": 31,
+              "p_list": 28,
               "birth_year": 1983,
               "birth_place": "Lutherstadt Wittenberg",
               "residence": "Halle (Saale)",
               "profession": "Historikerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/claudia-wittig"
             },
             {
               "person_id": "st:bsw:person:margitta kriebel",
@@ -26586,9 +26833,9 @@
               "list_pos": 3,
               "wkr_direct": null,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 31,
+              "p_entry": 28,
               "p_direct": 0,
-              "p_list": 31,
+              "p_list": 28,
               "birth_year": 1965,
               "birth_place": "Perleberg",
               "residence": "Colbitz",
@@ -26606,15 +26853,16 @@
               "list_pos": 4,
               "wkr_direct": 17,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 31,
+              "p_entry": 28,
               "p_direct": 0,
-              "p_list": 31,
+              "p_list": 28,
               "birth_year": 1983,
               "birth_place": "Darmstadt",
               "residence": "Ballenstedt",
               "profession": "Fachinformatiker",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/michael-reim"
             },
             {
               "person_id": "st:bsw:person:john lucas dittrich",
@@ -26626,15 +26874,16 @@
               "list_pos": 5,
               "wkr_direct": 11,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 31,
+              "p_entry": 28,
               "p_direct": 0,
-              "p_list": 31,
+              "p_list": 28,
               "birth_year": 2004,
               "birth_place": "Magdeburg",
               "residence": "Magdeburg",
               "profession": "Werkstudent",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/john-lucas-dittrich"
             },
             {
               "person_id": "st:bsw:person:rudenz schramm",
@@ -26646,15 +26895,16 @@
               "list_pos": 6,
               "wkr_direct": 38,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 17,
+              "p_entry": 13,
               "p_direct": 0,
-              "p_list": 17,
+              "p_list": 13,
               "birth_year": 1954,
               "birth_place": "Eisenach",
               "residence": "Halle (Saale)",
               "profession": "Diplomkulturwissenschaftler",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/rudenz-schramm"
             },
             {
               "person_id": "st:bsw:person:laszlo mueller",
@@ -26666,15 +26916,16 @@
               "list_pos": 7,
               "wkr_direct": 34,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 6,
+              "p_entry": 4,
               "p_direct": 0,
-              "p_list": 6,
+              "p_list": 4,
               "birth_year": 1974,
               "birth_place": "Weimar",
               "residence": "Landsberg",
               "profession": "Angestellter im Öffentlichen Dienst",
               "gender": "m",
-              "gender_confidence": "override"
+              "gender_confidence": "override",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/laszlo-mueller"
             },
             {
               "person_id": "st:bsw:person:michael benecke",
@@ -26686,9 +26937,9 @@
               "list_pos": 8,
               "wkr_direct": null,
               "source": "https://statistik.sachsen-anhalt.de/fileadmin/Bibliothek/Landesaemter/StaLa/startseite/Themen/Wahlen/Tabellen/Auswertung_VOeff_FgMI.xlsx",
-              "p_entry": 2,
+              "p_entry": 1,
               "p_direct": 0,
-              "p_list": 2,
+              "p_list": 1,
               "birth_year": 1959,
               "birth_place": "Magdeburg",
               "residence": "Hohe Börde, OT Niederndodeleben",
@@ -26714,7 +26965,8 @@
               "residence": "Angern",
               "profession": "Informatiker",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/wolfgang-michael-fuerst"
             },
             {
               "person_id": "st:bsw:person:holger koehne",
@@ -26734,7 +26986,8 @@
               "residence": "Sandau (Elbe)",
               "profession": "Finanzwirt (CoB)",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/holger-koehne"
             },
             {
               "person_id": "st:bsw:person:andreas neubert",
@@ -26754,7 +27007,8 @@
               "residence": "Halle (Saale)",
               "profession": "Archäologe",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-neubert"
             },
             {
               "person_id": "st:bsw:person:maximilian schwartz",
@@ -26774,7 +27028,8 @@
               "residence": "Ilsenburg (Harz)",
               "profession": "Kesselwärter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/maximilian-schwartz"
             },
             {
               "person_id": "st:bsw:person:michael deckert",
@@ -26814,7 +27069,8 @@
               "residence": "Halberstadt",
               "profession": "Rentnerin",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/monika-gehlis"
             },
             {
               "person_id": "st:bsw:person:oliver bart",
@@ -26834,7 +27090,8 @@
               "residence": "Haldensleben",
               "profession": "Angestellter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/oliver-bart"
             },
             {
               "person_id": "st:bsw:person:matthias hohmann",
@@ -26854,7 +27111,8 @@
               "residence": "Burg",
               "profession": "Rentner",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/matthias-hohmann"
             },
             {
               "person_id": "st:bsw:person:vinzenz louis muehlbach",
@@ -26874,7 +27132,8 @@
               "residence": "Magdeburg",
               "profession": "Fahrlehrer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/vinzenz-louis-muehlbach"
             },
             {
               "person_id": "st:bsw:person:christine meier",
@@ -26994,7 +27253,8 @@
               "residence": "Elsteraue",
               "profession": "Rentner",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-kendelbacher"
             },
             {
               "person_id": "st:bsw:person:andreas michelmann",
@@ -27014,7 +27274,8 @@
               "residence": "Aschersleben",
               "profession": "Germanist",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/andreas-michelmann"
             },
             {
               "person_id": "st:bsw:person:carsten reiche",
@@ -27034,7 +27295,8 @@
               "residence": "Wanzleben-Börde, OT Klein Rodensleben",
               "profession": "Polizeibeamter",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/carsten-reiche"
             },
             {
               "person_id": "st:bsw:person:christian samter",
@@ -27054,7 +27316,8 @@
               "residence": "Dessau-Roßlau",
               "profession": "Versicherungsbetriebswirt",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/christian-samter"
             },
             {
               "person_id": "st:bsw:person:sylvia winkelmann-witkowsky",
@@ -27074,7 +27337,8 @@
               "residence": "Halle (Saale)",
               "profession": "Orientarchäologe",
               "gender": "f",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/sylvia-winkelmann-witkowsky"
             },
             {
               "person_id": "st:bsw:person:frank rossband",
@@ -27094,7 +27358,8 @@
               "residence": "Gardelegen",
               "profession": "Lehrer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/frank-rossband"
             },
             {
               "person_id": "st:bsw:person:heiko behne",
@@ -27114,7 +27379,8 @@
               "residence": "Klötze, OT Kunrau",
               "profession": "Landmaschinenschlosser",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/heiko-behne"
             },
             {
               "person_id": "st:bsw:person:hugo boeck",
@@ -27134,7 +27400,8 @@
               "residence": "Magdeburg",
               "profession": "Rentner",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/hugo-boeck"
             },
             {
               "person_id": "st:bsw:person:joachim pasemann",
@@ -27154,7 +27421,8 @@
               "residence": "Wernigerode",
               "profession": "Prüfer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/joachim-pasemann"
             },
             {
               "person_id": "st:bsw:person:lenny werner wapenhans",
@@ -27174,7 +27442,8 @@
               "residence": "Magdeburg",
               "profession": "Bauingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/lenny-wapenhans"
             },
             {
               "person_id": "st:bsw:person:roland herbert",
@@ -27194,7 +27463,8 @@
               "residence": "Staßfurt",
               "profession": "Berufsschullehrer",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/roland-herbert"
             },
             {
               "person_id": "st:bsw:person:uwe erich georgi",
@@ -27214,7 +27484,8 @@
               "residence": "Schönebeck (Elbe)",
               "profession": "Rentner",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/uwe-georgi"
             },
             {
               "person_id": "st:bsw:person:volkmar gryschok",
@@ -27234,7 +27505,8 @@
               "residence": "Tangermünde",
               "profession": "Eisenbahnbauingenieur",
               "gender": "m",
-              "gender_confidence": "high"
+              "gender_confidence": "high",
+              "aw_url": "https://www.abgeordnetenwatch.de/profile/volkmar-gryschok"
             }
           ]
         }
