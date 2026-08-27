@@ -235,33 +235,29 @@
   }
 
   /**
-   * Patterns live in a document-level SVG, not Leaflet's overlay SVG.
-   * Leaflet recreates its SVG on fitBounds/zoom; defs there vanish and
-   * striped fills go solid until the next restyle race.
+   * Patterns must live in the same SVG as the Leaflet paths. A separate
+   * document-level <svg width=0> often fails to paint url(#…) fills.
+   * Recreate defs after Leaflet rebuilds its overlay SVG (fit/zoom).
    */
-  function districtStripeDefs() {
-    let root = document.getElementById('district-stripe-root');
-    if (!root) {
-      root = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      root.setAttribute('id', 'district-stripe-root');
-      root.setAttribute('aria-hidden', 'true');
-      root.setAttribute('focusable', 'false');
-      root.style.cssText =
-        'position:absolute;width:0;height:0;overflow:hidden;pointer-events:none';
-      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  function districtStripeDefs(map) {
+    if (!map || !map.getPanes) return null;
+    const overlay = map.getPanes().overlayPane && map.getPanes().overlayPane.querySelector('svg');
+    if (!overlay) return null;
+    let defs = overlay.querySelector('defs.district-stripe-defs');
+    if (!defs) {
+      defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
       defs.classList.add('district-stripe-defs');
-      root.appendChild(defs);
-      (document.body || document.documentElement).appendChild(root);
+      overlay.insertBefore(defs, overlay.firstChild);
     }
-    return root.querySelector('defs.district-stripe-defs');
+    return defs;
   }
 
   /**
    * Diagonal multi-party hatch. Stripe widths follow each party's share of
    * win probabilities among parties above 10% (quantized for reuse).
    */
-  function ensureDistrictStripePattern(_map, segments) {
-    const defs = districtStripeDefs();
+  function ensureDistrictStripePattern(map, segments) {
+    const defs = districtStripeDefs(map);
     if (!defs || !segments || segments.length < 2) return null;
     const safe = (c) => String(c || 'x').replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) || 'x';
     const total = segments.reduce((s, seg) => s + Math.max(0, Number(seg.share) || 0), 0);
@@ -1794,12 +1790,11 @@
         if (!layer || !layer.feature) return;
         const wkr = layer.feature.properties.wkr;
         const style = styleForWkr(wkr);
-        const solid = DISTRICT_PARTY_COLORS[(winners[String(wkr)] || {}).partei] || '#999';
         layer.setStyle({
           color: style.color,
           weight: style.weight,
           opacity: style.opacity,
-          fillColor: style.patternId ? solid : style.fillColor,
+          fillColor: style.fillColor,
           fillOpacity: style.fillOpacity
         });
         if (style.patternId) {
@@ -1831,13 +1826,12 @@
         if (!focused) return;
         try {
           const style = styleForWkr(selectedWkr);
-          const solid = DISTRICT_PARTY_COLORS[(winners[String(selectedWkr)] || {}).partei] || '#999';
           focused.setStyle({
             weight: 3,
             color: '#111',
             opacity: 1,
             fillOpacity: 0.85,
-            fillColor: style.patternId ? solid : style.fillColor
+            fillColor: style.fillColor
           });
           if (style.patternId) {
             paintPathFill(focused, districtPatternFill(style.patternId));
