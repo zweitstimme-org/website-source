@@ -213,154 +213,12 @@
     return winners;
   }
 
-  function districtRowsByWkr(items) {
-    const byWkr = {};
-    (items || []).forEach((row) => {
-      if (!row || row.wkr == null) return;
-      const key = String(row.wkr);
-      if (!byWkr[key]) byWkr[key] = [];
-      byWkr[key].push(row);
-    });
-    return byWkr;
-  }
-
-  function districtStripeCandidates(rows) {
-    return (rows || [])
-      .filter((r) => !districtIsOthers(r) && districtWinProbability(r) > 10)
-      .sort((a, b) => (districtWinProbability(b) || 0) - (districtWinProbability(a) || 0));
-  }
-
-  function districtNeedsStripes(label) {
-    return label === 'Offen' || label === 'Völlig offen' || label === 'Tendenziell';
-  }
-
-  /**
-   * Patterns must live in the same SVG as the Leaflet paths. A separate
-   * document-level <svg width=0> often fails to paint url(#…) fills.
-   * Recreate defs after Leaflet rebuilds its overlay SVG (fit/zoom).
-   */
-  function districtStripeDefs(map) {
-    if (!map || !map.getPanes) return null;
-    const overlay = map.getPanes().overlayPane && map.getPanes().overlayPane.querySelector('svg');
-    if (!overlay) return null;
-    let defs = overlay.querySelector('defs.district-stripe-defs');
-    if (!defs) {
-      defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-      defs.classList.add('district-stripe-defs');
-      overlay.insertBefore(defs, overlay.firstChild);
-    }
-    return defs;
-  }
-
-  /**
-   * Diagonal multi-party hatch. Stripe widths follow each party's share of
-   * win probabilities among parties above 10% (quantized for reuse).
-   */
-  function ensureDistrictStripePattern(map, segments) {
-    const defs = districtStripeDefs(map);
-    if (!defs || !segments || segments.length < 2) return null;
-    const safe = (c) => String(c || 'x').replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) || 'x';
-    const total = segments.reduce((s, seg) => s + Math.max(0, Number(seg.share) || 0), 0);
-    if (total <= 0) return null;
-
-    // Quantize shares to 20ths so identical races share one pattern.
-    const parts = segments.map((seg) => {
-      const raw = Math.max(0, Number(seg.share) || 0) / total;
-      return {
-        color: seg.color || '#999',
-        q: Math.max(1, Math.round(raw * 20))
-      };
-    });
-    let qSum = parts.reduce((s, p) => s + p.q, 0);
-    while (qSum > 20) {
-      const i = parts.reduce((best, p, idx, arr) => (p.q > arr[best].q ? idx : best), 0);
-      if (parts[i].q <= 1) break;
-      parts[i].q -= 1;
-      qSum -= 1;
-    }
-    while (qSum < 20) {
-      const i = parts.reduce((best, p, idx, arr) => (p.q >= arr[best].q ? idx : best), 0);
-      parts[i].q += 1;
-      qSum += 1;
-    }
-
-    const id = `dstripe-${parts.map((p) => `${safe(p.color)}${p.q}`).join('-')}`;
-    if (!defs.querySelector(`[id="${id}"]`)) {
-      const period = Math.max(16, parts.length * 6);
-      const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
-      pattern.setAttribute('id', id);
-      pattern.setAttribute('patternUnits', 'userSpaceOnUse');
-      pattern.setAttribute('width', String(period));
-      pattern.setAttribute('height', String(period));
-      pattern.setAttribute('patternTransform', 'rotate(35)');
-
-      let x = 0;
-      parts.forEach((p, idx) => {
-        const w = idx === parts.length - 1
-          ? period - x
-          : Math.max(2, Math.round((period * p.q) / 20));
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', String(x));
-        rect.setAttribute('y', '0');
-        rect.setAttribute('width', String(Math.max(1, w)));
-        rect.setAttribute('height', String(period));
-        rect.setAttribute('fill', p.color);
-        pattern.appendChild(rect);
-        x += w;
-      });
-      defs.appendChild(pattern);
-    }
-    return id;
-  }
-
-  /**
-   * Same-document fragment only. Absolute `location.href#id` breaks when the
-   * page URL has a query (?state=ST) — SVG paint servers often fail to match.
-   */
-  function districtPatternFill(patternId) {
-    if (!patternId) return null;
-    return `url(#${patternId})`;
-  }
-
-  function districtFillStyle(win, opts) {
-    const map = opts && opts.map;
-    const partyRows = (opts && opts.partyRows) || null;
+  function districtFillStyle(win) {
     const color = win ? (DISTRICT_PARTY_COLORS[win.partei] || '#999') : '#ccc';
     const p = Math.max(0, Math.min(100, Number(win && win.probability) || 0)) / 100;
-    // Moderate fill: basemap labels stay readable, colors still readable at a glance.
-    const fillOpacity = 0.18 + 0.38 * p;
-    const base = {
-      color: '#3a3a3a',
-      weight: 1.1,
-      opacity: 0.65,
-      fillColor: color,
-      fillOpacity,
-      patternId: null
-    };
-
-    if (!partyRows || !map) return base;
-    const runnerUp = districtRunnerUpWinProbability(partyRows);
-    const label = districtWinLikelihoodLabel(districtWinProbability(win), runnerUp);
-    if (!districtNeedsStripes(label)) return base;
-
-    const contenders = districtStripeCandidates(partyRows);
-    if (contenders.length < 2) return base;
-    const segments = contenders.map((row) => ({
-      color: DISTRICT_PARTY_COLORS[row.partei] || '#999',
-      share: districtWinProbability(row) || 0
-    }));
-    const patternId = ensureDistrictStripePattern(map, segments);
-    const fill = districtPatternFill(patternId);
-    if (!fill) return base;
-    // Same opacity scale as solid fills: stronger when the leader is clearer.
-    return {
-      color: '#3a3a3a',
-      weight: 1.1,
-      opacity: 0.65,
-      fillColor: fill,
-      fillOpacity,
-      patternId
-    };
+    // Light fill so basemap labels (towns, streets) stay readable underneath.
+    const fillOpacity = 0.10 + 0.28 * p;
+    return { color: '#3a3a3a', weight: 1.1, opacity: 0.65, fillColor: color, fillOpacity };
   }
 
   function districtHasCandidateName(r) {
@@ -483,9 +341,9 @@
     const color = DISTRICT_PARTY_COLORS[row.partei] || '#999';
     const label = `${Math.round(lo)}–${Math.round(hi)}%`;
     return `
-      <div style="position:relative;height:20px;background:#f0f0f0;border-radius:4px;width:100%;margin-top:0.35rem;" title="95%-Unsicherheitsintervall der Erststimme">
+      <div style="position:relative;height:20px;background:#f0f0f0;border-radius:4px;width:100%;margin-top:0.35rem;">
         <div style="position:absolute;left:${left}%;width:${barWidth}%;height:4px;top:50%;transform:translateY(-50%);background:${color};border-radius:2px;"></div>
-        <div style="position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:0.78rem;color:#333;background:#f0f0f0;padding-left:4px;z-index:1;">${label} <span style="color:#888;font-weight:400;">(95 %)</span></div>
+        <div style="position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:0.78rem;color:#333;background:#f0f0f0;padding-left:4px;z-index:1;">${label}</div>
       </div>`;
   }
 
@@ -1742,7 +1600,6 @@
       const l1Label = meta.l1_label || 'l1';
       const listLookup = buildListLookup(candidateEntry, code);
       const winners = districtWinnerIndex(items);
-      const rowsByWkr = districtRowsByWkr(items);
       const L = await ensureLeaflet();
 
       section.style.display = 'block';
@@ -1764,45 +1621,12 @@
         global.attachZweitstimmeWatermark(mapEl, { map: true });
       }
       const geoAttr = DISTRICT_GEO_ATTRIBUTION[code] || 'Wahlkreise';
-      // OSM tiles (CARTO Voyager now watermarks "API key required" without a key).
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · ${geoAttr}`,
-        maxZoom: 19
+      // Voyager: town/village names + streets when zoomed in (light_all was too sparse).
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: `&copy; OpenStreetMap, &copy; CARTO · ${geoAttr}`,
+        subdomains: 'abcd',
+        maxZoom: 17
       }).addTo(mapInstance);
-
-      function styleForWkr(wkr) {
-        const key = String(wkr);
-        return districtFillStyle(winners[key], {
-          map: mapInstance,
-          partyRows: rowsByWkr[key] || null
-        });
-      }
-
-      function paintPathFill(layer, fill) {
-        const path = layer && layer._path;
-        if (!path || !fill) return;
-        path.setAttribute('fill', fill);
-        // CSS fill beats a stale presentation attribute after Leaflet updates.
-        path.style.fill = fill;
-      }
-
-      function applyLayerStyle(layer) {
-        if (!layer || !layer.feature) return;
-        const wkr = layer.feature.properties.wkr;
-        const style = styleForWkr(wkr);
-        layer.setStyle({
-          color: style.color,
-          weight: style.weight,
-          opacity: style.opacity,
-          fillColor: style.fillColor,
-          fillOpacity: style.fillOpacity
-        });
-        if (style.patternId) {
-          paintPathFill(layer, districtPatternFill(style.patternId));
-        } else if (layer._path) {
-          layer._path.style.fill = '';
-        }
-      }
 
       function findLayerByWkr(wkrNum) {
         let found = null;
@@ -1814,45 +1638,28 @@
         return found;
       }
 
-      let selectedWkr = null;
-
       function resetDistrictStyles() {
         if (!mapLayer) return;
         mapLayer.eachLayer((layer) => {
-          try { applyLayerStyle(layer); } catch (_) { /* ignore */ }
+          try { mapLayer.resetStyle(layer); } catch (_) { /* ignore */ }
         });
-        if (selectedWkr == null) return;
-        const focused = findLayerByWkr(selectedWkr);
-        if (!focused) return;
-        try {
-          const style = styleForWkr(selectedWkr);
-          focused.setStyle({
-            weight: 3,
-            color: '#111',
-            opacity: 1,
-            fillOpacity: 0.85,
-            fillColor: style.fillColor
-          });
-          if (style.patternId) {
-            paintPathFill(focused, districtPatternFill(style.patternId));
-          }
-          if (focused.bringToFront) focused.bringToFront();
-        } catch (_) { /* ignore */ }
-      }
-
-      function highlightLayer(layer) {
-        if (!layer || !layer.feature) return;
-        selectedWkr = layer.feature.properties.wkr;
-        resetDistrictStyles();
       }
 
       function focusDistrict(wkrNum, opts) {
         const focused = findLayerByWkr(wkrNum);
         if (!focused || !mapInstance) return false;
         const props = focused.feature.properties;
-        selectedWkr = wkrNum;
-        renderDistrictDetail(wkrNum, items, props.wkr_name, l1Label, listLookup, meta);
         resetDistrictStyles();
+        renderDistrictDetail(wkrNum, items, props.wkr_name, l1Label, listLookup, meta);
+        try {
+          focused.setStyle({
+            weight: 3,
+            color: '#111',
+            opacity: 1,
+            fillOpacity: 0.75
+          });
+          if (focused.bringToFront) focused.bringToFront();
+        } catch (_) { /* ignore */ }
 
         const pinLon = opts && Number(opts.lon);
         const pinLat = opts && Number(opts.lat);
@@ -1887,20 +1694,16 @@
 
       mapLayer = L.geoJSON(geo, {
         style(feature) {
-          return styleForWkr(feature.properties.wkr);
+          const win = winners[String(feature.properties.wkr)];
+          return districtFillStyle(win);
         },
         onEachFeature(feature, layer) {
           const wkr = feature.properties.wkr;
           const name = feature.properties.wkr_name;
           const win = winners[String(wkr)];
-          const rows = rowsByWkr[String(wkr)] || [];
-          const runnerUp = districtRunnerUpWinProbability(rows);
-          const like = districtWinLikelihoodLabel(districtWinProbability(win), runnerUp);
-          let tip = `WK ${wkr}: ${name}`;
-          if (win) {
-            tip += `<br>${win.partei} ${formatWinProbabilityPct(win.probability)}`;
-            if (like) tip += ` · ${like}`;
-          }
+          const tip = win
+            ? `WK ${wkr}: ${name}<br>${win.partei} ${formatWinProbabilityPct(win.probability)}`
+            : `WK ${wkr}: ${name}`;
           layer.bindTooltip(tip, { sticky: true });
           layer.on('click', () => {
             if (opts && opts.navigateToWkr) {
@@ -1915,21 +1718,20 @@
               return;
             }
             clearAddressMarker();
-            selectedWkr = wkr;
-            renderDistrictDetail(wkr, items, name, l1Label, listLookup, meta);
             resetDistrictStyles();
+            renderDistrictDetail(wkr, items, name, l1Label, listLookup, meta);
+            try {
+              layer.setStyle({
+                weight: 3,
+                color: '#111',
+                opacity: 1,
+                fillOpacity: 0.75
+              });
+              if (layer.bringToFront) layer.bringToFront();
+            } catch (_) { /* ignore */ }
           });
         }
       }).addTo(mapInstance);
-
-      function restyleAllDistricts() {
-        resetDistrictStyles();
-      }
-      // Re-apply pattern fills after Leaflet path redraws (fit/zoom/move).
-      restyleAllDistricts();
-      mapInstance.on('viewreset zoomend moveend', restyleAllDistricts);
-      setTimeout(restyleAllDistricts, 0);
-      setTimeout(restyleAllDistricts, 300);
 
       bindDistrictSearch({
         code,
@@ -1971,123 +1773,41 @@
         mapInstance.invalidateSize();
         if (hasFocus) focusDistrict(focusWkr);
         else fitStateOverview();
-        restyleAllDistricts();
       });
       setTimeout(() => {
         if (!mapInstance) return;
         mapInstance.invalidateSize();
         if (hasFocus) focusDistrict(focusWkr);
         else fitStateOverview();
-        restyleAllDistricts();
       }, 250);
 
-      const used = new Set();
-      Object.keys(rowsByWkr).forEach((wkr) => {
-        const rows = rowsByWkr[wkr] || [];
-        const win = winners[wkr];
-        if (!win) return;
-        const runnerUp = districtRunnerUpWinProbability(rows);
-        const label = districtWinLikelihoodLabel(districtWinProbability(win), runnerUp);
-        if (districtNeedsStripes(label)) {
-          districtStripeCandidates(rows).forEach((r) => {
-            if (r && r.partei) used.add(r.partei);
-          });
-        } else if (win.partei) {
-          used.add(win.partei);
-        }
-      });
-      const partyOrder = ['CDU', 'CSU', 'CDU/CSU', 'AfD', 'SPD', 'GRÜNE', 'LINKE', 'BSW', 'FDP', 'Sonstige'];
-      const usedList = [...used].sort((a, b) => {
-        const ia = partyOrder.indexOf(a);
-        const ib = partyOrder.indexOf(b);
-        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || String(a).localeCompare(String(b), 'de');
-      });
+      const used = [...new Set(Object.values(winners).map(w => w.partei))];
       if (legendEl) {
-        legendEl.innerHTML = usedList.map(p => `
+        legendEl.innerHTML = used.map(p => `
           <span style="display:inline-flex;align-items:center;gap:0.35rem;">
             <span style="width:12px;height:12px;border-radius:2px;background:${DISTRICT_PARTY_COLORS[p] || '#999'};"></span>
             ${p}
           </span>
         `).join('') + `
           <span style="width:100%; text-align:center; color:#777; font-size:0.78rem; margin-top:0.15rem;">
-            Einfarbig ab P(Favorit) ≥ 66 %, wenn die Zweitplatzierte ≤ 33 % hat; je höher P, desto kräftiger die Farbe. Streifen bei offen/tendenziell (alle Parteien &gt;10 %, Breite ≈ P).
+            Intensität = Gewinnwahrscheinlichkeit
           </span>`;
       }
 
-      function percentileSorted(sortedArr, p) {
-        if (!sortedArr.length) return 0;
-        const idx = Math.min(
-          sortedArr.length - 1,
-          Math.max(0, Math.ceil((p / 100) * sortedArr.length) - 1)
-        );
-        return sortedArr[idx];
-      }
-
-      /** p10–p90 Direktmandate from district win probs (multinomial per WK). */
-      function simulateDirectRanges(districtItems, nsim) {
-        const byWkr = {};
-        (districtItems || []).forEach((r) => {
-          if (districtIsOthers(r)) return;
-          const p = districtWinProbability(r);
-          if (!Number.isFinite(p) || p <= 0 || !r.partei) return;
-          const key = String(r.wkr);
-          if (!byWkr[key]) byWkr[key] = [];
-          byWkr[key].push({ partei: r.partei, p });
-        });
-        const parties = [];
-        const seen = {};
-        Object.keys(byWkr).forEach((w) => {
-          byWkr[w].forEach((r) => {
-            if (!seen[r.partei]) {
-              seen[r.partei] = true;
-              parties.push(r.partei);
-            }
-          });
-        });
-        const sims = {};
-        parties.forEach((p) => { sims[p] = new Int16Array(nsim); });
-        const wkList = Object.keys(byWkr);
-        for (let i = 0; i < nsim; i++) {
-          for (let w = 0; w < wkList.length; w++) {
-            const rows = byWkr[wkList[w]];
-            let sum = 0;
-            for (let k = 0; k < rows.length; k++) sum += rows[k].p;
-            if (sum <= 0) continue;
-            let u = Math.random() * sum;
-            for (let k = 0; k < rows.length; k++) {
-              u -= rows[k].p;
-              if (u <= 0) {
-                sims[rows[k].partei][i] += 1;
-                break;
-              }
-            }
-          }
-        }
-        return parties.map((p) => {
-          const arr = Array.from(sims[p]).sort((a, b) => a - b);
-          const p10 = percentileSorted(arr, 10);
-          const p90 = percentileSorted(arr, 90);
-          const median = percentileSorted(arr, 50);
-          return { partei: p, p10, p90, median };
-        })
-          .filter((r) => r.p90 > 0)
-          .sort((a, b) => b.median - a.median || b.p90 - a.p90 || String(a.partei).localeCompare(String(b.partei), 'de'));
-      }
-
+      const tally = {};
+      Object.values(winners).forEach(w => {
+        tally[w.partei] = (tally[w.partei] || 0) + 1;
+      });
       const hint = document.getElementById('vorhersage-districts-hint');
       if (hint) {
         hint.style.display = 'block';
-        const ranges = simulateDirectRanges(items, 2500);
-        const tallyHtml = ranges.map((r) => {
-          const span = r.p10 === r.p90
-            ? String(r.p10)
-            : `${r.p10}–${r.p90}`;
-          return `<strong>${escapeHtml(r.partei)}</strong> ${escapeHtml(span)}`;
-        }).join(' · ');
+        const tallyHtml = Object.entries(tally)
+          .sort((a, b) => b[1] - a[1])
+          .map(([p, n]) => `<strong>${p}</strong> ${n}`)
+          .join(' · ');
         hint.innerHTML = `
-          Anzahl Direktmandate:
+          Voraus. Direktmandate:
           ${tallyHtml}
-          <span style="color:#777;font-weight:400;"> · p10–p90</span>
           <div style="color:#777; font-size:0.8rem; margin-top:0.25rem;">Klicken Sie einen Wahlkreis für Erststimmen-Details.</div>
         `;
       }
