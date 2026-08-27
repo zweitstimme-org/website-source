@@ -1,15 +1,15 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-27T12:10:19",
+  "generated_at": "2026-08-18T07:47:57",
   "description": "Aktuelle Stimmung (Kalman). The full series covers ~10 years. Prefer current, day/YYYY-MM-DD, month/YYYY-MM, or year/YYYY.",
   "path": "/api/v2/stimmung/state/he.json",
   "current": "/api/v2/stimmung/state/he/current.json",
   "day": "/api/v2/stimmung/state/he/day/{date}.json",
   "month": "/api/v2/stimmung/state/he/month/{YYYY-MM}.json",
   "year": "/api/v2/stimmung/state/he/year/{YYYY}.json",
-  "from": "2017-01-12",
-  "to": "2026-08-27",
-  "as_of": "2026-08-27",
+  "from": "2016-08-24",
+  "to": "2026-08-18",
+  "as_of": "2026-08-18",
   "election": {
     "id": "he_2028-10-15",
     "name": "Landtagswahl Hessen",
@@ -19,6 +19,11 @@
     "date_is_estimated": true
   },
   "months": [
+    "2016-08",
+    "2016-09",
+    "2016-10",
+    "2016-11",
+    "2016-12",
     "2017-01",
     "2017-02",
     "2017-03",
@@ -137,6 +142,7 @@
     "2026-08"
   ],
   "years": [
+    "2016",
     "2017",
     "2018",
     "2019",

@@ -116,10 +116,10 @@ Dieser Artikel erklärt das Modell hinter der Karte. Kurz gesagt: Wir nehmen die
 |---|---|---|
 | Frage | Wie fallen die **Zweitstimmen** landesweit aus? | Wer gewinnt das **Direktmandat** (Erststimme) im Wahlkreis? |
 | Einheit | Prozentanteile + Szenarien | Karte + Siegchancen je Wahlkreis |
-| Unsicherheit | 5/6-Intervall der Landesanteile | **Band** der Erststimmen (Spanne von niedrig bis hoch über die Simulationen) + P(Sieg) |
+| Unsicherheit | 5/6-Unsicherheitsintervall der Landesanteile | **95 %-Unsicherheitsintervall** der Erststimmen (+ P(Sieg)) |
 | Kandidierende | Spitzenkandidierende nur indirekt (über Umfragen) | Namen zur Orientierung; **ohne** Einfluss auf die Prognose |
 
-Die Karte färbt jeden Wahlkreis nach der Partei mit der höchsten Siegchance. Klick öffnet Details: Erststimmen-Band, Vergleich zur letzten Wahl und — soweit bekannt — den Namen der Direktkandidierenden.
+Klare Favoriten (Siegchance ab etwa zwei Dritteln, und die Zweitplatzierte höchstens ein Drittel) färbt die Karte **einfarbig** in der Parteifarbe — die Intensität folgt der Siegchance. Offene und tendenziell knappe Wahlkreise bekommen **Streifen** in den Farben aller Parteien mit mehr als 10 % Siegchance; die Streifenbreite folgt ungefähr diesen Anteilen. Klick öffnet Details: 95 %-Unsicherheitsintervall der Erststimme, Vergleich zur letzten Wahl und — soweit bekannt — den Namen der Direktkandidierenden.
 
 ### Die Idee: proportionaler Swing + geschätzte Erststimme
 
@@ -196,9 +196,9 @@ Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen B
 
 ### So liest man die Darstellung
 
-- **Kartenfarbe** — vorausgesagte Siegerpartei (höchste Siegchance).
-- **P(Sieg)** — Anteil der Simulationen, in denen diese Partei das Direktmandat holt. 70 % heißt: in sieben von zehn Zügen gewinnt sie — nicht „sicher“.
-- **Erststimmen-Band** — die Spanne der simulierten Erststimmenanteile von niedrig bis hoch (gerundet), ohne separate Punktschätzung in der Liste. Ein **Band** ist also kein einzelner Wert, sondern der Unsicherheitsbereich über die Simulationen. Breite Bänder bedeuten: kleine Änderungen am Landestrend können den Wahlkreis kippen.
+- **Kartenfarbe** — einfarbig ab P(Favorit) ≥ 66 %, wenn die Zweitplatzierte ≤ 33 % hat; sonst Streifen für offen/tendenziell (alle Parteien &gt;10 %, Breite ≈ P).
+- **P(Sieg)** — Anteil der Simulationen, in denen diese Partei das Direktmandat holt. 70 % heißt nur: in sieben von zehn Zügen gewinnt sie — das ist kein eigener Schwellenwert für die Karte.
+- **95 %-Unsicherheitsintervall (Erststimme)** — Mittelwert ± 1,96·SD über die Simulationen (Normalnäherung), analog zum 5/6-Intervall der Landesprognose. Ohne separate Punktschätzung in der Liste. Breite Intervalle bedeuten: kleine Änderungen am Landestrend können den Wahlkreis kippen.
 - **Vergleichswert der letzten Wahl** — Erststimmenanteil damals, als Orientierung.
 - **Namen** — Direktkandidierende, soweit wir sie aus Partei- oder Amtsquellen haben. In **Sachsen-Anhalt** liegt das amtliche Bewerberverzeichnis vor: fehlt eine Partei in einem Wahlkreis, tritt sie dort **nicht** an — wir setzen ihren Erststimmenanteil auf 0 und normalisieren die übrigen auf 100 %. In MV und Berlin heißt ein fehlender Name dagegen oft noch „noch nicht veröffentlicht“, nicht „niemand kandidiert“. Namen und Incumbency ändern die berechneten Anteile ansonsten **nicht** (keine weiteren Kandidierenden-Kovariaten).
 
@@ -207,7 +207,7 @@ Kandidierenden-Merkmale (Incumbency usw.) fehlen noch — anders als im vollen B
 - **Keine Effekte der Kandidierenden.** Incumbency, Listenplatz, Bekanntheit usw. stecken noch nicht in der Erst-Gleichung (im Bundestags-Modell schon).
 - **Kein eigenes Erststimmen-Umfragemodell.** Es gibt kaum flächendeckende Wahlkreisumfragen; Swing + Regression sind die Näherung.
 - **Keine amtliche Sitzzuteilung in den Koalitionsszenarien.** Die landesweite Mehrheitsrechnung der [Landesprognose](/blog/posts/state-forecast-methodology/#szenarien) bleibt eine Näherung über Zweitstimmenanteile. Zusätzlich zeigen wir unter der Wahlkreis-Karte eine **indikative Größenverteilung** des Landtags bzw. Abgeordnetenhauses (siehe unten).
-- **Grenzen und Umschlüsselung.** In Berlin: Trainingsübergang 2016→2023 auf 2023er Kreisen; Live-Anker **Zweit 2023→2026** laut AfS (`DL_BE_AGH2026_AGH2023`), Erst wo die lokale Nummer passt. In ST: 2016er Anteile auf 2021er Kreisen sind amtliche **Vergleichswerte in %** (Briefwahl-Näherung).
+- **Grenzen und Umschlüsselung.** Wahlkreiszuschnitte ändern sich. Für Berlin nutzen wir die amtliche Umschlüsselung der Zweitstimmen von 2023 auf die Gebiete von 2026; Erststimmen nur dort, wo die lokale Nummer noch passt. In Sachsen-Anhalt stammen die 2016er Vergleichswerte auf 2021er Kreisen aus amtlichen %-Angaben (mit Briefwahl-Näherung).
 
 ### Von Direktmandaten zur Parlamentsgröße {#parlamentsgroesse}
 
