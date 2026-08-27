@@ -13,10 +13,9 @@
   </div>
   {{- end }}
 
-  {{- $apiRoot := strings.TrimSuffix "/" .Site.BaseURL }}
   <div id="swagger-ui"
-       data-spec="{{ $apiRoot }}/api/openapi.json"
-       data-root="{{ $apiRoot }}/"></div>
+       data-spec="{{ "/api/openapi.json" | absURL }}"
+       data-root="{{ "/" | absURL }}"></div>
 </article>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css" crossorigin="anonymous">

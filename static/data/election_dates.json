@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-08-10T11:59:57.203254",
+    "last_updated": "2026-08-27T08:59:19.758311",
     "source": "https://www.wahlrecht.de/umfragen/landtage/",
     "total_states": 16
   },
@@ -64,10 +64,10 @@
     {
       "state_code": "NI",
       "state_name": "Niedersachsen",
-      "display_date": "Herbst 2027",
-      "estimated_date": "2027-10-17",
+      "display_date": "26. September 2027",
+      "estimated_date": "2027-09-26",
       "year": 2027,
-      "date_is_estimated": true
+      "date_is_estimated": false
     },
     {
       "state_code": "BY",
