@@ -3,7 +3,7 @@
     "model": "district_swing + state Hare/Niemeyer size sim",
     "nsim": 4000,
     "seed": 20260730,
-    "last_update": "2026-08-27T14:08:22Z",
+    "last_update": "2026-08-28T11:23:54Z",
     "caveat_de": "Indikative Größenverteilung aus dem Wahlkreis-Swing-Modell (ohne Kandidateneffekte). Keine amtliche Sitzzuteilung."
   },
   "states": {
@@ -210,47 +210,46 @@
       "method": "hare_double_iter",
       "note_de": "Mindestens 83 Sitze (Hare/Niemeyer). Bei Überhang wird die Sitzzahl wiederholt um das Doppelte der verbleibenden Überhangmandate erhöht, bis der Proporz (nahezu) hergestellt ist.",
       "nsim": 4000,
-      "statewide_last_poll_date": "2026-08-26",
-      "p_overhang_pct": 23.9,
-      "p_incomplete_pct": 0.57,
+      "statewide_last_poll_date": "2026-08-28",
+      "p_overhang_pct": 17.6,
+      "p_incomplete_pct": 0.15,
       "advantage_seats_pct": {
-        "0": 99.42,
-        "1": 0.57,
+        "0": 99.85,
+        "1": 0.15,
         "2": 0.0,
         "3plus": 0.0
       },
-      "p_advantage_ge1_pct": 0.57,
+      "p_advantage_ge1_pct": 0.15,
       "p_advantage_ge2_pct": 0.0,
       "oh_parties": {
-        "AfD": 953,
-        "CDU": 4
+        "AfD": 704
       },
       "advantage_parties": {
-        "AfD": 23
+        "AfD": 6
       },
-      "size_mean": 84.3,
+      "size_mean": 83.7,
       "size_median": 83,
       "size_p10": 83,
-      "size_p90": 89,
-      "size_p95": 91,
-      "size_max": 106,
-      "p_base_pct": 76.1,
+      "size_p90": 87,
+      "size_p95": 87,
+      "size_max": 98,
+      "p_base_pct": 82.4,
       "buckets": [
         {
           "label": "83",
-          "pct": 76.1
+          "pct": 82.4
         },
         {
           "label": "85–91",
-          "pct": 20.3
+          "pct": 16.4
         },
         {
           "label": "93–99",
-          "pct": 3.3
+          "pct": 1.1
         },
         {
           "label": "101–107",
-          "pct": 0.3
+          "pct": 0.0
         },
         {
           "label": "109–115",
@@ -266,19 +265,19 @@
         }
       ],
       "point": {
-        "size": 83,
+        "size": 85,
         "seats": {
           "SPD": 6,
           "AfD": 40,
-          "CDU": 21,
-          "LINKE": 11,
+          "CDU": 22,
+          "LINKE": 12,
           "GRÜNE": 5
         },
         "directs": {
           "AfD": 40,
           "GRÜNE": 1
         },
-        "total_oh": 0,
+        "total_oh": 1,
         "incomplete": false,
         "adv": 0
       },

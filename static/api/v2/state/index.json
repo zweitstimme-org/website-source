@@ -1,9 +1,26 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-27T14:09:53Z",
+  "generated_at": "2026-08-28T11:25:26Z",
   "description": "Active state (Landtag) forecasts within the ~90-day window before election day. Includes party forecasts, draws, districts, candidate entry probabilities, and parliament-size sims when published. Past elections (once archived by the pipeline) are under /api/v2/state/archive/.",
   "forecast_window_days": 90,
   "states": [
+    {
+      "state_code": "ST",
+      "path": "/api/v2/state/st.json",
+      "election": {
+        "id": "st_2026-09-06",
+        "name": "Landtagswahl Sachsen-Anhalt",
+        "date": "2026-09-06",
+        "scope": "state",
+        "state_code": "ST",
+        "date_is_estimated": false
+      },
+      "active": true,
+      "draws": "/api/v2/state/st/draws.json",
+      "districts": "/api/v2/state/st/districts.json",
+      "candidates": "/api/v2/state/st/candidates.json",
+      "parliament": "/api/v2/state/st/parliament.json"
+    },
     {
       "state_code": "BE",
       "path": "/api/v2/state/be.json",
@@ -37,23 +54,6 @@
       "districts": "/api/v2/state/mv/districts.json",
       "candidates": "/api/v2/state/mv/candidates.json",
       "parliament": "/api/v2/state/mv/parliament.json"
-    },
-    {
-      "state_code": "ST",
-      "path": "/api/v2/state/st.json",
-      "election": {
-        "id": "st_2026-09-06",
-        "name": "Landtagswahl Sachsen-Anhalt",
-        "date": "2026-09-06",
-        "scope": "state",
-        "state_code": "ST",
-        "date_is_estimated": false
-      },
-      "active": true,
-      "draws": "/api/v2/state/st/draws.json",
-      "districts": "/api/v2/state/st/districts.json",
-      "candidates": "/api/v2/state/st/candidates.json",
-      "parliament": "/api/v2/state/st/parliament.json"
     }
   ],
   "archive_index": "/api/v2/state/archive/index.json",

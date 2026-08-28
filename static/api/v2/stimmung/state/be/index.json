@@ -1,15 +1,15 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-27T13:55:20",
+  "generated_at": "2026-08-28T11:16:44",
   "description": "Aktuelle Stimmung (Kalman). The full series covers ~10 years. Prefer current, day/YYYY-MM-DD, month/YYYY-MM, or year/YYYY.",
   "path": "/api/v2/stimmung/state/be.json",
   "current": "/api/v2/stimmung/state/be/current.json",
   "day": "/api/v2/stimmung/state/be/day/{date}.json",
   "month": "/api/v2/stimmung/state/be/month/{YYYY-MM}.json",
   "year": "/api/v2/stimmung/state/be/year/{YYYY}.json",
-  "from": "2016-08-29",
-  "to": "2026-08-27",
-  "as_of": "2026-08-27",
+  "from": "2016-09-08",
+  "to": "2026-08-28",
+  "as_of": "2026-08-28",
   "election": {
     "id": "be_2026-09-20",
     "name": "Landtagswahl Berlin",
@@ -19,7 +19,6 @@
     "date_is_estimated": false
   },
   "months": [
-    "2016-08",
     "2016-09",
     "2016-10",
     "2016-11",

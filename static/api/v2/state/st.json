@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-27T14:09:53Z",
+  "generated_at": "2026-08-28T11:25:26Z",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -15,14 +15,14 @@
       "election_date": "2026-09-06",
       "election_id": "st_2026-09-06",
       "election_name": "Landtagswahl Sachsen-Anhalt",
-      "model": "state-models lr 11_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
-      "lead": "11",
-      "lead_model": "11_polls",
-      "lead_horizon_days": 11,
+      "model": "state-models lr 9_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
+      "lead": "9",
+      "lead_model": "9_polls",
+      "lead_horizon_days": 9,
       "poll_window_days": null,
-      "last_poll_date": "2026-08-26",
-      "asof_date": "2026-08-26",
-      "last_update": "2026-08-27T14:07:19Z",
+      "last_poll_date": "2026-08-28",
+      "asof_date": "2026-08-28",
+      "last_update": "2026-08-28T11:23:20Z",
       "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
       "predictor_encoding": "state_models_exact_lead_v1",
       "shares_normalized_to_100": true,
@@ -37,22 +37,22 @@
       {
         "party": "CDU",
         "party_code": "cdu",
-        "fit": 22,
-        "low": 16,
+        "fit": 23,
+        "low": 18,
         "high": 28
       },
       {
         "party": "AfD",
         "party_code": "afd",
         "fit": 42,
-        "low": 34,
-        "high": 48
+        "low": 36,
+        "high": 47
       },
       {
         "party": "LINKE",
         "party_code": "lin",
-        "fit": 12,
-        "low": 8,
+        "fit": 13,
+        "low": 9,
         "high": 16
       },
       {
@@ -65,7 +65,7 @@
       {
         "party": "FDP",
         "party_code": "fdp",
-        "fit": 4,
+        "fit": 3,
         "low": 2,
         "high": 5
       },
@@ -73,22 +73,22 @@
         "party": "GRÜNE",
         "party_code": "gru",
         "fit": 5,
-        "low": 3,
+        "low": 4,
         "high": 7
       },
       {
         "party": "BSW",
         "party_code": "bsw",
-        "fit": 4,
-        "low": 3,
-        "high": 6
+        "fit": 3,
+        "low": 2,
+        "high": 4
       },
       {
         "party": "Sonstige",
         "party_code": "oth",
         "fit": 4,
         "low": 3,
-        "high": 6
+        "high": 5
       }
     ],
     "scenarios": {
@@ -99,66 +99,54 @@
           "id": "largest_party_afd",
           "category": "largest_party",
           "label_de": "AfD stärkste Kraft",
-          "probability": 99
+          "probability": 100
         },
         {
           "id": "above_hurdle_spd",
           "category": "above_hurdle",
           "label_de": "SPD über 5%-Hürde",
-          "probability": 93
+          "probability": 97
         },
         {
           "id": "maj_ohne_afd",
           "category": "majority_excluding",
           "label_de": "Parlamentsmehrheit ohne AfD",
-          "probability": 73
+          "probability": 71
         },
         {
           "id": "maj_ohne_afd_bsw",
           "category": "majority_excluding",
           "label_de": "Parlamentsmehrheit ohne AfD und BSW",
-          "probability": 59
+          "probability": 70
         },
         {
           "id": "above_hurdle_gru",
           "category": "above_hurdle",
           "label_de": "Grüne über 5%-Hürde",
-          "probability": 57
-        },
-        {
-          "id": "above_hurdle_bsw",
-          "category": "above_hurdle",
-          "label_de": "BSW über 5%-Hürde",
-          "probability": 34
+          "probability": 56
         },
         {
           "id": "abs_maj_afd",
           "category": "coalition",
           "label_de": "Absolute Mehrheit AfD",
-          "probability": 27
-        },
-        {
-          "id": "coal_afd_bsw",
-          "category": "coalition",
-          "label_de": "Parlamentsmehrheit AfD und BSW",
-          "probability": 18
+          "probability": 29
         },
         {
           "id": "above_hurdle_fdp",
           "category": "above_hurdle",
           "label_de": "FDP über 5%-Hürde",
-          "probability": 12
+          "probability": 7
         },
         {
-          "id": "largest_party_cdu",
-          "category": "largest_party",
-          "label_de": "CDU stärkste Kraft",
-          "probability": 1
+          "id": "above_hurdle_bsw",
+          "category": "above_hurdle",
+          "label_de": "BSW über 5%-Hürde",
+          "probability": 3
         },
         {
-          "id": "coal_cdu_spd_gru",
+          "id": "coal_afd_bsw",
           "category": "coalition",
-          "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
+          "label_de": "Parlamentsmehrheit AfD und BSW",
           "probability": 1
         },
         {
