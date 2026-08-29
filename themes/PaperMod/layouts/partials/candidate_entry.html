@@ -50,6 +50,13 @@
   color: #333;
 }
 .ce-explainer-body p { margin: 0 0 0.55rem; }
+.ce-be-calc-note {
+  background: #fff8e8;
+  border: 1px solid #ead8a8;
+  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+  color: #3a3200;
+}
 .ce-explainer-body ul {
   margin: 0 0 0.65rem;
   padding-left: 1.15rem;
@@ -605,6 +612,16 @@ a.ce-aw:hover {
     Grundlage sind dieselben Umfrage- und Wahlkreis-Simulationen wie bei der
     <a href="{{ "direktmandate/" | relURL }}">Wahlkreise</a>.
   </p>
+  <p class="ce-be-calc-note" hidden>
+    <strong>Aktualisierung 29. August 2026 (Berlin):</strong>
+    Die Listen-Wahrscheinlichkeiten wurden neu berechnet. Überhangmandate entstehen
+    bei <em>Bezirkslisten</em> (CDU, SPD, Linke) je Bezirk und werden nicht landesweit
+    mit ungenutzten Listenplätzen verrechnet. Das Abgeordnetenhaus fällt in den
+    Simulationen deutlich größer aus als 130 Sitze; die Listen-Chancen steigen
+    entsprechend. Die Direktmandat-Wahrscheinlichkeiten sind unverändert.
+    Grüne, AfD, FDP und BSW treten mit Landesliste an — dort gilt weiterhin der
+    landesweite Vergleich.
+  </p>
   <ul>
     <li><strong>Einzug</strong> — Anteil der Simulationen, in denen die Person einen Sitz erhält (Direkt und/oder Liste).</li>
     <li><strong>Direkt</strong> — Anteil, in dem sie ihren Wahlkreis gewinnt.</li>
@@ -648,5 +665,5 @@ a.ce-aw:hover {
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=34" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=35" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}
