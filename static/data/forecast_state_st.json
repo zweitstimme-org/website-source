@@ -11,7 +11,7 @@
     "poll_window_days": null,
     "last_poll_date": "2026-08-28",
     "asof_date": "2026-08-28",
-    "last_update": "2026-08-28T11:23:20Z",
+    "last_update": "2026-08-29T14:47:18Z",
     "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
     "predictor_encoding": "state_models_exact_lead_v1",
     "shares_normalized_to_100": true,
@@ -37,14 +37,14 @@
     {
       "party": "LINKE",
       "party_code": "lin",
-      "fit": 13,
+      "fit": 12,
       "low": 9,
       "high": 16
     },
     {
       "party": "SPD",
       "party_code": "spd",
-      "fit": 7,
+      "fit": 8,
       "low": 5,
       "high": 10
     },
@@ -109,7 +109,7 @@
         "id": "above_hurdle_gru",
         "category": "above_hurdle",
         "label_de": "Grüne über 5%-Hürde",
-        "probability": 56
+        "probability": 58
       },
       {
         "id": "abs_maj_afd",
@@ -128,6 +128,12 @@
         "category": "above_hurdle",
         "label_de": "BSW über 5%-Hürde",
         "probability": 3
+      },
+      {
+        "id": "coal_cdu_spd_gru",
+        "category": "coalition",
+        "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
+        "probability": 1
       },
       {
         "id": "coal_afd_bsw",

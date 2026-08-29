@@ -28,7 +28,6 @@ Friedrichstraße 180
 
 Aktueller Status der automatischen Daten- und Deploy-Workflows:
 
-[![Polling API](https://github.com/zweitstimme-org/polling-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/zweitstimme-org/polling-api/actions)
 [![Daily Stimmung](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/stimmung.yml/badge.svg)](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/stimmung.yml)
 [![State Forecasts](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/state-forecast.yml/badge.svg)](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/state-forecast.yml)
 [![Federal Forecast](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/federal-forecast.yml/badge.svg)](https://github.com/zweitstimme-org/website-pipeline/actions/workflows/federal-forecast.yml)
@@ -46,7 +45,7 @@ Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir
 
 Die auf dieser Website von den Betreibern erstellten Inhalte, insbesondere Texte, Erläuterungen und Visualisierungen, unterliegen dem deutschen Urheberrecht. Sofern nicht anders angegeben, stehen diese Inhalte unter der Lizenz [Creative Commons Namensnennung 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.de).
 
-Die Lizenz erlaubt es, die entsprechenden Inhalte zu vervielfältigen, zu verbreiten, zu bearbeiten und auch für kommerzielle Zwecke zu nutzen, sofern eine angemessene Quellenangabe erfolgt. Eine solche Angabe kann zum Beispiel lauten: „Quelle: zweitstimme.org“ oder „Daten: zweitstimme.org“. Logos zum Download stehen in den [FAQ](/faq/#gibt-es-ein-logo-zum-download) bereit.
+Die Lizenz erlaubt es, die entsprechenden Inhalte zu vervielfältigen, zu verbreiten, zu bearbeiten und auch für kommerzielle Zwecke zu nutzen, sofern eine angemessene Quellenangabe erfolgt. Eine solche Angabe kann zum Beispiel lauten: „Quelle: zweitstimme.org“ oder „Daten: zweitstimme.org“.
 
 Die auf dieser Website verwendeten Polling-Daten beruhen ganz oder teilweise auf externen Quellen. Soweit Daten von [dawum.de](https://dawum.de) verwendet werden, gelten für diese die Bedingungen der [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/). Weitere Umfragedaten und sonstige Angaben stammen aus öffentlich dokumentierten Veröffentlichungen, insbesondere von [wahlrecht.de](https://www.wahlrecht.de), sowie von den jeweils genannten Umfrageinstituten. Soweit einschlägig, verbleiben die Rechte an diesen Daten und Inhalten bei den jeweiligen Rechteinhabern.
 

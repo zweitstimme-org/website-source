@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-18T07:48:10",
+  "generated_at": "2026-08-29T14:31:06",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -10,29 +10,29 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-18",
+    "as_of": "2026-08-29",
     "parties": {
-      "CDU/CSU": 22.8,
-      "AfD": 42.3,
-      "SPD": 6.5,
-      "GRÜNE": 4.6,
-      "LINKE": 13.1,
-      "BSW": 4.4,
-      "FDP": 2.8,
+      "CDU/CSU": 22.3,
+      "AfD": 41.5,
+      "SPD": 8,
+      "GRÜNE": 5.6,
+      "LINKE": 12.3,
+      "BSW": 3.7,
+      "FDP": 3.2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 3.5
+      "Sonstige": 3.4
     },
     "uncertainty_low": {
-      "CDU/CSU": 21.9,
-      "AfD": 41.4,
-      "SPD": 5.6,
-      "GRÜNE": 3.7,
-      "LINKE": 12.2,
-      "BSW": 3.5,
-      "FDP": 1.9,
+      "CDU/CSU": 21.7,
+      "AfD": 40.9,
+      "SPD": 7.4,
+      "GRÜNE": 5,
+      "LINKE": 11.7,
+      "BSW": 3.1,
+      "FDP": 2.6,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 23.7,
-      "AfD": 43.2,
-      "SPD": 7.4,
-      "GRÜNE": 5.5,
-      "LINKE": 14,
-      "BSW": 5.3,
-      "FDP": 3.7,
+      "CDU/CSU": 22.9,
+      "AfD": 42.1,
+      "SPD": 8.6,
+      "GRÜNE": 6.2,
+      "LINKE": 12.9,
+      "BSW": 4.3,
+      "FDP": 3.8,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -64,13 +64,13 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": -0.3,
-      "AfD": 0.5,
-      "SPD": 0.1,
-      "GRÜNE": 0.1,
-      "LINKE": 0,
-      "BSW": 0.1,
-      "FDP": -0.2,
+      "CDU/CSU": -0.1,
+      "AfD": -0.6,
+      "SPD": 1,
+      "GRÜNE": 0.7,
+      "LINKE": -0.3,
+      "BSW": -0.4,
+      "FDP": 0,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -78,5 +78,5 @@
       "Sonstige": -0.3
     }
   },
-  "as_of": "2026-08-18"
+  "as_of": "2026-08-29"
 }
