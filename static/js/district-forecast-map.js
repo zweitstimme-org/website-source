@@ -1667,14 +1667,16 @@
     } else {
       const majNote = (st.majority_impact && st.majority_impact.note_de)
         ? escapeHtml(st.majority_impact.note_de)
-        : 'Überhang wird vollständig ausgeglichen; Sitzmehrheiten ≈ Zweitstimmenmehrheiten.';
+        : 'Überhang je Bezirksliste bleibt; Ausgleich über die amtliche Formel (einmal).';
       note = `
         <div class="district-size-note">
           <p><strong>Überhang &amp; Ausgleich in Berlin:</strong> ${escapeHtml(st.note_de)}</p>
           <p>
-            In unseren Simulationen wird der Überhang vollständig ausgeglichen
-            (unvollständiger Ausgleich: 0 %) — die Unsicherheit steckt vor allem in der
-            <em>Größe</em> des Abgeordnetenhauses.
+            CDU, SPD und Linke treten 2026 mit <strong>Bezirkslisten</strong> an.
+            Direktmandate zählen je Bezirk — Überhang in einem Bezirk wird nicht
+            mit ungenutzten Listenplätzen anderswo verrechnet. Deshalb liegt die
+            simulierte Größe oft deutlich über 130 Sitzen (Median typisch eher
+            um 170 als bei der gesetzlichen Mindestgröße).
           </p>
           <p><strong>Mehrheiten:</strong> ${majNote}</p>
           <p style="color:#888;font-size:0.76rem;">
