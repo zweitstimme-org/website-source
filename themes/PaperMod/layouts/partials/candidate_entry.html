@@ -73,7 +73,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin: 0 0 1rem;
+  margin: 0;
 }
 .ce-party-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
 .ce-party-tab {
@@ -274,6 +274,13 @@
 }
 .ce-check { flex-direction: row !important; align-items: center; gap: 0.4rem !important; padding-bottom: 0.35rem; }
 .ce-note { font-size: 0.85rem; color: #555; margin: 0.5rem 0 0.85rem; }
+.ce-stand {
+  margin: 0.45rem 0 0.85rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
 .ce-party-head {
   display: flex;
   align-items: center;
@@ -665,5 +672,5 @@ a.ce-aw:hover {
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=35" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=36" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}

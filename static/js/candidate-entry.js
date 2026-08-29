@@ -479,6 +479,33 @@
     listpct: "Liste",
   };
 
+  function formatStandDate(raw) {
+    if (!raw || typeof raw !== "string") return "";
+    const m = raw.trim().match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (m) return `${m[3]}.${m[2]}.${m[1]}`;
+    const d = new Date(raw);
+    if (Number.isNaN(d.getTime())) return "";
+    const dd = String(d.getDate()).padStart(2, "0");
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const yyyy = String(d.getFullYear());
+    return `${dd}.${mm}.${yyyy}`;
+  }
+
+  function standText(stateObj, meta) {
+    const stand = formatStandDate(
+      (stateObj && stateObj.last_update) || (meta && meta.last_update) || ""
+    );
+    const poll = formatStandDate(
+      (stateObj && stateObj.statewide_last_poll_date) ||
+        (meta && meta.last_poll_date) ||
+        ""
+    );
+    const bits = [];
+    if (stand) bits.push(`Stand: ${stand}`);
+    if (poll) bits.push(`Letzte Umfrage: ${poll}`);
+    return bits.join(" · ");
+  }
+
   function render(root, data) {
     const states = data.states || {};
     const params = readQuery();
@@ -507,6 +534,7 @@
         </nav>
         <div class="ce-controls">
           <div class="ce-state-tabs" role="tablist"></div>
+          <p class="ce-stand"></p>
         </div>
 
         <div class="scenario-prob-panel">
@@ -552,6 +580,7 @@
     const minInput = root.querySelector(".ce-min");
     const hidePhBox = root.querySelector(".ce-hide-ph");
     const note = root.querySelector(".ce-note");
+    const standEl = root.querySelector(".ce-stand");
     const tableWrap = root.querySelector(".ce-table-wrap");
     const districtsLink = root.querySelector(".ce-districts-link");
     search.value = q;
@@ -661,6 +690,9 @@
 
     function paintTable() {
       const st = states[stateCode];
+      if (standEl) {
+        standEl.textContent = st ? standText(st, data.metadata) : "";
+      }
       if (!st) {
         tableWrap.innerHTML = "<p>Keine Daten.</p>";
         return;
