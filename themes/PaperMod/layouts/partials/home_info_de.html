@@ -1290,7 +1290,7 @@ function updateProbability(textId, progressId, value, type) {
 {{- $homeShowArchive := $homeLayout.Get "showArchive" -}}
 
 <article class="first-entry home-info">
-  <section{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+  <section id="home-intro-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
     {{- $homeLayout.Add "i" 1 -}}
     <div class="content-wrapper">
       <div class="entry-content">
@@ -1907,6 +1907,10 @@ section {
     background-color: rgb(245, 245, 245) !important;
     padding: 1.25rem 0 3rem 0;
     border-top: 1px solid rgb(245, 245, 245);
+}
+
+.first-entry.home-info > section#home-intro-section.section-alt {
+    padding-bottom: 1.1rem;
 }
 
 .content-wrapper {
@@ -2956,11 +2960,11 @@ a.vorhersage-subpage-link {
 }
 
 .home-recent-polls {
-  margin: 0.65rem 0 0;
+  margin: 0.45rem 0 0;
   text-align: center;
   color: #555;
   font-size: 0.84rem;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 
 .home-recent-polls a {
@@ -6094,13 +6098,28 @@ document.addEventListener('DOMContentLoaded', function() {
       .replace(/"/g, '&quot;');
   }
 
+  function forecastAvailable(info) {
+    return Boolean(
+      info
+      && info.mode === 'forecast'
+      && info.forecast_available
+      && Number(info.days_to_election) > 0
+    );
+  }
+
   async function renderHomeRecentPolls() {
     const el = document.getElementById('home-recent-polls');
     const pipeline = window.pipelineData;
     if (!el || !pipeline || typeof pipeline.loadCurrentStimmung !== 'function') return;
     try {
-      const data = await pipeline.loadCurrentStimmung();
+      const [data, displayMode] = await Promise.all([
+        pipeline.loadCurrentStimmung(),
+        typeof pipeline.loadDisplayMode === 'function'
+          ? pipeline.loadDisplayMode().catch(() => null)
+          : Promise.resolve(null)
+      ]);
       if (!data) return;
+      if (displayMode) window.pipelineDisplayMode = displayMode;
       const today = new Date();
       const todayUTC = new Date(Date.UTC(
         today.getFullYear(), today.getMonth(), today.getDate()
@@ -6110,25 +6129,30 @@ document.addEventListener('DOMContentLoaded', function() {
       const fedEnd = data.federal && data.federal.date_range && data.federal.date_range.end;
       const fedDate = parseISODate(fedEnd);
       if (fedDate && daysBetweenUTC(fedDate, todayUTC) <= RECENT_POLL_DAYS) {
+        const hasFc = forecastAvailable(displayMode && displayMode.federal);
         items.push({
           label: 'Bund',
           date: fedDate,
-          href: '#bundestag-section',
+          href: hasFc ? '#vorhersage-section' : '#bundestag-section',
+          forecastKey: hasFc ? 'federal' : '',
           sortKey: '0-bund'
         });
       }
 
       const states = (data.states && typeof data.states === 'object') ? data.states : {};
+      const dmStates = (displayMode && displayMode.states) || {};
       Object.keys(states).forEach((code) => {
         const st = states[code] || {};
         const end = st.date_range && st.date_range.end;
         const d = parseISODate(end);
         if (!d || daysBetweenUTC(d, todayUTC) > RECENT_POLL_DAYS) return;
         const key = String(code || '').toUpperCase();
+        const hasFc = forecastAvailable(dmStates[key]);
         items.push({
           label: STATE_LABELS[key] || key,
           date: d,
-          href: '#landtage-section',
+          href: hasFc ? '#vorhersage-section' : '#landtage-section',
+          forecastKey: hasFc ? key : '',
           sortKey: `1-${key}`
         });
       });
@@ -6147,7 +6171,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       el.innerHTML = 'Neue Umfragen: ' + items.map((it) => {
         const text = `${escapeHtml(it.label)} (${formatDE(it.date)})`;
-        return `<a href="${escapeHtml(it.href)}">${text}</a>`;
+        const fcAttr = it.forecastKey
+          ? ` data-vorhersage-key="${escapeHtml(it.forecastKey)}"`
+          : '';
+        return `<a href="${escapeHtml(it.href)}"${fcAttr}>${text}</a>`;
       }).join(', ');
       el.hidden = false;
     } catch (err) {
@@ -6156,7 +6183,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  function onRecentPollClick(e) {
+    const a = e.target && e.target.closest
+      ? e.target.closest('#home-recent-polls a[data-vorhersage-key]')
+      : null;
+    if (!a) return;
+    const key = a.getAttribute('data-vorhersage-key');
+    if (!key) return;
+    const select = window.selectVorhersageTarget;
+    if (typeof select !== 'function') return;
+    // Keep hash navigation; also switch the Vorhersage tile once the section is ready.
+    const run = () => {
+      try { select(key); } catch (err) {
+        console.warn('Could not select Vorhersage target', err);
+      }
+    };
+    if (window.vorhersageTargets && window.vorhersageTargets.length) run();
+    else setTimeout(run, 250);
+  }
+
   document.addEventListener('DOMContentLoaded', renderHomeRecentPolls);
+  document.addEventListener('click', onRecentPollClick);
 })();
 </script>
 <script>
@@ -7425,6 +7472,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (panel) panel.style.display = 'none';
     }
   }
+  window.selectVorhersageTarget = selectVorhersageTarget;
 
   function setVorhersageSectionVisible(visible) {
     const section = document.getElementById('vorhersage-section');
@@ -7439,6 +7487,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!section) return;
     try {
       vorhersageTargets = await buildVorhersageTargets();
+      window.vorhersageTargets = vorhersageTargets;
       if (!vorhersageTargets.length) {
         setVorhersageSectionVisible(false);
         updateHomeSectionBackgrounds();
