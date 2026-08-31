@@ -130,12 +130,23 @@
   const UNOFFICIAL_DIRECT_NOTE =
     'Die hier angezeigten Direktkandidat:innen-Namen stammen überwiegend aus Angaben der Parteien; je Person finden Sie die genutzte Quelle auf der Profilseite. Nichtamtliche Namensstände können sich bis zum amtlichen Bewerberverzeichnis ändern.';
 
+  const BE_CALC_UPDATE_NOTE =
+    'Aktualisierung 29.8.2026: Parlamentsgröße und Listen-Einzugschancen berücksichtigen jetzt Überhang je Bezirksliste (CDU, SPD, Linke) — nicht landesweit verrechnet. Das Abgeordnetenhaus fällt in den Simulationen deutlich größer aus als 130 Sitze. Die Direktmandat-Wahrscheinlichkeiten sind unverändert.';
+
   function setDistrictSourceNote(code) {
     const el = document.getElementById('vorhersage-districts-source-note');
     if (!el) return;
     const unofficial = code === 'BE' || code === 'MV';
     el.hidden = !unofficial;
     el.textContent = unofficial ? UNOFFICIAL_DIRECT_NOTE : '';
+  }
+
+  function setDistrictCalcNote(code) {
+    const el = document.getElementById('vorhersage-districts-calc-note');
+    if (!el) return;
+    const show = String(code || '').toUpperCase() === 'BE';
+    el.hidden = !show;
+    el.textContent = show ? BE_CALC_UPDATE_NOTE : '';
   }
 
   function ensureLeaflet() {
@@ -1419,6 +1430,7 @@
     if (section) section.style.display = 'none';
     setDistrictStand(null);
     setDistrictSourceNote(null);
+    setDistrictCalcNote(null);
     clearAddressMarker();
     hideSearchResults();
     setSearchStatus('');
@@ -1750,6 +1762,7 @@
       section.style.display = 'block';
       setDistrictStand(meta);
       setDistrictSourceNote(code);
+      setDistrictCalcNote(code);
       if (mapInstance) {
         clearAddressMarker();
         mapInstance.remove();
