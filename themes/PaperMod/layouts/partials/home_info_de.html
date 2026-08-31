@@ -6169,7 +6169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      el.innerHTML = 'Neue Umfragen: ' + items.map((it) => {
+      el.innerHTML = 'Umfragen letzte 7 Tage: ' + items.map((it) => {
         const text = `${escapeHtml(it.label)} (${formatDE(it.date)})`;
         const fcAttr = it.forecastKey
           ? ` data-vorhersage-key="${escapeHtml(it.forecastKey)}"`
