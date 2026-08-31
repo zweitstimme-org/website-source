@@ -1305,6 +1305,7 @@ function updateProbability(textId, progressId, value, type) {
           <a class="home-jump-btn" href="#bundestag-section"><span>Bundestag</span></a>
           <a class="home-jump-btn" href="#landtage-section"><span>Landtage</span></a>
         </nav>
+        <p id="home-recent-polls" class="home-recent-polls" hidden></p>
       </div>
     </div>
   </section>
@@ -2952,6 +2953,24 @@ a.vorhersage-subpage-link {
   border-radius: 6px;
   background: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.home-recent-polls {
+  margin: 0.65rem 0 0;
+  text-align: center;
+  color: #555;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.home-recent-polls a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.home-recent-polls a:hover,
+.home-recent-polls a:focus-visible {
+  text-decoration: underline;
 }
 
 .home-jump-btn {
@@ -6025,7 +6044,121 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="{{ "js/polls-mapper-aggregator.js" | relURL }}"></script>
 <script src="{{ "js/kalman-latent-support.js" | relURL }}"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=52"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=53"></script>
+<script>
+(function () {
+  const RECENT_POLL_DAYS = 7;
+  const STATE_LABELS = {
+    BW: 'Baden-Württemberg',
+    BY: 'Bayern',
+    BE: 'Berlin',
+    BB: 'Brandenburg',
+    HB: 'Bremen',
+    HH: 'Hamburg',
+    HE: 'Hessen',
+    MV: 'Mecklenburg-Vorpommern',
+    NI: 'Niedersachsen',
+    NW: 'Nordrhein-Westfalen',
+    RP: 'Rheinland-Pfalz',
+    SL: 'Saarland',
+    SN: 'Sachsen',
+    ST: 'Sachsen-Anhalt',
+    SH: 'Schleswig-Holstein',
+    TH: 'Thüringen'
+  };
+
+  function parseISODate(raw) {
+    const m = String(raw || '').trim().match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!m) return null;
+    const d = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  function formatDE(d) {
+    const dd = String(d.getUTCDate()).padStart(2, '0');
+    const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+    return `${dd}.${mm}.${d.getUTCFullYear()}`;
+  }
+
+  function daysBetweenUTC(a, b) {
+    const ms = Date.UTC(b.getUTCFullYear(), b.getUTCMonth(), b.getUTCDate())
+      - Date.UTC(a.getUTCFullYear(), a.getUTCMonth(), a.getUTCDate());
+    return Math.round(ms / 86400000);
+  }
+
+  function escapeHtml(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  async function renderHomeRecentPolls() {
+    const el = document.getElementById('home-recent-polls');
+    const pipeline = window.pipelineData;
+    if (!el || !pipeline || typeof pipeline.loadCurrentStimmung !== 'function') return;
+    try {
+      const data = await pipeline.loadCurrentStimmung();
+      if (!data) return;
+      const today = new Date();
+      const todayUTC = new Date(Date.UTC(
+        today.getFullYear(), today.getMonth(), today.getDate()
+      ));
+      const items = [];
+
+      const fedEnd = data.federal && data.federal.date_range && data.federal.date_range.end;
+      const fedDate = parseISODate(fedEnd);
+      if (fedDate && daysBetweenUTC(fedDate, todayUTC) <= RECENT_POLL_DAYS) {
+        items.push({
+          label: 'Bund',
+          date: fedDate,
+          href: '#bundestag-section',
+          sortKey: '0-bund'
+        });
+      }
+
+      const states = (data.states && typeof data.states === 'object') ? data.states : {};
+      Object.keys(states).forEach((code) => {
+        const st = states[code] || {};
+        const end = st.date_range && st.date_range.end;
+        const d = parseISODate(end);
+        if (!d || daysBetweenUTC(d, todayUTC) > RECENT_POLL_DAYS) return;
+        const key = String(code || '').toUpperCase();
+        items.push({
+          label: STATE_LABELS[key] || key,
+          date: d,
+          href: '#landtage-section',
+          sortKey: `1-${key}`
+        });
+      });
+
+      items.sort((a, b) => {
+        const byDate = b.date.getTime() - a.date.getTime();
+        if (byDate) return byDate;
+        return String(a.sortKey).localeCompare(String(b.sortKey), 'de');
+      });
+
+      if (!items.length) {
+        el.hidden = true;
+        el.textContent = '';
+        return;
+      }
+
+      el.innerHTML = 'Neue Umfragen: ' + items.map((it) => {
+        const text = `${escapeHtml(it.label)} (${formatDE(it.date)})`;
+        return `<a href="${escapeHtml(it.href)}">${text}</a>`;
+      }).join(', ');
+      el.hidden = false;
+    } catch (err) {
+      console.warn('Recent polls line unavailable', err);
+      el.hidden = true;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', renderHomeRecentPolls);
+})();
+</script>
 <script>
 // Bundestag forecast chart functionality
 document.addEventListener('DOMContentLoaded', function() {
