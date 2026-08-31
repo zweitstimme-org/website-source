@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-29T14:31:07",
+  "generated_at": "2026-08-31T06:05:27",
   "election": {
     "id": "sh_2027-04-18",
     "name": "Landtagswahl Schleswig-Holstein",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-29",
+    "as_of": "2026-08-31",
     "parties": {
       "CDU/CSU": 28.3,
       "AfD": 17.4,
@@ -78,5 +78,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-08-29"
+  "as_of": "2026-08-31"
 }
