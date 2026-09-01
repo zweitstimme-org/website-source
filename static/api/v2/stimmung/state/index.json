@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-31T06:06:35Z",
+  "generated_at": "2026-09-01T06:06:27Z",
   "description": "Aktuelle Stimmung (Kalman) per Land. Daily series includes days without a new poll. Use `current` for today, `day` for one date, `month` / `year` for a range; `path` is the full ~10-year series.",
   "states": [
     {
@@ -11,8 +11,8 @@
       "month": "/api/v2/stimmung/state/bb/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/bb/year/{YYYY}.json",
       "from": "2016-09-30",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "bb_2029-10-21",
         "name": "Landtagswahl Brandenburg",
@@ -30,8 +30,8 @@
       "month": "/api/v2/stimmung/state/be/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/be/year/{YYYY}.json",
       "from": "2016-09-08",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "be_2026-09-20",
         "name": "Landtagswahl Berlin",
@@ -49,8 +49,8 @@
       "month": "/api/v2/stimmung/state/bw/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/bw/year/{YYYY}.json",
       "from": "2016-09-15",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "bw_2031-04-20",
         "name": "Landtagswahl Baden-Württemberg",
@@ -68,8 +68,8 @@
       "month": "/api/v2/stimmung/state/by/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/by/year/{YYYY}.json",
       "from": "2016-09-15",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "by_2028-10-15",
         "name": "Landtagswahl Bayern",
@@ -87,8 +87,8 @@
       "month": "/api/v2/stimmung/state/hb/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/hb/year/{YYYY}.json",
       "from": "2017-01-19",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "hb_2027-05-30",
         "name": "Landtagswahl Bremen",
@@ -106,8 +106,8 @@
       "month": "/api/v2/stimmung/state/he/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/he/year/{YYYY}.json",
       "from": "2017-01-12",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "he_2028-10-15",
         "name": "Landtagswahl Hessen",
@@ -125,8 +125,8 @@
       "month": "/api/v2/stimmung/state/hh/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/hh/year/{YYYY}.json",
       "from": "2016-11-24",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "hh_2030-01-20",
         "name": "Landtagswahl Hamburg",
@@ -144,8 +144,8 @@
       "month": "/api/v2/stimmung/state/mv/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/mv/year/{YYYY}.json",
       "from": "2017-01-19",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "mv_2026-09-20",
         "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -163,8 +163,8 @@
       "month": "/api/v2/stimmung/state/ni/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/ni/year/{YYYY}.json",
       "from": "2016-10-19",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "ni_2027-09-26",
         "name": "Landtagswahl Niedersachsen",
@@ -182,8 +182,8 @@
       "month": "/api/v2/stimmung/state/nw/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/nw/year/{YYYY}.json",
       "from": "2016-09-11",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "nw_2027-04-25",
         "name": "Landtagswahl Nordrhein-Westfalen",
@@ -201,8 +201,8 @@
       "month": "/api/v2/stimmung/state/rp/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/rp/year/{YYYY}.json",
       "from": "2016-12-15",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "rp_2031-04-20",
         "name": "Landtagswahl Rheinland-Pfalz",
@@ -220,8 +220,8 @@
       "month": "/api/v2/stimmung/state/sh/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/sh/year/{YYYY}.json",
       "from": "2016-10-19",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "sh_2027-04-18",
         "name": "Landtagswahl Schleswig-Holstein",
@@ -239,8 +239,8 @@
       "month": "/api/v2/stimmung/state/sl/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/sl/year/{YYYY}.json",
       "from": "2016-11-15",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "sl_2027-04-18",
         "name": "Landtagswahl Saarland",
@@ -258,8 +258,8 @@
       "month": "/api/v2/stimmung/state/sn/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/sn/year/{YYYY}.json",
       "from": "2016-10-05",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "sn_2029-10-21",
         "name": "Landtagswahl Sachsen",
@@ -277,8 +277,8 @@
       "month": "/api/v2/stimmung/state/st/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/st/year/{YYYY}.json",
       "from": "2017-06-22",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "st_2026-09-06",
         "name": "Landtagswahl Sachsen-Anhalt",
@@ -296,8 +296,8 @@
       "month": "/api/v2/stimmung/state/th/month/{YYYY-MM}.json",
       "year": "/api/v2/stimmung/state/th/year/{YYYY}.json",
       "from": "2016-11-22",
-      "to": "2026-08-31",
-      "as_of": "2026-08-31",
+      "to": "2026-09-01",
+      "as_of": "2026-09-01",
       "election": {
         "id": "th_2029-10-21",
         "name": "Landtagswahl Thüringen",

@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-31T06:05:06",
+  "generated_at": "2026-09-01T06:04:13",
   "election": {
     "id": "bund_2029-02-25",
     "name": "Bundestagswahl",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-31",
+    "as_of": "2026-09-01",
     "parties": {
       "CDU/CSU": 20.4,
       "AfD": 28.5,
@@ -64,10 +64,10 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": -0.4,
+      "CDU/CSU": -0.5,
       "AfD": 0.5,
-      "SPD": 0.1,
-      "GRÜNE": 0,
+      "SPD": 0,
+      "GRÜNE": 0.2,
       "LINKE": -0.6,
       "BSW": 0.2,
       "FDP": -0.4,
@@ -78,5 +78,5 @@
       "Sonstige": 0.6
     }
   },
-  "as_of": "2026-08-31"
+  "as_of": "2026-09-01"
 }

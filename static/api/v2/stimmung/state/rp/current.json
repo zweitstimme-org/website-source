@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-31T06:05:23",
+  "generated_at": "2026-09-01T06:04:35",
   "election": {
     "id": "rp_2031-04-20",
     "name": "Landtagswahl Rheinland-Pfalz",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-08-31",
+    "as_of": "2026-09-01",
     "parties": {
       "CDU/CSU": 28.1,
       "AfD": 23.2,
@@ -26,28 +26,28 @@
       "Sonstige": 9.4
     },
     "uncertainty_low": {
-      "CDU/CSU": 26.7,
-      "AfD": 21.8,
-      "SPD": 18.9,
-      "GRÜNE": 9.3,
-      "LINKE": 3.6,
+      "CDU/CSU": 26.6,
+      "AfD": 21.7,
+      "SPD": 18.8,
+      "GRÜNE": 9.2,
+      "LINKE": 3.5,
       "BSW": null,
       "FDP": null,
-      "FW": 1.9,
+      "FW": 1.8,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 29.5,
-      "AfD": 24.6,
-      "SPD": 21.7,
-      "GRÜNE": 12.1,
-      "LINKE": 6.4,
+      "CDU/CSU": 29.6,
+      "AfD": 24.7,
+      "SPD": 21.8,
+      "GRÜNE": 12.2,
+      "LINKE": 6.5,
       "BSW": null,
       "FDP": null,
-      "FW": 4.7,
+      "FW": 4.8,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
@@ -66,7 +66,7 @@
       "CDU/CSU": 0,
       "AfD": 0,
       "SPD": 0,
-      "GRÜNE": 0.1,
+      "GRÜNE": 0,
       "LINKE": 0,
       "BSW": null,
       "FDP": null,
@@ -74,8 +74,8 @@
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -0.1
+      "Sonstige": 0
     }
   },
-  "as_of": "2026-08-31"
+  "as_of": "2026-09-01"
 }

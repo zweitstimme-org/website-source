@@ -234,14 +234,6 @@ a.district-aw:hover {
 .district-page-note a {
   color: var(--primary);
 }
-.district-page-note .district-calc-update {
-  background: #fff8e8;
-  border: 1px solid #ead8a8;
-  border-radius: 6px;
-  padding: 0.55rem 0.7rem;
-  color: #3a3200;
-  text-align: left;
-}
 .district-preview-targets {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -797,7 +789,6 @@ a.district-aw:hover {
         Listenplatz &amp; Einzugschancen — P(Einzug) = P(Sieg) + P(Liste). Details auf der
         <a id="district-note-einzug-link" href="{{ "einzug/" | relURL }}">Alle Kandidierende</a>.
       </p>
-      <p id="vorhersage-districts-calc-note" class="district-calc-update" hidden></p>
       <p id="vorhersage-districts-source-note" hidden></p>
     </div>
   </div>
@@ -805,7 +796,7 @@ a.district-aw:hover {
 
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=6"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=7"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=53"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=52"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const labels = {
