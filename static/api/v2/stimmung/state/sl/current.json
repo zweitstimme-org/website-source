@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-01T07:38:57",
+  "generated_at": "2026-09-02T06:04:51",
   "election": {
     "id": "sl_2027-04-18",
     "name": "Landtagswahl Saarland",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-09-01",
+    "as_of": "2026-09-02",
     "parties": {
       "CDU/CSU": 25,
       "AfD": 22.9,
@@ -77,5 +77,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-09-01"
+  "as_of": "2026-09-02"
 }
