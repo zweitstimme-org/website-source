@@ -4,14 +4,14 @@
     "election_date": "2026-09-20",
     "election_id": "mv_2026-09-20",
     "election_name": "Landtagswahl Mecklenburg-Vorpommern",
-    "model": "state-models lr 18_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
-    "lead": "18",
-    "lead_model": "18_polls",
-    "lead_horizon_days": 18,
+    "model": "state-models lr 17_polls (exact lead; polls-only; Sonstige modeled + normalize; no new_party)",
+    "lead": "17",
+    "lead_model": "17_polls",
+    "lead_horizon_days": 17,
     "poll_window_days": null,
-    "last_poll_date": "2026-09-02",
-    "asof_date": "2026-09-02",
-    "last_update": "2026-09-02T07:45:22Z",
+    "last_poll_date": "2026-09-03",
+    "asof_date": "2026-09-03",
+    "last_update": "2026-09-03T07:56:51Z",
     "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
     "predictor_encoding": "state_models_exact_lead_v1",
     "shares_normalized_to_100": true,
@@ -23,30 +23,30 @@
     {
       "party": "SPD",
       "party_code": "spd",
-      "fit": 28,
-      "low": 21,
-      "high": 34
+      "fit": 29,
+      "low": 22,
+      "high": 36
     },
     {
       "party": "AfD",
       "party_code": "afd",
-      "fit": 36,
-      "low": 29,
-      "high": 43
+      "fit": 35,
+      "low": 28,
+      "high": 42
     },
     {
       "party": "CDU",
       "party_code": "cdu",
       "fit": 10,
       "low": 7,
-      "high": 14
+      "high": 13
     },
     {
       "party": "LINKE",
       "party_code": "lin",
       "fit": 11,
       "low": 8,
-      "high": 16
+      "high": 15
     },
     {
       "party": "GRÜNE",
@@ -74,7 +74,7 @@
       "party_code": "oth",
       "fit": 3,
       "low": 2,
-      "high": 4
+      "high": 5
     }
   ],
   "scenarios": {
@@ -85,67 +85,67 @@
         "id": "maj_ohne_afd",
         "category": "majority_excluding",
         "label_de": "Parlamentsmehrheit ohne AfD",
-        "probability": 96
+        "probability": 97
       },
       {
         "id": "maj_ohne_afd_bsw",
         "category": "majority_excluding",
         "label_de": "Parlamentsmehrheit ohne AfD und BSW",
-        "probability": 92
+        "probability": 94
       },
       {
         "id": "largest_party_afd",
         "category": "largest_party",
         "label_de": "AfD stärkste Kraft",
-        "probability": 82
+        "probability": 75
       },
       {
         "id": "above_hurdle_gru",
         "category": "above_hurdle",
         "label_de": "Grüne über 5%-Hürde",
-        "probability": 50
+        "probability": 55
       },
       {
         "id": "above_hurdle_bsw",
         "category": "above_hurdle",
         "label_de": "BSW über 5%-Hürde",
-        "probability": 30
+        "probability": 31
       },
       {
         "id": "coal_spd_gru_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD, Grüne und Linke",
-        "probability": 21
+        "probability": 27
       },
       {
         "id": "largest_party_spd",
         "category": "largest_party",
         "label_de": "SPD stärkste Kraft",
-        "probability": 18
+        "probability": 25
       },
       {
         "id": "coal_cdu_spd_gru",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
-        "probability": 16
+        "probability": 20
       },
       {
         "id": "coal_spd_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD und Linke",
-        "probability": 13
+        "probability": 19
       },
       {
         "id": "coal_lin_bsw_spd",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit Linke, BSW und SPD",
-        "probability": 11
+        "probability": 13
       },
       {
         "id": "abs_maj_afd",
         "category": "coalition",
         "label_de": "Absolute Mehrheit AfD",
-        "probability": 4
+        "probability": 3
       },
       {
         "id": "above_hurdle_fdp",
