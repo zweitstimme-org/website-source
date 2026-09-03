@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-02T07:39:14",
+  "generated_at": "2026-09-03T06:05:24",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -10,28 +10,28 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-09-02",
+    "as_of": "2026-09-03",
     "parties": {
-      "CDU/CSU": 22.3,
-      "AfD": 41.5,
-      "SPD": 8,
-      "GRÜNE": 5.6,
-      "LINKE": 12.3,
-      "BSW": 3.7,
-      "FDP": 3.2,
+      "CDU/CSU": 22.1,
+      "AfD": 42.2,
+      "SPD": 7.5,
+      "GRÜNE": 5.3,
+      "LINKE": 12.1,
+      "BSW": 3.8,
+      "FDP": 3.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 3.4
+      "Sonstige": 3.9
     },
     "uncertainty_low": {
-      "CDU/CSU": 21.5,
-      "AfD": 40.7,
-      "SPD": 7.2,
-      "GRÜNE": 4.8,
-      "LINKE": 11.5,
-      "BSW": 2.9,
+      "CDU/CSU": 21.4,
+      "AfD": 41.5,
+      "SPD": 6.8,
+      "GRÜNE": 4.6,
+      "LINKE": 11.4,
+      "BSW": 3.1,
       "FDP": 2.4,
       "FW": null,
       "SSW": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 23.1,
-      "AfD": 42.3,
-      "SPD": 8.8,
-      "GRÜNE": 6.4,
-      "LINKE": 13.1,
+      "CDU/CSU": 22.8,
+      "AfD": 42.9,
+      "SPD": 8.2,
+      "GRÜNE": 6,
+      "LINKE": 12.8,
       "BSW": 4.5,
-      "FDP": 4,
+      "FDP": 3.8,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -64,19 +64,19 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": 0.1,
-      "AfD": -0.6,
-      "SPD": 0.7,
-      "GRÜNE": 0.5,
-      "LINKE": -0.1,
-      "BSW": -0.3,
-      "FDP": 0,
+      "CDU/CSU": -0.1,
+      "AfD": 0,
+      "SPD": 0.3,
+      "GRÜNE": 0.2,
+      "LINKE": -0.2,
+      "BSW": -0.2,
+      "FDP": -0.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -0.3
+      "Sonstige": 0.1
     }
   },
-  "as_of": "2026-09-02"
+  "as_of": "2026-09-03"
 }
