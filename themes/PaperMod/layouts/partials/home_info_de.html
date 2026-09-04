@@ -33,11 +33,17 @@ function parsePublishDateToUTC(publishDate) {
 }
 
 function formatDateDDMMYYYY(dateLike) {
+  // Calendar dates must not shift by viewer timezone. Prefer the YYYY-MM-DD
+  // prefix from strings (same approach as district-forecast-map / formatDE).
+  if (typeof dateLike === 'string') {
+    const m = dateLike.trim().match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (m) return `${m[3]}.${m[2]}.${m[1]}`;
+  }
   const d = dateLike instanceof Date ? dateLike : new Date(dateLike);
   if (isNaN(d.getTime())) return '';
-  const dd = String(d.getDate()).padStart(2, '0');
-  const mm = String(d.getMonth() + 1).padStart(2, '0');
-  const yyyy = String(d.getFullYear());
+  const dd = String(d.getUTCDate()).padStart(2, '0');
+  const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+  const yyyy = String(d.getUTCFullYear());
   return `${dd}.${mm}.${yyyy}`;
 }
 
@@ -1290,7 +1296,7 @@ function updateProbability(textId, progressId, value, type) {
 {{- $homeShowArchive := $homeLayout.Get "showArchive" -}}
 
 <article class="first-entry home-info">
-  <section{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+  <section id="home-intro-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
     {{- $homeLayout.Add "i" 1 -}}
     <div class="content-wrapper">
       <div class="entry-content">
@@ -1305,6 +1311,7 @@ function updateProbability(textId, progressId, value, type) {
           <a class="home-jump-btn" href="#bundestag-section"><span>Bundestag</span></a>
           <a class="home-jump-btn" href="#landtage-section"><span>Landtage</span></a>
         </nav>
+        <p id="home-recent-polls" class="home-recent-polls" hidden></p>
       </div>
     </div>
   </section>
@@ -1906,6 +1913,10 @@ section {
     background-color: rgb(245, 245, 245) !important;
     padding: 1.25rem 0 3rem 0;
     border-top: 1px solid rgb(245, 245, 245);
+}
+
+.first-entry.home-info > section#home-intro-section.section-alt {
+    padding-bottom: 1.1rem;
 }
 
 .content-wrapper {
@@ -2952,6 +2963,24 @@ a.vorhersage-subpage-link {
   border-radius: 6px;
   background: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.home-recent-polls {
+  margin: 0.45rem 0 0;
+  text-align: center;
+  color: #555;
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.home-recent-polls a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.home-recent-polls a:hover,
+.home-recent-polls a:focus-visible {
+  text-decoration: underline;
 }
 
 .home-jump-btn {
@@ -6025,7 +6054,164 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="{{ "js/polls-mapper-aggregator.js" | relURL }}"></script>
 <script src="{{ "js/kalman-latent-support.js" | relURL }}"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=52"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=53"></script>
+<script>
+(function () {
+  const RECENT_POLL_DAYS = 7;
+  const STATE_LABELS = {
+    BW: 'Baden-Württemberg',
+    BY: 'Bayern',
+    BE: 'Berlin',
+    BB: 'Brandenburg',
+    HB: 'Bremen',
+    HH: 'Hamburg',
+    HE: 'Hessen',
+    MV: 'Mecklenburg-Vorpommern',
+    NI: 'Niedersachsen',
+    NW: 'Nordrhein-Westfalen',
+    RP: 'Rheinland-Pfalz',
+    SL: 'Saarland',
+    SN: 'Sachsen',
+    ST: 'Sachsen-Anhalt',
+    SH: 'Schleswig-Holstein',
+    TH: 'Thüringen'
+  };
+
+  function parseISODate(raw) {
+    const m = String(raw || '').trim().match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!m) return null;
+    const d = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  function formatDE(d) {
+    const dd = String(d.getUTCDate()).padStart(2, '0');
+    const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+    return `${dd}.${mm}.${d.getUTCFullYear()}`;
+  }
+
+  function daysBetweenUTC(a, b) {
+    const ms = Date.UTC(b.getUTCFullYear(), b.getUTCMonth(), b.getUTCDate())
+      - Date.UTC(a.getUTCFullYear(), a.getUTCMonth(), a.getUTCDate());
+    return Math.round(ms / 86400000);
+  }
+
+  function escapeHtml(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function forecastAvailable(info) {
+    return Boolean(
+      info
+      && info.mode === 'forecast'
+      && info.forecast_available
+      && Number(info.days_to_election) > 0
+    );
+  }
+
+  async function renderHomeRecentPolls() {
+    const el = document.getElementById('home-recent-polls');
+    const pipeline = window.pipelineData;
+    if (!el || !pipeline || typeof pipeline.loadCurrentStimmung !== 'function') return;
+    try {
+      const [data, displayMode] = await Promise.all([
+        pipeline.loadCurrentStimmung(),
+        typeof pipeline.loadDisplayMode === 'function'
+          ? pipeline.loadDisplayMode().catch(() => null)
+          : Promise.resolve(null)
+      ]);
+      if (!data) return;
+      if (displayMode) window.pipelineDisplayMode = displayMode;
+      const today = new Date();
+      const todayUTC = new Date(Date.UTC(
+        today.getFullYear(), today.getMonth(), today.getDate()
+      ));
+      const items = [];
+
+      const fedEnd = data.federal && data.federal.date_range && data.federal.date_range.end;
+      const fedDate = parseISODate(fedEnd);
+      if (fedDate && daysBetweenUTC(fedDate, todayUTC) <= RECENT_POLL_DAYS) {
+        const hasFc = forecastAvailable(displayMode && displayMode.federal);
+        items.push({
+          label: 'Bund',
+          date: fedDate,
+          href: hasFc ? '#vorhersage-section' : '#bundestag-section',
+          forecastKey: hasFc ? 'federal' : '',
+          sortKey: '0-bund'
+        });
+      }
+
+      const states = (data.states && typeof data.states === 'object') ? data.states : {};
+      const dmStates = (displayMode && displayMode.states) || {};
+      Object.keys(states).forEach((code) => {
+        const st = states[code] || {};
+        const end = st.date_range && st.date_range.end;
+        const d = parseISODate(end);
+        if (!d || daysBetweenUTC(d, todayUTC) > RECENT_POLL_DAYS) return;
+        const key = String(code || '').toUpperCase();
+        const hasFc = forecastAvailable(dmStates[key]);
+        items.push({
+          label: STATE_LABELS[key] || key,
+          date: d,
+          href: hasFc ? '#vorhersage-section' : '#landtage-section',
+          forecastKey: hasFc ? key : '',
+          sortKey: `1-${key}`
+        });
+      });
+
+      items.sort((a, b) => {
+        const byDate = b.date.getTime() - a.date.getTime();
+        if (byDate) return byDate;
+        return String(a.sortKey).localeCompare(String(b.sortKey), 'de');
+      });
+
+      if (!items.length) {
+        el.hidden = true;
+        el.textContent = '';
+        return;
+      }
+
+      el.innerHTML = 'Umfragen letzte 7 Tage: ' + items.map((it) => {
+        const text = `${escapeHtml(it.label)} (${formatDE(it.date)})`;
+        const fcAttr = it.forecastKey
+          ? ` data-vorhersage-key="${escapeHtml(it.forecastKey)}"`
+          : '';
+        return `<a href="${escapeHtml(it.href)}"${fcAttr}>${text}</a>`;
+      }).join(', ');
+      el.hidden = false;
+    } catch (err) {
+      console.warn('Recent polls line unavailable', err);
+      el.hidden = true;
+    }
+  }
+
+  function onRecentPollClick(e) {
+    const a = e.target && e.target.closest
+      ? e.target.closest('#home-recent-polls a[data-vorhersage-key]')
+      : null;
+    if (!a) return;
+    const key = a.getAttribute('data-vorhersage-key');
+    if (!key) return;
+    const select = window.selectVorhersageTarget;
+    if (typeof select !== 'function') return;
+    // Keep hash navigation; also switch the Vorhersage tile once the section is ready.
+    const run = () => {
+      try { select(key); } catch (err) {
+        console.warn('Could not select Vorhersage target', err);
+      }
+    };
+    if (window.vorhersageTargets && window.vorhersageTargets.length) run();
+    else setTimeout(run, 250);
+  }
+
+  document.addEventListener('DOMContentLoaded', renderHomeRecentPolls);
+  document.addEventListener('click', onRecentPollClick);
+})();
+</script>
 <script>
 // Bundestag forecast chart functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -7292,6 +7478,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (panel) panel.style.display = 'none';
     }
   }
+  window.selectVorhersageTarget = selectVorhersageTarget;
 
   function setVorhersageSectionVisible(visible) {
     const section = document.getElementById('vorhersage-section');
@@ -7306,6 +7493,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!section) return;
     try {
       vorhersageTargets = await buildVorhersageTargets();
+      window.vorhersageTargets = vorhersageTargets;
       if (!vorhersageTargets.length) {
         setVorhersageSectionVisible(false);
         updateHomeSectionBackgrounds();
@@ -9150,14 +9338,9 @@ document.addEventListener('DOMContentLoaded', function() {
     table.insertBefore(thead, table.firstChild);
   }
 
-  // Format date for display
+  // Format date for display (calendar date — no timezone shift)
   function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('de-DE', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
+    return formatDateDDMMYYYY(dateStr);
   }
 
   // Pagination event listeners
