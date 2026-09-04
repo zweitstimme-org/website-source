@@ -11,7 +11,7 @@
     "poll_window_days": null,
     "last_poll_date": "2026-08-31",
     "asof_date": "2026-08-31",
-    "last_update": "2026-09-03T07:56:48Z",
+    "last_update": "2026-09-04T07:47:04Z",
     "scenario_config_md5": "3feeeb440701645a2f93d20e7ce45c1a",
     "predictor_encoding": "state_models_exact_lead_v1",
     "shares_normalized_to_100": true,
@@ -51,14 +51,14 @@
     {
       "party": "AfD",
       "party_code": "afd",
-      "fit": 17,
-      "low": 12,
+      "fit": 18,
+      "low": 13,
       "high": 23
     },
     {
       "party": "FDP",
       "party_code": "fdp",
-      "fit": 4,
+      "fit": 3,
       "low": 2,
       "high": 5
     },
@@ -85,37 +85,37 @@
         "id": "coal_spd_gru_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD, Grüne und Linke",
-        "probability": 84
+        "probability": 85
       },
       {
         "id": "coal_cdu_spd_gru",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit CDU, SPD und Grüne",
-        "probability": 79
+        "probability": 77
       },
       {
         "id": "coal_spd_gru_lin_lead_lin",
         "category": "coalition",
         "label_de": "Parlamentsmehrheit SPD, Grüne und Linke (unter Führung der Linken)",
-        "probability": 59
+        "probability": 60
       },
       {
         "id": "largest_party_lin",
         "category": "largest_party",
         "label_de": "Linke stärkste Kraft",
-        "probability": 39
+        "probability": 40
       },
       {
         "id": "above_hurdle_bsw",
         "category": "above_hurdle",
         "label_de": "BSW über 5%-Hürde",
-        "probability": 32
+        "probability": 33
       },
       {
         "id": "largest_party_cdu",
         "category": "largest_party",
         "label_de": "CDU stärkste Kraft",
-        "probability": 29
+        "probability": 28
       },
       {
         "id": "coal_spd_gru_lin_lead_gru",
@@ -133,13 +133,13 @@
         "id": "above_hurdle_fdp",
         "category": "above_hurdle",
         "label_de": "FDP über 5%-Hürde",
-        "probability": 15
+        "probability": 17
       },
       {
         "id": "largest_party_gru",
         "category": "largest_party",
         "label_de": "Grüne stärkste Kraft",
-        "probability": 11
+        "probability": 12
       },
       {
         "id": "coal_gru_lin",
