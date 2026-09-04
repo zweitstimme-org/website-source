@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-03T07:40:05",
+  "generated_at": "2026-09-04T06:05:52",
   "election": {
     "id": "be_2026-09-20",
     "name": "Landtagswahl Berlin",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-09-03",
+    "as_of": "2026-09-04",
     "parties": {
       "CDU/CSU": 18.9,
       "AfD": 17.9,
@@ -69,14 +69,14 @@
       "SPD": 0,
       "GRÜNE": -0.3,
       "LINKE": -0.2,
-      "BSW": 0.2,
+      "BSW": 0.1,
       "FDP": 0.3,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -0.2
+      "Sonstige": -0.1
     }
   },
-  "as_of": "2026-09-03"
+  "as_of": "2026-09-04"
 }

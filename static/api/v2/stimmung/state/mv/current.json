@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-03T07:40:13",
+  "generated_at": "2026-09-04T06:05:58",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-09-03",
+    "as_of": "2026-09-04",
     "parties": {
       "CDU/CSU": 9.1,
       "AfD": 35.9,
@@ -26,13 +26,13 @@
       "Sonstige": 3
     },
     "uncertainty_low": {
-      "CDU/CSU": 8.5,
-      "AfD": 35.3,
-      "SPD": 29.3,
-      "GRÜNE": 4.4,
-      "LINKE": 10.4,
-      "BSW": 3.4,
-      "FDP": 1.5,
+      "CDU/CSU": 8.4,
+      "AfD": 35.2,
+      "SPD": 29.2,
+      "GRÜNE": 4.3,
+      "LINKE": 10.3,
+      "BSW": 3.3,
+      "FDP": 1.4,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 9.7,
-      "AfD": 36.5,
-      "SPD": 30.5,
-      "GRÜNE": 5.6,
-      "LINKE": 11.6,
-      "BSW": 4.6,
-      "FDP": 2.7,
+      "CDU/CSU": 9.8,
+      "AfD": 36.6,
+      "SPD": 30.6,
+      "GRÜNE": 5.7,
+      "LINKE": 11.7,
+      "BSW": 4.7,
+      "FDP": 2.8,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -64,7 +64,7 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": -0.4,
+      "CDU/CSU": -0.3,
       "AfD": -0.1,
       "SPD": 0.5,
       "GRÜNE": 0,
@@ -75,8 +75,8 @@
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0.5
+      "Sonstige": 0.4
     }
   },
-  "as_of": "2026-09-03"
+  "as_of": "2026-09-04"
 }
