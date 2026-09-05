@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-04T14:51:50",
+  "generated_at": "2026-09-05T06:04:07",
   "election": {
     "id": "st_2026-09-06",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-09-04",
+    "as_of": "2026-09-05",
     "parties": {
       "CDU/CSU": 22.6,
       "AfD": 41.6,
@@ -26,13 +26,13 @@
       "Sonstige": 3.3
     },
     "uncertainty_low": {
-      "CDU/CSU": 22.1,
-      "AfD": 41.1,
-      "SPD": 7.7,
-      "GRÜNE": 5.2,
-      "LINKE": 11.4,
-      "BSW": 3.4,
-      "FDP": 2.3,
+      "CDU/CSU": 22,
+      "AfD": 41,
+      "SPD": 7.6,
+      "GRÜNE": 5.1,
+      "LINKE": 11.3,
+      "BSW": 3.3,
+      "FDP": 2.2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 23.1,
-      "AfD": 42.1,
-      "SPD": 8.7,
-      "GRÜNE": 6.2,
-      "LINKE": 12.4,
-      "BSW": 4.4,
-      "FDP": 3.3,
+      "CDU/CSU": 23.2,
+      "AfD": 42.2,
+      "SPD": 8.8,
+      "GRÜNE": 6.3,
+      "LINKE": 12.5,
+      "BSW": 4.5,
+      "FDP": 3.4,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -66,9 +66,9 @@
     "trends": {
       "CDU/CSU": 0.4,
       "AfD": -0.4,
-      "SPD": 0.8,
+      "SPD": 0.7,
       "GRÜNE": 0.4,
-      "LINKE": -0.4,
+      "LINKE": -0.3,
       "BSW": -0.1,
       "FDP": -0.4,
       "FW": null,
@@ -78,5 +78,5 @@
       "Sonstige": -0.3
     }
   },
-  "as_of": "2026-09-04"
+  "as_of": "2026-09-05"
 }
