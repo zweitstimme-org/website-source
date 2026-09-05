@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-05T06:03:49",
+  "generated_at": "2026-09-05T07:35:40",
   "description": "Aktuelle Stimmung (Kalman). The full series covers ~10 years. Prefer current, day/YYYY-MM-DD, month/YYYY-MM, or year/YYYY.",
   "path": "/api/v2/stimmung/state/bw.json",
   "current": "/api/v2/stimmung/state/bw/current.json",
