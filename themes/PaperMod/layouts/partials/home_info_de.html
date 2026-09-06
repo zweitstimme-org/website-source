@@ -1271,7 +1271,7 @@ function updateProbability(textId, progressId, value, type) {
 {{- /* Include Vorhersage / Archiv in the HTML at Hugo build time (from data/display_mode.json).
        Omitting empty sections also keeps the grey/white section-alt stripe stable — no JS restripe.
        Scratch (not $vars) so assignments inside with/range/if survive those inner scopes.
-       Live Vorhersagen: days_to_election > 0. Archiv: election day through +7 days. */ -}}
+       Live Vorhersagen: through 7 days after election. Archiv: after that. */ -}}
 {{- $homeLayout := newScratch -}}
 {{- $homeLayout.Set "showForecasts" false -}}
 {{- $homeLayout.Set "showArchive" false -}}
@@ -1282,24 +1282,18 @@ function updateProbability(textId, progressId, value, type) {
     {{- $homeLayout.Set "archiveDays" (int .) -}}
   {{- end -}}
   {{- with .federal -}}
-    {{- if and .forecast_available (eq .mode "forecast") (gt (int (.days_to_election | default 0)) 0) -}}
-      {{- $homeLayout.Set "showForecasts" true -}}
-    {{- end -}}
     {{- if and .forecast_available (eq .mode "forecast") (isset . "days_to_election") -}}
       {{- $days := int .days_to_election -}}
-      {{- if and (le $days 0) (ge (add $days ($homeLayout.Get "archiveDays")) 0) -}}
-        {{- $homeLayout.Set "showArchive" true -}}
+      {{- if ge (add $days ($homeLayout.Get "archiveDays")) 0 -}}
+        {{- $homeLayout.Set "showForecasts" true -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
   {{- range .states -}}
-    {{- if and .forecast_available (eq .mode "forecast") (gt (int (.days_to_election | default 0)) 0) -}}
-      {{- $homeLayout.Set "showForecasts" true -}}
-    {{- end -}}
     {{- if and .forecast_available (eq .mode "forecast") (isset . "days_to_election") -}}
       {{- $days := int .days_to_election -}}
-      {{- if and (le $days 0) (ge (add $days ($homeLayout.Get "archiveDays")) 0) -}}
-        {{- $homeLayout.Set "showArchive" true -}}
+      {{- if ge (add $days ($homeLayout.Get "archiveDays")) 0 -}}
+        {{- $homeLayout.Set "showForecasts" true -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
@@ -6126,7 +6120,7 @@ document.addEventListener('DOMContentLoaded', function() {
       info
       && info.mode === 'forecast'
       && info.forecast_available
-      && Number(info.days_to_election) > 0
+      && inLiveForecastWindow(info.election_date, info.days_to_election)
     );
   }
 
@@ -7125,9 +7119,15 @@ document.addEventListener('DOMContentLoaded', function() {
     return daysBetweenUTC(todayUTC, election);
   }
 
+  function inLiveForecastWindow(electionDate, daysToElection) {
+    let days = Number(daysToElection);
+    if (!Number.isFinite(days)) days = daysToElectionDate(electionDate);
+    return days !== null && Number.isFinite(days) && days >= -homepageArchiveDays();
+  }
+
   function inHomepageArchiveWindow(electionDate) {
     const days = daysToElectionDate(electionDate);
-    return days !== null && days <= 0 && days >= -homepageArchiveDays();
+    return days !== null && days < -homepageArchiveDays();
   }
 
   let vorhersageTargets = [];
@@ -7275,13 +7275,15 @@ document.addEventListener('DOMContentLoaded', function() {
     pipelineDisplayMode = window.pipelineDisplayMode;
     const targets = [];
     const federal = pipelineDisplayMode && pipelineDisplayMode.federal;
-    if (federal && federal.mode === 'forecast' && federal.forecast_available && federal.days_to_election > 0) {
+    if (federal && federal.mode === 'forecast' && federal.forecast_available
+        && inLiveForecastWindow(federal.election_date, federal.days_to_election)) {
       targets.push({ key: 'federal', scope: 'federal', code: 'BUND', ...federal });
     }
     const states = pipelineDisplayMode && pipelineDisplayMode.states ? pipelineDisplayMode.states : {};
     Object.keys(states).forEach(code => {
       const info = states[code];
-      if (info && info.mode === 'forecast' && info.forecast_available && info.days_to_election > 0) {
+      if (info && info.mode === 'forecast' && info.forecast_available
+          && inLiveForecastWindow(info.election_date, info.days_to_election)) {
         targets.push({ key: code, scope: 'state', code, ...info });
       }
     });
@@ -7550,67 +7552,21 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentVorhersageArchiveKey = null;
 
   function buildVorhersageArchiveTargets() {
-    const seen = new Set();
-    const targets = [];
     const archive = pipelineDisplayMode && pipelineDisplayMode.archive
       ? pipelineDisplayMode.archive.forecasts
       : null;
-    if (Array.isArray(archive)) {
-      archive.forEach(entry => {
-        if (!entry || !inHomepageArchiveWindow(entry.election_date)) return;
-        const key = entry.key;
-        if (!key || seen.has(key)) return;
-        seen.add(key);
-        targets.push({
-          key,
-          scope: entry.scope,
-          code: entry.scope === 'federal' ? 'BUND' : entry.state_code,
-          election_date: entry.election_date,
-          election_name: entry.election_name,
-          date_is_estimated: entry.date_is_estimated,
-          forecast_file: entry.forecast_file
-        });
-      });
-    }
-    const states = pipelineDisplayMode && pipelineDisplayMode.states
-      ? pipelineDisplayMode.states
-      : {};
-    Object.keys(states).forEach(code => {
-      const info = states[code];
-      if (!info || !info.forecast_available || info.mode !== 'forecast') return;
-      if (!inHomepageArchiveWindow(info.election_date)) return;
-      const key = `${String(code).toLowerCase()}_${info.election_date}`;
-      if (seen.has(key)) return;
-      seen.add(key);
-      targets.push({
-        key,
-        scope: 'state',
-        code,
-        election_date: info.election_date,
-        election_name: info.election_name,
-        date_is_estimated: info.date_is_estimated,
-        forecast_file: null,
-        liveFallback: true
-      });
-    });
-    const federal = pipelineDisplayMode && pipelineDisplayMode.federal;
-    if (federal && federal.forecast_available && federal.mode === 'forecast'
-        && inHomepageArchiveWindow(federal.election_date)) {
-      const key = `federal_${federal.election_date}`;
-      if (!seen.has(key)) {
-        targets.push({
-          key,
-          scope: 'federal',
-          code: 'BUND',
-          election_date: federal.election_date,
-          election_name: federal.election_name,
-          date_is_estimated: federal.date_is_estimated,
-          forecast_file: null,
-          liveFallback: true
-        });
-      }
-    }
-    return targets;
+    if (!Array.isArray(archive)) return [];
+    return archive
+      .filter(entry => entry && inHomepageArchiveWindow(entry.election_date))
+      .map(entry => ({
+        key: entry.key,
+        scope: entry.scope,
+        code: entry.scope === 'federal' ? 'BUND' : entry.state_code,
+        election_date: entry.election_date,
+        election_name: entry.election_name,
+        date_is_estimated: entry.date_is_estimated,
+        forecast_file: entry.forecast_file
+      }));
   }
 
   function renderVorhersageArchiveTargets() {
