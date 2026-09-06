@@ -5,6 +5,26 @@
 (function (global) {
   'use strict';
 
+  function isPreviewPage() {
+    try {
+      return /\/preview(?:\/|$)/.test(String((global.location && global.location.pathname) || ''));
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function logosEnabled() {
+    if (global.ZWEITSTIMME_DISABLE_LOGO) return false;
+    if (isPreviewPage()) return false;
+    return true;
+  }
+
+  if (!logosEnabled()) {
+    global.drawZweitstimmeWatermark = function () {};
+    global.attachZweitstimmeWatermark = function () {};
+    return;
+  }
+
   var STATUS_IDLE = 'idle';
   var STATUS_LOADING = 'loading';
   var STATUS_READY = 'ready';

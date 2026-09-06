@@ -1,4 +1,17 @@
 {{- /* Cookie-less pageview ping. Counts zweitstimme.org and the GitHub Pages preview. */ -}}
+{{- if or .Params.robotsNoIndex .Params.liveMode }}
+<meta name="robots" content="noindex, nofollow, noarchive">
+{{- end }}
+{{- if in .RelPermalink "/preview/" }}
+<script>window.ZWEITSTIMME_DISABLE_LOGO = true;</script>
+<style>
+  .header .logo img,
+  .zs-wm-strip,
+  .zs-wm-host--map::after {
+    display: none !important;
+  }
+</style>
+{{- end }}
 <script>
 (function () {
   var HOSTS = {
