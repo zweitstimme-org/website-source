@@ -1270,20 +1270,37 @@ function updateProbability(textId, progressId, value, type) {
 
 {{- /* Include Vorhersage / Archiv in the HTML at Hugo build time (from data/display_mode.json).
        Omitting empty sections also keeps the grey/white section-alt stripe stable — no JS restripe.
-       Scratch (not $vars) so assignments inside with/range/if survive those inner scopes. */ -}}
+       Scratch (not $vars) so assignments inside with/range/if survive those inner scopes.
+       Live Vorhersagen: days_to_election > 0. Archiv: election day through +7 days. */ -}}
 {{- $homeLayout := newScratch -}}
 {{- $homeLayout.Set "showForecasts" false -}}
 {{- $homeLayout.Set "showArchive" false -}}
 {{- $homeLayout.Set "i" 0 -}}
+{{- $homeLayout.Set "archiveDays" 7 -}}
 {{- with site.Data.display_mode -}}
+  {{- with .forecast_archive_days -}}
+    {{- $homeLayout.Set "archiveDays" (int .) -}}
+  {{- end -}}
   {{- with .federal -}}
     {{- if and .forecast_available (eq .mode "forecast") (gt (int (.days_to_election | default 0)) 0) -}}
       {{- $homeLayout.Set "showForecasts" true -}}
+    {{- end -}}
+    {{- if and .forecast_available (eq .mode "forecast") (isset . "days_to_election") -}}
+      {{- $days := int .days_to_election -}}
+      {{- if and (le $days 0) (ge (add $days ($homeLayout.Get "archiveDays")) 0) -}}
+        {{- $homeLayout.Set "showArchive" true -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
   {{- range .states -}}
     {{- if and .forecast_available (eq .mode "forecast") (gt (int (.days_to_election | default 0)) 0) -}}
       {{- $homeLayout.Set "showForecasts" true -}}
+    {{- end -}}
+    {{- if and .forecast_available (eq .mode "forecast") (isset . "days_to_election") -}}
+      {{- $days := int .days_to_election -}}
+      {{- if and (le $days 0) (ge (add $days ($homeLayout.Get "archiveDays")) 0) -}}
+        {{- $homeLayout.Set "showArchive" true -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
   {{- with .archive -}}
@@ -7095,6 +7112,24 @@ document.addEventListener('DOMContentLoaded', function() {
   };
   const BUND_LOGO = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Deutscher_Bundestag_logo.svg/250px-Deutscher_Bundestag_logo.svg.png';
 
+  function homepageArchiveDays() {
+    const n = Number(pipelineDisplayMode && pipelineDisplayMode.forecast_archive_days);
+    return Number.isFinite(n) && n >= 0 ? n : 7;
+  }
+
+  function daysToElectionDate(electionDate) {
+    const election = parseISODate(electionDate);
+    if (!election) return null;
+    const now = new Date();
+    const todayUTC = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    return daysBetweenUTC(todayUTC, election);
+  }
+
+  function inHomepageArchiveWindow(electionDate) {
+    const days = daysToElectionDate(electionDate);
+    return days !== null && days <= 0 && days >= -homepageArchiveDays();
+  }
+
   let vorhersageTargets = [];
   let currentVorhersageKey = null;
 
@@ -7515,17 +7550,67 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentVorhersageArchiveKey = null;
 
   function buildVorhersageArchiveTargets() {
-    const archive = pipelineDisplayMode && pipelineDisplayMode.archive ? pipelineDisplayMode.archive.forecasts : null;
-    if (!Array.isArray(archive)) return [];
-    return archive.map(entry => ({
-      key: entry.key,
-      scope: entry.scope,
-      code: entry.scope === 'federal' ? 'BUND' : entry.state_code,
-      election_date: entry.election_date,
-      election_name: entry.election_name,
-      date_is_estimated: entry.date_is_estimated,
-      forecast_file: entry.forecast_file
-    }));
+    const seen = new Set();
+    const targets = [];
+    const archive = pipelineDisplayMode && pipelineDisplayMode.archive
+      ? pipelineDisplayMode.archive.forecasts
+      : null;
+    if (Array.isArray(archive)) {
+      archive.forEach(entry => {
+        if (!entry || !inHomepageArchiveWindow(entry.election_date)) return;
+        const key = entry.key;
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        targets.push({
+          key,
+          scope: entry.scope,
+          code: entry.scope === 'federal' ? 'BUND' : entry.state_code,
+          election_date: entry.election_date,
+          election_name: entry.election_name,
+          date_is_estimated: entry.date_is_estimated,
+          forecast_file: entry.forecast_file
+        });
+      });
+    }
+    const states = pipelineDisplayMode && pipelineDisplayMode.states
+      ? pipelineDisplayMode.states
+      : {};
+    Object.keys(states).forEach(code => {
+      const info = states[code];
+      if (!info || !info.forecast_available || info.mode !== 'forecast') return;
+      if (!inHomepageArchiveWindow(info.election_date)) return;
+      const key = `${String(code).toLowerCase()}_${info.election_date}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      targets.push({
+        key,
+        scope: 'state',
+        code,
+        election_date: info.election_date,
+        election_name: info.election_name,
+        date_is_estimated: info.date_is_estimated,
+        forecast_file: null,
+        liveFallback: true
+      });
+    });
+    const federal = pipelineDisplayMode && pipelineDisplayMode.federal;
+    if (federal && federal.forecast_available && federal.mode === 'forecast'
+        && inHomepageArchiveWindow(federal.election_date)) {
+      const key = `federal_${federal.election_date}`;
+      if (!seen.has(key)) {
+        targets.push({
+          key,
+          scope: 'federal',
+          code: 'BUND',
+          election_date: federal.election_date,
+          election_name: federal.election_name,
+          date_is_estimated: federal.date_is_estimated,
+          forecast_file: null,
+          liveFallback: true
+        });
+      }
+    }
+    return targets;
   }
 
   function renderVorhersageArchiveTargets() {
@@ -7548,7 +7633,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   async function selectVorhersageArchiveTarget(key) {
     const target = vorhersageArchiveTargets.find(t => t.key === key);
-    if (!target || !window.pipelineData || !target.forecast_file) return;
+    if (!target || !window.pipelineData) return;
+    if (!target.forecast_file && !target.liveFallback) return;
     currentVorhersageArchiveKey = key;
     renderVorhersageArchiveTargets();
 
@@ -7556,7 +7642,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (panel) panel.style.display = 'block';
 
     try {
-      const forecast = await window.pipelineData.loadArchivedForecast(target.forecast_file);
+      let forecast;
+      if (target.forecast_file) {
+        forecast = await window.pipelineData.loadArchivedForecast(target.forecast_file);
+      } else if (target.scope === 'state') {
+        forecast = await window.pipelineData.loadForecastState(target.code);
+      } else {
+        forecast = await window.pipelineData.loadForecastFederal();
+      }
       await createPipelineForecastChart('vorhersage-archive-chart', forecast);
       renderVorhersageArchiveScenarios(forecast);
       setVorhersageStand('vorhersage-archive-stand', forecast);
