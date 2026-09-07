@@ -491,11 +491,7 @@ Wie schon bei der [Bundestagswahl 2025](/archive/posts/evaluation-2025/) dürfte
 
 Trotz der teils deutlichen Abweichungen zwischen Umfragen und Wahlergebnis hat unser Modell insgesamt gut abgeschnitten: AfD-Anteil, Sitzzahl und Parlamentsgröße lagen nah am Ergebnis. Den CDU-Einbruch und das Grünen-Plus haben die Umfragen — und damit unser umfragenbasiertes Modell — nicht vorweggenommen. Beim BSW war der Einzug knapp und mit 19 Prozent auch als knapp ausgewiesen.
 
-Taktisches Wählen kann die Verhältnisse um die 5-Prozent-Hürde noch verschieben. Und: Wird die Linke in den Wahlkreisen wieder stärker als erwartet?
-
-## Ausblick: Mecklenburg-Vorpommern und Berlin
-
-Am 20. September wählen Mecklenburg-Vorpommern und Berlin. Aus Sachsen-Anhalt nehmen wir drei Dinge mit. Erstens: Wahrscheinlichkeiten an der 5-Prozent-Hürde sind knappe Rennen. Zweitens: Die Größe des Landtags kann sich im Vergleich zur letzten Wahl deutlich verändern. Drittens: Die größte Unsicherheit liegt in den Städten, wo lokale Kampagnen und Split-Tickets den Ausschlag geben können, die unser Modell nicht abbildet — in Berlin kommt die Grundmandatsklausel hinzu, bei der ein einzelnes Direktmandat über den Einzug einer Partei entscheiden kann.
+Am 20. September wählen Mecklenburg-Vorpommern und Berlin. Taktisches Wählen kann die Verhältnisse um die 5-Prozent-Hürde noch verschieben. Und: Wird die Linke in den Wahlkreisen wieder stärker als erwartet?
 
 ---
 
