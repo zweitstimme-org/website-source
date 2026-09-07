@@ -448,9 +448,7 @@ Wir hatten für verschiedene Szenarien Wahrscheinlichkeiten angegeben. Hier ist,
   <p class="steval-fig-cap">Jedes Kästchen = 5 Prozentpunkte (20 Kästchen = 100 %).</p>
 </div>
 
-Dem BSW-Einzug hatten wir nur 19 Prozent gegeben — auf den ersten Blick ein Fehlschlag, tatsächlich aber ein knappes Rennen. Unsere Punktschätzung lag bei 4 Prozent (Intervall 3–5), das Ergebnis bei 5,3 Prozent: knapp über der Hürde und am oberen Rand des Bandes. Rund ein Fünftel unserer Simulationen sahen das BSW über 5 Prozent — so liest man eine Wahrscheinlichkeit an einer Schwelle: öfter drunter als drüber, aber oft genug drüber, dass man damit rechnen muss.
-
-Die **Mehrheit von AfD und BSW (9 Prozent)** hing an derselben Schwelle: Ohne BSW im Landtag gibt es diese Mehrheit nicht, und selbst mit BSW reichte es nur in etwa der Hälfte dieser Simulationen. Mit dem BSW-Einzug fiel umgekehrt auch die von uns mit 70 Prozent als wahrscheinlich eingeschätzte Mehrheit ohne AfD und BSW — beide Zeilen gehören zum selben Hürdenereignis.
+Dem BSW-Einzug hatten wir nur 19 Prozent gegeben — wir hatten das BSW zwar eher nicht im Landtag gesehen, aber ein knappes Rennen vorhergesagt. Unsere Punktschätzung lag bei 4 Prozent (Intervall 3–5), das Ergebnis bei 5,3 Prozent: knapp über der Hürde und am oberen Rand des Bandes. Rund ein Fünftel unserer Simulationen sahen das BSW über 5 Prozent.
 
 ## Sitze und Parlamentsgröße
 
@@ -459,20 +457,12 @@ Die **Mehrheit von AfD und BSW (9 Prozent)** hing an derselben Schwelle: Ohne BS
 <div class="steval-fig" aria-label="Simulierte Landtagsgröße">
   <p class="steval-fig-title">Wie groß der Landtag wird</p>
   <div id="steval-size"></div>
-  <p class="steval-fig-cap">Anteil der Simulationen nach Parlamentsgröße. Der Landtag bleibt bei der gesetzlichen Mindestgröße von 83 Sitzen.</p>
-</div>
-
-<div class="steval-fig" aria-label="Sitze: Median, Band, Ergebnis">
-  <p class="steval-fig-title">Sitze: Median, 10–90-Prozent-Band, Ergebnis</p>
-  <div class="steval-chart-wrap steval-chart-wrap--seats">
-    <canvas id="steval-seats" aria-label="Sitzprognose und Ergebnis nach Partei"></canvas>
-  </div>
-  <p class="steval-fig-cap">Vorläufige Sitzverteilung: AfD 39 (38 Direkt, 1 Liste), CDU 15, Linke 8, SPD 8, Grüne 8, BSW 5. Wahlbeteiligung 77,8 Prozent (2021: 60,3).</p>
+  <p class="steval-fig-cap">Anteil der Simulationen nach Parlamentsgröße. Der Landtag bleibt bei der gesetzlichen Mindestgröße von 83 Sitzen. Vorläufige Sitzverteilung: AfD 39 (38 Direkt, 1 Liste), CDU 15, Linke 8, SPD 8, Grüne 8, BSW 5. Wahlbeteiligung 77,8 Prozent (2021: 60,3).</p>
 </div>
 
 ## Direktmandate
 
-38 von 41 Wahlkreisen haben wir richtig vorhergesagt. Eine einfache Regel „AfD gewinnt überall“ hätte allerdings genauso viele Wahlkreise getroffen: Unsere beiden Nicht-AfD-Vorhersagen (Magdeburg II an die CDU, Halle III an die Grünen) waren falsch, und Halle II (AfD mit 62 Prozent Gewinnwahrscheinlichkeit) ging an die Linke. Allerdings hatte das Modell in diesen Stadt-Wahlkreisen auch eine hohe Unsicherheit angegeben — die Favoriten lagen bei 45 bis 62 Prozent, nicht bei 90.
+38 von 41 Wahlkreisen haben wir richtig vorhergesagt. Eine einfache Regel „AfD gewinnt überall“ hätte allerdings genauso viele Wahlkreise getroffen: Unsere beiden Nicht-AfD-Vorhersagen (Magdeburg II an die CDU, Halle III an die Grünen) waren falsch, und Halle II (AfD mit 62 Prozent Gewinnwahrscheinlichkeit) ging an die Linke. Allerdings hatte das Modell in diesen Stadt-Wahlkreisen auch eine hohe Unsicherheit angegeben — die Favoriten lagen nur bei 45 bis 62 Prozent.
 
 <div class="steval-fig" aria-label="41 Wahlkreise, Gewinner">
   <p class="steval-fig-title">41 Direktmandate</p>
@@ -483,11 +473,11 @@ Die **Mehrheit von AfD und BSW (9 Prozent)** hing an derselben Schwelle: Ohne BS
 <div class="steval-miss">
   <div class="steval-miss-card">
     <strong>WK 11 Magdeburg II — Mustafa Groener (Linke), +5,9 Pp.</strong>
-    <span>Wir hatten die CDU mit 45 Prozent vorne gesehen, die Linke nur bei 6 Prozent. Tatsächlich holte sie 29,4 Prozent der Erststimmen — fast doppelt so viel wie von uns erwartet.</span>
+    <span>Wir hatten die CDU in 45 Prozent der Fälle vorne gesehen, die Linke nur in 6 Prozent.</span>
   </div>
   <div class="steval-miss-card">
     <strong>WK 36 Halle II — Gitta Hartenstein-Wiermann (Linke), +4,7 Pp.</strong>
-    <span>Hier hatten wir die AfD knapp vorne gesehen. Deren Ergebnis lag auch auf der Prognose (24,9 gegen erwartete 24,2) — die Linke legte aber von erwarteten 16 auf 29,6 Prozent zu.</span>
+    <span>Hier hatten wir die AfD knapp vorne gesehen.</span>
   </div>
   <div class="steval-miss-card">
     <strong>WK 37 Halle III — Jannik-Loris Balint (Linke), +22 Pp.</strong>
@@ -495,17 +485,17 @@ Die **Mehrheit von AfD und BSW (9 Prozent)** hing an derselben Schwelle: Ohne BS
   </div>
 </div>
 
-Wie schon bei der [Bundestagswahl 2025](/archive/posts/evaluation-2025/) dürften hier Kandidierendeneffekte eine Rolle spielen, die unser Modell nicht abbildet. Die Linke-Kandidierenden in Halle und Magdeburg führten monatelange Haustürwahlkämpfe — in Halle III mit rund 250 Helfer:innen und dem Ziel von 32.000 Haustüren. Solche lokalen Kampagnen kann das Modell nicht vorhersehen; es kann nur die Unsicherheit in diesen Wahlkreisen ausweisen. Über alle 41 Wahlkreise gerechnet passte die Summe trotzdem: Aus den Gewinnwahrscheinlichkeiten ergaben sich 37,1 erwartete AfD-Direktmandate (tatsächlich: 38).
+Wie schon bei der [Bundestagswahl 2025](/archive/posts/evaluation-2025/) dürften hier Kandidierendeneffekte eine Rolle spielen, die unser Modell nicht abbildet. Die Linke-Kandidierenden in Halle und Magdeburg führten monatelange Haustürwahlkämpfe — in Halle III mit rund 250 Helfer:innen und dem Ziel von 32.000 Haustüren. Solche lokalen Kampagnen kann das Modell nicht vorhersehen; es kann nur die Unsicherheit in diesen Wahlkreisen ausweisen.
 
 ## Was bleibt
 
-Trotz der teils deutlichen Abweichungen zwischen Umfragen und Wahlergebnis hat unser Modell insgesamt gut abgeschnitten: AfD-Anteil, Sitzzahl und Parlamentsgröße lagen nah am Ergebnis. Den CDU-Einbruch und das Grünen-Plus haben die Umfragen — und damit unser umfragenbasiertes Modell — nicht vorweggenommen. Beim BSW war der Einzug knapp und mit 19 Prozent auch als knapp ausgewiesen; die Mehrheit von AfD und BSW (9 Prozent) hing an derselben Schwelle.
+Trotz der teils deutlichen Abweichungen zwischen Umfragen und Wahlergebnis hat unser Modell insgesamt gut abgeschnitten: AfD-Anteil, Sitzzahl und Parlamentsgröße lagen nah am Ergebnis. Den CDU-Einbruch und das Grünen-Plus haben die Umfragen — und damit unser umfragenbasiertes Modell — nicht vorweggenommen. Beim BSW war der Einzug knapp und mit 19 Prozent auch als knapp ausgewiesen.
 
-Das Modell hat die Unsicherheit nicht unterschlagen, sondern in Intervalle und Wahrscheinlichkeiten übersetzt. Wer sie mitgelesen hat, war auf einen Wahlsonntag vorbereitet, der nicht einfach die letzte Umfrage wiederholt.
+Taktisches Wählen kann die Verhältnisse um die 5-Prozent-Hürde noch verschieben. Und: Wird die Linke in den Wahlkreisen wieder stärker als erwartet?
 
 ## Ausblick: Mecklenburg-Vorpommern und Berlin
 
-Am 20. September wählen Mecklenburg-Vorpommern und Berlin. Aus Sachsen-Anhalt nehmen wir drei Dinge mit. Erstens: Wahrscheinlichkeiten an der 5-Prozent-Hürde sind knappe Rennen, kein Ja oder Nein. Zweitens: Die Sitzverteilung rechnen wir wieder aus den Wahlkreisen — die Größe des letzten Landtags fortzuschreiben hätte in Sachsen-Anhalt allein bei der AfD um rund sechs Sitze danebengelegen. Drittens: Die größte Unsicherheit liegt in den Städten, wo lokale Kampagnen und Split-Tickets den Ausschlag geben können, die unser Modell nicht abbildet — in Berlin kommt die Grundmandatsklausel hinzu, bei der ein einzelnes Direktmandat über den Einzug einer Partei entscheiden kann.
+Am 20. September wählen Mecklenburg-Vorpommern und Berlin. Aus Sachsen-Anhalt nehmen wir drei Dinge mit. Erstens: Wahrscheinlichkeiten an der 5-Prozent-Hürde sind knappe Rennen. Zweitens: Die Größe des Landtags kann sich im Vergleich zur letzten Wahl deutlich verändern. Drittens: Die größte Unsicherheit liegt in den Städten, wo lokale Kampagnen und Split-Tickets den Ausschlag geben können, die unser Modell nicht abbildet — in Berlin kommt die Grundmandatsklausel hinzu, bei der ein einzelnes Direktmandat über den Einzug einer Partei entscheiden kann.
 
 ---
 
