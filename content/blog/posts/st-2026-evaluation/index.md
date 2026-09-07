@@ -3,7 +3,7 @@ title: "Sachsen-Anhalt 2026: Was die Vorhersage getroffen hat"
 date: 2026-09-07T18:00:00+02:00
 draft: false
 kicker: "Nach der Wahl"
-description: "AfD-Sitze und Landtagsgröße lagen am Median — der CDU-Einbruch und das Grünen-Plus nicht. Genau deshalb gehören Unsicherheitsintervalle zur Prognose: Umfragen und Wahlergebnis können auseinanderlaufen."
+description: "Was unsere letzte Vorhersage vor der Landtagswahl in Sachsen-Anhalt getroffen hat — und wo Umfragen und Wahlergebnis auseinanderlagen."
 ---
 
 <style>
