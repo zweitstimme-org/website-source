@@ -1,5 +1,5 @@
 ---
-title: "Sachsen-Anhalt 2026: Was die Vorhersage getroffen hat"
+title: "Sachsen-Anhalt 2026: Evaluation der Vorhersagen"
 date: 2026-09-07T18:00:00+02:00
 draft: false
 kicker: "Nach der Wahl"
