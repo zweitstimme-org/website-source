@@ -172,8 +172,8 @@
     const items = [
       { v: `${fmtPct(mae, 1)} Pp.`, l: 'mittlerer Fehler (Zweitstimme)' },
       { v: `${inside} von ${DATA.votes.length}`, l: 'Parteien im 5/6-Intervall' },
-      { v: `${correct} von 41`, l: 'Direktmandate richtig' },
-      { v: '83', l: 'Landtag (Median war 83)' }
+      { v: `${correct} von 41`, l: 'Direktmandaten richtig' },
+      { v: '83', l: 'Sitze im Landtag (Median war 83)' }
     ];
     root.innerHTML = `<div class="steval-score">${items
       .map(
