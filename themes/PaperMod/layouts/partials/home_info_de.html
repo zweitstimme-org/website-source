@@ -1331,11 +1331,6 @@ function updateProbability(textId, progressId, value, type) {
 <section id="vorhersage-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
   {{- $homeLayout.Add "i" 1 -}}
   <div class="content-wrapper">
-    {{- if lt now (time "2026-09-21") }}
-    <p class="home-eval-banner">
-      <a href="{{ "blog/posts/st-2026-evaluation/" | relURL }}">Sachsen-Anhalt 2026: Evaluation der Vorhersagen</a>
-    </p>
-    {{- end }}
     <h2 class="home-section-title">Vorhersagen</h2>
     <div style="text-align: center; margin-bottom: 1rem;">
       <div class="home-section-subtitle">Modellprognosen für anstehende Wahlen</div>
@@ -3124,28 +3119,6 @@ a.vorhersage-subpage-link {
   font-weight: 400;
   text-align: center;
   line-height: 1.3;
-}
-
-.home-eval-banner {
-  max-width: 700px;
-  margin: 0 auto 1.15rem;
-  padding: 0.7rem 1rem;
-  border: 1px solid #e6e6e6;
-  border-left: 3px solid var(--primary, #3a4654);
-  border-radius: 0 8px 8px 0;
-  background: #f6f7f8;
-  text-align: center;
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-.home-eval-banner a {
-  color: var(--primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-.home-eval-banner a:hover,
-.home-eval-banner a:focus-visible {
-  text-decoration: underline;
 }
 
 /* iPhone-style toggle switch */

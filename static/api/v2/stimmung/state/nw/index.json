@@ -1,15 +1,15 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-06T14:42:41",
+  "generated_at": "2026-09-10T06:04:22",
   "description": "Aktuelle Stimmung (Kalman). The full series covers ~10 years. Prefer current, day/YYYY-MM-DD, month/YYYY-MM, or year/YYYY.",
   "path": "/api/v2/stimmung/state/nw.json",
   "current": "/api/v2/stimmung/state/nw/current.json",
   "day": "/api/v2/stimmung/state/nw/day/{date}.json",
   "month": "/api/v2/stimmung/state/nw/month/{YYYY-MM}.json",
   "year": "/api/v2/stimmung/state/nw/year/{YYYY}.json",
-  "from": "2016-09-11",
-  "to": "2026-09-06",
-  "as_of": "2026-09-06",
+  "from": "2016-10-30",
+  "to": "2026-09-10",
+  "as_of": "2026-09-10",
   "election": {
     "id": "nw_2027-04-25",
     "name": "Landtagswahl Nordrhein-Westfalen",
@@ -19,7 +19,6 @@
     "date_is_estimated": false
   },
   "months": [
-    "2016-09",
     "2016-10",
     "2016-11",
     "2016-12",
