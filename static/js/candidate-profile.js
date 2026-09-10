@@ -381,12 +381,12 @@
           <div class="cp-prob-value">${escapeHtml(pct(pEntry))}</div>
         </div>
         <div class="cp-prob">
-          <div class="cp-prob-label">P(Direkt)</div>
-          <div class="cp-prob-value">${escapeHtml(pct(c.p_direct))}</div>
-        </div>
-        <div class="cp-prob">
           <div class="cp-prob-label">P(Liste)</div>
           <div class="cp-prob-value">${escapeHtml(hasList ? pct(c.p_list) : "—")}</div>
+        </div>
+        <div class="cp-prob">
+          <div class="cp-prob-label">P(Direkt)</div>
+          <div class="cp-prob-value">${escapeHtml(pct(c.p_direct))}</div>
         </div>
       </div>
       <div class="cp-explain-block">

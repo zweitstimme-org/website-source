@@ -1,5 +1,5 @@
 {{/*
-  Preview: Einzugschancen Direkt + Liste (BE/MV/ST).
+  Preview: Einzugschancen Direkt + Liste (BE/MV).
 */}}
 <style>
 /* Match /direktmandate/ panel styling */
@@ -603,7 +603,7 @@ a.ce-aw:hover {
   .ce-bar { display: none; }
   .ce-entry-main { display: none; }
   .ce-entry-stack { display: block; font-size: 0.78rem; line-height: 1.15; }
-  /* Hide Direkt + Liste % columns (5th + 6th columns) and replace with stacked values. */
+  /* Hide Liste % + Direkt columns (5th + 6th) and replace with stacked values. */
   .ce-table thead th:nth-child(5),
   .ce-table tbody td:nth-child(5),
   .ce-table thead th:nth-child(6),
@@ -624,11 +624,11 @@ a.ce-aw:hover {
   </p>
   <ul>
     <li><strong>Einzug</strong> — Anteil der Simulationen, in denen die Person einen Sitz erhält (Direkt und/oder Liste).</li>
-    <li><strong>Direkt</strong> — Anteil, in dem sie ihren Wahlkreis gewinnt.</li>
     <li><strong>Liste&nbsp;%</strong> — Anteil, in dem sie über die Liste nachrückt (nur wenn ein Listenplatz bekannt ist).</li>
+    <li><strong>Direkt</strong> — Anteil, in dem sie ihren Wahlkreis gewinnt.</li>
     <li><strong>Listenplatz / WK</strong> — bekannter Listenplatz bzw. Direktwahlkreis. Ohne Listenplatz steht <code>—</code>, Liste&nbsp;% ebenfalls, und <strong>Einzug = Direkt</strong>.</li>
     <li><strong>Quellen</strong> — auf der <a href="{{ "kandidat/" | relURL }}">Profilseite</a> der Person ausgewiesen; Namen verlinken dorthin.</li>
-    <li><strong>i-Button</strong> (Sachsen-Anhalt) — Geburtsjahr/-ort, Wohnort und Beruf laut Landeswahlleiterin / StaLa.</li>
+    <li><strong>i-Button</strong> — Geburtsjahr/-ort, Wohnort und Beruf, soweit amtlich hinterlegt.</li>
     <li><strong>Geschlechteranteil</strong> — geschätzt anhand der Vornamen (Wörterbuch + manuelle Korrekturen), nicht amtlich.
       Getrennt ausgewiesen: <em>Gesamt</em>, nur <em>Liste</em>, nur <em>Direkt</em>,
       sowie gewichtet mit <em>P(Liste)</em> bzw. <em>P(Sieg)</em> (erwartete Anteile unter Einziehenden;
@@ -683,5 +683,5 @@ a.ce-aw:hover {
 <div id="candidate-entry-root"></div>
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=8"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=9" defer></script>
-<script src="{{ "js/candidate-entry.js" | relURL }}?v=37" defer></script>
+<script src="{{ "js/candidate-entry.js" | relURL }}?v=38" defer></script>
 {{/* candidate-entry.js auto-mounts #candidate-entry-root when ready */}}

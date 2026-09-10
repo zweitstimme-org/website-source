@@ -4,12 +4,10 @@
  */
 (function () {
   const STATES = [
-    { code: "ST", label: "Sachsen-Anhalt", date: "06.09.2026" },
     { code: "BE", label: "Berlin", date: "20.09.2026" },
     { code: "MV", label: "Mecklenburg-Vorpommern", date: "20.09.2026" },
   ];
   const STATE_COATS = {
-    ST: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png",
     BE: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DEU_Berlin_COA.svg/60px-DEU_Berlin_COA.svg.png",
     MV: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg/60px-Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg.png",
   };
@@ -509,8 +507,11 @@
   function render(root, data) {
     const states = data.states || {};
     const params = readQuery();
-    let stateCode = String(params.get("state") || "ST").toUpperCase();
-    if (!states[stateCode]) stateCode = STATES.find((s) => states[s.code])?.code || "ST";
+    const liveCodes = new Set(STATES.map((s) => s.code));
+    let stateCode = String(params.get("state") || "BE").toUpperCase();
+    if (!liveCodes.has(stateCode) || !states[stateCode]) {
+      stateCode = STATES.find((s) => states[s.code])?.code || "BE";
+    }
     let partyCode = params.get("party") || null;
     let bezirkFilter = params.get("bezirk") || "";
     let q = params.get("q") || "";
@@ -880,8 +881,8 @@
           ? `${pEntry}% ${pctBar(pEntry, color)}`
           : `<span title="Kein Listenplatz: Einzug = Direkt">${pEntry}%</span> ${pctBar(pEntry, color)}`;
         const stackTop = `${pEntry}%`;
-        const stackMid = `${pDirect}%`;
-        const stackBot = hasList ? `${pList}%` : "—";
+        const stackMid = hasList ? `${pList}%` : "—";
+        const stackBot = `${pDirect}%`;
         const entryCell = `
           <span class="ce-entry-main">${entryMain}</span>
           <span class="ce-entry-stack">${stackTop}<br>${stackMid}<br>${stackBot}</span>
@@ -895,8 +896,8 @@
             <td class="ce-loc">${loc}</td>
             <td class="ce-num">${wk}</td>
             <td class="ce-num ce-entry">${entryCell}</td>
-            <td class="ce-num">${pDirect}%</td>
             <td class="ce-num">${listCell}</td>
+            <td class="ce-num">${pDirect}%</td>
           </tr>`;
       }
 
@@ -940,8 +941,8 @@
               ${th("list", isBezirkList ? "Platz" : "Listenplatz", false, isBezirkList ? null : "Listen<br>platz")}
               ${th("wkr", "WK", true)}
               ${th("entry", "Einzug", true)}
-              ${th("direct", "Direkt", true)}
               ${th("listpct", "Liste %", true)}
+              ${th("direct", "Direkt", true)}
             </tr>
           </thead>
           <tbody>${body}</tbody>
