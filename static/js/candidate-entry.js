@@ -702,10 +702,10 @@
         st.sources_official === true || String(stateCode).toUpperCase() === "ST";
       if (!official) bits.push(UNOFFICIAL_SOURCE_NOTE);
       note.textContent = bits.filter(Boolean).join(" ");
-      const calcNote = document.querySelector(".ce-be-calc-note");
-      if (calcNote) {
-        calcNote.hidden = String(stateCode).toUpperCase() !== "BE";
-      }
+      const showBeNotes = String(stateCode).toUpperCase() === "BE";
+      document.querySelectorAll(".ce-be-calc-note").forEach((el) => {
+        el.hidden = !showBeNotes;
+      });
       const party = (st.parties || []).find((p) => p.party === partyCode);
       if (!party) {
         tableWrap.innerHTML = "<p>Keine Partei gewählt.</p>";
