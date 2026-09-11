@@ -708,7 +708,23 @@ a.district-aw:hover {
 </div>
 
 <div class="district-preview-targets" id="district-preview-targets" role="tablist" aria-label="Bundesland">
-  <button type="button" class="state-arm visible district-preview-target is-active selected" data-code="BE" aria-pressed="true">
+  <button type="button" class="state-arm visible district-preview-target is-active selected" data-code="ST" aria-pressed="true">
+    <div class="state-arm-narrow">
+      <div class="state-arm-name">Sachsen-Anhalt</div>
+      <div class="state-arm-sub">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="Sachsen-Anhalt" title="Sachsen-Anhalt">
+        <div class="election-date">06.09.2026</div>
+      </div>
+    </div>
+    <div class="state-arm-wide">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="Sachsen-Anhalt" title="Sachsen-Anhalt">
+      <div class="state-arm-wide-text">
+        <div class="state-arm-wide-name">Sachsen-Anhalt</div>
+        <div class="election-date">06.09.2026</div>
+      </div>
+    </div>
+  </button>
+  <button type="button" class="state-arm visible district-preview-target" data-code="BE" aria-pressed="false">
     <div class="state-arm-narrow">
       <div class="state-arm-name">Berlin</div>
       <div class="state-arm-sub">
@@ -789,11 +805,12 @@ a.district-aw:hover {
 
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=8"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=7"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=54"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=53"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const labels = {
     MV: 'Mecklenburg-Vorpommern',
+    ST: 'Sachsen-Anhalt',
     BE: 'Berlin'
   };
   const buttons = Array.from(document.querySelectorAll('.district-preview-target'));
@@ -847,12 +864,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  let initial = 'BE';
+  let initial = 'ST';
   let initialWkr = null;
   try {
     const params = new URLSearchParams(window.location.search);
     const st = String(params.get('state') || '').toUpperCase();
-    if (['MV', 'BE'].includes(st)) initial = st;
+    if (['MV', 'ST', 'BE'].includes(st)) initial = st;
     if (params.get('wkr')) initialWkr = Number(params.get('wkr'));
   } catch (_) { /* ignore */ }
 
