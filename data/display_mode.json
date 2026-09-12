@@ -151,16 +151,6 @@
         "date_is_estimated": false,
         "forecast_file": "archive/forecast_state_st_2026-09-06.json",
         "show_on_homepage": false
-      },
-      {
-        "key": "st_2021-06-06",
-        "scope": "state",
-        "state_code": "ST",
-        "election_date": "2021-06-06",
-        "election_name": "Landtagswahl Sachsen-Anhalt",
-        "date_is_estimated": false,
-        "forecast_file": "archive/forecast_state_st_2021-06-06.json",
-        "show_on_homepage": false
       }
     ]
   },
