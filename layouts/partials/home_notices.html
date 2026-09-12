@@ -1,0 +1,30 @@
+{{- /* Homepage banners from data/home_notices.json — not the giant home_info_de.html file.
+       Publish always copies this partial + JSON, so Stimmung/map-UI syncs cannot drop them. */ -}}
+{{- $box := newScratch -}}
+{{- $box.Set "shown" 0 -}}
+{{- $notices := slice -}}
+{{- with site.Data.home_notices -}}
+  {{- with .notices -}}
+    {{- $notices = . -}}
+  {{- end -}}
+{{- end -}}
+{{- range $notices -}}
+  {{- $show := true -}}
+  {{- with .until -}}
+    {{- if ge now (time .) -}}
+      {{- $show = false -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $show -}}
+    {{- if eq ($box.Get "shown") 0 -}}
+<div class="home-eval-banners" data-home-notices="1">
+    {{- end -}}
+    {{- $box.Add "shown" 1 -}}
+    <p class="home-eval-banner{{- with .style }} home-eval-banner--{{ . }}{{ end }}" data-notice-id="{{ .id }}">
+      <a href="{{ .href | relURL }}">{{ .text }}</a>
+    </p>
+  {{- end -}}
+{{- end -}}
+{{- if gt ($box.Get "shown") 0 }}
+</div>
+{{- end -}}

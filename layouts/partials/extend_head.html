@@ -1,4 +1,7 @@
 {{- /* Cookie-less pageview ping. Counts zweitstimme.org and the GitHub Pages preview. */ -}}
+{{- if .IsHome }}
+<script src="{{ "js/home-notices.js" | relURL }}" defer></script>
+{{- end }}
 {{- if or .Params.robotsNoIndex .Params.liveMode }}
 <meta name="robots" content="noindex, nofollow, noarchive">
 {{- end }}

@@ -495,7 +495,7 @@ Am 20. September wählen Mecklenburg-Vorpommern und Berlin. Taktisches Wählen k
 
 ---
 
-Methode: [Landtagswahl-Vorhersage](/blog/posts/state-forecast-methodology/), [Wahlkreis-Vorhersage](/blog/posts/district-forecast-methodology/). Ergebnis: [StaLA LTW 2026](https://wahlergebnisse.sachsen-anhalt.de/wahlen/lt26/downloads.html), vorläufig (V), nicht das endgültige Ergebnis des Landeswahlausschusses.
+Methode: [Landtagswahl-Vorhersage](/blog/posts/state-forecast-methodology/), [Wahlkreis-Vorhersage](/blog/posts/district-forecast-methodology/). Letzte Vorhersage vor der Wahl: [Vergangene Vorhersagen](/archive/posts/vergangene-vorhersagen/). Ergebnis: [StaLA LTW 2026](https://wahlergebnisse.sachsen-anhalt.de/wahlen/lt26/downloads.html), vorläufig (V), nicht das endgültige Ergebnis des Landeswahlausschusses.
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>

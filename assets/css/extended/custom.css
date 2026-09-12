@@ -1127,6 +1127,183 @@ h2 {
     color: var(--secondary);
 }
 
+/* Homepage banners — also in home_info_de.html; duplicated here so they survive
+   that file being overwritten. Same classes as layouts/partials/home_notices.html */
+.home-eval-banners {
+    max-width: 700px;
+    margin: 0 auto 1.15rem;
+}
+.home-eval-banner {
+    margin: 0 0 0.55rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid #e6e6e6;
+    border-left: 3px solid var(--primary, #3a4654);
+    border-radius: 0 8px 8px 0;
+    background: #f6f7f8;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+.home-eval-banner:last-child { margin-bottom: 0; }
+.home-eval-banner--quiet {
+    padding: 0.45rem 1rem;
+    font-size: 0.88rem;
+    background: transparent;
+}
+.home-eval-banner a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none !important;
+}
+.home-eval-banner a:hover,
+.home-eval-banner a:focus-visible {
+    text-decoration: underline !important;
+}
+
+.past-forecasts {
+    margin: 1.25rem 0 0.5rem;
+}
+.past-forecasts .state-coats-of-arms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 0 0 0.35rem;
+}
+.past-forecasts .state-arm {
+    text-align: left;
+    padding: 0.65rem 0.75rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+    height: 78px;
+    box-sizing: border-box;
+}
+.past-forecasts .state-arm.selected {
+    background: #e6f3ff;
+    border: 3px solid var(--primary);
+    position: relative;
+}
+.past-forecasts .state-arm img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+.past-forecasts .state-arm-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+.past-forecasts .state-arm-text span {
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 500;
+    line-height: 1.15;
+}
+.past-forecasts .election-date {
+    font-size: 0.68rem;
+    color: #888;
+    margin-top: 0.15rem;
+}
+.past-forecasts-chart-wrap {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    height: 300px;
+    position: relative;
+}
+.past-forecasts-note {
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+}
+.past-forecasts .scenario-prob-panel {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin: 1.25rem auto 0;
+    max-width: 700px;
+}
+.past-forecasts .scenario-prob-heading {
+    margin: 0 0 0.85rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+}
+.past-forecasts .scenario-prob-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 1.25rem;
+}
+.past-forecasts .scenario-prob-list.is-collapsed .scenario-prob-item:nth-child(n+5) {
+    display: none;
+}
+.past-forecasts .scenario-prob-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+}
+.past-forecasts .scenario-prob-dots {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    gap: 1.5px 2.5px;
+    width: 132px;
+    flex-shrink: 0;
+    padding: 3px 5px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background: #fafafa;
+    box-sizing: content-box;
+}
+.past-forecasts .scenario-prob-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #dde1e6;
+}
+.past-forecasts .scenario-prob-dot.is-filled { background: #3a4654; }
+.past-forecasts .scenario-prob-pct {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+.past-forecasts .scenario-prob-label {
+    font-size: 0.82rem;
+    color: #333;
+    line-height: 1.25;
+}
+.past-forecasts .scenario-prob-toggle {
+    display: block;
+    width: 100%;
+    margin-top: 0.9rem;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f7f7f7;
+    color: #444;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+@media (max-width: 640px) {
+    .past-forecasts .state-coats-of-arms {
+        grid-template-columns: 1fr;
+    }
+    .past-forecasts .scenario-prob-list {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .hub-title {
         font-size: 1.7rem !important;
