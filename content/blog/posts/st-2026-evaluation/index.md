@@ -394,7 +394,7 @@ description: "Was unsere letzte Vorhersage vor der Landtagswahl in Sachsen-Anhal
 }
 </style>
 
-Am 6. September hat Sachsen-Anhalt einen neuen Landtag gewählt. In diesem Beitrag evaluieren wir unsere **letzte Vorhersage vor der Wahl** (Stand 4. September) und vergleichen sie mit dem vorläufigen amtlichen Ergebnis.
+Am 6. September hat Sachsen-Anhalt einen neuen Landtag gewählt. In diesem Beitrag evaluieren wir unsere **letzte Vorhersage vor der Wahl** (Stand 4. September) und vergleichen sie mit dem vorläufigen amtlichen Ergebnis. Die eingefrorene Prognose — Zweitstimme, Wahlkreise und Einzugschancen — steht unter [Vergangene Vorhersagen](/archive/posts/vergangene-vorhersagen/).
 
 **Umfragen und Wahlergebnis lagen bei dieser Wahl zum Teil weit auseinander.** Doch lagen die Ergebnisse noch in unseren [5/6-Unsicherheitsintervallen](/blog/posts/state-forecast-methodology/#szenarien)? Und wie nah dran waren unsere Wahrscheinlichkeiten?
 

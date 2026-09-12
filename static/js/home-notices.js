@@ -12,12 +12,6 @@
       href: 'blog/posts/st-2026-evaluation/',
       text: 'Sachsen-Anhalt 2026: Evaluation der Vorhersagen',
       until: '2026-09-21'
-    },
-    {
-      id: 'past-forecasts',
-      href: 'archive/posts/vergangene-vorhersagen/',
-      text: 'Vergangene Vorhersagen',
-      style: 'quiet'
     }
   ];
 

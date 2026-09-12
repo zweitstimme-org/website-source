@@ -284,8 +284,47 @@
     });
   }
 
+  const DISTRICT_STATES = new Set(['ST', 'BE', 'MV']);
+
   let catalog = [];
   let currentKey = null;
+
+  function siteBase() {
+    try {
+      if (window.pipelineData && window.pipelineData.SITE_BASE) {
+        return String(window.pipelineData.SITE_BASE).replace(/\/?$/, '/');
+      }
+    } catch (_) { /* ignore */ }
+    return '/';
+  }
+
+  function updateDistricts(entry) {
+    const panel = document.getElementById('past-forecasts-districts');
+    const linkWkr = document.getElementById('past-forecasts-link-wahlkreise');
+    const linkEinzug = document.getElementById('past-forecasts-link-einzug');
+    const code = String((entry && entry.state_code) || '').toUpperCase();
+    const show = Boolean(entry && entry.scope === 'state' && DISTRICT_STATES.has(code));
+    if (!panel) return;
+    if (!show) {
+      panel.style.display = 'none';
+      if (window.DistrictForecastMap && typeof window.DistrictForecastMap.hide === 'function') {
+        window.DistrictForecastMap.hide();
+      }
+      return;
+    }
+    panel.style.display = 'block';
+    const base = siteBase();
+    const st = encodeURIComponent(code);
+    if (linkWkr) linkWkr.href = `${base}direktmandate/?state=${st}`;
+    if (linkEinzug) linkEinzug.href = `${base}einzug/?state=${st}`;
+    if (window.DistrictForecastMap && typeof window.DistrictForecastMap.mount === 'function') {
+      window.DistrictForecastMap.mount({
+        code,
+        navigateToWkr: true,
+        extraZoom: 0.7
+      }).catch((err) => console.warn('Archived district map unavailable', err));
+    }
+  }
 
   async function select(key) {
     const entry = catalog.find((e) => e.key === key);
@@ -297,8 +336,10 @@
       await drawChart(forecast);
       renderScenarios(forecast);
       setStand(forecast);
+      updateDistricts(entry);
     } catch (err) {
       console.warn('Archived forecast unavailable', err);
+      updateDistricts(null);
     }
   }
 

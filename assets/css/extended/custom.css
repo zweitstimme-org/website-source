@@ -1295,6 +1295,54 @@ h2 {
     font-size: 0.9rem;
     cursor: pointer;
 }
+.past-forecasts-map {
+    height: 220px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    margin: 0 0 0.75rem;
+}
+.past-forecasts-map #vorhersage-districts-map {
+    width: 100%;
+    height: 220px;
+}
+.post-content .past-forecasts-map .leaflet-container img,
+.post-content .past-forecasts-map img.leaflet-tile,
+.past-forecasts-map .leaflet-container img,
+.past-forecasts-map img.leaflet-tile {
+    max-width: none !important;
+    max-height: none !important;
+    width: 256px !important;
+    height: 256px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    display: block !important;
+}
+.past-forecasts-map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    justify-content: center;
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+}
+.past-forecasts .vorhersage-subpage-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: center;
+}
+.past-forecasts a.vorhersage-subpage-link {
+    flex: 1 1 12rem;
+    text-align: center;
+    text-decoration: none !important;
+    color: #444 !important;
+}
 @media (max-width: 640px) {
     .past-forecasts .state-coats-of-arms {
         grid-template-columns: 1fr;
@@ -1302,6 +1350,8 @@ h2 {
     .past-forecasts .scenario-prob-list {
         grid-template-columns: 1fr;
     }
+    .past-forecasts-map,
+    .past-forecasts-map #vorhersage-districts-map { height: 200px; }
 }
 
 @media screen and (max-width: 600px) {

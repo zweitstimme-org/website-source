@@ -136,7 +136,7 @@
   function setDistrictSourceNote(code) {
     const el = document.getElementById('vorhersage-districts-source-note');
     if (!el) return;
-    const unofficial = code === 'BE' || code === 'MV';
+    const unofficial = code === 'MV';
     el.hidden = !unofficial;
     el.textContent = unofficial ? UNOFFICIAL_DIRECT_NOTE : '';
   }

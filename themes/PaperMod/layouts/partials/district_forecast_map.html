@@ -216,6 +216,16 @@ a.district-aw:hover {
   align-items: center;
   justify-content: center;
 }
+.district-archive-note {
+  max-width: 700px;
+  margin: 0 auto 0.9rem;
+  padding: 0.55rem 0.85rem;
+  border-left: 3px solid var(--primary, #3a4654);
+  background: #f6f7f8;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
 .district-page-note {
   margin: 1.1rem 0 0;
   padding-top: 0.9rem;
@@ -706,25 +716,13 @@ a.district-aw:hover {
   <span class="is-here">Wahlkreise</span>
   <a id="district-einzug-link" href="{{ "einzug/" | relURL }}">Alle Kandidierende</a>
 </div>
+<p id="district-archive-note" class="district-archive-note" hidden>
+  Eingefrorene Vorhersage vor der Wahl —
+  <a href="{{ "archive/posts/vergangene-vorhersagen/" | relURL }}">Vergangene Vorhersagen</a>.
+</p>
 
 <div class="district-preview-targets" id="district-preview-targets" role="tablist" aria-label="Bundesland">
-  <button type="button" class="state-arm visible district-preview-target is-active selected" data-code="ST" aria-pressed="true">
-    <div class="state-arm-narrow">
-      <div class="state-arm-name">Sachsen-Anhalt</div>
-      <div class="state-arm-sub">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="Sachsen-Anhalt" title="Sachsen-Anhalt">
-        <div class="election-date">06.09.2026</div>
-      </div>
-    </div>
-    <div class="state-arm-wide">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="Sachsen-Anhalt" title="Sachsen-Anhalt">
-      <div class="state-arm-wide-text">
-        <div class="state-arm-wide-name">Sachsen-Anhalt</div>
-        <div class="election-date">06.09.2026</div>
-      </div>
-    </div>
-  </button>
-  <button type="button" class="state-arm visible district-preview-target" data-code="BE" aria-pressed="false">
+  <button type="button" class="state-arm visible district-preview-target is-active selected" data-code="BE" aria-pressed="true">
     <div class="state-arm-narrow">
       <div class="state-arm-name">Berlin</div>
       <div class="state-arm-sub">
@@ -805,18 +803,21 @@ a.district-aw:hover {
 
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=8"></script>
 <script src="{{ "js/pipeline-data.js" | relURL }}?v=7"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=53"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=55"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  const LIVE = ['BE', 'MV'];
+  const ARCHIVE = ['ST'];
   const labels = {
     MV: 'Mecklenburg-Vorpommern',
-    ST: 'Sachsen-Anhalt',
-    BE: 'Berlin'
+    BE: 'Berlin',
+    ST: 'Sachsen-Anhalt'
   };
   const buttons = Array.from(document.querySelectorAll('.district-preview-target'));
   const heading = document.getElementById('district-preview-heading');
   const einzugLink = document.getElementById('district-einzug-link');
   const noteEinzugLink = document.getElementById('district-note-einzug-link');
+  const archiveNote = document.getElementById('district-archive-note');
 
   function siteBase() {
     try {
@@ -834,12 +835,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   async function selectCode(code, wkr) {
+    const archived = ARCHIVE.includes(code);
     buttons.forEach(btn => {
-      const active = btn.getAttribute('data-code') === code;
+      const active = !archived && btn.getAttribute('data-code') === code;
       btn.classList.toggle('is-active', active);
       btn.classList.toggle('selected', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
+    if (archiveNote) archiveNote.hidden = !archived;
     if (heading) {
       heading.textContent = 'Wahlkreise';
     }
@@ -864,12 +867,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  let initial = 'ST';
+  let initial = 'BE';
   let initialWkr = null;
   try {
     const params = new URLSearchParams(window.location.search);
     const st = String(params.get('state') || '').toUpperCase();
-    if (['MV', 'ST', 'BE'].includes(st)) initial = st;
+    if (LIVE.includes(st) || ARCHIVE.includes(st)) initial = st;
     if (params.get('wkr')) initialWkr = Number(params.get('wkr'));
   } catch (_) { /* ignore */ }
 

@@ -3,15 +3,18 @@
  * Expects pipelineData.loadCandidateEntry().
  */
 (function () {
-  const STATES = [
-    { code: "ST", label: "Sachsen-Anhalt", date: "06.09.2026" },
+  const LIVE_STATES = [
     { code: "BE", label: "Berlin", date: "20.09.2026" },
     { code: "MV", label: "Mecklenburg-Vorpommern", date: "20.09.2026" },
   ];
+  const ARCHIVE_STATES = [
+    { code: "ST", label: "Sachsen-Anhalt", date: "06.09.2026" },
+  ];
+  const STATES = LIVE_STATES;
   const STATE_COATS = {
-    ST: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png",
     BE: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DEU_Berlin_COA.svg/60px-DEU_Berlin_COA.svg.png",
     MV: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg/60px-Coat_of_arms_of_Mecklenburg-Western_Pomerania_%28small%29.svg.png",
+    ST: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png",
   };
 
   const UNOFFICIAL_SOURCE_NOTE =
@@ -509,8 +512,13 @@
   function render(root, data) {
     const states = data.states || {};
     const params = readQuery();
-    let stateCode = String(params.get("state") || "ST").toUpperCase();
-    if (!states[stateCode]) stateCode = STATES.find((s) => states[s.code])?.code || "ST";
+    const liveCodes = new Set(LIVE_STATES.map((s) => s.code));
+    const archiveCodes = new Set(ARCHIVE_STATES.map((s) => s.code));
+    let stateCode = String(params.get("state") || "BE").toUpperCase();
+    const archived = archiveCodes.has(stateCode) && Boolean(states[stateCode]);
+    if (!archived && (!liveCodes.has(stateCode) || !states[stateCode])) {
+      stateCode = LIVE_STATES.find((s) => states[s.code])?.code || "BE";
+    }
     let partyCode = params.get("party") || null;
     let bezirkFilter = params.get("bezirk") || "";
     let q = params.get("q") || "";
@@ -532,6 +540,10 @@
           <a class="ce-districts-link" href="#">Wahlkreise</a>
           <span class="is-here">Alle Kandidierende</span>
         </nav>
+        <p class="ce-archive-note"${archived ? "" : " hidden"}>
+          Eingefrorene Vorhersage vor der Wahl —
+          <a href="${escapeHtml(siteBase() + "archive/posts/vergangene-vorhersagen/")}">Vergangene Vorhersagen</a>.
+        </p>
         <div class="ce-controls">
           <div class="ce-state-tabs" role="tablist"></div>
           <p class="ce-stand"></p>
@@ -880,8 +892,8 @@
           ? `${pEntry}% ${pctBar(pEntry, color)}`
           : `<span title="Kein Listenplatz: Einzug = Direkt">${pEntry}%</span> ${pctBar(pEntry, color)}`;
         const stackTop = `${pEntry}%`;
-        const stackMid = `${pDirect}%`;
-        const stackBot = hasList ? `${pList}%` : "—";
+        const stackMid = hasList ? `${pList}%` : "—";
+        const stackBot = `${pDirect}%`;
         const entryCell = `
           <span class="ce-entry-main">${entryMain}</span>
           <span class="ce-entry-stack">${stackTop}<br>${stackMid}<br>${stackBot}</span>
@@ -895,8 +907,8 @@
             <td class="ce-loc">${loc}</td>
             <td class="ce-num">${wk}</td>
             <td class="ce-num ce-entry">${entryCell}</td>
-            <td class="ce-num">${pDirect}%</td>
             <td class="ce-num">${listCell}</td>
+            <td class="ce-num">${pDirect}%</td>
           </tr>`;
       }
 
@@ -940,8 +952,8 @@
               ${th("list", isBezirkList ? "Platz" : "Listenplatz", false, isBezirkList ? null : "Listen<br>platz")}
               ${th("wkr", "WK", true)}
               ${th("entry", "Einzug", true)}
-              ${th("direct", "Direkt", true)}
               ${th("listpct", "Liste %", true)}
+              ${th("direct", "Direkt", true)}
             </tr>
           </thead>
           <tbody>${body}</tbody>
@@ -1001,6 +1013,8 @@
     }
 
     function refresh() {
+      const archiveNote = root.querySelector(".ce-archive-note");
+      if (archiveNote) archiveNote.hidden = !archiveCodes.has(stateCode);
       paintTabs();
       paintPartyTabs();
       paintBezirkSelect();
