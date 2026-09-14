@@ -289,22 +289,13 @@
   let catalog = [];
   let currentKey = null;
 
-  function siteBase() {
-    try {
-      if (window.pipelineData && window.pipelineData.SITE_BASE) {
-        return String(window.pipelineData.SITE_BASE).replace(/\/?$/, '/');
-      }
-    } catch (_) { /* ignore */ }
-    return '/';
-  }
-
-  function updateDistricts(entry) {
+  function updateDistricts(entry, focusWkr) {
     const panel = document.getElementById('past-forecasts-districts');
-    const linkWkr = document.getElementById('past-forecasts-link-wahlkreise');
-    const linkEinzug = document.getElementById('past-forecasts-link-einzug');
+    const links = document.querySelector('.past-forecasts .vorhersage-subpage-links');
     const code = String((entry && entry.state_code) || '').toUpperCase();
     const show = Boolean(entry && entry.scope === 'state' && DISTRICT_STATES.has(code));
     if (!panel) return;
+    if (links) links.hidden = true;
     if (!show) {
       panel.style.display = 'none';
       if (window.DistrictForecastMap && typeof window.DistrictForecastMap.hide === 'function') {
@@ -313,20 +304,18 @@
       return;
     }
     panel.style.display = 'block';
-    const base = siteBase();
-    const st = encodeURIComponent(code);
-    if (linkWkr) linkWkr.href = `${base}direktmandate/?state=${st}`;
-    if (linkEinzug) linkEinzug.href = `${base}einzug/?state=${st}`;
+    const opts = {
+      code,
+      navigateToWkr: false,
+      extraZoom: 0.7
+    };
+    if (focusWkr != null && Number.isFinite(Number(focusWkr))) opts.wkr = Number(focusWkr);
     if (window.DistrictForecastMap && typeof window.DistrictForecastMap.mount === 'function') {
-      window.DistrictForecastMap.mount({
-        code,
-        navigateToWkr: true,
-        extraZoom: 0.7
-      }).catch((err) => console.warn('Archived district map unavailable', err));
+      window.DistrictForecastMap.mount(opts).catch((err) => console.warn('Archived district map unavailable', err));
     }
   }
 
-  async function select(key) {
+  async function select(key, focusWkr) {
     const entry = catalog.find((e) => e.key === key);
     if (!entry || !window.pipelineData) return;
     currentKey = key;
@@ -336,7 +325,7 @@
       await drawChart(forecast);
       renderScenarios(forecast);
       setStand(forecast);
-      updateDistricts(entry);
+      updateDistricts(entry, focusWkr);
     } catch (err) {
       console.warn('Archived forecast unavailable', err);
       updateDistricts(null);
@@ -357,7 +346,21 @@
       return;
     }
     if (empty) empty.hidden = true;
-    await select(catalog[0].key);
+    let key = catalog[0].key;
+    let focusWkr = null;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const wantState = String(params.get('state') || '').toUpperCase();
+      if (wantState) {
+        const match = catalog.find((e) => String(e.state_code || '').toUpperCase() === wantState);
+        if (match) key = match.key;
+      }
+      if (params.get('wkr')) {
+        const n = Number(params.get('wkr'));
+        if (Number.isFinite(n)) focusWkr = n;
+      }
+    } catch (_) { /* optional deep link */ }
+    await select(key, focusWkr);
   }
 
   if (typeof Chart !== 'undefined' && typeof ChartDataLabels !== 'undefined') {
