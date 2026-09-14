@@ -1268,10 +1268,12 @@ function updateProbability(textId, progressId, value, type) {
 }
 </script>
 
-{{- /* Include Vorhersage / Archiv in the HTML at Hugo build time (from data/display_mode.json).
+{{- /* Include Vorhersage in the HTML at Hugo build time (from data/display_mode.json).
        Omitting empty sections also keeps the grey/white section-alt stripe stable — no JS restripe.
        Scratch (not $vars) so assignments inside with/range/if survive those inner scopes.
-       Live Vorhersagen: through 7 days after election. Archiv: after that. */ -}}
+       Live Vorhersagen: through 7 days after election unless a frozen archive file
+       already exists for that election (then they leave the start page).
+       Past forecasts live on /archive/posts/vergangene-vorhersagen/, not here. */ -}}
 {{- $homeLayout := newScratch -}}
 {{- $homeLayout.Set "showForecasts" false -}}
 {{- $homeLayout.Set "showArchive" false -}}
@@ -1284,7 +1286,7 @@ function updateProbability(textId, progressId, value, type) {
   {{- with .federal -}}
     {{- if and .forecast_available (eq .mode "forecast") (isset . "days_to_election") -}}
       {{- $days := int .days_to_election -}}
-      {{- if ge (add $days ($homeLayout.Get "archiveDays")) 0 -}}
+      {{- if ge $days 0 -}}
         {{- $homeLayout.Set "showForecasts" true -}}
       {{- end -}}
     {{- end -}}
@@ -1292,14 +1294,9 @@ function updateProbability(textId, progressId, value, type) {
   {{- range .states -}}
     {{- if and .forecast_available (eq .mode "forecast") (isset . "days_to_election") -}}
       {{- $days := int .days_to_election -}}
-      {{- if ge (add $days ($homeLayout.Get "archiveDays")) 0 -}}
+      {{- if ge $days 0 -}}
         {{- $homeLayout.Set "showForecasts" true -}}
       {{- end -}}
-    {{- end -}}
-  {{- end -}}
-  {{- with .archive -}}
-    {{- if and .forecasts (gt (len .forecasts) 0) -}}
-      {{- $homeLayout.Set "showArchive" true -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
@@ -1319,13 +1316,13 @@ function updateProbability(textId, progressId, value, type) {
           {{- if $homeShowForecasts }}
           <a class="home-jump-btn" href="#vorhersage-section"><span>Vorhersagen</span></a>
           {{- end }}
-          <a class="home-jump-btn" href="#bundestag-section"><span>Bundestag</span></a>
-          <a class="home-jump-btn" href="#landtage-section"><span>Landtage</span></a>
+          <a class="home-jump-btn" href="#stimmung-section"><span>Aktuelle Stimmung</span></a>
         </nav>
         <p id="home-recent-polls" class="home-recent-polls" hidden></p>
         {{- if not $homeShowForecasts }}
         {{ partial "home_notices.html" . }}
         {{- end }}
+        <script src="{{ "js/home-notices.js" | relURL }}" defer></script>
       </div>
     </div>
   </section>
@@ -1410,16 +1407,21 @@ function updateProbability(textId, progressId, value, type) {
 </section>
 {{- end }}
 
-<section id="bundestag-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
+<section id="stimmung-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
   {{- $homeLayout.Add "i" 1 -}}
+  <span id="bundestag-section" class="stimmung-hash-alias"></span>
+  <span id="landtage-section" class="stimmung-hash-alias"></span>
   <div class="content-wrapper">
-    <div id="bundestag-chart-title" class="home-section-title" style="margin-bottom: 0.5rem;">Bundestag</div>
-          <div style="text-align: center; margin-bottom: 0rem; margin-top: 0rem;">
-        <div id="bundestag-election-date" class="home-section-subtitle">voraussichtlich Feb. 2029</div>
-        <div style="text-align: center;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Deutscher_Bundestag_logo.svg/250px-Deutscher_Bundestag_logo.svg.png" alt="Bundesadler" style="height: 60px; margin: 0.35rem auto 0.15rem; display: block;"/>
-        </div>
-      </div>
+    <h2 class="home-section-title">Aktuelle Stimmung</h2>
+    <div style="text-align: center; margin-bottom: 1rem;">
+      <div class="home-section-subtitle">Bundestag und Landtage</div>
+    </div>
+
+    <div class="state-coats-of-arms" id="state-coats-of-arms">
+      <!-- Bund + Länder tiles loaded dynamically -->
+    </div>
+
+    <div id="bundestag-forecast-section" style="margin-top: 0.75rem;">
     <div class="toggle-container" id="bundestag-verlauf-toggle-container">
       <span class="toggle-label">Aktuell</span>
       <div id="bundestag-toggle" class="toggle-switch">
@@ -1534,22 +1536,8 @@ function updateProbability(textId, progressId, value, type) {
         </div>
       </div>
     </div>
-  </div>
-
-</section>
-
-<section id="landtage-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
-  {{- $homeLayout.Add "i" 1 -}}
-  <div class="content-wrapper">
-    <h2 class="home-section-title">Landtage – Aktuelle Stimmung</h2>
-    <div style="text-align: center; margin-bottom: 1rem;">
-      <div class="home-section-subtitle">anstehende Landtagswahlen</div>
     </div>
-    
-    <div class="state-coats-of-arms" id="state-coats-of-arms">
-      <!-- States will be dynamically loaded here -->
-    </div>
-    
+
     <!-- State chart section -->
     <div id="state-forecast-section" style="display: none; margin-top: 0.75rem;">
       <div class="toggle-container" id="state-verlauf-toggle-container">
@@ -1770,11 +1758,6 @@ function updateProbability(textId, progressId, value, type) {
             <span class="media-date">23. September 2017</span>
           </div>
         </a>
-
-        <div class="media-item empty-tile">
-          <!-- Empty placeholder -->
-        </div>
-
 
       </div>
 
@@ -2975,9 +2958,16 @@ a.vorhersage-subpage-link {
 /* Sticky header is --header-height (60px); keep section titles clear of it. */
 #vorhersage-section,
 #vorhersage-archive-section,
+#stimmung-section,
 #bundestag-section,
 #landtage-section {
   scroll-margin-top: calc(var(--header-height, 60px) + 0.75rem);
+}
+
+.stimmung-hash-alias {
+  display: block;
+  height: 0;
+  overflow: hidden;
 }
 
 .home-jump-nav {
@@ -3122,7 +3112,7 @@ a.vorhersage-subpage-link {
   color: white;
 }
 
-/* Section headings shared across Vorhersage / Bundestag / Landtage */
+/* Section headings shared across Vorhersage / Aktuelle Stimmung */
 .home-section-title {
   color: var(--primary);
   text-align: center;
@@ -3139,6 +3129,38 @@ a.vorhersage-subpage-link {
   font-weight: 400;
   text-align: center;
   line-height: 1.3;
+}
+
+.home-eval-banners {
+  max-width: 700px;
+  margin: 0 auto 1.15rem;
+}
+.home-eval-banner {
+  margin: 0 0 0.55rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #e6e6e6;
+  border-left: 3px solid var(--primary, #3a4654);
+  border-radius: 0 8px 8px 0;
+  background: #f6f7f8;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.home-eval-banner:last-child { margin-bottom: 0; }
+.home-eval-banner--quiet {
+  padding: 0.45rem 1rem;
+  font-size: 0.88rem;
+  background: transparent;
+  border-left-width: 3px;
+}
+.home-eval-banner a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+.home-eval-banner a:hover,
+.home-eval-banner a:focus-visible {
+  text-decoration: underline;
 }
 
 /* iPhone-style toggle switch */
@@ -3537,252 +3559,182 @@ document.addEventListener('DOMContentLoaded', function() {
   };
   window.__stateCoatOfArms = stateCoatOfArms;
 
-  // Function to generate state election section
-  async function generateStateElections() {
+  const BUND_STIMMUNG_LOGO = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Deutscher_Bundestag_logo.svg/250px-Deutscher_Bundestag_logo.svg.png';
+  const LANDTAG_MAX_VISIBLE = 3;
+
+  function isBundArm(arm) {
+    return Boolean(arm && String(arm.getAttribute('data-state') || '').toUpperCase() === 'BUND');
+  }
+
+  async function loadBundTileMeta() {
+    const fallback = { date: '2029-02-25', display: 'Winter 2029' };
     try {
-      console.log('Generating state elections...');
-      const data = await fetchElectionDatesJson();
-      console.log('Election dates data:', data);
-      
-      const container = document.getElementById('state-coats-of-arms');
-      if (!container) {
-        console.error('Container not found!');
-        return;
-      }
-      
-      const today = new Date();
-      
-      // Filter out past elections and sort by estimated date
-      const futureElections = data.elections
-        .filter(election => new Date(election.estimated_date) > today)
-        .sort((a, b) => new Date(a.estimated_date) - new Date(b.estimated_date));
-      
-      // Add past elections at the end (without display date)
-      const pastElections = data.elections
-        .filter(election => new Date(election.estimated_date) <= today)
-        .sort((a, b) => new Date(b.estimated_date) - new Date(a.estimated_date)); // Most recent first
-      
-      const allElections = [...futureElections, ...pastElections];
-      console.log('All elections:', allElections);
-      
-      let html = '';
-      let visibleCount = 0;
-      const maxVisible = 3;
-      
-      allElections.forEach((election, index) => {
-        const coatOfArms = stateCoatOfArms[election.state_code];
-        const isVisible = index < maxVisible;
-        const visibleClass = isVisible ? 'visible' : '';
-        const isPast = new Date(election.estimated_date) <= today;
-        
-        // Don't show display date for past elections
-        const electionDateText = isPast ? '' : election.display_date;
-        
-        html += `
-          <div class="state-arm ${visibleClass}" data-date="${election.estimated_date}" data-state="${election.state_code}" data-past="${isPast}">
-            <img src="${coatOfArms}" alt="${election.state_name}" title="${election.state_name}">
-            <div class="state-arm-text">
-              <span>${election.state_name}</span>
-              <div class="election-date">${electionDateText}</div>
-            </div>
-          </div>
-        `;
-      });
-      
-      // Add load more button if there are more than maxVisible elections
-      if (allElections.length > maxVisible) {
-        html += `
-          <div class="state-arm load-more-button visible" id="load-more-states">
-            <div class="state-arm-icon" aria-hidden="true">+</div>
-            <div class="state-arm-text">
-              <span>Weitere anzeigen</span>
-              <div class="election-date">${allElections.length - maxVisible} weitere</div>
-            </div>
-          </div>
-        `;
-        
-        // Add show less button (initially hidden)
-        html += `
-          <div class="state-arm show-less-button" id="show-less-states" style="display: none;">
-            <div class="state-arm-icon" aria-hidden="true">−</div>
-            <div class="state-arm-text">
-              <span>Weniger anzeigen</span>
-              <div class="election-date">Auf ${maxVisible} reduzieren</div>
-            </div>
-          </div>
-        `;
-      }
-      
-      console.log('Generated HTML:', html);
-      container.innerHTML = html;
-      console.log('Container innerHTML set');
-      
-      // Re-attach event listeners to new elements
-      attachStateEventListeners();
-      
-      // Add load-more button functionality
-      const loadMoreBtn = document.getElementById('load-more-states');
-      if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
-          const hiddenStates = getLandtagStateArms('.state-arm:not(.visible):not(.load-more-button):not(.show-less-button)');
-          hiddenStates.forEach(state => {
-            state.classList.add('visible');
-          });
-          this.style.display = 'none'; // Hide the load-more button
-          
-          // Show the "Weniger anzeigen" button
-          const showLessBtn = document.getElementById('show-less-states');
-          if (showLessBtn) {
-            showLessBtn.style.display = 'flex';
-          }
-          
-          // Ensure the currently selected state remains selected
-          if (currentStateName) {
-            const selectedArm = Array.from(getLandtagStateArms()).find(arm => 
-              arm.querySelector('span') && arm.querySelector('span').textContent === currentStateName
-            );
-            if (selectedArm) {
-              selectedArm.classList.add('selected');
-            }
-          }
-        });
-      }
-      
-      // Add show-less button functionality
-      const showLessBtn = document.getElementById('show-less-states');
-      if (showLessBtn) {
-        showLessBtn.addEventListener('click', function() {
-          // Hide states beyond the first 3 (same as initial limit)
-          const allStates = getLandtagStateArms();
-          const maxVisible = 3; // Same as initial limit in generateStateElections
-          
-          allStates.forEach((state, index) => {
-            // Keep the selected state visible even if it's beyond the first 3
-            if (index >= maxVisible && !state.classList.contains('selected')) {
-              state.classList.remove('visible');
-            }
-          });
-          
-          this.style.display = 'none'; // Hide the show-less button
-          
-          // Show the "Weitere anzeigen" button again
-          const loadMoreBtn = document.getElementById('load-more-states');
-          if (loadMoreBtn) {
-            loadMoreBtn.style.display = 'flex';
-          }
-          
-          // Ensure the currently selected state remains selected
-          if (currentStateName) {
-            const selectedArm = Array.from(getLandtagStateArms()).find(arm => 
-              arm.querySelector('span') && arm.querySelector('span').textContent === currentStateName
-            );
-            if (selectedArm) {
-              selectedArm.classList.add('selected');
-            }
-          }
-        });
-      }
-      
-    } catch (error) {
-      console.error('Error generating state elections:', error);
-      const container = document.getElementById('state-coats-of-arms');
-      if (!container) return;
-      
-      // Fallback: render all state tiles alphabetically, but without election dates.
-      const maxVisible = 3;
-      const stateNames = Object.keys(stateData || {}).slice();
-      stateNames.sort((a, b) => a.localeCompare(b, 'de-DE'));
-      
-      let html = '';
-      const allElections = stateNames.map(state_name => {
-        const state_code = stateCodeMap[state_name] || '';
-        return { state_code, state_name, estimated_date: '', display_date: '' };
-      });
-      
-      const today = new Date();
-      allElections.forEach((election, index) => {
-        const coatOfArms = stateCoatOfArms[election.state_code];
-        const isVisible = index < maxVisible;
-        const visibleClass = isVisible ? 'visible' : '';
-        const electionDateText = '';
-        const isPast = false;
-        
-        html += `
-          <div class="state-arm ${visibleClass}" data-date="${election.estimated_date}" data-state="${election.state_code}" data-past="${isPast}">
-            <img src="${coatOfArms}" alt="${election.state_name}" title="${election.state_name}">
-            <div class="state-arm-text">
-              <span>${election.state_name}</span>
-              <div class="election-date">${electionDateText}</div>
-            </div>
-          </div>
-        `;
-      });
-      
-      if (allElections.length > maxVisible) {
-        html += `
-          <div class="state-arm load-more-button visible" id="load-more-states">
-            <div class="state-arm-icon" aria-hidden="true">+</div>
-            <div class="state-arm-text">
-              <span>Weitere anzeigen</span>
-              <div class="election-date">${allElections.length - maxVisible} weitere</div>
-            </div>
-          </div>
-        `;
-        
-        html += `
-          <div class="state-arm show-less-button" id="show-less-states" style="display: none;">
-            <div class="state-arm-icon" aria-hidden="true">−</div>
-            <div class="state-arm-text">
-              <span>Weniger anzeigen</span>
-              <div class="election-date">Auf ${maxVisible} reduzieren</div>
-            </div>
-          </div>
-        `;
-      }
-      
-      container.innerHTML = html;
-      attachStateEventListeners();
-      
-      // Load more button functionality
-      const loadMoreBtn = document.getElementById('load-more-states');
-      if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
-          const hiddenStates = getLandtagStateArms('.state-arm:not(.visible):not(.load-more-button):not(.show-less-button)');
-          hiddenStates.forEach(state => state.classList.add('visible'));
-          this.style.display = 'none';
-          
-          const showLessBtn = document.getElementById('show-less-states');
-          if (showLessBtn) showLessBtn.style.display = 'flex';
-        });
-      }
-      
-      const showLessBtn = document.getElementById('show-less-states');
-      if (showLessBtn) {
-        showLessBtn.addEventListener('click', function() {
-          const allStates = getLandtagStateArms();
-          const maxVisible = 3;
-          allStates.forEach((state, index) => {
-            if (index >= maxVisible && !state.classList.contains('selected')) {
-              state.classList.remove('visible');
-            }
-          });
-          this.style.display = 'none';
-          
-          const loadMoreBtn = document.getElementById('load-more-states');
-          if (loadMoreBtn) loadMoreBtn.style.display = 'flex';
-        });
-      }
+      const pipeline = window.pipelineData;
+      if (!pipeline || typeof pipeline.loadElectionCalendar !== 'function') return fallback;
+      const calendar = await pipeline.loadElectionCalendar();
+      const bund = (calendar.elections || []).find(e => e.scope === 'bund' || e.scope === 'federal');
+      if (!bund || !bund.election_date) return fallback;
+      const display = bund.date_is_estimated
+        ? seasonLabelForISODate(bund.election_date)
+        : formatDateToGerman(new Date(bund.election_date + 'T00:00:00Z'));
+      return { date: bund.election_date, display };
+    } catch (e) {
+      console.warn('Bund election date unavailable', e);
+      return fallback;
     }
   }
 
-  // Function to attach event listeners to state arms
+  function bundTileHtml(meta) {
+    const date = (meta && meta.date) || '';
+    const display = (meta && meta.display) || '';
+    return `
+          <div class="state-arm visible" data-date="${date}" data-state="BUND" data-past="false" data-stimmung-scope="federal">
+            <img src="${BUND_STIMMUNG_LOGO}" alt="Bund" title="Bund">
+            <div class="state-arm-text">
+              <span>Bund</span>
+              <div class="election-date">${display}</div>
+            </div>
+          </div>
+        `;
+  }
+
+  function stateTileHtml(election, isVisible, isPast) {
+    const coatOfArms = stateCoatOfArms[election.state_code] || '';
+    const visibleClass = isVisible ? 'visible' : '';
+    const electionDateText = isPast ? '' : (election.display_date || '');
+    return `
+          <div class="state-arm ${visibleClass}" data-date="${election.estimated_date || ''}" data-state="${election.state_code}" data-past="${isPast}">
+            <img src="${coatOfArms}" alt="${election.state_name}" title="${election.state_name}">
+            <div class="state-arm-text">
+              <span>${election.state_name}</span>
+              <div class="election-date">${electionDateText}</div>
+            </div>
+          </div>
+        `;
+  }
+
+  function landtagExpandButtonsHtml(hiddenCount, maxVisible) {
+    if (hiddenCount <= 0) return '';
+    return `
+          <div class="state-arm load-more-button visible" id="load-more-states">
+            <div class="state-arm-icon" aria-hidden="true">+</div>
+            <div class="state-arm-text">
+              <span>Weitere anzeigen</span>
+              <div class="election-date">${hiddenCount} weitere</div>
+            </div>
+          </div>
+          <div class="state-arm show-less-button" id="show-less-states" style="display: none;">
+            <div class="state-arm-icon" aria-hidden="true">−</div>
+            <div class="state-arm-text">
+              <span>Weniger anzeigen</span>
+              <div class="election-date">Auf ${maxVisible} reduzieren</div>
+            </div>
+          </div>
+        `;
+  }
+
+  function restoreStimmungSelection() {
+    const bundPanel = document.getElementById('bundestag-forecast-section');
+    const bundVisible = bundPanel && bundPanel.style.display !== 'none';
+    if (bundVisible) {
+      const bundArm = Array.from(getLandtagStateArms()).find(isBundArm);
+      if (bundArm) bundArm.classList.add('selected');
+      return;
+    }
+    if (currentStateName) {
+      const selectedArm = Array.from(getLandtagStateArms()).find(arm =>
+        arm.querySelector('span') && arm.querySelector('span').textContent === currentStateName
+      );
+      if (selectedArm) selectedArm.classList.add('selected');
+    }
+  }
+
+  function bindLandtagExpandButtons(maxVisible) {
+    const loadMoreBtn = document.getElementById('load-more-states');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function() {
+        const hiddenStates = getLandtagStateArms('.state-arm:not(.visible):not(.load-more-button):not(.show-less-button)');
+        hiddenStates.forEach(state => state.classList.add('visible'));
+        this.style.display = 'none';
+        const showLessBtn = document.getElementById('show-less-states');
+        if (showLessBtn) showLessBtn.style.display = 'flex';
+        restoreStimmungSelection();
+      });
+    }
+    const showLessBtn = document.getElementById('show-less-states');
+    if (showLessBtn) {
+      showLessBtn.addEventListener('click', function() {
+        const landArms = Array.from(getLandtagStateArms()).filter(arm => !isBundArm(arm));
+        landArms.forEach((state, index) => {
+          if (index >= maxVisible && !state.classList.contains('selected')) {
+            state.classList.remove('visible');
+          }
+        });
+        this.style.display = 'none';
+        const loadMore = document.getElementById('load-more-states');
+        if (loadMore) loadMore.style.display = 'flex';
+        restoreStimmungSelection();
+      });
+    }
+  }
+
+  function renderStimmungTiles(container, elections, today, bundMeta) {
+    const maxVisible = LANDTAG_MAX_VISIBLE;
+    let html = bundTileHtml(bundMeta);
+    elections.forEach((election, index) => {
+      const isPast = Boolean(election.estimated_date) && new Date(election.estimated_date) <= today;
+      html += stateTileHtml(election, index < maxVisible, isPast);
+    });
+    html += landtagExpandButtonsHtml(Math.max(0, elections.length - maxVisible), maxVisible);
+    container.innerHTML = html;
+    attachStateEventListeners();
+    bindLandtagExpandButtons(maxVisible);
+  }
+
+  async function generateStateElections() {
+    const container = document.getElementById('state-coats-of-arms');
+    if (!container) {
+      console.error('Container not found!');
+      return;
+    }
+    const bundMeta = await loadBundTileMeta();
+    try {
+      console.log('Generating state elections...');
+      const data = await fetchElectionDatesJson();
+      const today = new Date();
+      const rows = (data && Array.isArray(data.elections) ? data.elections : [])
+        .filter(election => election && election.state_code && election.state_code !== 'BUND');
+      const futureElections = rows
+        .filter(election => new Date(election.estimated_date) > today)
+        .sort((a, b) => new Date(a.estimated_date) - new Date(b.estimated_date));
+      const pastElections = rows
+        .filter(election => new Date(election.estimated_date) <= today)
+        .sort((a, b) => new Date(b.estimated_date) - new Date(a.estimated_date));
+      renderStimmungTiles(container, [...futureElections, ...pastElections], today, bundMeta);
+    } catch (error) {
+      console.error('Error generating state elections:', error);
+      const stateNames = Object.keys(stateData || {}).slice();
+      stateNames.sort((a, b) => a.localeCompare(b, 'de-DE'));
+      const allElections = stateNames.map(state_name => ({
+        state_code: stateCodeMap[state_name] || '',
+        state_name,
+        estimated_date: '',
+        display_date: ''
+      }));
+      renderStimmungTiles(container, allElections, new Date(), bundMeta);
+    }
+  }
+
   function attachStateEventListeners() {
     const stateArms = getLandtagStateArms();
-    console.log('Found state arms:', stateArms.length);
     stateArms.forEach(arm => {
       arm.addEventListener('click', function() {
-        const stateName = this.querySelector('span').textContent;
-        selectState(stateName);
+        if (isBundArm(this)) {
+          selectBund();
+          return;
+        }
+        const stateName = this.querySelector('span') && this.querySelector('span').textContent;
+        if (stateName) selectState(stateName);
       });
     });
   }
@@ -3792,10 +3744,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Load state data when page loads
   loadStateData().then(() => {
-    // Generate state elections section
     generateStateElections().then(() => {
-      // Auto-select the closest election after data is loaded
-      selectClosestElection();
+      applyDefaultStimmungSelection();
     });
   });
 
@@ -3835,6 +3785,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const stateInfo = stateData[stateName];
     console.log('State info for', stateName, ':', stateInfo);
     if (stateInfo) {
+      showStimmungPanels('state');
       stateForecastSection.style.display = 'block';
       await createStateChart(stateName, stateInfo);
       
@@ -3858,47 +3809,67 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  function showStimmungPanels(scope) {
+    const bundPanel = document.getElementById('bundestag-forecast-section');
+    const statePanel = document.getElementById('state-forecast-section');
+    const showBund = scope === 'bund';
+    if (bundPanel) bundPanel.style.display = showBund ? 'block' : 'none';
+    if (statePanel) statePanel.style.display = showBund ? 'none' : 'block';
+  }
+
+  function refreshBundChart() {
+    const run = () => {
+      if (typeof window.showBundestagChartByToggle === 'function') {
+        window.showBundestagChartByToggle();
+      }
+    };
+    if (typeof requestAnimationFrame === 'function') requestAnimationFrame(run);
+    else run();
+  }
+
+  function selectBund() {
+    const currentStateArms = getLandtagStateArms();
+    currentStateArms.forEach(arm => arm.classList.remove('selected'));
+    const bundArm = Array.from(currentStateArms).find(isBundArm);
+    if (bundArm) bundArm.classList.add('selected');
+    showStimmungPanels('bund');
+    refreshBundChart();
+  }
+
+  function selectStimmungTarget(key) {
+    const code = String(key || '').toUpperCase();
+    const arms = getLandtagStateArms();
+    if (!arms.length) {
+      window.__pendingStimmungKey = key;
+      return;
+    }
+    if (!code || code === 'BUND' || code === 'FEDERAL' || code === 'DE') {
+      selectBund();
+      return;
+    }
+    const arm = Array.from(arms).find(a => String(a.getAttribute('data-state') || '').toUpperCase() === code);
+    if (!arm) {
+      selectBund();
+      return;
+    }
+    const name = arm.querySelector('span') && arm.querySelector('span').textContent;
+    if (name) selectState(name);
+  }
+  window.selectStimmungTarget = selectStimmungTarget;
+
+  function applyDefaultStimmungSelection() {
+    const pending = window.__pendingStimmungKey;
+    if (pending) {
+      window.__pendingStimmungKey = null;
+      selectStimmungTarget(pending);
+      return;
+    }
+    if (document.querySelector('#state-coats-of-arms .state-arm.selected')) return;
+    selectBund();
+  }
+
   // Initial attachment of event listeners (will be re-attached after dynamic generation)
   attachStateEventListeners();
-
-  // Function to find and select the closest upcoming election
-  function selectClosestElection() {
-    const today = new Date();
-    let closestState = null;
-    let closestDate = null;
-    let minDiff = Infinity;
-
-    const currentStateArms = getLandtagStateArms();
-    currentStateArms.forEach(arm => {
-      const dateStr = arm.getAttribute('data-date');
-      const isPast = arm.getAttribute('data-past') === 'true';
-      
-      if (dateStr && !isPast) {
-        const electionDate = new Date(dateStr);
-        const diff = electionDate - today;
-        
-        // Only consider future elections
-        if (diff > 0 && diff < minDiff) {
-          minDiff = diff;
-          closestState = arm.querySelector('span').textContent;
-          closestDate = electionDate;
-        }
-      }
-    });
-
-    if (closestState) {
-      selectState(closestState);
-      // Ensure time slider is hidden on initial load
-      const timeSlider = document.getElementById('state-time-slider');
-      if (timeSlider) timeSlider.style.display = 'none';
-    } else {
-      console.log('No future elections found to auto-select');
-      // Fallback (e.g. API down): select the first available tile.
-      const firstArm = currentStateArms && currentStateArms.length ? currentStateArms[0] : null;
-      const firstState = firstArm && firstArm.querySelector('span') ? firstArm.querySelector('span').textContent : null;
-      if (firstState) selectState(firstState);
-    }
-  }
 
   // State toggle functionality
   const stateToggle = document.getElementById('state-toggle');
@@ -6084,8 +6055,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="{{ "js/enhanced-party-mapper.js" | relURL }}"></script>
 <script src="{{ "js/polls-mapper-aggregator.js" | relURL }}"></script>
 <script src="{{ "js/kalman-latent-support.js" | relURL }}"></script>
-<script src="{{ "js/pipeline-data.js" | relURL }}"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=53"></script>
+<script src="{{ "js/pipeline-data.js" | relURL }}?v=11"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=57"></script>
 <script>
 (function () {
   const RECENT_POLL_DAYS = 7;
@@ -6170,8 +6141,9 @@ document.addEventListener('DOMContentLoaded', function() {
         items.push({
           label: 'Bund',
           date: fedDate,
-          href: hasFc ? '#vorhersage-section' : '#bundestag-section',
+          href: hasFc ? '#vorhersage-section' : '#stimmung-section',
           forecastKey: hasFc ? 'federal' : '',
+          stimmungKey: hasFc ? '' : 'BUND',
           sortKey: '0-bund'
         });
       }
@@ -6188,8 +6160,9 @@ document.addEventListener('DOMContentLoaded', function() {
         items.push({
           label: STATE_LABELS[key] || key,
           date: d,
-          href: hasFc ? '#vorhersage-section' : '#landtage-section',
+          href: hasFc ? '#vorhersage-section' : '#stimmung-section',
           forecastKey: hasFc ? key : '',
+          stimmungKey: hasFc ? '' : key,
           sortKey: `1-${key}`
         });
       });
@@ -6211,7 +6184,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const fcAttr = it.forecastKey
           ? ` data-vorhersage-key="${escapeHtml(it.forecastKey)}"`
           : '';
-        return `<a href="${escapeHtml(it.href)}"${fcAttr}>${text}</a>`;
+        const stAttr = it.stimmungKey
+          ? ` data-stimmung-key="${escapeHtml(it.stimmungKey)}"`
+          : '';
+        return `<a href="${escapeHtml(it.href)}"${fcAttr}${stAttr}>${text}</a>`;
       }).join(', ');
       el.hidden = false;
     } catch (err) {
@@ -6222,21 +6198,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function onRecentPollClick(e) {
     const a = e.target && e.target.closest
-      ? e.target.closest('#home-recent-polls a[data-vorhersage-key]')
+      ? e.target.closest('#home-recent-polls a')
       : null;
     if (!a) return;
-    const key = a.getAttribute('data-vorhersage-key');
-    if (!key) return;
-    const select = window.selectVorhersageTarget;
-    if (typeof select !== 'function') return;
-    // Keep hash navigation; also switch the Vorhersage tile once the section is ready.
-    const run = () => {
-      try { select(key); } catch (err) {
-        console.warn('Could not select Vorhersage target', err);
-      }
-    };
-    if (window.vorhersageTargets && window.vorhersageTargets.length) run();
-    else setTimeout(run, 250);
+    const fcKey = a.getAttribute('data-vorhersage-key');
+    if (fcKey) {
+      const select = window.selectVorhersageTarget;
+      if (typeof select !== 'function') return;
+      const run = () => {
+        try { select(fcKey); } catch (err) {
+          console.warn('Could not select Vorhersage target', err);
+        }
+      };
+      if (window.vorhersageTargets && window.vorhersageTargets.length) run();
+      else setTimeout(run, 250);
+      return;
+    }
+    const stKey = a.getAttribute('data-stimmung-key');
+    if (!stKey) return;
+    const selectStimmung = window.selectStimmungTarget;
+    if (typeof selectStimmung !== 'function') {
+      window.__pendingStimmungKey = stKey;
+      return;
+    }
+    try { selectStimmung(stKey); } catch (err) {
+      console.warn('Could not select Stimmung target', err);
+    }
   }
 
   document.addEventListener('DOMContentLoaded', renderHomeRecentPolls);
@@ -7139,10 +7126,12 @@ document.addEventListener('DOMContentLoaded', function() {
     return daysBetweenUTC(todayUTC, election);
   }
 
+  // Start page Vorhersagen: upcoming races and election day. After that the
+  // last pre-election forecast lives on /archive/posts/vergangene-vorhersagen/.
   function inLiveForecastWindow(electionDate, daysToElection) {
-    let days = Number(daysToElection);
-    if (!Number.isFinite(days)) days = daysToElectionDate(electionDate);
-    return days !== null && Number.isFinite(days) && days >= -homepageArchiveDays();
+    let days = daysToElectionDate(electionDate);
+    if (days === null) days = Number(daysToElection);
+    return days !== null && Number.isFinite(days) && days >= 0;
   }
 
   function inHomepageArchiveWindow(electionDate) {
@@ -7153,7 +7142,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let vorhersageTargets = [];
   let currentVorhersageKey = null;
 
-  const vorhersageDistrictEmbedSupportedStates = new Set(["BE", "MV", "ST"]);
+  const vorhersageDistrictEmbedSupportedStates = new Set(["BE", "MV"]);
   let vorhersageDistrictEmbedMode = "wkr"; // "wkr" = Wahlkreise, "cand" = Kandidierende
   let vorhersageDistrictEmbedCurrentStateCode = null;
   let vorhersageDistrictEmbedBound = false;
@@ -7293,24 +7282,48 @@ document.addEventListener('DOMContentLoaded', function() {
       window.pipelineDisplayMode = await pipeline.loadDisplayMode();
     }
     pipelineDisplayMode = window.pipelineDisplayMode;
+    const frozen = new Set();
+    const markFrozen = (entry) => {
+      if (!entry) return;
+      const ed = String(entry.election_date || '').slice(0, 10);
+      if (!ed) return;
+      if (entry.scope === 'federal' || entry.key === 'federal' || entry.code === 'BUND') {
+        frozen.add(`BUND:${ed}`);
+        return;
+      }
+      const code = String(entry.state_code || entry.code || '').toUpperCase();
+      if (code) frozen.add(`${code}:${ed}`);
+    };
+    const archived = pipelineDisplayMode && pipelineDisplayMode.archive
+      ? pipelineDisplayMode.archive.forecasts : null;
+    if (Array.isArray(archived)) archived.forEach(markFrozen);
+    const pinned = pipelineDisplayMode && pipelineDisplayMode.homepage_hide;
+    if (Array.isArray(pinned)) pinned.forEach(markFrozen);
+    try {
+      const idx = await pipeline.loadArchivedForecast('archive/index.json');
+      if (idx && Array.isArray(idx.forecasts)) idx.forecasts.forEach(markFrozen);
+    } catch (_) { /* optional until first publish of the freeze */ }
     const targets = [];
     const federal = pipelineDisplayMode && pipelineDisplayMode.federal;
     if (federal && federal.mode === 'forecast' && federal.forecast_available
-        && inLiveForecastWindow(federal.election_date, federal.days_to_election)) {
+        && inLiveForecastWindow(federal.election_date, federal.days_to_election)
+        && !frozen.has(`BUND:${String(federal.election_date || '').slice(0, 10)}`)) {
       targets.push({ key: 'federal', scope: 'federal', code: 'BUND', ...federal });
     }
     const states = pipelineDisplayMode && pipelineDisplayMode.states ? pipelineDisplayMode.states : {};
     Object.keys(states).forEach(code => {
       const info = states[code];
+      const ed = String((info && info.election_date) || '').slice(0, 10);
       if (info && info.mode === 'forecast' && info.forecast_available
-          && inLiveForecastWindow(info.election_date, info.days_to_election)) {
+          && inLiveForecastWindow(info.election_date, info.days_to_election)
+          && !frozen.has(`${String(code).toUpperCase()}:${ed}`)) {
         targets.push({ key: code, scope: 'state', code, ...info });
       }
     });
     targets.sort((a, b) => {
       if (a.scope === 'federal' && b.scope !== 'federal') return -1;
       if (b.scope === 'federal' && a.scope !== 'federal') return 1;
-      const order = { ST: 0, BE: 1, MV: 2 };
+      const order = { BE: 0, MV: 1 };
       const oa = Object.prototype.hasOwnProperty.call(order, a.code) ? order[a.code] : 99;
       const ob = Object.prototype.hasOwnProperty.call(order, b.code) ? order[b.code] : 99;
       if (oa !== ob) return oa - ob;
@@ -7847,12 +7860,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const calendar = await pipeline.loadElectionCalendar();
         const bundEntry = (calendar.elections || []).find(e => e.scope === 'bund');
         if (bundEntry && bundEntry.election_date) {
-          const electionDateElement = document.getElementById('bundestag-election-date');
-          if (electionDateElement) {
-            electionDateElement.textContent = bundEntry.date_is_estimated
-              ? `voraussichtlich ${seasonLabelForISODate(bundEntry.election_date)}`
-              : formatDateToGerman(new Date(bundEntry.election_date + 'T00:00:00Z'));
-          }
+          const dateText = bundEntry.date_is_estimated
+            ? seasonLabelForISODate(bundEntry.election_date)
+            : formatDateToGerman(new Date(bundEntry.election_date + 'T00:00:00Z'));
+          const bundDateEl = document.querySelector('#state-coats-of-arms .state-arm[data-state="BUND"] .election-date');
+          if (bundDateEl) bundDateEl.textContent = dateText;
+          const bundArm = document.querySelector('#state-coats-of-arms .state-arm[data-state="BUND"]');
+          if (bundArm) bundArm.setAttribute('data-date', bundEntry.election_date);
         }
       } catch (error) {
         console.error('Error loading election calendar:', error);
@@ -8890,6 +8904,7 @@ document.addEventListener('DOMContentLoaded', function() {
       bundestagRenderBusy = false;
     }
   }
+  window.showBundestagChartByToggle = showBundestagChartByToggle;
 
   // Initialize with correct chart based on toggle state
   showBundestagChartByToggle();

@@ -31,10 +31,7 @@ Für Sachsen-Anhalt 2026 ist das der Stand vom 4. September (letzte Umfrage: 3. 
       <div id="vorhersage-districts-map"></div>
     </div>
     <div id="vorhersage-districts-legend" class="past-forecasts-map-legend"></div>
-    <div class="vorhersage-subpage-links" aria-label="Weiterführende Links">
-      <a id="past-forecasts-link-wahlkreise" class="scenario-prob-toggle vorhersage-subpage-link" href="/direktmandate/">→ Wahlkreise</a>
-      <a id="past-forecasts-link-einzug" class="scenario-prob-toggle vorhersage-subpage-link" href="/einzug/">→ Alle Kandidierende</a>
-    </div>
+    <div id="vorhersage-districts-detail"></div>
   </div>
 </div>
 

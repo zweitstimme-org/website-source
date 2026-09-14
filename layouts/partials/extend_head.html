@@ -104,6 +104,7 @@
       var section = "landtag";
       if (arm.closest("#vorhersage-targets")) section = "vorhersage";
       else if (arm.closest("#vorhersage-archive-targets")) section = "archiv";
+      else if (arm.closest("#state-coats-of-arms")) section = "stimmung";
       var st = arm.getAttribute("data-state") || arm.getAttribute("data-forecast-key");
       return st ? "/click/" + section + "/" + slug(st) : "/click/" + section;
     }
