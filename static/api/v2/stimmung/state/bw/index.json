@@ -1,15 +1,15 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-12T07:35:01",
+  "generated_at": "2026-09-14T06:05:06",
   "description": "Aktuelle Stimmung (Kalman). The full series covers ~10 years. Prefer current, day/YYYY-MM-DD, month/YYYY-MM, or year/YYYY.",
   "path": "/api/v2/stimmung/state/bw.json",
   "current": "/api/v2/stimmung/state/bw/current.json",
   "day": "/api/v2/stimmung/state/bw/day/{date}.json",
   "month": "/api/v2/stimmung/state/bw/month/{YYYY-MM}.json",
   "year": "/api/v2/stimmung/state/bw/year/{YYYY}.json",
-  "from": "2016-09-15",
-  "to": "2026-09-12",
-  "as_of": "2026-09-12",
+  "from": "2017-03-09",
+  "to": "2026-09-14",
+  "as_of": "2026-09-14",
   "election": {
     "id": "bw_2031-04-20",
     "name": "Landtagswahl Baden-Württemberg",
@@ -19,12 +19,6 @@
     "date_is_estimated": true
   },
   "months": [
-    "2016-09",
-    "2016-10",
-    "2016-11",
-    "2016-12",
-    "2017-01",
-    "2017-02",
     "2017-03",
     "2017-04",
     "2017-05",
@@ -142,7 +136,6 @@
     "2026-09"
   ],
   "years": [
-    "2016",
     "2017",
     "2018",
     "2019",
