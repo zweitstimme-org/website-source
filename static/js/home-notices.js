@@ -65,6 +65,19 @@
     return null;
   }
 
+  function ensureStyles() {
+    if (document.querySelector('style[data-home-notices-css]')) return;
+    const s = document.createElement('style');
+    s.setAttribute('data-home-notices-css', '1');
+    s.textContent =
+      '.home-eval-banners{max-width:700px;margin:0 auto 1.15rem}' +
+      '.home-eval-banner{margin:0 0 .55rem;padding:.7rem 1rem;border:1px solid #e6e6e6;border-left:3px solid var(--primary,#3a4654);border-radius:0 8px 8px 0;background:#f6f7f8;text-align:center;font-size:.95rem;line-height:1.4}' +
+      '.home-eval-banner:last-child{margin-bottom:0}' +
+      '.home-eval-banner a{color:var(--primary);font-weight:600;text-decoration:none!important}' +
+      '.home-eval-banner a:hover,.home-eval-banner a:focus-visible{text-decoration:underline!important}';
+    document.head.appendChild(s);
+  }
+
   function render(notices, base) {
     const wrap = document.createElement('div');
     wrap.className = 'home-eval-banners';
@@ -97,6 +110,7 @@
     const fromJson = Array.isArray(payload && payload.notices) ? payload.notices : null;
     const notices = (fromJson && fromJson.length ? fromJson : FALLBACK_NOTICES).filter(isActive);
     if (!notices.length) return;
+    ensureStyles();
     const mount = findMount();
     if (!mount || !mount.parent) return;
     const node = render(notices, base);

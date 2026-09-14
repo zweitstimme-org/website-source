@@ -1323,6 +1323,9 @@ function updateProbability(textId, progressId, value, type) {
           <a class="home-jump-btn" href="#landtage-section"><span>Landtage</span></a>
         </nav>
         <p id="home-recent-polls" class="home-recent-polls" hidden></p>
+        {{- if not $homeShowForecasts }}
+        {{ partial "home_notices.html" . }}
+        {{- end }}
       </div>
     </div>
   </section>
@@ -1331,6 +1334,7 @@ function updateProbability(textId, progressId, value, type) {
 <section id="vorhersage-section"{{- if eq (mod (int ($homeLayout.Get "i")) 2) 0 }} class="section-alt"{{- end }}>
   {{- $homeLayout.Add "i" 1 -}}
   <div class="content-wrapper">
+    {{ partial "home_notices.html" . }}
     <h2 class="home-section-title">Vorhersagen</h2>
     <div style="text-align: center; margin-bottom: 1rem;">
       <div class="home-section-subtitle">Modellprognosen für anstehende Wahlen</div>

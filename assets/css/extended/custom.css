@@ -1143,3 +1143,35 @@ h2 {
     }
 }
 
+
+/* Homepage banners — restored by scripts/ensure_home_notices.py */
+.home-eval-banners {
+    max-width: 700px;
+    margin: 0 auto 1.15rem;
+}
+.home-eval-banner {
+    margin: 0 0 0.55rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid #e6e6e6;
+    border-left: 3px solid var(--primary, #3a4654);
+    border-radius: 0 8px 8px 0;
+    background: #f6f7f8;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+.home-eval-banner:last-child { margin-bottom: 0; }
+.home-eval-banner--quiet {
+    padding: 0.45rem 1rem;
+    font-size: 0.88rem;
+    background: transparent;
+}
+.home-eval-banner a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none !important;
+}
+.home-eval-banner a:hover,
+.home-eval-banner a:focus-visible {
+    text-decoration: underline !important;
+}
