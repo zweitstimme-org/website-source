@@ -39,26 +39,6 @@
     );
   }
 
-  function isFrozenState(code) {
-    const c = String(code || "").toUpperCase();
-    if (!c) return false;
-    if (window.pipelineData && typeof window.pipelineData.isFrozenForecastState === "function") {
-      return window.pipelineData.isFrozenForecastState(c, window.pipelineDisplayMode);
-    }
-    return c === "ST";
-  }
-
-  function pastForecastsHref(stateCode, wkr) {
-    if (window.pipelineData && typeof window.pipelineData.pastForecastsHref === "function") {
-      return window.pipelineData.pastForecastsHref({ state: stateCode, wkr });
-    }
-    const u = new URLSearchParams();
-    if (stateCode) u.set("state", String(stateCode).toUpperCase());
-    if (wkr != null && String(wkr) !== "") u.set("wkr", String(wkr));
-    const q = u.toString();
-    return siteBase() + "archive/posts/vergangene-vorhersagen/" + (q ? "?" + q : "");
-  }
-
   function queryParams() {
     try {
       return new URLSearchParams(window.location.search || "");
@@ -232,9 +212,6 @@
   function districtHref(hit) {
     const c = hit.candidate;
     if (c.wkr_direct == null || c.wkr_direct === "") return "";
-    if (isFrozenState(hit.stateCode)) {
-      return pastForecastsHref(hit.stateCode, c.wkr_direct);
-    }
     const u = new URLSearchParams();
     u.set("state", hit.stateCode);
     u.set("wkr", String(c.wkr_direct));
@@ -242,7 +219,6 @@
   }
 
   function listHref(hit) {
-    if (isFrozenState(hit.stateCode)) return "";
     const c = hit.candidate;
     if (c.list_pos == null) return "";
     const u = new URLSearchParams();
@@ -271,29 +247,16 @@
     const toDistrict = from === "direktmandate"
       || (!from && c.wkr_direct != null && c.wkr_direct !== "");
     if (toDistrict) {
-      if (isFrozenState(state)) {
-        const wkrBack = (c.wkr_direct != null && c.wkr_direct !== "")
-          ? c.wkr_direct
-          : (params && params.get("wkr"));
-        links.push(
-          `<a class="cp-back" href="${escapeHtml(pastForecastsHref(state, wkrBack))}">← Vergangene Vorhersagen</a>`
-        );
-      } else {
-        const u = new URLSearchParams();
-        u.set("state", state);
-        const wkrBack = (c.wkr_direct != null && c.wkr_direct !== "")
-          ? c.wkr_direct
-          : (params && params.get("wkr"));
-        if (wkrBack != null && wkrBack !== "") {
-          u.set("wkr", String(wkrBack));
-        }
-        links.push(
-          `<a class="cp-back" href="${escapeHtml(base + "direktmandate/?" + u.toString())}">← Wahlkreise</a>`
-        );
+      const u = new URLSearchParams();
+      u.set("state", state);
+      const wkrBack = (c.wkr_direct != null && c.wkr_direct !== "")
+        ? c.wkr_direct
+        : (params && params.get("wkr"));
+      if (wkrBack != null && wkrBack !== "") {
+        u.set("wkr", String(wkrBack));
       }
-    } else if (isFrozenState(state)) {
       links.push(
-        `<a class="cp-back" href="${escapeHtml(pastForecastsHref(state))}">← Vergangene Vorhersagen</a>`
+        `<a class="cp-back" href="${escapeHtml(base + "direktmandate/?" + u.toString())}">← Wahlkreise</a>`
       );
     } else {
       links.push(
@@ -418,12 +381,12 @@
           <div class="cp-prob-value">${escapeHtml(pct(pEntry))}</div>
         </div>
         <div class="cp-prob">
-          <div class="cp-prob-label">P(Liste)</div>
-          <div class="cp-prob-value">${escapeHtml(hasList ? pct(c.p_list) : "—")}</div>
-        </div>
-        <div class="cp-prob">
           <div class="cp-prob-label">P(Direkt)</div>
           <div class="cp-prob-value">${escapeHtml(pct(c.p_direct))}</div>
+        </div>
+        <div class="cp-prob">
+          <div class="cp-prob-label">P(Liste)</div>
+          <div class="cp-prob-value">${escapeHtml(hasList ? pct(c.p_list) : "—")}</div>
         </div>
       </div>
       <div class="cp-explain-block">
@@ -516,12 +479,9 @@
     }
 
     root.innerHTML = `<p class="cp-loading">Lade Kandidat:innenprofil…</p>`;
-    const loadDm = window.pipelineData.loadDisplayMode
-      ? window.pipelineData.loadDisplayMode().catch(() => null)
-      : Promise.resolve(null);
-    Promise.all([window.pipelineData.loadCandidateEntry(), loadDm])
-      .then(([data, dm]) => {
-        window.pipelineDisplayMode = dm;
+    window.pipelineData
+      .loadCandidateEntry()
+      .then((data) => {
         const hit = findCandidate(data, params);
         if (!hit) {
           root.innerHTML = `<p class="cp-error">Kandidat:in nicht gefunden. <a href="${escapeHtml(siteBase() + "einzug/")}">Zur Einzugsübersicht</a></p>`;

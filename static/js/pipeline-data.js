@@ -107,39 +107,6 @@
     return fetchJson(`${DATA_BASE}/${path}`);
   }
 
-  function pastForecastsHref(opts) {
-    const params = new URLSearchParams();
-    const code = opts && opts.state ? String(opts.state).toUpperCase() : '';
-    const wkr = opts && opts.wkr != null && String(opts.wkr) !== '' ? String(opts.wkr) : '';
-    if (code) params.set('state', code);
-    if (wkr) params.set('wkr', wkr);
-    const q = params.toString();
-    return `${SITE_BASE}archive/posts/vergangene-vorhersagen/${q ? `?${q}` : ''}`;
-  }
-
-  function frozenForecastStateCodes(displayMode) {
-    const codes = new Set();
-    const add = (entry) => {
-      if (!entry || entry.scope === 'federal') return;
-      const c = String(entry.state_code || entry.code || '').toUpperCase();
-      if (c && c !== 'BUND') codes.add(c);
-    };
-    const dm = displayMode || null;
-    const rows = dm && dm.archive && Array.isArray(dm.archive.forecasts) ? dm.archive.forecasts : [];
-    rows.forEach(add);
-    const hide = dm && Array.isArray(dm.homepage_hide) ? dm.homepage_hide : [];
-    hide.forEach(add);
-    return codes;
-  }
-
-  function isFrozenForecastState(code, displayMode) {
-    const c = String(code || '').toUpperCase();
-    if (!c) return false;
-    const codes = frozenForecastStateCodes(displayMode);
-    if (codes.size) return codes.has(c);
-    return c === 'ST';
-  }
-
   async function loadElectionCalendar() {
     return fetchJson(`${DATA_BASE}/election_calendar.json`);
   }
@@ -355,9 +322,6 @@
     loadCandidateEntry,
     loadWahlkreiseGeo,
     loadArchivedForecast,
-    pastForecastsHref,
-    frozenForecastStateCodes,
-    isFrozenForecastState,
     loadElectionCalendar,
     loadPartyOrder,
     orderPartiesByLastElection,

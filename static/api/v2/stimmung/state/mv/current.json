@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-08-18T07:47:59",
+  "generated_at": "2026-09-15T06:05:07",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -10,29 +10,29 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-08-18",
+    "as_of": "2026-09-15",
     "parties": {
-      "CDU/CSU": 9.8,
-      "AfD": 35.9,
-      "SPD": 28.9,
-      "GRÜNE": 4.9,
-      "LINKE": 11.2,
-      "BSW": 4.1,
-      "FDP": 2.8,
+      "CDU/CSU": 7.2,
+      "AfD": 36.8,
+      "SPD": 32.2,
+      "GRÜNE": 5.2,
+      "LINKE": 10.3,
+      "BSW": 4.2,
+      "FDP": 2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 2.4
+      "Sonstige": 2.1
     },
     "uncertainty_low": {
-      "CDU/CSU": 8.8,
-      "AfD": 34.9,
-      "SPD": 27.9,
-      "GRÜNE": 3.9,
-      "LINKE": 10.2,
-      "BSW": 3.1,
-      "FDP": 1.8,
+      "CDU/CSU": 6.5,
+      "AfD": 36.1,
+      "SPD": 31.5,
+      "GRÜNE": 4.5,
+      "LINKE": 9.6,
+      "BSW": 3.5,
+      "FDP": 1.3,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 10.8,
-      "AfD": 36.9,
-      "SPD": 29.9,
+      "CDU/CSU": 7.9,
+      "AfD": 37.5,
+      "SPD": 32.9,
       "GRÜNE": 5.9,
-      "LINKE": 12.2,
-      "BSW": 5.1,
-      "FDP": 3.8,
+      "LINKE": 11,
+      "BSW": 4.9,
+      "FDP": 2.7,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -64,19 +64,19 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": 0,
-      "AfD": 0,
-      "SPD": 0.1,
-      "GRÜNE": 0,
-      "LINKE": -0.1,
-      "BSW": -0.1,
-      "FDP": 0.1,
+      "CDU/CSU": -1.2,
+      "AfD": 0.4,
+      "SPD": 1.5,
+      "GRÜNE": 0.1,
+      "LINKE": -0.4,
+      "BSW": 0.1,
+      "FDP": -0.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0
+      "Sonstige": -0.4
     }
   },
-  "as_of": "2026-08-18"
+  "as_of": "2026-09-15"
 }
