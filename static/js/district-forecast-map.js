@@ -136,7 +136,7 @@
   function setDistrictSourceNote(code) {
     const el = document.getElementById('vorhersage-districts-source-note');
     if (!el) return;
-    const unofficial = code === 'BE' || code === 'MV';
+    const unofficial = code === 'MV';
     el.hidden = !unofficial;
     el.textContent = unofficial ? UNOFFICIAL_DIRECT_NOTE : '';
   }
@@ -519,6 +519,11 @@
   }
 
   function einzugListHref(stateCode, rec) {
+    if (global.pipelineData
+        && typeof global.pipelineData.isFrozenForecastState === 'function'
+        && global.pipelineData.isFrozenForecastState(stateCode, global.pipelineDisplayMode)) {
+      return '';
+    }
     const params = new URLSearchParams();
     params.set('state', String(stateCode || '').toUpperCase());
     if (rec && rec.party) params.set('party', rec.party);
@@ -1741,6 +1746,9 @@
     }
 
     try {
+      if (!global.pipelineDisplayMode && global.pipelineData.loadDisplayMode) {
+        global.pipelineDisplayMode = await global.pipelineData.loadDisplayMode().catch(() => null);
+      }
       const [districtForecast, geo, parliamentSize, candidateEntry] = await Promise.all([
         global.pipelineData.loadForecastDistricts(code),
         global.pipelineData.loadWahlkreiseGeo(code),
@@ -1920,9 +1928,15 @@
           layer.on('click', () => {
             if (opts && opts.navigateToWkr) {
               try {
-                // Navigate to the WK on the full preview page.
-                const url =
-                  `${siteBase()}direktmandate/?state=${encodeURIComponent(code || '')}&wkr=${encodeURIComponent(wkr)}`;
+                const frozen = global.pipelineData
+                  && typeof global.pipelineData.isFrozenForecastState === 'function'
+                  && global.pipelineData.isFrozenForecastState(
+                    code,
+                    global.pipelineDisplayMode
+                  );
+                const url = frozen && typeof global.pipelineData.pastForecastsHref === 'function'
+                  ? global.pipelineData.pastForecastsHref({ state: code, wkr })
+                  : `${siteBase()}direktmandate/?state=${encodeURIComponent(code || '')}&wkr=${encodeURIComponent(wkr)}`;
                 window.location.href = url;
               } catch (_) {
                 /* ignore */

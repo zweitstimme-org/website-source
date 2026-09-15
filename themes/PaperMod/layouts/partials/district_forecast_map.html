@@ -216,6 +216,16 @@ a.district-aw:hover {
   align-items: center;
   justify-content: center;
 }
+.district-archive-note {
+  max-width: 700px;
+  margin: 0 auto 0.9rem;
+  padding: 0.55rem 0.85rem;
+  border-left: 3px solid var(--primary, #3a4654);
+  background: #f6f7f8;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
 .district-page-note {
   margin: 1.1rem 0 0;
   padding-top: 0.9rem;
@@ -706,25 +716,8 @@ a.district-aw:hover {
   <span class="is-here">Wahlkreise</span>
   <a id="district-einzug-link" href="{{ "einzug/" | relURL }}">Alle Kandidierende</a>
 </div>
-
 <div class="district-preview-targets" id="district-preview-targets" role="tablist" aria-label="Bundesland">
-  <button type="button" class="state-arm visible district-preview-target is-active selected" data-code="ST" aria-pressed="true">
-    <div class="state-arm-narrow">
-      <div class="state-arm-name">Sachsen-Anhalt</div>
-      <div class="state-arm-sub">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="Sachsen-Anhalt" title="Sachsen-Anhalt">
-        <div class="election-date">06.09.2026</div>
-      </div>
-    </div>
-    <div class="state-arm-wide">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wappen_Sachsen-Anhalt.svg/60px-Wappen_Sachsen-Anhalt.svg.png" alt="Sachsen-Anhalt" title="Sachsen-Anhalt">
-      <div class="state-arm-wide-text">
-        <div class="state-arm-wide-name">Sachsen-Anhalt</div>
-        <div class="election-date">06.09.2026</div>
-      </div>
-    </div>
-  </button>
-  <button type="button" class="state-arm visible district-preview-target" data-code="BE" aria-pressed="false">
+  <button type="button" class="state-arm visible district-preview-target is-active selected" data-code="BE" aria-pressed="true">
     <div class="state-arm-narrow">
       <div class="state-arm-name">Berlin</div>
       <div class="state-arm-sub">
@@ -804,16 +797,11 @@ a.district-aw:hover {
 </div>
 
 <script src="{{ "js/chart-logo-watermark.js" | relURL }}?v=8"></script>
-<script src="{{ "js/pipeline-data.js" | relURL }}?v=7"></script>
-<script src="{{ "js/district-forecast-map.js" | relURL }}?v=53"></script>
+<script src="{{ "js/pipeline-data.js" | relURL }}?v=11"></script>
+<script src="{{ "js/district-forecast-map.js" | relURL }}?v=57"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const labels = {
-    MV: 'Mecklenburg-Vorpommern',
-    ST: 'Sachsen-Anhalt',
-    BE: 'Berlin'
-  };
-  const buttons = Array.from(document.querySelectorAll('.district-preview-target'));
+document.addEventListener('DOMContentLoaded', async function () {
+  let buttons = Array.from(document.querySelectorAll('.district-preview-target'));
   const heading = document.getElementById('district-preview-heading');
   const einzugLink = document.getElementById('district-einzug-link');
   const noteEinzugLink = document.getElementById('district-note-einzug-link');
@@ -825,6 +813,30 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     } catch (_) { /* ignore */ }
     return '/';
+  }
+
+  function pastForecastsHref(code, wkr) {
+    if (window.pipelineData && typeof window.pipelineData.pastForecastsHref === 'function') {
+      return window.pipelineData.pastForecastsHref({ state: code, wkr: wkr });
+    }
+    const q = new URLSearchParams();
+    if (code) q.set('state', code);
+    if (wkr != null && String(wkr) !== '') q.set('wkr', String(wkr));
+    const qs = q.toString();
+    return siteBase() + 'archive/posts/vergangene-vorhersagen/' + (qs ? '?' + qs : '');
+  }
+
+  async function isFrozen(code) {
+    const c = String(code || '').toUpperCase();
+    if (!c) return false;
+    let dm = null;
+    try {
+      dm = window.pipelineData ? await window.pipelineData.loadDisplayMode() : null;
+    } catch (_) { dm = null; }
+    if (window.pipelineData && typeof window.pipelineData.isFrozenForecastState === 'function') {
+      return window.pipelineData.isFrozenForecastState(c, dm);
+    }
+    return c === 'ST';
   }
 
   function syncEinzugLink(code) {
@@ -851,6 +863,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const st = String(params.get('state') || '').toUpperCase();
+    if (st && await isFrozen(st)) {
+      window.location.replace(pastForecastsHref(st, params.get('wkr')));
+      return;
+    }
+  } catch (_) { /* stay on the live Wahlkreise page */ }
+
+  // Drop frozen tiles even if an older Hugo partial still baked them in.
+  for (const btn of buttons) {
+    const code = btn.getAttribute('data-code');
+    if (code && await isFrozen(code)) btn.remove();
+  }
+  buttons = Array.from(document.querySelectorAll('.district-preview-target'));
+  const liveCodes = buttons.map((btn) => btn.getAttribute('data-code')).filter(Boolean);
+
   buttons.forEach(btn => {
     btn.addEventListener('click', function () {
       const code = btn.getAttribute('data-code');
@@ -864,12 +893,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  let initial = 'ST';
+  let initial = liveCodes[0] || 'BE';
   let initialWkr = null;
   try {
     const params = new URLSearchParams(window.location.search);
     const st = String(params.get('state') || '').toUpperCase();
-    if (['MV', 'ST', 'BE'].includes(st)) initial = st;
+    if (liveCodes.includes(st)) initial = st;
     if (params.get('wkr')) initialWkr = Number(params.get('wkr'));
   } catch (_) { /* ignore */ }
 
