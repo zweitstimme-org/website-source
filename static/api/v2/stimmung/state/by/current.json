@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-09-19T07:38:36",
+  "generated_at": "2026-09-20T14:03:03",
   "election": {
     "id": "by_2028-10-15",
     "name": "Landtagswahl Bayern",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-09-19",
+    "as_of": "2026-09-20",
     "parties": {
       "CDU/CSU": 37.9,
       "AfD": 19.9,
@@ -26,28 +26,28 @@
       "Sonstige": 3.1
     },
     "uncertainty_low": {
-      "CDU/CSU": 37,
-      "AfD": 19,
-      "SPD": 5.1,
-      "GRÜNE": 12.2,
-      "LINKE": 2.1,
-      "BSW": 2.1,
-      "FDP": 1.1,
-      "FW": 11.1,
+      "CDU/CSU": 36.9,
+      "AfD": 18.9,
+      "SPD": 5,
+      "GRÜNE": 12.1,
+      "LINKE": 2,
+      "BSW": 2,
+      "FDP": 1,
+      "FW": 11,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 38.8,
-      "AfD": 20.8,
-      "SPD": 6.9,
-      "GRÜNE": 14,
-      "LINKE": 3.9,
-      "BSW": 3.9,
-      "FDP": 2.9,
-      "FW": 12.9,
+      "CDU/CSU": 38.9,
+      "AfD": 20.9,
+      "SPD": 7,
+      "GRÜNE": 14.1,
+      "LINKE": 4,
+      "BSW": 4,
+      "FDP": 3,
+      "FW": 13,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
@@ -79,5 +79,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-09-19"
+  "as_of": "2026-09-20"
 }
