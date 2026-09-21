@@ -1,6 +1,6 @@
 ---
 title: "Berlin und Mecklenburg-Vorpommern 2026: Evaluation der Vorhersagen"
-date: 2026-09-21T12:00:00+02:00
+date: 2026-09-21T11:00:00+02:00
 draft: false
 kicker: "Nach der Wahl"
 description: "Was unsere letzten Vorhersagen vor den Wahlen in Berlin und Mecklenburg-Vorpommern getroffen haben — und ob Zweitstimmen-Intervalle und Wahlkreise über ST, BE und MV im erwarteten Rahmen lagen."
