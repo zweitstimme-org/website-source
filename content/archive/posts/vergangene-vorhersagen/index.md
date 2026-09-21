@@ -8,7 +8,7 @@ description: "Letzte Modellprognosen vor dem Wahltag — eingefroren, nicht mit 
 
 Nach der Wahl nehmen wir die Vorhersage von der Startseite. Hier bleibt die **letzte veröffentlichte Modellprognose vor dem Wahltag** stehen: Punktschätzung, 5/6-Unsicherheitsintervall und Szenario-Wahrscheinlichkeiten wie am letzten Tag vor der Wahl.
 
-Für Sachsen-Anhalt 2026 ist das der Stand vom 4. September (letzte Umfrage: 3. September). Die Auswertung, was davon eingetroffen ist, steht in der [Evaluation](/blog/posts/st-2026-evaluation/).
+Für Berlin und Mecklenburg-Vorpommern 2026 ist das der Stand vom 19. bzw. 18. September. Sachsen-Anhalt 2026 steht auf dem Stand vom 4. September (letzte Umfrage: 3. September). Die Auswertung, was davon eingetroffen ist: [Berlin und MV](/blog/posts/be-mv-2026-evaluation/), [Sachsen-Anhalt](/blog/posts/st-2026-evaluation/).
 
 <div class="past-forecasts" id="past-forecasts">
   <div class="state-coats-of-arms" id="past-forecasts-targets"></div>

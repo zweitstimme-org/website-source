@@ -491,7 +491,7 @@ Wie schon bei der [Bundestagswahl 2025](/archive/posts/evaluation-2025/) dürfte
 
 Trotz der teils deutlichen Abweichungen zwischen Umfragen und Wahlergebnis hat unser Modell insgesamt gut abgeschnitten: AfD-Anteil, Sitzzahl und Parlamentsgröße lagen nah am Ergebnis. Den CDU-Einbruch und das Grünen-Plus haben die Umfragen — und damit unser umfragenbasiertes Modell — nicht vorweggenommen. Beim BSW war der Einzug knapp und mit 19 Prozent auch als knapp ausgewiesen.
 
-Am 20. September wählen Mecklenburg-Vorpommern und Berlin. Taktisches Wählen kann die Verhältnisse um die 5-Prozent-Hürde noch verschieben. Und: Wird die Linke in den Wahlkreisen wieder stärker als erwartet?
+Wie Berlin und Mecklenburg-Vorpommern zwei Wochen später ausgegangen sind — und ob Zweitstimmen-Intervalle und Wahlkreise über die drei Wahlen 2026 im erwarteten Rahmen lagen — steht in der [Evaluation vom 21. September](/blog/posts/be-mv-2026-evaluation/).
 
 ---
 

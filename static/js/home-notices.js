@@ -8,10 +8,10 @@
 
   const FALLBACK_NOTICES = [
     {
-      id: 'st-2026-evaluation',
-      href: 'blog/posts/st-2026-evaluation/',
-      text: 'Sachsen-Anhalt 2026: Evaluation der Vorhersagen',
-      until: '2026-09-21'
+      id: 'be-mv-2026-evaluation',
+      href: 'blog/posts/be-mv-2026-evaluation/',
+      text: 'Berlin und Mecklenburg-Vorpommern 2026: Evaluation der Vorhersagen',
+      until: '2026-10-12'
     }
   ];
 
