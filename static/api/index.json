@@ -1,6 +1,6 @@
 {
   "name": "Zweitstimme Forecast API",
-  "generated_at": "2026-09-20T14:05:29Z",
+  "generated_at": "2026-09-23T06:06:37Z",
   "docs": "https://zweitstimme.org/docs/api/",
   "openapi": "/api/openapi.json",
   "versions": {
@@ -56,7 +56,7 @@
     "v1_federal_endpoints": 3,
     "v2_federal_endpoints": 3,
     "v2_state_forecasts": 3,
-    "v2_state_archive": 2,
+    "v2_state_archive": 4,
     "v2_stimmung_states": 16
   }
 }

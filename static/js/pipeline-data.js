@@ -85,27 +85,7 @@
 
   async function loadForecastDistricts(stateCode) {
     const code = String(stateCode || '').toLowerCase();
-    const dm = await loadDisplayMode().catch(() => null);
-    const rows = dm && dm.archive && Array.isArray(dm.archive.forecasts)
-      ? dm.archive.forecasts : [];
-    const row = rows.find((r) => String(r.state_code || '').toLowerCase() === code);
-    const ed = row && row.election_date;
-    const archived = ed
-      ? `${DATA_BASE}/archive/forecast_districts_${code}_${ed}.json`
-      : null;
-    if (archived && isFrozenForecastState(code, dm)) {
-      try {
-        return await fetchJson(archived);
-      } catch (_) { /* fall through to live copy */ }
-    }
-    try {
-      return await fetchJson(`${DATA_BASE}/forecast_districts_${code}.json`);
-    } catch (err) {
-      if (archived) {
-        return fetchJson(archived);
-      }
-      throw err;
-    }
+    return fetchJson(`${DATA_BASE}/forecast_districts_${code}.json`);
   }
 
   async function loadParliamentSize() {
@@ -157,7 +137,7 @@
     if (!c) return false;
     const codes = frozenForecastStateCodes(displayMode);
     if (codes.size) return codes.has(c);
-    return c === 'ST' || c === 'BE' || c === 'MV';
+    return c === 'ST';
   }
 
   async function loadElectionCalendar() {

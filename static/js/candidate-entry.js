@@ -3,10 +3,9 @@
  * Expects pipelineData.loadCandidateEntry().
  */
 (function () {
-  const LIVE_STATES = [];
+  const LIVE_STATES = [
+    ];
   const ARCHIVE_STATES = [
-    { code: "BE", label: "Berlin", date: "20.09.2026" },
-    { code: "MV", label: "Mecklenburg-Vorpommern", date: "20.09.2026" },
     { code: "ST", label: "Sachsen-Anhalt", date: "06.09.2026" },
   ];
   const STATES = LIVE_STATES;
@@ -548,13 +547,10 @@
     const params = readQuery();
     const liveCodes = new Set(LIVE_STATES.map((s) => s.code));
     const archiveCodes = new Set(ARCHIVE_STATES.map((s) => s.code));
-    let stateCode = String(params.get("state") || "").toUpperCase();
+    let stateCode = String(params.get("state") || "BE").toUpperCase();
     const archived = archiveCodes.has(stateCode) && Boolean(states[stateCode]);
     if (!archived && (!liveCodes.has(stateCode) || !states[stateCode])) {
-      stateCode =
-        LIVE_STATES.find((s) => states[s.code])?.code ||
-        ARCHIVE_STATES.find((s) => states[s.code])?.code ||
-        "BE";
+      stateCode = LIVE_STATES.find((s) => states[s.code])?.code || "BE";
     }
     let partyCode = params.get("party") || null;
     let bezirkFilter = params.get("bezirk") || "";
@@ -635,9 +631,7 @@
     search.value = q;
 
     function availableStates() {
-      const live = LIVE_STATES.filter((s) => states[s.code] && !isFrozenState(s.code));
-      if (live.length) return live;
-      return ARCHIVE_STATES.filter((s) => states[s.code]);
+      return STATES.filter((s) => states[s.code] && !isFrozenState(s.code));
     }
 
     function syncUrl() {

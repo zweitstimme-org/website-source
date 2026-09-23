@@ -259,23 +259,6 @@ a.district-aw:hover {
   margin: 0 auto 1.1rem;
   max-width: 960px;
 }
-.district-archive-only {
-  grid-column: 1 / -1;
-  margin: 0;
-  padding: 0.85rem 1rem;
-  border: 1px solid #e6e6e6;
-  border-left: 3px solid var(--primary, #3a4654);
-  border-radius: 0 8px 8px 0;
-  background: #f6f7f8;
-  text-align: center;
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: #333;
-}
-.district-archive-only a {
-  color: var(--primary, #0056b3);
-  font-weight: 600;
-}
 .district-preview-targets .state-arm {
   appearance: none;
   border: 3px solid transparent;
@@ -734,12 +717,7 @@ a.district-aw:hover {
   <a id="district-einzug-link" href="{{ "einzug/" | relURL }}">Alle Kandidierende</a>
 </div>
 <div class="district-preview-targets" id="district-preview-targets" role="tablist" aria-label="Bundesland">
-  <p class="district-archive-only" id="district-archive-only">
-    Zurzeit keine laufende Wahlkreis-Vorhersage.
-    Eingefrorene Prognosen stehen unter
-    <a href="{{ "archive/posts/vergangene-vorhersagen/" | relURL }}">Vergangene Vorhersagen</a>.
-  </p>
-</div>
+  </div>
 
 <div id="vorhersage-districts-section" style="display: none; margin: 0 auto; max-width: 700px;">
   <div class="scenario-prob-panel">
@@ -869,19 +847,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
   buttons = Array.from(document.querySelectorAll('.district-preview-target'));
   const liveCodes = buttons.map((btn) => btn.getAttribute('data-code')).filter(Boolean);
-
-  if (!liveCodes.length) {
-    const box = document.getElementById('district-preview-targets');
-    if (box && !box.querySelector('.district-archive-only')) {
-      box.innerHTML =
-        '<p class="district-archive-only">Zurzeit keine laufende Wahlkreis-Vorhersage. Eingefrorene Prognosen stehen unter <a href="' +
-        pastForecastsHref() +
-        '">Vergangene Vorhersagen</a>.</p>';
-    }
-    const section = document.getElementById('vorhersage-districts-section');
-    if (section) section.style.display = 'none';
-    return;
-  }
 
   buttons.forEach(btn => {
     btn.addEventListener('click', function () {

@@ -1,26 +1,10 @@
 {
   "metadata": {
-    "last_updated": "2026-09-20T14:02:43.921034",
+    "last_updated": "2026-09-23T06:04:43.577645",
     "source": "https://www.wahlrecht.de/umfragen/landtage/",
     "total_states": 16
   },
   "elections": [
-    {
-      "state_code": "ST",
-      "state_name": "Sachsen-Anhalt",
-      "display_date": "6. September 2026",
-      "estimated_date": "2026-09-06",
-      "year": 2026,
-      "date_is_estimated": false
-    },
-    {
-      "state_code": "BE",
-      "state_name": "Berlin",
-      "display_date": "20. September 2026",
-      "estimated_date": "2026-09-20",
-      "year": 2026,
-      "date_is_estimated": false
-    },
     {
       "state_code": "MV",
       "state_name": "Mecklenburg-Vorpommern",
@@ -130,6 +114,22 @@
       "state_name": "Rheinland-Pfalz",
       "display_date": "Frühjahr 2031",
       "estimated_date": "2031-04-20",
+      "year": 2031,
+      "date_is_estimated": true
+    },
+    {
+      "state_code": "BE",
+      "state_name": "Berlin",
+      "display_date": "Herbst 2031",
+      "estimated_date": "2031-10-19",
+      "year": 2031,
+      "date_is_estimated": true
+    },
+    {
+      "state_code": "ST",
+      "state_name": "Sachsen-Anhalt",
+      "display_date": "Herbst 2031",
+      "estimated_date": "2031-10-19",
       "year": 2031,
       "date_is_estimated": true
     }
