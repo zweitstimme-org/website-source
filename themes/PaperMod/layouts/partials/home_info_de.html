@@ -1312,12 +1312,12 @@ function updateProbability(textId, progressId, value, type) {
           Die wissenschaftliche Analyse von Wahlen
         </h2>
         <p>Hier finden Sie wissenschaftlich fundierte Analysen von Wahlumfragen und Vorhersagen für Bundes- und Landtagswahlen in Deutschland. Mit unseren interaktiven Visualisierungen und detaillierten Analysen machen wir Umfrageergebnisse transparent und verständlich.</p>
+        {{- if $homeShowForecasts }}
         <nav class="home-jump-nav" aria-label="Abschnitte">
-          {{- if $homeShowForecasts }}
           <a class="home-jump-btn" href="#vorhersage-section"><span>Vorhersagen</span></a>
-          {{- end }}
           <a class="home-jump-btn" href="#stimmung-section"><span>Aktuelle Stimmung</span></a>
         </nav>
+        {{- end }}
         <p id="home-recent-polls" class="home-recent-polls" hidden></p>
         {{- if not $homeShowForecasts }}
         {{ partial "home_notices.html" . }}
@@ -7577,10 +7577,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function setVorhersageSectionVisible(visible) {
     const section = document.getElementById('vorhersage-section');
-    if (!section) return;
-    section.style.display = visible ? '' : 'none';
-    const jump = document.querySelector('.home-jump-btn[href="#vorhersage-section"]');
-    if (jump) jump.style.display = visible ? '' : 'none';
+    if (section) section.style.display = visible ? '' : 'none';
+    // A lone "Aktuelle Stimmung" jump is pointless when Vorhersagen is absent.
+    const nav = document.querySelector('.home-jump-nav');
+    if (nav) nav.style.display = visible ? '' : 'none';
   }
 
   async function initVorhersageSection() {
