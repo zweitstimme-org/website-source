@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-09-24T06:05:52",
+    "last_updated": "2026-09-26T06:04:57",
     "source": "website-pipeline/data/election_calendar.json",
     "forecast_window_days": 90
   },
