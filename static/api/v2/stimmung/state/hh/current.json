@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-01T06:10:53",
+  "generated_at": "2026-10-03T06:07:01",
   "election": {
     "id": "hh_2030-01-20",
     "name": "Landtagswahl Hamburg",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-10-01",
+    "as_of": "2026-10-03",
     "parties": {
       "CDU/CSU": 13.4,
       "AfD": 13.7,
@@ -64,7 +64,7 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": -0.2,
+      "CDU/CSU": -0.1,
       "AfD": 0.1,
       "SPD": -0.1,
       "GRÜNE": 0.1,
@@ -75,8 +75,8 @@
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0
+      "Sonstige": -0.1
     }
   },
-  "as_of": "2026-10-01"
+  "as_of": "2026-10-03"
 }
