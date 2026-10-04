@@ -1,15 +1,15 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-03T06:07:09",
+  "generated_at": "2026-10-04T07:51:12",
   "description": "Aktuelle Stimmung (Kalman). The full series covers ~10 years. Prefer current, day/YYYY-MM-DD, month/YYYY-MM, or year/YYYY.",
   "path": "/api/v2/stimmung/state/sn.json",
   "current": "/api/v2/stimmung/state/sn/current.json",
   "day": "/api/v2/stimmung/state/sn/day/{date}.json",
   "month": "/api/v2/stimmung/state/sn/month/{YYYY-MM}.json",
   "year": "/api/v2/stimmung/state/sn/year/{YYYY}.json",
-  "from": "2016-10-05",
-  "to": "2026-10-03",
-  "as_of": "2026-10-03",
+  "from": "2017-06-22",
+  "to": "2026-10-04",
+  "as_of": "2026-10-04",
   "election": {
     "id": "sn_2029-10-21",
     "name": "Landtagswahl Sachsen",
@@ -19,14 +19,6 @@
     "date_is_estimated": true
   },
   "months": [
-    "2016-10",
-    "2016-11",
-    "2016-12",
-    "2017-01",
-    "2017-02",
-    "2017-03",
-    "2017-04",
-    "2017-05",
     "2017-06",
     "2017-07",
     "2017-08",
@@ -142,7 +134,6 @@
     "2026-10"
   ],
   "years": [
-    "2016",
     "2017",
     "2018",
     "2019",

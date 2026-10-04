@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-03T06:07:12",
+  "generated_at": "2026-10-04T07:51:17",
   "election": {
     "id": "th_2029-10-21",
     "name": "Landtagswahl Thüringen",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-10-03",
+    "as_of": "2026-10-04",
     "parties": {
       "CDU/CSU": 22.3,
       "AfD": 39.9,
@@ -26,12 +26,12 @@
       "Sonstige": 5.2
     },
     "uncertainty_low": {
-      "CDU/CSU": 19.8,
-      "AfD": 37.4,
-      "SPD": 3.5,
-      "GRÜNE": 1.4,
-      "LINKE": 13.2,
-      "BSW": 4.5,
+      "CDU/CSU": 19.7,
+      "AfD": 37.3,
+      "SPD": 3.4,
+      "GRÜNE": 1.3,
+      "LINKE": 13.1,
+      "BSW": 4.4,
       "FDP": null,
       "FW": null,
       "SSW": null,
@@ -40,12 +40,12 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 24.8,
-      "AfD": 42.4,
-      "SPD": 8.5,
-      "GRÜNE": 6.4,
-      "LINKE": 18.2,
-      "BSW": 9.5,
+      "CDU/CSU": 24.9,
+      "AfD": 42.5,
+      "SPD": 8.6,
+      "GRÜNE": 6.5,
+      "LINKE": 18.3,
+      "BSW": 9.6,
       "FDP": null,
       "FW": null,
       "SSW": null,
@@ -77,5 +77,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-10-03"
+  "as_of": "2026-10-04"
 }
