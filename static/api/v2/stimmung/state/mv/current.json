@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-04T07:51:03",
+  "generated_at": "2026-10-07T06:04:54",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-10-04",
+    "as_of": "2026-10-07",
     "parties": {
       "CDU/CSU": 6.8,
       "AfD": 36.6,
@@ -26,13 +26,13 @@
       "Sonstige": 1.5
     },
     "uncertainty_low": {
-      "CDU/CSU": 5.7,
-      "AfD": 35.5,
-      "SPD": 33.2,
-      "GRÜNE": 4,
-      "LINKE": 8.8,
-      "BSW": 2.7,
-      "FDP": 0.9,
+      "CDU/CSU": 5.6,
+      "AfD": 35.4,
+      "SPD": 33.1,
+      "GRÜNE": 3.9,
+      "LINKE": 8.7,
+      "BSW": 2.6,
+      "FDP": 0.8,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 7.9,
-      "AfD": 37.7,
-      "SPD": 35.4,
-      "GRÜNE": 6.2,
-      "LINKE": 11,
-      "BSW": 4.9,
-      "FDP": 3.1,
+      "CDU/CSU": 8,
+      "AfD": 37.8,
+      "SPD": 35.5,
+      "GRÜNE": 6.3,
+      "LINKE": 11.1,
+      "BSW": 5,
+      "FDP": 3.2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -78,5 +78,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-10-04"
+  "as_of": "2026-10-07"
 }
