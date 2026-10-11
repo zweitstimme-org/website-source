@@ -1,18 +1,10 @@
 {
   "metadata": {
-    "last_updated": "2026-10-09T06:05:26.807857",
+    "last_updated": "2026-10-11T06:04:04.928264",
     "source": "https://www.wahlrecht.de/umfragen/landtage/",
     "total_states": 16
   },
   "elections": [
-    {
-      "state_code": "MV",
-      "state_name": "Mecklenburg-Vorpommern",
-      "display_date": "20. September 2026",
-      "estimated_date": "2026-09-20",
-      "year": 2026,
-      "date_is_estimated": false
-    },
     {
       "state_code": "SL",
       "state_name": "Saarland",
@@ -120,6 +112,14 @@
     {
       "state_code": "BE",
       "state_name": "Berlin",
+      "display_date": "Herbst 2031",
+      "estimated_date": "2031-10-19",
+      "year": 2031,
+      "date_is_estimated": true
+    },
+    {
+      "state_code": "MV",
+      "state_name": "Mecklenburg-Vorpommern",
       "display_date": "Herbst 2031",
       "estimated_date": "2031-10-19",
       "year": 2031,

@@ -1,13 +1,13 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-09T06:07:42Z",
+  "generated_at": "2026-10-11T06:06:27Z",
   "election": {
     "id": "mv_2026-09-20",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
     "date": "2026-09-20",
     "scope": "state",
     "state_code": "MV",
-    "date_is_estimated": false
+    "date_is_estimated": true
   },
   "data": {
     "metadata": {

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-10-09T06:06:08",
+    "last_updated": "2026-10-11T06:04:47",
     "source": "website-pipeline/data/election_calendar.json",
     "forecast_window_days": 90
   },
@@ -12,14 +12,6 @@
       "election_name": "Bundestagswahl",
       "election_date": "2029-02-25",
       "date_is_estimated": true
-    },
-    {
-      "scope": "mv",
-      "state_code": "MV",
-      "state_name": "Mecklenburg-Vorpommern",
-      "election_name": "Landtagswahl Mecklenburg-Vorpommern",
-      "election_date": "2026-09-20",
-      "date_is_estimated": false
     },
     {
       "scope": "sl",
@@ -130,6 +122,14 @@
       "state_code": "BE",
       "state_name": "Berlin",
       "election_name": "Landtagswahl Berlin",
+      "election_date": "2031-10-19",
+      "date_is_estimated": true
+    },
+    {
+      "scope": "mv",
+      "state_code": "MV",
+      "state_name": "Mecklenburg-Vorpommern",
+      "election_name": "Landtagswahl Mecklenburg-Vorpommern",
       "election_date": "2031-10-19",
       "date_is_estimated": true
     },
