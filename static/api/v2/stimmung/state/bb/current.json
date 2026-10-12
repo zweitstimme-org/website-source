@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-11T06:04:26",
+  "generated_at": "2026-10-12T06:08:37",
   "election": {
     "id": "bb_2029-10-21",
     "name": "Landtagswahl Brandenburg",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-10-11",
+    "as_of": "2026-10-12",
     "parties": {
       "CDU/CSU": 9.2,
       "AfD": 39.8,
@@ -26,12 +26,12 @@
       "Sonstige": 8
     },
     "uncertainty_low": {
-      "CDU/CSU": 8.3,
-      "AfD": 38.9,
-      "SPD": 19.2,
-      "GRÜNE": 6,
-      "LINKE": 8.3,
-      "BSW": 5.9,
+      "CDU/CSU": 8.2,
+      "AfD": 38.8,
+      "SPD": 19.1,
+      "GRÜNE": 5.9,
+      "LINKE": 8.2,
+      "BSW": 5.8,
       "FDP": null,
       "FW": null,
       "SSW": null,
@@ -40,12 +40,12 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 10.1,
-      "AfD": 40.7,
-      "SPD": 21,
-      "GRÜNE": 7.8,
-      "LINKE": 10.1,
-      "BSW": 7.7,
+      "CDU/CSU": 10.2,
+      "AfD": 40.8,
+      "SPD": 21.1,
+      "GRÜNE": 7.9,
+      "LINKE": 10.2,
+      "BSW": 7.8,
       "FDP": null,
       "FW": null,
       "SSW": null,
@@ -77,5 +77,5 @@
       "Sonstige": 2.1
     }
   },
-  "as_of": "2026-10-11"
+  "as_of": "2026-10-12"
 }
