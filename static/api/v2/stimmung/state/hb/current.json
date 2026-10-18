@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-17T06:04:21",
+  "generated_at": "2026-10-18T06:04:22",
   "election": {
     "id": "hb_2027-05-30",
     "name": "Landtagswahl Bremen",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-10-17",
+    "as_of": "2026-10-18",
     "parties": {
       "CDU/CSU": 21.8,
       "AfD": 17.3,
@@ -26,13 +26,13 @@
       "Sonstige": 6.3
     },
     "uncertainty_low": {
-      "CDU/CSU": 20,
-      "AfD": 15.5,
-      "SPD": 18.9,
-      "GRÜNE": 13.7,
-      "LINKE": 12.5,
+      "CDU/CSU": 19.9,
+      "AfD": 15.4,
+      "SPD": 18.8,
+      "GRÜNE": 13.6,
+      "LINKE": 12.4,
       "BSW": null,
-      "FDP": 2.3,
+      "FDP": 2.2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 23.6,
-      "AfD": 19.1,
-      "SPD": 22.5,
-      "GRÜNE": 17.3,
-      "LINKE": 16.1,
+      "CDU/CSU": 23.7,
+      "AfD": 19.2,
+      "SPD": 22.6,
+      "GRÜNE": 17.4,
+      "LINKE": 16.2,
       "BSW": null,
-      "FDP": 5.9,
+      "FDP": 6,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -77,5 +77,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-10-17"
+  "as_of": "2026-10-18"
 }
