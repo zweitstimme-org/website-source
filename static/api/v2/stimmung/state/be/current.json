@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-18T06:04:19",
+  "generated_at": "2026-10-21T06:04:24",
   "election": {
     "id": "be_2031-10-19",
     "name": "Landtagswahl Berlin",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-10-18",
+    "as_of": "2026-10-21",
     "parties": {
       "CDU/CSU": 18.7,
       "AfD": 17.3,
@@ -26,13 +26,13 @@
       "Sonstige": 6.4
     },
     "uncertainty_low": {
-      "CDU/CSU": 17.5,
-      "AfD": 16.1,
-      "SPD": 10.8,
-      "GRÜNE": 13.3,
-      "LINKE": 22.4,
-      "BSW": 3.5,
-      "FDP": 1.6,
+      "CDU/CSU": 17.4,
+      "AfD": 16,
+      "SPD": 10.7,
+      "GRÜNE": 13.2,
+      "LINKE": 22.3,
+      "BSW": 3.4,
+      "FDP": 1.5,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 19.9,
-      "AfD": 18.5,
-      "SPD": 13.2,
-      "GRÜNE": 15.7,
-      "LINKE": 24.8,
-      "BSW": 5.9,
-      "FDP": 4,
+      "CDU/CSU": 20,
+      "AfD": 18.6,
+      "SPD": 13.3,
+      "GRÜNE": 15.8,
+      "LINKE": 24.9,
+      "BSW": 6,
+      "FDP": 4.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -64,19 +64,19 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": -0.2,
-      "AfD": -0.1,
+      "CDU/CSU": 0,
+      "AfD": 0,
       "SPD": 0,
-      "GRÜNE": -0.2,
-      "LINKE": 0.3,
+      "GRÜNE": 0,
+      "LINKE": 0,
       "BSW": 0,
-      "FDP": 0.1,
+      "FDP": 0,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0.1
+      "Sonstige": 0
     }
   },
-  "as_of": "2026-10-18"
+  "as_of": "2026-10-21"
 }
