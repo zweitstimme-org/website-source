@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-21T06:04:44",
+  "generated_at": "2026-10-22T06:04:59",
   "election": {
     "id": "sh_2027-04-18",
     "name": "Landtagswahl Schleswig-Holstein",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-10-21",
+    "as_of": "2026-10-22",
     "parties": {
       "CDU/CSU": 28.3,
       "AfD": 17.4,
@@ -26,29 +26,29 @@
       "Sonstige": 4.3
     },
     "uncertainty_low": {
-      "CDU/CSU": 24.9,
-      "AfD": 14,
-      "SPD": 11.1,
-      "GRÜNE": 13.9,
-      "LINKE": 3.4,
+      "CDU/CSU": 24.8,
+      "AfD": 13.9,
+      "SPD": 11,
+      "GRÜNE": 13.8,
+      "LINKE": 3.3,
       "BSW": null,
-      "FDP": 2.2,
+      "FDP": 2.1,
       "FW": null,
-      "SSW": 2.4,
+      "SSW": 2.3,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 31.7,
-      "AfD": 20.8,
-      "SPD": 17.9,
-      "GRÜNE": 20.7,
-      "LINKE": 10.2,
+      "CDU/CSU": 31.8,
+      "AfD": 20.9,
+      "SPD": 18,
+      "GRÜNE": 20.8,
+      "LINKE": 10.3,
       "BSW": null,
-      "FDP": 9,
+      "FDP": 9.1,
       "FW": null,
-      "SSW": 9.2,
+      "SSW": 9.3,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
@@ -78,5 +78,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-10-21"
+  "as_of": "2026-10-22"
 }
