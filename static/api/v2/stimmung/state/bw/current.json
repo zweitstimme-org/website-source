@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-23T06:04:46",
+  "generated_at": "2026-10-24T06:05:11",
   "election": {
     "id": "bw_2031-04-20",
     "name": "Landtagswahl Baden-Württemberg",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-10-23",
+    "as_of": "2026-10-24",
     "parties": {
       "CDU/CSU": 23.2,
       "AfD": 22.9,
@@ -77,5 +77,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-10-23"
+  "as_of": "2026-10-24"
 }
