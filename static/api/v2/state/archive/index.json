@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-25T06:06:51Z",
+  "generated_at": "2026-10-27T06:06:50Z",
   "description": "Archived Landtag forecasts (frozen after election day), including districts / candidates / parliament sidecars when archived. Populated going forward by the pipeline; past elections are not backfilled.",
   "forecasts": [
     {
