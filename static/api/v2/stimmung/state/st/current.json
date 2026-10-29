@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-28T06:04:19",
+  "generated_at": "2026-10-29T06:03:55",
   "election": {
     "id": "st_2031-10-19",
     "name": "Landtagswahl Sachsen-Anhalt",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-10-28",
+    "as_of": "2026-10-29",
     "parties": {
       "CDU/CSU": 22.6,
       "AfD": 41.6,
@@ -26,13 +26,13 @@
       "Sonstige": 3.3
     },
     "uncertainty_low": {
-      "CDU/CSU": 20.5,
-      "AfD": 39.5,
-      "SPD": 6.1,
-      "GRÜNE": 3.6,
-      "LINKE": 9.8,
-      "BSW": 1.8,
-      "FDP": 0.7,
+      "CDU/CSU": 20.4,
+      "AfD": 39.4,
+      "SPD": 6,
+      "GRÜNE": 3.5,
+      "LINKE": 9.7,
+      "BSW": 1.7,
+      "FDP": 0.6,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 24.7,
-      "AfD": 43.7,
-      "SPD": 10.3,
-      "GRÜNE": 7.8,
-      "LINKE": 14,
-      "BSW": 6,
-      "FDP": 4.9,
+      "CDU/CSU": 24.8,
+      "AfD": 43.8,
+      "SPD": 10.4,
+      "GRÜNE": 7.9,
+      "LINKE": 14.1,
+      "BSW": 6.1,
+      "FDP": 5,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -78,5 +78,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-10-28"
+  "as_of": "2026-10-29"
 }

@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-28T06:03:52",
+  "generated_at": "2026-10-29T06:03:35",
   "election": {
     "id": "bund_2029-02-25",
     "name": "Bundestagswahl",
@@ -10,29 +10,29 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-10-28",
+    "as_of": "2026-10-29",
     "parties": {
       "CDU/CSU": 20.1,
       "AfD": 28.2,
-      "SPD": 13.7,
-      "GRÜNE": 14.5,
-      "LINKE": 10.7,
-      "BSW": 2.8,
-      "FDP": 3.8,
+      "SPD": 13.6,
+      "GRÜNE": 14.8,
+      "LINKE": 10.6,
+      "BSW": 2.6,
+      "FDP": 4.2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 6.2
+      "Sonstige": 5.9
     },
     "uncertainty_low": {
-      "CDU/CSU": 19.2,
-      "AfD": 27.3,
-      "SPD": 12.8,
-      "GRÜNE": 13.6,
-      "LINKE": 9.8,
+      "CDU/CSU": 19.4,
+      "AfD": 27.5,
+      "SPD": 12.9,
+      "GRÜNE": 14.1,
+      "LINKE": 9.9,
       "BSW": 1.9,
-      "FDP": 2.9,
+      "FDP": 3.5,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 21,
-      "AfD": 29.1,
-      "SPD": 14.6,
-      "GRÜNE": 15.4,
-      "LINKE": 11.6,
-      "BSW": 3.7,
-      "FDP": 4.7,
+      "CDU/CSU": 20.8,
+      "AfD": 28.9,
+      "SPD": 14.3,
+      "GRÜNE": 15.5,
+      "LINKE": 11.3,
+      "BSW": 3.3,
+      "FDP": 4.9,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -66,17 +66,17 @@
     "trends": {
       "CDU/CSU": 1.1,
       "AfD": -0.1,
-      "SPD": 0.2,
-      "GRÜNE": -0.6,
+      "SPD": 0.1,
+      "GRÜNE": -0.3,
       "LINKE": -0.3,
-      "BSW": -0.1,
-      "FDP": -0.3,
+      "BSW": -0.4,
+      "FDP": 0.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0.1
+      "Sonstige": -0.2
     }
   },
-  "as_of": "2026-10-28"
+  "as_of": "2026-10-29"
 }

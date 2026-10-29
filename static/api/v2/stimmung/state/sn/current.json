@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-10-28T06:04:17",
+  "generated_at": "2026-10-29T06:03:54",
   "election": {
     "id": "sn_2029-10-21",
     "name": "Landtagswahl Sachsen",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-10-28",
+    "as_of": "2026-10-29",
     "parties": {
       "CDU/CSU": 22.6,
       "AfD": 40.5,
@@ -79,5 +79,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-10-28"
+  "as_of": "2026-10-29"
 }
