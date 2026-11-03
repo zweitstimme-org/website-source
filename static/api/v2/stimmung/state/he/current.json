@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-02T06:04:03",
+  "generated_at": "2026-11-03T06:04:30",
   "election": {
     "id": "he_2028-10-15",
     "name": "Landtagswahl Hessen",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-11-02",
+    "as_of": "2026-11-03",
     "parties": {
       "CDU/CSU": 25.2,
       "AfD": 23,
@@ -26,28 +26,28 @@
       "Sonstige": 6.9
     },
     "uncertainty_low": {
-      "CDU/CSU": 24.2,
-      "AfD": 22,
-      "SPD": 14,
-      "GRÜNE": 14.9,
-      "LINKE": 6,
+      "CDU/CSU": 24.1,
+      "AfD": 21.9,
+      "SPD": 13.9,
+      "GRÜNE": 14.8,
+      "LINKE": 5.9,
       "BSW": null,
-      "FDP": 3,
-      "FW": 2,
+      "FDP": 2.9,
+      "FW": 1.9,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 26.2,
-      "AfD": 24,
-      "SPD": 16,
-      "GRÜNE": 16.9,
-      "LINKE": 8,
+      "CDU/CSU": 26.3,
+      "AfD": 24.1,
+      "SPD": 16.1,
+      "GRÜNE": 17,
+      "LINKE": 8.1,
       "BSW": null,
-      "FDP": 5,
-      "FW": 4,
+      "FDP": 5.1,
+      "FW": 4.1,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
@@ -64,7 +64,7 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": -0.2,
+      "CDU/CSU": -0.1,
       "AfD": 0.1,
       "SPD": 0,
       "GRÜNE": 0.1,
@@ -75,8 +75,8 @@
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0
+      "Sonstige": -0.1
     }
   },
-  "as_of": "2026-11-02"
+  "as_of": "2026-11-03"
 }
