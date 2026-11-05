@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-04T06:03:47",
+  "generated_at": "2026-11-05T06:03:36",
   "election": {
     "id": "he_2028-10-15",
     "name": "Landtagswahl Hessen",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-11-04",
+    "as_of": "2026-11-05",
     "parties": {
       "CDU/CSU": 25.2,
       "AfD": 23,
@@ -26,28 +26,28 @@
       "Sonstige": 6.9
     },
     "uncertainty_low": {
-      "CDU/CSU": 24.1,
-      "AfD": 21.9,
-      "SPD": 13.9,
-      "GRÜNE": 14.8,
-      "LINKE": 5.9,
+      "CDU/CSU": 24,
+      "AfD": 21.8,
+      "SPD": 13.8,
+      "GRÜNE": 14.7,
+      "LINKE": 5.8,
       "BSW": null,
-      "FDP": 2.9,
-      "FW": 1.9,
+      "FDP": 2.8,
+      "FW": 1.8,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 26.3,
-      "AfD": 24.1,
-      "SPD": 16.1,
-      "GRÜNE": 17,
-      "LINKE": 8.1,
+      "CDU/CSU": 26.4,
+      "AfD": 24.2,
+      "SPD": 16.2,
+      "GRÜNE": 17.1,
+      "LINKE": 8.2,
       "BSW": null,
-      "FDP": 5.1,
-      "FW": 4.1,
+      "FDP": 5.2,
+      "FW": 4.2,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
@@ -70,13 +70,13 @@
       "GRÜNE": 0.1,
       "LINKE": 0,
       "BSW": null,
-      "FDP": 0.1,
-      "FW": -0.1,
+      "FDP": 0,
+      "FW": 0,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
       "Sonstige": -0.1
     }
   },
-  "as_of": "2026-11-04"
+  "as_of": "2026-11-05"
 }
