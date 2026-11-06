@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-05T06:03:44",
+  "generated_at": "2026-11-06T06:04:21",
   "election": {
     "id": "sl_2027-04-18",
     "name": "Landtagswahl Saarland",
@@ -10,29 +10,29 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-11-05",
+    "as_of": "2026-11-06",
     "parties": {
       "CDU/CSU": 20,
       "AfD": 21,
-      "SPD": 32.9,
+      "SPD": 33,
       "GRÜNE": 9,
       "LINKE": 6,
-      "BSW": 3,
+      "BSW": null,
       "FDP": 3,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 5.1
+      "Sonstige": 8
     },
     "uncertainty_low": {
-      "CDU/CSU": 19.1,
-      "AfD": 20.1,
+      "CDU/CSU": 19,
+      "AfD": 20,
       "SPD": 32,
-      "GRÜNE": 8.1,
-      "LINKE": 5.1,
-      "BSW": 2.1,
-      "FDP": 2.1,
+      "GRÜNE": 8,
+      "LINKE": 5,
+      "BSW": null,
+      "FDP": 2,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 20.9,
-      "AfD": 21.9,
-      "SPD": 33.8,
-      "GRÜNE": 9.9,
-      "LINKE": 6.9,
-      "BSW": 3.9,
-      "FDP": 3.9,
+      "CDU/CSU": 21,
+      "AfD": 22,
+      "SPD": 34,
+      "GRÜNE": 10,
+      "LINKE": 7,
+      "BSW": null,
+      "FDP": 4,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -59,14 +59,13 @@
       "SPD",
       "GRÜNE",
       "LINKE",
-      "BSW",
       "FDP"
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
       "CDU/CSU": -0.2,
-      "AfD": -0.1,
-      "SPD": 0.2,
+      "AfD": 0.1,
+      "SPD": 0.1,
       "GRÜNE": 0.1,
       "LINKE": 0,
       "BSW": null,
@@ -75,8 +74,8 @@
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -3
+      "Sonstige": -0.1
     }
   },
-  "as_of": "2026-11-05"
+  "as_of": "2026-11-06"
 }
