@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-06T06:04:11",
+  "generated_at": "2026-11-07T06:03:56",
   "election": {
     "id": "hh_2030-01-20",
     "name": "Landtagswahl Hamburg",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-07",
     "parties": {
       "CDU/CSU": 13.4,
       "AfD": 13.7,
@@ -26,13 +26,13 @@
       "Sonstige": 3.4
     },
     "uncertainty_low": {
-      "CDU/CSU": 11.5,
-      "AfD": 11.8,
-      "SPD": 28.3,
-      "GRÜNE": 16.3,
-      "LINKE": 13.1,
+      "CDU/CSU": 11.4,
+      "AfD": 11.7,
+      "SPD": 28.2,
+      "GRÜNE": 16.2,
+      "LINKE": 13,
       "BSW": 0.9,
-      "FDP": 1.2,
+      "FDP": 1.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 15.3,
-      "AfD": 15.6,
-      "SPD": 32.1,
-      "GRÜNE": 20.1,
-      "LINKE": 16.9,
+      "CDU/CSU": 15.4,
+      "AfD": 15.7,
+      "SPD": 32.2,
+      "GRÜNE": 20.2,
+      "LINKE": 17,
       "BSW": 5.1,
-      "FDP": 5,
+      "FDP": 5.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -78,5 +78,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-11-06"
+  "as_of": "2026-11-07"
 }

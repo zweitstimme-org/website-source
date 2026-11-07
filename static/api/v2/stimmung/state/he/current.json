@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-06T06:04:12",
+  "generated_at": "2026-11-07T06:03:58",
   "election": {
     "id": "he_2028-10-15",
     "name": "Landtagswahl Hessen",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-07",
     "parties": {
       "CDU/CSU": 25.2,
       "AfD": 23,
@@ -64,8 +64,8 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": -0.1,
-      "AfD": 0.1,
+      "CDU/CSU": 0,
+      "AfD": 0,
       "SPD": 0,
       "GRÜNE": 0,
       "LINKE": 0,
@@ -78,5 +78,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-11-06"
+  "as_of": "2026-11-07"
 }
