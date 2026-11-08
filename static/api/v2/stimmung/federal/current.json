@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-07T06:03:42",
+  "generated_at": "2026-11-08T06:03:04",
   "election": {
     "id": "bund_2029-02-25",
     "name": "Bundestagswahl",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-11-07",
+    "as_of": "2026-11-08",
     "parties": {
       "CDU/CSU": 20,
       "AfD": 27.4,
@@ -67,7 +67,7 @@
       "CDU/CSU": -0.1,
       "AfD": -0.8,
       "SPD": -0.1,
-      "GRÜNE": 0.9,
+      "GRÜNE": 0.8,
       "LINKE": 0,
       "BSW": 0.1,
       "FDP": -0.1,
@@ -75,8 +75,8 @@
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0.1
+      "Sonstige": 0.2
     }
   },
-  "as_of": "2026-11-07"
+  "as_of": "2026-11-08"
 }
