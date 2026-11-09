@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-08T06:03:20",
+  "generated_at": "2026-11-09T06:04:01",
   "election": {
     "id": "mv_2031-10-19",
     "name": "Landtagswahl Mecklenburg-Vorpommern",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-11-08",
+    "as_of": "2026-11-09",
     "parties": {
       "CDU/CSU": 5.5,
       "AfD": 38.4,
@@ -66,17 +66,17 @@
     "trends": {
       "CDU/CSU": 0,
       "AfD": 0.1,
-      "SPD": -0.1,
+      "SPD": 0,
       "GRÜNE": 0,
-      "LINKE": -0.1,
-      "BSW": 0.1,
+      "LINKE": 0,
+      "BSW": 0,
       "FDP": 0,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0
+      "Sonstige": -0.1
     }
   },
-  "as_of": "2026-11-08"
+  "as_of": "2026-11-09"
 }
