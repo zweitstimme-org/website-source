@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-10T06:03:55",
+  "generated_at": "2026-11-11T06:05:31",
   "election": {
     "id": "sl_2027-04-18",
     "name": "Landtagswahl Saarland",
@@ -10,7 +10,7 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-11-10",
+    "as_of": "2026-11-11",
     "parties": {
       "CDU/CSU": 20,
       "AfD": 21,
@@ -26,13 +26,13 @@
       "Sonstige": 8
     },
     "uncertainty_low": {
-      "CDU/CSU": 18.7,
-      "AfD": 19.7,
-      "SPD": 31.7,
-      "GRÜNE": 7.7,
-      "LINKE": 4.7,
+      "CDU/CSU": 18.6,
+      "AfD": 19.6,
+      "SPD": 31.6,
+      "GRÜNE": 7.6,
+      "LINKE": 4.6,
       "BSW": null,
-      "FDP": 1.7,
+      "FDP": 1.6,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 21.3,
-      "AfD": 22.3,
-      "SPD": 34.3,
-      "GRÜNE": 10.3,
-      "LINKE": 7.3,
+      "CDU/CSU": 21.4,
+      "AfD": 22.4,
+      "SPD": 34.4,
+      "GRÜNE": 10.4,
+      "LINKE": 7.4,
       "BSW": null,
-      "FDP": 4.3,
+      "FDP": 4.4,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -65,8 +65,8 @@
     "trends": {
       "CDU/CSU": -0.1,
       "AfD": 0.1,
-      "SPD": 0.1,
-      "GRÜNE": 0.1,
+      "SPD": 0,
+      "GRÜNE": 0,
       "LINKE": 0,
       "BSW": null,
       "FDP": 0,
@@ -74,8 +74,8 @@
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": -0.2
+      "Sonstige": 0
     }
   },
-  "as_of": "2026-11-10"
+  "as_of": "2026-11-11"
 }
