@@ -1,15 +1,15 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-13T06:03:39",
+  "generated_at": "2026-11-14T06:03:36",
   "description": "Aktuelle Stimmung (Kalman). The full series covers ~10 years. Prefer current, day/YYYY-MM-DD, month/YYYY-MM, or year/YYYY.",
   "path": "/api/v2/stimmung/state/sl.json",
   "current": "/api/v2/stimmung/state/sl/current.json",
   "day": "/api/v2/stimmung/state/sl/day/{date}.json",
   "month": "/api/v2/stimmung/state/sl/month/{YYYY-MM}.json",
   "year": "/api/v2/stimmung/state/sl/year/{YYYY}.json",
-  "from": "2016-11-15",
-  "to": "2026-11-13",
-  "as_of": "2026-11-13",
+  "from": "2017-01-13",
+  "to": "2026-11-14",
+  "as_of": "2026-11-14",
   "election": {
     "id": "sl_2027-04-18",
     "name": "Landtagswahl Saarland",
@@ -19,8 +19,6 @@
     "date_is_estimated": false
   },
   "months": [
-    "2016-11",
-    "2016-12",
     "2017-01",
     "2017-02",
     "2017-03",
@@ -142,7 +140,6 @@
     "2026-11"
   ],
   "years": [
-    "2016",
     "2017",
     "2018",
     "2019",
