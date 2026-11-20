@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-19T06:03:58",
+  "generated_at": "2026-11-20T06:04:18",
   "election": {
     "id": "ni_2027-09-26",
     "name": "Landtagswahl Niedersachsen",
@@ -10,29 +10,29 @@
     "date_is_estimated": false
   },
   "data": {
-    "as_of": "2026-11-19",
+    "as_of": "2026-11-20",
     "parties": {
-      "CDU/CSU": 22.2,
-      "AfD": 20.9,
-      "SPD": 26,
-      "GRÜNE": 14.8,
-      "LINKE": 6.1,
+      "CDU/CSU": 21.1,
+      "AfD": 21,
+      "SPD": 26.9,
+      "GRÜNE": 15,
+      "LINKE": 5.1,
       "BSW": null,
-      "FDP": 4.9,
+      "FDP": 4.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 5.1
+      "Sonstige": 6.8
     },
     "uncertainty_low": {
-      "CDU/CSU": 20,
-      "AfD": 18.7,
-      "SPD": 23.8,
-      "GRÜNE": 12.6,
-      "LINKE": 3.9,
+      "CDU/CSU": 20.3,
+      "AfD": 20.2,
+      "SPD": 26.1,
+      "GRÜNE": 14.2,
+      "LINKE": 4.3,
       "BSW": null,
-      "FDP": 2.7,
+      "FDP": 3.3,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -40,13 +40,13 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 24.4,
-      "AfD": 23.1,
-      "SPD": 28.2,
-      "GRÜNE": 17,
-      "LINKE": 8.3,
+      "CDU/CSU": 21.9,
+      "AfD": 21.8,
+      "SPD": 27.7,
+      "GRÜNE": 15.8,
+      "LINKE": 5.9,
       "BSW": null,
-      "FDP": 7.1,
+      "FDP": 4.9,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
@@ -63,19 +63,19 @@
     ],
     "note": "Kalman latent support for this calendar day (filled on days without a new poll).",
     "trends": {
-      "CDU/CSU": 0,
+      "CDU/CSU": -0.2,
       "AfD": 0,
-      "SPD": 0,
+      "SPD": 0.2,
       "GRÜNE": 0,
-      "LINKE": 0,
+      "LINKE": -0.2,
       "BSW": null,
-      "FDP": 0,
+      "FDP": -0.1,
       "FW": null,
       "SSW": null,
       "PIRATEN": null,
       "REP": null,
-      "Sonstige": 0
+      "Sonstige": 0.3
     }
   },
-  "as_of": "2026-11-19"
+  "as_of": "2026-11-20"
 }
