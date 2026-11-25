@@ -64,15 +64,140 @@ function configurePollTableWidths(tableId, partyCount) {
   const table = document.getElementById(tableId);
   if (!table) return;
   const safePartyCount = Math.max(1, Number(partyCount) || 1);
-  const narrow = (window.innerWidth || 1024) <= 640;
-  const datePercent = narrow ? 12 : 14;
-  const institutePercent = narrow ? 14 : 20;
-  const remaining = Math.max(30, 100 - datePercent - institutePercent);
+  const container = table.parentElement;
+  const width = (container && container.clientWidth) || window.innerWidth || 1024;
+  // Narrow tables: give the party columns enough room for a percentage,
+  // and keep Datum / Institut to the short labels used at that width.
+  let datePercent = 14;
+  let institutePercent = 18;
+  if (width <= 420) {
+    datePercent = 13;
+    institutePercent = 14;
+  } else if (width <= 720) {
+    datePercent = 13;
+    institutePercent = 15;
+  }
+  const remaining = Math.max(40, 100 - datePercent - institutePercent);
   const partyPercent = remaining / safePartyCount;
   table.style.setProperty('--date-col-width', `${datePercent}%`);
   table.style.setProperty('--institute-col-width', `${institutePercent}%`);
   table.style.setProperty('--party-col-width', `${partyPercent}%`);
+  // ~5 characters ("19,5%" / "GRÜNE") should fit in a party column.
+  const partyPx = (width * partyPercent) / 100;
+  const fontPx = width > 720 ? 12 : Math.max(8, Math.min(11, (partyPx - 2) / 3.3));
+  table.style.fontSize = `${fontPx}px`;
+  table.style.setProperty('--poll-font', `${fontPx}px`);
 }
+
+function applyPollTableCols(tableId, partyCount) {
+  configurePollTableWidths(tableId, partyCount);
+  const table = document.getElementById(tableId);
+  if (!table) return;
+  const safePartyCount = Math.max(1, Number(partyCount) || 1);
+  const container = table.parentElement;
+  const width = (container && container.clientWidth) || 0;
+  const datePct = parseFloat(table.style.getPropertyValue('--date-col-width')) || 14;
+  const instPct = parseFloat(table.style.getPropertyValue('--institute-col-width')) || 16;
+  const narrow = !(width > 720);
+  const minPartyPx = narrow ? 30 : 40;
+  let partyPx = width > 0 ? (width * (100 - datePct - instPct) / 100) / safePartyCount : minPartyPx;
+  let colWidths;
+  if (width > 0 && partyPx < minPartyPx) {
+    const datePx = Math.max(44, Math.round(width * datePct / 100));
+    const instPx = Math.max(40, Math.round(width * instPct / 100));
+    const tablePx = datePx + instPx + safePartyCount * minPartyPx;
+    table.style.width = `${tablePx}px`;
+    table.style.minWidth = `${tablePx}px`;
+    table.style.maxWidth = 'none';
+    partyPx = minPartyPx;
+    table.style.setProperty('--date-col-width', `${datePx}px`);
+    table.style.setProperty('--institute-col-width', `${instPx}px`);
+    table.style.setProperty('--party-col-width', `${minPartyPx}px`);
+    if (container) container.style.overflowX = 'auto';
+    colWidths = [`${datePx}px`, `${instPx}px`].concat(Array.from({ length: safePartyCount }, () => `${minPartyPx}px`));
+  } else {
+    table.style.width = '100%';
+    table.style.minWidth = '0';
+    table.style.maxWidth = '100%';
+    if (container) container.style.overflowX = 'hidden';
+    const date = table.style.getPropertyValue('--date-col-width') || '14%';
+    const institute = table.style.getPropertyValue('--institute-col-width') || '16%';
+    const party = table.style.getPropertyValue('--party-col-width') || '8%';
+    colWidths = [date, institute].concat(Array.from({ length: safePartyCount }, () => party));
+  }
+  if (narrow) {
+    const fontPx = Math.max(8, Math.min(11, (partyPx - 2) / 3.3));
+    table.style.fontSize = `${fontPx}px`;
+  }
+  let colgroup = table.querySelector('colgroup');
+  if (!colgroup) {
+    colgroup = document.createElement('colgroup');
+    table.insertBefore(colgroup, table.firstChild);
+  }
+  colgroup.replaceChildren(...colWidths.map((w) => {
+    const col = document.createElement('col');
+    col.style.width = w;
+    return col;
+  }));
+}
+
+function abbreviateInstituteName(instituteName) {
+  if (!instituteName) return instituteName;
+  const abbreviations = {
+    'Forschungsgruppe Wahlen': 'FG Wahlen',
+    'Infratest dimap': 'Infratest',
+    'Institut Wahlkreisprognose': 'Wahlkreisprg.',
+    'Trend Research Hamburg': 'Trend Research',
+    'Universität Hamburg': 'Uni Hamburg',
+    'GESS Phone & Field': 'GESS'
+  };
+  return abbreviations[instituteName] || instituteName;
+}
+
+function fillPollDateCell(cell, iso) {
+  const full = formatDateDDMMYYYY(iso);
+  // 24.11.2026 → 24.11.26, shown via CSS on narrow screens.
+  const short = full.length >= 10 ? `${full.slice(0, 6)}${full.slice(8)}` : full;
+  cell.classList.add('poll-date');
+  const fullSpan = document.createElement('span');
+  fullSpan.className = 'poll-date-full';
+  fullSpan.textContent = full;
+  const shortSpan = document.createElement('span');
+  shortSpan.className = 'poll-date-short';
+  shortSpan.textContent = short;
+  cell.replaceChildren(fullSpan, shortSpan);
+}
+
+function setPollHeaderLabel(th, label) {
+  th.replaceChildren();
+  if (label === 'CDU/CSU') {
+    th.append('CDU/', document.createElement('wbr'), 'CSU');
+  } else {
+    th.textContent = label;
+  }
+  th.title = label || '';
+}
+
+function partyKeysInPolls(polls) {
+  const keys = new Set();
+  (polls || []).forEach((poll) => {
+    Object.keys(poll || {}).forEach((key) => {
+      if (['date', 'institute', 'fieldworkStart', 'fieldworkEnd', 'respondents'].includes(key)) return;
+      const value = poll[key];
+      if (typeof value === 'number' && Number.isFinite(value) && value > 0) keys.add(key);
+    });
+  });
+  return keys;
+}
+
+window.addEventListener('resize', () => {
+  ['poll-table', 'state-poll-table'].forEach((id) => {
+    const table = document.getElementById(id);
+    if (!table) return;
+    const cols = table.querySelectorAll('colgroup col').length;
+    if (cols > 2) applyPollTableCols(id, cols - 2);
+  });
+});
 
 function formatShortGermanTick(dateLike, timePeriod) {
   let d = null;
@@ -1448,25 +1573,29 @@ function updateProbability(textId, progressId, value, type) {
     <div id="bundestag-methodology" style="text-align: center; color: #888; font-size: 0.95rem; margin-bottom: 0;">
       Balken/Linien: latente aktuelle Stimmung · Band: ±1σ-Unsicherheit · Punkte: letzte Umfragen — <a href="{{ "blog/posts/polling-calculation-methods/" | relURL }}" style="color: var(--primary);">Wie funktioniert die Stimmung?</a><br/>Daten: <a href="https://dawum.de" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">DAWUM</a>, <a href="https://www.wahlrecht.de/umfragen/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">wahlrecht.de</a>
       · Letzte Umfrage: <span id="bundestag-latest-poll-inline">lädt…</span><span id="bundestag-latest-poll-warnings"></span><span id="bundestag-api-error" style="margin-left: 0.45rem; color: #d32f2f; font-weight: 700;"></span>
-      · <a href="#poll-table-content" id="poll-table-caption-toggle" style="color: #888; text-decoration: underline; text-underline-offset: 2px;" aria-expanded="false" aria-controls="poll-table-content">Umfragenliste</a><br/>
+      · <button type="button" id="poll-table-caption-toggle" class="poll-list-toggle" aria-expanded="false" aria-controls="poll-table-content">Umfragenliste</button><br/>
     </div>
 
     <!-- Poll Table Section (after methodology line; toggled via caption link) -->
     <div id="poll-table-section" style="margin: 0.75rem 0 2rem;">
       <div id="poll-table-content" style="display: none; margin-top: 0.75rem; background: #fff; border: 1px solid #e6e6e6; border-radius: 10px; padding: 0.75rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
-                            <div id="poll-table-container" style="overflow-x: hidden; width: 100%; max-width: 100%;">
+                            <div id="poll-table-container" style="overflow-x: auto; width: 100%; max-width: 100%;">
   <style>
     #poll-table {
+      display: table;
       width: 100%;
       max-width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
       --date-col-width: 14%;
-      --institute-col-width: 20%;
-      --party-col-width: 11%;
+      --institute-col-width: 18%;
+      --party-col-width: 8.5%;
+      font-size: var(--poll-font, 0.75rem);
     }
     #poll-table th,
     #poll-table td {
+      box-sizing: border-box;
+      min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -1486,18 +1615,14 @@ function updateProbability(textId, progressId, value, type) {
     #poll-table tbody tr:nth-child(even) td {
       background-color: #fff;
     }
-    @media (max-width: 640px) {
-      #poll-table {
-        font-size: 0.65rem !important;
-      }
+    @media (max-width: 720px) {
       #poll-table th,
       #poll-table td {
-        padding: 5px 2px !important;
-        font-size: 0.65rem !important;
+        padding: 3px 1px !important;
       }
     }
   </style>
-                      <table id="poll-table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 0.75rem;">
+                      <table id="poll-table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 0.75rem;">
             <thead>
               <tr style="background: #f5f5f5; color: #333; border-bottom: 1px solid #e0e0e0;">
                 <th style="padding: 8px 4px; text-align: left; font-weight: 600; border-right: 1px solid #e0e0e0; font-size: 0.85rem;">Datum</th>
@@ -1571,25 +1696,29 @@ function updateProbability(textId, progressId, value, type) {
       <div id="state-methodology" style="text-align: center; color: #888; font-size: 0.95rem; margin-bottom: 0;">
         Balken/Linien: latente aktuelle Stimmung · Band: ±1σ-Unsicherheit · Punkte: letzte Umfragen — <a href="{{ "blog/posts/polling-calculation-methods/" | relURL }}" style="color: var(--primary);">Wie funktioniert die Stimmung?</a><br/>Daten: <a href="https://dawum.de" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">DAWUM</a>, <a href="https://www.wahlrecht.de/umfragen/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">wahlrecht.de</a>
         · Letzte Umfrage: <span id="state-latest-poll-inline">–</span><span id="state-latest-poll-warnings"></span><span id="state-api-error" style="margin-left: 0.45rem; color: #ff6b35; font-weight: 700;"></span>
-        · <a href="#state-poll-table-content" id="state-poll-table-caption-toggle" style="color: #888; text-decoration: underline; text-underline-offset: 2px;" aria-expanded="false" aria-controls="state-poll-table-content">Umfragenliste</a><span id="state-poll-table-state-name" style="display:none;"></span><br/>
+        · <button type="button" id="state-poll-table-caption-toggle" class="poll-list-toggle" aria-expanded="false" aria-controls="state-poll-table-content">Umfragenliste</button><span id="state-poll-table-state-name" style="display:none;"></span><br/>
       </div>
 
       <!-- State Poll Table Section (after methodology line; toggled via caption link) -->
       <div id="state-poll-table-section" style="margin: 0.75rem 0 1rem;">
         <div id="state-poll-table-content" style="display: none; margin-top: 0.75rem; background: #fff; border: 1px solid #e6e6e6; border-radius: 10px; padding: 0.75rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
-          <div id="state-poll-table-container" style="overflow-x: hidden; width: 100%; max-width: 100%;">
+          <div id="state-poll-table-container" style="overflow-x: auto; width: 100%; max-width: 100%;">
   <style>
     #state-poll-table {
+      display: table;
       width: 100%;
       max-width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
       --date-col-width: 14%;
-      --institute-col-width: 20%;
-      --party-col-width: 11%;
+      --institute-col-width: 18%;
+      --party-col-width: 8.5%;
+      font-size: var(--poll-font, 0.75rem);
     }
     #state-poll-table th,
     #state-poll-table td {
+      box-sizing: border-box;
+      min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -1609,18 +1738,14 @@ function updateProbability(textId, progressId, value, type) {
     #state-poll-table tbody tr:nth-child(even) td {
       background-color: #fff;
     }
-    @media (max-width: 640px) {
-      #state-poll-table {
-        font-size: 0.65rem !important;
-      }
+    @media (max-width: 720px) {
       #state-poll-table th,
       #state-poll-table td {
-        padding: 4px 2px !important;
-        font-size: 0.65rem !important;
+        padding: 3px 1px !important;
       }
     }
   </style>
-            <table id="state-poll-table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 0.75rem;">
+            <table id="state-poll-table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 0.75rem;">
               <thead>
                 <tr style="background: #f5f5f5; color: #333; border-bottom: 1px solid #e0e0e0;">
                   <th style="padding: 6px 3px; text-align: left; font-weight: 600; border-right: 1px solid #e0e0e0; font-size: 0.8rem;">Datum</th>
@@ -1841,6 +1966,64 @@ function updateProbability(textId, progressId, value, type) {
 {{- end -}}
 
 <style>
+  /* Opening Umfragenliste grows the page; don't let scroll anchoring jump the view. */
+  .home-info {
+    overflow-anchor: none;
+  }
+
+  .poll-list-toggle {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: #888;
+    font: inherit;
+    line-height: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+
+  .poll-list-toggle:hover,
+  .poll-list-toggle:focus-visible {
+    color: #555;
+  }
+
+  /* Theme reset sets `table { display: block }`, which lets columns overflow and clips the right side. */
+  #poll-table,
+  #state-poll-table {
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    font-size: var(--poll-font, 0.75rem);
+  }
+
+  #poll-table th,
+  #state-poll-table th {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.05;
+    vertical-align: bottom;
+    overflow: hidden;
+  }
+
+  .poll-date-short { display: none; }
+
+  @media (max-width: 720px) {
+    #poll-table-content,
+    #state-poll-table-content {
+      padding: 0.4rem 0.3rem !important;
+    }
+    .poll-date-full { display: none; }
+    .poll-date-short { display: inline; }
+    #poll-table,
+    #state-poll-table {
+      font-size: var(--poll-font, 0.62rem);
+    }
+  }
+
   body.home .main,
   body.list .main,
   main.main {
@@ -3560,7 +3743,25 @@ document.addEventListener('DOMContentLoaded', function() {
   window.__stateCoatOfArms = stateCoatOfArms;
 
   const BUND_STIMMUNG_LOGO = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Deutscher_Bundestag_logo.svg/250px-Deutscher_Bundestag_logo.svg.png';
-  const LANDTAG_MAX_VISIBLE = 3;
+  let landtagTilesExpanded = false;
+
+  function landtagGridColumns() {
+    return window.matchMedia('(max-width: 480px)').matches ? 2 : 3;
+  }
+
+  // Collapsed grid should fill complete rows (Bund + Länder + „Weitere“).
+  // Start from 3 Länder, then pull in more while a hidden Land could fill the last row.
+  function landtagCollapsedLandCount(totalLands) {
+    const cols = Math.max(1, landtagGridColumns());
+    let lands = Math.min(totalLands, 3);
+    const buttonCount = (n) => 1 + n + (n < totalLands ? 1 : 0);
+    while (lands < totalLands && (buttonCount(lands) % cols) !== 0) lands += 1;
+    return lands;
+  }
+
+  function landtagLandArms() {
+    return Array.from(getLandtagStateArms()).filter(arm => !isBundArm(arm));
+  }
 
   function isBundArm(arm) {
     return Boolean(arm && String(arm.getAttribute('data-state') || '').toUpperCase() === 'BUND');
@@ -3649,37 +3850,83 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function bindLandtagExpandButtons(maxVisible) {
+  function applyLandtagTileVisibility() {
+    const arms = landtagLandArms();
+    const loadMore = document.getElementById('load-more-states');
+    const showLess = document.getElementById('show-less-states');
+    if (!arms.length) return;
+
+    if (landtagTilesExpanded) {
+      arms.forEach(arm => arm.classList.add('visible'));
+      if (loadMore) loadMore.style.display = 'none';
+      if (showLess) showLess.style.display = 'flex';
+      return;
+    }
+
+    const count = landtagCollapsedLandCount(arms.length);
+    const selectedIdx = arms.findIndex(arm => arm.classList.contains('selected'));
+    const chosen = [];
+    for (let i = 0; i < arms.length && chosen.length < count; i++) {
+      if (i === selectedIdx) continue;
+      chosen.push(i);
+    }
+    // A Land opened from „Umfragen letzte 7 Tage“ must occupy a visible slot,
+    // even when it would otherwise sit behind „Weitere anzeigen“.
+    if (selectedIdx >= 0 && !chosen.includes(selectedIdx)) {
+      if (chosen.length >= count) chosen[chosen.length - 1] = selectedIdx;
+      else chosen.push(selectedIdx);
+    }
+    const visible = new Set(chosen);
+    arms.forEach((arm, i) => arm.classList.toggle('visible', visible.has(i)));
+
+    const hidden = arms.length - visible.size;
+    if (loadMore) {
+      loadMore.style.display = hidden > 0 ? 'flex' : 'none';
+      const dateEl = loadMore.querySelector('.election-date');
+      if (dateEl) dateEl.textContent = `${hidden} weitere`;
+    }
+    if (showLess) {
+      showLess.style.display = 'none';
+      const dateEl = showLess.querySelector('.election-date');
+      if (dateEl) dateEl.textContent = `Auf ${visible.size} reduzieren`;
+    }
+  }
+
+  function bindLandtagExpandButtons() {
     const loadMoreBtn = document.getElementById('load-more-states');
     if (loadMoreBtn) {
       loadMoreBtn.addEventListener('click', function() {
-        const hiddenStates = getLandtagStateArms('.state-arm:not(.visible):not(.load-more-button):not(.show-less-button)');
-        hiddenStates.forEach(state => state.classList.add('visible'));
-        this.style.display = 'none';
-        const showLessBtn = document.getElementById('show-less-states');
-        if (showLessBtn) showLessBtn.style.display = 'flex';
+        landtagTilesExpanded = true;
+        applyLandtagTileVisibility();
         restoreStimmungSelection();
       });
     }
     const showLessBtn = document.getElementById('show-less-states');
     if (showLessBtn) {
       showLessBtn.addEventListener('click', function() {
-        const landArms = Array.from(getLandtagStateArms()).filter(arm => !isBundArm(arm));
-        landArms.forEach((state, index) => {
-          if (index >= maxVisible && !state.classList.contains('selected')) {
-            state.classList.remove('visible');
-          }
-        });
-        this.style.display = 'none';
-        const loadMore = document.getElementById('load-more-states');
-        if (loadMore) loadMore.style.display = 'flex';
+        landtagTilesExpanded = false;
+        applyLandtagTileVisibility();
         restoreStimmungSelection();
       });
     }
   }
 
+  let landtagResizeBound = false;
+  function bindLandtagResize() {
+    if (landtagResizeBound) return;
+    landtagResizeBound = true;
+    let cols = landtagGridColumns();
+    window.addEventListener('resize', () => {
+      const next = landtagGridColumns();
+      if (next === cols) return;
+      cols = next;
+      if (!landtagTilesExpanded) applyLandtagTileVisibility();
+    });
+  }
+
   function renderStimmungTiles(container, elections, today, bundMeta) {
-    const maxVisible = LANDTAG_MAX_VISIBLE;
+    landtagTilesExpanded = false;
+    const maxVisible = landtagCollapsedLandCount(elections.length);
     let html = bundTileHtml(bundMeta);
     elections.forEach((election, index) => {
       const isPast = Boolean(election.estimated_date) && new Date(election.estimated_date) <= today;
@@ -3688,7 +3935,9 @@ document.addEventListener('DOMContentLoaded', function() {
     html += landtagExpandButtonsHtml(Math.max(0, elections.length - maxVisible), maxVisible);
     container.innerHTML = html;
     attachStateEventListeners();
-    bindLandtagExpandButtons(maxVisible);
+    bindLandtagExpandButtons();
+    bindLandtagResize();
+    applyLandtagTileVisibility();
   }
 
   async function generateStateElections() {
@@ -3780,6 +4029,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (selectedArm) {
       selectedArm.classList.add('selected');
     }
+    applyLandtagTileVisibility();
 
     // Update forecast section
     const stateInfo = stateData[stateName];
@@ -3832,6 +4082,7 @@ document.addEventListener('DOMContentLoaded', function() {
     currentStateArms.forEach(arm => arm.classList.remove('selected'));
     const bundArm = Array.from(currentStateArms).find(isBundArm);
     if (bundArm) bundArm.classList.add('selected');
+    applyLandtagTileVisibility();
     showStimmungPanels('bund');
     refreshBundChart();
   }
@@ -5799,35 +6050,13 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
-    // Get all available parties from the polls for this specific state
-    const availableParties = new Set();
-    pagePolls.forEach(poll => {
-      Object.keys(poll).forEach(key => {
-        if (!['date', 'institute', 'fieldworkStart', 'fieldworkEnd', 'respondents'].includes(key)) {
-          if (poll[key] !== undefined && poll[key] !== null && poll[key] >= 0) {
-            availableParties.add(key);
-            console.log(`Found party ${key} with value ${poll[key]}%`);
-          } else {
-            console.log(`Party ${key} has value: ${poll[key]} (excluded)`);
-          }
-        }
-      });
-    });
-    
-    console.log('Available parties for this state:', Array.from(availableParties));
-    
-    // State name is tracked globally; header no longer includes it
-    console.log('Current state name:', currentStateName);
-    
+    // Columns stay fixed for this Land across pagination.
     await ensurePartyOrderLoaded();
-    const displayParties = orderPartiesForDisplay(Array.from(availableParties), {
+    const displayParties = orderPartiesForDisplay(Array.from(partyKeysInPolls(stateAllPolls)), {
       stateCode: stateCodeMap[currentStateName] || null
     });
-    console.log('Final display parties (last-election order):', displayParties);
-    
-    // Update table header if needed
-    configurePollTableWidths('state-poll-table', displayParties.length);
     updateStateTableHeader(displayParties);
+    applyPollTableCols('state-poll-table', displayParties.length);
     
     const plottedKeys = getPlottedPollKeySet(currentStateChart);
 
@@ -5856,23 +6085,15 @@ document.addEventListener('DOMContentLoaded', function() {
       const dateCell = document.createElement('td');
       dateCell.style.padding = '4px 2px';
       dateCell.style.borderRight = '1px solid #e0e0e0';
-      dateCell.style.fontSize = '0.7rem';
-      dateCell.textContent = formatDateDDMMYYYY(poll.date);
+      fillPollDateCell(dateCell, poll.date);
       row.appendChild(dateCell);
       
       // Institute column
       const instituteCell = document.createElement('td');
       instituteCell.style.padding = '4px 2px';
       instituteCell.style.borderRight = '1px solid #e0e0e0';
-      instituteCell.style.fontSize = '0.7rem';
-      // Abbreviate institute names for better display
-      let instituteName = poll.institute;
-      if (poll.institute === 'Forschungsgruppe Wahlen') {
-        instituteName = 'F\'gruppe Wahlen';
-      } else if (poll.institute === 'Institut Wahlkreisprognose') {
-        instituteName = 'Institut Wk\'prognose';
-      }
-      instituteCell.textContent = instituteName;
+      instituteCell.textContent = abbreviateInstituteName(poll.institute) || 'Unbekannt';
+      instituteCell.title = poll.institute || '';
       row.appendChild(instituteCell);
       
       // Party columns
@@ -5880,9 +6101,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const partyCell = document.createElement('td');
         partyCell.style.padding = '4px 2px';
         partyCell.style.textAlign = 'center';
-        partyCell.style.fontSize = '0.7rem';
-        // Let party columns expand to fill available table width
-        partyCell.style.width = 'auto';
         
         // Add border to all except the last one
         if (index < displayParties.length - 1) {
@@ -5972,7 +6190,6 @@ document.addEventListener('DOMContentLoaded', function() {
     dateHeader.style.textAlign = 'left';
     dateHeader.style.fontWeight = '600';
     dateHeader.style.borderRight = '1px solid #e0e0e0';
-    dateHeader.style.fontSize = '0.7rem';
     dateHeader.textContent = 'Datum';
     headerRow.appendChild(dateHeader);
     
@@ -5981,7 +6198,6 @@ document.addEventListener('DOMContentLoaded', function() {
     instituteHeader.style.textAlign = 'left';
     instituteHeader.style.fontWeight = '600';
     instituteHeader.style.borderRight = '1px solid #e0e0e0';
-    instituteHeader.style.fontSize = '0.7rem';
     instituteHeader.textContent = 'Institut';
     headerRow.appendChild(instituteHeader);
     
@@ -5991,19 +6207,20 @@ document.addEventListener('DOMContentLoaded', function() {
       partyHeader.style.padding = '4px 2px';
       partyHeader.style.textAlign = 'center';
       partyHeader.style.fontWeight = '600';
-      partyHeader.style.fontSize = '0.7rem';
       
       // Add border to all except the last one
       if (index < displayParties.length - 1) {
         partyHeader.style.borderRight = '1px solid #e0e0e0';
       }
       
-      partyHeader.textContent = abbreviatePartyName(party, stateCodeMap[currentStateName] || null);
+      setPollHeaderLabel(partyHeader, abbreviatePartyName(party, stateCodeMap[currentStateName] || null));
       headerRow.appendChild(partyHeader);
     });
     
     thead.appendChild(headerRow);
-    table.insertBefore(thead, table.firstChild);
+    const tbody = table.querySelector('tbody');
+    if (tbody) table.insertBefore(thead, tbody);
+    else table.appendChild(thead);
   }
 
   // State poll table toggle (caption link in methodology line)
@@ -6011,16 +6228,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const statePollTableContent = document.getElementById('state-poll-table-content');
 
   if (statePollTableCaptionToggle && statePollTableContent) {
-    statePollTableCaptionToggle.addEventListener('click', function(e) {
+    statePollTableCaptionToggle.addEventListener('click', async function(e) {
       e.preventDefault();
+      const y = window.scrollY;
+      const restore = () => window.scrollTo(0, y);
       const isVisible = statePollTableContent.style.display !== 'none';
       statePollTableContent.style.display = isVisible ? 'none' : 'block';
       statePollTableCaptionToggle.setAttribute('aria-expanded', isVisible ? 'false' : 'true');
-      
-      if (!isVisible) {
-        if (typeof currentStateName !== 'undefined' && currentStateName) {
-          loadStatePollData(currentStateName);
+      try {
+        if (!isVisible && typeof currentStateName !== 'undefined' && currentStateName) {
+          await loadStatePollData(currentStateName);
         }
+      } finally {
+        restore();
+        requestAnimationFrame(restore);
       }
     });
   }
@@ -9079,29 +9300,32 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (pollTableCaptionToggle && pollTableContent) {
-    pollTableCaptionToggle.addEventListener('click', function(e) {
+    pollTableCaptionToggle.addEventListener('click', async function(e) {
       e.preventDefault();
+      const y = window.scrollY;
+      const restore = () => window.scrollTo(0, y);
       const isVisible = pollTableContent.style.display !== 'none';
       pollTableContent.style.display = isVisible ? 'none' : 'block';
       pollTableCaptionToggle.setAttribute('aria-expanded', isVisible ? 'false' : 'true');
-      
-      // Load poll data when first opened
-      if (!isVisible && allPolls.length === 0) {
-        console.log('Federal poll table opened, loading data...');
-        const tableBody = document.getElementById('poll-table-body');
-        if (tableBody) {
-          tableBody.innerHTML = '';
-          const loadingRow = document.createElement('tr');
-          const loadingCell = document.createElement('td');
-          loadingCell.colSpan = 2;
-          loadingCell.textContent = 'Lädt...';
-          loadingCell.style.textAlign = 'center';
-          loadingCell.style.padding = '16px 8px';
-          loadingCell.style.color = '#666';
-          loadingRow.appendChild(loadingCell);
-          tableBody.appendChild(loadingRow);
+      try {
+        if (!isVisible && allPolls.length === 0) {
+          const tableBody = document.getElementById('poll-table-body');
+          if (tableBody && !tableBody.querySelector('tr')) {
+            const loadingRow = document.createElement('tr');
+            const loadingCell = document.createElement('td');
+            loadingCell.colSpan = 2;
+            loadingCell.textContent = 'Lädt...';
+            loadingCell.style.textAlign = 'center';
+            loadingCell.style.padding = '16px 8px';
+            loadingCell.style.color = '#666';
+            loadingRow.appendChild(loadingCell);
+            tableBody.appendChild(loadingRow);
+          }
+          await loadPollData();
         }
-        loadPollData();
+      } finally {
+        restore();
+        requestAnimationFrame(restore);
       }
     });
   }
@@ -9218,28 +9442,11 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
-    // Determine which parties have data in the current page
-    const availableParties = new Set();
-    
-    pagePolls.forEach(poll => {
-      Object.keys(poll).forEach(key => {
-        // Only include party names (exclude metadata fields)
-        if (!['date', 'institute', 'fieldworkStart', 'fieldworkEnd', 'respondents'].includes(key)) {
-          if (poll[key] !== undefined && poll[key] !== null && poll[key] > 0) {
-            availableParties.add(key);
-          }
-        }
-      });
-    });
-    
-    console.log('Available parties in current page:', Array.from(availableParties));
+    // Columns stay fixed for the Bundestag list across pagination.
     await ensurePartyOrderLoaded();
-    const displayParties = orderPartiesForDisplay(Array.from(availableParties), { scope: 'federal' });
-    console.log('Display parties (last-election order):', displayParties);
-    
-    // Update table header dynamically
-    configurePollTableWidths('poll-table', displayParties.length);
+    const displayParties = orderPartiesForDisplay(Array.from(partyKeysInPolls(allPolls)), { scope: 'federal' });
     updateTableHeader(displayParties);
+    applyPollTableCols('poll-table', displayParties.length);
     
     // Clear table
     tableBody.innerHTML = '';
@@ -9270,16 +9477,15 @@ document.addEventListener('DOMContentLoaded', function() {
       // Date column
       const dateCell = document.createElement('td');
       dateCell.style.padding = '4px 2px';
-      dateCell.style.fontSize = '0.7rem';
-      dateCell.textContent = formatDate(poll.date);
+      fillPollDateCell(dateCell, poll.date);
       if (row.dataset.plotted === '1') dateCell.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
       row.appendChild(dateCell);
       
       // Institute column
       const instituteCell = document.createElement('td');
       instituteCell.style.padding = '4px 2px';
-      instituteCell.style.fontSize = '0.7rem';
       instituteCell.textContent = abbreviateInstituteName(poll.institute) || 'Unbekannt';
+      instituteCell.title = poll.institute || '';
       if (row.dataset.plotted === '1') instituteCell.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
       row.appendChild(instituteCell);
       
@@ -9289,7 +9495,6 @@ document.addEventListener('DOMContentLoaded', function() {
         cell.style.padding = '4px 2px';
         cell.style.textAlign = 'center';
         cell.style.fontWeight = '500';
-        cell.style.fontSize = '0.7rem';
         
         if (poll[displayParty] !== undefined) {
           const value = poll[displayParty];
@@ -9348,22 +9553,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Abbreviate institute names for better table display
-  function abbreviateInstituteName(instituteName) {
-    if (!instituteName) return instituteName;
-    
-    const abbreviations = {
-      'Forschungsgruppe Wahlen': 'F\'gruppe Wahlen',
-      'Infratest dimap': 'Infratest',
-      'Institut Wahlkreisprognose': 'Wahlkreisprognose',
-      'Trend Research Hamburg': 'Trend Research',
-      'Universität Hamburg': 'Uni Hamburg',
-      'GESS Phone & Field': 'GESS'
-    };
-    
-    return abbreviations[instituteName] || instituteName;
-  }
-
   // Abbreviate party names for better table/chart display.
   // Federal: CDU/CSU. Bavaria: CSU. Other states: CDU.
   function abbreviatePartyName(partyName, stateCode = null) {
@@ -9413,7 +9602,6 @@ document.addEventListener('DOMContentLoaded', function() {
     dateHeader.style.textAlign = 'left';
     dateHeader.style.fontWeight = '600';
     dateHeader.style.borderRight = '1px solid #e0e0e0';
-    dateHeader.style.fontSize = '0.7rem';
     dateHeader.textContent = 'Datum';
     headerRow.appendChild(dateHeader);
     
@@ -9422,7 +9610,6 @@ document.addEventListener('DOMContentLoaded', function() {
     instituteHeader.style.textAlign = 'left';
     instituteHeader.style.fontWeight = '600';
     instituteHeader.style.borderRight = '1px solid #e0e0e0';
-    instituteHeader.style.fontSize = '0.7rem';
     instituteHeader.textContent = 'Institut';
     headerRow.appendChild(instituteHeader);
     
@@ -9432,19 +9619,20 @@ document.addEventListener('DOMContentLoaded', function() {
       partyHeader.style.padding = '4px 2px';
       partyHeader.style.textAlign = 'center';
       partyHeader.style.fontWeight = '600';
-      partyHeader.style.fontSize = '0.7rem';
       
       // Add border to all except the last one
       if (index < displayParties.length - 1) {
         partyHeader.style.borderRight = '1px solid #e0e0e0';
       }
       
-      partyHeader.textContent = abbreviatePartyName(party);
+      setPollHeaderLabel(partyHeader, abbreviatePartyName(party));
       headerRow.appendChild(partyHeader);
     });
     
     thead.appendChild(headerRow);
-    table.insertBefore(thead, table.firstChild);
+    const tbody = table.querySelector('tbody');
+    if (tbody) table.insertBefore(thead, tbody);
+    else table.appendChild(thead);
   }
 
   // Format date for display (calendar date — no timezone shift)
