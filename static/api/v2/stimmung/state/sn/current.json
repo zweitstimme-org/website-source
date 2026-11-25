@@ -1,6 +1,6 @@
 {
   "api_version": "v2",
-  "generated_at": "2026-11-23T06:03:52",
+  "generated_at": "2026-11-25T13:11:05",
   "election": {
     "id": "sn_2029-10-21",
     "name": "Landtagswahl Sachsen",
@@ -10,7 +10,7 @@
     "date_is_estimated": true
   },
   "data": {
-    "as_of": "2026-11-23",
+    "as_of": "2026-11-25",
     "parties": {
       "CDU/CSU": 20.7,
       "AfD": 40.8,
@@ -26,12 +26,12 @@
       "Sonstige": 5.6
     },
     "uncertainty_low": {
-      "CDU/CSU": 19.2,
-      "AfD": 39.3,
-      "SPD": 5.3,
-      "GRÜNE": 4.5,
-      "LINKE": 7.6,
-      "BSW": 6.4,
+      "CDU/CSU": 19.1,
+      "AfD": 39.2,
+      "SPD": 5.2,
+      "GRÜNE": 4.4,
+      "LINKE": 7.5,
+      "BSW": 6.3,
       "FDP": 0,
       "FW": 0,
       "SSW": null,
@@ -40,12 +40,12 @@
       "Sonstige": null
     },
     "uncertainty_high": {
-      "CDU/CSU": 22.2,
-      "AfD": 42.3,
-      "SPD": 8.3,
-      "GRÜNE": 7.5,
-      "LINKE": 10.6,
-      "BSW": 9.4,
+      "CDU/CSU": 22.3,
+      "AfD": 42.4,
+      "SPD": 8.4,
+      "GRÜNE": 7.6,
+      "LINKE": 10.7,
+      "BSW": 9.5,
       "FDP": 4.9,
       "FW": 5.8,
       "SSW": null,
@@ -79,5 +79,5 @@
       "Sonstige": 0
     }
   },
-  "as_of": "2026-11-23"
+  "as_of": "2026-11-25"
 }
